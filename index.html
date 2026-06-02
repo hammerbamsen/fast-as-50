@@ -7,23 +7,35 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --wine: #6B2737;
-  --wine-light: #8B3A4E;
-  --gold: #C9943A;
-  --gold-light: #E8B96A;
-  --cream: #F5F0E8;
-  --cream-dark: #E8E0D0;
-  --text-dark: #2C1A20;
-  --text-mid: #6B5560;
-  --text-light: #9B8A90;
-  --green: #2D6A4F;
-  --green-light: #52B788;
-  --red: #C0392B;
-  --blue-light: #E8F4FD;
-  --blue-text: #1A6B9A;
+  --wine: #6B2737; --wine-light: #8B3A4E; --gold: #C9943A; --gold-light: #E8B96A;
+  --cream: #F5F0E8; --cream-dark: #E8E0D0; --text-dark: #2C1A20; --text-mid: #6B5560;
+  --text-light: #9B8A90; --green: #2D6A4F; --green-light: #52B788; --red: #C0392B;
 }
-body { background: var(--cream); font-family: Georgia, serif; color: var(--text-dark); }
-.site { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--cream); }
+body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark); min-height: 100vh; }
+.site { max-width: 480px; margin: 0 auto; background: var(--cream); min-height: 100vh; }
+
+@media (min-width: 900px) {
+  body { padding: 40px 20px; }
+  .site { max-width: 1000px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(44,26,32,0.15); min-height: auto; }
+  .desktop-layout { display: flex; }
+  .sidebar { display: flex; flex-direction: column; width: 220px; flex-shrink: 0; background: var(--wine); min-height: 600px; }
+  .sidebar-nav { display: flex; flex-direction: column; padding: 8px 0; }
+  .sidebar-btn { text-align: left; padding: 12px 20px; font-size: 13px; color: rgba(245,240,232,0.65); border: none; background: none; cursor: pointer; font-family: sans-serif; letter-spacing: 0.04em; border-left: 3px solid transparent; transition: all 0.2s; }
+  .sidebar-btn.active { color: var(--gold-light); border-left-color: var(--gold-light); background: rgba(255,255,255,0.06); }
+  .sidebar-motto { padding: 20px; font-size: 11px; color: rgba(245,240,232,0.35); font-family: sans-serif; letter-spacing: 0.1em; text-transform: uppercase; margin-top: auto; }
+  .main-content { flex: 1; overflow: hidden; }
+  .nav { display: none !important; }
+  .mobile-motto { display: none; }
+  .content { padding: 24px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  .full-width { grid-column: 1 / -1; }
+  .stat-row { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 899px) {
+  .sidebar { display: none; }
+  .desktop-layout { display: block; }
+  .two-col { display: block; }
+}
 
 .header { background: var(--wine); color: var(--cream); padding: 20px 16px 14px; }
 .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -48,7 +60,6 @@ body { background: var(--cream); font-family: Georgia, serif; color: var(--text-
 .stat-value { font-size: 22px; color: var(--wine); line-height: 1; }
 .stat-unit { font-size: 12px; color: var(--text-mid); font-family: sans-serif; }
 .stat-delta { font-size: 11px; font-family: sans-serif; margin-top: 3px; }
-.stat-delta.good { color: var(--green); }
 .stat-delta.warn { color: var(--red); }
 .stat-delta.neutral { color: var(--text-light); }
 
@@ -60,30 +71,17 @@ body { background: var(--cream); font-family: Georgia, serif; color: var(--text-
 .progress-bar-fill.gold { background: var(--gold); }
 .progress-bar-fill.green { background: var(--green-light); }
 
-.week-row { display: flex; gap: 6px; margin-bottom: 10px; }
-.day-chip { flex: 1; text-align: center; }
-.day-chip-label { font-size: 10px; color: var(--text-light); font-family: sans-serif; }
-.day-chip-dot { width: 28px; height: 28px; border-radius: 50%; margin: 3px auto; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: sans-serif; font-weight: bold; }
-.dot-done { background: var(--wine); color: var(--cream); }
-.dot-today { background: var(--gold); color: var(--text-dark); }
-.dot-rest { background: var(--cream-dark); color: var(--text-light); }
-.dot-plan { background: white; border: 1.5px solid var(--cream-dark); color: var(--text-light); }
-
-.session-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--cream-dark); }
+.session-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--cream-dark); }
 .session-row:last-child { border-bottom: none; }
-.session-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-.icon-run { background: #FEF3E2; }
-.icon-bike { background: #E8F4FD; }
-.icon-strength { background: #F0FBF5; }
-.icon-rest { background: var(--cream-dark); }
+.session-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.icon-run { background: #FEF3E2; } .icon-bike { background: #E8F4FD; } .icon-strength { background: #F0FBF5; } .icon-swim { background: #E8F4FD; } .icon-rest { background: var(--cream-dark); }
 .session-info { flex: 1; }
 .session-name { font-size: 13px; font-family: sans-serif; font-weight: 500; color: var(--text-dark); }
-.session-detail { font-size: 11px; color: var(--text-light); font-family: sans-serif; }
-.session-zone { font-size: 11px; font-family: sans-serif; padding: 2px 8px; border-radius: 10px; }
-.z2 { background: #E8F4FD; color: #1A6B9A; }
-.z3 { background: #FEF3E2; color: #9A6B1A; }
-.z4 { background: #FBE8E8; color: #9A1A1A; }
-.zstr { background: #F0FBF5; color: #1A7A4A; }
+.session-detail { font-size: 11px; color: var(--text-light); font-family: sans-serif; margin-top: 1px; }
+.session-zone { font-size: 11px; font-family: sans-serif; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.z1 { background: #F0FBF5; color: #1A7A4A; } .z2 { background: #E8F4FD; color: #1A6B9A; } .z3 { background: #FEF3E2; color: #9A6B1A; } .zstr { background: #F0FBF5; color: #1A7A4A; } .zswim { background: #E8F4FD; color: #1A6B9A; }
+
+.day-header { font-size: 10px; font-family: sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); padding: 8px 0 4px; margin-top: 4px; }
 
 .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--cream-dark); }
 .metric-row:last-child { border-bottom: none; }
@@ -92,9 +90,7 @@ body { background: var(--cream); font-family: Georgia, serif; color: var(--text-
 
 .streak-row { display: flex; gap: 5px; margin: 8px 0; }
 .streak-dot { width: 22px; height: 22px; border-radius: 50%; }
-.s-af { background: var(--green-light); }
-.s-no { background: var(--red); opacity: 0.6; }
-.s-future { background: var(--cream-dark); }
+.s-af { background: var(--green-light); } .s-future { background: var(--cream-dark); }
 
 .regel-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--cream-dark); align-items: flex-start; }
 .regel-item:last-child { border-bottom: none; }
@@ -103,7 +99,7 @@ body { background: var(--cream); font-family: Georgia, serif; color: var(--text-
 
 .event-card { background: var(--wine); color: var(--cream); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
 .event-name { font-size: 15px; margin-bottom: 3px; }
-.event-date { font-size: 11px; opacity: 0.7; font-family: sans-serif; letter-spacing: 0.04em; }
+.event-date-label { font-size: 11px; opacity: 0.7; font-family: sans-serif; letter-spacing: 0.04em; }
 .event-days { font-size: 28px; color: var(--gold-light); line-height: 1; margin-top: 6px; }
 .event-days-label { font-size: 11px; opacity: 0.65; font-family: sans-serif; }
 
@@ -116,8 +112,7 @@ body { background: var(--cream); font-family: Georgia, serif; color: var(--text-
 .legend { display: flex; gap: 12px; margin-top: 8px; }
 .legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; font-family: sans-serif; color: var(--text-light); }
 .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
-
-.motto { text-align: center; padding: 20px 16px; font-size: 12px; color: var(--text-light); font-family: sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+.mobile-motto { text-align: center; padding: 20px 16px; font-size: 12px; color: var(--text-light); font-family: sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
 </style>
 </head>
 <body>
@@ -133,260 +128,229 @@ body { background: var(--cream); font-family: Georgia, serif; color: var(--text-
     </div>
   </div>
 
-  <div class="nav">
-    <button class="nav-btn active" onclick="showTab('overblik', this)">Overblik</button>
-    <button class="nav-btn" onclick="showTab('uge', this)">Denne uge</button>
-    <button class="nav-btn" onclick="showTab('krop', this)">Krop</button>
-    <button class="nav-btn" onclick="showTab('regler', this)">Leveregler</button>
-    <button class="nav-btn" onclick="showTab('events', this)">Events</button>
-  </div>
+  <div class="desktop-layout">
+    <div class="sidebar">
+      <div class="sidebar-nav">
+        <button class="sidebar-btn active" onclick="showTab('overblik',this)">Overblik</button>
+        <button class="sidebar-btn" onclick="showTab('uge',this)">Denne uge</button>
+        <button class="sidebar-btn" onclick="showTab('krop',this)">Krop</button>
+        <button class="sidebar-btn" onclick="showTab('regler',this)">Leveregler</button>
+        <button class="sidebar-btn" onclick="showTab('events',this)">Events</button>
+      </div>
+      <div class="sidebar-motto">Keep moving forward</div>
+    </div>
 
-  <div id="tab-overblik" class="section active content">
-    <div class="stat-row">
-      <div class="stat-card">
-        <div class="stat-label">Vægt</div>
-        <div class="stat-value">74.5 <span class="stat-unit">kg</span></div>
-        <div class="stat-delta neutral">Mål: &lt;72 kg</div>
+    <div class="main-content">
+      <div class="nav">
+        <button class="nav-btn active" onclick="showTab('overblik',this)">Overblik</button>
+        <button class="nav-btn" onclick="showTab('uge',this)">Denne uge</button>
+        <button class="nav-btn" onclick="showTab('krop',this)">Krop</button>
+        <button class="nav-btn" onclick="showTab('regler',this)">Leveregler</button>
+        <button class="nav-btn" onclick="showTab('events',this)">Events</button>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">CTL fitness</div>
-        <div class="stat-value">34</div>
-        <div class="stat-delta neutral">Starter her</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Fedt%</div>
-        <div class="stat-value">23 <span class="stat-unit">%</span></div>
-        <div class="stat-delta warn">Mål: &lt;20%</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">AF-dage/uge</div>
-        <div class="stat-value">—</div>
-        <div class="stat-delta neutral">Mål: 5/7</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">14-ugers plan</div>
-      <div class="weeks-grid">
-        <div class="wk wk-active">1</div>
-        <div class="wk wk-future">2</div>
-        <div class="wk wk-future">3</div>
-        <div class="wk wk-recovery">R</div>
-        <div class="wk wk-future">5</div>
-        <div class="wk wk-future">6</div>
-        <div class="wk wk-future">7</div>
-        <div class="wk wk-recovery">R</div>
-        <div class="wk wk-future">9</div>
-        <div class="wk wk-future">10</div>
-        <div class="wk wk-future">11</div>
-        <div class="wk wk-recovery">R</div>
-        <div class="wk wk-future">13</div>
-        <div class="wk wk-future">14</div>
-      </div>
-      <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div>Aktiv</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#E8F4FD;"></div>Recovery</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">Fremskridt mod mål</div>
-      <div style="display:flex; justify-content:space-between; font-size:12px; font-family:sans-serif; color:var(--text-mid); margin-bottom:4px;">
-        <span>Vægt</span><span>74.5 → 72 kg</span>
-      </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
-      <div style="display:flex; justify-content:space-between; font-size:12px; font-family:sans-serif; color:var(--text-mid); margin-bottom:4px; margin-top:8px;">
-        <span>Fedt%</span><span>23 → 20%</span>
-      </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill gold" style="width:0%"></div></div>
-      <div style="display:flex; justify-content:space-between; font-size:12px; font-family:sans-serif; color:var(--text-mid); margin-bottom:4px; margin-top:8px;">
-        <span>Uger gennemført</span><span>0 af 14</span>
-      </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill green" style="width:0%"></div></div>
-    </div>
-  </div>
 
-  <div id="tab-uge" class="section content">
-    <div class="card">
-      <div class="card-title">Uge 1 · 1–7 juni</div>
-      <div class="week-row">
-        <div class="day-chip"><div class="day-chip-label">Ma</div><div class="day-chip-dot dot-today">M</div></div>
-        <div class="day-chip"><div class="day-chip-label">Ti</div><div class="day-chip-dot dot-plan">L</div></div>
-        <div class="day-chip"><div class="day-chip-label">On</div><div class="day-chip-dot dot-plan">C</div></div>
-        <div class="day-chip"><div class="day-chip-label">To</div><div class="day-chip-dot dot-plan">S</div></div>
-        <div class="day-chip"><div class="day-chip-label">Fr</div><div class="day-chip-dot dot-rest">—</div></div>
-        <div class="day-chip"><div class="day-chip-label">Lø</div><div class="day-chip-dot dot-plan">L</div></div>
-        <div class="day-chip"><div class="day-chip-label">Sø</div><div class="day-chip-dot dot-plan">R</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">Sessioner</div>
-      <div class="session-row">
-        <div class="session-icon icon-run">🏃</div>
-        <div class="session-info">
-          <div class="session-name">Mandag · Løb</div>
-          <div class="session-detail">45 min aerob</div>
-        </div>
-        <span class="session-zone z2">Z2</span>
-      </div>
-      <div class="session-row">
-        <div class="session-icon icon-bike">🚴</div>
-        <div class="session-info">
-          <div class="session-name">Onsdag · Cykel</div>
-          <div class="session-detail">60 min</div>
-        </div>
-        <span class="session-zone z3">Z3</span>
-      </div>
-      <div class="session-row">
-        <div class="session-icon icon-strength">💪</div>
-        <div class="session-info">
-          <div class="session-name">Torsdag · Styrke</div>
-          <div class="session-detail">30 min · hjemmegym</div>
-        </div>
-        <span class="session-zone zstr">STR</span>
-      </div>
-      <div class="session-row">
-        <div class="session-icon icon-run">🏃</div>
-        <div class="session-info">
-          <div class="session-name">Lørdag · Løb</div>
-          <div class="session-detail">60 min · long</div>
-        </div>
-        <span class="session-zone z2">Z2</span>
-      </div>
-      <div class="session-row">
-        <div class="session-icon icon-rest">📊</div>
-        <div class="session-info">
-          <div class="session-name">Søndag · Review</div>
-          <div class="session-detail">Ugentlig opdatering</div>
+      <!-- OVERBLIK -->
+      <div id="tab-overblik" class="section active content">
+        <div class="two-col">
+          <div class="full-width">
+            <div class="stat-row">
+              <div class="stat-card"><div class="stat-label">Vægt</div><div class="stat-value">74.5 <span class="stat-unit">kg</span></div><div class="stat-delta neutral">Mål: &lt;72 kg</div></div>
+              <div class="stat-card"><div class="stat-label">CTL fitness</div><div class="stat-value">34</div><div class="stat-delta neutral">Starter her</div></div>
+              <div class="stat-card"><div class="stat-label">Fedt%</div><div class="stat-value">23 <span class="stat-unit">%</span></div><div class="stat-delta warn">Mål: &lt;20%</div></div>
+              <div class="stat-card"><div class="stat-label">AF-dage/uge</div><div class="stat-value">—</div><div class="stat-delta neutral">Mål: 5/7</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">14-ugers plan</div>
+            <div class="weeks-grid">
+              <div class="wk wk-active">1</div><div class="wk wk-future">2</div><div class="wk wk-future">3</div><div class="wk wk-recovery">R</div>
+              <div class="wk wk-future">5</div><div class="wk wk-future">6</div><div class="wk wk-future">7</div><div class="wk wk-recovery">R</div>
+              <div class="wk wk-future">9</div><div class="wk wk-future">10</div><div class="wk wk-future">11</div><div class="wk wk-recovery">R</div>
+              <div class="wk wk-future">13</div><div class="wk wk-future">14</div>
+            </div>
+            <div class="legend">
+              <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Aktiv</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#E8F4FD"></div>Recovery</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Fremskridt mod mål</div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:4px"><span>Vægt</span><span>74.5 → 72 kg</span></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:4px;margin-top:8px"><span>Fedt%</span><span>23 → 20%</span></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill gold" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:4px;margin-top:8px"><span>Uger gennemført</span><span>0 af 14</span></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill green" style="width:0%"></div></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-title">AF-dage denne uge</div>
-      <div class="streak-row">
-        <div class="streak-dot s-af"></div>
-        <div class="streak-dot s-future"></div>
-        <div class="streak-dot s-future"></div>
-        <div class="streak-dot s-future"></div>
-        <div class="streak-dot s-future"></div>
-        <div class="streak-dot s-future"></div>
-        <div class="streak-dot s-future"></div>
+
+      <!-- UGE -->
+      <div id="tab-uge" class="section content">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-title">Uge 1 · 1–7 juni</div>
+            <div class="day-header">Mandag 1/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-bike">🚴</div>
+              <div class="session-info"><div class="session-name">Hometrainer + Styrke</div><div class="session-detail">45 min Z2 · 20 min styrke · FØR Malmø</div></div>
+              <span class="session-zone z2">Z2</span>
+            </div>
+            <div class="day-header">Tirsdag 2/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-run">🏃</div>
+              <div class="session-info"><div class="session-name">Løb easy (Malmø)</div><div class="session-detail">30 min Z1-Z2 nær hotel</div></div>
+              <span class="session-zone z1">Z1-Z2</span>
+            </div>
+            <div class="day-header">Onsdag 3/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-run">🏃</div>
+              <div class="session-info"><div class="session-name">Løb easy (Malmø)</div><div class="session-detail">35 min roligt</div></div>
+              <span class="session-zone z2">Z2</span>
+            </div>
+            <div class="day-header">Torsdag 4/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-strength">💪</div>
+              <div class="session-info"><div class="session-name">Styrke fuld + walk</div><div class="session-detail">30 min styrke · 30 min walk</div></div>
+              <span class="session-zone zstr">STR</span>
+            </div>
+            <div class="day-header">Fredag 5/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-run">🏃</div>
+              <div class="session-info"><div class="session-name">Løb fart — tempo</div><div class="session-detail">50 min · 5×3 min Z3 / 2 min Z1</div></div>
+              <span class="session-zone z3">Z3</span>
+            </div>
+            <div class="day-header">Lørdag 6/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-run">🏃</div>
+              <div class="session-info"><div class="session-name">Løb lang (Médoc-byggesten)</div><div class="session-detail">90 min Z2 · ugens vigtigste</div></div>
+              <span class="session-zone z2">Z2</span>
+            </div>
+            <div class="day-header">Søndag 7/6</div>
+            <div class="session-row">
+              <div class="session-icon icon-swim">🏊</div>
+              <div class="session-info"><div class="session-name">Svøm 2000m + let cykel</div><div class="session-detail">45 min pool · 30 min Z1 cykel</div></div>
+              <span class="session-zone zswim">SWIM</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">AF-dage denne uge</div>
+            <div class="streak-row">
+              <div class="streak-dot s-af"></div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div>
+              <div class="streak-dot s-future"></div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div>
+            </div>
+            <div style="font-size:12px;color:var(--text-light);font-family:sans-serif;">Mål: 5 af 7 dage</div>
+          </div>
+        </div>
       </div>
-      <div style="font-size:12px; color:var(--text-light); font-family:sans-serif;">Mål: 5 af 7 dage</div>
+
+      <!-- KROP -->
+      <div id="tab-krop" class="section content">
+        <div class="two-col">
+          <div class="full-width">
+            <div class="stat-row">
+              <div class="stat-card"><div class="stat-label">HRV</div><div class="stat-value">—</div><div class="stat-delta neutral">Data mangler</div></div>
+              <div class="stat-card"><div class="stat-label">Søvn</div><div class="stat-value">—</div><div class="stat-delta neutral">Timer/nat</div></div>
+              <div class="stat-card"><div class="stat-label">TSB form</div><div class="stat-value">—</div><div class="stat-delta neutral">Fra Intervals</div></div>
+              <div class="stat-card"><div class="stat-label">Energi</div><div class="stat-value">—</div><div class="stat-delta neutral">Subjektiv</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Løbszoner · Tærskel 4:20/km</div>
+            <div class="metric-row"><span class="metric-name">Z2 aerob</span><span class="metric-val">4:56–5:34</span></div>
+            <div class="metric-row"><span class="metric-name">Z3 tempo</span><span class="metric-val">4:26–4:55</span></div>
+            <div class="metric-row"><span class="metric-name">Z4 tærskel</span><span class="metric-val">4:13–4:25</span></div>
+            <div class="metric-row"><span class="metric-name">Z5 VO2max</span><span class="metric-val">3:53–4:12</span></div>
+            <div class="metric-row"><span class="metric-name">Z6 sprint</span><span class="metric-val">&lt;3:52</span></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Cykelzoner · FTP 270W</div>
+            <div class="metric-row"><span class="metric-name">Z2 aerob</span><span class="metric-val">150–205W</span></div>
+            <div class="metric-row"><span class="metric-name">Z3 tempo</span><span class="metric-val">205–245W</span></div>
+            <div class="metric-row"><span class="metric-name">Z4 tærskel</span><span class="metric-val">245–285W</span></div>
+            <div class="metric-row"><span class="metric-name">Z5 VO2max</span><span class="metric-val">285–325W</span></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Styrkeprogram</div>
+            <div class="metric-row"><span class="metric-name">Dumbbell Thruster</span><span class="metric-val">12.5 kg</span></div>
+            <div class="metric-row"><span class="metric-name">Renegade Row</span><span class="metric-val">12.5 kg</span></div>
+            <div class="metric-row"><span class="metric-name">KB Swing</span><span class="metric-val">16 kg</span></div>
+            <div class="metric-row"><span class="metric-name">Romanian DL</span><span class="metric-val">15 kg</span></div>
+            <div class="metric-row"><span class="metric-name">Bulgarian Split</span><span class="metric-val">12.5 kg</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEVEREGLER -->
+      <div id="tab-regler" class="section content">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-title">Kost</div>
+            <div class="regel-item"><div class="regel-num">1</div><div class="regel-text">Protein først — 130–150g dagligt, altid ved hvert måltid</div></div>
+            <div class="regel-item"><div class="regel-num">2</div><div class="regel-text">Grøntsager fylder halvdelen af tallerkenen</div></div>
+            <div class="regel-item"><div class="regel-num">3</div><div class="regel-text">Alkohol er et bevidst valg — ikke en vane</div></div>
+            <div class="regel-item"><div class="regel-num">4</div><div class="regel-text">Hverdagsdisciplin bærer resultater — ikke weekenderne</div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Krop</div>
+            <div class="regel-item"><div class="regel-num">5</div><div class="regel-text">Søvn er træning — 7–8 timer er ikke luksus</div></div>
+            <div class="regel-item"><div class="regel-num">6</div><div class="regel-text">Styrke og udholdenhed bygges parallelt — ikke på skift</div></div>
+            <div class="regel-item"><div class="regel-num">7</div><div class="regel-text">Daglig bevægelse — selv på hviledage</div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Sind</div>
+            <div class="regel-item"><div class="regel-num">8</div><div class="regel-text">Systemer slår vilje. Byg rutiner der kører af sig selv</div></div>
+            <div class="regel-item"><div class="regel-num">9</div><div class="regel-text">Mental skarphed er et mål ligesom fedt% — mål det</div></div>
+            <div class="regel-item"><div class="regel-num">10</div><div class="regel-text">Capacity-mode, ikke performance-mode. Det er en filosofi</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div id="tab-events" class="section content">
+        <div class="two-col">
+          <div class="event-card">
+            <div class="event-date-label">29. AUGUST 2026</div>
+            <div class="event-name">Christiansborg Rundt</div>
+            <div class="event-days" id="days-chr">—</div>
+            <div class="event-days-label">dage tilbage</div>
+          </div>
+          <div class="event-card" style="background:var(--gold);color:var(--text-dark)">
+            <div class="event-date-label" style="opacity:0.6">5. SEPTEMBER 2026</div>
+            <div class="event-name">Marathon Médoc</div>
+            <div class="event-days" id="days-med" style="color:var(--wine)">—</div>
+            <div class="event-days-label" style="opacity:0.6">dage tilbage</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Tidslinje</div>
+            <div class="metric-row"><span class="metric-name">Uge 1–3</span><span class="metric-val" style="font-size:12px;color:var(--text-mid)">Build 1</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 4</span><span class="metric-val" style="font-size:12px;color:#1A5A7A">Recovery</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 5–7</span><span class="metric-val" style="font-size:12px;color:var(--text-mid)">Build 2</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 8</span><span class="metric-val" style="font-size:12px;color:#1A5A7A">Recovery</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 9–11</span><span class="metric-val" style="font-size:12px;color:var(--text-mid)">Build 3</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 12</span><span class="metric-val" style="font-size:12px;color:#1A5A7A">Recovery</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 13–14</span><span class="metric-val" style="font-size:12px;color:var(--wine)">Race peak</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-motto">Keep moving forward</div>
     </div>
   </div>
-
-  <div id="tab-krop" class="section content">
-    <div class="stat-row">
-      <div class="stat-card">
-        <div class="stat-label">HRV</div>
-        <div class="stat-value">—</div>
-        <div class="stat-delta neutral">Data mangler</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Søvn</div>
-        <div class="stat-value">—</div>
-        <div class="stat-delta neutral">Timer/nat</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">TSB form</div>
-        <div class="stat-value">—</div>
-        <div class="stat-delta neutral">Fra Intervals</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Energi</div>
-        <div class="stat-value">—</div>
-        <div class="stat-delta neutral">Subjektiv</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">Løbszoner · Tærskel 4:20/km</div>
-      <div class="metric-row"><span class="metric-name">Z2 aerob</span><span class="metric-val">4:56–5:34</span></div>
-      <div class="metric-row"><span class="metric-name">Z3 tempo</span><span class="metric-val">4:26–4:55</span></div>
-      <div class="metric-row"><span class="metric-name">Z4 tærskel</span><span class="metric-val">4:13–4:25</span></div>
-      <div class="metric-row"><span class="metric-name">Z5 VO2max</span><span class="metric-val">3:53–4:12</span></div>
-      <div class="metric-row"><span class="metric-name">Z6 sprint</span><span class="metric-val">&lt;3:52</span></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Cykelzoner · FTP 270W</div>
-      <div class="metric-row"><span class="metric-name">Z2 aerob</span><span class="metric-val">150–205W</span></div>
-      <div class="metric-row"><span class="metric-name">Z3 tempo</span><span class="metric-val">205–245W</span></div>
-      <div class="metric-row"><span class="metric-name">Z4 tærskel</span><span class="metric-val">245–285W</span></div>
-      <div class="metric-row"><span class="metric-name">Z5 VO2max</span><span class="metric-val">285–325W</span></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Styrkeprogram</div>
-      <div class="metric-row"><span class="metric-name">Dumbbell Thruster</span><span class="metric-val">10 kg</span></div>
-      <div class="metric-row"><span class="metric-name">Renegade Row</span><span class="metric-val">12.5 kg</span></div>
-      <div class="metric-row"><span class="metric-name">KB Swing</span><span class="metric-val">20 kg</span></div>
-      <div class="metric-row"><span class="metric-name">Romanian DL</span><span class="metric-val">15 kg</span></div>
-      <div class="metric-row"><span class="metric-name">Bulgarian Split</span><span class="metric-val">12.5 kg</span></div>
-    </div>
-  </div>
-
-  <div id="tab-regler" class="section content">
-    <div class="card">
-      <div class="card-title">Kost</div>
-      <div class="regel-item"><div class="regel-num">1</div><div class="regel-text">Protein først — 130–150g dagligt, altid ved hvert måltid</div></div>
-      <div class="regel-item"><div class="regel-num">2</div><div class="regel-text">Grøntsager fylder halvdelen af tallerkenen</div></div>
-      <div class="regel-item"><div class="regel-num">3</div><div class="regel-text">Alkohol er et bevidst valg — ikke en vane</div></div>
-      <div class="regel-item"><div class="regel-num">4</div><div class="regel-text">Hverdagsdisciplin bærer resultater — ikke weekenderne</div></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Krop</div>
-      <div class="regel-item"><div class="regel-num">5</div><div class="regel-text">Søvn er træning — 7–8 timer er ikke luksus</div></div>
-      <div class="regel-item"><div class="regel-num">6</div><div class="regel-text">Styrke og udholdenhed bygges parallelt — ikke på skift</div></div>
-      <div class="regel-item"><div class="regel-num">7</div><div class="regel-text">Daglig bevægelse — selv på hviledage</div></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Sind</div>
-      <div class="regel-item"><div class="regel-num">8</div><div class="regel-text">Systemer slår vilje. Byg rutiner der kører af sig selv</div></div>
-      <div class="regel-item"><div class="regel-num">9</div><div class="regel-text">Mental skarphed er et mål ligesom fedt% — mål det</div></div>
-      <div class="regel-item"><div class="regel-num">10</div><div class="regel-text">Capacity-mode, ikke performance-mode. Det er en filosofi</div></div>
-    </div>
-  </div>
-
-  <div id="tab-events" class="section content">
-    <div class="event-card">
-      <div class="event-date">29. AUGUST 2026</div>
-      <div class="event-name">Christiansborg Rundt</div>
-      <div class="event-days" id="days-chr">—</div>
-      <div class="event-days-label">dage tilbage</div>
-    </div>
-    <div class="event-card" style="background: var(--gold); color: var(--text-dark);">
-      <div class="event-date" style="opacity:0.6;">5. SEPTEMBER 2026</div>
-      <div class="event-name">Marathon Médoc</div>
-      <div class="event-days" id="days-med" style="color: var(--wine);">—</div>
-      <div class="event-days-label" style="opacity:0.6;">dage tilbage</div>
-    </div>
-    <div class="card">
-      <div class="card-title">Tidslinje</div>
-      <div class="metric-row"><span class="metric-name">Uge 1–3</span><span class="metric-val" style="font-size:12px; color:var(--text-mid);">Build 1</span></div>
-      <div class="metric-row"><span class="metric-name">Uge 4</span><span class="metric-val" style="font-size:12px; color:#1A5A7A;">Recovery</span></div>
-      <div class="metric-row"><span class="metric-name">Uge 5–7</span><span class="metric-val" style="font-size:12px; color:var(--text-mid);">Build 2</span></div>
-      <div class="metric-row"><span class="metric-name">Uge 8</span><span class="metric-val" style="font-size:12px; color:#1A5A7A;">Recovery</span></div>
-      <div class="metric-row"><span class="metric-name">Uge 9–11</span><span class="metric-val" style="font-size:12px; color:var(--text-mid);">Build 3</span></div>
-      <div class="metric-row"><span class="metric-name">Uge 12</span><span class="metric-val" style="font-size:12px; color:#1A5A7A;">Recovery</span></div>
-      <div class="metric-row"><span class="metric-name">Uge 13–14</span><span class="metric-val" style="font-size:12px; color:var(--wine);">Race peak</span></div>
-    </div>
-  </div>
-
-  <div class="motto">Keep moving forward</div>
 </div>
-
 <script>
-function showTab(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
+function showTab(id,btn) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn,.sidebar-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
+  var isSidebar = btn.classList.contains('sidebar-btn');
+  var mirror = document.querySelector((isSidebar?'.nav-btn':'.sidebar-btn')+'[onclick*="\''+id+'\'"]');
+  if(mirror) mirror.classList.add('active');
 }
-function daysUntil(dateStr) {
-  var target = new Date(dateStr);
-  var now = new Date();
-  var diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
-  return diff > 0 ? diff : 0;
-}
-document.getElementById('days-chr').textContent = daysUntil('2026-08-29');
-document.getElementById('days-med').textContent = daysUntil('2026-09-05');
+function daysUntil(d){var diff=Math.ceil((new Date(d)-new Date())/86400000);return diff>0?diff:0;}
+document.getElementById('days-chr').textContent=daysUntil('2026-08-29');
+document.getElementById('days-med').textContent=daysUntil('2026-09-05');
 </script>
 </body>
 </html>
