@@ -7,29 +7,45 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --wine: #6B2737; --wine-light: #8B3A4E; --gold: #C9943A; --gold-light: #E8B96A;
-  --cream: #F5F0E8; --cream-dark: #E8E0D0; --text-dark: #2C1A20; --text-mid: #6B5560;
-  --text-light: #9B8A90; --green: #2D6A4F; --green-light: #52B788; --red: #C0392B;
+  --wine: #6B2737; --wine-light: #8B3A4E; --wine-dark: #4A1825;
+  --gold: #C9943A; --gold-light: #E8B96A; --gold-pale: #FBF0DC;
+  --cream: #F5F0E8; --cream-dark: #E8E0D0; --cream-mid: #EDE8DF;
+  --text-dark: #2C1A20; --text-mid: #6B5560; --text-light: #9B8A90;
+  --green: #2D6A4F; --green-light: #52B788; --green-pale: #E8F5EF;
+  --red: #C0392B; --red-pale: #FDECEA;
+  --blue: #1A6B9A; --blue-pale: #E8F4FD;
 }
-body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark); min-height: 100vh; }
+body { background: var(--cream-mid); font-family: Georgia, serif; color: var(--text-dark); min-height: 100vh; }
 .site { max-width: 480px; margin: 0 auto; background: var(--cream); min-height: 100vh; }
 
 @media (min-width: 900px) {
   body { padding: 40px 20px; }
-  .site { max-width: 1000px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(44,26,32,0.15); min-height: auto; }
+  .site { max-width: 1040px; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 60px rgba(44,26,32,0.18); min-height: auto; }
   .desktop-layout { display: flex; }
-  .sidebar { display: flex; flex-direction: column; width: 220px; flex-shrink: 0; background: var(--wine); min-height: 600px; }
-  .sidebar-nav { display: flex; flex-direction: column; padding: 8px 0; }
-  .sidebar-btn { text-align: left; padding: 12px 20px; font-size: 13px; color: rgba(245,240,232,0.65); border: none; background: none; cursor: pointer; font-family: sans-serif; letter-spacing: 0.04em; border-left: 3px solid transparent; transition: all 0.2s; }
-  .sidebar-btn.active { color: var(--gold-light); border-left-color: var(--gold-light); background: rgba(255,255,255,0.06); }
-  .sidebar-motto { padding: 20px; font-size: 11px; color: rgba(245,240,232,0.35); font-family: sans-serif; letter-spacing: 0.1em; text-transform: uppercase; margin-top: auto; }
-  .main-content { flex: 1; overflow: hidden; }
+  .sidebar { display: flex; flex-direction: column; width: 230px; flex-shrink: 0; background: var(--wine-dark); min-height: 640px; }
+  .sidebar-logo { padding: 28px 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .sidebar-logo-sub { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.45); font-family: sans-serif; margin-bottom: 6px; }
+  .sidebar-logo-title { font-size: 20px; color: var(--cream); font-weight: normal; }
+  .sidebar-logo-title span { color: var(--gold-light); }
+  .sidebar-logo-event { font-size: 11px; color: rgba(245,240,232,0.4); font-family: sans-serif; margin-top: 4px; }
+  .sidebar-nav { display: flex; flex-direction: column; padding: 12px 0; flex: 1; }
+  .sidebar-btn { text-align: left; padding: 11px 20px; font-size: 13px; color: rgba(245,240,232,0.55); border: none; background: none; cursor: pointer; font-family: sans-serif; letter-spacing: 0.04em; border-left: 3px solid transparent; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+  .sidebar-btn:hover { color: rgba(245,240,232,0.85); background: rgba(255,255,255,0.04); }
+  .sidebar-btn.active { color: var(--gold-light); border-left-color: var(--gold); background: rgba(201,148,58,0.1); }
+  .sidebar-btn .icon { font-size: 15px; width: 20px; text-align: center; }
+  .sidebar-week { margin: 0 16px 16px; background: rgba(201,148,58,0.15); border-radius: 10px; padding: 10px 12px; }
+  .sidebar-week-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); font-family: sans-serif; opacity: 0.7; }
+  .sidebar-week-val { font-size: 16px; color: var(--gold-light); font-family: Georgia, serif; margin-top: 2px; }
+  .sidebar-motto { padding: 16px 20px; font-size: 10px; color: rgba(245,240,232,0.25); font-family: sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+  .main-content { flex: 1; overflow: hidden; background: var(--cream); }
   .nav { display: none !important; }
+  .header { display: none; }
   .mobile-motto { display: none; }
-  .content { padding: 24px; }
+  .content { padding: 28px; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
   .full-width { grid-column: 1 / -1; }
-  .stat-row { grid-template-columns: repeat(4, 1fr); }
+  .stat-row { grid-template-columns: repeat(3, 1fr); }
+  .stat-row.six { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 899px) {
   .sidebar { display: none; }
@@ -37,82 +53,124 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
   .two-col { display: block; }
 }
 
-.header { background: var(--wine); color: var(--cream); padding: 20px 16px 14px; }
+.header { background: linear-gradient(135deg, var(--wine-dark) 0%, var(--wine) 100%); color: var(--cream); padding: 22px 16px 16px; }
 .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.logo { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px; font-family: sans-serif; }
-.title { font-size: 22px; font-weight: normal; letter-spacing: -0.02em; }
+.logo { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 4px; font-family: sans-serif; }
+.title { font-size: 24px; font-weight: normal; letter-spacing: -0.02em; }
 .title span { color: var(--gold-light); }
-.subtitle { font-size: 12px; opacity: 0.65; margin-top: 2px; font-family: sans-serif; letter-spacing: 0.04em; }
-.week-badge { background: var(--gold); color: var(--text-dark); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; font-family: sans-serif; white-space: nowrap; margin-top: 2px; }
+.subtitle { font-size: 12px; opacity: 0.55; margin-top: 3px; font-family: sans-serif; letter-spacing: 0.04em; }
+.week-badge { background: var(--gold); color: var(--text-dark); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; font-family: sans-serif; white-space: nowrap; margin-top: 2px; }
 
 .nav { display: flex; background: var(--wine-light); overflow-x: auto; scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
-.nav-btn { flex: 0 0 auto; padding: 10px 14px; font-size: 12px; color: rgba(245,240,232,0.65); border: none; background: none; cursor: pointer; font-family: sans-serif; letter-spacing: 0.04em; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
-.nav-btn.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+.nav-btn { flex: 0 0 auto; padding: 10px 14px; font-size: 12px; color: rgba(245,240,232,0.6); border: none; background: none; cursor: pointer; font-family: sans-serif; letter-spacing: 0.04em; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+.nav-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
 
 .content { padding: 16px; }
 .section { display: none; }
 .section.active { display: block; }
 
-.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-.stat-card { background: white; border-radius: 10px; padding: 12px 14px; border: 0.5px solid var(--cream-dark); }
-.stat-label { font-size: 11px; color: var(--text-light); font-family: sans-serif; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
-.stat-value { font-size: 22px; color: var(--wine); line-height: 1; }
-.stat-unit { font-size: 12px; color: var(--text-mid); font-family: sans-serif; }
-.stat-delta { font-size: 11px; font-family: sans-serif; margin-top: 3px; }
-.stat-delta.warn { color: var(--red); }
-.stat-delta.neutral { color: var(--text-light); }
+/* COACH VOICE */
+.coach-box { background: linear-gradient(135deg, var(--wine) 0%, var(--wine-light) 100%); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; position: relative; overflow: hidden; }
+.coach-box::before { content: ''; position: absolute; top: -20px; right: -20px; width: 80px; height: 80px; border-radius: 50%; background: rgba(201,148,58,0.15); }
+.coach-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); font-family: sans-serif; opacity: 0.8; margin-bottom: 6px; }
+.coach-text { font-size: 13px; color: var(--cream); line-height: 1.55; font-family: sans-serif; }
+.coach-text strong { color: var(--gold-light); }
 
-.card { background: white; border-radius: 10px; padding: 14px 16px; border: 0.5px solid var(--cream-dark); margin-bottom: 12px; }
-.card-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); font-family: sans-serif; margin-bottom: 10px; }
+/* KPI CARDS */
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.kpi-card { background: white; border-radius: 12px; padding: 12px 10px; border: 0.5px solid var(--cream-dark); position: relative; overflow: hidden; }
+.kpi-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 0 0 12px 12px; }
+.kpi-card.on-track::after { background: var(--green-light); }
+.kpi-card.off-track::after { background: var(--red); }
+.kpi-card.neutral::after { background: var(--gold); }
+.kpi-label { font-size: 9px; color: var(--text-light); font-family: sans-serif; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 3px; }
+.kpi-value { font-size: 19px; color: var(--wine); line-height: 1; font-family: Georgia, serif; }
+.kpi-unit { font-size: 11px; color: var(--text-mid); font-family: sans-serif; }
+.kpi-target { font-size: 10px; font-family: sans-serif; margin-top: 4px; color: var(--text-light); }
+.kpi-target.warn { color: var(--red); }
+.kpi-target.ok { color: var(--green); }
 
-.progress-bar-wrap { background: var(--cream-dark); border-radius: 4px; height: 6px; margin: 6px 0 2px; overflow: hidden; }
-.progress-bar-fill { height: 100%; border-radius: 4px; background: var(--wine); }
-.progress-bar-fill.gold { background: var(--gold); }
-.progress-bar-fill.green { background: var(--green-light); }
+/* WEEK PLAN */
+.week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 12px; }
+.day-block { text-align: center; }
+.day-lbl { font-size: 9px; color: var(--text-light); font-family: sans-serif; margin-bottom: 3px; text-transform: uppercase; }
+.day-dot { width: 32px; height: 32px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: sans-serif; font-weight: bold; }
+.d-done { background: var(--wine); color: var(--cream); }
+.d-today { background: var(--gold); color: var(--text-dark); box-shadow: 0 0 0 3px var(--gold-pale); }
+.d-plan { background: white; border: 1.5px solid var(--cream-dark); color: var(--text-light); }
+.d-rest { background: var(--cream-dark); color: var(--text-light); }
 
+/* SESSIONS */
 .session-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--cream-dark); }
 .session-row:last-child { border-bottom: none; }
-.session-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-.icon-run { background: #FEF3E2; } .icon-bike { background: #E8F4FD; } .icon-strength { background: #F0FBF5; } .icon-swim { background: #E8F4FD; } .icon-rest { background: var(--cream-dark); }
+.session-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.i-run { background: #FEF3E2; } .i-bike { background: var(--blue-pale); } .i-str { background: var(--green-pale); } .i-swim { background: var(--blue-pale); } .i-rest { background: var(--cream-dark); }
 .session-info { flex: 1; }
-.session-name { font-size: 13px; font-family: sans-serif; font-weight: 500; color: var(--text-dark); }
+.session-name { font-size: 13px; font-family: sans-serif; font-weight: 600; color: var(--text-dark); }
 .session-detail { font-size: 11px; color: var(--text-light); font-family: sans-serif; margin-top: 1px; }
-.session-zone { font-size: 11px; font-family: sans-serif; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
-.z1 { background: #F0FBF5; color: #1A7A4A; } .z2 { background: #E8F4FD; color: #1A6B9A; } .z3 { background: #FEF3E2; color: #9A6B1A; } .zstr { background: #F0FBF5; color: #1A7A4A; } .zswim { background: #E8F4FD; color: #1A6B9A; }
+.zone-tag { font-size: 10px; font-family: sans-serif; padding: 3px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+.z1 { background: var(--green-pale); color: var(--green); }
+.z2 { background: var(--blue-pale); color: var(--blue); }
+.z3 { background: #FEF3E2; color: #9A6B1A; }
+.zstr { background: var(--green-pale); color: var(--green); }
+.zswim { background: var(--blue-pale); color: var(--blue); }
 
-.day-header { font-size: 10px; font-family: sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); padding: 8px 0 4px; margin-top: 4px; }
+.day-hdr { font-size: 10px; font-family: sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); padding: 8px 0 3px; margin-top: 4px; border-top: 0.5px solid var(--cream-dark); }
+.day-hdr:first-child { border-top: none; padding-top: 0; }
+
+/* CARDS */
+.card { background: white; border-radius: 12px; padding: 14px 16px; border: 0.5px solid var(--cream-dark); margin-bottom: 12px; }
+.card-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); font-family: sans-serif; margin-bottom: 10px; }
 
 .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--cream-dark); }
 .metric-row:last-child { border-bottom: none; }
 .metric-name { font-size: 13px; font-family: sans-serif; color: var(--text-mid); }
 .metric-val { font-size: 14px; font-family: Georgia, serif; color: var(--wine); font-weight: bold; }
 
+/* AF STREAK */
 .streak-row { display: flex; gap: 5px; margin: 8px 0; }
-.streak-dot { width: 22px; height: 22px; border-radius: 50%; }
-.s-af { background: var(--green-light); } .s-future { background: var(--cream-dark); }
+.streak-dot { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.s-af { background: var(--green-light); color: white; }
+.s-no { background: var(--red); opacity: 0.6; }
+.s-future { background: var(--cream-dark); }
 
-.regel-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--cream-dark); align-items: flex-start; }
+/* LEVEREGLER */
+.regel-item { display: flex; gap: 12px; padding: 9px 0; border-bottom: 0.5px solid var(--cream-dark); align-items: flex-start; }
 .regel-item:last-child { border-bottom: none; }
-.regel-num { font-size: 18px; color: var(--gold); font-family: Georgia, serif; flex-shrink: 0; width: 22px; }
-.regel-text { font-size: 13px; color: var(--text-dark); line-height: 1.45; font-family: sans-serif; }
+.regel-num { font-size: 18px; color: var(--gold); font-family: Georgia, serif; flex-shrink: 0; width: 24px; line-height: 1.3; }
+.regel-text { font-size: 13px; color: var(--text-dark); line-height: 1.5; font-family: sans-serif; }
 
-.event-card { background: var(--wine); color: var(--cream); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
-.event-name { font-size: 15px; margin-bottom: 3px; }
-.event-date-label { font-size: 11px; opacity: 0.7; font-family: sans-serif; letter-spacing: 0.04em; }
-.event-days { font-size: 28px; color: var(--gold-light); line-height: 1; margin-top: 6px; }
-.event-days-label { font-size: 11px; opacity: 0.65; font-family: sans-serif; }
+/* EVENTS */
+.event-card { border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; position: relative; overflow: hidden; }
+.event-card.wine { background: linear-gradient(135deg, var(--wine-dark), var(--wine)); color: var(--cream); }
+.event-card.gold { background: linear-gradient(135deg, #B8832A, var(--gold)); color: var(--text-dark); }
+.event-card::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+.event-name { font-size: 16px; margin-bottom: 3px; font-weight: normal; }
+.event-lbl { font-size: 10px; opacity: 0.6; font-family: sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+.event-days { font-size: 36px; line-height: 1; margin-top: 8px; font-family: Georgia, serif; }
+.event-unit { font-size: 11px; opacity: 0.6; font-family: sans-serif; }
+.event-card.wine .event-days { color: var(--gold-light); }
+.event-card.gold .event-days { color: var(--wine-dark); }
 
-.weeks-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 6px 0; }
-.wk { height: 20px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-family: sans-serif; font-weight: bold; }
+/* 14 UGE GRID */
+.weeks-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 8px 0; }
+.wk { height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-family: sans-serif; font-weight: bold; }
 .wk-active { background: var(--gold); color: var(--text-dark); }
-.wk-recovery { background: #E8F4FD; color: #1A5A7A; }
-.wk-future { background: var(--cream-dark); color: var(--text-light); opacity: 0.5; }
+.wk-recovery { background: var(--blue-pale); color: var(--blue); }
+.wk-future { background: var(--cream-dark); color: var(--text-light); opacity: 0.6; }
 
-.legend { display: flex; gap: 12px; margin-top: 8px; }
+.progress-bar-wrap { background: var(--cream-dark); border-radius: 6px; height: 7px; margin: 5px 0 3px; overflow: hidden; }
+.progress-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease; }
+.fill-wine { background: linear-gradient(90deg, var(--wine), var(--wine-light)); }
+.fill-gold { background: linear-gradient(90deg, #B8832A, var(--gold)); }
+.fill-green { background: linear-gradient(90deg, var(--green), var(--green-light)); }
+
+.legend { display: flex; gap: 14px; margin-top: 8px; }
 .legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; font-family: sans-serif; color: var(--text-light); }
 .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
-.mobile-motto { text-align: center; padding: 20px 16px; font-size: 12px; color: var(--text-light); font-family: sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.mobile-motto { text-align: center; padding: 24px 16px; font-size: 11px; color: var(--text-light); font-family: sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
 </style>
 </head>
 <body>
@@ -130,12 +188,21 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
 
   <div class="desktop-layout">
     <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-sub">Kennet Hammerby</div>
+        <div class="sidebar-logo-title">Fast as <span>Fifty</span></div>
+        <div class="sidebar-logo-event">Médoc 5. september 2026</div>
+      </div>
       <div class="sidebar-nav">
-        <button class="sidebar-btn active" onclick="showTab('overblik',this)">Overblik</button>
-        <button class="sidebar-btn" onclick="showTab('uge',this)">Denne uge</button>
-        <button class="sidebar-btn" onclick="showTab('krop',this)">Krop</button>
-        <button class="sidebar-btn" onclick="showTab('regler',this)">Leveregler</button>
-        <button class="sidebar-btn" onclick="showTab('events',this)">Events</button>
+        <button class="sidebar-btn active" onclick="showTab('overblik',this)"><span class="icon">📊</span>Overblik</button>
+        <button class="sidebar-btn" onclick="showTab('uge',this)"><span class="icon">📅</span>Denne uge</button>
+        <button class="sidebar-btn" onclick="showTab('krop',this)"><span class="icon">⚡</span>Krop</button>
+        <button class="sidebar-btn" onclick="showTab('regler',this)"><span class="icon">🎯</span>Leveregler</button>
+        <button class="sidebar-btn" onclick="showTab('events',this)"><span class="icon">🏁</span>Events</button>
+      </div>
+      <div class="sidebar-week">
+        <div class="sidebar-week-label">Aktuel uge</div>
+        <div class="sidebar-week-val">1 af 14</div>
       </div>
       <div class="sidebar-motto">Keep moving forward</div>
     </div>
@@ -153,11 +220,41 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
       <div id="tab-overblik" class="section active content">
         <div class="two-col">
           <div class="full-width">
-            <div class="stat-row">
-              <div class="stat-card"><div class="stat-label">Vægt</div><div class="stat-value">74.5 <span class="stat-unit">kg</span></div><div class="stat-delta neutral">Mål: &lt;72 kg</div></div>
-              <div class="stat-card"><div class="stat-label">CTL fitness</div><div class="stat-value">34</div><div class="stat-delta neutral">Starter her</div></div>
-              <div class="stat-card"><div class="stat-label">Fedt%</div><div class="stat-value">23 <span class="stat-unit">%</span></div><div class="stat-delta warn">Mål: &lt;20%</div></div>
-              <div class="stat-card"><div class="stat-label">AF-dage/uge</div><div class="stat-value">—</div><div class="stat-delta neutral">Mål: 5/7</div></div>
+            <div class="coach-box">
+              <div class="coach-label">Træner + diætist · Uge 1</div>
+              <div class="coach-text">Start roligt — det er uge 1 af 14, ikke uge 14. <strong>Din primære opgave er at etablere rytmen:</strong> 5 AF-dage, protein ved hvert måltid, og gennemfør alle planlagte sessioner uden at overperformere. CTL på 34 er dit fundament — vi bygger herfra. Vægt og fedt% flyttes af konsistens over uger, ikke af enkeltbeslutninger.</div>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi-card neutral">
+                <div class="kpi-label">Vægt</div>
+                <div class="kpi-value">74.5 <span class="kpi-unit">kg</span></div>
+                <div class="kpi-target">Mål &lt;72 kg</div>
+              </div>
+              <div class="kpi-card off-track">
+                <div class="kpi-label">Fedt%</div>
+                <div class="kpi-value">23 <span class="kpi-unit">%</span></div>
+                <div class="kpi-target warn">Mål &lt;20%</div>
+              </div>
+              <div class="kpi-card neutral">
+                <div class="kpi-label">CTL fitness</div>
+                <div class="kpi-value">34</div>
+                <div class="kpi-target">Mål 55+ uge 12</div>
+              </div>
+              <div class="kpi-card neutral">
+                <div class="kpi-label">HRV snit 7d</div>
+                <div class="kpi-value">—</div>
+                <div class="kpi-target">Stigende trend</div>
+              </div>
+              <div class="kpi-card neutral">
+                <div class="kpi-label">TSS faktisk/plan</div>
+                <div class="kpi-value">—</div>
+                <div class="kpi-target">Mål &gt;85%</div>
+              </div>
+              <div class="kpi-card neutral">
+                <div class="kpi-label">Løb km/uge</div>
+                <div class="kpi-value">—</div>
+                <div class="kpi-target">Mål 40+ km uge 10</div>
+              </div>
             </div>
           </div>
           <div class="card">
@@ -169,77 +266,55 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
               <div class="wk wk-future">13</div><div class="wk wk-future">14</div>
             </div>
             <div class="legend">
-              <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Aktiv</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#E8F4FD"></div>Recovery</div>
+              <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Build</div>
+              <div class="legend-item"><div class="legend-dot" style="background:var(--blue-pale);border:1px solid var(--blue)"></div>Recovery</div>
             </div>
           </div>
           <div class="card">
             <div class="card-title">Fremskridt mod mål</div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:4px"><span>Vægt</span><span>74.5 → 72 kg</span></div>
-            <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:4px;margin-top:8px"><span>Fedt%</span><span>23 → 20%</span></div>
-            <div class="progress-bar-wrap"><div class="progress-bar-fill gold" style="width:0%"></div></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:4px;margin-top:8px"><span>Uger gennemført</span><span>0 af 14</span></div>
-            <div class="progress-bar-wrap"><div class="progress-bar-fill green" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:3px"><span>Vægt</span><span>74.5 → 72 kg</span></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill fill-wine" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:3px;margin-top:9px"><span>Fedt%</span><span>23 → 20%</span></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill fill-gold" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-family:sans-serif;color:var(--text-mid);margin-bottom:3px;margin-top:9px"><span>Uger gennemført</span><span>0 af 14</span></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill fill-green" style="width:0%"></div></div>
           </div>
         </div>
       </div>
 
-      <!-- UGE -->
+      <!-- DENNE UGE -->
       <div id="tab-uge" class="section content">
         <div class="two-col">
+          <div class="full-width">
+            <div class="coach-box">
+              <div class="coach-label">Ugefokus · 1–7 juni</div>
+              <div class="coach-text"><strong>Malmø-dagene er ikke spildt tid</strong> — brug dem til lette løb der aktiverer systemet uden at belaste det. Lørdag er ugens vigtigste session: 90 min Z2 bygger din aerobe base til Médoc. <strong>Spis protein FØR du rejser</strong> — hotel-morgenmad sætter dig typisk 40g bagud. Vand og søvn er dine primære recovery-tools denne uge.</div>
+            </div>
+          </div>
           <div class="card">
-            <div class="card-title">Uge 1 · 1–7 juni</div>
-            <div class="day-header">Mandag 1/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-bike">🚴</div>
-              <div class="session-info"><div class="session-name">Hometrainer + Styrke</div><div class="session-detail">45 min Z2 · 20 min styrke · FØR Malmø</div></div>
-              <span class="session-zone z2">Z2</span>
-            </div>
-            <div class="day-header">Tirsdag 2/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-run">🏃</div>
-              <div class="session-info"><div class="session-name">Løb easy (Malmø)</div><div class="session-detail">30 min Z1-Z2 nær hotel</div></div>
-              <span class="session-zone z1">Z1-Z2</span>
-            </div>
-            <div class="day-header">Onsdag 3/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-run">🏃</div>
-              <div class="session-info"><div class="session-name">Løb easy (Malmø)</div><div class="session-detail">35 min roligt</div></div>
-              <span class="session-zone z2">Z2</span>
-            </div>
-            <div class="day-header">Torsdag 4/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-strength">💪</div>
-              <div class="session-info"><div class="session-name">Styrke fuld + walk</div><div class="session-detail">30 min styrke · 30 min walk</div></div>
-              <span class="session-zone zstr">STR</span>
-            </div>
-            <div class="day-header">Fredag 5/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-run">🏃</div>
-              <div class="session-info"><div class="session-name">Løb fart — tempo</div><div class="session-detail">50 min · 5×3 min Z3 / 2 min Z1</div></div>
-              <span class="session-zone z3">Z3</span>
-            </div>
-            <div class="day-header">Lørdag 6/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-run">🏃</div>
-              <div class="session-info"><div class="session-name">Løb lang (Médoc-byggesten)</div><div class="session-detail">90 min Z2 · ugens vigtigste</div></div>
-              <span class="session-zone z2">Z2</span>
-            </div>
-            <div class="day-header">Søndag 7/6</div>
-            <div class="session-row">
-              <div class="session-icon icon-swim">🏊</div>
-              <div class="session-info"><div class="session-name">Svøm 2000m + let cykel</div><div class="session-detail">45 min pool · 30 min Z1 cykel</div></div>
-              <span class="session-zone zswim">SWIM</span>
-            </div>
+            <div class="card-title">Uge 1 · Sessioner</div>
+            <div class="day-hdr">Mandag 1/6</div>
+            <div class="session-row"><div class="session-icon i-bike">🚴</div><div class="session-info"><div class="session-name">Hometrainer + Styrke</div><div class="session-detail">45 min Z2 · 20 min styrke · FØR Malmø</div></div><span class="zone-tag z2">Z2</span></div>
+            <div class="day-hdr">Tirsdag 2/6</div>
+            <div class="session-row"><div class="session-icon i-run">🏃</div><div class="session-info"><div class="session-name">Løb easy (Malmø)</div><div class="session-detail">30 min Z1-Z2 nær hotel</div></div><span class="zone-tag z1">Z1-Z2</span></div>
+            <div class="day-hdr">Onsdag 3/6</div>
+            <div class="session-row"><div class="session-icon i-run">🏃</div><div class="session-info"><div class="session-name">Løb easy (Malmø)</div><div class="session-detail">35 min roligt</div></div><span class="zone-tag z2">Z2</span></div>
+            <div class="day-hdr">Torsdag 4/6</div>
+            <div class="session-row"><div class="session-icon i-str">💪</div><div class="session-info"><div class="session-name">Styrke fuld + walk</div><div class="session-detail">30 min styrke · 30 min walk</div></div><span class="zone-tag zstr">STR</span></div>
+            <div class="day-hdr">Fredag 5/6</div>
+            <div class="session-row"><div class="session-icon i-run">🏃</div><div class="session-info"><div class="session-name">Løb tempo</div><div class="session-detail">50 min · 5×3 min Z3 / 2 min Z1</div></div><span class="zone-tag z3">Z3</span></div>
+            <div class="day-hdr">Lørdag 6/6</div>
+            <div class="session-row"><div class="session-icon i-run">🏃</div><div class="session-info"><div class="session-name">Løb lang ⭐</div><div class="session-detail">90 min Z2 · ugens vigtigste</div></div><span class="zone-tag z2">Z2</span></div>
+            <div class="day-hdr">Søndag 7/6</div>
+            <div class="session-row"><div class="session-icon i-swim">🏊</div><div class="session-info"><div class="session-name">Svøm 2000m + let cykel</div><div class="session-detail">45 min pool · 30 min Z1 cykel</div></div><span class="zone-tag zswim">SWIM</span></div>
           </div>
           <div class="card">
             <div class="card-title">AF-dage denne uge</div>
             <div class="streak-row">
-              <div class="streak-dot s-af"></div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div>
+              <div class="streak-dot s-af">✓</div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div>
               <div class="streak-dot s-future"></div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div><div class="streak-dot s-future"></div>
             </div>
-            <div style="font-size:12px;color:var(--text-light);font-family:sans-serif;">Mål: 5 af 7 dage</div>
+            <div style="font-size:12px;color:var(--text-light);font-family:sans-serif;margin-top:6px">Mål: 5 af 7 dage · 1 registreret</div>
           </div>
         </div>
       </div>
@@ -248,11 +323,9 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
       <div id="tab-krop" class="section content">
         <div class="two-col">
           <div class="full-width">
-            <div class="stat-row">
-              <div class="stat-card"><div class="stat-label">HRV</div><div class="stat-value">—</div><div class="stat-delta neutral">Data mangler</div></div>
-              <div class="stat-card"><div class="stat-label">Søvn</div><div class="stat-value">—</div><div class="stat-delta neutral">Timer/nat</div></div>
-              <div class="stat-card"><div class="stat-label">TSB form</div><div class="stat-value">—</div><div class="stat-delta neutral">Fra Intervals</div></div>
-              <div class="stat-card"><div class="stat-label">Energi</div><div class="stat-value">—</div><div class="stat-delta neutral">Subjektiv</div></div>
+            <div class="coach-box">
+              <div class="coach-label">Kropscoach · Status uge 1</div>
+              <div class="coach-text"><strong>23% fedt er dit primære mål at flytte</strong> — ikke vægten alene. Protein på 130-150g/dag er det vigtigste enkeltgreb. Søvn under 7 timer hæver cortisol og bremser fedtforbrænding direkte. <strong>HRV-trenden over 7 dage</strong> er din bedste indikator på om kroppen adapterer — en faldende trend betyder back off, ikke push harder.</div>
             </div>
           </div>
           <div class="card">
@@ -284,6 +357,12 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
       <!-- LEVEREGLER -->
       <div id="tab-regler" class="section content">
         <div class="two-col">
+          <div class="full-width">
+            <div class="coach-box">
+              <div class="coach-label">Sind + kost · Fokus denne uge</div>
+              <div class="coach-text"><strong>Systemer slår vilje hver gang</strong> — og du er i gang med at bygge systemet. Det handler ikke om perfektion i uge 1, det handler om at bevise for dig selv at rytmen holder når hverdagen presser. <strong>Én beslutning der tæller mest:</strong> vælg protein aktivt ved hvert måltid — alt andet følger af det valg.</div>
+            </div>
+          </div>
           <div class="card">
             <div class="card-title">Kost</div>
             <div class="regel-item"><div class="regel-num">1</div><div class="regel-text">Protein først — 130–150g dagligt, altid ved hvert måltid</div></div>
@@ -309,26 +388,26 @@ body { background: #EDE8DF; font-family: Georgia, serif; color: var(--text-dark)
       <!-- EVENTS -->
       <div id="tab-events" class="section content">
         <div class="two-col">
-          <div class="event-card">
-            <div class="event-date-label">29. AUGUST 2026</div>
+          <div class="event-card wine">
+            <div class="event-lbl">29. August 2026</div>
             <div class="event-name">Christiansborg Rundt</div>
             <div class="event-days" id="days-chr">—</div>
-            <div class="event-days-label">dage tilbage</div>
+            <div class="event-unit">dage tilbage</div>
           </div>
-          <div class="event-card" style="background:var(--gold);color:var(--text-dark)">
-            <div class="event-date-label" style="opacity:0.6">5. SEPTEMBER 2026</div>
+          <div class="event-card gold">
+            <div class="event-lbl">5. September 2026</div>
             <div class="event-name">Marathon Médoc</div>
-            <div class="event-days" id="days-med" style="color:var(--wine)">—</div>
-            <div class="event-days-label" style="opacity:0.6">dage tilbage</div>
+            <div class="event-days" id="days-med">—</div>
+            <div class="event-unit">dage tilbage</div>
           </div>
           <div class="card">
-            <div class="card-title">Tidslinje</div>
+            <div class="card-title">Periodisering</div>
             <div class="metric-row"><span class="metric-name">Uge 1–3</span><span class="metric-val" style="font-size:12px;color:var(--text-mid)">Build 1</span></div>
-            <div class="metric-row"><span class="metric-name">Uge 4</span><span class="metric-val" style="font-size:12px;color:#1A5A7A">Recovery</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 4</span><span class="metric-val" style="font-size:12px;color:var(--blue)">Recovery</span></div>
             <div class="metric-row"><span class="metric-name">Uge 5–7</span><span class="metric-val" style="font-size:12px;color:var(--text-mid)">Build 2</span></div>
-            <div class="metric-row"><span class="metric-name">Uge 8</span><span class="metric-val" style="font-size:12px;color:#1A5A7A">Recovery</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 8</span><span class="metric-val" style="font-size:12px;color:var(--blue)">Recovery</span></div>
             <div class="metric-row"><span class="metric-name">Uge 9–11</span><span class="metric-val" style="font-size:12px;color:var(--text-mid)">Build 3</span></div>
-            <div class="metric-row"><span class="metric-name">Uge 12</span><span class="metric-val" style="font-size:12px;color:#1A5A7A">Recovery</span></div>
+            <div class="metric-row"><span class="metric-name">Uge 12</span><span class="metric-val" style="font-size:12px;color:var(--blue)">Recovery</span></div>
             <div class="metric-row"><span class="metric-name">Uge 13–14</span><span class="metric-val" style="font-size:12px;color:var(--wine)">Race peak</span></div>
           </div>
         </div>
