@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-import os, re, requests, json
-from datetime import date, timedelta
+import os, re, requests
+from datetime import date, timedelta, datetime
 
 API_KEY    = os.environ.get('INTERVALS_API_KEY', '')
 ATHLETE_ID = os.environ.get('INTERVALS_ATHLETE_ID', 'i0')
 BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH       = ('API_KEY', API_KEY)
+
+def week_start():
+    """Mandag denne uge"""
+    today = date.today()
+    return today - timedelta(days=today.weekday())
 
 def get_wellness_7d():
     oldest = str(date.today() - timedelta(days=7))
@@ -23,23 +28,35 @@ def get_wellness_7d():
     fats     = [d.get('bodyFat') for d in data if d.get('bodyFat')]
     hrvs     = [d.get('hrv')     for d in data if d.get('hrv')]
     ctls     = [d.get('ctl')     for d in data if d.get('ctl')]
-    alcohols = [d.get('Alkohol') for d in data]  # Custom felt med stort A
+    sleeps   = [d.get('sleepSecs') for d in data if d.get('sleepSecs')]
+    alcohols = [d.get('Alkohol') for d in data]
 
-    af_days = sum(1 for a in alcohols if a is not None and a == 0)
+    # AF-dage kun fra denne uge (mandag til i dag)
+    wstart = week_start()
+    af_days = sum(
+        1 for d in data
+        if date.fromisoformat(d['id']) >= wstart
+        and d.get('Alkohol') is not None
+        and d.get('Alkohol') == 0
+    )
 
     return {
-        'weight':  round(weights[-1], 1)         if weights else None,
-        'fat':     round(fats[-1], 1)             if fats    else None,
-        'hrv_avg': round(sum(hrvs)/len(hrvs), 1)  if hrvs    else None,
-        'ctl':     round(ctls[-1], 1)             if ctls    else None,
-        'af_days': af_days,
+        'weight':     round(weights[-1], 1)          if weights else None,
+        'fat':        round(fats[-1], 1)              if fats    else None,
+        'hrv_avg':    round(sum(hrvs)/len(hrvs), 1)   if hrvs    else None,
+        'ctl':        round(ctls[-1], 1)              if ctls    else None,
+        'sleep_avg':  round(sum(sleeps)/len(sleeps)/3600, 1) if sleeps else None,
+        'af_days':    af_days,
     }
 
-def get_activities_7d():
-    oldest = str(date.today() - timedelta(days=7))
+def get_activities_week():
+    """Kun aktiviteter fra mandag denne uge"""
+    oldest = str(week_start())
+    newest = str(date.today())
     r = requests.get(f'{BASE}/activities', auth=AUTH,
-                     params={'oldest': oldest, 'newest': str(date.today())})
+                     params={'oldest': oldest, 'newest': newest})
     if r.status_code != 200:
+        print(f"Activities fejl: {r.status_code}")
         return None
     data = r.json()
     total_tss = sum(a.get('training_load') or 0 for a in data)
@@ -48,6 +65,7 @@ def get_activities_7d():
         for a in data
         if a.get('type') in ['Run', 'TrailRun', 'VirtualRun']
     )
+    print(f"Uge aktiviteter: {len(data)}, TSS: {total_tss}, Løb km: {run_km}")
     return {'tss_week': round(total_tss), 'run_km': round(run_km, 1)}
 
 def planned_tss():
@@ -77,20 +95,20 @@ def update_html(kpi):
 def main():
     print("Henter data...")
     wellness   = get_wellness_7d()
-    activities = get_activities_7d()
+    activities = get_activities_week()
     planned    = planned_tss()
 
     tss_actual = activities.get('tss_week') if activities else None
     tss_comp   = round(tss_actual / planned * 100) if tss_actual else None
 
     kpi = {
-        'weight':         (wellness.get('weight')  if wellness else None) or 'null',
-        'fat':            (wellness.get('fat')      if wellness else None) or 'null',
-        'ctl':            (wellness.get('ctl')      if wellness else None) or 34,
-        'hrv':            (wellness.get('hrv_avg')  if wellness else None) or 'null',
+        'weight':         (wellness.get('weight')   if wellness else None) or 'null',
+        'fat':            (wellness.get('fat')       if wellness else None) or 'null',
+        'ctl':            (wellness.get('ctl')       if wellness else None) or 34,
+        'hrv':            (wellness.get('hrv_avg')   if wellness else None) or 'null',
         'tss_compliance': tss_comp or 'null',
-        'km_week':        (activities.get('run_km') if activities else None) or 'null',
-        'af_days':        wellness.get('af_days') if wellness else 'null',
+        'km_week':        (activities.get('run_km')  if activities else None) or 'null',
+        'af_days':        wellness.get('af_days')    if wellness else 'null',
     }
     if kpi['af_days'] is None:
         kpi['af_days'] = 'null'
