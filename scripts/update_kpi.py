@@ -12,91 +12,41 @@ def get_wellness_7d():
     newest = str(date.today())
     r = requests.get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': oldest, 'newest': newest})
-    print(f"Wellness status: {r.status_code}")
     if r.status_code != 200:
-        print(f"Wellness fejl: {r.text[:200]}")
+        print(f"Wellness fejl: {r.status_code}")
         return None
     data = r.json()
-    print(f"Wellness dage: {len(data)}")
-    if data:
-        print(f"Wellness felter: {list(data[-1].keys())}")
-        print(f"Seneste dag: {json.dumps(data[-1], indent=2)[:500]}")
-
-    # Try multiple field name variants
-    weight_fields = ['weight', 'Weight', 'weight_kg']
-    fat_fields    = ['bodyFat', 'body_fat', 'fatPercent', 'fat', 'bodyFatPercent']
-    hrv_fields    = ['hrv', 'hrvRmssd', 'hrv4t', 'rmssd']
-    alcohol_fields= ['alcohol', 'Alcohol', 'alcoholUnits']
-
-    def get_field(d, fields):
-        for f in fields:
-            if d.get(f) is not None:
-                return d[f]
+    if not data:
         return None
 
-    weights  = [get_field(d, weight_fields) for d in data if get_field(d, weight_fields)]
-    fats     = [get_field(d, fat_fields)    for d in data if get_field(d, fat_fields)]
-    hrvs     = [get_field(d, hrv_fields)    for d in data if get_field(d, hrv_fields)]
-    alcohols = [get_field(d, alcohol_fields) for d in data]
+    weights  = [d.get('weight')  for d in data if d.get('weight')]
+    fats     = [d.get('bodyFat') for d in data if d.get('bodyFat')]
+    hrvs     = [d.get('hrv')     for d in data if d.get('hrv')]
+    ctls     = [d.get('ctl')     for d in data if d.get('ctl')]
+    alcohols = [d.get('Alkohol') for d in data]  # Custom felt med stort A
 
     af_days = sum(1 for a in alcohols if a is not None and a == 0)
 
     return {
-        'weight':  round(weights[-1], 1)          if weights else None,
-        'fat':     round(fats[-1], 1)              if fats    else None,
-        'hrv_avg': round(sum(hrvs)/len(hrvs), 1)   if hrvs    else None,
+        'weight':  round(weights[-1], 1)         if weights else None,
+        'fat':     round(fats[-1], 1)             if fats    else None,
+        'hrv_avg': round(sum(hrvs)/len(hrvs), 1)  if hrvs    else None,
+        'ctl':     round(ctls[-1], 1)             if ctls    else None,
         'af_days': af_days,
     }
-
-def get_fitness():
-    # Try fitness endpoint directly
-    r = requests.get(f'{BASE}/fitness', auth=AUTH)
-    print(f"Fitness status: {r.status_code}")
-    if r.status_code == 200:
-        data = r.json()
-        print(f"Fitness data: {json.dumps(data)[:300]}")
-        ctl = data.get('ctl') or data.get('fitness') or data.get('CTL')
-        if ctl:
-            return {'ctl': round(float(ctl), 1)}
-
-    # Fallback: wellness endpoint for today
-    r2 = requests.get(f'{BASE}/wellness', auth=AUTH,
-                      params={'oldest': str(date.today()), 'newest': str(date.today())})
-    if r2.status_code == 200:
-        data = r2.json()
-        if data:
-            d = data[-1]
-            ctl = d.get('ctl') or d.get('fitness')
-            if ctl:
-                return {'ctl': round(float(ctl), 1)}
-    return None
 
 def get_activities_7d():
     oldest = str(date.today() - timedelta(days=7))
     r = requests.get(f'{BASE}/activities', auth=AUTH,
                      params={'oldest': oldest, 'newest': str(date.today())})
-    print(f"Activities status: {r.status_code}")
     if r.status_code != 200:
         return None
     data = r.json()
-    print(f"Activities: {len(data)}")
-    if data:
-        print(f"Activity felter: {list(data[0].keys())[:15]}")
-
-    # Try multiple TSS field names
-    tss_fields = ['training_load', 'tss', 'TSS', 'load']
-    def get_tss(a):
-        for f in tss_fields:
-            if a.get(f) is not None:
-                return a[f]
-        return 0
-
-    total_tss = sum(get_tss(a) for a in data)
-    run_types = ['Run','TrailRun','VirtualRun','run']
+    total_tss = sum(a.get('training_load') or 0 for a in data)
     run_km = sum(
-        (a.get('distance') or a.get('distanceMeters') or 0) / 1000
+        (a.get('distance') or 0) / 1000
         for a in data
-        if a.get('type') in run_types
+        if a.get('type') in ['Run', 'TrailRun', 'VirtualRun']
     )
     return {'tss_week': round(total_tss), 'run_km': round(run_km, 1)}
 
@@ -125,9 +75,8 @@ def update_html(kpi):
     print(f"KPI opdateret: {kpi}")
 
 def main():
-    print("Henter data fra Intervals.icu...")
+    print("Henter data...")
     wellness   = get_wellness_7d()
-    fitness    = get_fitness()
     activities = get_activities_7d()
     planned    = planned_tss()
 
@@ -137,11 +86,11 @@ def main():
     kpi = {
         'weight':         (wellness.get('weight')  if wellness else None) or 'null',
         'fat':            (wellness.get('fat')      if wellness else None) or 'null',
-        'ctl':            (fitness.get('ctl')       if fitness  else None) or 34,
+        'ctl':            (wellness.get('ctl')      if wellness else None) or 34,
         'hrv':            (wellness.get('hrv_avg')  if wellness else None) or 'null',
         'tss_compliance': tss_comp or 'null',
         'km_week':        (activities.get('run_km') if activities else None) or 'null',
-        'af_days':        (wellness.get('af_days')  if wellness else None),
+        'af_days':        wellness.get('af_days') if wellness else 'null',
     }
     if kpi['af_days'] is None:
         kpi['af_days'] = 'null'
