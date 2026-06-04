@@ -384,6 +384,53 @@ function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
   </div>`;
 }
 // ── Pages ─────────────────────────────────────────────────────
+function ctlGraph() {
+  const data=D.ctlCurve, W=500, H=120, pad={t:10,r:20,b:30,l:30};
+  const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b, mn=30, mx=65;
+  const x=i=>pad.l+(i/(data.length-1))*iW;
+  const y=v=>pad.t+iH-((v-mn)/(mx-mn))*iH;
+  const pts=data.map((v,i)=>`${x(i)},${y(v)}`).join(" ");
+  const area=`M${x(0)},${y(data[0])} `+data.map((v,i)=>`L${x(i)},${y(v)}`).join(" ")+` L${x(data.length-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
+  const wk=D.week;
+  const labels=["B1","","","R","","","","R","","","","R","CB","MD"];
+  return `<svg class="ctl-svg" viewBox="0 0 ${W} ${H}">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--gold)" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="var(--gold)" stop-opacity=".03"/>
+    </linearGradient></defs>
+    ${[35,45,55].map(v=>`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--cream-d)" stroke-width="1"/>
+      <text x="${pad.l-4}" y="${y(v)+4}" text-anchor="end" fill="var(--muted)" font-size="9" font-family="'Space Mono',monospace">${v}</text>`).join("")}
+    <path d="${area}" fill="url(#g)"/>
+    <polyline points="${pts}" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round"/>
+    ${data.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="${i===wk-1?5:3}"
+      fill="${i<wk?"var(--gold)":"var(--cream-d)"}" stroke="${i===wk-1?"var(--wine)":"var(--gold)"}"
+      stroke-width="${i===wk-1?2:1}"/>`).join("")}
+    ${labels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle"
+      fill="${i===wk-1?"var(--wine)":"var(--muted)"}" font-size="8" font-family="'Space Mono',monospace"
+      font-weight="${i===wk-1?700:400}">${l||(i+1)}</text>`).join("")}
+  </svg>`;
+}
+
+function periodTimeline() {
+  const tc={build:"var(--wine)",recovery:"var(--swim)",race:"var(--gold)"};
+  const wk=D.week;
+  return `<div class="period-scroll"><div class="period-row">
+    ${STATIC.periodization.map(p=>{
+      const col=tc[p.t];
+      const active=p.w===wk;
+      return `<div class="period-cell" style="background:${active?col:col+'22'};border-color:${col}">
+        <span class="pc-lbl" style="color:${active?"white":col}">${p.l}</span>
+        <span class="pc-num" style="color:${active?"rgba(255,255,255,.7)":col+'aa'}">${p.w}</span>
+      </div>`;
+    }).join("")}
+  </div>
+  <div class="period-legend">
+    ${[["build","var(--wine)","BUILD"],["recovery","var(--swim)","RECOVERY"],["race","var(--gold)","RACE"]].map(([k,c,l])=>
+      `<div style="display:flex;align-items:center;gap:5px"><div class="legend-dot" style="background:${c}"></div><span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${l}</span></div>`
+    ).join("")}
+  </div></div>`;
+}
+
 function renderToday() {
   const s=D.today, parts=D.coachSpeech.split("{HL}");
   return `
