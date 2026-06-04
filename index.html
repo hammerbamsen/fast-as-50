@@ -30,40 +30,36 @@
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-async function fetchData() {
+async function fetchAndMergeData() {
   try {
     const r = await fetch("data.json?t=" + Date.now());
-    if (!r.ok) return null;
-    return await r.json();
-  } catch(e) { return null; }
-}
-
-function mergeData(remote) {
-  if (!remote) return;
-  const m = remote.meta || {};
-  if (m.week)                 DATA.week                 = m.week;
-  if (m.totalWeeks)           DATA.totalWeeks           = m.totalWeeks;
-  if (m.blockType)            DATA.blockType            = m.blockType;
-  if (m.daysToMedoc != null)  DATA.daysToMedoc          = m.daysToMedoc;
-  if (m.daysToChristiansborg != null) DATA.daysToChristiansborg = m.daysToChristiansborg;
-  if (m.dayName)              DATA.today.dayName        = m.dayName;
-  if (m.date)                 DATA.today.date           = m.date;
-  if (remote.af != null)      DATA.afDays.weekDone      = remote.af.weekDone || 0;
-  if (remote.kpis) {
-    const km = remote.kpis;
-    DATA.kpis = [
-      { label:"VÆGT",           value: km.weight?.value  || "—", unit:"kg",  sub:"Mål <72 kg",         color:"#27AE60" },
-      { label:"FEDT%",          value: km.fat?.value     || "—", unit:"%",   sub:"Mål <20%",           color:"#F39C12" },
-      { label:"CTL FITNESS",    value: km.ctl?.value     || "—", unit:"",    sub:"Mål 60 (uge 11)",    color:"#C0392B" },
-      { label:"HRV SNIT 7D",    value: km.hrv?.value     || "—", unit:" ms", sub:"Stigende trend",     color:"#7A6A58" },
-      { label:"TSS COMPLIANCE", value: km.tss?.value     || "—", unit:"",    sub:"Mål >85%",           color:"#7A6A58" },
-      { label:"LØB KM/UGE",     value: km.runKm?.value   || "—", unit:" km", sub:"Mål 40+ km uge 10",  color:"#C0392B" },
-    ];
-  }
-  if (remote.ctlCurve) DATA.ctlCurve = remote.ctlCurve;
-  if (remote.coachSpeech)    DATA.coachSpeech    = remote.coachSpeech;
-  if (remote.coachHighlight) DATA.coachHighlight = remote.coachHighlight;
-  if (remote.weekFocus)      DATA.weekFocus      = remote.weekFocus;
+    if (!r.ok) return;
+    const remote = await r.json();
+    const m = remote.meta || {};
+    if (m.week)                       DATA.week                 = m.week;
+    if (m.totalWeeks)                 DATA.totalWeeks           = m.totalWeeks;
+    if (m.blockType)                  DATA.blockType            = m.blockType;
+    if (m.daysToMedoc != null)        DATA.daysToMedoc          = m.daysToMedoc;
+    if (m.daysToChristiansborg != null) DATA.daysToChristiansborg = m.daysToChristiansborg;
+    if (m.dayName)                    DATA.today.dayName        = m.dayName;
+    if (m.date)                       DATA.today.date           = m.date;
+    if (remote.af != null)            DATA.afDays.weekDone      = remote.af.weekDone || 0;
+    if (remote.kpis) {
+      const km = remote.kpis;
+      DATA.kpis = [
+        { label:"VÆGT",           value: km.weight?.value  || "—", unit:"kg",  sub:"Mål <72 kg",         color:"#27AE60" },
+        { label:"FEDT%",          value: km.fat?.value     || "—", unit:"%",   sub:"Mål <20%",           color:"#F39C12" },
+        { label:"CTL FITNESS",    value: km.ctl?.value     || "—", unit:"",    sub:"Mål 60 (uge 11)",    color:"#C0392B" },
+        { label:"HRV SNIT 7D",    value: km.hrv?.value     || "—", unit:" ms", sub:"Stigende trend",     color:"#7A6A58" },
+        { label:"TSS COMPLIANCE", value: km.tss?.value     || "—", unit:"",    sub:"Mål >85%",           color:"#7A6A58" },
+        { label:"LØB KM/UGE",     value: km.runKm?.value   || "—", unit:" km", sub:"Mål 40+ km uge 10",  color:"#C0392B" },
+      ];
+    }
+    if (remote.ctlCurve)       DATA.ctlCurve       = remote.ctlCurve;
+    if (remote.coachSpeech)    DATA.coachSpeech    = remote.coachSpeech;
+    if (remote.coachHighlight) DATA.coachHighlight = remote.coachHighlight;
+    if (remote.weekFocus)      DATA.weekFocus      = remote.weekFocus;
+  } catch(e) { console.log("data.json fejl:", e); }
 }
 
 const C = {
@@ -547,8 +543,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetchData().then(remote => {
-      mergeData(remote);
+    fetchAndMergeData().then(() => {
       setLoaded(true);
       setSession({...DATA.today.session});
     });
