@@ -360,35 +360,31 @@ function weekStrip() {
 }
 
 function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
-  // Vis position på skala fra start til mål
-  // For vægt/fedt: lavere er bedre (start > goal)
-  // For CTL: højere er bedre (start < goal)
-  const isInverse = startVal > goalVal;
+  const isInverse = startVal > goalVal; // vægt + fedt: lavere er bedre
   const range = Math.abs(goalVal - startVal);
-  const progress = Math.abs(nowVal - startVal);
-  const pct = Math.min(98, Math.max(2, Math.round((progress / range) * 100)));
-  const pctDone = Math.round((progress / range) * 100);
+  const moved = Math.abs(nowVal - startVal);
+  const pct = Math.min(100, Math.round((moved / range) * 100));
+  const barW = Math.max(3, pct);
 
-  return `<div class="prog-row">
-    <div class="prog-header">
-      <span class="prog-lbl">${label}</span>
-      <span class="prog-vals">
-        <span class="prog-now">${nowVal}${unit}</span>
-        <span class="prog-muted"> / mål ${goalVal}${unit}</span>
-      </span>
+  return `<div style="margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
+      <span style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">${label}</span>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">mål: <span style="color:${color};font-weight:700">${goalVal}${unit}</span></span>
     </div>
-    <div class="prog-track" style="background:${color}20;border-radius:6px;height:10px;">
-      <div style="position:absolute;left:0;top:0;height:100%;width:${pct}%;background:linear-gradient(90deg,${color}88,${color});border-radius:6px;"></div>
-      <div style="position:absolute;left:${pct}%;top:-3px;width:16px;height:16px;border-radius:50%;background:${color};border:2.5px solid white;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
-      <div style="position:absolute;left:0;bottom:-16px;font-family:'Space Mono',monospace;font-size:8px;color:var(--muted)">${startVal}${unit}</div>
-      <div style="position:absolute;right:0;bottom:-16px;font-family:'Space Mono',monospace;font-size:8px;color:${color};font-weight:700">${goalVal}${unit}</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);width:44px;text-align:right;flex-shrink:0">${startVal}${unit}</span>
+      <div style="flex:1;position:relative;height:12px;background:var(--cream-d);border-radius:6px;overflow:visible">
+        <div style="height:100%;width:${barW}%;background:${color};border-radius:6px;opacity:.35"></div>
+        <div style="position:absolute;left:${barW}%;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
+      </div>
+      <span style="font-family:'Space Mono',monospace;font-size:10px;color:${color};font-weight:700;width:44px;flex-shrink:0">${goalVal}${unit}</span>
     </div>
-    <div style="margin-top:22px;text-align:right;font-family:'Space Mono',monospace;font-size:9px;color:${pctDone>5?color:'var(--muted)'}">
-      ${pctDone}% af vej mod målet
+    <div style="display:flex;justify-content:center;margin-top:8px">
+      <span style="font-family:'Newsreader',serif;font-size:22px;color:var(--wine);font-weight:600">${nowVal}${unit}</span>
+      <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);align-self:flex-end;margin-left:8px;margin-bottom:3px">${pct}% af mål</span>
     </div>
   </div>`;
 }
-
 function ctlGraph() {
   const data=D.ctlCurve, W=500, H=120, pad={t:10,r:20,b:30,l:30};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b, mn=30, mx=65;
