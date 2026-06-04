@@ -69,7 +69,7 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 .label-gold { color:var(--gold); }
 
 /* Coach speech */
-.coach-text { font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:rgba(255,255,255,.9); line-height:1.65; position:relative; }
+.coach-text { font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#FDFAF6; line-height:1.65; position:relative; }
 .coach-hl { color:var(--gold); font-weight:700; }
 
 /* KPI grid */
@@ -656,7 +656,11 @@ async function init() {
       if (remote.coachHighlight) D.coachHighlight = remote.coachHighlight;
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
       if (remote.week_sessions)  D.week_sessions  = remote.week_sessions;
-      if (remote.today)          D.today          = remote.today;
+      if (remote.today) {
+        // Håndter både flat og nested format
+        if (remote.today.title) D.today = remote.today;
+        else if (remote.today.session) D.today = remote.today.session;
+      }
 
       // Re-render med friske data
       updateMeta();
