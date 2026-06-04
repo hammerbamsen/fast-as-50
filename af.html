@@ -11,32 +11,30 @@
   body { background: #ECE4D7; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; font-family: 'Hanken Grotesk', sans-serif; }
   .card { background: #FDFAF6; border-radius: 16px; padding: 32px 24px; max-width: 360px; width: 100%; text-align: center; border: 1px solid #DDD3C3; }
   .label { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .date { font-family: 'Newsreader', serif; font-size: 28px; color: #59182A; margin-bottom: 6px; }
-  .question { font-size: 15px; color: #1A1008; margin-bottom: 8px; line-height: 1.5; }
-  .subq { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; margin-bottom: 24px; }
+  .date { font-family: 'Newsreader', serif; font-size: 28px; color: #59182A; margin-bottom: 4px; }
+  .note { font-family: 'Space Mono', monospace; font-size: 10px; color: #BE863A; margin-bottom: 6px; letter-spacing: 0.05em; }
+  .question { font-size: 16px; color: #1A1008; margin-bottom: 24px; line-height: 1.5; }
   .streak { font-family: 'Space Mono', monospace; font-size: 11px; color: #7A6A58; margin-bottom: 24px; }
   .streak span { color: #59182A; font-weight: 700; }
-  .buttons { display: flex; gap: 12px; margin-bottom: 20px; }
+  .buttons { display: flex; gap: 12px; margin-bottom: 16px; }
   .btn { flex: 1; padding: 18px 12px; border-radius: 10px; border: none; font-family: 'Hanken Grotesk', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
   .btn-ja { background: #59182A; color: #ECE4D7; }
   .btn-ja:active { background: #3E0F1D; transform: scale(0.97); }
   .btn-nej { background: #DDD3C3; color: #7A6A58; }
   .btn-nej:active { background: #C8BBA8; transform: scale(0.97); }
-  .btn-skip { background: none; border: none; font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; cursor: pointer; padding: 8px; text-decoration: underline; }
-  .week-row { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
-  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; transition: all 0.2s; }
-  .dot-af { background: #59182A; color: #ECE4D7; }
-  .dot-nej { background: #DDD3C3; color: #7A6A58; }
+  .week-row { display: flex; gap: 6px; justify-content: center; margin: 16px 0; }
+  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; }
+  .dot-af    { background: #59182A; color: #ECE4D7; }
+  .dot-nej   { background: #DDD3C3; color: #7A6A58; }
   .dot-today { outline: 2px solid #BE863A; outline-offset: 2px; }
-  .dot-active { outline: 2px solid #59182A; outline-offset: 2px; }
+  .dot-active{ outline: 2px solid #59182A; outline-offset: 2px; }
   .dot-empty { background: #ECE4D7; color: #C8BBA8; border: 1px dashed #DDD3C3; }
-  .progress { font-family: 'Space Mono', monospace; font-size: 9px; color: #BE863A; margin-bottom: 16px; letter-spacing: 0.05em; }
-  .status { margin-top: 14px; font-size: 13px; color: #7A6A58; min-height: 18px; }
-  .status.ok { color: #1A7A5E; font-weight: 600; }
+  .status { font-size: 13px; color: #7A6A58; min-height: 18px; margin-bottom: 4px; }
+  .status.ok  { color: #1A7A5E; font-weight: 600; }
   .status.err { color: #C0392B; }
   .done-title { font-family: 'Newsreader', serif; font-size: 24px; color: #59182A; margin-bottom: 8px; }
-  .done-sub { font-size: 14px; color: #7A6A58; line-height: 1.6; margin-bottom: 16px; }
-  .footer { margin-top: 20px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
+  .done-sub   { font-size: 14px; color: #7A6A58; line-height: 1.6; }
+  .footer { margin-top: 18px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
   a.dash-link { color: #BE863A; text-decoration: none; font-weight: 700; }
   .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #DDD3C3; border-top-color: #59182A; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -44,21 +42,7 @@
 </head>
 <body>
 <div class="card" id="card">
-  <div class="label">Fast as Fifty · AF-dag</div>
-  <div id="main-view">
-    <div class="date" id="current-date">—</div>
-    <div class="question" id="question">Var det en alkoholfri dag?</div>
-    <div class="subq" id="subq"></div>
-    <div class="progress" id="progress"></div>
-    <div class="buttons" id="buttons">
-      <button class="btn btn-ja" onclick="register(true)">Ja</button>
-      <button class="btn btn-nej" onclick="register(false)">Nej</button>
-    </div>
-    <button class="btn-skip" id="skip-btn" onclick="skipDay()" style="display:none">Spring over</button>
-    <div class="week-row" id="week-row"></div>
-    <div class="status" id="status"></div>
-    <div class="footer"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
-  </div>
+  <div id="view"></div>
 </div>
 
 <script>
@@ -66,178 +50,141 @@ const API_KEY    = "6x0l12azelkcji76zvktwlbj0";
 const ATHLETE_ID = "i107048";
 const BASE       = `https://intervals.icu/api/v1/athlete/${ATHLETE_ID}`;
 const AUTH       = "Basic " + btoa("API_KEY:" + API_KEY);
+const STORAGE_KEY = "af_log_v2";
 
 const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const SHORT     = ["Søn","Man","Tir","Ons","Tor","Fre","Lør"];
 
-let weekLog    = {};   // { "2026-06-04": 0/1/null }
-let queue      = [];   // dage der mangler registrering
-let queueIndex = 0;
+// ── Local storage ─────────────────────────────────────────────
+function getLog() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveLog(log) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(log));
+}
 
+// ── Date helpers ──────────────────────────────────────────────
 function toKey(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
-
 function todayKey() { return toKey(new Date()); }
-
+function yesterdayKey() {
+  const d = new Date(); d.setDate(d.getDate() - 1); return toKey(d);
+}
 function weekStart() {
   const d = new Date();
   const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
-  const mon = new Date(d);
-  mon.setDate(d.getDate() + diff);
-  mon.setHours(0,0,0,0);
+  const mon = new Date(d); mon.setDate(d.getDate() + diff); mon.setHours(0,0,0,0);
   return mon;
 }
-
-function formatDate(d) {
+function formatDate(key) {
+  const d = new Date(key + 'T12:00:00');
   return `${DK_DAYS[d.getDay()]} ${d.getDate()}. ${DK_MONTHS[d.getMonth()]}`;
 }
-
-function setStatus(msg, type='') {
-  const el = document.getElementById('status');
-  el.className = 'status ' + type;
-  el.innerHTML = msg;
-}
-
-function renderWeekRow() {
+function isThisWeek(key) {
   const mon = weekStart();
-  const row = document.getElementById('week-row');
-  row.innerHTML = '';
-  const currentKey = queue[queueIndex] ? toKey(queue[queueIndex]) : null;
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(mon);
-    d.setDate(mon.getDate() + i);
-    const key = toKey(d);
-    const isToday = key === todayKey();
-    const isCurrent = key === currentKey;
-    const val = weekLog[key];
-    let cls = 'day-dot ';
-    if (val === 0)        cls += 'dot-af';
-    else if (val > 0)     cls += 'dot-nej';
-    else                  cls += 'dot-empty';
-    if (isToday)          cls += ' dot-today';
-    if (isCurrent && !isToday) cls += ' dot-active';
-    const dot = document.createElement('div');
-    dot.className = cls;
-    dot.textContent = SHORT[d.getDay()];
-    row.appendChild(dot);
-  }
+  const d = new Date(key + 'T12:00:00');
+  return d >= mon;
 }
 
-function countAF() {
-  return Object.values(weekLog).filter(v => v === 0).length;
-}
-
-async function loadWeekData() {
+// ── Week strip ────────────────────────────────────────────────
+function weekStrip(activeKey) {
+  const log = getLog();
   const mon = weekStart();
-  const oldest = toKey(mon);
-  const newest = todayKey();
-  setStatus('<span class="spinner"></span>Henter data...');
-  try {
-    const r = await fetch(`${BASE}/wellness?oldest=${oldest}&newest=${newest}`, {
-      headers: { "Authorization": AUTH }
-    });
-    if (!r.ok) throw new Error(r.status);
-    const data = await r.json();
-
-    // Byg weekLog for man→i dag
-    weekLog = {};
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(mon);
-      d.setDate(mon.getDate() + i);
-      if (d > new Date()) break; // ikke fremtidige dage
-      weekLog[toKey(d)] = null;
-    }
-    data.forEach(d => {
-      if (weekLog.hasOwnProperty(d.id)) {
-        weekLog[d.id] = d.Alkohol !== undefined && d.Alkohol !== null ? d.Alkohol : null;
-      }
-    });
-
-    // Byg kø: dage uden registrering (null), ældste først
-    queue = Object.keys(weekLog)
-      .filter(k => weekLog[k] === null)
-      .sort();
-    queueIndex = 0;
-
-    setStatus('');
-    document.getElementById('af-count') && (document.getElementById('af-count').textContent = countAF());
-    showNext();
-  } catch(e) {
-    setStatus('Kunne ikke hente data fra Intervals.icu', 'err');
-    // Fallback: vis bare i dag
-    queue = [todayKey()];
-    queueIndex = 0;
-    showNext();
-  }
-}
-
-function showNext() {
-  renderWeekRow();
-  document.getElementById('af-count') && (document.getElementById('af-count').textContent = countAF());
-
-  if (queueIndex >= queue.length) {
-    showDone();
-    return;
-  }
-
-  const key = queue[queueIndex];
-  const d   = new Date(key + 'T12:00:00');
-  const isToday = key === todayKey();
-
-  document.getElementById('current-date').textContent = formatDate(d);
-  document.getElementById('question').textContent = isToday
-    ? 'Var det en alkoholfri dag?'
-    : 'Var det en alkoholfri dag?';
-  document.getElementById('subq').textContent = isToday ? '' : `Mangler registrering`;
-
-  const remaining = queue.length - queueIndex;
-  document.getElementById('progress').textContent =
-    remaining > 1 ? `${remaining} dage mangler registrering` :
-    remaining === 1 ? `Sidste dag der mangler` : '';
-
-  document.getElementById('buttons').style.display = 'flex';
-  document.getElementById('skip-btn').style.display = remaining > 1 ? 'block' : 'none';
-  setStatus('');
-}
-
-function showDone() {
-  const af = countAF();
-  const total = Object.keys(weekLog).length;
-  document.getElementById('main-view').innerHTML = `
-    <div class="done-title">Alt registreret</div>
-    <div class="done-sub">${af} AF-dage denne uge — målet er 5.<br>
-    ${af >= 5 ? 'Mål nået! 💪' : af >= 3 ? 'God uge — fortsæt.' : 'Keep moving forward.'}</div>
-    <div class="week-row" id="week-row-done"></div>
-    <div class="footer" style="margin-top:20px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
-  `;
-  // Render ugestribe
-  const mon = weekStart();
-  const row = document.getElementById('week-row-done');
+  const today = todayKey();
+  let html = '<div class="week-row">';
   for (let i = 0; i < 7; i++) {
     const d = new Date(mon); d.setDate(mon.getDate() + i);
     const key = toKey(d);
-    const isToday = key === todayKey();
-    const val = weekLog[key];
+    if (key > today) { html += `<div class="day-dot dot-empty">${SHORT[d.getDay()]}</div>`; continue; }
+    const val = log[key];
     let cls = 'day-dot ';
-    if (val === 0)    cls += 'dot-af';
-    else if (val > 0) cls += 'dot-nej';
-    else              cls += 'dot-empty';
-    if (isToday)      cls += ' dot-today';
-    const dot = document.createElement('div');
-    dot.className = cls;
-    dot.textContent = SHORT[d.getDay()];
-    row.appendChild(dot);
+    if (val === true)       cls += 'dot-af';
+    else if (val === false) cls += 'dot-nej';
+    else                    cls += 'dot-empty';
+    if (key === today)      cls += ' dot-today';
+    if (key === activeKey && key !== today) cls += ' dot-active';
+    html += `<div class="${cls}">${SHORT[d.getDay()]}</div>`;
   }
+  html += '</div>';
+  return html;
 }
 
-async function register(isAF) {
-  const key = queue[queueIndex];
-  document.getElementById('buttons').style.display = 'none';
-  document.getElementById('skip-btn').style.display = 'none';
-  setStatus('<span class="spinner"></span>Gemmer...');
+function afCount() {
+  const log = getLog();
+  const mon = weekStart();
+  const today = todayKey();
+  let n = 0;
+  for (const [k, v] of Object.entries(log)) {
+    if (v === true && k >= toKey(mon) && k <= today) n++;
+  }
+  return n;
+}
 
+// ── Queue: find dage der mangler ──────────────────────────────
+function buildQueue() {
+  const log = getLog();
+  const queue = [];
+  // Altid: i går (hvis ikke registreret og samme uge)
+  const yk = yesterdayKey();
+  if (isThisWeek(yk) && log[yk] === undefined) queue.push(yk);
+  // I dag (hvis ikke registreret)
+  const tk = todayKey();
+  if (log[tk] === undefined) queue.push(tk);
+  return queue;
+}
+
+// ── Render spørgsmål ──────────────────────────────────────────
+let queue = [];
+let qIdx  = 0;
+
+function showQuestion(key) {
+  const isToday = key === todayKey();
+  const log = getLog();
+  const count = afCount();
+  document.getElementById('view').innerHTML = `
+    <div class="label">Fast as Fifty · AF-dag</div>
+    <div class="date">${formatDate(key)}</div>
+    ${!isToday ? '<div class="note">MANGLER REGISTRERING</div>' : ''}
+    <div class="question">Var det en alkoholfri dag?</div>
+    <div class="streak">Denne uge: <span>${count}</span>/5 AF-dage</div>
+    <div class="buttons">
+      <button class="btn btn-ja" onclick="answer(true)">Ja</button>
+      <button class="btn btn-nej" onclick="answer(false)">Nej</button>
+    </div>
+    ${weekStrip(key)}
+    <div class="status" id="status"></div>
+    <div class="footer"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
+  `;
+}
+
+function showDone() {
+  const count = afCount();
+  const msg = count >= 5 ? 'Mål nået! 💪' : count >= 3 ? 'God uge — fortsæt.' : 'Keep moving forward.';
+  document.getElementById('view').innerHTML = `
+    <div class="label">Fast as Fifty · AF-dag</div>
+    <div class="done-title">Alt registreret</div>
+    <div class="done-sub">${count} AF-dage denne uge — målet er 5.<br>${msg}</div>
+    ${weekStrip(null)}
+    <div class="footer" style="margin-top:16px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
+  `;
+}
+
+async function answer(isAF) {
+  const key = queue[qIdx];
+  // Gem lokalt med det samme
+  const log = getLog();
+  log[key] = isAF;
+  saveLog(log);
+
+  // Vis spinner
+  document.querySelector('.buttons').style.display = 'none';
+  document.getElementById('status').className = 'status';
+  document.getElementById('status').innerHTML = '<span class="spinner"></span>Sender til Intervals.icu...';
+
+  // Send til Intervals.icu (stille fejl — lokalt er gemt uanset)
   try {
     const r = await fetch(`${BASE}/wellness/${key}`, {
       method: 'PUT',
@@ -245,23 +192,33 @@ async function register(isAF) {
       body: JSON.stringify({ Alkohol: isAF ? 0 : 1 })
     });
     if (!r.ok) throw new Error(r.status);
-    weekLog[key] = isAF ? 0 : 1;
-    setStatus(isAF ? '✓ AF-dag gemt' : '✓ Gemt', 'ok');
-    setTimeout(() => { queueIndex++; showNext(); }, 600);
+    document.getElementById('status').className = 'status ok';
+    document.getElementById('status').textContent = isAF ? '✓ AF-dag gemt' : '✓ Gemt';
   } catch(e) {
-    setStatus(`Fejl — kunne ikke gemme (${e.message})`, 'err');
-    document.getElementById('buttons').style.display = 'flex';
-    document.getElementById('skip-btn').style.display = queue.length - queueIndex > 1 ? 'block' : 'none';
+    // Lokalt er stadig gemt — bare vis en rolig fejl
+    document.getElementById('status').className = 'status';
+    document.getElementById('status').textContent = 'Gemt lokalt (Intervals.icu offline)';
   }
+
+  setTimeout(() => {
+    qIdx++;
+    if (qIdx < queue.length) {
+      showQuestion(queue[qIdx]);
+    } else {
+      showDone();
+    }
+  }, 700);
 }
 
-function skipDay() {
-  queueIndex++;
-  showNext();
-}
+// ── Init ──────────────────────────────────────────────────────
+queue = buildQueue();
+qIdx  = 0;
 
-// Init
-loadWeekData();
+if (queue.length === 0) {
+  showDone();
+} else {
+  showQuestion(queue[0]);
+}
 </script>
 </body>
 </html>
