@@ -360,17 +360,32 @@ function weekStrip() {
 }
 
 function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
-  const pct = Math.min(100,Math.max(0,Math.round(((startVal-nowVal)/(startVal-goalVal))*100)));
+  // Vis position på skala fra start til mål
+  // For vægt/fedt: lavere er bedre (start > goal)
+  // For CTL: højere er bedre (start < goal)
+  const isInverse = startVal > goalVal;
+  const range = Math.abs(goalVal - startVal);
+  const progress = Math.abs(nowVal - startVal);
+  const pct = Math.min(98, Math.max(2, Math.round((progress / range) * 100)));
+  const pctDone = Math.round((progress / range) * 100);
+
   return `<div class="prog-row">
     <div class="prog-header">
       <span class="prog-lbl">${label}</span>
-      <span class="prog-vals"><span class="prog-muted">${startVal}${unit} → </span><span class="prog-now">${nowVal}${unit}</span><span class="prog-muted"> → ${goalVal}${unit}</span></span>
+      <span class="prog-vals">
+        <span class="prog-now">${nowVal}${unit}</span>
+        <span class="prog-muted"> / mål ${goalVal}${unit}</span>
+      </span>
     </div>
-    <div class="prog-track">
-      <div class="prog-fill" style="width:${Math.max(2,pct)}%;background:${color}"></div>
-      <div class="prog-dot" style="left:${Math.max(2,pct)}%;background:${color}"></div>
+    <div class="prog-track" style="background:${color}20;border-radius:6px;height:10px;">
+      <div style="position:absolute;left:0;top:0;height:100%;width:${pct}%;background:linear-gradient(90deg,${color}88,${color});border-radius:6px;"></div>
+      <div style="position:absolute;left:${pct}%;top:-3px;width:16px;height:16px;border-radius:50%;background:${color};border:2.5px solid white;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
+      <div style="position:absolute;left:0;bottom:-16px;font-family:'Space Mono',monospace;font-size:8px;color:var(--muted)">${startVal}${unit}</div>
+      <div style="position:absolute;right:0;bottom:-16px;font-family:'Space Mono',monospace;font-size:8px;color:${color};font-weight:700">${goalVal}${unit}</div>
     </div>
-    <div class="prog-pct" style="color:${pct>0?color:"var(--muted)"};">${pct}% af mål</div>
+    <div style="margin-top:22px;text-align:right;font-family:'Space Mono',monospace;font-size:9px;color:${pctDone>5?color:'var(--muted)'}">
+      ${pctDone}% af vej mod målet
+    </div>
   </div>`;
 }
 
