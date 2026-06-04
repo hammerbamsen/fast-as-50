@@ -8,151 +8,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600&family=Hanken+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #ECE4D7;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    font-family: 'Hanken Grotesk', sans-serif;
-  }
-  .card {
-    background: #FDFAF6;
-    border-radius: 16px;
-    padding: 32px 24px;
-    max-width: 360px;
-    width: 100%;
-    text-align: center;
-    border: 1px solid #DDD3C3;
-  }
-  .label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: #7A6A58;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .date {
-    font-family: 'Newsreader', serif;
-    font-size: 28px;
-    color: #59182A;
-    margin-bottom: 6px;
-  }
-  .question {
-    font-size: 16px;
-    color: #1A1008;
-    margin-bottom: 32px;
-    line-height: 1.5;
-  }
-  .streak {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: #7A6A58;
-    margin-bottom: 28px;
-  }
-  .streak span {
-    color: #59182A;
-    font-weight: 700;
-  }
-  .buttons {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .btn {
-    flex: 1;
-    padding: 16px 12px;
-    border-radius: 10px;
-    border: none;
-    font-family: 'Hanken Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .btn-ja {
-    background: #59182A;
-    color: #ECE4D7;
-  }
+  body { background: #ECE4D7; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; font-family: 'Hanken Grotesk', sans-serif; }
+  .card { background: #FDFAF6; border-radius: 16px; padding: 32px 24px; max-width: 360px; width: 100%; text-align: center; border: 1px solid #DDD3C3; }
+  .label { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .date { font-family: 'Newsreader', serif; font-size: 28px; color: #59182A; margin-bottom: 6px; }
+  .question { font-size: 16px; color: #1A1008; margin-bottom: 28px; line-height: 1.5; }
+  .streak { font-family: 'Space Mono', monospace; font-size: 11px; color: #7A6A58; margin-bottom: 24px; }
+  .streak span { color: #59182A; font-weight: 700; }
+  .buttons { display: flex; gap: 12px; margin-bottom: 20px; }
+  .btn { flex: 1; padding: 18px 12px; border-radius: 10px; border: none; font-family: 'Hanken Grotesk', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
+  .btn-ja { background: #59182A; color: #ECE4D7; }
   .btn-ja:active { background: #3E0F1D; transform: scale(0.97); }
-  .btn-nej {
-    background: #DDD3C3;
-    color: #7A6A58;
-  }
+  .btn-nej { background: #DDD3C3; color: #7A6A58; }
   .btn-nej:active { background: #C8BBA8; transform: scale(0.97); }
-  .result {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-  .result-icon {
-    font-size: 48px;
-    margin-bottom: 4px;
-  }
-  .result-title {
-    font-family: 'Newsreader', serif;
-    font-size: 24px;
-    color: #59182A;
-  }
-  .result-sub {
-    font-size: 14px;
-    color: #7A6A58;
-    line-height: 1.5;
-  }
-  .week-row {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin-top: 16px;
-  }
-  .day-dot {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    font-weight: 700;
-  }
-  .dot-af   { background: #59182A; color: #ECE4D7; }
-  .dot-nej  { background: #DDD3C3; color: #7A6A58; }
-  .dot-today { border: 2px solid #BE863A; }
+  .week-row { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
+  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; }
+  .dot-af { background: #59182A; color: #ECE4D7; }
+  .dot-nej { background: #DDD3C3; color: #7A6A58; }
+  .dot-today { outline: 2px solid #BE863A; outline-offset: 2px; }
   .dot-empty { background: #ECE4D7; color: #C8BBA8; border: 1px dashed #DDD3C3; }
-  .footer {
-    margin-top: 20px;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    color: #7A6A58;
-    letter-spacing: 0.05em;
-  }
-  a.dash-link {
-    color: #BE863A;
-    text-decoration: none;
-    font-weight: 700;
-  }
+  .status { margin-top: 16px; font-size: 13px; color: #7A6A58; min-height: 20px; }
+  .status.ok { color: #1A7A5E; font-weight: 600; }
+  .status.err { color: #C0392B; }
+  .footer { margin-top: 20px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
+  a.dash-link { color: #BE863A; text-decoration: none; font-weight: 700; }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #DDD3C3; border-top-color: #59182A; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
-<div class="card" id="main-card">
+<div class="card">
   <div class="label">Fast as Fifty · AF-dag</div>
   <div class="date" id="today-date">—</div>
   <div class="question">Var det en alkoholfri dag?</div>
-  <div class="streak" id="streak-text">Denne uge: <span id="af-count">0</span>/5 AF-dage</div>
-  <div class="buttons">
+  <div class="streak">Denne uge: <span id="af-count">—</span>/5 AF-dage</div>
+  <div class="buttons" id="buttons">
     <button class="btn btn-ja" onclick="register(true)">Ja</button>
     <button class="btn btn-nej" onclick="register(false)">Nej</button>
   </div>
   <div class="week-row" id="week-row"></div>
-  <div class="footer">Gemmes lokalt · <a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
+  <div class="status" id="status"></div>
+  <div class="footer" style="margin-top:20px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
 </div>
 
 <script>
+const API_KEY    = "6x0l12azelkcji76zvktwlbj0";
+const ATHLETE_ID = "i107048";
+const BASE       = `https://intervals.icu/api/v1/athlete/${ATHLETE_ID}`;
+const AUTH       = "Basic " + btoa("API_KEY:" + API_KEY);
+
 const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const SHORT     = ["Søn","Man","Tir","Ons","Tor","Fre","Lør"];
@@ -164,52 +68,71 @@ function todayKey() {
 
 function weekStart() {
   const d = new Date();
-  const day = d.getDay(); // 0=søn
-  const diff = (day === 0) ? -6 : 1 - day; // mandag
+  const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
   const mon = new Date(d);
   mon.setDate(d.getDate() + diff);
   return mon;
 }
 
-function getStorage() {
-  try { return JSON.parse(localStorage.getItem('af_log') || '{}'); }
-  catch { return {}; }
+function setStatus(msg, type='') {
+  const el = document.getElementById('status');
+  el.className = 'status ' + type;
+  el.innerHTML = msg;
 }
 
-function saveStorage(data) {
-  localStorage.setItem('af_log', JSON.stringify(data));
-}
-
-function countWeekAF() {
-  const log = getStorage();
+async function loadWeekData() {
   const mon = weekStart();
-  let count = 0;
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(mon);
-    d.setDate(mon.getDate() + i);
-    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    if (log[key] === true) count++;
+  const oldest = mon.toISOString().split('T')[0];
+  const newest = todayKey();
+  try {
+    const r = await fetch(`${BASE}/wellness?oldest=${oldest}&newest=${newest}`, {
+      headers: { "Authorization": AUTH }
+    });
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json();
+    // Byg lookup
+    const log = {};
+    data.forEach(d => { log[d.id] = d.Alkohol; });
+
+    // Tæl AF-dage
+    let count = 0;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(mon);
+      d.setDate(mon.getDate() + i);
+      const key = d.toISOString().split('T')[0];
+      if (log[key] === 0) count++;
+    }
+    document.getElementById('af-count').textContent = count;
+
+    // Tjek om i dag allerede registreret
+    const todayVal = log[todayKey()];
+    if (todayVal !== undefined && todayVal !== null) {
+      document.getElementById('buttons').style.display = 'none';
+      setStatus(`Allerede registreret i dag — ${todayVal === 0 ? 'AF-dag ✓' : 'ikke AF-dag'}`, todayVal === 0 ? 'ok' : '');
+    }
+
+    renderWeekRow(log);
+  } catch(e) {
+    document.getElementById('af-count').textContent = '?';
+    setStatus('Kunne ikke hente data fra Intervals.icu', 'err');
   }
-  return count;
 }
 
-function renderWeekRow() {
-  const log = getStorage();
+function renderWeekRow(log) {
   const mon = weekStart();
-  const today = new Date();
   const row = document.getElementById('week-row');
   row.innerHTML = '';
   for (let i = 0; i < 7; i++) {
     const d = new Date(mon);
     d.setDate(mon.getDate() + i);
-    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const key = d.toISOString().split('T')[0];
     const isToday = key === todayKey();
-    const val = log[key];
+    const val = log ? log[key] : undefined;
     let cls = 'day-dot ';
-    if (val === true)       cls += 'dot-af';
-    else if (val === false) cls += 'dot-nej';
-    else                    cls += 'dot-empty';
-    if (isToday)            cls += ' dot-today';
+    if (val === 0)              cls += 'dot-af';
+    else if (val > 0)           cls += 'dot-nej';
+    else                        cls += 'dot-empty';
+    if (isToday)                cls += ' dot-today';
     const dot = document.createElement('div');
     dot.className = cls;
     dot.textContent = SHORT[d.getDay()];
@@ -217,53 +140,27 @@ function renderWeekRow() {
   }
 }
 
-function register(isAF) {
-  const log = getStorage();
-  log[todayKey()] = isAF;
-  saveStorage(log);
+async function register(isAF) {
+  document.getElementById('buttons').style.display = 'none';
+  setStatus('<span class="spinner"></span>Gemmer i Intervals.icu...');
 
-  const count = countWeekAF();
-  const card  = document.getElementById('main-card');
+  const payload = { Alkohol: isAF ? 0 : 1 };
+  try {
+    const r = await fetch(`${BASE}/wellness/${todayKey()}`, {
+      method: 'PUT',
+      headers: {
+        "Authorization": AUTH,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!r.ok) throw new Error(r.status);
 
-  if (isAF) {
-    card.innerHTML = `
-      <div class="result" style="display:flex">
-        <div style="font-size:52px">💪</div>
-        <div class="result-title">AF-dag registreret</div>
-        <div class="result-sub">Godt klaret. ${count} AF-dage denne uge — målet er 5.</div>
-        <div class="week-row" id="week-row-result"></div>
-        <div class="footer" style="margin-top:16px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
-      </div>`;
-  } else {
-    card.innerHTML = `
-      <div class="result" style="display:flex">
-        <div style="font-size:52px">👍</div>
-        <div class="result-title">Registreret</div>
-        <div class="result-sub">${count} AF-dage denne uge. Næste chance i morgen.</div>
-        <div class="week-row" id="week-row-result"></div>
-        <div class="footer" style="margin-top:16px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
-      </div>`;
-  }
-
-  // Render ugestribe i resultat
-  const log2 = getStorage();
-  const mon  = weekStart();
-  const row  = document.getElementById('week-row-result');
-  if (row) {
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(mon);
-      d.setDate(mon.getDate() + i);
-      const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-      const val = log2[key];
-      let cls = 'day-dot ';
-      if (val === true)       cls += 'dot-af';
-      else if (val === false) cls += 'dot-nej';
-      else                    cls += 'dot-empty';
-      const dot = document.createElement('div');
-      dot.className = cls;
-      dot.textContent = SHORT[d.getDay()];
-      row.appendChild(dot);
-    }
+    setStatus(isAF ? '✓ AF-dag gemt i Intervals.icu' : '✓ Registreret', 'ok');
+    await loadWeekData();
+  } catch(e) {
+    setStatus(`Fejl: kunne ikke gemme (${e.message})`, 'err');
+    document.getElementById('buttons').style.display = 'flex';
   }
 }
 
@@ -271,18 +168,8 @@ function register(isAF) {
 const now = new Date();
 document.getElementById('today-date').textContent =
   `${DK_DAYS[now.getDay()]} ${now.getDate()}. ${DK_MONTHS[now.getMonth()]}`;
-document.getElementById('af-count').textContent = countWeekAF();
-renderWeekRow();
-
-// Tjek om allerede registreret i dag
-const log = getStorage();
-if (log[todayKey()] !== undefined) {
-  const count = countWeekAF();
-  document.querySelector('.question').textContent = 'Allerede registreret i dag.';
-  document.querySelector('.buttons').style.display = 'none';
-  document.getElementById('streak-text').innerHTML =
-    `Denne uge: <span>${count}</span>/5 AF-dage`;
-}
+renderWeekRow(null);
+loadWeekData();
 </script>
 </body>
 </html>
