@@ -19,9 +19,7 @@
   .buttons { display: flex; gap: 12px; margin-bottom: 16px; }
   .btn { flex: 1; padding: 18px 12px; border-radius: 10px; border: none; font-family: 'Hanken Grotesk', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
   .btn-ja { background: #59182A; color: #ECE4D7; }
-  .btn-ja:active { background: #3E0F1D; transform: scale(0.97); }
   .btn-nej { background: #DDD3C3; color: #7A6A58; }
-  .btn-nej:active { background: #C8BBA8; transform: scale(0.97); }
   .week-row { display: flex; gap: 6px; justify-content: center; margin: 16px 0; }
   .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; }
   .dot-af    { background: #59182A; color: #ECE4D7; }
@@ -34,6 +32,8 @@
   .status.err { color: #C0392B; }
   .done-title { font-family: 'Newsreader', serif; font-size: 24px; color: #59182A; margin-bottom: 8px; }
   .done-sub   { font-size: 14px; color: #7A6A58; line-height: 1.6; }
+  .setup-input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #DDD3C3; font-family: 'Space Mono', monospace; font-size: 12px; margin-bottom: 12px; background: #ECE4D7; }
+  .btn-setup { width: 100%; padding: 14px; border-radius: 8px; border: none; background: #59182A; color: #ECE4D7; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
   .footer { margin-top: 18px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
   a.dash-link { color: #BE863A; text-decoration: none; font-weight: 700; }
   .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #DDD3C3; border-top-color: #59182A; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
@@ -41,115 +41,89 @@
 </style>
 </head>
 <body>
-<div class="card" id="card">
-  <div id="view"></div>
-</div>
-
+<div class="card"><div id="view"></div></div>
 <script>
-const API_KEY    = "6x0l12azelkcji76zvktwlbj0";
-const ATHLETE_ID = "i107048";
-const BASE       = `https://intervals.icu/api/v1/athlete/${ATHLETE_ID}`;
-const AUTH       = "Basic " + btoa("API_KEY:" + API_KEY);
-const STORAGE_KEY = "af_log_v2";
+const GH_REPO     = "hammerbamsen/fast-as-50";
+const STORAGE_KEY = "af_log_v3";
+const TOKEN_KEY   = "af_gh_token";
 
 const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const SHORT     = ["Søn","Man","Tir","Ons","Tor","Fre","Lør"];
 
-// ── Local storage ─────────────────────────────────────────────
-function getLog() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
-  catch { return {}; }
-}
-function saveLog(log) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(log));
-}
+function getToken()    { return localStorage.getItem(TOKEN_KEY) || ''; }
+function saveToken(t)  { localStorage.setItem(TOKEN_KEY, t); }
+function getLog()      { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch { return {}; } }
+function saveLog(log)  { localStorage.setItem(STORAGE_KEY, JSON.stringify(log)); }
 
-// ── Date helpers ──────────────────────────────────────────────
-function toKey(d) {
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
-function todayKey() { return toKey(new Date()); }
-function yesterdayKey() {
-  const d = new Date(); d.setDate(d.getDate() - 1); return toKey(d);
-}
-function weekStart() {
-  const d = new Date();
-  const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
-  const mon = new Date(d); mon.setDate(d.getDate() + diff); mon.setHours(0,0,0,0);
-  return mon;
-}
-function formatDate(key) {
-  const d = new Date(key + 'T12:00:00');
-  return `${DK_DAYS[d.getDay()]} ${d.getDate()}. ${DK_MONTHS[d.getMonth()]}`;
-}
-function isThisWeek(key) {
-  const mon = weekStart();
-  const d = new Date(key + 'T12:00:00');
-  return d >= mon;
-}
-
-// ── Week strip ────────────────────────────────────────────────
-function weekStrip(activeKey) {
-  const log = getLog();
-  const mon = weekStart();
-  const today = todayKey();
-  let html = '<div class="week-row">';
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(mon); d.setDate(mon.getDate() + i);
-    const key = toKey(d);
-    if (key > today) { html += `<div class="day-dot dot-empty">${SHORT[d.getDay()]}</div>`; continue; }
-    const val = log[key];
-    let cls = 'day-dot ';
-    if (val === true)       cls += 'dot-af';
-    else if (val === false) cls += 'dot-nej';
-    else                    cls += 'dot-empty';
-    if (key === today)      cls += ' dot-today';
-    if (key === activeKey && key !== today) cls += ' dot-active';
-    html += `<div class="${cls}">${SHORT[d.getDay()]}</div>`;
-  }
-  html += '</div>';
-  return html;
-}
+function toKey(d)      { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function todayKey()    { return toKey(new Date()); }
+function yesterdayKey(){ const d=new Date(); d.setDate(d.getDate()-1); return toKey(d); }
+function weekStart()   { const d=new Date(); const diff=d.getDay()===0?-6:1-d.getDay(); const m=new Date(d); m.setDate(d.getDate()+diff); m.setHours(0,0,0,0); return m; }
+function formatDate(k) { const d=new Date(k+'T12:00:00'); return `${DK_DAYS[d.getDay()]} ${d.getDate()}. ${DK_MONTHS[d.getMonth()]}`; }
+function isThisWeek(k) { return new Date(k+'T12:00:00') >= weekStart(); }
 
 function afCount() {
-  const log = getLog();
-  const mon = weekStart();
-  const today = todayKey();
-  let n = 0;
-  for (const [k, v] of Object.entries(log)) {
-    if (v === true && k >= toKey(mon) && k <= today) n++;
+  const log=getLog(), mon=weekStart(), today=todayKey();
+  return Object.entries(log).filter(([k,v])=>v===true&&k>=toKey(mon)&&k<=today).length;
+}
+
+function weekStrip(activeKey) {
+  const log=getLog(), mon=weekStart(), today=todayKey();
+  let h='<div class="week-row">';
+  for(let i=0;i<7;i++){
+    const d=new Date(mon); d.setDate(mon.getDate()+i);
+    const k=toKey(d);
+    if(k>today){h+=`<div class="day-dot dot-empty">${SHORT[d.getDay()]}</div>`;continue;}
+    const v=log[k];
+    let c='day-dot ';
+    if(v===true) c+='dot-af'; else if(v===false) c+='dot-nej'; else c+='dot-empty';
+    if(k===today) c+=' dot-today';
+    if(k===activeKey&&k!==today) c+=' dot-active';
+    h+=`<div class="${c}">${SHORT[d.getDay()]}</div>`;
   }
-  return n;
+  return h+'</div>';
 }
 
-// ── Queue: find dage der mangler ──────────────────────────────
 function buildQueue() {
-  const log = getLog();
-  const queue = [];
-  // Altid: i går (hvis ikke registreret og samme uge)
-  const yk = yesterdayKey();
-  if (isThisWeek(yk) && log[yk] === undefined) queue.push(yk);
-  // I dag (hvis ikke registreret)
-  const tk = todayKey();
-  if (log[tk] === undefined) queue.push(tk);
-  return queue;
+  const log=getLog(), q=[];
+  const yk=yesterdayKey();
+  if(isThisWeek(yk)&&log[yk]===undefined) q.push(yk);
+  if(log[todayKey()]===undefined) q.push(todayKey());
+  return q;
 }
 
-// ── Render spørgsmål ──────────────────────────────────────────
-let queue = [];
-let qIdx  = 0;
+// ── Setup skærm ───────────────────────────────────────────────
+function showSetup() {
+  document.getElementById('view').innerHTML = `
+    <div class="label">Fast as Fifty · Opsætning</div>
+    <div class="date" style="font-size:20px;margin-bottom:16px">Første gang</div>
+    <p style="font-size:13px;color:#7A6A58;margin-bottom:20px;line-height:1.6">
+      Indsæt dit GitHub token — gemmes kun på din telefon.
+    </p>
+    <input class="setup-input" id="token-input" type="password" placeholder="ghp_xxxxxxxxxxxx">
+    <button class="btn-setup" onclick="saveSetup()">Gem og fortsæt</button>
+  `;
+}
+
+function saveSetup() {
+  const t = document.getElementById('token-input').value.trim();
+  if(!t.startsWith('ghp_')) { alert('Token skal starte med ghp_'); return; }
+  saveToken(t);
+  init();
+}
+
+// ── Spørgsmål + svar ──────────────────────────────────────────
+let queue=[], qIdx=0;
 
 function showQuestion(key) {
-  const isToday = key === todayKey();
-  const log = getLog();
-  const count = afCount();
-  document.getElementById('view').innerHTML = `
+  const isToday=key===todayKey();
+  document.getElementById('view').innerHTML=`
     <div class="label">Fast as Fifty · AF-dag</div>
     <div class="date">${formatDate(key)}</div>
-    ${!isToday ? '<div class="note">MANGLER REGISTRERING</div>' : ''}
+    ${!isToday?'<div class="note">MANGLER REGISTRERING</div>':''}
     <div class="question">Var det en alkoholfri dag?</div>
-    <div class="streak">Denne uge: <span>${count}</span>/5 AF-dage</div>
+    <div class="streak">Denne uge: <span>${afCount()}</span>/5 AF-dage</div>
     <div class="buttons">
       <button class="btn btn-ja" onclick="answer(true)">Ja</button>
       <button class="btn btn-nej" onclick="answer(false)">Nej</button>
@@ -161,9 +135,9 @@ function showQuestion(key) {
 }
 
 function showDone() {
-  const count = afCount();
-  const msg = count >= 5 ? 'Mål nået! 💪' : count >= 3 ? 'God uge — fortsæt.' : 'Keep moving forward.';
-  document.getElementById('view').innerHTML = `
+  const count=afCount();
+  const msg=count>=5?'Mål nået! 💪':count>=3?'God uge — fortsæt.':'Keep moving forward.';
+  document.getElementById('view').innerHTML=`
     <div class="label">Fast as Fifty · AF-dag</div>
     <div class="done-title">Alt registreret</div>
     <div class="done-sub">${count} AF-dage denne uge — målet er 5.<br>${msg}</div>
@@ -173,52 +147,38 @@ function showDone() {
 }
 
 async function answer(isAF) {
-  const key = queue[qIdx];
-  // Gem lokalt med det samme
-  const log = getLog();
-  log[key] = isAF;
-  saveLog(log);
+  const key=queue[qIdx];
+  const log=getLog(); log[key]=isAF; saveLog(log);
+  document.querySelector('.buttons').style.display='none';
+  document.getElementById('status').innerHTML='<span class="spinner"></span>Sender...';
 
-  // Vis spinner
-  document.querySelector('.buttons').style.display = 'none';
-  document.getElementById('status').className = 'status';
-  document.getElementById('status').innerHTML = '<span class="spinner"></span>Sender til Intervals.icu...';
-
-  // Send til Intervals.icu (stille fejl — lokalt er gemt uanset)
   try {
-    const r = await fetch(`${BASE}/wellness/${key}`, {
-      method: 'PUT',
-      headers: { "Authorization": AUTH, "Content-Type": "application/json" },
-      body: JSON.stringify({ Alkohol: isAF ? 0 : 1 })
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${getToken()}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({ event_type: 'af-registrering', client_payload: { date: key, alkohol: isAF?0:1 } })
     });
-    if (!r.ok) throw new Error(r.status);
-    document.getElementById('status').className = 'status ok';
-    document.getElementById('status').textContent = isAF ? '✓ AF-dag gemt' : '✓ Gemt';
+    if(r.status===204) {
+      document.getElementById('status').className='status ok';
+      document.getElementById('status').textContent=isAF?'✓ AF-dag sendt':'✓ Sendt';
+    } else { throw new Error(r.status); }
   } catch(e) {
-    // Lokalt er stadig gemt — bare vis en rolig fejl
-    document.getElementById('status').className = 'status';
-    document.getElementById('status').textContent = 'Gemt lokalt (Intervals.icu offline)';
+    document.getElementById('status').textContent='Gemt lokalt — sendes næste gang';
   }
-
-  setTimeout(() => {
-    qIdx++;
-    if (qIdx < queue.length) {
-      showQuestion(queue[qIdx]);
-    } else {
-      showDone();
-    }
-  }, 700);
+  setTimeout(()=>{ qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone(); }, 800);
 }
 
-// ── Init ──────────────────────────────────────────────────────
-queue = buildQueue();
-qIdx  = 0;
-
-if (queue.length === 0) {
-  showDone();
-} else {
-  showQuestion(queue[0]);
+function init() {
+  if(!getToken()) { showSetup(); return; }
+  queue=buildQueue(); qIdx=0;
+  queue.length===0 ? showDone() : showQuestion(queue[0]);
 }
+
+init();
 </script>
 </body>
 </html>
