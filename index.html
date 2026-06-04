@@ -360,60 +360,26 @@ function weekStrip() {
 }
 
 function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
-  const diff = Math.round(Math.abs(nowVal - goalVal) * 10) / 10;
   const isInverse = startVal > goalVal;
-  const range = Math.abs(goalVal - startVal);
-  const moved = Math.abs(nowVal - startVal);
-  const pct = Math.min(100, Math.round((moved / range) * 100));
-  const barW = Math.max(3, pct);
-  const diffLabel = isInverse
-    ? `${diff}${unit} tilbage til mål`
-    : `${diff}${unit} op til mål`;
+  const diff = Math.round(Math.abs(nowVal - goalVal) * 10) / 10;
+  const arrow = isInverse ? "↓" : "↑";
+  const diffText = `${arrow} ${diff}${unit} til mål`;
 
-  return `<div style="margin-bottom:24px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">${label}</span>
-      <span style="font-family:'Space Mono',monospace;font-size:10px;color:${color}">${diffLabel}</span>
+  return `<div style="display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--cream-d)">
+    <div style="width:120px;flex-shrink:0">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.06em;margin-bottom:4px">${label}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">start: ${startVal}${unit}</div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <span style="font-family:'Newsreader',serif;font-size:36px;color:var(--wine);line-height:1">${nowVal}</span>
-      <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);align-self:flex-end;margin-bottom:4px">${unit}</span>
-      <div style="flex:1"></div>
-      <div style="text-align:right">
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">START</div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">${startVal}${unit}</div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:${color}">MÅL</div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:${color};font-weight:700">${goalVal}${unit}</div>
-      </div>
+    <div style="flex:1;text-align:center">
+      <div style="font-family:'Newsreader',serif;font-size:38px;color:var(--wine);line-height:1">${nowVal}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">${unit}</div>
     </div>
-    <div style="position:relative;height:6px;background:var(--cream-d);border-radius:3px">
-      <div style="height:100%;width:${barW}%;background:${color};border-radius:3px;opacity:.5"></div>
-      <div style="position:absolute;left:${barW}%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:${color};border:2.5px solid white;box-shadow:0 1px 3px rgba(0,0,0,.15)"></div>
+    <div style="width:120px;flex-shrink:0;text-align:right">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:${color};font-weight:700;margin-bottom:4px">${diffText}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">mål: ${goalVal}${unit}</div>
     </div>
   </div>`;
 }
-function periodTimeline() {
-  const tc={build:"var(--wine)",recovery:"var(--swim)",race:"var(--gold)"};
-  const wk=D.week;
-  return `<div class="period-scroll"><div class="period-row">
-    ${STATIC.periodization.map(p=>{
-      const col=tc[p.t];
-      const active=p.w===wk;
-      return `<div class="period-cell" style="background:${active?col:col+'22'};border-color:${col}">
-        <span class="pc-lbl" style="color:${active?"white":col}">${p.l}</span>
-        <span class="pc-num" style="color:${active?"rgba(255,255,255,.7)":col+'aa'}">${p.w}</span>
-      </div>`;
-    }).join("")}
-  </div>
-  <div class="period-legend">
-    ${[["build","var(--wine)","BUILD"],["recovery","var(--swim)","RECOVERY"],["race","var(--gold)","RACE"]].map(([k,c,l])=>
-      `<div style="display:flex;align-items:center;gap:5px"><div class="legend-dot" style="background:${c}"></div><span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${l}</span></div>`
-    ).join("")}
-  </div></div>`;
-}
-
 // ── Pages ─────────────────────────────────────────────────────
 function renderToday() {
   const s=D.today, parts=D.coachSpeech.split("{HL}");
@@ -448,9 +414,9 @@ function renderToday() {
     ${afRing(D.afDays.weekDone, D.afDays.target)}
   </div>
 
-  <div class="card">
-    <div class="label">Træner + Diætist · Uge ${D.week}</div>
-    <div class="coach-text">${parts[0]}<span class="coach-hl">${D.coachHighlight}</span>${parts[1]}</div>
+  <div class="card card-wine" style="padding:20px 18px">
+    <div class="label label-gold" style="margin-bottom:10px">TRÆNER + DIÆTIST · UGE ${D.week}</div>
+    <div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#FDFAF6;line-height:1.65;position:relative">${parts[0]}<span style="color:var(--gold);font-weight:700">${D.coachHighlight}</span>${parts[1]}</div>
   </div>
 
   <div class="kpi-grid">
