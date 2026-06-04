@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+  // Redirect til lowercase URL
+  var path = window.location.pathname.toLowerCase();
+  var host = window.location.host.toLowerCase();
+  if (window.location.pathname !== path) {
+    window.location.replace('https://' + host + path);
+  } else {
+    window.location.replace('https://hammerbamsen.github.io/fast-as-50/');
+  }
+</script>
+</head>
+<body></body>
+</html>
