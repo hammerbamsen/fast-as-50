@@ -12,7 +12,8 @@
   .card { background: #FDFAF6; border-radius: 16px; padding: 32px 24px; max-width: 360px; width: 100%; text-align: center; border: 1px solid #DDD3C3; }
   .label { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
   .date { font-family: 'Newsreader', serif; font-size: 28px; color: #59182A; margin-bottom: 6px; }
-  .question { font-size: 16px; color: #1A1008; margin-bottom: 28px; line-height: 1.5; }
+  .question { font-size: 15px; color: #1A1008; margin-bottom: 8px; line-height: 1.5; }
+  .subq { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; margin-bottom: 24px; }
   .streak { font-family: 'Space Mono', monospace; font-size: 11px; color: #7A6A58; margin-bottom: 24px; }
   .streak span { color: #59182A; font-weight: 700; }
   .buttons { display: flex; gap: 12px; margin-bottom: 20px; }
@@ -21,34 +22,43 @@
   .btn-ja:active { background: #3E0F1D; transform: scale(0.97); }
   .btn-nej { background: #DDD3C3; color: #7A6A58; }
   .btn-nej:active { background: #C8BBA8; transform: scale(0.97); }
+  .btn-skip { background: none; border: none; font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; cursor: pointer; padding: 8px; text-decoration: underline; }
   .week-row { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
-  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; }
+  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; transition: all 0.2s; }
   .dot-af { background: #59182A; color: #ECE4D7; }
   .dot-nej { background: #DDD3C3; color: #7A6A58; }
   .dot-today { outline: 2px solid #BE863A; outline-offset: 2px; }
+  .dot-active { outline: 2px solid #59182A; outline-offset: 2px; }
   .dot-empty { background: #ECE4D7; color: #C8BBA8; border: 1px dashed #DDD3C3; }
-  .status { margin-top: 16px; font-size: 13px; color: #7A6A58; min-height: 20px; }
+  .progress { font-family: 'Space Mono', monospace; font-size: 9px; color: #BE863A; margin-bottom: 16px; letter-spacing: 0.05em; }
+  .status { margin-top: 14px; font-size: 13px; color: #7A6A58; min-height: 18px; }
   .status.ok { color: #1A7A5E; font-weight: 600; }
   .status.err { color: #C0392B; }
+  .done-title { font-family: 'Newsreader', serif; font-size: 24px; color: #59182A; margin-bottom: 8px; }
+  .done-sub { font-size: 14px; color: #7A6A58; line-height: 1.6; margin-bottom: 16px; }
   .footer { margin-top: 20px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
   a.dash-link { color: #BE863A; text-decoration: none; font-weight: 700; }
-  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #DDD3C3; border-top-color: #59182A; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #DDD3C3; border-top-color: #59182A; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
-<div class="card">
+<div class="card" id="card">
   <div class="label">Fast as Fifty · AF-dag</div>
-  <div class="date" id="today-date">—</div>
-  <div class="question">Var det en alkoholfri dag?</div>
-  <div class="streak">Denne uge: <span id="af-count">—</span>/5 AF-dage</div>
-  <div class="buttons" id="buttons">
-    <button class="btn btn-ja" onclick="register(true)">Ja</button>
-    <button class="btn btn-nej" onclick="register(false)">Nej</button>
+  <div id="main-view">
+    <div class="date" id="current-date">—</div>
+    <div class="question" id="question">Var det en alkoholfri dag?</div>
+    <div class="subq" id="subq"></div>
+    <div class="progress" id="progress"></div>
+    <div class="buttons" id="buttons">
+      <button class="btn btn-ja" onclick="register(true)">Ja</button>
+      <button class="btn btn-nej" onclick="register(false)">Nej</button>
+    </div>
+    <button class="btn-skip" id="skip-btn" onclick="skipDay()" style="display:none">Spring over</button>
+    <div class="week-row" id="week-row"></div>
+    <div class="status" id="status"></div>
+    <div class="footer"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
   </div>
-  <div class="week-row" id="week-row"></div>
-  <div class="status" id="status"></div>
-  <div class="footer" style="margin-top:20px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
 </div>
 
 <script>
@@ -61,17 +71,27 @@ const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lø
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const SHORT     = ["Søn","Man","Tir","Ons","Tor","Fre","Lør"];
 
-function todayKey() {
-  const d = new Date();
+let weekLog    = {};   // { "2026-06-04": 0/1/null }
+let queue      = [];   // dage der mangler registrering
+let queueIndex = 0;
+
+function toKey(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
+
+function todayKey() { return toKey(new Date()); }
 
 function weekStart() {
   const d = new Date();
   const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
   const mon = new Date(d);
   mon.setDate(d.getDate() + diff);
+  mon.setHours(0,0,0,0);
   return mon;
+}
+
+function formatDate(d) {
+  return `${DK_DAYS[d.getDay()]} ${d.getDate()}. ${DK_MONTHS[d.getMonth()]}`;
 }
 
 function setStatus(msg, type='') {
@@ -80,59 +100,131 @@ function setStatus(msg, type='') {
   el.innerHTML = msg;
 }
 
+function renderWeekRow() {
+  const mon = weekStart();
+  const row = document.getElementById('week-row');
+  row.innerHTML = '';
+  const currentKey = queue[queueIndex] ? toKey(queue[queueIndex]) : null;
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(mon);
+    d.setDate(mon.getDate() + i);
+    const key = toKey(d);
+    const isToday = key === todayKey();
+    const isCurrent = key === currentKey;
+    const val = weekLog[key];
+    let cls = 'day-dot ';
+    if (val === 0)        cls += 'dot-af';
+    else if (val > 0)     cls += 'dot-nej';
+    else                  cls += 'dot-empty';
+    if (isToday)          cls += ' dot-today';
+    if (isCurrent && !isToday) cls += ' dot-active';
+    const dot = document.createElement('div');
+    dot.className = cls;
+    dot.textContent = SHORT[d.getDay()];
+    row.appendChild(dot);
+  }
+}
+
+function countAF() {
+  return Object.values(weekLog).filter(v => v === 0).length;
+}
+
 async function loadWeekData() {
   const mon = weekStart();
-  const oldest = mon.toISOString().split('T')[0];
+  const oldest = toKey(mon);
   const newest = todayKey();
+  setStatus('<span class="spinner"></span>Henter data...');
   try {
     const r = await fetch(`${BASE}/wellness?oldest=${oldest}&newest=${newest}`, {
       headers: { "Authorization": AUTH }
     });
     if (!r.ok) throw new Error(r.status);
     const data = await r.json();
-    // Byg lookup
-    const log = {};
-    data.forEach(d => { log[d.id] = d.Alkohol; });
 
-    // Tæl AF-dage
-    let count = 0;
+    // Byg weekLog for man→i dag
+    weekLog = {};
     for (let i = 0; i < 7; i++) {
       const d = new Date(mon);
       d.setDate(mon.getDate() + i);
-      const key = d.toISOString().split('T')[0];
-      if (log[key] === 0) count++;
+      if (d > new Date()) break; // ikke fremtidige dage
+      weekLog[toKey(d)] = null;
     }
-    document.getElementById('af-count').textContent = count;
+    data.forEach(d => {
+      if (weekLog.hasOwnProperty(d.id)) {
+        weekLog[d.id] = d.Alkohol !== undefined && d.Alkohol !== null ? d.Alkohol : null;
+      }
+    });
 
-    // Tjek om i dag allerede registreret
-    const todayVal = log[todayKey()];
-    if (todayVal !== undefined && todayVal !== null) {
-      document.getElementById('buttons').style.display = 'none';
-      setStatus(`Allerede registreret i dag — ${todayVal === 0 ? 'AF-dag ✓' : 'ikke AF-dag'}`, todayVal === 0 ? 'ok' : '');
-    }
+    // Byg kø: dage uden registrering (null), ældste først
+    queue = Object.keys(weekLog)
+      .filter(k => weekLog[k] === null)
+      .sort();
+    queueIndex = 0;
 
-    renderWeekRow(log);
+    setStatus('');
+    document.getElementById('af-count') && (document.getElementById('af-count').textContent = countAF());
+    showNext();
   } catch(e) {
-    document.getElementById('af-count').textContent = '?';
     setStatus('Kunne ikke hente data fra Intervals.icu', 'err');
+    // Fallback: vis bare i dag
+    queue = [todayKey()];
+    queueIndex = 0;
+    showNext();
   }
 }
 
-function renderWeekRow(log) {
+function showNext() {
+  renderWeekRow();
+  document.getElementById('af-count') && (document.getElementById('af-count').textContent = countAF());
+
+  if (queueIndex >= queue.length) {
+    showDone();
+    return;
+  }
+
+  const key = queue[queueIndex];
+  const d   = new Date(key + 'T12:00:00');
+  const isToday = key === todayKey();
+
+  document.getElementById('current-date').textContent = formatDate(d);
+  document.getElementById('question').textContent = isToday
+    ? 'Var det en alkoholfri dag?'
+    : 'Var det en alkoholfri dag?';
+  document.getElementById('subq').textContent = isToday ? '' : `Mangler registrering`;
+
+  const remaining = queue.length - queueIndex;
+  document.getElementById('progress').textContent =
+    remaining > 1 ? `${remaining} dage mangler registrering` :
+    remaining === 1 ? `Sidste dag der mangler` : '';
+
+  document.getElementById('buttons').style.display = 'flex';
+  document.getElementById('skip-btn').style.display = remaining > 1 ? 'block' : 'none';
+  setStatus('');
+}
+
+function showDone() {
+  const af = countAF();
+  const total = Object.keys(weekLog).length;
+  document.getElementById('main-view').innerHTML = `
+    <div class="done-title">Alt registreret</div>
+    <div class="done-sub">${af} AF-dage denne uge — målet er 5.<br>
+    ${af >= 5 ? 'Mål nået! 💪' : af >= 3 ? 'God uge — fortsæt.' : 'Keep moving forward.'}</div>
+    <div class="week-row" id="week-row-done"></div>
+    <div class="footer" style="margin-top:20px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
+  `;
+  // Render ugestribe
   const mon = weekStart();
-  const row = document.getElementById('week-row');
-  row.innerHTML = '';
+  const row = document.getElementById('week-row-done');
   for (let i = 0; i < 7; i++) {
-    const d = new Date(mon);
-    d.setDate(mon.getDate() + i);
-    const key = d.toISOString().split('T')[0];
+    const d = new Date(mon); d.setDate(mon.getDate() + i);
+    const key = toKey(d);
     const isToday = key === todayKey();
-    const val = log ? log[key] : undefined;
+    const val = weekLog[key];
     let cls = 'day-dot ';
-    if (val === 0)              cls += 'dot-af';
-    else if (val > 0)           cls += 'dot-nej';
-    else                        cls += 'dot-empty';
-    if (isToday)                cls += ' dot-today';
+    if (val === 0)    cls += 'dot-af';
+    else if (val > 0) cls += 'dot-nej';
+    else              cls += 'dot-empty';
+    if (isToday)      cls += ' dot-today';
     const dot = document.createElement('div');
     dot.className = cls;
     dot.textContent = SHORT[d.getDay()];
@@ -141,34 +233,34 @@ function renderWeekRow(log) {
 }
 
 async function register(isAF) {
+  const key = queue[queueIndex];
   document.getElementById('buttons').style.display = 'none';
-  setStatus('<span class="spinner"></span>Gemmer i Intervals.icu...');
+  document.getElementById('skip-btn').style.display = 'none';
+  setStatus('<span class="spinner"></span>Gemmer...');
 
-  const payload = { Alkohol: isAF ? 0 : 1 };
   try {
-    const r = await fetch(`${BASE}/wellness/${todayKey()}`, {
+    const r = await fetch(`${BASE}/wellness/${key}`, {
       method: 'PUT',
-      headers: {
-        "Authorization": AUTH,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
+      headers: { "Authorization": AUTH, "Content-Type": "application/json" },
+      body: JSON.stringify({ Alkohol: isAF ? 0 : 1 })
     });
     if (!r.ok) throw new Error(r.status);
-
-    setStatus(isAF ? '✓ AF-dag gemt i Intervals.icu' : '✓ Registreret', 'ok');
-    await loadWeekData();
+    weekLog[key] = isAF ? 0 : 1;
+    setStatus(isAF ? '✓ AF-dag gemt' : '✓ Gemt', 'ok');
+    setTimeout(() => { queueIndex++; showNext(); }, 600);
   } catch(e) {
-    setStatus(`Fejl: kunne ikke gemme (${e.message})`, 'err');
+    setStatus(`Fejl — kunne ikke gemme (${e.message})`, 'err');
     document.getElementById('buttons').style.display = 'flex';
+    document.getElementById('skip-btn').style.display = queue.length - queueIndex > 1 ? 'block' : 'none';
   }
 }
 
+function skipDay() {
+  queueIndex++;
+  showNext();
+}
+
 // Init
-const now = new Date();
-document.getElementById('today-date').textContent =
-  `${DK_DAYS[now.getDay()]} ${now.getDate()}. ${DK_MONTHS[now.getMonth()]}`;
-renderWeekRow(null);
 loadWeekData();
 </script>
 </body>
