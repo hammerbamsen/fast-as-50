@@ -178,6 +178,12 @@ async function answer(isAF) {
 }
 
 function init() {
+  // Reset hvis ?reset i URL
+  if(window.location.search.includes('reset')) {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(TOKEN_KEY);
+    window.history.replaceState({}, '', window.location.pathname);
+  }
   if(!getToken()) { showSetup(); return; }
   queue=buildQueue(); qIdx=0;
   queue.length===0 ? showDone() : showQuestion(queue[0]);
