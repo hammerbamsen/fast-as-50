@@ -28,7 +28,43 @@
 <body>
 <div id="root"></div>
 <script type="text/babel">
-const { useState } = React;
+const { useState, useEffect } = React;
+
+async function fetchData() {
+  try {
+    const r = await fetch("data.json?t=" + Date.now());
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e) { return null; }
+}
+
+function mergeData(remote) {
+  if (!remote) return;
+  const m = remote.meta || {};
+  if (m.week)                 DATA.week                 = m.week;
+  if (m.totalWeeks)           DATA.totalWeeks           = m.totalWeeks;
+  if (m.blockType)            DATA.blockType            = m.blockType;
+  if (m.daysToMedoc != null)  DATA.daysToMedoc          = m.daysToMedoc;
+  if (m.daysToChristiansborg != null) DATA.daysToChristiansborg = m.daysToChristiansborg;
+  if (m.dayName)              DATA.today.dayName        = m.dayName;
+  if (m.date)                 DATA.today.date           = m.date;
+  if (remote.af != null)      DATA.afDays.weekDone      = remote.af.weekDone || 0;
+  if (remote.kpis) {
+    const km = remote.kpis;
+    DATA.kpis = [
+      { label:"VÆGT",           value: km.weight?.value  || "—", unit:"kg",  sub:"Mål <72 kg",         color:"#27AE60" },
+      { label:"FEDT%",          value: km.fat?.value     || "—", unit:"%",   sub:"Mål <20%",           color:"#F39C12" },
+      { label:"CTL FITNESS",    value: km.ctl?.value     || "—", unit:"",    sub:"Mål 60 (uge 11)",    color:"#C0392B" },
+      { label:"HRV SNIT 7D",    value: km.hrv?.value     || "—", unit:" ms", sub:"Stigende trend",     color:"#7A6A58" },
+      { label:"TSS COMPLIANCE", value: km.tss?.value     || "—", unit:"",    sub:"Mål >85%",           color:"#7A6A58" },
+      { label:"LØB KM/UGE",     value: km.runKm?.value   || "—", unit:" km", sub:"Mål 40+ km uge 10",  color:"#C0392B" },
+    ];
+  }
+  if (remote.ctlCurve) DATA.ctlCurve = remote.ctlCurve;
+  if (remote.coachSpeech)    DATA.coachSpeech    = remote.coachSpeech;
+  if (remote.coachHighlight) DATA.coachHighlight = remote.coachHighlight;
+  if (remote.weekFocus)      DATA.weekFocus      = remote.weekFocus;
+}
 
 const C = {
   wine:"#59182A", wineD:"#3E0F1D", wineL:"#7A2038",
@@ -38,25 +74,26 @@ const C = {
   run:"#C0392B", bike:"#2874A6", swim:"#1A7A5E", strength:"#7D3C98", free:"#7A6A58",
 };
 
-const DATA = {
+// DATA hentes fra data.json ved opstart
+let DATA = {
   athlete:"Kennet Hammerby", week:1, totalWeeks:14, blockType:"BUILD",
   daysToMedoc:93, daysToChristiansborg:86,
   weight:{ start:74.5, now:74.5, goal:72, unit:"kg" },
   bodyFat:{ start:23, now:23, goal:20, unit:"%" },
   ctl:{ start:34, now:34, goal:60, unit:"" },
-  afDays:{ done:0, target:5, weekDone:0 },
+  afDays:{ done:0, target:5, weekDone:4 },
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
   coachSpeech:"Du starter fra CTL 34 — lavere end din Ironman-baggrund tilsiger, men ærligt. {HL} Uge 1: etabler rytmen. 5 AF-dage, protein ved hvert måltid.",
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   kpis:[
     { label:"VÆGT",           value:"74,5", unit:"kg",  sub:"Mål <72 kg",         color:"#27AE60" },
     { label:"FEDT%",          value:"23,0", unit:"%",   sub:"Mål <20%",           color:"#F39C12" },
-    { label:"CTL FITNESS",    value:"34",   unit:"",    sub:"Mål 60 (uge 11)",    color:"#C0392B" },
-    { label:"HRV SNIT 7D",    value:"43,5", unit:" ms", sub:"Stigende trend",     color:"#7A6A58" },
+    { label:"CTL FITNESS",    value:"34,2", unit:"",    sub:"Mål 60 (uge 11)",    color:"#C0392B" },
+    { label:"HRV SNIT 7D",    value:"—",    unit:" ms", sub:"Stigende trend",     color:"#7A6A58" },
     { label:"TSS COMPLIANCE", value:"—",    unit:"",    sub:"Mål >85%",           color:"#7A6A58" },
-    { label:"LØB KM/UGE",     value:"7",    unit:" km", sub:"Mål 40+ km uge 10",  color:"#C0392B" },
+    { label:"LØB KM/UGE",     value:"13,8", unit:" km", sub:"Mål 40+ km uge 10",  color:"#C0392B" },
   ],
-  today:{ dayName:"Torsdag", date:"5. juni",
+  today:{ dayName:"Torsdag", date:"5. jun",
     session:{ discipline:"strength", title:"Styrke fuld + walk", duration:"60 min", zone:"–", desc:"30 min fuldt styrkeprogram + 30 min walk. Hjemme.", completed:false }
   },
   week_sessions:[
@@ -68,43 +105,7 @@ const DATA = {
     { day:"Lør", disc:"run",      label:"Lang løb 90 min Z2",    done:false },
     { day:"Søn", disc:"swim",     label:"Svøm 2000m + cykel",    done:false },
   ],
-  zones_run:[
-    { label:"Z2", name:"Aerob base",  range:"4:56–5:34", color:"#2874A6" },
-    { label:"Z3", name:"Tempo",       range:"4:26–4:55", color:"#27AE60" },
-    { label:"Z4", name:"Threshold",   range:"4:13–4:25", color:"#F39C12" },
-    { label:"Z5", name:"VO2max",      range:"3:53–4:12", color:"#E67E22" },
-    { label:"Z6", name:"Anaerob",     range:"< 3:52",    color:"#C0392B" },
-  ],
-  zones_bike:[
-    { label:"Z2", name:"Aerob base",  range:"150–205 W", color:"#2874A6" },
-    { label:"Z3", name:"Tempo",       range:"205–245 W", color:"#27AE60" },
-    { label:"Z4", name:"Threshold",   range:"245–285 W", color:"#F39C12" },
-    { label:"Z5", name:"VO2max",      range:"285–325 W", color:"#E67E22" },
-  ],
-  periodization:[
-    { week:1,  type:"build",    label:"B1" }, { week:2,  type:"build",    label:"B2" },
-    { week:3,  type:"build",    label:"B3" }, { week:4,  type:"recovery", label:"R"  },
-    { week:5,  type:"build",    label:"B4" }, { week:6,  type:"build",    label:"B5" },
-    { week:7,  type:"build",    label:"B6" }, { week:8,  type:"recovery", label:"R"  },
-    { week:9,  type:"build",    label:"B7" }, { week:10, type:"build",    label:"B8" },
-    { week:11, type:"build",    label:"B9" }, { week:12, type:"recovery", label:"R"  },
-    { week:13, type:"race",     label:"CB" }, { week:14, type:"race",     label:"MD" },
-  ],
   ctlCurve:[34,36,38,41,44,43,41,45,49,53,57,55,58,60],
-  strengthExercises:["Dumbbell Thruster","Renegade Row","Push-Up","KB Swing","One-Arm KB Row","Romanian Deadlift","Bulgarian Split Squat"],
-  rules:[
-    { n:"01", title:"Protein prioritet",       body:"≥ 150 g protein/dag. Prioritér ved hvert måltid." },
-    { n:"02", title:"Intentionel alkohol",      body:"5 AF-dage/uge minimum. Undtagelser er valg, ikke vaner." },
-    { n:"03", title:"Grønt fundament",          body:"Grøntsager ved hvert hovedmåltid. Farve = næring." },
-    { n:"04", title:"Hverdagsdisciplin",        body:"Strukturerede hverdage. Weekend som belønning, ikke flugt." },
-    { n:"05", title:"Søvn som træning",         body:"≥ 7 timers søvn. Det er recovery, ikke luksus." },
-    { n:"06", title:"Styrke 2×/uge",           body:"Functional Strength 2 protokol. Konsistens > intensitet." },
-    { n:"07", title:"Daglig bevægelse",         body:"Min. 20 min aktiv bevægelse hver dag." },
-    { n:"08", title:"System over vilje",        body:"Byg systemer der fungerer når motivationen svigter." },
-    { n:"09", title:"Mental skarphed",          body:"Læs, reflektér, skriv. Hjernen er også en muskel." },
-    { n:"10", title:"Kapacitet over performance", body:"Mål: kapacitet ved 50+. Ikke podium — holdbarhed." },
-  ],
-};
 
 const discColor = { run:C.run, bike:C.bike, swim:C.swim, strength:C.strength, free:C.free };
 const discLabel = { run:"LØB", bike:"CYKEL", swim:"SVØM", strength:"STYRKE", free:"FRI" };
@@ -543,6 +544,15 @@ const NAV = [
 function App() {
   const [active, setActive] = useState("today");
   const [session, setSession] = useState(DATA.today.session);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    fetchData().then(remote => {
+      mergeData(remote);
+      setLoaded(true);
+      setSession({...DATA.today.session});
+    });
+  }, []);
 
   const pages = {
     today:    <PageToday session={session} setSession={setSession}/>,
