@@ -26,10 +26,4 @@ jobs:
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: python scripts/update_kpi.py
-      - name: Commit og push
-        run: |
-          git config user.name "Fast as Fifty Bot"
-          git config user.email "bot@hammerbamsen.github.io"
-          git add index.html
-          git diff --staged --quiet || git commit -m "Auto $(date +%Y-%m-%d)"
-          git push
+      
