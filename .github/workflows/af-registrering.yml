@@ -1,0 +1,21 @@
+name: AF-dag registrering
+
+on:
+  repository_dispatch:
+    types: [af-registrering]
+
+permissions:
+  contents: read
+
+jobs:
+  send-to-intervals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send til Intervals.icu
+        run: |
+          curl -s -X PUT \
+            "https://intervals.icu/api/v1/athlete/${{ secrets.INTERVALS_ATHLETE_ID }}/wellness/${{ github.event.client_payload.date }}" \
+            -u "API_KEY:${{ secrets.INTERVALS_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"Alkohol\": ${{ github.event.client_payload.alkohol }}}"
+          echo "Gemt: ${{ github.event.client_payload.date }} alkohol=${{ github.event.client_payload.alkohol }}"
