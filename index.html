@@ -360,58 +360,40 @@ function weekStrip() {
 }
 
 function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
-  const isInverse = startVal > goalVal; // vægt + fedt: lavere er bedre
+  const diff = Math.round(Math.abs(nowVal - goalVal) * 10) / 10;
+  const isInverse = startVal > goalVal;
   const range = Math.abs(goalVal - startVal);
   const moved = Math.abs(nowVal - startVal);
   const pct = Math.min(100, Math.round((moved / range) * 100));
   const barW = Math.max(3, pct);
+  const diffLabel = isInverse
+    ? `${diff}${unit} tilbage til mål`
+    : `${diff}${unit} op til mål`;
 
-  return `<div style="margin-bottom:20px">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
-      <span style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">${label}</span>
-      <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">mål: <span style="color:${color};font-weight:700">${goalVal}${unit}</span></span>
+  return `<div style="margin-bottom:24px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">${label}</span>
+      <span style="font-family:'Space Mono',monospace;font-size:10px;color:${color}">${diffLabel}</span>
     </div>
-    <div style="display:flex;align-items:center;gap:12px">
-      <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);width:44px;text-align:right;flex-shrink:0">${startVal}${unit}</span>
-      <div style="flex:1;position:relative;height:12px;background:var(--cream-d);border-radius:6px;overflow:visible">
-        <div style="height:100%;width:${barW}%;background:${color};border-radius:6px;opacity:.35"></div>
-        <div style="position:absolute;left:${barW}%;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <span style="font-family:'Newsreader',serif;font-size:36px;color:var(--wine);line-height:1">${nowVal}</span>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);align-self:flex-end;margin-bottom:4px">${unit}</span>
+      <div style="flex:1"></div>
+      <div style="text-align:right">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">START</div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">${startVal}${unit}</div>
       </div>
-      <span style="font-family:'Space Mono',monospace;font-size:10px;color:${color};font-weight:700;width:44px;flex-shrink:0">${goalVal}${unit}</span>
+      <div style="text-align:right">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:${color}">MÅL</div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:${color};font-weight:700">${goalVal}${unit}</div>
+      </div>
     </div>
-    <div style="display:flex;justify-content:center;margin-top:8px">
-      <span style="font-family:'Newsreader',serif;font-size:22px;color:var(--wine);font-weight:600">${nowVal}${unit}</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);align-self:flex-end;margin-left:8px;margin-bottom:3px">${pct}% af mål</span>
+    <div style="position:relative;height:6px;background:var(--cream-d);border-radius:3px">
+      <div style="height:100%;width:${barW}%;background:${color};border-radius:3px;opacity:.5"></div>
+      <div style="position:absolute;left:${barW}%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:${color};border:2.5px solid white;box-shadow:0 1px 3px rgba(0,0,0,.15)"></div>
     </div>
   </div>`;
 }
-function ctlGraph() {
-  const data=D.ctlCurve, W=500, H=120, pad={t:10,r:20,b:30,l:30};
-  const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b, mn=30, mx=65;
-  const x=i=>pad.l+(i/(data.length-1))*iW;
-  const y=v=>pad.t+iH-((v-mn)/(mx-mn))*iH;
-  const pts=data.map((v,i)=>`${x(i)},${y(v)}`).join(" ");
-  const area=`M${x(0)},${y(data[0])} `+data.map((v,i)=>`L${x(i)},${y(v)}`).join(" ")+` L${x(data.length-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
-  const wk=D.week;
-  const labels=["B1","","","R","","","","R","","","","R","CB","MD"];
-  return `<svg class="ctl-svg" viewBox="0 0 ${W} ${H}">
-    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--gold)" stop-opacity=".35"/>
-      <stop offset="100%" stop-color="var(--gold)" stop-opacity=".03"/>
-    </linearGradient></defs>
-    ${[35,45,55].map(v=>`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--cream-d)" stroke-width="1"/>
-      <text x="${pad.l-4}" y="${y(v)+4}" text-anchor="end" fill="var(--muted)" font-size="9" font-family="'Space Mono',monospace">${v}</text>`).join("")}
-    <path d="${area}" fill="url(#g)"/>
-    <polyline points="${pts}" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round"/>
-    ${data.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="${i===wk-1?5:3}"
-      fill="${i<wk?"var(--gold)":"var(--cream-d)"}" stroke="${i===wk-1?"var(--wine)":"var(--gold)"}"
-      stroke-width="${i===wk-1?2:1}"/>`).join("")}
-    ${labels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle"
-      fill="${i===wk-1?"var(--wine)":"var(--muted)"}" font-size="8" font-family="'Space Mono',monospace"
-      font-weight="${i===wk-1?700:400}">${l||(i+1)}</text>`).join("")}
-  </svg>`;
-}
-
 function periodTimeline() {
   const tc={build:"var(--wine)",recovery:"var(--swim)",race:"var(--gold)"};
   const wk=D.week;
