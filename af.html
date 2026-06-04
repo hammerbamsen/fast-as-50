@@ -87,9 +87,14 @@ function weekStrip(activeKey) {
 
 function buildQueue() {
   const log=getLog(), q=[];
-  const yk=yesterdayKey();
-  if(isThisWeek(yk)&&log[yk]===undefined) q.push(yk);
-  if(log[todayKey()]===undefined) q.push(todayKey());
+  const mon=weekStart(), today=todayKey();
+  // Alle dage fra mandag til i dag der mangler registrering
+  for(let i=0;i<7;i++){
+    const d=new Date(mon); d.setDate(mon.getDate()+i);
+    const k=toKey(d);
+    if(k>today) break;
+    if(log[k]===undefined) q.push(k);
+  }
   return q;
 }
 
