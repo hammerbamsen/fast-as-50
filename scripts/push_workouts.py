@@ -43,12 +43,10 @@ def get_athlete_id():
     print(f"Response: {r.text[:500]}")
     if r.status_code == 200:
         data = r.json()
-        pid = data.get("athlete", {}).get("personId") or data.get("personId") or data.get("id")
+        # TrainingPeaks returnerer {"user": {"userId": 2508481, ...}}
+        pid = (data.get("user") or {}).get("userId") or               data.get("userId") or data.get("personId") or data.get("id")
         print(f"Athlete ID: {pid}")
-        return pid
-    # Prøv alternativ endpoint
-    r2 = requests.get(f"{TP_BASE}/athletes/v3/athlete", headers=HEADERS)
-    print(f"Alt endpoint status: {r2.status_code} — {r2.text[:300]}")
+        return str(pid) if pid else None
     return None
 
 def push_workout(athlete_id, workout_date, title, description, workout_type, tss, duration_mins, structure=None):
@@ -68,6 +66,7 @@ def push_workout(athlete_id, workout_date, title, description, workout_type, tss
         headers=HEADERS,
         json=payload
     )
+    print(f"  Workout response: {r.status_code} {r.text[:200] if r.status_code not in [200,201] else 'OK'}")
     if r.status_code in [200, 201]:
         print(f"  ✓ {title} ({workout_date})")
         return r.json()
