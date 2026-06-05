@@ -1,8 +1,8 @@
-name: AF-dag registrering
+name: Check-in registrering
 
 on:
   repository_dispatch:
-    types: [af-registrering]
+    types: [af-registrering, checkin]
 
 permissions:
   contents: read
@@ -13,9 +13,22 @@ jobs:
     steps:
       - name: Send til Intervals.icu
         run: |
+          DATE="${{ github.event.client_payload.date }}"
+          ALKOHOL="${{ github.event.client_payload.alkohol }}"
+          PROTEIN="${{ github.event.client_payload.protein }}"
+          ENERGI="${{ github.event.client_payload.energi }}"
+          STRESS="${{ github.event.client_payload.stress }}"
+          
+          # Byg JSON payload
+          PAYLOAD="{\"Alkohol\": $ALKOHOL"
+          if [ -n "$PROTEIN" ]; then PAYLOAD="$PAYLOAD, \"Protein\": $PROTEIN"; fi
+          if [ -n "$ENERGI" ]; then PAYLOAD="$PAYLOAD, \"Motivation\": $ENERGI"; fi
+          if [ -n "$STRESS" ]; then PAYLOAD="$PAYLOAD, \"Fatigue\": $STRESS"; fi
+          PAYLOAD="$PAYLOAD}"
+          
           curl -s -X PUT \
-            "https://intervals.icu/api/v1/athlete/${{ secrets.INTERVALS_ATHLETE_ID }}/wellness/${{ github.event.client_payload.date }}" \
+            "https://intervals.icu/api/v1/athlete/${{ secrets.INTERVALS_ATHLETE_ID }}/wellness/$DATE" \
             -u "API_KEY:${{ secrets.INTERVALS_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d "{\"Alkohol\": ${{ github.event.client_payload.alkohol }}}"
-          echo "Gemt: ${{ github.event.client_payload.date }} alkohol=${{ github.event.client_payload.alkohol }}"
+            -d "$PAYLOAD"
+          echo "Gemt: $DATE alkohol=$ALKOHOL protein=$PROTEIN energi=$ENERGI stress=$STRESS"
