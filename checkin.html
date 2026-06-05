@@ -120,13 +120,13 @@ function todayKey() {
 function saveToken() {
   const t = document.getElementById("token-input").value.trim();
   if (t.length > 10) {
-    sessionStorage.setItem(TK, t);
+    localStorage.setItem(TK, t);
     showMain();
   }
 }
 
 function getToken() {
-  return sessionStorage.getItem(TK) || localStorage.getItem(TK) || "";
+  return localStorage.getItem(TK) || localStorage.getItem(TK) || "";
 }
 
 function showMain() {
