@@ -88,6 +88,67 @@ def upload_data_json(data, sha, msg):
     r.raise_for_status()
     print(f"data.json opdateret: {r.json()['commit']['sha'][:10]}")
 
+
+def get_week_sessions():
+    """Hent ugens aktiviteter fra Intervals.icu og byg week_sessions array"""
+    mon = week_start()
+    sun = mon + timedelta(days=6)
+    r = requests.get(f"{BASE}/activities", auth=AUTH,
+        params={"oldest": str(mon), "newest": str(sun)})
+    if r.status_code != 200:
+        return None
+
+    activities = {a["start_date_local"][:10]: a for a in r.json()}
+
+    dk_days = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
+    disc_map = {
+        "Run": "run", "TrailRun": "run", "VirtualRun": "run",
+        "Ride": "bike", "VirtualRide": "bike", "EBikeRide": "bike",
+        "Swim": "swim",
+        "WeightTraining": "strength", "Workout": "strength",
+    }
+
+    today = date.today()
+    sessions = []
+    for i in range(7):
+        d = mon + timedelta(days=i)
+        key = str(d)
+        act = activities.get(key)
+        is_today = d == today
+        is_done = d < today
+
+        if act:
+            disc = disc_map.get(act.get("type",""), "free")
+            label = act.get("name", dk_days[i])
+            dur = f"{round(act.get('moving_time',0)/60)} min" if act.get("moving_time") else ""
+        else:
+            disc = "free"
+            label = "Hvile"
+            dur = ""
+
+        s = {"day": dk_days[i], "disc": disc, "label": label, "done": is_done}
+        if is_today:
+            s["today"] = True
+        sessions.append(s)
+
+    # Dagens session
+    today_key = str(today)
+    today_act = activities.get(today_key)
+    if today_act:
+        disc = disc_map.get(today_act.get("type",""), "free")
+        today_session = {
+            "discipline": disc,
+            "title": today_act.get("name", "Træning"),
+            "duration": f"{round(today_act.get('moving_time',0)/60)} min",
+            "zone": "–",
+            "desc": today_act.get("description", ""),
+            "completed": False
+        }
+    else:
+        today_session = None
+
+    return sessions, today_session
+
 def main():
     today  = date.today()
     week1  = date(2026, 6, 1)
@@ -135,6 +196,15 @@ def main():
     data["kpis"]["hrv"]["value"]     = fmt(hrv)
     data["kpis"]["tss"]["value"]     = fmt(tss_pct)
     data["kpis"]["runKm"]["value"]   = fmt(run_km, "0")
+
+    # Hent ugens sessioner
+    sessions_result = get_week_sessions()
+    if sessions_result:
+        sessions, today_session = sessions_result
+        data["week_sessions"] = sessions
+        if today_session:
+            data["today"] = today_session
+        print(f"Sessioner opdateret: {[s['label'] for s in sessions]}")
 
     upload_data_json(data, sha, f"Auto {today} — uge {wk} | CTL={ctl} AF={af} km={run_km}")
     print("Færdig!")
