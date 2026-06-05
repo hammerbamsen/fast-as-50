@@ -633,6 +633,13 @@ function updateMeta() {
 
 // ── Fetch data.json og render ─────────────────────────────────
 async function init() {
+  // Beregn dato lokalt — altid korrekt uanset cache
+  const now = new Date();
+  const dk_days = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
+  const dk_months = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
+  D.dayName = dk_days[now.getDay()];
+  D.date = `${now.getDate()}. ${dk_months[now.getMonth()]}`;
+
   // Render med defaults først — ingen loading screen
   renderNav();
   updateMeta();
