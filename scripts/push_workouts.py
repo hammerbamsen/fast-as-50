@@ -37,11 +37,18 @@ BIKE_ZONES = {
 
 def get_athlete_id():
     """Hent athlete ID fra TP"""
+    print(f"Kalder: {TP_BASE}/users/v3/user")
     r = requests.get(f"{TP_BASE}/users/v3/user", headers=HEADERS)
+    print(f"Status: {r.status_code}")
+    print(f"Response: {r.text[:500]}")
     if r.status_code == 200:
         data = r.json()
-        return data.get("athlete", {}).get("personId") or data.get("personId")
-    print(f"Fejl ved hentning af athlete: {r.status_code} {r.text[:200]}")
+        pid = data.get("athlete", {}).get("personId") or data.get("personId") or data.get("id")
+        print(f"Athlete ID: {pid}")
+        return pid
+    # Prøv alternativ endpoint
+    r2 = requests.get(f"{TP_BASE}/athletes/v3/athlete", headers=HEADERS)
+    print(f"Alt endpoint status: {r2.status_code} — {r2.text[:300]}")
     return None
 
 def push_workout(athlete_id, workout_date, title, description, workout_type, tss, duration_mins, structure=None):
