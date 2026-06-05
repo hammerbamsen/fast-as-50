@@ -693,12 +693,11 @@ async function init() {
 init();
 </script>
 <script>
+// Afregistrer alle service workers — de cachede for aggressivt
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/fast-as-50/sw.js')
-    .then(reg => {
-      // Tjek for opdatering hver gang appen åbnes
-      reg.update();
-    });
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(reg => reg.unregister());
+  });
 }
 </script>
 </body>
