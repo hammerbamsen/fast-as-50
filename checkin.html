@@ -15,198 +15,194 @@ body { background:#ECE4D7; min-height:100vh; font-family:'Hanken Grotesk',sans-s
 .label { font-family:'Space Mono',monospace; font-size:10px; color:#7A6A58; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
 .title { font-family:'Newsreader',serif; font-size:26px; color:#59182A; }
 .date-sub { font-family:'Space Mono',monospace; font-size:11px; color:#7A6A58; margin-top:3px; }
-
 .section { margin-bottom:22px; }
 .q-label { font-family:'Hanken Grotesk',sans-serif; font-size:14px; font-weight:600; color:#1A1008; margin-bottom:10px; }
-
-/* AF buttons */
 .btn-row { display:flex; gap:10px; }
 .btn-choice { flex:1; padding:14px 10px; border-radius:10px; border:1.5px solid #DDD3C3; background:#ECE4D7; font-family:'Hanken Grotesk',sans-serif; font-size:15px; font-weight:700; cursor:pointer; transition:all .15s; color:#7A6A58; }
 .btn-choice.selected-ja { background:#59182A; border-color:#59182A; color:#ECE4D7; }
 .btn-choice.selected-nej { background:#DDD3C3; border-color:#7A6A58; color:#7A6A58; }
-
-/* Protein buttons */
 .btn-row-3 { display:flex; gap:8px; }
 .btn-p { flex:1; padding:12px 6px; border-radius:8px; border:1.5px solid #DDD3C3; background:#ECE4D7; font-family:'Space Mono',monospace; font-size:10px; font-weight:700; cursor:pointer; transition:all .15s; color:#7A6A58; text-align:center; line-height:1.3; }
 .btn-p.selected { background:#59182A; border-color:#59182A; color:#ECE4D7; }
 .btn-p.selected-ok { background:#BE863A; border-color:#BE863A; color:#ECE4D7; }
 .btn-p.selected-lav { background:#DDD3C3; border-color:#7A6A58; color:#7A6A58; }
-
-/* Scale */
 .scale { display:flex; gap:6px; }
 .scale-btn { flex:1; height:44px; border-radius:8px; border:1.5px solid #DDD3C3; background:#ECE4D7; font-family:'Space Mono',monospace; font-size:13px; font-weight:700; cursor:pointer; transition:all .15s; color:#7A6A58; }
 .scale-btn.active-1,.scale-btn.active-2 { background:#C0392B; border-color:#C0392B; color:white; }
 .scale-btn.active-3 { background:#BE863A; border-color:#BE863A; color:white; }
 .scale-btn.active-4,.scale-btn.active-5 { background:#27AE60; border-color:#27AE60; color:white; }
-
 .scale-labels { display:flex; justify-content:space-between; margin-top:5px; }
 .scale-label { font-family:'Space Mono',monospace; font-size:9px; color:#7A6A58; }
-
-/* Submit */
 .submit-btn { width:100%; padding:16px; border-radius:10px; border:none; background:#59182A; color:#ECE4D7; font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; cursor:pointer; margin-top:8px; transition:all .15s; }
 .submit-btn:disabled { opacity:.4; cursor:not-allowed; }
 .submit-btn:active { transform:scale(.98); }
-
 .status { margin-top:12px; font-family:'Space Mono',monospace; font-size:11px; text-align:center; min-height:18px; }
 .status.ok { color:#1A7A5E; }
 .status.err { color:#C0392B; }
-
 .done-view { text-align:center; }
 .done-title { font-family:'Newsreader',serif; font-size:26px; color:#59182A; margin-bottom:8px; }
 .done-sub { font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#7A6A58; line-height:1.6; margin-bottom:16px; }
 .done-summary { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
 .summary-pill { font-family:'Space Mono',monospace; font-size:10px; padding:5px 10px; border-radius:20px; background:#ECE4D7; color:#1A1008; border:1px solid #DDD3C3; }
 .dash-link { display:block; font-family:'Space Mono',monospace; font-size:10px; color:#BE863A; text-decoration:none; }
-
 .spinner { display:inline-block; width:14px; height:14px; border:2px solid #DDD3C3; border-top-color:#59182A; border-radius:50%; animation:spin .6s linear infinite; vertical-align:middle; margin-right:6px; }
 @keyframes spin { to { transform:rotate(360deg); } }
+.token-form { margin-bottom:20px; }
+.token-input { width:100%; padding:10px; border-radius:8px; border:1.5px solid #DDD3C3; font-family:'Space Mono',monospace; font-size:11px; margin-top:6px; }
+.token-btn { width:100%; padding:12px; border-radius:8px; border:none; background:#BE863A; color:#FDFAF6; font-family:'Hanken Grotesk',sans-serif; font-size:14px; font-weight:700; cursor:pointer; margin-top:8px; }
 </style>
 </head>
 <body>
 <div class="card" id="card">
-  <div id="main-view">
+  <div id="token-view" style="display:none">
+    <div class="header">
+      <div class="label">Fast as Fifty</div>
+      <div class="title">Opsætning</div>
+    </div>
+    <div class="token-form">
+      <div class="q-label">Indsæt GitHub token én gang:</div>
+      <input type="password" class="token-input" id="token-input" placeholder="ghp_...">
+      <button class="token-btn" onclick="saveToken()">Gem token</button>
+    </div>
+  </div>
+
+  <div id="main-view" style="display:none">
     <div class="header">
       <div class="label">Fast as Fifty · Daglig check-in</div>
       <div class="title" id="today-title">—</div>
-      <div class="date-sub" id="today-sub"></div>
     </div>
 
-    <!-- AF -->
     <div class="section">
       <div class="q-label">Alkoholfri dag?</div>
       <div class="btn-row">
-        <button class="btn-choice" id="btn-af-ja" onclick="select('af','ja')">Ja</button>
-        <button class="btn-choice" id="btn-af-nej" onclick="select('af','nej')">Nej</button>
+        <button class="btn-choice" id="btn-af-ja" onclick="sel('af','ja')">Ja</button>
+        <button class="btn-choice" id="btn-af-nej" onclick="sel('af','nej')">Nej</button>
       </div>
     </div>
 
-    <!-- Protein -->
     <div class="section">
       <div class="q-label">Protein i dag?</div>
       <div class="btn-row-3">
-        <button class="btn-p" id="btn-p-hoj" onclick="select('protein','hoj')">HØJ<br>≥150 g</button>
-        <button class="btn-p" id="btn-p-ok"  onclick="select('protein','ok')">OK<br>100-150 g</button>
-        <button class="btn-p" id="btn-p-lav" onclick="select('protein','lav')">LAV<br>&lt;100 g</button>
+        <button class="btn-p" id="btn-p-hoj" onclick="sel('protein','hoj')">HØJ<br>≥150 g</button>
+        <button class="btn-p" id="btn-p-ok"  onclick="sel('protein','ok')">OK<br>100-150 g</button>
+        <button class="btn-p" id="btn-p-lav" onclick="sel('protein','lav')">LAV<br>&lt;100 g</button>
       </div>
     </div>
 
-    <!-- Energi -->
     <div class="section">
       <div class="q-label">Energiniveau?</div>
       <div class="scale" id="scale-energi"></div>
       <div class="scale-labels"><span class="scale-label">Udmattet</span><span class="scale-label">Fuld gas</span></div>
     </div>
 
-    <!-- Stress -->
     <div class="section">
       <div class="q-label">Stressniveau?</div>
       <div class="scale" id="scale-stress"></div>
       <div class="scale-labels"><span class="scale-label">Ingen stress</span><span class="scale-label">Maks stress</span></div>
     </div>
 
-    <button class="submit-btn" id="submit-btn" onclick="submit()" disabled>Gem check-in</button>
+    <button class="submit-btn" id="submit-btn" onclick="doSubmit()" disabled>Gem check-in</button>
     <div class="status" id="status"></div>
   </div>
 </div>
 
 <script>
 const GH_REPO = "hammerbamsen/fast-as-50";
-const TOKEN_KEY = "af_gh_token";
-const STORAGE_KEY = "checkin_log_v1";
-
+const TK = "af_token_v2";
 const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 
-function getToken() { return localStorage.getItem(TOKEN_KEY) || ""; }
-function toKey(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function todayKey() { return toKey(new Date()); }
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function saveToken() {
+  const t = document.getElementById("token-input").value.trim();
+  if (t.length > 10) {
+    sessionStorage.setItem(TK, t);
+    showMain();
+  }
+}
+
+function getToken() {
+  return sessionStorage.getItem(TK) || localStorage.getItem(TK) || "";
+}
+
+function showMain() {
+  document.getElementById("token-view").style.display = "none";
+  document.getElementById("main-view").style.display = "block";
+  const now = new Date();
+  document.getElementById("today-title").textContent = `${DK_DAYS[now.getDay()]} ${now.getDate()}. ${DK_MONTHS[now.getMonth()]}`;
+}
 
 const answers = { af: null, protein: null, energi: null, stress: null };
 
-// Byg skalaer
 function buildScale(id, field) {
   const el = document.getElementById(id);
   for (let i = 1; i <= 5; i++) {
     const btn = document.createElement("button");
     btn.className = "scale-btn";
     btn.textContent = i;
-    btn.onclick = () => select(field, i);
+    btn.onclick = () => sel(field, i);
     btn.id = `btn-${field}-${i}`;
     el.appendChild(btn);
   }
 }
-buildScale("scale-energi", "energi");
-buildScale("scale-stress", "stress");
 
-function select(field, val) {
+function sel(field, val) {
   answers[field] = val;
-
   if (field === "af") {
     document.getElementById("btn-af-ja").className  = "btn-choice" + (val==="ja"  ? " selected-ja"  : "");
     document.getElementById("btn-af-nej").className = "btn-choice" + (val==="nej" ? " selected-nej" : "");
   } else if (field === "protein") {
-    document.getElementById("btn-p-hoj").className = "btn-p" + (val==="hoj" ? " selected"     : "");
-    document.getElementById("btn-p-ok").className  = "btn-p" + (val==="ok"  ? " selected-ok"  : "");
-    document.getElementById("btn-p-lav").className = "btn-p" + (val==="lav" ? " selected-lav" : "");
+    document.getElementById("btn-p-hoj").className = "btn-p" + (val==="hoj" ? " selected"    : "");
+    document.getElementById("btn-p-ok").className  = "btn-p" + (val==="ok"  ? " selected-ok" : "");
+    document.getElementById("btn-p-lav").className = "btn-p" + (val==="lav" ? " selected-lav": "");
   } else {
     for (let i = 1; i <= 5; i++) {
-      const btn = document.getElementById(`btn-${field}-${i}`);
-      btn.className = "scale-btn" + (i === val ? ` active-${val}` : "");
+      document.getElementById(`btn-${field}-${i}`).className = "scale-btn" + (i===val ? ` active-${val}` : "");
     }
   }
-  checkReady();
-}
-
-function checkReady() {
   const ready = answers.af && answers.protein && answers.energi && answers.stress;
   document.getElementById("submit-btn").disabled = !ready;
 }
 
-async function submit() {
+async function doSubmit() {
   document.getElementById("submit-btn").disabled = true;
   document.getElementById("status").innerHTML = '<span class="spinner"></span>Sender...';
 
   const key = todayKey();
   const isAF = answers.af === "ja";
   const proteinMap = { hoj: 2, ok: 1, lav: 0 };
-  const protein = proteinMap[answers.protein];
 
-  // Gem lokalt
-  const log = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  log[key] = { af: isAF, protein: answers.protein, energi: answers.energi, stress: answers.stress };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(log));
-
-  // Send AF + wellness via GitHub dispatch
-  const token = getToken();
-  if (token) {
-    try {
-      const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-        method: "POST",
-        headers: { "Authorization": `token ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github.v3+json" },
-        body: JSON.stringify({
-          event_type: "checkin",
-          client_payload: {
-            date: key,
-            alkohol: isAF ? 0 : 1,
-            protein: protein,
-            energi: answers.energi,
-            stress: answers.stress
-          }
-        })
-      });
-      if (r.status === 204) {
-        document.getElementById("status").className = "status ok";
-        document.getElementById("status").textContent = "✓ Gemt";
-      } else throw new Error(r.status);
-    } catch(e) {
-      document.getElementById("status").textContent = "Gemt lokalt";
-    }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+      method: "POST",
+      headers: {
+        "Authorization": `token ${getToken()}`,
+        "Content-Type": "application/json",
+        "Accept": "application/vnd.github.v3+json"
+      },
+      body: JSON.stringify({
+        event_type: "checkin",
+        client_payload: {
+          date: key,
+          alkohol: isAF ? 0 : 1,
+          protein: proteinMap[answers.protein],
+          energi: answers.energi,
+          stress: answers.stress
+        }
+      })
+    });
+    if (r.status !== 204) throw new Error(r.status);
+  } catch(e) {
+    document.getElementById("status").className = "status err";
+    document.getElementById("status").textContent = "Fejl — prøv igen";
+    document.getElementById("submit-btn").disabled = false;
+    return;
   }
 
-  setTimeout(showDone, 600);
-}
-
-function showDone() {
   const proteinLabel = { hoj: "Protein HØJ", ok: "Protein OK", lav: "Protein LAV" };
   const af = answers.af === "ja";
   document.getElementById("main-view").innerHTML = `
@@ -224,34 +220,15 @@ function showDone() {
   `;
 }
 
-// Tjek om allerede registreret i dag
-function init() {
-  const now = new Date();
-  document.getElementById("today-title").textContent = `${DK_DAYS[now.getDay()]} ${now.getDate()}. ${DK_MONTHS[now.getMonth()]}`;
+// Init
+buildScale("scale-energi", "energi");
+buildScale("scale-stress", "stress");
 
-  // Tjek token
-  if (!getToken()) {
-    const t = prompt("Indsæt dit GitHub token:"));
-    if (t && t && t.length > 10) localStorage.setItem(TOKEN_KEY, t);
-  }
-
-  // Vis evt. allerede registreret
-  const log = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  const today = log[todayKey()];
-  if (today) {
-    answers.af = today.af ? "ja" : "nej";
-    answers.protein = today.protein;
-    answers.energi = today.energi;
-    answers.stress = today.stress;
-    select("af", answers.af);
-    select("protein", answers.protein);
-    select("energi", answers.energi);
-    select("stress", answers.stress);
-    document.getElementById("status").textContent = "Allerede registreret i dag";
-    document.getElementById("status").className = "status ok";
-  }
+if (getToken()) {
+  showMain();
+} else {
+  document.getElementById("token-view").style.display = "block";
 }
-init();
 </script>
 </body>
 </html>
