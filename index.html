@@ -605,7 +605,12 @@ function navigate(pageId) {
   activePage = pageId;
   const page = PAGES.find(p=>p.id===pageId);
   document.getElementById("page-title").textContent = page.label;
-  document.getElementById("page-sub").textContent = pageId==="today" ? `${D.dayName}, ${D.date}` : "";
+  const now2 = new Date();
+  const dk2 = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
+  const dm2 = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
+  const liveDayName = dk2[now2.getDay()];
+  const liveDate = `${now2.getDate()}. ${dm2[now2.getMonth()]}`;
+  document.getElementById("page-sub").textContent = pageId==="today" ? `${liveDayName}, ${liveDate}` : "";
 
   PAGES.forEach(p=>document.getElementById(`page-${p.id}`).classList.remove("active"));
   document.getElementById(`page-${pageId}`).classList.add("active");
