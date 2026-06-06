@@ -208,6 +208,16 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
   <div class="sidebar-footer">
     <div class="sidebar-footer-week" id="sf-week">UGE 1/14</div>
     <div class="sidebar-footer-block" id="sf-block">BUILD BLOCK</div>
+    <button id="refresh-btn" onclick="triggerRefresh()" style="
+      margin-top:10px; width:100%; padding:7px 0;
+      background:transparent; border:1px solid rgba(212,175,55,.35);
+      border-radius:6px; color:var(--gold); font-family:'Space Mono',monospace;
+      font-size:9px; letter-spacing:.08em; cursor:pointer; transition:all .2s;
+    " onmouseover="this.style.background='rgba(212,175,55,.1)'"
+       onmouseout="this.style.background='transparent'">
+      ↻ OPDATÉR DATA
+    </button>
+    <div id="refresh-status" style="font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);text-align:center;margin-top:4px;min-height:12px;"></div>
   </div>
 </aside>
 
@@ -704,6 +714,25 @@ async function init() {
 }
 
 init();
+
+// ── Refresh-knap: hent ny data.json fra server ─────────────────
+async function triggerRefresh() {
+  const btn = document.getElementById('refresh-btn');
+  const status = document.getElementById('refresh-status');
+  btn.disabled = true;
+  btn.textContent = '↻ HENTER...';
+  status.textContent = '';
+  try {
+    await init();
+    btn.textContent = '✓ OPDATERET';
+    status.textContent = new Date().toLocaleTimeString('da-DK', {hour:'2-digit',minute:'2-digit'});
+    setTimeout(() => { btn.textContent = '↻ OPDATÉR DATA'; btn.disabled = false; }, 2000);
+  } catch(e) {
+    btn.textContent = '↻ OPDATÉR DATA';
+    btn.disabled = false;
+    status.textContent = 'Fejl — prøv igen';
+  }
+}
 </script>
 <script>
 // Afregistrer alle service workers — de cachede for aggressivt
@@ -715,3 +744,4 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
