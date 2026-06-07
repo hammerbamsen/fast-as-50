@@ -419,12 +419,32 @@ def delete_existing(session, dt):
     except Exception as e:
         print(f"  ⚠️  delete_existing fejl: {e}")
 
+FOLDER_ID = None
+
+def get_folder_id(session):
+    """Hent første tilgængelige workout-mappe fra Intervals."""
+    global FOLDER_ID
+    if FOLDER_ID is not None:
+        return FOLDER_ID
+    r = session.get(f"{BASE}/folders")
+    if r.status_code == 200:
+        folders = r.json()
+        if folders:
+            FOLDER_ID = folders[0].get("id")
+            print(f"  📁 Mappe: {folders[0].get('name','?')} (id:{FOLDER_ID})")
+            return FOLDER_ID
+    print(f"  ⚠️  Ingen mapper fundet: {r.status_code} {r.text[:100]}")
+    return None
+
 def upload(session, wo, dt):
     if wo is None:
         return None
     # Slet eksisterende planned workouts på datoen inden upload
     delete_existing(session, dt)
+    folder_id = get_folder_id(session)
     payload = {**wo, "start_date_local": dt.isoformat()}
+    if folder_id:
+        payload["folder_id"] = folder_id
     r = session.post(f"{BASE}/workouts", json=payload)
     if r.status_code in (200,201):
         wid = r.json().get("id","?")
