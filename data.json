@@ -11,31 +11,31 @@
   },
   "kpis": {
     "weight": {
-      "value": "74,7",
+      "value": "74,9",
       "unit": "kg",
       "sub": "Mål <72 kg · snit 7d",
-      "color": "#27AE60"
+      "color": "#F39C12"
     },
     "fat": {
       "value": "22,7",
       "unit": "%",
       "sub": "Mål <20%",
-      "color": "#F39C12"
+      "color": "#C0392B"
     },
     "ctl": {
-      "value": "36,2",
+      "value": "36,4",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-13,4",
+      "value": "0,0",
       "unit": "",
-      "sub": "Hård blok",
-      "color": "#E67E22"
+      "sub": "Form",
+      "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,0",
+      "value": "7,3",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -44,17 +44,17 @@
       "value": "35,5",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#C0392B"
+      "color": "#27AE60"
     },
     "hrv": {
-      "value": "59,0",
+      "value": "51,0",
       "unit": "ms",
-      "sub": "+17% vs snit",
+      "sub": "Snit 7d",
       "color": "#7A6A58"
     }
   },
   "af": {
-    "weekDone": 4,
+    "weekDone": 7,
     "target": 5
   },
   "coachSpeech": "HRV 59.0 ms — +17% vs snit. Kroppen er klar. Søvn 8.0t — godt. Form TSB -13.4 — bygger fitness planmæssigt. {HL}",
@@ -63,9 +63,9 @@
   "today": {
     "discipline": "swim",
     "title": "Svøm 2000m + cykel",
-    "duration": "90 min",
-    "zone": "Z2",
-    "desc": "Svøm 2000m teknisk + rolig cykel 45 min Z2. Aktiv restitution efter en stærk uge.",
+    "duration": "",
+    "zone": "–",
+    "desc": "",
     "completed": false
   },
   "week_sessions": [
@@ -89,9 +89,10 @@
     },
     {
       "day": "Tor",
-      "disc": "strength",
+      "disc": "free",
       "label": "Styrketræning",
-      "done": true
+      "done": true,
+      "disc2": "strength"
     },
     {
       "day": "Fre",
@@ -101,10 +102,10 @@
     },
     {
       "day": "Lør",
-      "disc": "strength",
+      "disc": "run",
       "label": "Styrke + Lang løb Z2",
       "done": true,
-      "disc2": "run"
+      "disc2": "strength"
     },
     {
       "day": "Søn",
