@@ -394,9 +394,26 @@ def make_plan():
     (p+timedelta(97), None,               "Recovery Bordeaux (søn 6. sep)"),
     ]
 
+def delete_existing(session, dt):
+    """Slet alle planned workouts på denne dato så vi undgår duplikater."""
+    r = session.get(f"{BASE}/workouts", params={
+        "oldest": dt.isoformat(), "newest": dt.isoformat()
+    })
+    if r.status_code != 200:
+        return
+    for w in r.json():
+        if w.get("athlete_id") and not w.get("start_date_local", "").startswith("actual"):
+            wid = w.get("id")
+            if wid:
+                rd = session.delete(f"{BASE}/workouts/{wid}")
+                if rd.status_code in (200, 204):
+                    print(f"  🗑️  Slettede eksisterende: {w.get('name','?')} ({wid})")
+
 def upload(session, wo, dt):
     if wo is None:
         return None
+    # Slet eksisterende planned workouts på datoen inden upload
+    delete_existing(session, dt)
     payload = {**wo, "start_date_local": dt.isoformat()}
     r = session.post(f"{BASE}/workouts", json=payload)
     if r.status_code in (200,201):
