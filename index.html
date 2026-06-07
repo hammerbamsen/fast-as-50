@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0401 -->
+<!DOCTYPE html><!-- v20260607-0402 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -370,7 +370,22 @@ function weekStrip() {
   return `<div class="week-strip">${D.week_sessions.map(s=>{
     const doneClass = s.done ? `done-${s.disc}` : "";
     const todayClass = s.today ? "is-today" : "";
-    const ico = s.done ? icon("check",14,C[s.disc]) : icon(s.disc,14,s.today?"var(--wine)":"var(--muted)");
+    let ico;
+    if (s.done) {
+      // Vis ikon(er) for udførte discipliner
+      if (s.disc2) {
+        ico = `<span style="display:flex;gap:2px;align-items:center">${icon(s.disc,13,C[s.disc])}${icon(s.disc2,13,C[s.disc2])}</span>`;
+      } else {
+        ico = icon(s.disc, 14, C[s.disc]);
+      }
+    } else {
+      // Ikke udført — vis disciplin-ikon dæmpet
+      if (s.disc2) {
+        ico = `<span style="display:flex;gap:2px;align-items:center">${icon(s.disc,13,s.today?"var(--wine)":"var(--muted)")}${icon(s.disc2,13,s.today?"var(--wine)":"var(--muted)")}</span>`;
+      } else {
+        ico = icon(s.disc,14,s.today?"var(--wine)":"var(--muted)");
+      }
+    }
     return `<div class="wday ${doneClass} ${todayClass}">
       <span class="wday-name">${s.day}</span>${ico}
     </div>`;
