@@ -431,7 +431,8 @@ def upload(session, wo, dt):
         print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{wid})")
         return wid
     else:
-        print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:150]}")
+        print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:500]}")
+        print(f"     Payload keys: {list(payload.keys())}")
         return None
 
 def main(api_key, week_only=0):
@@ -478,6 +479,9 @@ def main(api_key, week_only=0):
     print(f"✅ Uploadet:  {ok}")
     print(f"⚪ Hvile/rejse: {skip}")
     print(f"❌ Fejl:      {err}")
+    if err > 0:
+        print("\n⚠️  Der var fejl — se detaljer ovenfor")
+        sys.exit(1)
 
 if __name__ == "__main__":
     import os
