@@ -223,30 +223,29 @@ async function init() {
 }
 
 async function syncFromIntervals() {
-  // Hent denne uges wellness fra Intervals via GitHub dispatch + polling
-  // Bruger et simpelt trick: henter data.json der opdateres hvert 10 min
-  // og populerer localStorage med kendte AF-dage
-  const token = getToken();
-  if(!token) return;
+  // Henter af_log fra data.json (opdateres hvert 10 min fra Intervals)
+  // og populerer localStorage — så af.html altid ved hvad der allerede er registreret
   try {
     const r = await fetch('https://hammerbamsen.github.io/fast-as-50/data.json?t=' + Date.now());
     if(!r.ok) return;
     const data = await r.json();
 
-    // Hvis data.json har detaljeret af_log, brug det
-    if(data.af_log) {
+    if(data.af_log && typeof data.af_log === 'object') {
       const log = getLog();
       let changed = false;
       Object.entries(data.af_log).forEach(([date, val]) => {
+        // Kun synk dage i denne uge der ikke allerede er registreret lokalt
         if(isThisWeek(date) && log[date] === undefined) {
-          log[date] = val === 0; // Alkohol=0 → AF-dag=true
+          // val: 0 = AF-dag (ingen alkohol), 1 = ikke AF-dag
+          log[date] = (val === 0);
           changed = true;
+          console.log('Syncede fra Intervals:', date, val === 0 ? 'AF ✓' : 'ikke AF');
         }
       });
       if(changed) saveLog(log);
     }
   } catch(e) {
-    // Stille fejl — brug localStorage som fallback
+    console.log('Intervals sync fejl (bruger localStorage):', e.message);
   }
 }
 
