@@ -98,9 +98,6 @@ def get_activities_week():
                      params={'oldest': str(monday), 'newest': str(today)})
     if r.status_code == 200:
         data = r.json()
-        print(f"  Aktiviteter denne uge ({len(data)} stk):")
-        for a in data:
-            print(f"    {a.get('start_date_local','')[:10]} | {a.get('type')} | {a.get('name')} | tss={a.get('training_load')}")
         total_tss = sum(a.get('training_load') or 0 for a in data)
         run_km = sum(
             (a.get('distance') or 0) / 1000
@@ -130,7 +127,11 @@ def get_activities_week():
                 disc = 'strength'
             else:
                 disc = 'free'
-            done_map.setdefault(day_key, []).append(disc)
+            done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc))
+
+        # Sortér efter tidspunkt og behold kun disc-navne
+        for k in done_map:
+            done_map[k] = [disc for _, disc in sorted(done_map[k])]
 
         return {
             'tss_week': round(total_tss, 0),
