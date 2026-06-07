@@ -563,4 +563,17 @@ if __name__ == "__main__":
     if not api_key:
         print("Mangler INTERVALS_API_KEY")
         sys.exit(1)
-    main(api_key, week_only=week_only)
+    # week_only=0: kun denne uge og frem (default ved automatisk kørsel)
+    # week_only=-1: alle 14 uger
+    # week_only=N: kun uge N
+    if week_only == 0:
+        week1 = date(2026, 6, 1)
+        current_week = min(max((date.today() - week1).days // 7 + 1, 1), 14)
+        print(f"Auto-tilstand: uploader uge {current_week} til 14")
+        for w in range(current_week, 15):
+            main(api_key, week_only=w)
+    elif week_only == -1:
+        print("Uploader alle 14 uger...")
+        main(api_key, week_only=0)
+    else:
+        main(api_key, week_only=week_only)
