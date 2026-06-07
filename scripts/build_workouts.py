@@ -439,7 +439,7 @@ def main(api_key):
     session.auth = ("API_KEY", api_key)
     session.headers.update({"Content-Type":"application/json"})
 
-    r = session.get(f"{BASE}/athlete")
+    r = session.get(f"{BASE}")
     if r.status_code != 200:
         print(f"❌ Forbindelsesfejl: {r.status_code} — {r.text[:200]}")
         sys.exit(1)
