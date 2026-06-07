@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0940 -->
+<!DOCTYPE html><!-- v20260607-0946 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -517,8 +517,8 @@ function renderToday() {
   </div>
 
   <div class="card"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus}</p></div>
-  <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET ${D.lastUpdated||'—'} · <span id="live-time"></span></div>
-  \`;
+  <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET \${D.lastUpdated||'—'} · <span id="live-time"></span></div>
+  `;
   setTimeout(()=>{const el=document.getElementById('live-time');if(el)el.textContent=new Date().toLocaleTimeString('da-DK',{hour:'2-digit',minute:'2-digit'});},50);
 }
 
