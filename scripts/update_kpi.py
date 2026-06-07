@@ -98,6 +98,9 @@ def get_activities_week():
                      params={'oldest': str(monday), 'newest': str(today)})
     if r.status_code == 200:
         data = r.json()
+        print(f"  Aktiviteter denne uge ({len(data)} stk):")
+        for a in data:
+            print(f"    {a.get('start_date_local','')[:10]} | {a.get('type')} | {a.get('name')} | tss={a.get('training_load')}")
         total_tss = sum(a.get('training_load') or 0 for a in data)
         run_km = sum(
             (a.get('distance') or 0) / 1000
