@@ -1,33 +1,15 @@
-// v202606070914
-const CACHE = 'faf-v202606070914';
-
-self.addEventListener('install', e => {
-  self.skipWaiting();
-});
-
+// RESET-20260607092044
+// Sletter al cache og deregistrerer sig selv
+self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.map(k => caches.delete(k))))
       .then(() => self.clients.claim())
+      .then(() => self.clients.matchAll().then(clients => clients.forEach(c => c.navigate(c.url))))
   );
 });
-
+// Ingen caching - alt går direkte til netværk
 self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-  // data.json hentes altid frisk fra netværk
-  if (url.pathname.endsWith('data.json')) {
-    e.respondWith(fetch(e.request, {cache: 'no-store'}));
-    return;
-  }
-  // Alt andet: network-first, fallback til cache
-  e.respondWith(
-    fetch(e.request)
-      .then(resp => {
-        const clone = resp.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-        return resp;
-      })
-      .catch(() => caches.match(e.request))
-  );
+  e.respondWith(fetch(e.request, {cache: 'no-store'}));
 });
