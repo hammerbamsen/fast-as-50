@@ -395,15 +395,22 @@ def make_plan():
     ]
 
 def sec_to_pace(sec_per_km):
-    """Sekunder/km → mm:ss streng"""
     m = sec_per_km // 60
     s = sec_per_km % 60
     return f"{m}:{s:02d}"
 
+def pace_to_zone(sec_per_km):
+    """Konverter pace (sek/km) til Intervals zone-navn."""
+    zones = [(0,252,"Z5"),(253,265,"Z4"),(266,295,"Z3"),(296,334,"Z2"),(335,999,"Z1")]
+    for lo, hi, z in zones:
+        if lo <= sec_per_km <= hi:
+            return z
+    return "Z2"
+
 def workout_doc_to_text(wo):
     """Konverter workout_doc steps til Intervals.icu tekst-format.
     Cykel: FTP% fra watt (FTP=270W)
-    Løb: pace i min/km format
+    Løb: zone-navn (Z1 Pace, Z2 Pace osv)
     """
     FTP = 270
     lines = []
@@ -419,9 +426,8 @@ def workout_doc_to_text(wo):
             pct = round(power["value"] / FTP * 100)
             return f"- {dur_min}m {pct}% {desc}"
         elif pace:
-            # pace.value er sekunder/km
-            pace_str = sec_to_pace(int(pace["value"]))
-            return f"- {dur_min}m @ {pace_str}/km {desc}"
+            zone = pace_to_zone(int(pace["value"]))
+            return f"- {dur_min}m {zone} Pace"
         else:
             return f"- {dur_min}m {desc}"
 
@@ -436,7 +442,6 @@ def workout_doc_to_text(wo):
             lines.append("")
 
     return "\n".join(lines).strip()
-
 
 def delete_existing(session, dt):
     """Slet alle planned workouts på denne dato så vi undgår duplikater."""
