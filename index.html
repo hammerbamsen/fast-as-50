@@ -517,7 +517,7 @@ function renderToday() {
   </div>
 
   <div class="card"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus}</p></div>
-  <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET \${D.lastUpdated||'—'} · <span id="live-time"></span></div>
+  <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET <span id='last-updated'></span> · <span id="live-time"></span></div>
   `;
   setTimeout(()=>{const el=document.getElementById('live-time');if(el)el.textContent=new Date().toLocaleTimeString('da-DK',{hour:'2-digit',minute:'2-digit'});},50);
 }
@@ -854,6 +854,8 @@ async function init() {
       const remote = await r.json();
       const m = remote.meta || {};
       if (m.updated)                    D.lastUpdated            = m.updated;
+      const luEl = document.getElementById('last-updated');
+      if (luEl) luEl.textContent = m.updated || D.lastUpdated || '—';
       if (m.week)                       D.week                   = m.week;
       if (m.totalWeeks)                 D.totalWeeks             = m.totalWeeks;
       if (m.blockType)                  D.blockType              = m.blockType;
