@@ -68,9 +68,6 @@ def get_af_this_week():
         data = r.json()
         # Byg dag-for-dag log fra mandag til i dag
         wellness_by_date = {d.get('date', '')[:10]: d for d in data}
-        print(f"  Wellness entries: {list(wellness_by_date.keys())}")
-        for dt_key, entry in wellness_by_date.items():
-            print(f"    {dt_key}: Alkohol={entry.get('Alkohol')} ctl={entry.get('ctl')}")
         
         current = monday
         while current <= today:
@@ -430,4 +427,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
