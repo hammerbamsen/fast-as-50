@@ -1,0 +1,120 @@
+name: Sync workouts til Outlook kalender
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Uge nummer (1-14)'
+        required: true
+        default: '2'
+  repository_dispatch:
+    types: [workouts-built]
+
+permissions:
+  contents: read
+
+jobs:
+  sync-outlook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+
+      - name: Opret Træning-events i Outlook
+        env:
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          INTERVALS_API_KEY:   ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+          WEEK: ${{ github.event.inputs.week || github.event.client_payload.week || '2' }}
+        run: |
+          python3 << 'EOF'
+          import os, json, requests
+          from datetime import date, timedelta
+
+          CLIENT_ID     = os.environ['AZURE_CLIENT_ID']
+          TENANT_ID     = os.environ['AZURE_TENANT_ID']
+          CLIENT_SECRET = os.environ['AZURE_CLIENT_SECRET']
+          API_KEY       = os.environ['INTERVALS_API_KEY']
+          ATHLETE_ID    = os.environ['INTERVALS_ATHLETE_ID']
+          WEEK          = int(os.environ.get('WEEK', 2))
+
+          # ── 1. Hent OAuth token ──────────────────────────────
+          token_url = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
+          resp = requests.post(token_url, data={
+              'grant_type':    'client_credentials',
+              'client_id':     CLIENT_ID,
+              'client_secret': CLIENT_SECRET,
+              'scope':         'https://graph.microsoft.com/.default',
+          })
+          resp.raise_for_status()
+          token = resp.json()['access_token']
+          headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
+          print("✅ Azure token hentet")
+
+          # ── 2. Hent planlagte workouts fra Intervals ─────────
+          plan_start = date(2026, 6, 1)
+          week_start = plan_start + timedelta(weeks=WEEK-1)
+          week_end   = week_start + timedelta(days=6)
+
+          r = requests.get(
+              f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}/workouts",
+              auth=("API_KEY", API_KEY),
+              params={'oldest': str(week_start), 'newest': str(week_end)}
+          )
+          workouts = r.json() if r.status_code == 200 else []
+          print(f"✅ {len(workouts)} workouts fundet uge {WEEK} ({week_start}–{week_end})")
+
+          # ── 3. Kategori-farve mapping ────────────────────────
+          TYPE_EMOJI = {
+              'Run':            '🏃',
+              'Ride':           '🚴',
+              'Swim':           '🏊',
+              'WeightTraining': '💪',
+              'Walk':           'Walk',
+          }
+
+          # ── 4. Opret Outlook-events ──────────────────────────
+          GRAPH = "https://graph.microsoft.com/v1.0/me/events"
+          ok = err = 0
+
+          for w in workouts:
+              dt    = w.get('start_date_local', '')[:10]
+              name  = w.get('name', 'Træning')
+              wtype = w.get('type', 'Run')
+              dur   = w.get('moving_time', 3600)
+              desc  = w.get('description', '')
+              emoji = TYPE_EMOJI.get(wtype, '🏋️')
+
+              start_dt = f"{dt}T06:00:00"
+              end_dt   = f"{dt}T{str(6 + dur//3600).zfill(2)}:{str((dur%3600)//60).zfill(2)}:00"
+
+              event = {
+                  'subject': f"{emoji} {name}",
+                  'body': {
+                      'contentType': 'text',
+                      'content': desc or f"Fast as Fifty — {wtype}\nHentet fra Intervals.icu"
+                  },
+                  'start': {'dateTime': start_dt, 'timeZone': 'Europe/Copenhagen'},
+                  'end':   {'dateTime': end_dt,   'timeZone': 'Europe/Copenhagen'},
+                  'categories': ['Træning'],
+                  'showAs': 'busy',
+                  'isReminderOn': True,
+                  'reminderMinutesBeforeStart': 30,
+              }
+
+              resp = requests.post(GRAPH, headers=headers, json=event)
+              if resp.status_code == 201:
+                  print(f"  ✅ {dt} — {emoji} {name}")
+                  ok += 1
+              else:
+                  print(f"  ❌ {dt} — {name}: {resp.status_code} {resp.text[:100]}")
+                  err += 1
+
+          print(f"\n{'='*40}")
+          print(f"✅ Oprettet: {ok} | ❌ Fejl: {err}")
+          EOF
