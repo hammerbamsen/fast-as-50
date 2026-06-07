@@ -245,7 +245,7 @@ def get_planned_weeks():
         mon = week1 + timedelta(weeks=w-1)
         sun = mon + timedelta(days=6)
 
-        r = requests.get(f'{BASE}/workouts', auth=AUTH,
+        r = requests.get(f'{BASE}/events', auth=AUTH,
                          params={'oldest': str(mon), 'newest': str(sun)})
         if r.status_code != 200:
             continue
@@ -253,6 +253,9 @@ def get_planned_weeks():
         workouts = r.json()
         sessions = []
         for wo in workouts:
+            # Spring over completed activities — kun planlagte WORKOUT events
+            if wo.get('category') not in ('WORKOUT', None):
+                continue
             dt_str = wo.get('start_date_local', '')[:10]
             if not dt_str:
                 continue
