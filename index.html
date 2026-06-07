@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0402 -->
+<!DOCTYPE html><!-- v20260607-0405 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -350,9 +350,11 @@ function discTag(disc, small=false) {
 
 // ── Helpers ───────────────────────────────────────────────────
 function afRing(done, target) {
+  const DAYS_IN_WEEK = 7;
+  const GREEN_AT = 5;
   const r=22, circ=2*Math.PI*r;
-  const pct = Math.min(done/target, 1);
-  const color = done >= target ? "var(--green, #27AE60)" : "var(--wine)";
+  const pct = Math.min(done/DAYS_IN_WEEK, 1);
+  const color = done >= GREEN_AT ? "#27AE60" : "var(--wine)";
   return `<div class="af-ring">
     <svg width="60" height="60" viewBox="0 0 60 60">
       <circle cx="30" cy="30" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="5"/>
@@ -360,7 +362,7 @@ function afRing(done, target) {
         stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-pct)}"
         stroke-linecap="round" transform="rotate(-90 30 30)"/>
       <text x="30" y="35" text-anchor="middle" fill="${color}" font-size="13"
-        font-family="'Space Mono',monospace" font-weight="700">${done}/${target}</text>
+        font-family="'Space Mono',monospace" font-weight="700">${done}/7</text>
     </svg>
     <span class="af-ring-label">AF-DAGE</span>
   </div>`;
