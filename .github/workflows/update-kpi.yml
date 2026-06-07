@@ -2,7 +2,8 @@ name: Daglig dashboard-opdatering
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '0,10,20,30,40,50 * * * *'  # Hvert 10 min — mange entries forhindrer GitHub skip
+    - cron: '5,15,25,35,45,55 * * * *'  # Offset 5 min — dækker gaps
   workflow_dispatch:
 
 permissions:
