@@ -398,7 +398,7 @@ def delete_existing(session, dt):
     """Slet alle planned workouts på denne dato så vi undgår duplikater."""
     try:
         r = session.get(f"{BASE}/events", params={
-            "oldest": dt.isoformat(), "newest": dt.isoformat()
+            "oldest": f"{dt.isoformat()}T00:00:00", "newest": f"{dt.isoformat()}T23:59:00"
         })
         if r.status_code != 200:
             print(f"  ⚠️  Kunne ikke hente workouts for {dt}: {r.status_code}")
@@ -427,29 +427,43 @@ def get_folder_id(session):
 def upload(session, wo, dt):
     if wo is None:
         return None
-    # Slet eksisterende planned workouts på datoen inden upload
+    # Slet eksisterende events på datoen
     delete_existing(session, dt)
-    folder_id = get_folder_id(session)
-    payload = {
+
+    # ── Trin 1: Upload workout til bibliotek → få workout_id ──
+    lib_payload = {
+        "name":         wo["name"],
+        "type":         wo["type"],
+        "description":  wo.get("description", ""),
+        "moving_time":  wo.get("moving_time", 3600),
+        "folder_id":    FOLDER_ID,
+    }
+    if wo.get("workout_doc"):
+        lib_payload["workout_doc"] = wo["workout_doc"]
+
+    r1 = session.post(f"{BASE}/workouts", json=lib_payload)
+    if r1.status_code not in (200, 201):
+        print(f"  ❌ {dt.strftime('%d. %b %a')} — bibliotek fejl: {r1.status_code}: {r1.text[:200]}")
+        return None
+    workout_id = r1.json().get("id")
+
+    # ── Trin 2: Opret kalender-event med workout_id reference ──
+    event_payload = {
         "name":             wo["name"],
         "type":             wo["type"],
-        "description":      wo.get("description", ""),
         "start_date_local": f"{dt.isoformat()}T00:00:00",
         "end_date_local":   f"{dt.isoformat()}T23:59:00",
         "moving_time":      wo.get("moving_time", 3600),
         "category":         "WORKOUT",
+        "workout_id":       workout_id,
     }
-    if wo.get("workout_doc"):
-        payload["workout_doc"] = wo["workout_doc"]
-    r = session.post(f"{BASE}/events", json=payload)
-    if r.status_code in (200,201):
-        resp = r.json()
-        wid = resp.get("id","?")
-        print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{wid})")
-        return wid
+    r2 = session.post(f"{BASE}/events", json=event_payload)
+    if r2.status_code in (200, 201):
+        eid = r2.json().get("id", "?")
+        print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (workout:{workout_id} event:{eid})")
+        return eid
     else:
-        print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:500]}")
-        print(f"     Payload keys: {list(payload.keys())}")
+        print(f"  ❌ {dt.strftime('%d. %b %a')} — event fejl: {r2.status_code}: {r2.text[:200]}")
         return None
 
 def main(api_key, week_only=0):
