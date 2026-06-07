@@ -455,7 +455,7 @@ def upload(session, wo, dt):
         "end_date_local":   f"{dt.isoformat()}T23:59:00",
         "moving_time":      wo.get("moving_time", 3600),
         "category":         "WORKOUT",
-        "workout_id":       workout_id,
+        "plan_workout_id":  workout_id,
     }
     r2 = session.post(f"{BASE}/events", json=event_payload)
     if r2.status_code in (200, 201):
