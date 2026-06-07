@@ -397,7 +397,7 @@ def make_plan():
 def delete_existing(session, dt):
     """Slet alle planned workouts på denne dato så vi undgår duplikater."""
     try:
-        r = session.get(f"{BASE}/workouts", params={
+        r = session.get(f"{BASE}/events", params={
             "oldest": dt.isoformat(), "newest": dt.isoformat()
         })
         if r.status_code != 200:
@@ -411,7 +411,7 @@ def delete_existing(session, dt):
             if w.get("type") and not w.get("athlete_id"):
                 wid = w.get("id")
                 if wid:
-                    rd = session.delete(f"{BASE}/workouts/{wid}")
+                    rd = session.delete(f"{BASE}/events/{wid}")
                     if rd.status_code in (200, 204):
                         print(f"  🗑️  Slettede: {w.get('name','?')} ({wid})")
                     else:
@@ -431,9 +431,10 @@ def upload(session, wo, dt):
     delete_existing(session, dt)
     folder_id = get_folder_id(session)
     payload = {**wo, "start_date_local": dt.isoformat()}
+    payload["category"] = "WORKOUT"
     if folder_id:
         payload["folder_id"] = folder_id
-    r = session.post(f"{BASE}/workouts", json=payload)
+    r = session.post(f"{BASE}/events", json=payload)
     if r.status_code in (200,201):
         resp = r.json()
         wid = resp.get("id","?")
