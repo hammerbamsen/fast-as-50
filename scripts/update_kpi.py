@@ -52,7 +52,7 @@ def get_wellness_7d():
     return None
 
 def get_af_this_week():
-    """AF-dage fra mandag denne uge — tæl dage hvor Alkohol=0 eller ikke registreret som alkohol"""
+    """AF-dage fra mandag denne uge — tæl KUN dage med eksplicit Alkohol=0 (ikke tomme dage)"""
     monday = monday_this_week()
     today  = date.today()
     r = requests.get(f'{BASE}/wellness', auth=AUTH,
@@ -63,7 +63,7 @@ def get_af_this_week():
         for d in data:
             alkohol = d.get('Alkohol')  # custom field, capital A
             # AF-dag = ingen alkohol registreret eller eksplicit 0
-            if alkohol is None or alkohol == 0:
+            if alkohol is not None and alkohol == 0:
                 af_count += 1
         print(f"  AF raw data: {[(d.get('date'), d.get('Alkohol')) for d in data]}")
         return af_count
