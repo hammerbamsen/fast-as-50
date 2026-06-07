@@ -394,46 +394,47 @@ def make_plan():
     (p+timedelta(97), None,               "Recovery Bordeaux (søn 6. sep)"),
     ]
 
+def sec_to_pace(sec_per_km):
+    """Sekunder/km → mm:ss streng"""
+    m = sec_per_km // 60
+    s = sec_per_km % 60
+    return f"{m}:{s:02d}"
+
 def workout_doc_to_text(wo):
     """Konverter workout_doc steps til Intervals.icu tekst-format.
-    Format: "- 30m 65% Warmup\n\n5x\n- 7m 95%\n- 4m 30%\n\n- 25m 65% Cooldown"
-    FTP% beregnes fra watt-værdier (FTP=270W). Pace til løb i min/km.
+    Cykel: FTP% fra watt (FTP=270W)
+    Løb: pace i min/km format
     """
     FTP = 270
     lines = []
     doc = wo.get("workout_doc", {})
     steps = doc.get("steps", [])
-    
+
+    def step_line(step):
+        dur_min = step.get("duration", 0) // 60
+        desc = step.get("description", "")
+        power = step.get("power")
+        pace = step.get("pace")
+        if power:
+            pct = round(power["value"] / FTP * 100)
+            return f"- {dur_min}m {pct}% {desc}"
+        elif pace:
+            # pace.value er sekunder/km
+            pace_str = sec_to_pace(int(pace["value"]))
+            return f"- {dur_min}m @ {pace_str}/km {desc}"
+        else:
+            return f"- {dur_min}m {desc}"
+
     for step in steps:
         if step.get("type") == "step":
-            dur_min = step.get("duration", 0) // 60
-            desc = step.get("description", "")
-            power = step.get("power")
-            pace = step.get("pace")
-            if power:
-                pct = round(power["value"] / FTP * 100)
-                lines.append(f"- {dur_min}m {pct}% {desc}")
-            elif pace:
-                lines.append(f"- {dur_min}m {desc}")
-            else:
-                lines.append(f"- {dur_min}m {desc}")
+            lines.append(step_line(step))
         elif step.get("type") == "repetition":
             reps_count = step.get("reps", 1)
             lines.append(f"\n{reps_count}x")
             for sub in step.get("steps", []):
-                dur_min = sub.get("duration", 0) // 60
-                desc = sub.get("description", "")
-                power = sub.get("power")
-                pace = sub.get("pace")
-                if power:
-                    pct = round(power["value"] / FTP * 100)
-                    lines.append(f"- {dur_min}m {pct}% {desc}")
-                elif pace:
-                    lines.append(f"- {dur_min}m {desc}")
-                else:
-                    lines.append(f"- {dur_min}m {desc}")
+                lines.append(step_line(sub))
             lines.append("")
-    
+
     return "\n".join(lines).strip()
 
 
