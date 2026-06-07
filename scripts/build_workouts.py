@@ -471,6 +471,8 @@ def main(api_key, week_only=0):
         sys.exit(1)
     print(f"✅ Forbundet: {r.json().get('name', ATHLETE_ID)}\n")
     print(f"   Base URL: {BASE}")
+    print(f"   week_only: {week_only}")
+    print(f"   sys.argv: {sys.argv}")
 
     plan = make_plan()
     days_da = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
@@ -504,6 +506,10 @@ def main(api_key, week_only=0):
     print(f"✅ Uploadet:  {ok}")
     print(f"⚪ Hvile/rejse: {skip}")
     print(f"❌ Fejl:      {err}")
+    print(f"week_only filter var: {week_only}")
+    if ok == 0 and skip == 0 and err == 0:
+        print("\n⚠️  Ingen workouts processeret — week_only filter sprang alle over?")
+        sys.exit(1)
     if err > 0:
         print("\n⚠️  Der var fejl — se detaljer ovenfor")
         sys.exit(1)
