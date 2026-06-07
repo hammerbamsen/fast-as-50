@@ -349,6 +349,19 @@ def main():
     af_days, af_log = get_af_this_week()
     af_streak = get_af_streak()
 
+    # DEBUG: dump rå AF-data til fil
+    try:
+        _dbg = requests.get(f'{BASE}/wellness', auth=AUTH,
+                            params={'oldest': str(date.today()-timedelta(days=10)), 'newest': str(date.today())})
+        _lines = [f"HTTP {_dbg.status_code}"]
+        for _d in _dbg.json():
+            _lines.append(f"{_d.get('date','')[:10]} Alkohol={_d.get('Alkohol')}")
+        _lines.append(f"af_days={af_days} af_log={af_log} streak={af_streak}")
+        sha_dbg, _ = gh_get('debug_af.txt')
+        gh_put('debug_af.txt', sha_dbg, "\n".join(_lines), "debug af dump")
+    except Exception as e:
+        print("debug dump fejl:", e)
+
     print(f"  Fitness:    {fitness}")
     print(f"  Wellness:   {wellness}")
     print(f"  Aktivitet:  {activities}")
