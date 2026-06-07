@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0933 -->
+<!DOCTYPE html><!-- v20260607-0940 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -797,7 +797,12 @@ function navigate(pageId) {
 
   // Render den aktive side
   const renders = {today:renderToday, week:renderWeek, overview:renderOverview, body:renderBody, rules:renderRules};
-  document.getElementById(`page-${pageId}`).innerHTML = renders[pageId]();
+  try {
+    document.getElementById(`page-${pageId}`).innerHTML = renders[pageId]();
+  } catch(e) {
+    console.error('RENDER FEJL i ' + pageId + ':', e.message);
+    document.getElementById(`page-${pageId}`).innerHTML = '<div style="padding:20px;color:red;font-family:monospace;font-size:11px">RENDER FEJL: ' + e.message + '</div>';
+  }
 
   renderNav();
 }
