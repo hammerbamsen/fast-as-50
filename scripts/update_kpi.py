@@ -90,6 +90,40 @@ def get_af_this_week():
     
     return None, {}
 
+def get_af_streak():
+    """Beregn sammenhængende AF-streak bagud fra i dag.
+    Henter 90 dages wellness og tæller AF-dage (Alkohol=0) i træk,
+    startende fra i dag og gående baglæns. Stopper ved første ikke-AF-dag
+    eller manglende registrering.
+    """
+    oldest = str(date.today() - timedelta(days=90))
+    newest = str(date.today())
+    r = requests.get(f'{BASE}/wellness', auth=AUTH,
+                     params={'oldest': oldest, 'newest': newest})
+    if r.status_code != 200:
+        return 0
+    af_by_date = {}
+    for d in r.json():
+        dt = d.get('date', '')[:10]
+        val = d.get('Alkohol')
+        if val is not None:
+            af_by_date[dt] = val
+
+    streak = 0
+    check = date.today()
+    # Hvis i dag ikke er registreret endnu, start fra i gaar
+    if str(check) not in af_by_date:
+        check -= timedelta(days=1)
+    while True:
+        k = str(check)
+        if af_by_date.get(k) == 0:
+            streak += 1
+            check -= timedelta(days=1)
+        else:
+            break
+    print(f"  AF streak: {streak}")
+    return streak
+
 def get_activities_week():
     """TSS, løbe-km og done-sessioner fra mandag denne uge"""
     monday = monday_this_week()
@@ -313,6 +347,7 @@ def main():
     planned_weeks = get_planned_weeks()
     planned    = planned_tss_this_week()
     af_days, af_log = get_af_this_week()
+    af_streak = get_af_streak()
 
     print(f"  Fitness:    {fitness}")
     print(f"  Wellness:   {wellness}")
@@ -365,7 +400,8 @@ def main():
     # --- AF-dage (man–søn denne uge) ---
     data['af'] = {
         'weekDone': af_days if af_days is not None else data.get('af', {}).get('weekDone', 0),
-        'target': 5
+        'target': 5,
+        'streak': af_streak
     }
 
     # --- AF log: dag-for-dag til af.html sync ---
