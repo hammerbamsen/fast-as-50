@@ -209,6 +209,10 @@ def build_week_sessions(done_map, planned_sessions):
                 new_s['disc2'] = discs[1]
             elif len(discs) == 1:
                 new_s['disc'] = discs[0]
+                # Bevar disc2 fra den planlagte session hvis Intervals kun har én aktivitet
+                # (fx cykel ikke logget endnu men svøm er)
+                if 'disc2' not in new_s and 'disc2' in s:
+                    new_s['disc2'] = s['disc2']
 
         result.append(new_s)
     return result
