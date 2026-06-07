@@ -13,25 +13,33 @@
   .label { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
   .date { font-family: 'Newsreader', serif; font-size: 28px; color: #59182A; margin-bottom: 4px; }
   .note { font-family: 'Space Mono', monospace; font-size: 10px; color: #BE863A; margin-bottom: 6px; letter-spacing: 0.05em; }
-  .question { font-size: 16px; color: #1A1008; margin-bottom: 24px; line-height: 1.5; }
-  .streak { font-family: 'Space Mono', monospace; font-size: 11px; color: #7A6A58; margin-bottom: 24px; }
-  .streak span { color: #59182A; font-weight: 700; }
+  .question { font-size: 16px; color: #1A1008; margin-bottom: 16px; line-height: 1.5; }
+  .streak-box { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+  .streak-item { text-align: center; }
+  .streak-num { font-family: 'Newsreader', serif; font-size: 32px; color: #59182A; line-height: 1; }
+  .streak-lbl { font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+  .streak-fire { font-size: 18px; }
   .buttons { display: flex; gap: 12px; margin-bottom: 16px; }
   .btn { flex: 1; padding: 18px 12px; border-radius: 10px; border: none; font-family: 'Hanken Grotesk', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
-  .btn-ja { background: #59182A; color: #ECE4D7; }
+  .btn-ja  { background: #59182A; color: #ECE4D7; }
   .btn-nej { background: #DDD3C3; color: #7A6A58; }
-  .week-row { display: flex; gap: 6px; justify-content: center; margin: 16px 0; }
-  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; }
+  .week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .week-nav-btn { background: none; border: none; font-family: 'Space Mono', monospace; font-size: 16px; color: #7A6A58; cursor: pointer; padding: 4px 8px; }
+  .week-nav-btn:disabled { color: #DDD3C3; cursor: default; }
+  .week-nav-lbl { font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; letter-spacing: 0.08em; text-transform: uppercase; }
+  .week-row { display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; }
+  .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; cursor: default; }
   .dot-af    { background: #59182A; color: #ECE4D7; }
   .dot-nej   { background: #DDD3C3; color: #7A6A58; }
   .dot-today { outline: 2px solid #BE863A; outline-offset: 2px; }
   .dot-active{ outline: 2px solid #59182A; outline-offset: 2px; }
   .dot-empty { background: #ECE4D7; color: #C8BBA8; border: 1px dashed #DDD3C3; }
+  .dot-future{ background: #ECE4D7; color: #DDD3C3; border: 1px solid #ECE4D7; }
   .status { font-size: 13px; color: #7A6A58; min-height: 18px; margin-bottom: 4px; }
   .status.ok  { color: #1A7A5E; font-weight: 600; }
   .status.err { color: #C0392B; }
   .done-title { font-family: 'Newsreader', serif; font-size: 24px; color: #59182A; margin-bottom: 8px; }
-  .done-sub   { font-size: 14px; color: #7A6A58; line-height: 1.6; }
+  .done-sub   { font-size: 14px; color: #7A6A58; line-height: 1.6; margin-bottom: 4px; }
   .setup-input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #DDD3C3; font-family: 'Space Mono', monospace; font-size: 12px; margin-bottom: 12px; background: #ECE4D7; }
   .btn-setup { width: 100%; padding: 14px; border-radius: 8px; border: none; background: #59182A; color: #ECE4D7; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
   .footer { margin-top: 18px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
@@ -51,32 +59,66 @@ const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lø
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const SHORT     = ["Søn","Man","Tir","Ons","Tor","Fre","Lør"];
 
-function getToken()    { return localStorage.getItem(TOKEN_KEY) || ''; }
-function saveToken(t)  { localStorage.setItem(TOKEN_KEY, t); }
-function getLog()      { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch { return {}; } }
-function saveLog(log)  { localStorage.setItem(STORAGE_KEY, JSON.stringify(log)); }
-
-function toKey(d)      { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function todayKey()    { return toKey(new Date()); }
-function yesterdayKey(){ const d=new Date(); d.setDate(d.getDate()-1); return toKey(d); }
-function weekStart()   { const d=new Date(); const diff=d.getDay()===0?-6:1-d.getDay(); const m=new Date(d); m.setDate(d.getDate()+diff); m.setHours(0,0,0,0); return m; }
-function formatDate(k) { const d=new Date(k+'T12:00:00'); return `${DK_DAYS[d.getDay()]} ${d.getDate()}. ${DK_MONTHS[d.getMonth()]}`; }
-function isThisWeek(k) { return new Date(k+'T12:00:00') >= weekStart(); }
-
-function afCount() {
-  const log=getLog(), mon=weekStart(), today=todayKey();
-  return Object.entries(log).filter(([k,v])=>v===true&&k>=toKey(mon)&&k<=today).length;
+// ── Datofunktioner ────────────────────────────────────────────
+function toKey(d)   { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function todayKey() { return toKey(new Date()); }
+function mondayOf(d){ const m=new Date(d); const diff=m.getDay()===0?-6:1-m.getDay(); m.setDate(m.getDate()+diff); m.setHours(0,0,0,0); return m; }
+function weekStart(){ return mondayOf(new Date()); }
+function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function formatDate(k){ const d=new Date(k+'T12:00:00'); return `${DK_DAYS[d.getDay()]} ${d.getDate()}. ${DK_MONTHS[d.getMonth()]}`; }
+function formatWeekLabel(mon){
+  const sun=addDays(mon,6);
+  if(mon.getMonth()===sun.getMonth()) return `${mon.getDate()}–${sun.getDate()}. ${DK_MONTHS[mon.getMonth()]}`;
+  return `${mon.getDate()}. ${DK_MONTHS[mon.getMonth()]} – ${sun.getDate()}. ${DK_MONTHS[sun.getMonth()]}`;
 }
 
-function weekStrip(activeKey) {
-  const log=getLog(), mon=weekStart(), today=todayKey();
-  let h='<div class="week-row">';
+// ── Storage ───────────────────────────────────────────────────
+function getToken()   { return localStorage.getItem(TOKEN_KEY) || ''; }
+function saveToken(t) { localStorage.setItem(TOKEN_KEY, t); }
+function getLog()     { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch { return {}; } }
+function saveLog(log) { localStorage.setItem(STORAGE_KEY, JSON.stringify(log)); }
+
+// ── Streak beregning (fra data.json + localStorage) ──────────
+let globalStreak = 0;
+
+function calcStreak(log) {
+  // Gå baglæns fra i går og tæl sammenhængende AF-dage
+  let streak = 0;
+  const today = todayKey();
+  // Inkluder i dag hvis registreret som AF
+  let check = new Date();
+  if(log[today] === true) { streak++; check = addDays(check, -1); }
+  else if(log[today] === false) { return streak; } // Ikke-AF dag stopper streak
+  else { check = addDays(check, -1); } // Ikke registreret endnu — start fra i går
+  while(true) {
+    const k = toKey(check);
+    if(log[k] === true) { streak++; check = addDays(check, -1); }
+    else { break; }
+  }
+  return streak;
+}
+
+function afCountForWeek(mon, log) {
+  const today = todayKey();
+  let count = 0;
   for(let i=0;i<7;i++){
-    const d=new Date(mon); d.setDate(mon.getDate()+i);
-    const k=toKey(d);
-    if(k>today){h+=`<div class="day-dot dot-empty">${SHORT[d.getDay()]}</div>`;continue;}
-    const v=log[k];
-    let c='day-dot ';
+    const k = toKey(addDays(mon,i));
+    if(k > today) break;
+    if(log[k] === true) count++;
+  }
+  return count;
+}
+
+// ── Uge-strip (kan vise en vilkårlig uge) ────────────────────
+function weekStrip(mon, activeKey, log) {
+  const today = todayKey();
+  let h = '<div class="week-row">';
+  for(let i=0;i<7;i++){
+    const d = addDays(mon, i);
+    const k = toKey(d);
+    if(k > today) { h+=`<div class="day-dot dot-future">${SHORT[d.getDay()]}</div>`; continue; }
+    const v = log[k];
+    let c = 'day-dot ';
     if(v===true) c+='dot-af'; else if(v===false) c+='dot-nej'; else c+='dot-empty';
     if(k===today) c+=' dot-today';
     if(k===activeKey&&k!==today) c+=' dot-active';
@@ -85,10 +127,39 @@ function weekStrip(activeKey) {
   return h+'</div>';
 }
 
+// ── Ugenavigation ─────────────────────────────────────────────
+let viewWeekOffset = 0; // 0 = denne uge, -1 = forrige uge, osv.
+
+function getViewMonday() {
+  const m = weekStart();
+  m.setDate(m.getDate() + viewWeekOffset * 7);
+  return m;
+}
+
+function renderWeekNav(mon) {
+  const isCurrentWeek = viewWeekOffset === 0;
+  const weekLbl = isCurrentWeek ? 'DENNE UGE' : formatWeekLabel(mon);
+  return `
+    <div class="week-nav">
+      <button class="week-nav-btn" onclick="changeWeek(-1)">←</button>
+      <div class="week-nav-lbl">${weekLbl}</div>
+      <button class="week-nav-btn" onclick="changeWeek(1)" ${isCurrentWeek?'disabled':''}>→</button>
+    </div>
+  `;
+}
+
+function changeWeek(dir) {
+  if(dir === 1 && viewWeekOffset >= 0) return;
+  viewWeekOffset += dir;
+  // Max 8 uger tilbage (projektstart)
+  if(viewWeekOffset < -8) { viewWeekOffset = -8; return; }
+  showDone(); // Refresh done-skærm med ny uge
+}
+
+// ── Queue (kun denne uge) ─────────────────────────────────────
 function buildQueue() {
   const log=getLog(), q=[];
   const mon=weekStart(), today=todayKey();
-  // Alle dage fra mandag til i dag der mangler registrering
   for(let i=0;i<7;i++){
     const d=new Date(mon); d.setDate(mon.getDate()+i);
     const k=toKey(d);
@@ -98,7 +169,7 @@ function buildQueue() {
   return q;
 }
 
-// ── Setup skærm ───────────────────────────────────────────────
+// ── Setup ─────────────────────────────────────────────────────
 function showSetup() {
   document.getElementById('view').innerHTML = `
     <div class="label">Fast as Fifty · Opsætning</div>
@@ -118,42 +189,73 @@ function saveSetup() {
   init();
 }
 
-// ── Spørgsmål + svar ──────────────────────────────────────────
+// ── Spørgsmål ─────────────────────────────────────────────────
 let queue=[], qIdx=0;
 
 function showQuestion(key) {
-  const isToday=key===todayKey();
+  const log = getLog();
+  const streak = calcStreak(log);
+  const weekCount = afCountForWeek(weekStart(), log);
+  const isToday = key===todayKey();
   document.getElementById('view').innerHTML=`
     <div class="label">Fast as Fifty · AF-dag</div>
     <div class="date">${formatDate(key)}</div>
     ${!isToday?'<div class="note">MANGLER REGISTRERING</div>':''}
     <div class="question">Var det en alkoholfri dag?</div>
-    <div class="streak">Denne uge: <span>${afCount()}</span>/5 AF-dage</div>
+    <div class="streak-box">
+      <div class="streak-item">
+        <div class="streak-num">${streak}</div>
+        <div class="streak-lbl">Streak</div>
+      </div>
+      <div class="streak-item" style="padding-top:6px;color:#7A6A58;font-size:20px">·</div>
+      <div class="streak-item">
+        <div class="streak-num">${weekCount}/5</div>
+        <div class="streak-lbl">Denne uge</div>
+      </div>
+    </div>
     <div class="buttons">
       <button class="btn btn-ja" onclick="answer(true)">Ja</button>
       <button class="btn btn-nej" onclick="answer(false)">Nej</button>
     </div>
-    ${weekStrip(key)}
+    ${weekStrip(weekStart(), key, log)}
     <div class="status" id="status"></div>
     <div class="footer"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
   `;
 }
 
+// ── Done-skærm (med ugebladring) ──────────────────────────────
 function showDone() {
-  const count=afCount();
-  const msg=count>=5?'Mål nået! 💪':count>=3?'God uge — fortsæt.':'Keep moving forward.';
+  const log = getLog();
+  const mon = getViewMonday();
+  const streak = calcStreak(log);
+  const weekCount = afCountForWeek(mon, log);
+  const isCurrentWeek = viewWeekOffset === 0;
+  const msg = weekCount>=5?'Mål nået!':weekCount>=3?'God uge — fortsæt.':'Keep moving forward.';
+
   document.getElementById('view').innerHTML=`
     <div class="label">Fast as Fifty · AF-dag</div>
-    <div class="done-title">Alt registreret</div>
-    <div class="done-sub">${count} AF-dage denne uge — målet er 5.<br>${msg}</div>
-    ${weekStrip(null)}
-    <div class="footer" style="margin-top:16px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
+    <div class="streak-box" style="margin-bottom:16px">
+      <div class="streak-item">
+        <div class="streak-num">${streak}</div>
+        <div class="streak-lbl">Streak</div>
+      </div>
+      <div class="streak-item" style="padding-top:6px;color:#7A6A58;font-size:20px">·</div>
+      <div class="streak-item">
+        <div class="streak-num">${weekCount}/5</div>
+        <div class="streak-lbl">${isCurrentWeek?'Denne uge':formatWeekLabel(mon)}</div>
+      </div>
+    </div>
+    ${isCurrentWeek?`<div class="done-sub" style="margin-bottom:12px">${msg}</div>`:''}
+    ${renderWeekNav(mon)}
+    ${weekStrip(mon, null, log)}
+    <div class="footer" style="margin-top:8px"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
   `;
 }
 
+// ── Svar ──────────────────────────────────────────────────────
 async function answer(isAF) {
-  const key=queue[qIdx];
-  const log=getLog(); log[key]=isAF; saveLog(log);
+  const key = queue[qIdx];
+  const log = getLog(); log[key] = isAF; saveLog(log);
   document.querySelector('.buttons').style.display='none';
   document.getElementById('status').innerHTML='<span class="spinner"></span>Sender...';
 
@@ -177,34 +279,37 @@ async function answer(isAF) {
   setTimeout(()=>{ qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone(); }, 800);
 }
 
-async function fetchIntervalsAF() {
-  // Hent AF-data fra Intervals for denne uge og synk til localStorage
-  const token = getToken();
-  if(!token) return;
+// ── Sync fra data.json (Intervals-data) ───────────────────────
+async function syncFromIntervals() {
   try {
-    const mon = weekStart();
-    const today = new Date();
-    const fmt = d => d.toISOString().split('T')[0];
-    const oldest = fmt(mon);
-    const newest = fmt(today);
-
-    // Trigger GitHub Action til at hente wellness og returnere det
-    // Vi bruger data.json som proxy — henter AF fra den
     const r = await fetch('https://hammerbamsen.github.io/fast-as-50/data.json?t=' + Date.now());
     if(!r.ok) return;
     const data = await r.json();
 
-    // data.json har ikke dag-for-dag data — men vi kan bruge
-    // wellness endpoint direkte via GitHub Action dispatch
-    // For nu: berig localStorage med kendte AF-dage fra Intervals
-    // ved at kalde wellness API via CORS-proxy (GitHub dispatch)
+    // Synk af_log fra Intervals (denne uge)
+    if(data.af_log && typeof data.af_log === 'object') {
+      const log = getLog();
+      let changed = false;
+      Object.entries(data.af_log).forEach(([date, val]) => {
+        if(log[date] === undefined) {
+          log[date] = (val === 0);
+          changed = true;
+        }
+      });
+      if(changed) saveLog(log);
+    }
+
+    // Sæt global streak fra data.json hvis tilgængelig
+    if(data.af && data.af.streak !== undefined) {
+      globalStreak = data.af.streak;
+    }
   } catch(e) {
-    console.log('Intervals sync fejl:', e.message);
+    console.log('Sync fejl:', e.message);
   }
 }
 
+// ── Init ──────────────────────────────────────────────────────
 async function init() {
-  // Reset hvis ?reset i URL
   if(window.location.search.includes('reset')) {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(TOKEN_KEY);
@@ -212,41 +317,13 @@ async function init() {
   }
   if(!getToken()) { showSetup(); return; }
 
-  // Vis loading
   document.getElementById('view').innerHTML = '<div style="text-align:center;padding:40px;font-family:Space Mono,monospace;font-size:11px;color:#7A6A58;letter-spacing:.08em">HENTER DATA...</div>';
 
-  // Hent wellness fra Intervals via checkin.html endpoint
   await syncFromIntervals();
 
-  queue=buildQueue(); qIdx=0;
+  queue = buildQueue();
+  qIdx = 0;
   queue.length===0 ? showDone() : showQuestion(queue[0]);
-}
-
-async function syncFromIntervals() {
-  // Henter af_log fra data.json (opdateres hvert 10 min fra Intervals)
-  // og populerer localStorage — så af.html altid ved hvad der allerede er registreret
-  try {
-    const r = await fetch('https://hammerbamsen.github.io/fast-as-50/data.json?t=' + Date.now());
-    if(!r.ok) return;
-    const data = await r.json();
-
-    if(data.af_log && typeof data.af_log === 'object') {
-      const log = getLog();
-      let changed = false;
-      Object.entries(data.af_log).forEach(([date, val]) => {
-        // Kun synk dage i denne uge der ikke allerede er registreret lokalt
-        if(isThisWeek(date) && log[date] === undefined) {
-          // val: 0 = AF-dag (ingen alkohol), 1 = ikke AF-dag
-          log[date] = (val === 0);
-          changed = true;
-          console.log('Syncede fra Intervals:', date, val === 0 ? 'AF ✓' : 'ikke AF');
-        }
-      });
-      if(changed) saveLog(log);
-    }
-  } catch(e) {
-    console.log('Intervals sync fejl (bruger localStorage):', e.message);
-  }
 }
 
 init();
