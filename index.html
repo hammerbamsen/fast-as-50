@@ -567,13 +567,19 @@ function renderWeek() {
   ${sessions.length === 0 ? `<div class="card" style="text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:32px">DATA IKKE TILGÆNGELIG</div>` :
     sessions.map(s=>`
   <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""}">
-    <div class="wsession-icon" style="background:${C[s.disc]||'#7A6A58'}18">${icon(s.disc,18,C[s.disc]||'#7A6A58')}</div>
+    <div class="wsession-icon" style="background:${C[s.disc]||'#7A6A58'}18">
+      ${s.disc2
+        ? `<span style="display:flex;gap:2px;align-items:center">${icon(s.disc,14,C[s.disc]||'#7A6A58')}${icon(s.disc2,14,C[s.disc2]||'#7A6A58')}</span>`
+        : icon(s.disc,18,C[s.disc]||'#7A6A58')}
+    </div>
     <div class="wsession-body">
       <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek)?`<span class="today-badge">I DAG</span>`:""}</div>
       <div class="wsession-day">${s.day}</div>
     </div>
-    ${discTag(s.disc,true)}
-    ${s.done?icon("check",18,C[s.disc]||'#7A6A58'):""}
+    ${s.disc2
+      ? `<span style="display:flex;gap:4px">${discTag(s.disc,true)}${discTag(s.disc2,true)}</span>`
+      : discTag(s.disc,true)}
+    ${s.done ? icon("check",18,C[s.disc]||'#7A6A58') : ""}
   </div>`).join("")
   }
   <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6">${focus||'—'}</p></div>
