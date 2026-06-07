@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0441 -->
+<!DOCTYPE html><!-- v20260607-0752 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -319,6 +319,10 @@ let D = {
     {day:"Søn", disc:"swim",     label:"Svøm 2000m + cykel",   done:false, today:true},
   ],
   ctlCurve:[34,36,38,41,44,43,41,45,49,53,57,55,58,60],
+  weightHistory: [],
+  hrvHistory: [],
+  sleepHistory: [],
+  tsbHistory: [],
 };
 
 let sessionDone = false;
@@ -590,6 +594,22 @@ function renderBody() {
     <div class="label">Styrke — Functional Strength 2</div>
     <div>${STATIC.strength.map(e=>`<span class="strength-tag">${e}</span>`).join("")}</div>
     <div class="eq-note">KB: 12.5 / 16 / 20 kg · DB: 5 / 7 / 10 / 12.5 / 15 kg</div>
+  </div>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">Træningsfordeling — uge ${D.week}</div>
+    ${trainingDonut()}
+  </div>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">Tendenser — 7 dage</div>
+    ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', 70, 80)}
+    <div style="height:12px"></div>
+    ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', 35, 75)}
+    <div style="height:12px"></div>
+    ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', 5, 9)}
+  </div>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
+    ${afStreakViz(D.afDays.weekDone, D.afDays.target)}
   </div>`;
 }
 
@@ -604,6 +624,89 @@ function renderRules() {
     <span class="rule-num">${r.n}</span>
     <div><div class="rule-title">${r.title}</div><div class="rule-body">${r.body}</div></div>
   </div>`).join("")}`;
+}
+
+
+function sparkline(data, color, label, unit, minV, maxV) {
+  if (!data || data.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
+  const W=280, H=60, pad={l:8,r:8,t:8,b:16};
+  const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
+  const vals = data.map(d=>typeof d==='object'?d.v:d);
+  const mn = minV ?? Math.min(...vals)*0.98;
+  const mx = maxV ?? Math.max(...vals)*1.02;
+  const x = i => pad.l + (i/(vals.length-1))*iW;
+  const y = v => pad.t + iH - ((v-mn)/(mx-mn||1))*iH;
+  const pts = vals.map((v,i)=>`${x(i)},${y(v)}`).join(' ');
+  const last = vals[vals.length-1];
+  const prev = vals[vals.length-2];
+  const trend = last > prev ? '↑' : last < prev ? '↓' : '→';
+  const tcolor = last > prev ? 'var(--swim)' : last < prev ? 'var(--run)' : 'var(--muted)';
+  return `<div style="position:relative">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+      <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em">${label}</span>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;color:${color};font-weight:700">${last.toFixed(1).replace('.',',')} <span style="font-size:9px">${unit}</span> <span style="color:${tcolor}">${trend}</span></span>
+    </div>
+    <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:${H}px">
+      <defs><linearGradient id="sg_${label.replace(/\s/g,'')}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${color}" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="${color}" stop-opacity=".02"/>
+      </linearGradient></defs>
+      <path d="M${x(0)},${y(vals[0])} ${vals.map((v,i)=>`L${x(i)},${y(v)}`).join(' ')} L${x(vals.length-1)},${H-pad.b} L${x(0)},${H-pad.b} Z" fill="url(#sg_${label.replace(/\s/g,'')})"/>
+      <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round"/>
+      <circle cx="${x(vals.length-1)}" cy="${y(last)}" r="3" fill="${color}" stroke="var(--white)" stroke-width="1.5"/>
+    </svg>
+  </div>`;
+}
+
+function afStreakViz(done, target) {
+  const days = ['M','T','O','T','F','L','S'];
+  return `<div style="display:flex;gap:6px;justify-content:center;margin:8px 0">
+    ${days.map((d,i)=>{
+      const filled = i < done;
+      return \`<div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+        <div style="width:28px;height:28px;border-radius:50%;background:\${filled?'var(--wine)':'var(--cream-d)'};display:flex;align-items:center;justify-content:center">
+          <span style="font-size:9px;color:\${filled?'var(--gold)':'var(--muted)'};font-weight:700">\${filled?'✓':d}</span>
+        </div>
+      </div>\`;
+    }).join('')}
+  </div>
+  <div style="text-align:center;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${done}/${target} AF-DAGE DENNE UGE</div>`;
+}
+
+function trainingDonut() {
+  const acts = D.week_sessions.filter(s=>s.done);
+  const counts = {run:0,bike:0,swim:0,strength:0};
+  acts.forEach(s=>{
+    if(s.disc in counts) counts[s.disc]++;
+    if(s.disc2 && s.disc2 in counts) counts[s.disc2]++;
+  });
+  const total = Object.values(counts).reduce((a,b)=>a+b,0)||1;
+  const colors = {run:'var(--run)',bike:'var(--bike)',swim:'var(--swim)',strength:'var(--gold)'};
+  const labels = {run:'Løb',bike:'Cykel',swim:'Svøm',strength:'Styrke'};
+  let offset=0, cx=60, cy=60, r=45, stroke=18;
+  const segments = Object.entries(counts).filter(([k,v])=>v>0).map(([k,v])=>{
+    const pct = v/total;
+    const seg = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[k]}" stroke-width="${stroke}"
+      stroke-dasharray="${pct*2*Math.PI*r} ${2*Math.PI*r}"
+      stroke-dashoffset="${-offset*2*Math.PI*r}"
+      transform="rotate(-90 ${cx} ${cy})"/>`;
+    offset+=pct;
+    return {seg, k, v, pct};
+  });
+  return `<div style="display:flex;align-items:center;gap:16px">
+    <svg viewBox="0 0 120 120" style="width:90px;height:90px;flex-shrink:0">
+      ${total===1?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="${stroke}"/>`:''}
+      ${segments.map(s=>s.seg).join('')}
+      <text x="${cx}" y="${cy+4}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="10" fill="var(--wine)" font-weight="700">${total}</text>
+      <text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="var(--muted)">SESS.</text>
+    </svg>
+    <div style="flex:1">${segments.map(s=>`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-family:'Space Mono',monospace;font-size:9px;color:${colors[s.k]}">${labels[s.k].toUpperCase()}</span>
+        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${s.v}×</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
 }
 
 // ── Navigation ────────────────────────────────────────────────
@@ -709,9 +812,14 @@ async function init() {
           {label:"SØVN",      value:km.sleep?.value  ||"—", unit:"t",  sub:km.sleep?.sub  ||"Mål 7t",               color:"#2874A6"},
           {label:"LØB KM",    value:km.runKm?.value  ||"—", unit:"km", sub:km.runKm?.sub  ||"Mål 40+ km",           color:"#C0392B"},
           {label:"HRV",       value:km.hrv?.value    ||"—", unit:"ms", sub:km.hrv?.sub    ||"Stabil",               color:"#7A6A58"},
+          {label:"TSS COMP.", value:km.tssComp?.value||"—", unit:km.tssComp?.unit||"", sub:km.tssComp?.sub||"TSS compliance", color:km.tssComp?.color||"#7A6A58"},
         ];
       }
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
+      if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
+      if (remote.hrvHistory)     D.hrvHistory     = remote.hrvHistory;
+      if (remote.sleepHistory)   D.sleepHistory   = remote.sleepHistory;
+      if (remote.tsbHistory)     D.tsbHistory     = remote.tsbHistory;
       if (remote.coachSpeech)    D.coachSpeech    = remote.coachSpeech;
       if (remote.coachHighlight) D.coachHighlight = remote.coachHighlight;
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
