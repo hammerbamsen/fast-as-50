@@ -396,18 +396,28 @@ def make_plan():
 
 def delete_existing(session, dt):
     """Slet alle planned workouts på denne dato så vi undgår duplikater."""
-    r = session.get(f"{BASE}/workouts", params={
-        "oldest": dt.isoformat(), "newest": dt.isoformat()
-    })
-    if r.status_code != 200:
-        return
-    for w in r.json():
-        if w.get("athlete_id") and not w.get("start_date_local", "").startswith("actual"):
-            wid = w.get("id")
-            if wid:
-                rd = session.delete(f"{BASE}/workouts/{wid}")
-                if rd.status_code in (200, 204):
-                    print(f"  🗑️  Slettede eksisterende: {w.get('name','?')} ({wid})")
+    try:
+        r = session.get(f"{BASE}/workouts", params={
+            "oldest": dt.isoformat(), "newest": dt.isoformat()
+        })
+        if r.status_code != 200:
+            print(f"  ⚠️  Kunne ikke hente workouts for {dt}: {r.status_code}")
+            return
+        workouts = r.json()
+        if not isinstance(workouts, list):
+            return
+        for w in workouts:
+            # Slet kun planned workouts (ikke completed activities)
+            if w.get("type") and not w.get("athlete_id"):
+                wid = w.get("id")
+                if wid:
+                    rd = session.delete(f"{BASE}/workouts/{wid}")
+                    if rd.status_code in (200, 204):
+                        print(f"  🗑️  Slettede: {w.get('name','?')} ({wid})")
+                    else:
+                        print(f"  ⚠️  Kunne ikke slette {wid}: {rd.status_code}")
+    except Exception as e:
+        print(f"  ⚠️  delete_existing fejl: {e}")
 
 def upload(session, wo, dt):
     if wo is None:
@@ -431,9 +441,10 @@ def main(api_key):
 
     r = session.get(f"{BASE}/athlete")
     if r.status_code != 200:
-        print(f"❌ Forbindelsesfejl: {r.status_code} — {r.text[:100]}")
+        print(f"❌ Forbindelsesfejl: {r.status_code} — {r.text[:200]}")
         sys.exit(1)
     print(f"✅ Forbundet: {r.json().get('name', ATHLETE_ID)}\n")
+    print(f"   Base URL: {BASE}")
 
     plan = make_plan()
     days_da = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
