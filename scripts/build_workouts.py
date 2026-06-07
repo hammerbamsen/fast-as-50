@@ -434,7 +434,7 @@ def upload(session, wo, dt):
         print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:150]}")
         return None
 
-def main(api_key):
+def main(api_key, week_only=0):
     session = requests.Session()
     session.auth = ("API_KEY", api_key)
     session.headers.update({"Content-Type":"application/json"})
@@ -453,6 +453,11 @@ def main(api_key):
     cur_week = 0
 
     for dt, wo, note in plan:
+        # Hvis week_only > 0, spring andre uger over
+        delta_check = (dt - PLAN_START).days
+        week_check = delta_check // 7 + 1
+        if week_only > 0 and week_check != week_only:
+            continue
         delta = (dt - PLAN_START).days
         week = delta // 7 + 1
         if week != cur_week:
@@ -477,7 +482,8 @@ def main(api_key):
 if __name__ == "__main__":
     import os
     api_key = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("INTERVALS_API_KEY", "")
+    week_only = int(sys.argv[2]) if len(sys.argv) > 2 else int(os.environ.get("WEEK_ONLY", "0"))
     if not api_key:
         print("Mangler INTERVALS_API_KEY")
         sys.exit(1)
-    main(api_key)
+    main(api_key, week_only=week_only)
