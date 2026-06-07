@@ -1,0 +1,24 @@
+name: Byg 14-ugers workouts i Intervals.icu
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Skriv YES for at uploade alle 14 uger til Intervals.icu'
+        required: true
+        default: 'NO'
+
+jobs:
+  build-workouts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Upload workouts til Intervals.icu
+        if: ${{ github.event.inputs.confirm == 'YES' }}
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+        run: python3 scripts/build_workouts.py $INTERVALS_API_KEY
