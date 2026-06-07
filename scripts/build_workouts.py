@@ -427,13 +427,17 @@ def get_folder_id(session):
     if FOLDER_ID is not None:
         return FOLDER_ID
     r = session.get(f"{BASE}/folders")
+    print(f"  📁 Folders endpoint: {r.status_code}")
+    print(f"  📁 Folders response: {r.text[:300]}")
     if r.status_code == 200:
         folders = r.json()
-        if folders:
+        if isinstance(folders, list) and folders:
             FOLDER_ID = folders[0].get("id")
             print(f"  📁 Mappe: {folders[0].get('name','?')} (id:{FOLDER_ID})")
             return FOLDER_ID
-    print(f"  ⚠️  Ingen mapper fundet: {r.status_code} {r.text[:100]}")
+        elif isinstance(folders, dict):
+            # Måske nested struktur
+            print(f"  📁 Folders dict keys: {list(folders.keys())}")
     return None
 
 def upload(session, wo, dt):
@@ -447,7 +451,8 @@ def upload(session, wo, dt):
         payload["folder_id"] = folder_id
     r = session.post(f"{BASE}/workouts", json=payload)
     if r.status_code in (200,201):
-        wid = r.json().get("id","?")
+        resp = r.json()
+        wid = resp.get("id","?")
         print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{wid})")
         return wid
     else:
