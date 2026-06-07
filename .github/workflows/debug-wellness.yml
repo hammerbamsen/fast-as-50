@@ -8,13 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install requests
-      - name: Debug wellness
+      - name: Hent wellness og gem
         env:
           INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python .github/workflows/scripts/debug_wellness.py
+        run: |
+          curl -s -u "API_KEY:$INTERVALS_API_KEY"             "https://intervals.icu/api/v1/athlete/$INTERVALS_ATHLETE_ID/wellness?oldest=2026-06-04&newest=2026-06-07"             > debug_output.txt
+          cat debug_output.txt
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add debug_output.txt
+          git commit -m "debug wellness output" || echo "ingen ændringer"
+          git push
