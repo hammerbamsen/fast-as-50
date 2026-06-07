@@ -457,6 +457,8 @@ def upload(session, wo, dt):
         "category":         "WORKOUT",
         "plan_workout_id":  workout_id,
     }
+    if wo.get("workout_doc"):
+        event_payload["workout_doc"] = wo["workout_doc"]
     r2 = session.post(f"{BASE}/events", json=event_payload)
     if r2.status_code in (200, 201):
         eid = r2.json().get("id", "?")
