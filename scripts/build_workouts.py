@@ -394,6 +394,49 @@ def make_plan():
     (p+timedelta(97), None,               "Recovery Bordeaux (søn 6. sep)"),
     ]
 
+def workout_doc_to_text(wo):
+    """Konverter workout_doc steps til Intervals.icu tekst-format.
+    Format: "- 30m 65% Warmup\n\n5x\n- 7m 95%\n- 4m 30%\n\n- 25m 65% Cooldown"
+    FTP% beregnes fra watt-værdier (FTP=270W). Pace til løb i min/km.
+    """
+    FTP = 270
+    lines = []
+    doc = wo.get("workout_doc", {})
+    steps = doc.get("steps", [])
+    
+    for step in steps:
+        if step.get("type") == "step":
+            dur_min = step.get("duration", 0) // 60
+            desc = step.get("description", "")
+            power = step.get("power")
+            pace = step.get("pace")
+            if power:
+                pct = round(power["value"] / FTP * 100)
+                lines.append(f"- {dur_min}m {pct}% {desc}")
+            elif pace:
+                lines.append(f"- {dur_min}m {desc}")
+            else:
+                lines.append(f"- {dur_min}m {desc}")
+        elif step.get("type") == "repetition":
+            reps_count = step.get("reps", 1)
+            lines.append(f"\n{reps_count}x")
+            for sub in step.get("steps", []):
+                dur_min = sub.get("duration", 0) // 60
+                desc = sub.get("description", "")
+                power = sub.get("power")
+                pace = sub.get("pace")
+                if power:
+                    pct = round(power["value"] / FTP * 100)
+                    lines.append(f"- {dur_min}m {pct}% {desc}")
+                elif pace:
+                    lines.append(f"- {dur_min}m {desc}")
+                else:
+                    lines.append(f"- {dur_min}m {desc}")
+            lines.append("")
+    
+    return "\n".join(lines).strip()
+
+
 def delete_existing(session, dt):
     """Slet alle planned workouts på denne dato så vi undgår duplikater."""
     try:
@@ -430,24 +473,10 @@ def upload(session, wo, dt):
     # Slet eksisterende events på datoen
     delete_existing(session, dt)
 
-    # ── Trin 1: Upload workout til bibliotek → få workout_id ──
-    lib_payload = {
-        "name":         wo["name"],
-        "type":         wo["type"],
-        "description":  wo.get("description", ""),
-        "moving_time":  wo.get("moving_time", 3600),
-        "folder_id":    FOLDER_ID,
-    }
-    if wo.get("workout_doc"):
-        lib_payload["workout_doc"] = wo["workout_doc"]
+    # Konverter workout_doc til Intervals tekst-format
+    workout_text = workout_doc_to_text(wo)
 
-    r1 = session.post(f"{BASE}/workouts", json=lib_payload)
-    if r1.status_code not in (200, 201):
-        print(f"  ❌ {dt.strftime('%d. %b %a')} — bibliotek fejl: {r1.status_code}: {r1.text[:200]}")
-        return None
-    workout_id = r1.json().get("id")
-
-    # ── Trin 2: Opret kalender-event med workout_id reference ──
+    # POST direkte til /events med description i Intervals tekst-format
     event_payload = {
         "name":             wo["name"],
         "type":             wo["type"],
@@ -455,17 +484,16 @@ def upload(session, wo, dt):
         "end_date_local":   f"{dt.isoformat()}T23:59:00",
         "moving_time":      wo.get("moving_time", 3600),
         "category":         "WORKOUT",
-        "plan_workout_id":  workout_id,
+        "description":      workout_text if workout_text else wo.get("description", ""),
+        "workout_doc":      {},
     }
-    if wo.get("workout_doc"):
-        event_payload["workout_doc"] = wo["workout_doc"]
-    r2 = session.post(f"{BASE}/events", json=event_payload)
-    if r2.status_code in (200, 201):
-        eid = r2.json().get("id", "?")
-        print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (workout:{workout_id} event:{eid})")
+    r = session.post(f"{BASE}/events", json=event_payload)
+    if r.status_code in (200, 201):
+        eid = r.json().get("id", "?")
+        print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{eid})")
         return eid
     else:
-        print(f"  ❌ {dt.strftime('%d. %b %a')} — event fejl: {r2.status_code}: {r2.text[:200]}")
+        print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:300]}")
         return None
 
 def main(api_key, week_only=0):
