@@ -9,7 +9,7 @@ from datetime import date, timedelta
 API_KEY    = os.environ.get('INTERVALS_API_KEY', '')
 ATHLETE_ID = os.environ.get('INTERVALS_ATHLETE_ID', 'i0')
 GH_TOKEN   = os.environ.get('GH_TOKEN', '')
-REPO       = 'hammerbamsen/Fast-as-50'
+REPO       = 'hammerbamsen/fast-as-50'
 BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH       = ('API_KEY', API_KEY)
 
@@ -240,14 +240,18 @@ def main():
     done_map = activities.get('done_map', {}) if activities else {}
     compliance = round(tss_act / planned * 100, 0) if tss_act else None
 
+    tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
     data['kpis'] = {
-        'weight': {'value': fmt(weight),     'unit': 'kg', 'sub': 'Mål <72 kg · snit 7d', 'color': color_for(weight, 72, lower=True)  if weight else '#7A6A58'},
-        'fat':    {'value': fmt(fat),         'unit': '%',  'sub': 'Mål <20%',              'color': color_for(fat, 20, lower=True)     if fat    else '#7A6A58'},
-        'ctl':    {'value': fmt(ctl, 1),      'unit': '',   'sub': 'Mål 60 (uge 11)',        'color': color_for(ctl, 60, lower=False)    if ctl    else '#7A6A58'},
-        'tsb':    {'value': fmt(tsb, 1),      'unit': '',   'sub': 'Hård blok' if tsb and tsb < -10 else 'Form', 'color': '#E67E22'     if tsb and tsb < -10 else '#27AE60'},
-        'sleep':  {'value': fmt(sleep, 1),    'unit': 't',  'sub': f'Snit 7,5t · mål 7t',   'color': '#2874A6'},
-        'runKm':  {'value': fmt(km_week, 1),  'unit': 'km', 'sub': 'Mål 40+ km uge 10',     'color': color_for(km_week, 20, lower=False) if km_week else '#7A6A58'},
-        'hrv':    {'value': fmt(hrv, 1),      'unit': 'ms', 'sub': 'Snit 7d',               'color': '#7A6A58'},
+        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': 'Mål <72 kg · snit 7d',          'color': color_for(weight, 72, lower=True)  if weight     else '#7A6A58'},
+        'fat':        {'value': fmt(fat),              'unit': '%',  'sub': 'Mål <20%',                       'color': color_for(fat, 20, lower=True)     if fat        else '#7A6A58'},
+        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': 'Mål 60 (uge 11)',                 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
+        'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': 'Hård blok' if tsb and tsb < -10 else 'Form', 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
+        'sleep':      {'value': fmt(sleep, 1),         'unit': 't',  'sub': 'Snit 7,5t · mål 7t',            'color': '#2874A6'},
+        'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': 'Mål 40+ km uge 10',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
+        'hrv':        {'value': fmt(hrv, 1),           'unit': 'ms', 'sub': 'Snit 7d',                       'color': '#7A6A58'},
+        'tssComp':    {'value': fmt(compliance, 0) if compliance else '—', 'unit': '%' if compliance else '',
+                       'sub': f'Planlagt {int(planned)} TSS · faktisk {int(tss_act or 0)}',
+                       'color': tss_color},
     }
 
     # --- AF-dage (man–søn denne uge) ---
@@ -304,3 +308,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
