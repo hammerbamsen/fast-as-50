@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0752 -->
+<!DOCTYPE html><!-- v20260607-0915 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -518,24 +518,69 @@ function renderToday() {
   `;
 }
 
+let viewWeek = 0; // 0=denne uge, -1=forrige, +1=næste
+
+function weekSessions(offset) {
+  const w = D.week + offset;
+  if (w < 1 || w > D.totalWeeks) return [];
+  // Brug all_weeks hvis tilgængelig, ellers D.week_sessions for offset=0
+  if (D.all_weeks && D.all_weeks[w]) return D.all_weeks[w].sessions || [];
+  if (offset === 0) return D.week_sessions;
+  return [];
+}
+
+function weekFocusText(offset) {
+  const w = D.week + offset;
+  if (D.all_weeks && D.all_weeks[w]) return D.all_weeks[w].focus || "";
+  if (offset === 0) return D.weekFocus;
+  return "Ugeplan ikke tilgængelig endnu.";
+}
+
+function weekBlockType(offset) {
+  if (D.all_weeks && D.all_weeks[D.week + offset]) return D.all_weeks[D.week + offset].blockType || "";
+  return offset === 0 ? D.blockType : "";
+}
+
 function renderWeek() {
+  const w = D.week + viewWeek;
+  const sessions = weekSessions(viewWeek);
+  const focus = weekFocusText(viewWeek);
+  const block = weekBlockType(viewWeek);
+  const isCurrentWeek = viewWeek === 0;
+  const prevOk = w > 1;
+  const nextOk = w < D.totalWeeks;
+
   return `
   <div class="hero-card">
-    <div class="hero-eyebrow">UGE ${D.week} AF ${D.totalWeeks} · ${D.blockType}</div>
-    <div class="hero-title">Ugeoversigt</div>
+    <div class="hero-eyebrow">${isCurrentWeek ? 'DENNE UGE' : viewWeek < 0 ? 'FORRIGE UGE' : 'NÆSTE UGE'} · UGE ${w}/${D.totalWeeks} · ${block||D.blockType}</div>
+    <div class="hero-title" style="display:flex;align-items:center;justify-content:space-between">
+      <button onclick="changeWeekView(-1)" style="background:none;border:none;color:${prevOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${prevOk?'pointer':'default'};padding:0 8px">‹</button>
+      <span>${isCurrentWeek ? 'Ugeoversigt' : viewWeek < 0 ? 'Forrige uge' : 'Næste uge'}</span>
+      <button onclick="changeWeekView(1)" style="background:none;border:none;color:${nextOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${nextOk?'pointer':'default'};padding:0 8px">›</button>
+    </div>
+    ${isCurrentWeek ? '' : `<div style="text-align:center;margin-top:6px"><button onclick="changeWeekView(${-viewWeek})" style="background:rgba(255,255,255,.1);border:none;color:var(--gold);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;padding:4px 12px;border-radius:20px;cursor:pointer">→ GÅ TIL DENNE UGE</button></div>`}
   </div>
-  ${D.week_sessions.map(s=>`
-  <div class="wsession ${s.today?"is-today":""}">
-    <div class="wsession-icon" style="background:${C[s.disc]}18">${icon(s.disc,18,C[s.disc])}</div>
+  ${sessions.length === 0 ? `<div class="card" style="text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:32px">DATA IKKE TILGÆNGELIG</div>` :
+    sessions.map(s=>`
+  <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""}">
+    <div class="wsession-icon" style="background:${C[s.disc]||'#7A6A58'}18">${icon(s.disc,18,C[s.disc]||'#7A6A58')}</div>
     <div class="wsession-body">
-      <div class="wsession-title">${s.label}${s.today?`<span class="today-badge">I DAG</span>`:""}</div>
+      <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek)?`<span class="today-badge">I DAG</span>`:""}</div>
       <div class="wsession-day">${s.day}</div>
     </div>
     ${discTag(s.disc,true)}
-    ${s.done?icon("check",18,C[s.disc]):""}
-  </div>`).join("")}
-  <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6">${D.weekFocus}</p></div>
+    ${s.done?icon("check",18,C[s.disc]||'#7A6A58'):""}
+  </div>`).join("")
+  }
+  <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6">${focus||'—'}</p></div>
   `;
+}
+
+function changeWeekView(delta) {
+  const newW = D.week + viewWeek + delta;
+  if (newW < 1 || newW > D.totalWeeks) return;
+  viewWeek += delta;
+  navigate('week');
 }
 
 function renderOverview() {
