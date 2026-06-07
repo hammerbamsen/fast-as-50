@@ -1,9 +1,9 @@
 {
   "meta": {
     "updated": "2026-06-07",
-    "week": 1,
+    "week": 2,
     "totalWeeks": 14,
-    "blockType": "BUILD",
+    "blockType": "BUILD+",
     "daysToMedoc": 90,
     "daysToChristiansborg": 83,
     "dayName": "Søndag",
@@ -54,65 +54,63 @@
     }
   },
   "af": {
-    "weekDone": 7,
+    "weekDone": 0,
     "target": 5
   },
-  "coachSpeech": "HRV 59.0 ms — +17% vs snit. Kroppen er klar. Søvn 8.0t — godt. Form TSB -13.4 — bygger fitness planmæssigt. {HL}",
-  "coachHighlight": "Søvn 8.0t — godt.",
-  "weekFocus": "Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
+  "coachSpeech": "Uge 1 afsluttet stærkt — 7/7 AF-dage, energi over forventning. {HL} Uge 2: workshop tir/ons kræver tidlig start. Mallorca tor–søn: cykel er kongen. Fre bjerg-intervaller er ugens vigtigste session.",
+  "coachHighlight": "Første VO2-stimulus fredag på Mallorca. Start konservativt — Z4, ikke Z5.",
+  "weekFocus": "Mallorca-uge. Cykel dominerer — byg aerob base på bakker. Protein ≥150g/dag, søvn ≥7t også under workshop. Første VO2-stimulus fredag — start konservativt.",
   "today": {
     "discipline": "swim",
-    "title": "Svøm 2000m + cykel",
-    "duration": "",
-    "zone": "–",
-    "desc": "",
+    "title": "Svøm 2000m + cykel let",
+    "duration": "90 min",
+    "zone": "Z1-Z2",
+    "desc": "Aktiv restitution. Svøm teknisk 2000m + 45 min rolig cykel. Luk uge 1 af.",
     "completed": false
   },
   "week_sessions": [
     {
       "day": "Man",
       "disc": "strength",
-      "label": "Styrketræning",
-      "done": true
+      "label": "Styrke A 3 sæt",
+      "done": false
     },
     {
       "day": "Tir",
       "disc": "run",
-      "label": "Malmo Løb",
-      "done": true
+      "label": "Løb Z2 45 min — tidlig morgen",
+      "done": false
     },
     {
       "day": "Ons",
       "disc": "run",
-      "label": "Malmo Løb",
-      "done": true
+      "label": "Løb Z2 45 min — tidlig morgen",
+      "done": false
     },
     {
       "day": "Tor",
-      "disc": "free",
-      "label": "Styrketræning",
-      "done": true,
-      "disc2": "strength"
+      "disc": "bike",
+      "label": "Aktivering cykel Z2 — Mallorca",
+      "done": false
     },
     {
       "day": "Fre",
       "disc": "bike",
-      "label": "Gentofte Cykling",
-      "done": true
+      "label": "Cykel bjerg Z4 — VO2",
+      "done": false
     },
     {
       "day": "Lør",
-      "disc": "run",
-      "label": "Styrke + Lang løb Z2",
-      "done": true,
-      "disc2": "strength"
+      "disc": "bike",
+      "label": "Cykel Z2 lang 2,5t",
+      "done": false
     },
     {
       "day": "Søn",
       "disc": "swim",
-      "label": "Svøm 2000m + cykel",
+      "label": "Open water svøm + cykel let",
       "done": false,
-      "today": true
+      "today": false
     }
   ],
   "ctlCurve": [
@@ -130,5 +128,41 @@
     55,
     58,
     60
+  ],
+  "weightHistory": [
+    75.2,
+    75.0,
+    74.8,
+    75.1,
+    74.9,
+    74.7,
+    74.9
+  ],
+  "hrvHistory": [
+    48,
+    52,
+    55,
+    49,
+    53,
+    50,
+    51
+  ],
+  "sleepHistory": [
+    7.1,
+    7.5,
+    6.8,
+    7.2,
+    7.8,
+    7.0,
+    7.3
+  ],
+  "tsbHistory": [
+    -2,
+    -4,
+    -6,
+    -8,
+    -5,
+    -3,
+    0
   ]
 }
