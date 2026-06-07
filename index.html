@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0926 -->
+<!DOCTYPE html><!-- v20260607-0933 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -840,6 +840,7 @@ async function init() {
     if (r.ok) {
       const remote = await r.json();
       const m = remote.meta || {};
+      if (m.updated)                    D.lastUpdated            = m.updated;
       if (m.week)                       D.week                   = m.week;
       if (m.totalWeeks)                 D.totalWeeks             = m.totalWeeks;
       if (m.blockType)                  D.blockType              = m.blockType;
@@ -961,7 +962,7 @@ async function triggerRefresh() {
 <script>
 // Service Worker: network-first — henter altid ny version
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(reg => {
+  navigator.serviceWorker.register('/fast-as-50/sw.js').then(reg => {
     reg.update(); // Tjek for opdatering ved hver sidevisning
   });
 }
