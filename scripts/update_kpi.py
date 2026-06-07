@@ -52,22 +52,43 @@ def get_wellness_7d():
     return None
 
 def get_af_this_week():
-    """AF-dage fra mandag denne uge — tæl KUN dage med eksplicit Alkohol=0 (ikke tomme dage)"""
+    """AF-dage fra mandag denne uge.
+    Returnerer (count, af_log) hvor af_log = {dato: True/False/None}
+    True = AF-dag (Alkohol=0), False = ikke AF (Alkohol>0), None = ikke registreret
+    """
     monday = monday_this_week()
     today  = date.today()
     r = requests.get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(today)})
+    
+    af_log = {}
+    af_count = 0
+    
     if r.status_code == 200:
         data = r.json()
-        af_count = 0
-        for d in data:
-            alkohol = d.get('Alkohol')  # custom field, capital A
-            # AF-dag = ingen alkohol registreret eller eksplicit 0
-            if alkohol is not None and alkohol == 0:
-                af_count += 1
-        print(f"  AF raw data: {[(d.get('date'), d.get('Alkohol')) for d in data]}")
-        return af_count
-    return None
+        # Byg dag-for-dag log fra mandag til i dag
+        wellness_by_date = {d.get('date', '')[:10]: d for d in data}
+        
+        current = monday
+        while current <= today:
+            key = str(current)
+            if key in wellness_by_date:
+                alkohol = wellness_by_date[key].get('Alkohol')
+                if alkohol is not None:
+                    is_af = (alkohol == 0)
+                    af_log[key] = is_af
+                    if is_af:
+                        af_count += 1
+                else:
+                    af_log[key] = None  # Ikke registreret
+            else:
+                af_log[key] = None  # Ingen wellness-entry
+            current += timedelta(days=1)
+        
+        print(f"  AF log: {af_log}")
+        return af_count, af_log
+    
+    return None, {}
 
 def get_activities_week():
     """TSS, løbe-km og done-sessioner fra mandag denne uge"""
@@ -280,7 +301,7 @@ def main():
     activities   = get_activities_week()
     planned_weeks = get_planned_weeks()
     planned    = planned_tss_this_week()
-    af_days    = get_af_this_week()
+    af_days, af_log = get_af_this_week()
 
     print(f"  Fitness:    {fitness}")
     print(f"  Wellness:   {wellness}")
@@ -335,6 +356,16 @@ def main():
         'weekDone': af_days if af_days is not None else data.get('af', {}).get('weekDone', 0),
         'target': 5
     }
+
+    # --- AF log: dag-for-dag til af.html sync ---
+    if af_log:
+        # Konverter True/False/None til 0/1/None (Intervals format)
+        # True = AF = Alkohol 0, False = ikke AF = Alkohol 1
+        data['af_log'] = {
+            k: (0 if v is True else 1 if v is False else None)
+            for k, v in af_log.items()
+            if v is not None  # Gem kun registrerede dage
+        }
 
     # --- Week sessions med done fra Intervals ---
     data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
