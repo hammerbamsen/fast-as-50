@@ -419,26 +419,10 @@ def delete_existing(session, dt):
     except Exception as e:
         print(f"  ⚠️  delete_existing fejl: {e}")
 
-FOLDER_ID = None
+FOLDER_ID = 827443  # "Workouts" mappe i Intervals.icu
 
 def get_folder_id(session):
-    """Hent første tilgængelige workout-mappe fra Intervals."""
-    global FOLDER_ID
-    if FOLDER_ID is not None:
-        return FOLDER_ID
-    r = session.get(f"{BASE}/folders")
-    print(f"  📁 Folders endpoint: {r.status_code}")
-    print(f"  📁 Folders response: {r.text[:300]}")
-    if r.status_code == 200:
-        folders = r.json()
-        if isinstance(folders, list) and folders:
-            FOLDER_ID = folders[0].get("id")
-            print(f"  📁 Mappe: {folders[0].get('name','?')} (id:{FOLDER_ID})")
-            return FOLDER_ID
-        elif isinstance(folders, dict):
-            # Måske nested struktur
-            print(f"  📁 Folders dict keys: {list(folders.keys())}")
-    return None
+    return FOLDER_ID
 
 def upload(session, wo, dt):
     if wo is None:
