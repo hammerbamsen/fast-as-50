@@ -192,6 +192,81 @@ def build_week_sessions(done_map, planned_sessions):
         result.append(new_s)
     return result
 
+def get_planned_weeks():
+    """Hent planned workouts fra Intervals for forrige, denne og næste uge.
+    Returnerer all_weeks dict: {week_num: {sessions: [...], focus: str, blockType: str}}
+    """
+    week1     = date(2026, 6, 1)
+    today     = date.today()
+    week_num  = min(max((today - week1).days // 7 + 1, 1), 14)
+
+    BLOCK_TYPES = {1:'BUILD',2:'BUILD+',3:'BUILD+',4:'RECOVERY',5:'BUILD',6:'BUILD',
+                   7:'RECOVERY',8:'BUILD',9:'BUILD',10:'BUILD+',11:'BUILD+',12:'TAPER',
+                   13:'TAPER',14:'RACE'}
+
+    TYPE_MAP = {
+        'Run':'run','TrailRun':'run','VirtualRun':'run',
+        'Ride':'bike','VirtualRide':'bike','MountainBike':'bike',
+        'Swim':'swim',
+        'WeightTraining':'strength','Workout':'strength','Strength':'strength',
+        'Walk':'free','Hike':'free',
+    }
+    DAY_SHORT = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
+
+    all_weeks = {}
+
+    for offset in [-1, 0, 1]:
+        w = week_num + offset
+        if w < 1 or w > 14:
+            continue
+
+        # Beregn mandag for denne uge
+        mon = week1 + timedelta(weeks=w-1)
+        sun = mon + timedelta(days=6)
+
+        r = requests.get(f'{BASE}/workouts', auth=AUTH,
+                         params={'oldest': str(mon), 'newest': str(sun)})
+        if r.status_code != 200:
+            continue
+
+        workouts = r.json()
+        sessions = []
+        for wo in workouts:
+            dt_str = wo.get('start_date_local', '')[:10]
+            if not dt_str:
+                continue
+            try:
+                dt = date.fromisoformat(dt_str)
+            except:
+                continue
+            day_idx = dt.weekday()  # 0=Man
+            disc = TYPE_MAP.get(wo.get('type',''), 'free')
+            name = wo.get('name', 'Træning')
+            is_today = (dt == today)
+            is_done = wo.get('athlete_id') and dt <= today  # planned er ikke done
+
+            # Tjek om der er en faktisk completed aktivitet samme dag
+            sessions.append({
+                'day':   DAY_SHORT[day_idx],
+                'disc':  disc,
+                'label': name,
+                'done':  False,  # opdateres af done_map i main()
+                'today': is_today,
+            })
+
+        # Sorter efter ugedag
+        day_order = {d:i for i,d in enumerate(DAY_SHORT)}
+        sessions.sort(key=lambda s: day_order.get(s['day'], 7))
+
+        all_weeks[w] = {
+            'sessions':  sessions,
+            'blockType': BLOCK_TYPES.get(w, 'BUILD'),
+            'focus':     '',  # kan tilføjes senere
+        }
+
+    return all_weeks
+
+
 def main():
     today     = date.today()
     weekday   = today.weekday()
@@ -202,7 +277,8 @@ def main():
 
     fitness    = get_fitness()
     wellness   = get_wellness_7d()
-    activities = get_activities_week()
+    activities   = get_activities_week()
+    planned_weeks = get_planned_weeks()
     planned    = planned_tss_this_week()
     af_days    = get_af_this_week()
 
@@ -262,6 +338,15 @@ def main():
 
     # --- Week sessions med done fra Intervals ---
     data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
+
+    # --- all_weeks: forrige/denne/næste uge fra Intervals ---
+    if planned_weeks:
+        # Merge done_map ind i denne uges sessions
+        this_week = planned_weeks.get(week_num, {})
+        if this_week:
+            this_week['sessions'] = build_week_sessions(done_map, this_week['sessions'])
+            this_week['focus'] = data.get('weekFocus', '')
+        data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
 
     # --- Today session ---
     today_session = next((s for s in data['week_sessions'] if s.get('today')), None)
