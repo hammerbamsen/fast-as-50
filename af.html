@@ -177,7 +177,33 @@ async function answer(isAF) {
   setTimeout(()=>{ qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone(); }, 800);
 }
 
-function init() {
+async function fetchIntervalsAF() {
+  // Hent AF-data fra Intervals for denne uge og synk til localStorage
+  const token = getToken();
+  if(!token) return;
+  try {
+    const mon = weekStart();
+    const today = new Date();
+    const fmt = d => d.toISOString().split('T')[0];
+    const oldest = fmt(mon);
+    const newest = fmt(today);
+
+    // Trigger GitHub Action til at hente wellness og returnere det
+    // Vi bruger data.json som proxy — henter AF fra den
+    const r = await fetch('https://hammerbamsen.github.io/fast-as-50/data.json?t=' + Date.now());
+    if(!r.ok) return;
+    const data = await r.json();
+
+    // data.json har ikke dag-for-dag data — men vi kan bruge
+    // wellness endpoint direkte via GitHub Action dispatch
+    // For nu: berig localStorage med kendte AF-dage fra Intervals
+    // ved at kalde wellness API via CORS-proxy (GitHub dispatch)
+  } catch(e) {
+    console.log('Intervals sync fejl:', e.message);
+  }
+}
+
+async function init() {
   // Reset hvis ?reset i URL
   if(window.location.search.includes('reset')) {
     localStorage.removeItem(STORAGE_KEY);
@@ -185,8 +211,43 @@ function init() {
     window.history.replaceState({}, '', window.location.pathname);
   }
   if(!getToken()) { showSetup(); return; }
+
+  // Vis loading
+  document.getElementById('view').innerHTML = '<div style="text-align:center;padding:40px;font-family:Space Mono,monospace;font-size:11px;color:#7A6A58;letter-spacing:.08em">HENTER DATA...</div>';
+
+  // Hent wellness fra Intervals via checkin.html endpoint
+  await syncFromIntervals();
+
   queue=buildQueue(); qIdx=0;
   queue.length===0 ? showDone() : showQuestion(queue[0]);
+}
+
+async function syncFromIntervals() {
+  // Hent denne uges wellness fra Intervals via GitHub dispatch + polling
+  // Bruger et simpelt trick: henter data.json der opdateres hvert 10 min
+  // og populerer localStorage med kendte AF-dage
+  const token = getToken();
+  if(!token) return;
+  try {
+    const r = await fetch('https://hammerbamsen.github.io/fast-as-50/data.json?t=' + Date.now());
+    if(!r.ok) return;
+    const data = await r.json();
+
+    // Hvis data.json har detaljeret af_log, brug det
+    if(data.af_log) {
+      const log = getLog();
+      let changed = false;
+      Object.entries(data.af_log).forEach(([date, val]) => {
+        if(isThisWeek(date) && log[date] === undefined) {
+          log[date] = val === 0; // Alkohol=0 → AF-dag=true
+          changed = true;
+        }
+      });
+      if(changed) saveLog(log);
+    }
+  } catch(e) {
+    // Stille fejl — brug localStorage som fallback
+  }
 }
 
 init();
