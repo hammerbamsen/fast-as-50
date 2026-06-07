@@ -447,7 +447,9 @@ def main(api_key):
     print(f"❌ Fejl:      {err}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Brug: python3 build_workouts_v2.py <API_KEY>")
+    import os
+    api_key = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("INTERVALS_API_KEY", "")
+    if not api_key:
+        print("Mangler INTERVALS_API_KEY")
         sys.exit(1)
-    main(sys.argv[1])
+    main(api_key)
