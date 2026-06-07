@@ -527,9 +527,10 @@ let viewWeek = 0; // 0=denne uge, -1=forrige, +1=næste
 function weekSessions(offset) {
   const w = D.week + offset;
   if (w < 1 || w > D.totalWeeks) return [];
-  // Brug all_weeks hvis tilgængelig, ellers D.week_sessions for offset=0
+  // Aktuel uge: brug altid week_sessions (har done-status fra Intervals aktiviteter)
+  if (offset === 0) return D.week_sessions || [];
+  // Forrige/næste uge: brug all_weeks
   if (D.all_weeks && D.all_weeks[w]) return D.all_weeks[w].sessions || [];
-  if (offset === 0) return D.week_sessions;
   return [];
 }
 
