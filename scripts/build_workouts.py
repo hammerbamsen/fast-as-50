@@ -430,10 +430,17 @@ def upload(session, wo, dt):
     # Slet eksisterende planned workouts på datoen inden upload
     delete_existing(session, dt)
     folder_id = get_folder_id(session)
-    payload = {**wo, "start_date_local": f"{dt.isoformat()}T06:00:00"}
-    payload["category"] = "WORKOUT"
-    if folder_id:
-        payload["folder_id"] = folder_id
+    payload = {
+        "name":             wo["name"],
+        "type":             wo["type"],
+        "description":      wo.get("description", ""),
+        "start_date_local": f"{dt.isoformat()}T00:00:00",
+        "end_date_local":   f"{dt.isoformat()}T23:59:00",
+        "moving_time":      wo.get("moving_time", 3600),
+        "category":         "WORKOUT",
+    }
+    if wo.get("workout_doc"):
+        payload["workout_doc"] = wo["workout_doc"]
     r = session.post(f"{BASE}/events", json=payload)
     if r.status_code in (200,201):
         resp = r.json()
