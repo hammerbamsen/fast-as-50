@@ -14,5 +14,4 @@ jobs:
         env:
           INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: python .github/workflows/scripts/debug_wellness.py
