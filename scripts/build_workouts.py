@@ -430,7 +430,7 @@ def upload(session, wo, dt):
     # Slet eksisterende planned workouts på datoen inden upload
     delete_existing(session, dt)
     folder_id = get_folder_id(session)
-    payload = {**wo, "start_date_local": dt.isoformat()}
+    payload = {**wo, "start_date_local": f"{dt.isoformat()}T06:00:00"}
     payload["category"] = "WORKOUT"
     if folder_id:
         payload["folder_id"] = folder_id
