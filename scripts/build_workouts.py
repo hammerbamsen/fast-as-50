@@ -493,14 +493,19 @@ def upload(session, wo, dt):
         "description":      workout_text if workout_text else wo.get("description", ""),
         "workout_doc":      {},
     }
-    r = session.post(f"{BASE}/events", json=event_payload)
-    if r.status_code in (200, 201):
-        eid = r.json().get("id", "?")
-        print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{eid})")
-        return eid
-    else:
-        print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:300]}")
-        return None
+    for attempt in range(3):
+        r = session.post(f"{BASE}/events", json=event_payload)
+        if r.status_code in (200, 201):
+            eid = r.json().get("id", "?")
+            print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{eid})")
+            return eid
+        elif r.status_code == 429:
+            print(f"  ⏳ Rate limit — venter 5 sek...")
+            time.sleep(5)
+        else:
+            print(f"  ❌ {dt.strftime('%d. %b %a')} — {wo['name']} → {r.status_code}: {r.text[:200]}")
+            return None
+    return None
 
 def main(api_key, week_only=0):
     session = requests.Session()
@@ -542,7 +547,7 @@ def main(api_key, week_only=0):
         wid = upload(session, wo, dt)
         if wid: ok += 1
         else: err += 1
-        time.sleep(0.3)
+        time.sleep(1.0)
 
     print(f"\n{'='*50}")
     print(f"✅ Uploadet:  {ok}")
