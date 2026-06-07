@@ -269,14 +269,14 @@ def make_plan():
     (p+timedelta(6),  swim_2000(),        "Svøm 2000m + cykel let"),
 
     # ── UGE 2: 8-14 jun  BUILD+ 37→41 ──────────────────────────
-    # Man 8, Tir 9, Ons 10 = Gentofte | Tor 11 = rejsedag | Fre-Søn Mallorca
+    # Man 8 = Styrke | Tir-Ons = workshop (tidlig morgen) | Tor = fly 09:00 ankomst 10:30 | Fre-Søn Mallorca
     (p+timedelta(7),  strength_a(3),      "Styrke A Gentofte"),
-    (p+timedelta(8),  run_vo2_5x3(),      "Løb VO2 5×3 Z4 Gentofte"),
-    (p+timedelta(9),  bike_z2(60),        "Hometrainer Z2 60 min"),
-    (p+timedelta(10), None,               "Rejsedag → Mallorca (tor 11. jun)"),
-    (p+timedelta(11), bike_z2(150,"Mallorca"), "Cykel Z2 2.5t Mallorca"),
-    (p+timedelta(12), run_z2_lang(100),   "Lang løb Z2 Mallorca"),
-    (p+timedelta(13), swim_let(),         "Svøm recovery Mallorca"),
+    (p+timedelta(8),  run_z2(45),         "Løb Z2 45 min tidlig — workshop dag 1"),
+    (p+timedelta(9),  run_z2(45),         "Løb Z2 45 min tidlig — workshop dag 2"),
+    (p+timedelta(10), bike_z2(60,"Mallorca"), "Aktivering cykel Z2 60 min — ankomst Mallorca"),
+    (p+timedelta(11), bike_bjerg_z4(),    "Cykel bjerg Z4 — VO2 stimulus Mallorca"),
+    (p+timedelta(12), bike_z2(150,"Mallorca"), "Cykel Z2 lang 2.5t Mallorca"),
+    (p+timedelta(13), swim_let(),         "Open water svøm + cykel let Mallorca"),
 
     # ── UGE 3: 15-21 jun  BUILD+ 41→45 ─────────────────────────
     # Man-Ons Mallorca | Tor 18 = hjemrejse | Fre 19 Alice | Lør-Søn Gentofte
