@@ -1,25 +1,8 @@
-<!DOCTYPE html><!-- v20260607-0347 -->
+<!DOCTYPE html><!-- v20260607-0348 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<script>
-// Force fresh version check — sammenlign ETag med cachet version
-(function(){
-  const KEY = 'faf_etag';
-  const stored = localStorage.getItem(KEY);
-  fetch(location.href, {method:'HEAD', cache:'no-store'})
-    .then(r => {
-      const etag = r.headers.get('etag') || r.headers.get('last-modified') || '';
-      if (stored && stored !== etag) {
-        localStorage.setItem(KEY, etag);
-        location.reload(true);
-      } else {
-        localStorage.setItem(KEY, etag);
-      }
-    }).catch(()=>{});
-})();
-</script>
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -803,10 +786,10 @@ async function triggerRefresh() {
 
 </script>
 <script>
-// Afregistrer alle service workers — de cachede for aggressivt
+// Service Worker: network-first — henter altid ny version
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => {
-    regs.forEach(reg => reg.unregister());
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    reg.update(); // Tjek for opdatering ved hver sidevisning
   });
 }
 </script>
