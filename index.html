@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0922 -->
+<!DOCTYPE html><!-- v20260607-0926 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -707,17 +707,16 @@ function sparkline(data, color, label, unit, minV, maxV) {
 
 function afStreakViz(done, target) {
   const days = ['M','T','O','T','F','L','S'];
-  return `<div style="display:flex;gap:6px;justify-content:center;margin:8px 0">
-    ${days.map((d,i)=>{
-      const filled = i < done;
-      return \`<div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-        <div style="width:28px;height:28px;border-radius:50%;background:\${filled?'var(--wine)':'var(--cream-d)'};display:flex;align-items:center;justify-content:center">
-          <span style="font-size:9px;color:\${filled?'var(--gold)':'var(--muted)'};font-weight:700">\${filled?'✓':d}</span>
-        </div>
-      </div>\`;
-    }).join('')}
-  </div>
-  <div style="text-align:center;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${done}/${target} AF-DAGE DENNE UGE</div>`;
+  let dots = '';
+  for (let i = 0; i < 7; i++) {
+    const filled = i < done;
+    dots += '<div style="display:flex;flex-direction:column;align-items:center;gap:3px">' +
+      '<div style="width:28px;height:28px;border-radius:50%;background:' + (filled?'var(--wine)':'var(--cream-d)') + ';display:flex;align-items:center;justify-content:center">' +
+      '<span style="font-size:9px;color:' + (filled?'var(--gold)':'var(--muted)') + ';font-weight:700">' + (filled?'✓':days[i]) + '</span>' +
+      '</div></div>';
+  }
+  return '<div style="display:flex;gap:6px;justify-content:center;margin:8px 0">' + dots + '</div>' +
+    '<div style="text-align:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">' + done + '/' + target + ' AF-DAGE DENNE UGE</div>';
 }
 
 function trainingDonut() {
