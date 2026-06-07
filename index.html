@@ -578,13 +578,11 @@ function renderWeek() {
       <div class="wsession-day">${s.day}</div>
     </div>
     ${s.disc2
-      ? `<span style="display:flex;gap:4px">${discTag(s.disc,true)}${discTag(s.disc2,true)}</span>`
-      : discTag(s.disc,true)}
-    ${s.done
-      ? (s.disc2
-          ? `<span style="display:flex;flex-direction:column;gap:2px">${icon("check",14,C[s.disc]||'#7A6A58')}${icon("check",14,C[s.disc2]||'#7A6A58')}</span>`
-          : icon("check",18,C[s.disc]||'#7A6A58'))
-      : ""}
+      ? `<span style="display:flex;gap:6px;align-items:center">
+           <span style="display:flex;gap:3px;align-items:center">${discTag(s.disc,true)}${s.done ? icon("check",15,C[s.disc]||'#7A6A58') : ''}</span>
+           <span style="display:flex;gap:3px;align-items:center">${discTag(s.disc2,true)}${s.done ? icon("check",15,C[s.disc2]||'#7A6A58') : ''}</span>
+         </span>`
+      : `<span style="display:flex;gap:3px;align-items:center">${discTag(s.disc,true)}${s.done ? icon("check",18,C[s.disc]||'#7A6A58') : ''}</span>`}
   </div>`).join("")
   }
   <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6">${focus||'—'}</p></div>
