@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260607-0915 -->
+<!DOCTYPE html><!-- v20260607-0918 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -323,6 +323,7 @@ let D = {
   hrvHistory: [],
   sleepHistory: [],
   tsbHistory: [],
+  today:{ discipline:"swim", title:"Svøm 2000m + cykel", duration:"90 min", zone:"Z1-Z2", desc:"Aktiv restitution. Luk uge 1 af.", completed:false },
 };
 
 let sessionDone = false;
@@ -468,7 +469,8 @@ function periodTimeline() {
 }
 
 function renderToday() {
-  const s=D.today, parts=D.coachSpeech.split("{HL}");
+  const s=D.today||{discipline:"free",title:"Ingen session planlagt",duration:"",zone:"–",desc:"",completed:false};
+  const parts=D.coachSpeech.split("{HL}");
   return `
   <div class="card card-wine session-hero">
     <div class="session-top">
