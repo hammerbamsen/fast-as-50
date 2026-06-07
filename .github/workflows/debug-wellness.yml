@@ -1,6 +1,8 @@
 name: Debug wellness
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   debug:
     runs-on: ubuntu-latest
@@ -14,4 +16,5 @@ jobs:
         env:
           INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python .github/workflows/scripts/debug_wellness.py
