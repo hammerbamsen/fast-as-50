@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260608-0420 -->
+<!DOCTYPE html><!-- v20260608-0410 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -297,6 +297,7 @@ let D = {
   daysToMedoc:93, daysToChristiansborg:86,
   dayName:"", date:"",
   afDays:{ weekDone:0, target:5, streak:0 },
+  afHistory: [],
   coachSpeech:"Du starter fra CTL 34 — lavere end din Ironman-baggrund tilsiger, men ærligt. {HL} Uge 1: etabler rytmen. 5 AF-dage, protein ved hvert måltid.",
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
@@ -668,6 +669,11 @@ function renderBody() {
   <div class="card">
     <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
     ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
+    ${D.afHistory && D.afHistory.length > 1 ? `
+    <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
+      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
+      ${afHistoryViz(D.afHistory)}
+    </div>` : ""}
   </div>`;
 }
 
@@ -716,6 +722,33 @@ function sparkline(data, color, label, unit, minV, maxV) {
   </div>`;
 }
 
+
+function afHistoryViz(history) {
+  if (!history || history.length === 0) return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);text-align:center;padding:8px">Ingen historik endnu</div>';
+  
+  const rows = history.map(w => {
+    const dots = Array.from({length: 7}, (_, i) => {
+      if (i >= w.total) {
+        // Fremtidig dag
+        return '<div style="width:22px;height:22px;border-radius:50%;background:var(--cream-d);opacity:0.3"></div>';
+      }
+      const filled = i < w.done;
+      return '<div style="width:22px;height:22px;border-radius:50%;background:' + (filled ? 'var(--wine)' : 'var(--cream-d)') + ';display:flex;align-items:center;justify-content:center">' +
+        '<span style="font-size:8px;color:' + (filled ? 'var(--gold)' : 'var(--muted)') + ';font-weight:700">' + (filled ? '✓' : '·') + '</span></div>';
+    }).join('');
+    
+    const pct = w.total > 0 ? w.done / Math.min(w.total, 7) : 0;
+    const color = w.done >= 5 ? 'var(--swim)' : w.done >= 3 ? 'var(--gold)' : 'var(--run)';
+    
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">' +
+      '<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);width:36px;flex-shrink:0">' + w.label.toUpperCase() + '</div>' +
+      '<div style="display:flex;gap:3px;align-items:center">' + dots + '</div>' +
+      '<div style="font-family:Space Mono,monospace;font-size:11px;color:' + color + ';font-weight:700;margin-left:4px">' + w.done + '/' + w.total + '</div>' +
+      '</div>';
+  }).join('');
+  
+  return rows;
+}
 function afStreakViz(done, target, streak) {
   const days = ['M','T','O','T','F','L','S'];
   let dots = '';
@@ -875,6 +908,7 @@ async function init() {
       if (m.dayName)                    D.dayName                = m.dayName;
       if (m.date)                       D.date                   = m.date;
       if (remote.af)                    { D.afDays.weekDone = remote.af.weekDone || 0; D.afDays.streak = remote.af.streak || 0; }
+      if (remote.af_history)             { D.afHistory = remote.af_history; }
       if (remote.kpis) {
         const km = remote.kpis;
         D.kpis = [
