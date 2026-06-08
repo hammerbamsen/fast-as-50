@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "Fast as Fifty Bot"
           git config user.email "bot@hammerbamsen.github.io"
-          git add data.json
+          git add data.json debug_merge.json
           if git diff --staged --quiet; then
             echo "Ingen ændringer"
           else
