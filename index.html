@@ -1010,14 +1010,9 @@ async function init() {
       if (m.daysToChristiansborg!=null) D.daysToChristiansborg   = m.daysToChristiansborg;
       if (m.dayName)                    D.dayName                = m.dayName;
       if (m.date)                       D.date                   = m.date;
-      if (remote.af)                    { D.afDays.weekDone = parseInt(remote.af.weekDone) || 0; D.afDays.streak = parseInt(remote.af.streak) || 0;
-        // Tilføj streak som KPI
-        const streakKpi = D.kpis.find(k=>k.label==='AF STREAK');
-        if (streakKpi) { streakKpi.value = String(D.afDays.streak); }
-        else { D.kpis.push({label:'AF STREAK', value:String(D.afDays.streak), unit:'', sub:'Mål: daglig streak', color:'var(--wine)'}); }
-        // Opdater AF-dage KPI
-        const afKpi = D.kpis.find(k=>k.label==='AF-DAGE');
-        if (afKpi) { afKpi.value = D.afDays.weekDone + '/7'; }
+      if (remote.af) {
+        D.afDays.weekDone = parseInt(remote.af.weekDone) || 0;
+        D.afDays.streak   = parseInt(remote.af.streak)   || 0;
       }
       if (remote.af_history)             { D.afHistory = remote.af_history; }
       if (remote.kpis) {
