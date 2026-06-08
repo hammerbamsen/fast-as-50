@@ -383,6 +383,9 @@ def build_week_sessions(done_map, planned_sessions):
         planned_days.add(day_key)
         new_s = dict(s)
         new_s.pop('today', None)
+        # Ekstra aktiviteter får egne rækker nu — planlagte sessioner skal ikke
+        # bære en forældet disc2 (fx "free"), som gav et overflødigt FRI-tag.
+        new_s.pop('disc2', None)
 
         if day_idx == today_idx:
             new_s['today'] = True
