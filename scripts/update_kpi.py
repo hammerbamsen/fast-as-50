@@ -222,12 +222,23 @@ def get_activities_week():
         )
         # Træningstimer per type (i minutter)
         def mins(a): return round((a.get('moving_time') or a.get('elapsed_time') or 0) / 60, 0)
-        train_mins = {
-            'run':      round(sum(mins(a) for a in data if a.get('type') in ['Run','TrailRun','VirtualRun']), 0),
-            'bike':     round(sum(mins(a) for a in data if a.get('type') in ['Ride','VirtualRide','MountainBike']), 0),
-            'swim':     round(sum(mins(a) for a in data if a.get('type') in ['Swim']), 0),
-            'strength': round(sum(mins(a) for a in data if a.get('type') in ['WeightTraining','Workout','Strength']), 0),
-        }
+        def disc_of(a):
+            t = a.get('type', '')
+            if t in ['Ride','VirtualRide'] and a.get('commute'): return 'commute'
+            if t in ['Run','TrailRun','VirtualRun']:             return 'run'
+            if t in ['Ride','VirtualRide','MountainBike']:       return 'bike'
+            if t in ['Swim']:                                    return 'swim'
+            if t in ['OpenWaterSwim']:                           return 'openwater'
+            if t in ['Walk']:                                    return 'walk'
+            if t in ['Hike']:                                    return 'hike'
+            if t in ['WeightTraining','Workout','Strength','Yoga']: return 'strength'
+            return 'free'
+        train_mins = {}
+        for a in data:
+            d = disc_of(a)
+            train_mins[d] = round(train_mins.get(d, 0) + mins(a), 0)
+        # Fjern nul-værdier
+        train_mins = {k: v for k, v in train_mins.items() if v > 0}
         # Byg done-map: {dag_short: [disc, ...]}
         done_map = {}
         for a in data:
