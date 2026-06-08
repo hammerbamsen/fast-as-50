@@ -241,21 +241,30 @@ def get_activities_week():
             except:
                 continue
             atype = a.get('type', '')
-            if atype in ['Run','TrailRun','VirtualRun']:
+            if atype in ['Ride','VirtualRide'] and a.get('commute'):
+                disc = 'commute'
+            elif atype in ['Run','TrailRun','VirtualRun']:
                 disc = 'run'
             elif atype in ['Ride','VirtualRide','MountainBike']:
                 disc = 'bike'
             elif atype in ['Swim']:
                 disc = 'swim'
-            elif atype in ['WeightTraining','Workout','Strength']:
+            elif atype in ['OpenWaterSwim']:
+                disc = 'openwater'
+            elif atype in ['Walk']:
+                disc = 'walk'
+            elif atype in ['Hike']:
+                disc = 'hike'
+            elif atype in ['WeightTraining','Workout','Strength','Yoga']:
                 disc = 'strength'
             else:
                 disc = 'free'
-            done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc))
+            done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc, a.get('name') or atype))
 
-        # Sortér efter tidspunkt og behold kun disc-navne
+        # Sortér efter tidspunkt og behold disc-navne + aktivitetsnavne
         for k in done_map:
-            done_map[k] = [disc for _, disc in sorted(done_map[k])]
+            sorted_acts = sorted(done_map[k], key=lambda x: x[0])
+            done_map[k] = [(disc, name) for _, disc, name in sorted_acts]
 
         return {
             'tss_week': round(total_tss, 0),
@@ -346,9 +355,21 @@ def gh_put(path, sha, content, message):
     return ok
 
 def build_week_sessions(done_map, planned_sessions):
-    """Opdater done-status på ugessessioner baseret på Intervals-aktiviteter"""
+    """Opdater done-status på ugessessioner baseret på Intervals-aktiviteter.
+    done_map: {dag_short: [(disc, navn), ...]} sorteret efter tidspunkt.
+    Planlagte sessioner matches mod aktiviteter af samme disc; resterende
+    aktiviteter tilføjes som separate ekstra-rækker (walk, hike, commute osv.)."""
     today     = date.today()
     today_idx = today.weekday()  # 0=Man, 6=Søn
+
+    disc_labels = {
+        'run': 'Løb', 'bike': 'Cykel', 'swim': 'Svøm', 'strength': 'Styrke',
+        'free': 'Aktiv restitution', 'walk': 'Gåtur', 'hike': 'Vandring',
+        'commute': 'Pendling', 'openwater': 'Open water',
+    }
+
+    # Spor hvilke aktiviteter pr. dag der er brugt til at matche planlagte sessioner
+    used = {day: set() for day in done_map}
 
     result = []
     planned_days = set()
@@ -367,37 +388,50 @@ def build_week_sessions(done_map, planned_sessions):
             new_s['today'] = True
 
         if day_idx <= today_idx and day_key in done_map:
-            new_s['done'] = True
-            discs = done_map[day_key]
-            if len(discs) >= 2:
-                new_s['disc']  = discs[0]
-                new_s['disc2'] = discs[1]
-            elif len(discs) == 1:
-                new_s['disc'] = discs[0]
-                if 'disc2' not in new_s and 'disc2' in s:
-                    new_s['disc2'] = s['disc2']
+            acts = done_map[day_key]
+            planned_disc = s.get('disc')
+            # Find første ubrugte aktivitet med samme disc som planlagt
+            match_idx = None
+            for i, (disc, name) in enumerate(acts):
+                if i not in used[day_key] and disc == planned_disc:
+                    match_idx = i
+                    break
+            # Hvis ingen disc-match, men der findes aktiviteter, marker done med første
+            if match_idx is None:
+                for i, (disc, name) in enumerate(acts):
+                    if i not in used[day_key]:
+                        match_idx = i
+                        break
+            if match_idx is not None:
+                new_s['done'] = True
+                used[day_key].add(match_idx)
+                matched_disc = acts[match_idx][0]
+                new_s['disc'] = matched_disc
 
         result.append(new_s)
 
-    # Bonus-pas: aktiviteter på dage uden planlagt session
-    disc_labels = {'run': 'Løb', 'bike': 'Cykel', 'swim': 'Svøm', 'strength': 'Styrke', 'free': 'Aktiv restitution'}
-    for day_key, discs in done_map.items():
+    # Ekstra-pas: alle ubrugte aktiviteter tilføjes som separate rækker
+    for day_key, acts in done_map.items():
         try:
             day_idx = DAY_SHORT.index(day_key)
         except:
             continue
-        if day_key not in planned_days and day_idx <= today_idx:
-            label = ' + '.join(disc_labels.get(d, d) for d in discs)
-            bonus = {
-                'day': day_key, 'disc': discs[0],
-                'label': f'Bonus: {label}',
-                'done': True, 'bonus': True,
+        if day_idx > today_idx:
+            continue
+        for i, (disc, name) in enumerate(acts):
+            if i in used.get(day_key, set()):
+                continue
+            label = name if name else disc_labels.get(disc, disc)
+            extra = {
+                'day': day_key,
+                'disc': disc,
+                'label': label,
+                'done': True,
+                'extra': True,
             }
-            if len(discs) >= 2:
-                bonus['disc2'] = discs[1]
             if day_idx == today_idx:
-                bonus['today'] = True
-            result.append(bonus)
+                extra['today'] = True
+            result.append(extra)
 
     result.sort(key=lambda s: DAY_SHORT.index(s['day']) if s['day'] in DAY_SHORT else 99)
     return result
