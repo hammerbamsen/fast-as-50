@@ -646,32 +646,40 @@ function trainMinutesBar() {
     {key:'swim',     label:'Svøm',    color:'var(--swim)'},
     {key:'strength', label:'Styrke',  color:'var(--gold)'},
   ];
-  const total = types.reduce((s,t) => s + (tm[t.key]||0), 0);
-  if (total === 0) return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);padding:8px 0">Ingen aktiviteter denne uge endnu</div>';
+  const actual = tm.actual_total || types.reduce((s,t)=>s+(tm[t.key]||0),0);
+  const planned = tm.planned || 0;
+  const fmt = m => m >= 60 ? Math.floor(m/60)+'t'+(m%60>0?' '+Math.round(m%60)+'m':'') : Math.round(m)+'m';
 
-  const fmt = m => m >= 60 ? Math.floor(m/60)+'t ' + (m%60>0?m%60+'m':'') : m+'m';
+  const header = planned > 0
+    ? `<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">FAKTISK</span>
+        <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink)">${fmt(actual)} <span style="color:var(--muted)">/ ${fmt(planned)} planlagt</span></span>
+      </div>`
+    : '';
 
-  const bars = types.filter(t => tm[t.key] > 0).map(t => {
-    const pct = Math.round((tm[t.key]/total)*100);
+  if (actual === 0) return header + '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);padding:4px 0">Ingen aktiviteter denne uge endnu</div>';
+
+  const bars = types.filter(t=>tm[t.key]>0).map(t => {
+    const pct = planned > 0 ? Math.min(Math.round((tm[t.key]/planned)*100),100) : Math.round((tm[t.key]/actual)*100);
     return `<div style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
-        <span style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted)">${t.label.toUpperCase()}</span>
-        <span style="font-family:Space Mono,monospace;font-size:10px;color:var(--ink);font-weight:700">${fmt(tm[t.key])}</span>
+      <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${t.label.toUpperCase()}</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--ink);font-weight:700">${fmt(tm[t.key])}</span>
       </div>
       <div style="background:var(--cream-d);border-radius:4px;height:8px">
-        <div style="background:${t.color};border-radius:4px;height:8px;width:${pct}%;transition:width .3s"></div>
+        <div style="background:${t.color};border-radius:4px;height:8px;width:${pct}%"></div>
       </div>
     </div>`;
   }).join('');
 
-  return bars + `<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);margin-top:4px">TOTAL: ${fmt(total)}</div>`;
+  return header + bars;
 }
 
 function renderOverview() {
   return `
   <div class="hero-card">
     <div class="hero-eyebrow">SÆSON 2026</div>
-    <div class="hero-title">Overblik</div>
+    <div class="hero-title">Træning</div>
     <div class="hero-sub">14-ugers periodeplan + events</div>
   </div>
   <div class="card">
@@ -680,6 +688,10 @@ function renderOverview() {
     <div class="event-card">${icon("flag",20,"var(--gold)")}<div style="flex:1"><div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600">Médoc Marathon</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">5. sep</div></div><div style="text-align:right"><div class="event-days">${D.daysToMedoc}</div><div class="event-days-sub">dage</div></div></div>
   </div>
   <div class="card"><div class="label">14-ugers periodeplan</div>${periodTimeline()}</div>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">Træningsfordeling — uge ${D.week}</div>
+    ${trainingDonut()}
+  </div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
       <div class="label" style="margin-bottom:0">Træningstimer — uge ${D.week}</div>
@@ -696,20 +708,6 @@ function renderOverview() {
   <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
     <div class="label" style="margin-bottom:6px">Ugens fokus</div>
     <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus||'—'}</p>
-  </div>`;
-}
-
-function renderBody() {
-  const ctlNow = parseFloat((D.kpis.find(k=>k.label==="CTL FITNESS")||{}).value) || STATIC.ctlStart;
-  const wNow   = parseFloat((D.kpis.find(k=>k.label==="VÆGT")||{}).value.replace(",",".")) || STATIC.weight.start;
-  const fNow   = parseFloat((D.kpis.find(k=>k.label==="FEDT%")||{}).value.replace(",",".")) || STATIC.bodyFat.start;
-  return `
-  <div class="hero-card"><div class="hero-eyebrow">BASELINE → MÅL</div><div class="hero-title">Krop</div></div>
-  <div class="card">
-    <div class="label">Kropskomposition</div>
-    ${progressMetric("Vægt", STATIC.weight.start, wNow, STATIC.weight.goal, " kg", "var(--gold)")}
-    ${progressMetric("Fedt %", STATIC.bodyFat.start, fNow, STATIC.bodyFat.goal, "%", "var(--run)")}
-    ${progressMetric("CTL (fitness)", STATIC.ctlStart, ctlNow, STATIC.ctlGoal, "", "var(--bike)")}
   </div>
   <div class="card">
     <div class="label">Løb — træningszoner</div>
@@ -734,9 +732,20 @@ function renderBody() {
     <div>${STATIC.strength.map(e=>`<span class="strength-tag">${e}</span>`).join("")}</div>
     <div class="eq-note">KB: 12.5 / 16 / 20 kg · DB: 5 / 7 / 10 / 12.5 / 15 kg</div>
   </div>
+`;
+}
+
+function renderBody() {
+  const ctlNow = parseFloat((D.kpis.find(k=>k.label==="CTL FITNESS")||{}).value) || STATIC.ctlStart;
+  const wNow   = parseFloat((D.kpis.find(k=>k.label==="VÆGT")||{}).value?.replace(",",".")) || STATIC.weight.start;
+  const fNow   = parseFloat((D.kpis.find(k=>k.label==="FEDT%")||{}).value?.replace(",",".")) || STATIC.bodyFat.start;
+  return `
+  <div class="hero-card"><div class="hero-eyebrow">BASELINE → MÅL</div><div class="hero-title">Krop</div></div>
   <div class="card">
-    <div class="label" style="margin-bottom:12px">Træningsfordeling — uge ${D.week}</div>
-    ${trainingDonut()}
+    <div class="label">Kropskomposition</div>
+    ${progressMetric("Vægt", STATIC.weight.start, wNow, STATIC.weight.goal, " kg", "var(--gold)")}
+    ${progressMetric("Fedt %", STATIC.bodyFat.start, fNow, STATIC.bodyFat.goal, "%", "var(--run)")}
+    ${progressMetric("CTL (fitness)", STATIC.ctlStart, ctlNow, STATIC.ctlGoal, "", "var(--bike)")}
   </div>
   <div class="card">
     <div class="label" style="margin-bottom:12px">Tendenser — 7 dage</div>
