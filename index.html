@@ -938,6 +938,10 @@ function trainingDonut() {
   });
   const rawTotal = Object.values(counts).reduce((a,b)=>a+b,0);
   const total = rawTotal || 1;
+  // Samlet træningstid (kun rigtig træning — samme afgrænsning som donut)
+  const tm = D.train_mins || {};
+  const trainMin = ['run','bike','swim','strength','openwater'].reduce((s,k)=>s+(tm[k]||0),0);
+  const fmtDur = m => m >= 60 ? Math.floor(m/60)+'t'+(m%60>0?' '+Math.round(m%60)+'m':'') : Math.round(m)+'m';
   const colors = {run:'var(--run)',bike:'var(--bike)',swim:'var(--swim)',strength:'var(--gold)',openwater:'var(--openwater)'};
   const labels = {run:'Løb',bike:'Cykel',swim:'Svøm',strength:'Styrke',openwater:'OW'};
   if (rawTotal === 0) {
@@ -954,17 +958,21 @@ function trainingDonut() {
     return {seg, k, v, pct};
   });
   return `<div style="display:flex;align-items:center;gap:16px">
-    <svg viewBox="0 0 120 120" style="width:90px;height:90px;flex-shrink:0">
+    <svg viewBox="0 0 120 120" style="width:96px;height:96px;flex-shrink:0">
       ${total===1?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="${stroke}"/>`:''}
       ${segments.map(s=>s.seg).join('')}
-      <text x="${cx}" y="${cy+4}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="10" fill="var(--wine)" font-weight="700">${total}</text>
-      <text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="var(--muted)">SESS.</text>
+      <text x="${cx}" y="${cy+2}" text-anchor="middle" font-family="'Newsreader',serif" font-size="26" fill="var(--wine)" font-weight="700">${total}</text>
+      <text x="${cx}" y="${cy+18}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" letter-spacing="0.5" fill="var(--muted)">SESSIONER</text>
     </svg>
     <div style="flex:1">${segments.map(s=>`
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-        <span style="font-family:'Space Mono',monospace;font-size:9px;color:${colors[s.k]}">${labels[s.k].toUpperCase()}</span>
-        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${s.v}×</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:${colors[s.k]}">${labels[s.k].toUpperCase()}</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${s.v}×</span>
       </div>`).join('')}
+      ${trainMin > 0 ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--cream-d)">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em">TRÆNINGSTID</span>
+        <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink);font-weight:700">${fmtDur(trainMin)}</span>
+      </div>` : ''}
     </div>
   </div>`;
 }
