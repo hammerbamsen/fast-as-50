@@ -322,12 +322,73 @@ def get_planned_mins_this_week():
     return result
 
 def planned_tss_this_week():
+    """Estimerer planlagt TSS live fra Intervals events denne uge.
+    Intervals giver ikke altid 'load' på planlagte workouts, så vi estimerer
+    fra varighed (moving_time) + zone via IF-model: TSS/time = IF^2 * 100.
+    Falder tilbage til hardcodet tabel hvis API fejler eller ingen events.
+    """
+    today  = date.today()
+    monday = today - timedelta(days=today.weekday())
+    sunday = monday + timedelta(days=6)
+
+    # Fallback-tabel (bruges kun hvis live-data ikke kan hentes)
     week1 = date(2026, 6, 1)
-    diff  = (date.today() - week1).days
+    diff  = (today - week1).days
     week_num = min(max(diff // 7 + 1, 1), 14)
-    planned = {1:383,2:460,3:466,4:167,5:511,6:490,7:546,8:186,
-               9:596,10:598,11:638,12:194,13:345,14:245}
-    return planned.get(week_num, 400)
+    fallback = {1:383,2:460,3:466,4:167,5:511,6:490,7:546,8:186,
+                9:596,10:598,11:638,12:194,13:345,14:245}.get(week_num, 400)
+
+    r = requests.get(f'{BASE}/events', auth=AUTH,
+                     params={'oldest': str(monday), 'newest': str(sunday)})
+    if r.status_code != 200:
+        print(f"  Planned TSS API fejl: {r.status_code} — bruger fallback {fallback}")
+        return fallback
+
+    events = r.json()
+    IF = {'Z1':0.55,'Z2':0.70,'Z3':0.80,'Z4':0.90,'Z5':1.0}
+    total_tss = 0
+    used_live = False
+
+    for e in events:
+        if e.get('category') not in ('WORKOUT', None):
+            continue
+        name = (e.get('name') or '')
+        # 1) Hvis Intervals selv har en load/TSS, brug den
+        load = e.get('load') or e.get('icu_training_load')
+        if load:
+            total_tss += load
+            used_live = True
+            continue
+        # 2) Ellers estimer fra varighed + zone
+        secs = (e.get('moving_time') or e.get('elapsed_time') or
+                e.get('indoor_time') or e.get('planned_duration') or 0)
+        if not secs:
+            continue
+        hrs = secs / 3600
+        nl = name.lower()
+        # Bestem zone fra navnet
+        zone = 'Z2'
+        for z in ['Z5','Z4','Z3','Z2','Z1']:
+            if z.lower() in nl:
+                zone = z; break
+        if 'interval' in nl or 'bjerg' in nl:
+            zone = 'Z4'
+        # Disciplinspecifik justering
+        if 'styrke' in nl or e.get('type') in ('WeightTraining','Workout'):
+            tss = hrs * 40            # styrke ~40 TSS/time
+        elif 'svøm' in nl or e.get('type') == 'Swim':
+            tss = hrs * 55            # svøm lidt højere intensitet
+        else:
+            tss = hrs * (IF[zone]**2 * 100)
+        total_tss += tss
+        used_live = True
+
+    result = round(total_tss)
+    if not used_live or result == 0:
+        print(f"  Ingen brugbare events — bruger fallback {fallback}")
+        return fallback
+    print(f"  Planlagt TSS (live estimat): {result}")
+    return result
 
 def fmt(val, decimals=1):
     if val is None:
