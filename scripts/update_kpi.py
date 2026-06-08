@@ -41,8 +41,9 @@ def get_wellness_7d():
         data = r.json()
         hrvs    = [d.get('hrv')       for d in data if d.get('hrv')]
         sleeps  = [d.get('sleepSecs') for d in data if d.get('sleepSecs')]
-        weights = [d.get('weight')    for d in data if d.get('weight')]
-        fats    = [d.get('bodyFat')   for d in data if d.get('bodyFat')]
+        weights  = [d.get('weight')    for d in data if d.get('weight')]
+        fats     = [d.get('bodyFat')   for d in data if d.get('bodyFat')]
+        proteins = [d.get('Protein')   for d in data if d.get('Protein')]
         weight_avg = round(sum(weights)/len(weights), 1) if weights else None
         return {
             'hrv_avg':    round(sum(hrvs)/len(hrvs), 1)          if hrvs   else None,
@@ -50,6 +51,7 @@ def get_wellness_7d():
             'weight':     round(weights[-1], 1)                  if weights else None,
             'weight_avg': weight_avg,
             'fat':        round(fats[-1], 1)                     if fats   else None,
+            'protein':    round(proteins[-1], 0)                 if proteins else None,
         }
     return None
 
@@ -498,9 +500,10 @@ def main():
     data['meta']['week']                 = week_num
 
     # --- KPIs ---
-    weight = wellness.get('weight')  if wellness else None
+    weight     = wellness.get('weight')   if wellness else None
     weight_avg = wellness.get('weight_avg') if wellness else None
-    fat    = wellness.get('fat')     if wellness else None
+    fat        = wellness.get('fat')        if wellness else None
+    protein    = wellness.get('protein')    if wellness else None
     hrv    = wellness.get('hrv_avg') if wellness else None
     sleep  = wellness.get('sleep_avg') if wellness else None
     ctl    = fitness.get('ctl')      if fitness else None
@@ -521,11 +524,14 @@ def main():
         'sleep':      {'value': fmt(sleep, 1),         'unit': 't',  'sub': 'Snit 7,5t · mål 7t',            'color': '#2874A6'},
         'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': 'Mål 40+ km uge 10',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
         'hrv':        {'value': fmt(hrv, 1),           'unit': 'ms', 'sub': 'Snit 7d',                       'color': '#7A6A58'},
-        'tssComp':    {'value': fmt(compliance, 0) if compliance else '—', 'unit': '%' if compliance else '',
-                       'sub': f'Planlagt {int(planned)} TSS · faktisk {int(tss_act or 0)}',
+        'tssComp':    {'value': fmt(tss_act, 0) if tss_act else '0', 'unit': 'TSS',
+                       'sub': f'Mål {int(planned)} TSS denne uge{f" · {int(compliance)}%" if compliance else ""}',
                        'color': tss_color},
         'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
         'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': 'Dage i træk · mål 5/uge',           'color': '#59182A'},
+        'protein':    {'value': fmt(protein, 0) if protein else '—', 'unit': 'g',
+                       'sub': 'Mål ≥150 g/dag',
+                       'color': '#27AE60' if protein and protein >= 150 else '#C0392B' if protein and protein < 100 else '#F39C12' if protein else '#7A6A58'},
     }
 
     # --- AF-dage (man–søn denne uge) ---
