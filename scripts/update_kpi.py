@@ -267,30 +267,39 @@ def get_activities_week():
     return None
 
 def get_planned_mins_this_week():
-    """Henter planlagt træningstid i minutter fra Intervals denne uge."""
-    week1   = date(2026, 6, 1)
-    today   = date.today()
-    monday  = today - timedelta(days=today.weekday())
-    sunday  = monday + timedelta(days=6)
+    """Henter planlagt træningstid i minutter fra Intervals denne uge.
+    Bruger moving_time (sek), ellers estimated_moving_time, ellers 0.
+    """
+    today  = date.today()
+    monday = today - timedelta(days=today.weekday())
+    sunday = monday + timedelta(days=6)
     r = requests.get(f'{BASE}/events', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(sunday)})
     if r.status_code != 200:
+        print(f"  Planned mins API fejl: {r.status_code}")
         return 0
+    events = r.json()
+    print(f"  Events denne uge: {len(events)}")
     total_mins = 0
-    for e in r.json():
+    for e in events:
         if e.get('category') not in ('WORKOUT', None):
             continue
-        # moving_time eller indoor_time i sekunder
-        secs = e.get('moving_time') or e.get('indoor_time') or 0
+        # Prøv alle kendte varighed-felter fra Intervals
+        secs = (e.get('moving_time') or
+                e.get('elapsed_time') or
+                e.get('indoor_time') or
+                e.get('planned_duration') or 0)
         if not secs:
-            # Forsøg at parse varighed fra label (fx "60 min")
-            import re
-            desc = e.get('name','') + ' ' + (e.get('description') or '')
-            m = re.search(r'(\d+)\s*min', desc)
-            if m:
-                secs = int(m.group(1)) * 60
-        total_mins += secs / 60
-    return round(total_mins, 0)
+            # Brug load (TSS) som proxy: 1 TSS ≈ 1 min for Z2
+            load = e.get('load') or 0
+            if load:
+                secs = load * 60  # grov approx
+        mins = secs / 60 if secs > 60 else secs  # håndter hvis allerede i min
+        total_mins += mins
+        print(f"    Event: {e.get('name','')} secs={secs} mins={mins:.0f}")
+    result = round(total_mins, 0)
+    print(f"  Planlagt total: {result} min")
+    return result
 
 def planned_tss_this_week():
     week1 = date(2026, 6, 1)
@@ -581,13 +590,10 @@ def main():
         'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': 'Mål 40+ km uge 10',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
         'hrv':        {'value': fmt(hrv, 1),           'unit': 'ms', 'sub': 'Snit 7d',                       'color': '#7A6A58'},
         'tssComp':    {'value': fmt(tss_act, 0) if tss_act else '0', 'unit': 'TSS',
-                       'sub': f'Mål {int(planned)} TSS denne uge{f" · {int(compliance)}%" if compliance else ""}',
+                       'sub': f'{int(tss_act or 0)} af {int(planned)} planlagt TSS',
                        'color': tss_color},
         'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
         'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': 'Dage i træk · mål 5/uge',           'color': '#59182A'},
-        'protein':    {'value': fmt(protein, 0) if protein else '—', 'unit': 'g',
-                       'sub': 'Mål ≥150 g/dag',
-                       'color': '#27AE60' if protein and protein >= 150 else '#C0392B' if protein and protein < 100 else '#F39C12' if protein else '#7A6A58'},
     }
 
     # --- AF-dage (man–søn denne uge) ---
