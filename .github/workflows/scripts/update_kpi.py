@@ -221,6 +221,26 @@ def main():
 
     existing['kpis'] = kpis
 
+    # Auto-skift week_sessions når vi går ind i ny uge
+    current_week = meta['week']
+    all_weeks = existing.get('all_weeks', {})
+    new_week_sessions = all_weeks.get(str(current_week), {}).get('sessions')
+    if new_week_sessions:
+        # Kun opdater hvis week_sessions tilhører en anden uge
+        # Vi detekterer dette ved at tjekke om alle sessions er "done" og uge har skiftet
+        old_sessions = existing.get('week_sessions', [])
+        old_all_done = all(s.get('done', False) for s in old_sessions) if old_sessions else False
+        # Eller hvis sessionerne ikke matcher uge N's sessions (forskelligt antal/labels)
+        old_labels = set(s.get('label','') for s in old_sessions)
+        new_labels = set(s.get('label','') for s in new_week_sessions)
+        if old_labels != new_labels or old_all_done:
+            existing['week_sessions'] = [dict(s, done=False) for s in new_week_sessions]
+            print(f"Week_sessions opdateret til uge {current_week} ({len(new_week_sessions)} sessioner)")
+        # Opdater også weekFocus
+        new_focus = all_weeks.get(str(current_week), {}).get('focus')
+        if new_focus:
+            existing['weekFocus'] = new_focus
+
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
 
