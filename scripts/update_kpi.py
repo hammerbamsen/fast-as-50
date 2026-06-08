@@ -406,6 +406,52 @@ def get_planned_weeks():
     return all_weeks
 
 
+def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus):
+    """Genererer daglig coach-tekst baseret på kontekst."""
+    DK_DAYS = ['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag']
+    day_name = DK_DAYS[weekday]
+    
+    BLOCK_LABELS = {'BUILD':'build-uge','BUILD+':'intensiv build-uge','RECOVERY':'restituitionsuge','TAPER':'taper-uge','RACE':'race-uge'}
+    block_label = BLOCK_LABELS.get(block_type, 'træningsuge')
+    
+    # Streak-kommentar
+    if streak >= 14:
+        streak_comment = f"{streak} dage i træk — imponerende disciplin."
+    elif streak >= 7:
+        streak_comment = f"{streak} dage i træk. Hold den streak i live."
+    elif streak >= 3:
+        streak_comment = f"{streak} AF-dage i træk — godt momentum."
+    else:
+        streak_comment = f"{af_this_week}/7 AF-dage denne uge. Hvert valg tæller."
+
+    # Dagens session
+    if today_session and not today_session.get('done'):
+        disc = today_session.get('disc','')
+        title = today_session.get('label','træning')
+        disc_map = {'run':'løb','bike':'cykel','swim':'svøm','strength':'styrke','free':'aktiv restitution'}
+        disc_dk = disc_map.get(disc, 'træning')
+        session_line = f"I dag: {title} ({disc_dk})."
+    elif today_session and today_session.get('done'):
+        session_line = f"Dagens session er gennemført."
+    else:
+        session_line = "Hviledag i dag."
+
+    # Ugedag-intro
+    if weekday == 0:  # mandag
+        intro = f"Ny uge starter — uge {week_num} af 14. {block_label.capitalize()}."
+    elif weekday == 4:  # fredag
+        intro = f"Fredag — tre dage tilbage af uge {week_num}."
+    elif weekday == 6:  # søndag
+        intro = f"Søndag — afslut uge {week_num} stærkt."
+    else:
+        intro = f"{day_name.capitalize()} — uge {week_num} af 14."
+
+    speech = f"{intro} {{HL}} {session_line} {streak_comment}"
+    highlight = streak_comment
+
+    return speech.strip(), highlight.strip()
+
+
 def main():
     today     = date.today()
     weekday   = today.weekday()
@@ -511,6 +557,16 @@ def main():
             'desc':       today_session.get('desc', ''),
             'completed':  today_session.get('done', False),
         }
+
+    # --- Coach speech (genereres dagligt) ---
+    block_type = data.get('blockType', 'BUILD')
+    week_focus = data.get('weekFocus', '')
+    af_this_week = data.get('af', {}).get('weekDone', 0)
+    coach_speech, coach_highlight = generate_coach_speech(
+        week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus
+    )
+    data['coachSpeech']    = coach_speech
+    data['coachHighlight'] = coach_highlight
 
     # --- Push data.json ---
     gh_put('data.json', sha_data,
