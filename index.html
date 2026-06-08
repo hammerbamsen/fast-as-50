@@ -565,7 +565,7 @@ function renderWeek() {
       <button onclick="changeWeekView(1)" style="background:none;border:none;color:${nextOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${nextOk?'pointer':'default'};padding:0 8px">›</button>
     </div>
     ${isCurrentWeek ? '' : `<div style="text-align:center;margin-top:6px"><button onclick="changeWeekView(${-viewWeek})" style="background:rgba(255,255,255,.1);border:none;color:var(--gold);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;padding:4px 12px;border-radius:20px;cursor:pointer">→ GÅ TIL DENNE UGE</button></div>`}
-    ${isCurrentWeek && D.afDays.streak > 0 ? `<div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)">
+    ${isCurrentWeek && parseInt(D.afDays.streak) > 0 ? `<div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)">
       <div style="text-align:center">
         <div style="font-family:'Newsreader',serif;font-size:32px;color:var(--gold);line-height:1">${D.afDays.streak}</div>
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.08em">AF STREAK</div>
@@ -918,7 +918,7 @@ async function init() {
       if (m.daysToChristiansborg!=null) D.daysToChristiansborg   = m.daysToChristiansborg;
       if (m.dayName)                    D.dayName                = m.dayName;
       if (m.date)                       D.date                   = m.date;
-      if (remote.af)                    { D.afDays.weekDone = remote.af.weekDone || 0; D.afDays.streak = remote.af.streak || 0; }
+      if (remote.af)                    { D.afDays.weekDone = parseInt(remote.af.weekDone) || 0; D.afDays.streak = parseInt(remote.af.streak) || 0; }
       if (remote.af_history)             { D.afHistory = remote.af_history; }
       if (remote.kpis) {
         const km = remote.kpis;
