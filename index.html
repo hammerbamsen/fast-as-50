@@ -298,6 +298,7 @@ let D = {
   dayName:"", date:"",
   afDays:{ weekDone:0, target:5, streak:0 },
   afHistory: [],
+  train_mins: {run:0, bike:0, swim:0, strength:0},
   coachSpeech:"Du starter fra CTL 34 — lavere end din Ironman-baggrund tilsiger, men ærligt. {HL} Uge 1: etabler rytmen. 5 AF-dage, protein ved hvert måltid.",
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
@@ -517,14 +518,22 @@ function renderToday() {
     <div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#FDFAF6;line-height:1.65;position:relative">${parts[0]}<span style="color:var(--gold);font-weight:700">${D.coachHighlight}</span>${parts[1]}</div>
   </div>
 
-  <div class="kpi-grid">
-    ${D.kpis.map(k=>`<div class="kpi-card">
-      <div class="kpi-bar" style="background:${k.color}"></div>
-      <div class="kpi-label">${k.label}</div>
-      <div class="kpi-value">${k.value}<span class="kpi-unit">${k.unit}</span></div>
-      <div class="kpi-sub">${k.sub}</div>
-    </div>`).join("")}
-  </div>
+  ${(()=>{
+    const cats = ['Træning','Kost','Mentalt'];
+    return cats.map(cat => {
+      const items = D.kpis.filter(k=>k.cat===cat);
+      if(!items.length) return '';
+      return \`<div style="margin-bottom:16px">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;padding-left:2px">\${cat}</div>
+        <div class="kpi-grid">\${items.map(k=>\`<div class="kpi-card">
+          <div class="kpi-bar" style="background:\${k.color}"></div>
+          <div class="kpi-label">\${k.label}</div>
+          <div class="kpi-value">\${k.value}<span class="kpi-unit">\${k.unit}</span></div>
+          <div class="kpi-sub">\${k.sub}</div>
+        </div>\`).join("")}</div>
+      </div>\`;
+    }).join('');
+  })()}
 
   <div class="card"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus}</p></div>
   <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET <span id='last-updated'></span> · <span id="live-time"></span></div>
@@ -595,7 +604,7 @@ function renderWeek() {
         : icon(s.disc,18,C[s.disc]||'#7A6A58')}
     </div>
     <div class="wsession-body">
-      <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek)?`<span class="today-badge">I DAG</span>`:""}</div>
+      <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek)?`<span class="today-badge">I DAG</span>`:""} ${s.bonus?`<span style="font-family:Space Mono,monospace;font-size:9px;background:#E1F5EE;color:#0F6E56;padding:2px 7px;border-radius:4px;font-weight:700;margin-left:4px">BONUS</span>`:""}</div>
       <div class="wsession-day">${s.day}</div>
     </div>
     ${s.disc2
@@ -617,6 +626,36 @@ function changeWeekView(delta) {
   navigate('week');
 }
 
+
+function trainMinutesBar() {
+  const tm = D.train_mins || {};
+  const types = [
+    {key:'run',      label:'Løb',     color:'var(--run)'},
+    {key:'bike',     label:'Cykel',   color:'var(--bike)'},
+    {key:'swim',     label:'Svøm',    color:'var(--swim)'},
+    {key:'strength', label:'Styrke',  color:'var(--gold)'},
+  ];
+  const total = types.reduce((s,t) => s + (tm[t.key]||0), 0);
+  if (total === 0) return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);padding:8px 0">Ingen aktiviteter denne uge endnu</div>';
+
+  const fmt = m => m >= 60 ? Math.floor(m/60)+'t ' + (m%60>0?m%60+'m':'') : m+'m';
+
+  const bars = types.filter(t => tm[t.key] > 0).map(t => {
+    const pct = Math.round((tm[t.key]/total)*100);
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+        <span style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted)">${t.label.toUpperCase()}</span>
+        <span style="font-family:Space Mono,monospace;font-size:10px;color:var(--ink);font-weight:700">${fmt(tm[t.key])}</span>
+      </div>
+      <div style="background:var(--cream-d);border-radius:4px;height:8px">
+        <div style="background:${t.color};border-radius:4px;height:8px;width:${pct}%;transition:width .3s"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  return bars + `<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);margin-top:4px">TOTAL: ${fmt(total)}</div>`;
+}
+
 function renderOverview() {
   return `
   <div class="hero-card">
@@ -630,6 +669,12 @@ function renderOverview() {
     <div class="event-card">${icon("flag",20,"var(--gold)")}<div style="flex:1"><div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600">Médoc Marathon</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">5. sep</div></div><div style="text-align:right"><div class="event-days">${D.daysToMedoc}</div><div class="event-days-sub">dage</div></div></div>
   </div>
   <div class="card"><div class="label">14-ugers periodeplan</div>${periodTimeline()}</div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+      <div class="label" style="margin-bottom:0">Træningstimer — uge ${D.week}</div>
+    </div>
+    ${trainMinutesBar()}
+  </div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
       <div class="label" style="margin-bottom:0">CTL-progression</div>
@@ -698,14 +743,7 @@ function renderBody() {
     <div style="height:12px"></div>
     ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', 5, 9)}
   </div>
-  <div class="card">
-    <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
-    ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
-    <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
-      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
-      ${afHistoryViz(D.afHistory || [])}
-    </div>
-  </div>`;
+`;
 }
 
 function renderRules() {
@@ -853,7 +891,7 @@ function trainingDonut() {
 const PAGES = [
   {id:"today",    label:"I dag",    icon:"today"},
   {id:"week",     label:"Uge",      icon:"week"},
-  {id:"overview", label:"Overblik", icon:"overview"},
+  {id:"overview", label:"Træning",  icon:"overview"},
   {id:"body",     label:"Krop",     icon:"body"},
   {id:"rules",    label:"Regler",   icon:"rules"},
 ];
@@ -965,17 +1003,19 @@ async function init() {
       if (remote.kpis) {
         const km = remote.kpis;
         D.kpis = [
-          {label:"VÆGT",      value:km.weight?.value ||"—", unit:"kg", sub:km.weight?.sub ||"Mål <72 kg · snit 7d", color:"#27AE60"},
-          {label:"FEDT%",     value:km.fat?.value    ||"—", unit:"%",  sub:km.fat?.sub    ||"Mål <20%",             color:"#F39C12"},
-          {label:"CTL",       value:km.ctl?.value    ||"—", unit:"",   sub:km.ctl?.sub    ||"Mål 60 (uge 11)",      color:"#C0392B"},
-          {label:"FORM (TSB)",value:km.tsb?.value    ||"—", unit:"",   sub:km.tsb?.sub    ||"Bygger",               color:km.tsb?.color||"#F39C12"},
-          {label:"SØVN",      value:km.sleep?.value  ||"—", unit:"t",  sub:km.sleep?.sub  ||"Mål 7t",               color:"#2874A6"},
-          {label:"LØB KM",    value:km.runKm?.value  ||"—", unit:"km", sub:km.runKm?.sub  ||"Mål 40+ km",           color:"#C0392B"},
-          {label:"CYKEL KM",  value:km.bikeKm?.value ||"—", unit:"km", sub:km.bikeKm?.sub ||"Cykel denne uge",      color:"var(--bike)"},
-          {label:"AF STREAK", value:km.afStreak?.value||"—", unit:"",  sub:km.afStreak?.sub||"Dage i træk · mål 5",  color:"#59182A"},
-          {label:"PROTEIN",   value:km.protein?.value ||"—", unit:"g",  sub:km.protein?.sub ||"Mål ≥150 g/dag",       color:km.protein?.color||"#7A6A58"},
-          {label:"HRV",       value:km.hrv?.value    ||"—", unit:"ms", sub:km.hrv?.sub    ||"Stabil",               color:"#7A6A58"},
-          {label:"TSS UGE",   value:km.tssComp?.value||"0", unit:km.tssComp?.unit||"TSS", sub:km.tssComp?.sub||"Mål denne uge", color:km.tssComp?.color||"#7A6A58"},
+          // Træning
+          {cat:"Træning", label:"CTL",       value:km.ctl?.value    ||"—", unit:"",    sub:km.ctl?.sub    ||"Mål 60 (uge 11)",   color:"#C0392B"},
+          {cat:"Træning", label:"FORM",       value:km.tsb?.value    ||"—", unit:"",    sub:km.tsb?.sub    ||"Bygger",             color:km.tsb?.color||"#F39C12"},
+          {cat:"Træning", label:"LØB KM",     value:km.runKm?.value  ||"—", unit:"km",  sub:km.runKm?.sub  ||"Mål 40+ km",         color:"#C0392B"},
+          {cat:"Træning", label:"CYKEL KM",   value:km.bikeKm?.value ||"—", unit:"km",  sub:km.bikeKm?.sub ||"Cykel denne uge",    color:"var(--bike)"},
+          {cat:"Træning", label:"TSS UGE",    value:km.tssComp?.value||"0", unit:km.tssComp?.unit||"TSS", sub:km.tssComp?.sub||"Mål denne uge", color:km.tssComp?.color||"#7A6A58"},
+          // Kost
+          {cat:"Kost",    label:"VÆGT",       value:km.weight?.value ||"—", unit:"kg",  sub:km.weight?.sub ||"Mål <72 kg",         color:"#27AE60"},
+          {cat:"Kost",    label:"FEDT%",      value:km.fat?.value    ||"—", unit:"%",   sub:km.fat?.sub    ||"Mål <20%",           color:"#F39C12"},
+          {cat:"Kost",    label:"AF STREAK",  value:km.afStreak?.value||"—", unit:"",   sub:km.afStreak?.sub||"Dage i træk",        color:"#59182A"},
+          // Mentalt
+          {cat:"Mentalt", label:"SØVN",       value:km.sleep?.value  ||"—", unit:"t",   sub:km.sleep?.sub  ||"Mål 7t",             color:"#2874A6"},
+          {cat:"Mentalt", label:"HRV",        value:km.hrv?.value    ||"—", unit:"ms",  sub:km.hrv?.sub    ||"Stabil",             color:"#7A6A58"},
         ];
       }
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
@@ -988,7 +1028,7 @@ async function init() {
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
       if (remote.week_sessions)  D.week_sessions  = remote.week_sessions;
       if (remote.all_weeks)      D.all_weeks      = remote.all_weeks;
-      if (remote.all_weeks)      D.all_weeks      = remote.all_weeks;
+      if (remote.train_mins)     D.train_mins     = remote.train_mins;
       if (remote.today) {
         // Håndter både flat og nested format
         if (remote.today.title) D.today = remote.today;
