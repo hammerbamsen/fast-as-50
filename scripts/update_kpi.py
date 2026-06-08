@@ -43,11 +43,13 @@ def get_wellness_7d():
         sleeps  = [d.get('sleepSecs') for d in data if d.get('sleepSecs')]
         weights = [d.get('weight')    for d in data if d.get('weight')]
         fats    = [d.get('bodyFat')   for d in data if d.get('bodyFat')]
+        weight_avg = round(sum(weights)/len(weights), 1) if weights else None
         return {
-            'hrv_avg':   round(sum(hrvs)/len(hrvs), 1)          if hrvs   else None,
-            'sleep_avg': round(sum(sleeps)/len(sleeps)/3600, 1) if sleeps else None,
-            'weight':    round(weights[-1], 1)                  if weights else None,
-            'fat':       round(fats[-1], 1)                     if fats   else None,
+            'hrv_avg':    round(sum(hrvs)/len(hrvs), 1)          if hrvs   else None,
+            'sleep_avg':  round(sum(sleeps)/len(sleeps)/3600, 1) if sleeps else None,
+            'weight':     round(weights[-1], 1)                  if weights else None,
+            'weight_avg': weight_avg,
+            'fat':        round(fats[-1], 1)                     if fats   else None,
         }
     return None
 
@@ -211,6 +213,11 @@ def get_activities_week():
             for a in data
             if a.get('type') in ['Run', 'TrailRun', 'VirtualRun']
         )
+        bike_km = sum(
+            (a.get('distance') or 0) / 1000
+            for a in data
+            if a.get('type') in ['Ride', 'VirtualRide', 'MountainBike']
+        )
         # Byg done-map: {dag_short: [disc, ...]}
         done_map = {}
         for a in data:
@@ -243,6 +250,7 @@ def get_activities_week():
         return {
             'tss_week': round(total_tss, 0),
             'run_km':   round(run_km, 1),
+            'bike_km':  round(bike_km, 1),
             'done_map': done_map,
         }
     return None
@@ -491,6 +499,7 @@ def main():
 
     # --- KPIs ---
     weight = wellness.get('weight')  if wellness else None
+    weight_avg = wellness.get('weight_avg') if wellness else None
     fat    = wellness.get('fat')     if wellness else None
     hrv    = wellness.get('hrv_avg') if wellness else None
     sleep  = wellness.get('sleep_avg') if wellness else None
@@ -498,13 +507,14 @@ def main():
     atl    = fitness.get('atl')      if fitness else None
     tsb    = fitness.get('tsb')      if fitness else None
     tss_act = activities.get('tss_week') if activities else None
-    km_week = activities.get('run_km')   if activities else None
+    km_week  = activities.get('run_km')  if activities else None
+    bike_km  = activities.get('bike_km') if activities else None
     done_map = activities.get('done_map', {}) if activities else {}
     compliance = round(tss_act / planned * 100, 0) if tss_act else None
 
     tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
     data['kpis'] = {
-        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': 'Mål <72 kg · snit 7d',          'color': color_for(weight, 72, lower=True)  if weight     else '#7A6A58'},
+        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f'Mål <72 kg · snit {fmt(weight_avg)} kg' if weight_avg else 'Mål <72 kg', 'color': color_for(weight, 72, lower=True)  if weight     else '#7A6A58'},
         'fat':        {'value': fmt(fat),              'unit': '%',  'sub': 'Mål <20%',                       'color': color_for(fat, 20, lower=True)     if fat        else '#7A6A58'},
         'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': 'Mål 60 (uge 11)',                 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
         'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': 'Hård blok' if tsb and tsb < -10 else 'Form', 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
@@ -514,6 +524,8 @@ def main():
         'tssComp':    {'value': fmt(compliance, 0) if compliance else '—', 'unit': '%' if compliance else '',
                        'sub': f'Planlagt {int(planned)} TSS · faktisk {int(tss_act or 0)}',
                        'color': tss_color},
+        'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
+        'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': f'{af_days or 0}/7 AF-dage · mål 5', 'color': '#59182A'},
     }
 
     # --- AF-dage (man–søn denne uge) ---
