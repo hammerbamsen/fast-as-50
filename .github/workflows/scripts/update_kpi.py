@@ -11,6 +11,32 @@ ATHLETE_ID  = os.environ.get('INTERVALS_ATHLETE_ID', 'i0')
 BASE        = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH        = ('API_KEY', API_KEY)
 
+# Intervals.icu sport_type → dashboard disc
+SPORT_TO_DISC = {
+    'Run':          'run',
+    'TrailRun':     'run',
+    'VirtualRun':   'run',
+    'Ride':         'bike',
+    'VirtualRide':  'bike',
+    'MountainBike': 'bike',
+    'Swim':         'swim',
+    'OpenWaterSwim':'openwater',
+    'Walk':         'walk',
+    'Hike':         'hike',
+    'WeightTraining':'strength',
+    'Workout':      'strength',
+    'Yoga':         'strength',
+}
+
+DK_DAYS = ['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn']
+
+def sport_to_disc(activity):
+    """Map Intervals.icu activity til disc type — håndterer commute separat."""
+    t = activity.get('type', '')
+    if t in ('Ride', 'VirtualRide') and activity.get('commute'):
+        return 'commute'
+    return SPORT_TO_DISC.get(t, 'free')
+
 def get_fitness():
     r = requests.get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': str(date.today()), 'newest': str(date.today())})
@@ -58,14 +84,62 @@ def get_activities_7d():
         return {'tss_week': round(total_tss, 0), 'run_km': round(run_km, 1)}
     return None
 
+def get_week_sessions():
+    """
+    Hent faktiske aktiviteter denne uge fra Intervals.icu og byg week_sessions.
+    Merger planlagte (fra all_weeks) med udførte aktiviteter.
+    Aktiviteter uden match på planlagt session tilføjes som bonus-sessioner.
+    """
+    today = date.today()
+    monday = today - timedelta(days=today.weekday())
+    sunday = monday + timedelta(days=6)
+
+    r = requests.get(
+        f'{BASE}/activities',
+        auth=AUTH,
+        params={'oldest': str(monday), 'newest': str(sunday)}
+    )
+    if r.status_code != 200:
+        return None
+
+    activities = r.json()
+
+    # Byg faktiske sessioner grupperet pr. dag
+    # Én aktivitet = én session
+    sessions = []
+    for a in activities:
+        act_date = a.get('start_date_local', '')[:10]
+        try:
+            d = date.fromisoformat(act_date)
+        except Exception:
+            continue
+        day_label = DK_DAYS[d.weekday()]
+        disc = sport_to_disc(a)
+        name = a.get('name') or a.get('type') or 'Session'
+        dur_secs = a.get('moving_time') or a.get('elapsed_time') or 0
+        dur_min = round(dur_secs / 60)
+        dur_str = f'{dur_min} min' if dur_min else ''
+        tss = round(a.get('training_load') or 0)
+
+        sessions.append({
+            'day':   day_label,
+            'disc':  disc,
+            'label': name,
+            'done':  True,
+            'dur':   dur_str,
+            'tss':   tss,
+        })
+
+    # Sorter man→søn
+    day_order = {d: i for i, d in enumerate(DK_DAYS)}
+    sessions.sort(key=lambda s: day_order.get(s['day'], 9))
+
+    return sessions if sessions else None
+
 def get_af_streak_and_log():
     """
     Hent Alkohol-felt fra Intervals.icu wellness for de seneste 90 dage.
     alkohol=0 = AF-dag, alkohol=1 = ikke AF-dag.
-    Beregn:
-      - streak: antal sammenhængende AF-dage bagfra (stopper ved første ikke-AF-dag eller manglende data)
-      - af_log: dict {dato: 0/1} for denne uge
-      - week_af_count: antal AF-dage denne uge (man-i-dag)
     """
     oldest = str(date.today() - timedelta(days=90))
     newest = str(date.today())
@@ -77,7 +151,6 @@ def get_af_streak_and_log():
 
     if r.status_code == 200:
         data = r.json()
-        # Byg dict {dato_str: alkohol_value}
         af_by_date = {}
         for d in data:
             dt = d.get('date', '')[:10]
@@ -85,25 +158,22 @@ def get_af_streak_and_log():
             if val is not None:
                 af_by_date[dt] = val
 
-        # Beregn streak: gå baglæns fra i går (i dag er måske ikke registreret endnu)
         today = date.today()
         check = today - timedelta(days=1)
         while True:
             k = str(check)
             if k not in af_by_date:
                 break
-            if af_by_date[k] == 0:   # 0 = AF-dag
+            if af_by_date[k] == 0:
                 streak += 1
                 check -= timedelta(days=1)
             else:
                 break
         
-        # Tjek om i dag allerede er registreret som AF
         today_str = str(today)
         if af_by_date.get(today_str) == 0:
             streak += 1
 
-        # Ugens AF-log (mandag til i dag)
         monday = today - timedelta(days=today.weekday())
         for i in range(7):
             d = monday + timedelta(days=i)
@@ -156,6 +226,7 @@ def main():
     planned    = planned_tss_this_week()
     af_streak, af_log, week_af_count = get_af_streak_and_log()
     meta       = week_meta()
+    week_sessions = get_week_sessions()
 
     weight  = wellness.get('weight')   if wellness else None
     fat     = wellness.get('body_fat') if wellness else None
@@ -167,14 +238,12 @@ def main():
     tss_comp   = round(tss_actual / planned * 100, 0) if tss_actual else None
     run_km     = activities.get('run_km')   if activities else None
 
-    # Læs eksisterende data.json for at bevare felter vi ikke opdaterer
     try:
         with open('data.json', 'r', encoding='utf-8') as f:
             existing = json.load(f)
     except Exception:
         existing = {}
 
-    # Opdater kun de felter vi henter live
     existing['meta'] = meta
     existing['af'] = {
         'weekDone':   week_af_count,
@@ -182,6 +251,13 @@ def main():
         'streak':     af_streak,
     }
     existing['af_log'] = af_log
+
+    # Opdater week_sessions fra faktiske Intervals-aktiviteter
+    if week_sessions is not None:
+        existing['week_sessions'] = week_sessions
+        print(f"week_sessions opdateret: {len(week_sessions)} aktiviteter fra Intervals")
+    else:
+        print("Ingen aktiviteter denne uge endnu — bevarer eksisterende week_sessions")
 
     kpis = existing.get('kpis', {})
     def col(val, target, lower=True):
@@ -211,7 +287,6 @@ def main():
         kpis['hrv'] = {'value': str(hrv).replace('.',','), 'unit': 'ms',
                        'sub': 'Snit 7d', 'color': '#7A6A58'}
 
-    # AF streak som KPI
     kpis['afStreak'] = {
         'value': str(af_streak),
         'unit': 'dage',
@@ -220,26 +295,6 @@ def main():
     }
 
     existing['kpis'] = kpis
-
-    # Auto-skift week_sessions når vi går ind i ny uge
-    current_week = meta['week']
-    all_weeks = existing.get('all_weeks', {})
-    new_week_sessions = all_weeks.get(str(current_week), {}).get('sessions')
-    if new_week_sessions:
-        # Kun opdater hvis week_sessions tilhører en anden uge
-        # Vi detekterer dette ved at tjekke om alle sessions er "done" og uge har skiftet
-        old_sessions = existing.get('week_sessions', [])
-        old_all_done = all(s.get('done', False) for s in old_sessions) if old_sessions else False
-        # Eller hvis sessionerne ikke matcher uge N's sessions (forskelligt antal/labels)
-        old_labels = set(s.get('label','') for s in old_sessions)
-        new_labels = set(s.get('label','') for s in new_week_sessions)
-        if old_labels != new_labels or old_all_done:
-            existing['week_sessions'] = [dict(s, done=False) for s in new_week_sessions]
-            print(f"Week_sessions opdateret til uge {current_week} ({len(new_week_sessions)} sessioner)")
-        # Opdater også weekFocus
-        new_focus = all_weeks.get(str(current_week), {}).get('focus')
-        if new_focus:
-            existing['weekFocus'] = new_focus
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
