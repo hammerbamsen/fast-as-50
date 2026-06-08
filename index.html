@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260608-0950 --><!-- v20260608-0950 -->
+<!DOCTYPE html><!-- v20260608-0940 --><!-- v20260608-0940 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -20,7 +20,7 @@
   --gold: #BE863A; --gold-l: #D4A55A;
   --cream: #ECE4D7; --cream-d: #DDD3C3;
   --ink: #1A1008; --muted: #7A6A58; --white: #FDFAF6;
-  --run: #C0392B; --bike: #2874A6; --swim: #1A7A5E; --strength: #7D3C98; --free: #7A6A58;
+  --run: #C0392B; --bike: #2874A6; --swim: #1A7A5E; --strength: #7D3C98; --free: #7A6A58; --walk: #2E8B57; --hike: #8B6914; --commute: #1A6B8A; --openwater: #0B5394;
   --r: 12px;
 }
 *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
@@ -107,6 +107,10 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 .wday.done-swim { border-color:var(--swim); background:rgba(26,122,94,.1); }
 .wday.done-strength { border-color:var(--strength); background:rgba(125,60,152,.1); }
 .wday.done-free { border-color:var(--free); background:rgba(122,106,88,.1); }
+.wday.done-walk { border-color:var(--walk); background:rgba(46,139,87,.1); }
+.wday.done-hike { border-color:var(--hike); background:rgba(139,105,20,.1); }
+.wday.done-commute { border-color:var(--commute); background:rgba(26,107,138,.1); }
+.wday.done-openwater { border-color:var(--openwater); background:rgba(11,83,148,.1); }
 .wday-name { font-family:'Space Mono',monospace; font-size:9px; color:var(--muted); font-weight:400; }
 .wday.is-today .wday-name { color:var(--wine); font-weight:700; }
 
@@ -249,9 +253,9 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 <script>
 // ── Static config ─────────────────────────────────────────────
 const C = {
-  run:"#C0392B", bike:"#2874A6", swim:"#1A7A5E", strength:"#7D3C98", free:"#7A6A58"
+  run:"#C0392B", bike:"#2874A6", swim:"#1A7A5E", strength:"#7D3C98", free:"#7A6A58", walk:"#2E8B57", hike:"#8B6914", commute:"#1A6B8A", openwater:"#0B5394"
 };
-const DISC_LABEL = { run:"LØB", bike:"CYKEL", swim:"SVØM", strength:"STYRKE", free:"FRI" };
+const DISC_LABEL = { run:"LØB", bike:"CYKEL", swim:"SVØM", strength:"STYRKE", free:"FRI", walk:"GÅ", hike:"HIKE", commute:"PENDL", openwater:"OW" };
 
 const STATIC = {
   zones_run:[
@@ -336,6 +340,10 @@ const ICONS = {
   bike:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="4"/><circle cx="18" cy="15" r="4"/><path d="M6 15 9 6h6l2 4-5 2"/><path d="m9 6 2 3"/></svg>`,
   swim:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><circle cx="17" cy="5" r="2"/><path d="m14 7 3-2 3 4"/></svg>`,
   strength:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12"/><path d="M4 10h2v4H4zM18 10h2v4h-2z"/><path d="M2 11h2v2H2zM20 11h2v2h-2z"/></svg>`,
+  walk:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="1.5" fill="COLOR"/><path d="M7 22l2.5-5 2 2 2-4"/><path d="M9.5 13c1.2-1.5 2.8-2 4-1.5l1.5 2 2.5-1"/><path d="M14 8.5l1.5 3"/></svg>`,
+  hike:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1.5" fill="COLOR"/><path d="M6 21l3-6 2 3 2-5 3 8"/><path d="M8 13l4-5 2 2 3-4"/><path d="M5 18h14"/></svg>`,
+  commute:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="4"/><circle cx="18" cy="15" r="4"/><path d="M6 15 9 6h6l2 4-5 2"/><path d="m9 6 2 3"/><path d="M2 8h3"/><path d="M19 8h3"/></svg>`,
+  openwater:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><circle cx="17" cy="5" r="2"/><path d="m14 7 3-2 3 4"/><path d="M4 7l2-2 2 2"/></svg>`,
   free:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>`,
   check:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
   today:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
