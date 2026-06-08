@@ -616,8 +616,7 @@ function changeWeekView(delta) {
 function kpiGrid() {
   const cats = [
     {id:'Træning', label:'TRÆNING'},
-    {id:'Kost',    label:'KOST'},
-    {id:'Mentalt', label:'MENTALT'},
+    {id:'Krop',    label:'KROP'},
   ];
   let html = '';
   cats.forEach(function(cat) {
@@ -1021,13 +1020,12 @@ async function init() {
           {cat:"Træning", label:"LØB KM",     value:km.runKm?.value  ||"—", unit:"km",  sub:km.runKm?.sub  ||"Mål 40+ km",         color:"#C0392B"},
           {cat:"Træning", label:"CYKEL KM",   value:km.bikeKm?.value ||"—", unit:"km",  sub:km.bikeKm?.sub ||"Cykel denne uge",    color:"var(--bike)"},
           {cat:"Træning", label:"TSS UGE",    value:km.tssComp?.value||"0", unit:km.tssComp?.unit||"TSS", sub:km.tssComp?.sub||"Mål denne uge", color:km.tssComp?.color||"#7A6A58"},
-          // Kost
-          {cat:"Kost",    label:"VÆGT",       value:km.weight?.value ||"—", unit:"kg",  sub:km.weight?.sub ||"Mål <72 kg",         color:"#27AE60"},
-          {cat:"Kost",    label:"FEDT%",      value:km.fat?.value    ||"—", unit:"%",   sub:km.fat?.sub    ||"Mål <20%",           color:"#F39C12"},
-          {cat:"Kost",    label:"AF STREAK",  value:km.afStreak?.value||"—", unit:"",   sub:km.afStreak?.sub||"Dage i træk",        color:"#59182A"},
-          // Mentalt
-          {cat:"Mentalt", label:"SØVN",       value:km.sleep?.value  ||"—", unit:"t",   sub:km.sleep?.sub  ||"Mål 7t",             color:"#2874A6"},
-          {cat:"Mentalt", label:"HRV",        value:km.hrv?.value    ||"—", unit:"ms",  sub:km.hrv?.sub    ||"Stabil",             color:"#7A6A58"},
+          // Krop
+          {cat:"Krop",    label:"VÆGT",       value:km.weight?.value ||"—", unit:"kg",  sub:km.weight?.sub ||"Mål <72 kg",         color:"#27AE60"},
+          {cat:"Krop",    label:"FEDT%",      value:km.fat?.value    ||"—", unit:"%",   sub:km.fat?.sub    ||"Mål <20%",           color:"#F39C12"},
+          {cat:"Krop",    label:"AF STREAK",  value:km.afStreak?.value||"—", unit:"",   sub:km.afStreak?.sub||"Dage i træk",        color:"#59182A"},
+          {cat:"Krop",    label:"SØVN",       value:km.sleep?.value  ||"—", unit:"t",   sub:km.sleep?.sub  ||"Mål 7t",             color:"#2874A6"},
+          {cat:"Krop",    label:"HRV",        value:km.hrv?.value    ||"—", unit:"ms",  sub:km.hrv?.sub    ||"Stabil",             color:"#7A6A58"},
         ];
       }
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
