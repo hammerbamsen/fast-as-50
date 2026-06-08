@@ -194,7 +194,7 @@ let queue=[], qIdx=0;
 
 function showQuestion(key) {
   const log = getLog();
-  const streak = calcStreak(log);
+  const streak = globalStreak > 0 ? globalStreak : calcStreak(log);
   const weekCount = afCountForWeek(weekStart(), log);
   const isToday = key===todayKey();
   document.getElementById('view').innerHTML=`
@@ -227,7 +227,7 @@ function showQuestion(key) {
 function showDone() {
   const log = getLog();
   const mon = getViewMonday();
-  const streak = calcStreak(log);
+  const streak = globalStreak > 0 ? globalStreak : calcStreak(log);
   const weekCount = afCountForWeek(mon, log);
   const isCurrentWeek = viewWeekOffset === 0;
   const msg = weekCount>=5?'Mål nået!':weekCount>=3?'God uge — fortsæt.':'Keep moving forward.';
