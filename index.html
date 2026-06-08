@@ -470,7 +470,16 @@ function periodTimeline() {
 }
 
 function renderToday() {
+  // Reset completed-flag hvis det er en ny dag
+  const todayStr = new Date().toISOString().split("T")[0];
+  const lastDone = localStorage.getItem("session_done_date");
+  if (lastDone !== todayStr) {
+    sessionDone = false;
+    localStorage.removeItem("session_done_" + lastDone);
+  }
   const s=D.today||{discipline:"free",title:"Ingen session planlagt",duration:"",zone:"–",desc:"",completed:false};
+  // Brug sessionDone (localStorage) ikke s.completed (data.json kan være fra i går)
+  const isCompleted = sessionDone;
   const parts=D.coachSpeech.split("{HL}");
   return `
   <div class="card card-wine session-hero">
@@ -486,7 +495,7 @@ function renderToday() {
         </div>
         <div class="session-desc">${s.desc}</div>
       </div>
-      <button class="complete-btn ${sessionDone?"done":""}" onclick="toggleDone(this)">
+      <button class="complete-btn ${isCompleted?"done":""}" onclick="toggleDone(this)">
         ${icon("check",15,sessionDone?"var(--wine)":"var(--gold)")} ${sessionDone?"Gennemført":"Markér gennemført"}
       </button>
     </div>
@@ -635,6 +644,10 @@ function renderOverview() {
       <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
       ${afHistoryViz(D.afHistory || [])}
     </div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
+    <div class="label" style="margin-bottom:6px">Ugens fokus</div>
+    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus||'—'}</p>
   </div>`;
 }
 
@@ -888,7 +901,9 @@ function navigate(pageId) {
 
 function toggleDone(btn) {
   sessionDone = !sessionDone;
-  localStorage.setItem("session_done_" + new Date().toISOString().split("T")[0], sessionDone ? "1" : "0");
+  const todayStr2 = new Date().toISOString().split("T")[0];
+  localStorage.setItem("session_done_" + todayStr2, sessionDone ? "1" : "0");
+  localStorage.setItem("session_done_date", todayStr2);
   btn.className = `complete-btn ${sessionDone?"done":""}`;
   btn.innerHTML = `${icon("check",15,sessionDone?"var(--wine)":"var(--gold)")} ${sessionDone?"Gennemført":"Markér gennemført"}`;
 }
@@ -913,7 +928,8 @@ async function init() {
   // Render med defaults først — ingen loading screen
   // Gendan completed-state fra localStorage
   const todayStr = new Date().toISOString().split("T")[0];
-  if (localStorage.getItem("session_done_" + todayStr) === "1") {
+  const lastDoneInit = localStorage.getItem("session_done_date");
+  if (lastDoneInit === todayStr && localStorage.getItem("session_done_" + todayStr) === "1") {
     sessionDone = true;
   }
   renderNav();
@@ -957,8 +973,9 @@ async function init() {
           {label:"LØB KM",    value:km.runKm?.value  ||"—", unit:"km", sub:km.runKm?.sub  ||"Mål 40+ km",           color:"#C0392B"},
           {label:"CYKEL KM",  value:km.bikeKm?.value ||"—", unit:"km", sub:km.bikeKm?.sub ||"Cykel denne uge",      color:"var(--bike)"},
           {label:"AF STREAK", value:km.afStreak?.value||"—", unit:"",  sub:km.afStreak?.sub||"Dage i træk · mål 5",  color:"#59182A"},
+          {label:"PROTEIN",   value:km.protein?.value ||"—", unit:"g",  sub:km.protein?.sub ||"Mål ≥150 g/dag",       color:km.protein?.color||"#7A6A58"},
           {label:"HRV",       value:km.hrv?.value    ||"—", unit:"ms", sub:km.hrv?.sub    ||"Stabil",               color:"#7A6A58"},
-          {label:"TSS COMP.", value:km.tssComp?.value||"—", unit:km.tssComp?.unit||"", sub:km.tssComp?.sub||"TSS compliance", color:km.tssComp?.color||"#7A6A58"},
+          {label:"TSS UGE",   value:km.tssComp?.value||"0", unit:km.tssComp?.unit||"TSS", sub:km.tssComp?.sub||"Mål denne uge", color:km.tssComp?.color||"#7A6A58"},
         ];
       }
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
