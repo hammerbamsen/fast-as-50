@@ -649,10 +649,14 @@ function kpiGrid() {
 function trainMinutesBar() {
   const tm = D.train_mins || {};
   const types = [
-    {key:'run',      label:'Løb',     color:'var(--run)'},
-    {key:'bike',     label:'Cykel',   color:'var(--bike)'},
-    {key:'swim',     label:'Svøm',    color:'var(--swim)'},
-    {key:'strength', label:'Styrke',  color:'var(--gold)'},
+    {key:'run',       label:'Løb',     color:'var(--run)'},
+    {key:'bike',      label:'Cykel',   color:'var(--bike)'},
+    {key:'swim',      label:'Svøm',    color:'var(--swim)'},
+    {key:'strength',  label:'Styrke',  color:'var(--gold)'},
+    {key:'commute',   label:'Pendl',   color:'var(--commute)'},
+    {key:'walk',      label:'Gå',      color:'var(--walk)'},
+    {key:'hike',      label:'Hike',    color:'var(--hike)'},
+    {key:'openwater', label:'OW',      color:'var(--openwater)'},
   ];
   const actual = tm.actual_total || types.reduce((s,t)=>s+(tm[t.key]||0),0);
   const planned = tm.planned || 0;
@@ -881,14 +885,14 @@ function afStreakViz(done, target, streak) {
 
 function trainingDonut() {
   const acts = D.week_sessions.filter(s=>s.done);
-  const counts = {run:0,bike:0,swim:0,strength:0};
+  const counts = {run:0,bike:0,swim:0,strength:0,walk:0,hike:0,commute:0,openwater:0};
   acts.forEach(s=>{
     if(s.disc in counts) counts[s.disc]++;
     if(s.disc2 && s.disc2 in counts) counts[s.disc2]++;
   });
   const total = Object.values(counts).reduce((a,b)=>a+b,0)||1;
-  const colors = {run:'var(--run)',bike:'var(--bike)',swim:'var(--swim)',strength:'var(--gold)'};
-  const labels = {run:'Løb',bike:'Cykel',swim:'Svøm',strength:'Styrke'};
+  const colors = {run:'var(--run)',bike:'var(--bike)',swim:'var(--swim)',strength:'var(--gold)',walk:'var(--walk)',hike:'var(--hike)',commute:'var(--commute)',openwater:'var(--openwater)'};
+  const labels = {run:'Løb',bike:'Cykel',swim:'Svøm',strength:'Styrke',walk:'Gå',hike:'Hike',commute:'Pendl',openwater:'OW'};
   let offset=0, cx=60, cy=60, r=45, stroke=18;
   const segments = Object.entries(counts).filter(([k,v])=>v>0).map(([k,v])=>{
     const pct = v/total;
