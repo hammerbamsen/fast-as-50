@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-07",
-    "week": 1,
+    "updated": "2026-06-08",
+    "week": 2,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 90,
-    "daysToChristiansborg": 83,
-    "dayName": "Søndag",
-    "date": "7. jun"
+    "daysToMedoc": 89,
+    "daysToChristiansborg": 82,
+    "dayName": "Mandag",
+    "date": "8. jun"
   },
   "kpis": {
     "weight": {
@@ -23,7 +23,7 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "36,3",
+      "value": "35,4",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
@@ -41,13 +41,13 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "35,5",
+      "value": "0,0",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "hrv": {
-      "value": "51,0",
+      "value": "51,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -55,12 +55,12 @@
     "tssComp": {
       "value": "—",
       "unit": "",
-      "sub": "Planlagt 383 TSS · faktisk 0",
+      "sub": "Planlagt 460 TSS · faktisk 0",
       "color": "#7A6A58"
     }
   },
   "af": {
-    "weekDone": 7,
+    "weekDone": 0,
     "target": 5,
     "streak": 7
   },
@@ -68,8 +68,8 @@
   "coachHighlight": "7 dage gennemført. Klar til uge 2 på mandag.",
   "weekFocus": "Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
   "today": {
-    "discipline": "swim",
-    "title": "Svøm 2000m + cykel",
+    "discipline": "strength",
+    "title": "Styrke A + walk",
     "duration": "",
     "zone": "–",
     "desc": "",
@@ -80,7 +80,8 @@
       "day": "Man",
       "disc": "strength",
       "label": "Styrke A + walk",
-      "done": true
+      "done": true,
+      "today": true
     },
     {
       "day": "Tir",
@@ -119,8 +120,7 @@
       "disc": "swim",
       "label": "Svøm 2000m + cykel",
       "done": true,
-      "disc2": "bike",
-      "today": true
+      "disc2": "bike"
     }
   ],
   "ctlCurve": [
@@ -175,15 +175,7 @@
     -3,
     0
   ],
-  "af_log": {
-    "2026-06-01": 0,
-    "2026-06-02": 0,
-    "2026-06-03": 0,
-    "2026-06-04": 0,
-    "2026-06-05": 0,
-    "2026-06-06": 0,
-    "2026-06-07": 0
-  },
+  "af_log": {},
   "all_weeks": {
     "1": {
       "sessions": [
@@ -191,19 +183,19 @@
           "day": "Fre",
           "disc": "bike",
           "label": "Cykel 5×3 min Z4",
-          "done": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Søn",
           "disc": "swim",
           "label": "Svøm 2000m teknisk",
-          "done": true,
-          "today": true,
-          "disc2": "bike"
+          "done": false,
+          "today": false
         }
       ],
       "blockType": "BUILD",
-      "focus": "Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage."
+      "focus": ""
     },
     "2": {
       "sessions": [
@@ -212,24 +204,66 @@
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
           "done": false,
-          "today": false
+          "today": true
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 45 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Ons",
           "disc": "run",
           "label": "Løb Z2 45 min",
+          "done": false
+        },
+        {
+          "day": "Tor",
+          "disc": "bike",
+          "label": "Cykel Z2 60 min Mallorca",
+          "done": false
+        },
+        {
+          "day": "Fre",
+          "disc": "bike",
+          "label": "Cykel bjerg-intervaller Z4 Mallorca",
+          "done": false
+        },
+        {
+          "day": "Lør",
+          "disc": "bike",
+          "label": "Cykel Z2 150 min Mallorca",
+          "done": false
+        },
+        {
+          "day": "Søn",
+          "disc": "swim",
+          "label": "Svøm 1500m let teknisk",
+          "done": false
+        }
+      ],
+      "blockType": "BUILD+",
+      "focus": "Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage."
+    },
+    "3": {
+      "sessions": [
+        {
+          "day": "Man",
+          "disc": "bike",
+          "label": "Cykel bjerg-intervaller Z4 Mallorca",
           "done": false,
           "today": false
         },
         {
-          "day": "Tor",
+          "day": "Tir",
+          "disc": "run",
+          "label": "Løb Z2 60 min",
+          "done": false,
+          "today": false
+        },
+        {
+          "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
           "done": false,
@@ -237,22 +271,22 @@
         },
         {
           "day": "Fre",
-          "disc": "bike",
-          "label": "Cykel bjerg-intervaller Z4 Mallorca",
+          "disc": "run",
+          "label": "Løb Z2 50 min",
           "done": false,
           "today": false
         },
         {
           "day": "Lør",
           "disc": "bike",
-          "label": "Cykel Z2 150 min Mallorca",
+          "label": "Cykel Z2 60 min",
           "done": false,
           "today": false
         },
         {
           "day": "Søn",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
+          "disc": "strength",
+          "label": "Styrke A Functional Strength 3 sæt",
           "done": false,
           "today": false
         }
