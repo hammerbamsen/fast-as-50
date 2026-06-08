@@ -261,25 +261,81 @@ async function answer(isAF) {
   document.getElementById('status').innerHTML='<span class="spinner"></span>Sender...';
 
   try {
-    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-      method: 'POST',
+    // 1) Hent seneste data.json + SHA
+    const ghBase = `https://api.github.com/repos/${GH_REPO}/contents/data.json`;
+    const ghResp = await fetch(ghBase, {
+      headers: { 'Authorization': `token ${getToken()}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if(!ghResp.ok) throw new Error('fetch sha ' + ghResp.status);
+    const ghData = await ghResp.json();
+    const sha = ghData.sha;
+    const data = JSON.parse(atob(ghData.content.replace(/\n/g,'')));
+
+    // 2) Opdater data.json
+    // af_log: 0 = AF, 1 = ikke-AF (Intervals konvention)
+    data.af_log[key] = isAF ? 0 : 1;
+
+    // Genberegn streak
+    let streak = 0;
+    const allLog = getLog();
+    let check = new Date(); check.setDate(check.getDate());
+    for(let i=0; i<60; i++) {
+      const k = check.toISOString().slice(0,10);
+      if(allLog[k] === true || allLog[k] === undefined && i===0) { /* skip today if just answered */ }
+      if(k === key) { if(isAF) streak++; else break; check.setDate(check.getDate()-1); continue; }
+      if(allLog[k] === true) { streak++; check.setDate(check.getDate()-1); }
+      else if(allLog[k] === false) break;
+      else break;
+    }
+    // Simpel streak: tæl baglæns fra i dag
+    streak = calcStreak(allLog);
+
+    data.af.weekDone = Object.entries(allLog)
+      .filter(([d,v]) => { const mon = weekStart(); const dt = new Date(d); return dt >= mon && v===true; }).length;
+    data.af.streak = streak;
+    data.kpis.afStreak.value = String(streak);
+
+    // af_history
+    const wk = data.meta ? data.meta.week : 2;
+    if(data.af_history) {
+      for(const w of data.af_history) {
+        if(w.week === wk) { w.done = data.af.weekDone; break; }
+      }
+    }
+
+    // Coach highlight
+    data.coachHighlight = `${streak} dage i træk. Hold den streak i live.`;
+
+    // 3) Push til GitHub
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    const putResp = await fetch(ghBase, {
+      method: 'PUT',
       headers: {
         'Authorization': `token ${getToken()}`,
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.github.v3+json'
       },
-      body: JSON.stringify({ event_type: 'af-registrering', client_payload: { date: key, alkohol: isAF?0:1 } })
+      body: JSON.stringify({
+        message: `AF check-in ${key} — streak ${streak}`,
+        content: encoded,
+        sha: sha
+      })
     });
-    if(r.status===204) {
-      const statusEl = document.getElementById('status');
-      statusEl.className='status ok';
-      statusEl.innerHTML = isAF
-        ? '<span style="font-size:20px">✓</span> Registreret som AF-dag'
-        : '<span style="font-size:20px">✓</span> Registreret';
-      statusEl.style.cssText='color:#1A7A5E;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#E1F5EE;border-radius:10px;margin-top:8px';
-      await new Promise(r=>setTimeout(r,1500));
-    } else { throw new Error(r.status); }
+    if(!putResp.ok) {
+      const err = await putResp.json();
+      throw new Error(putResp.status + ' ' + JSON.stringify(err.message));
+    }
+
+    const statusEl = document.getElementById('status');
+    statusEl.className='status ok';
+    statusEl.innerHTML = isAF
+      ? '<span style="font-size:20px">✓</span> Registreret som AF-dag'
+      : '<span style="font-size:20px">✓</span> Registreret';
+    statusEl.style.cssText='color:#1A7A5E;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#E1F5EE;border-radius:10px;margin-top:8px';
+    await new Promise(r=>setTimeout(r,1200));
+
   } catch(e) {
+    console.error('AF push fejl:', e);
     const statusEl = document.getElementById('status');
     statusEl.innerHTML = '⚠ Gemt lokalt — tjek din forbindelse';
     statusEl.style.cssText='color:#633806;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#FAEEDA;border-radius:10px;margin-top:8px';
@@ -287,6 +343,7 @@ async function answer(isAF) {
   }
   qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone();
 }
+
 
 // ── Sync fra data.json (Intervals-data) ───────────────────────
 async function syncFromIntervals() {
