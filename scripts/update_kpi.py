@@ -141,6 +141,28 @@ def get_af_history():
     print(f"  AF historik: {history}")
     return history
 
+
+def get_full_af_log():
+    """Henter dag-for-dag AF log siden projektstart til brug i af.html.
+    Returnerer {dato: 0/1} hvor 0 = AF-dag, 1 = ikke AF.
+    """
+    project_start = date(2026, 6, 2)
+    today = date.today()
+    r = requests.get(f"{BASE}/wellness", auth=AUTH,
+                     params={"oldest": str(project_start), "newest": str(today)})
+    if r.status_code != 200:
+        return {}
+    wellness_by_date = {(d.get("id") or d.get("date") or "")[:10]: d for d in r.json()}
+    full_log = {}
+    current = project_start
+    while current <= today:
+        k = str(current)
+        alkohol = wellness_by_date.get(k, {}).get("Alkohol")
+        if alkohol is not None:
+            full_log[k] = 0 if alkohol == 0 else 1
+        current += timedelta(days=1)
+    return full_log
+
 def get_af_streak():
     """Beregn sammenhængende AF-streak bagud fra i dag.
     Henter 90 dages wellness og tæller AF-dage (Alkohol=0) i træk,
@@ -456,23 +478,10 @@ def main():
     }
 
     # --- AF log: dag-for-dag til af.html sync (alle uger siden projektstart) ---
-    from datetime import date as _date
-    _project_start = _date(2026, 6, 2)
-    _today = _date.today()
-    _r = __import__("requests").get(f"{BASE}/wellness", auth=AUTH,
-                     params={"oldest": str(_project_start), "newest": str(_today)})
-    if _r.status_code == 200:
-        _wellness = {(d.get("id") or d.get("date") or "")[:10]: d for d in _r.json()}
-        _full_log = {}
-        _cur = _project_start
-        while _cur <= _today:
-            _k = str(_cur)
-            _alkohol = _wellness.get(_k, {}).get("Alkohol")
-            if _alkohol is not None:
-                _full_log[_k] = 0 if _alkohol == 0 else 1
-            _cur += __import__("datetime").timedelta(days=1)
-        data["af_log"] = _full_log
-        print(f"  AF log (alle dage): {len(_full_log)} dage")
+    full_af_log = get_full_af_log()
+    if full_af_log:
+        data["af_log"] = full_af_log
+        print(f"  AF log (alle dage): {len(full_af_log)} dage")
 
     # --- AF historik: uge-for-uge siden projektstart ---
     af_history = get_af_history()
