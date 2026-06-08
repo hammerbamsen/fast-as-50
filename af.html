@@ -271,13 +271,21 @@ async function answer(isAF) {
       body: JSON.stringify({ event_type: 'af-registrering', client_payload: { date: key, alkohol: isAF?0:1 } })
     });
     if(r.status===204) {
-      document.getElementById('status').className='status ok';
-      document.getElementById('status').textContent=isAF?'✓ AF-dag sendt':'✓ Sendt';
+      const statusEl = document.getElementById('status');
+      statusEl.className='status ok';
+      statusEl.innerHTML = isAF
+        ? '<span style="font-size:20px">✓</span> Registreret som AF-dag'
+        : '<span style="font-size:20px">✓</span> Registreret';
+      statusEl.style.cssText='color:#1A7A5E;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#E1F5EE;border-radius:10px;margin-top:8px';
+      await new Promise(r=>setTimeout(r,1500));
     } else { throw new Error(r.status); }
   } catch(e) {
-    document.getElementById('status').textContent='Gemt lokalt — sendes næste gang';
+    const statusEl = document.getElementById('status');
+    statusEl.innerHTML = '⚠ Gemt lokalt — tjek din forbindelse';
+    statusEl.style.cssText='color:#633806;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#FAEEDA;border-radius:10px;margin-top:8px';
+    await new Promise(r=>setTimeout(r,2500));
   }
-  setTimeout(()=>{ qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone(); }, 800);
+  qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone();
 }
 
 // ── Sync fra data.json (Intervals-data) ───────────────────────
