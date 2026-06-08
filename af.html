@@ -217,6 +217,7 @@ function showQuestion(key) {
       <button class="btn btn-ja" onclick="answer(true)">Ja</button>
       <button class="btn btn-nej" onclick="answer(false)">Nej</button>
     </div>
+    ${renderWeekNav(weekStart())}
     ${weekStrip(weekStart(), key, log)}
     <div class="status" id="status"></div>
     <div class="footer"><a class="dash-link" href="https://hammerbamsen.github.io/fast-as-50">Åbn dashboard</a></div>
