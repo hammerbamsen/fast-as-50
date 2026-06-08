@@ -3,11 +3,16 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: kpi-update
+  cancel-in-progress: false
 jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -22,5 +27,12 @@ jobs:
           git config user.name "Bot"
           git config user.email "bot@x.com"
           git add debug_planned.json
-          git diff --staged --quiet || git commit -m "debug planned output"
-          git push
+          git diff --staged --quiet && exit 0
+          git commit -m "debug planned output"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && git push origin main && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
+          exit 1
