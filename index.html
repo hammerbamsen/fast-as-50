@@ -680,7 +680,7 @@ function renderBody() {
   <div class="card">
     <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
     ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
-    ${D.afHistory && D.afHistory.length > 1 ? `
+    ${D.afHistory && D.afHistory.length > 0 ? `
     <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
       <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
       ${afHistoryViz(D.afHistory)}
