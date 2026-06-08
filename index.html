@@ -693,14 +693,6 @@ function renderOverview() {
     </div>
     ${ctlGraph()}
   </div>
-  <div class="card">
-    <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
-    ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
-    <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
-      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
-      ${afHistoryViz(D.afHistory || [])}
-    </div>
-  </div>
   <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
     <div class="label" style="margin-bottom:6px">Ugens fokus</div>
     <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus||'—'}</p>
@@ -753,6 +745,14 @@ function renderBody() {
     ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', 35, 75)}
     <div style="height:12px"></div>
     ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', 5, 9)}
+  </div>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
+    ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
+    <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
+      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
+      ${afHistoryViz(D.afHistory || [])}
+    </div>
   </div>
 `;
 }
