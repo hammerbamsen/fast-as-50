@@ -525,7 +525,7 @@ def main():
                        'sub': f'Planlagt {int(planned)} TSS · faktisk {int(tss_act or 0)}',
                        'color': tss_color},
         'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
-        'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': f'{af_days or 0}/7 AF-dage · mål 5', 'color': '#59182A'},
+        'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': 'Dage i træk · mål 5/uge',           'color': '#59182A'},
     }
 
     # --- AF-dage (man–søn denne uge) ---
