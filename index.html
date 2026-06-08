@@ -167,6 +167,11 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 .wsession-title { font-family:'Hanken Grotesk',sans-serif; font-size:15px; font-weight:600; color:var(--ink); }
 .wsession-day { font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); }
 .today-badge { font-family:'Space Mono',monospace; font-size:9px; background:rgba(89,24,42,.12); color:var(--wine); padding:2px 6px; border-radius:3px; margin-left:6px; }
+.wsession.is-extra { margin-left:22px; margin-top:-4px; padding:10px 14px; background:rgba(221,211,195,.22); border-style:dashed; border-color:var(--cream-d); position:relative; }
+.wsession.is-extra::before { content:""; position:absolute; left:-13px; top:50%; width:11px; height:1.5px; background:var(--cream-d); }
+.wsession.is-extra .wsession-icon { width:30px; height:30px; }
+.wsession.is-extra .wsession-title { font-size:13px; font-weight:500; color:var(--muted); }
+.extra-badge { font-family:'Space Mono',monospace; font-size:8px; letter-spacing:.04em; background:rgba(122,106,88,.14); color:var(--free); padding:2px 6px; border-radius:3px; margin-left:6px; font-weight:700; }
 
 /* Event cards */
 .event-card { display:flex; align-items:center; gap:12px; padding:12px; background:var(--cream); border-radius:8px; margin-bottom:10px; }
@@ -590,14 +595,14 @@ function renderWeek() {
   </div>
   ${sessions.length === 0 ? `<div class="card" style="text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:32px">DATA IKKE TILGÆNGELIG</div>` :
     sessions.map(s=>`
-  <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""}">
+  <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""} ${s.extra?"is-extra":""}">
     <div class="wsession-icon" style="background:${C[s.disc]||'#7A6A58'}18">
       ${s.disc2
         ? `<span style="display:flex;gap:2px;align-items:center">${icon(s.disc,14,C[s.disc]||'#7A6A58')}${icon(s.disc2,14,C[s.disc2]||'#7A6A58')}</span>`
         : icon(s.disc,18,C[s.disc]||'#7A6A58')}
     </div>
     <div class="wsession-body">
-      <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek)?`<span class="today-badge">I DAG</span>`:""} ${s.bonus?`<span style="font-family:Space Mono,monospace;font-size:9px;background:#E1F5EE;color:#0F6E56;padding:2px 7px;border-radius:4px;font-weight:700;margin-left:4px">BONUS</span>`:""}</div>
+      <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek&&!s.extra)?`<span class="today-badge">I DAG</span>`:""}${s.extra?`<span class="extra-badge">EKSTRA</span>`:""}</div>
       <div class="wsession-day">${s.day}</div>
     </div>
     ${s.disc2
