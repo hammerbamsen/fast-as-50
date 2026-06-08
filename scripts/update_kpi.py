@@ -98,7 +98,7 @@ def get_af_history():
     Returnerer liste af dicts: [{week: 1, done: 7, total: 7, label: 'Uge 1'}, ...]
     """
     from datetime import date, timedelta
-    project_start = date(2026, 6, 2)  # Mandag uge 1
+    project_start = date(2026, 6, 1)  # Mandag uge 1
     today = date.today()
     
     # Hent al wellness siden projektstart
@@ -148,7 +148,7 @@ def get_full_af_log():
     """Henter dag-for-dag AF log siden projektstart til brug i af.html.
     Returnerer {dato: 0/1} hvor 0 = AF-dag, 1 = ikke AF.
     """
-    project_start = date(2026, 6, 2)
+    project_start = date(2026, 6, 1)
     today = date.today()
     r = requests.get(f"{BASE}/wellness", auth=AUTH,
                      params={"oldest": str(project_start), "newest": str(today)})
