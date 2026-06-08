@@ -680,11 +680,10 @@ function renderBody() {
   <div class="card">
     <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
     ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
-    ${D.afHistory && D.afHistory.length > 0 ? `
     <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
       <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
-      ${afHistoryViz(D.afHistory)}
-    </div>` : ""}
+      ${afHistoryViz(D.afHistory || [])}
+    </div>
   </div>`;
 }
 
@@ -918,7 +917,15 @@ async function init() {
       if (m.daysToChristiansborg!=null) D.daysToChristiansborg   = m.daysToChristiansborg;
       if (m.dayName)                    D.dayName                = m.dayName;
       if (m.date)                       D.date                   = m.date;
-      if (remote.af)                    { D.afDays.weekDone = parseInt(remote.af.weekDone) || 0; D.afDays.streak = parseInt(remote.af.streak) || 0; }
+      if (remote.af)                    { D.afDays.weekDone = parseInt(remote.af.weekDone) || 0; D.afDays.streak = parseInt(remote.af.streak) || 0;
+        // Tilføj streak som KPI
+        const streakKpi = D.kpis.find(k=>k.label==='AF STREAK');
+        if (streakKpi) { streakKpi.value = String(D.afDays.streak); }
+        else { D.kpis.push({label:'AF STREAK', value:String(D.afDays.streak), unit:'', sub:'Mål: daglig streak', color:'var(--wine)'}); }
+        // Opdater AF-dage KPI
+        const afKpi = D.kpis.find(k=>k.label==='AF-DAGE');
+        if (afKpi) { afKpi.value = D.afDays.weekDone + '/7'; }
+      }
       if (remote.af_history)             { D.afHistory = remote.af_history; }
       if (remote.kpis) {
         const km = remote.kpis;
@@ -950,8 +957,9 @@ async function init() {
         else if (remote.today.session) D.today = remote.today.session;
       }
 
-      // Re-render med friske data
+      // Re-render med friske data — ryd cache så alle sider genrenderes
       updateMeta();
+      pageCache = {};
       navigate(activePage);
     }
   } catch(e) {
