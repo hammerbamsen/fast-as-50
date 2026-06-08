@@ -744,27 +744,38 @@ function sparkline(data, color, label, unit, minV, maxV) {
 function afHistoryViz(history) {
   if (!history || history.length === 0) return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);text-align:center;padding:8px">Ingen historik endnu</div>';
   
+  const DAY_LABELS = ['M','T','O','T','F','L','S'];
+  const DAY_FULL   = ['Man','Tir','Ons','Tor','Fre','Lør','Søn'];
+
   const rows = history.map(w => {
     const dots = Array.from({length: 7}, (_, i) => {
+      const label = DAY_LABELS[i];
       if (i >= w.total) {
         // Fremtidig dag
-        return '<div style="width:22px;height:22px;border-radius:50%;background:var(--cream-d);opacity:0.3"></div>';
+        return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px">' +
+          '<div style="width:28px;height:28px;border-radius:50%;background:var(--cream-d);opacity:0.2"></div>' +
+          '<span style="font-family:Space Mono,monospace;font-size:8px;color:var(--cream-d)">' + label + '</span>' +
+          '</div>';
       }
       const filled = i < w.done;
-      return '<div style="width:22px;height:22px;border-radius:50%;background:' + (filled ? 'var(--wine)' : 'var(--cream-d)') + ';display:flex;align-items:center;justify-content:center">' +
-        '<span style="font-size:8px;color:' + (filled ? 'var(--gold)' : 'var(--muted)') + ';font-weight:700">' + (filled ? '✓' : '·') + '</span></div>';
+      return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px">' +
+        '<div style="width:28px;height:28px;border-radius:50%;background:' + (filled ? 'var(--wine)' : 'var(--cream-d)') + ';display:flex;align-items:center;justify-content:center">' +
+        '<span style="font-size:9px;font-weight:700;color:' + (filled ? 'var(--gold)' : 'var(--muted)') + '">' + (filled ? '✓' : '·') + '</span>' +
+        '</div>' +
+        '<span style="font-family:Space Mono,monospace;font-size:8px;color:' + (filled ? 'var(--wine)' : 'var(--muted)') + '">' + label + '</span>' +
+        '</div>';
     }).join('');
-    
-    const pct = w.total > 0 ? w.done / Math.min(w.total, 7) : 0;
+
     const color = w.done >= 5 ? 'var(--swim)' : w.done >= 3 ? 'var(--gold)' : 'var(--run)';
-    
-    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">' +
-      '<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);width:36px;flex-shrink:0">' + w.label.toUpperCase() + '</div>' +
-      '<div style="display:flex;gap:3px;align-items:center">' + dots + '</div>' +
-      '<div style="font-family:Space Mono,monospace;font-size:11px;color:' + color + ';font-weight:700;margin-left:4px">' + w.done + '/' + w.total + '</div>' +
+
+    return '<div style="margin-bottom:12px">' +
+      '<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);margin-bottom:6px">' + w.label.toUpperCase() + '</div>' +
+      '<div style="display:flex;gap:4px;align-items:flex-start">' + dots +
+      '<div style="margin-left:6px;font-family:Space Mono,monospace;font-size:11px;color:' + color + ';font-weight:700;padding-top:6px">' + w.done + '/7</div>' +
+      '</div>' +
       '</div>';
   }).join('');
-  
+
   return rows;
 }
 function afStreakViz(done, target, streak) {
