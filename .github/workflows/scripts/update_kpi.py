@@ -284,26 +284,6 @@ def week_meta():
 def main():
     print("Henter data fra Intervals.icu...")
 
-    # === DEBUG: dump rå aktiviteter ===
-    from datetime import date as _date, timedelta as _td
-    _today = _date.today()
-    _mon = _today - _td(days=_today.weekday())
-    _sun = _mon + _td(days=6)
-    _r = requests.get(f'{BASE}/activities', auth=AUTH, params={'oldest': str(_mon), 'newest': str(_sun)})
-    _dbg = {'status': _r.status_code, 'range': f'{_mon} til {_sun}', 'count': 0, 'acts': []}
-    if _r.status_code == 200:
-        _data = _r.json()
-        _dbg['count'] = len(_data)
-        for _a in _data:
-            _dbg['acts'].append({
-                'date': _a.get('start_date_local','')[:10],
-                'type': _a.get('type'),
-                'name': _a.get('name'),
-                'commute': _a.get('commute'),
-            })
-    with open('debug_activities.json','w') as _f:
-        json.dump(_dbg, _f, ensure_ascii=False, indent=2)
-    # === END DEBUG ===
 
     fitness    = get_fitness()
     wellness   = get_wellness_7d()
