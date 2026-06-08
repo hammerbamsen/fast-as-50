@@ -518,22 +518,7 @@ function renderToday() {
     <div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#FDFAF6;line-height:1.65;position:relative">${parts[0]}<span style="color:var(--gold);font-weight:700">${D.coachHighlight}</span>${parts[1]}</div>
   </div>
 
-  ${(()=>{
-    const cats = ['Træning','Kost','Mentalt'];
-    return cats.map(cat => {
-      const items = D.kpis.filter(k=>k.cat===cat);
-      if(!items.length) return '';
-      return \`<div style="margin-bottom:16px">
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;padding-left:2px">\${cat}</div>
-        <div class="kpi-grid">\${items.map(k=>\`<div class="kpi-card">
-          <div class="kpi-bar" style="background:\${k.color}"></div>
-          <div class="kpi-label">\${k.label}</div>
-          <div class="kpi-value">\${k.value}<span class="kpi-unit">\${k.unit}</span></div>
-          <div class="kpi-sub">\${k.sub}</div>
-        </div>\`).join("")}</div>
-      </div>\`;
-    }).join('');
-  })()}
+  ${kpiGrid()}
 
   <div class="card"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus}</p></div>
   <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET <span id='last-updated'></span> · <span id="live-time"></span></div>
@@ -626,6 +611,33 @@ function changeWeekView(delta) {
   navigate('week');
 }
 
+
+
+function kpiGrid() {
+  const cats = [
+    {id:'Træning', label:'TRÆNING'},
+    {id:'Kost',    label:'KOST'},
+    {id:'Mentalt', label:'MENTALT'},
+  ];
+  let html = '';
+  cats.forEach(function(cat) {
+    const items = D.kpis.filter(function(k){ return k.cat === cat.id; });
+    if (!items.length) return;
+    html += '<div style="margin-bottom:16px">';
+    html += '<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;padding-left:2px">' + cat.label + '</div>';
+    html += '<div class="kpi-grid">';
+    items.forEach(function(k) {
+      html += '<div class="kpi-card">';
+      html += '<div class="kpi-bar" style="background:' + k.color + '"></div>';
+      html += '<div class="kpi-label">' + k.label + '</div>';
+      html += '<div class="kpi-value">' + k.value + '<span class="kpi-unit">' + k.unit + '</span></div>';
+      html += '<div class="kpi-sub">' + k.sub + '</div>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  });
+  return html;
+}
 
 function trainMinutesBar() {
   const tm = D.train_mins || {};
