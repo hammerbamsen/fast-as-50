@@ -266,6 +266,32 @@ def get_activities_week():
         }
     return None
 
+def get_planned_mins_this_week():
+    """Henter planlagt træningstid i minutter fra Intervals denne uge."""
+    week1   = date(2026, 6, 1)
+    today   = date.today()
+    monday  = today - timedelta(days=today.weekday())
+    sunday  = monday + timedelta(days=6)
+    r = requests.get(f'{BASE}/events', auth=AUTH,
+                     params={'oldest': str(monday), 'newest': str(sunday)})
+    if r.status_code != 200:
+        return 0
+    total_mins = 0
+    for e in r.json():
+        if e.get('category') not in ('WORKOUT', None):
+            continue
+        # moving_time eller indoor_time i sekunder
+        secs = e.get('moving_time') or e.get('indoor_time') or 0
+        if not secs:
+            # Forsøg at parse varighed fra label (fx "60 min")
+            import re
+            desc = e.get('name','') + ' ' + (e.get('description') or '')
+            m = re.search(r'(\d+)\s*min', desc)
+            if m:
+                secs = int(m.group(1)) * 60
+        total_mins += secs / 60
+    return round(total_mins, 0)
+
 def planned_tss_this_week():
     week1 = date(2026, 6, 1)
     diff  = (date.today() - week1).days
@@ -582,9 +608,13 @@ def main():
     if af_history:
         data['af_history'] = af_history
 
-    # --- Træningstimer per type ---
+    # --- Træningstimer per type + planlagt ---
+    planned_mins = get_planned_mins_this_week()
     if train_mins:
+        actual_total = sum(train_mins.values())
         data['train_mins'] = train_mins
+        data['train_mins']['planned'] = planned_mins
+        data['train_mins']['actual_total'] = round(actual_total, 0)
 
     # --- Week sessions med done fra Intervals ---
     data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
