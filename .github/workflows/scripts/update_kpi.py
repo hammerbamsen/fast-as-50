@@ -84,11 +84,18 @@ def get_activities_7d():
         return {'tss_week': round(total_tss, 0), 'run_km': round(run_km, 1)}
     return None
 
-def get_week_sessions():
+# Disc-typer der er "planlagt træning" — bruges til at matche aktiviteter mod program
+PLANNED_DISCS = {'run', 'bike', 'swim', 'openwater', 'strength'}
+# Disc-typer der altid er "ekstra" og aldrig matcher planlagte sessioner
+EXTRA_DISCS = {'walk', 'hike', 'commute', 'free'}
+
+def get_week_sessions_merged(planned_sessions):
     """
-    Hent faktiske aktiviteter denne uge fra Intervals.icu og byg week_sessions.
-    Merger planlagte (fra all_weeks) med udførte aktiviteter.
-    Aktiviteter uden match på planlagt session tilføjes som bonus-sessioner.
+    Hent faktiske aktiviteter denne uge fra Intervals.icu.
+    Merger med planlagte sessioner:
+    - Planlagte sessioner markeres 'done' hvis der er en matchende aktivitet (disc+dag)
+    - Ekstra aktiviteter (walk, hike, commute, free) tilføjes som bonus-rækker
+    - Ikke-planlagte træningsaktiviteter (run/bike/swim uden planlagt match) tilføjes også
     """
     today = date.today()
     monday = today - timedelta(days=today.weekday())
@@ -100,13 +107,14 @@ def get_week_sessions():
         params={'oldest': str(monday), 'newest': str(sunday)}
     )
     if r.status_code != 200:
-        return None
+        return planned_sessions
 
     activities = r.json()
+    if not activities:
+        return planned_sessions
 
-    # Byg faktiske sessioner grupperet pr. dag
-    # Én aktivitet = én session
-    sessions = []
+    # Byg aktiviteter grupperet pr. dag+disc
+    actual_by_day = {}  # dag -> liste af aktiviteter
     for a in activities:
         act_date = a.get('start_date_local', '')[:10]
         try:
@@ -121,20 +129,76 @@ def get_week_sessions():
         dur_str = f'{dur_min} min' if dur_min else ''
         tss = round(a.get('training_load') or 0)
 
-        sessions.append({
-            'day':   day_label,
-            'disc':  disc,
+        if day_label not in actual_by_day:
+            actual_by_day[day_label] = []
+        actual_by_day[day_label].append({
+            'disc': disc,
             'label': name,
-            'done':  True,
-            'dur':   dur_str,
-            'tss':   tss,
+            'dur': dur_str,
+            'tss': tss,
         })
 
-    # Sorter man→søn
-    day_order = {d: i for i, d in enumerate(DK_DAYS)}
-    sessions.sort(key=lambda s: day_order.get(s['day'], 9))
+    # Start med kopi af planlagte sessioner
+    result = []
+    # Track hvilke aktiviteter der er brugt til at matche planlagte sessioner
+    used = {day: [] for day in actual_by_day}
 
-    return sessions if sessions else None
+    for session in planned_sessions:
+        day = session.get('day')
+        disc = session.get('disc')
+        new_session = dict(session)
+
+        if day in actual_by_day:
+            # Find første ubrugte aktivitet på denne dag med samme disc
+            match = None
+            for i, act in enumerate(actual_by_day[day]):
+                if i not in used[day] and act['disc'] == disc:
+                    match = act
+                    used[day].append(i)
+                    break
+
+            if match:
+                new_session['done'] = True
+                if match['dur']:
+                    new_session['dur'] = match['dur']
+                if match['tss']:
+                    new_session['tss'] = match['tss']
+
+        result.append(new_session)
+
+    # Tilføj ekstra aktiviteter der ikke matchede planlagte sessioner
+    day_order = {d: i for i, d in enumerate(DK_DAYS)}
+    extra_sessions = []
+    for day, acts in actual_by_day.items():
+        for i, act in enumerate(acts):
+            if i not in used.get(day, []):
+                extra_sessions.append({
+                    'day':   day,
+                    'disc':  act['disc'],
+                    'label': act['label'],
+                    'done':  True,
+                    'dur':   act['dur'],
+                    'tss':   act['tss'],
+                    'extra': True,  # markér som bonus-aktivitet
+                })
+
+    # Indsæt ekstra aktiviteter på rigtig dag-position
+    if extra_sessions:
+        extra_sessions.sort(key=lambda s: day_order.get(s['day'], 9))
+        # Merge: indsæt ekstra efter den planlagte session på samme dag
+        merged = []
+        for session in result:
+            merged.append(session)
+            day = session.get('day')
+            day_extras = [e for e in extra_sessions if e['day'] == day]
+            for extra in day_extras:
+                merged.append(extra)
+                extra_sessions.remove(extra)
+        # Resterende ekstra (dage uden planlagt session)
+        merged.extend(extra_sessions)
+        result = merged
+
+    return result
 
 def get_af_streak_and_log():
     """
@@ -226,7 +290,6 @@ def main():
     planned    = planned_tss_this_week()
     af_streak, af_log, week_af_count = get_af_streak_and_log()
     meta       = week_meta()
-    week_sessions = get_week_sessions()
 
     weight  = wellness.get('weight')   if wellness else None
     fat     = wellness.get('body_fat') if wellness else None
@@ -252,12 +315,11 @@ def main():
     }
     existing['af_log'] = af_log
 
-    # Opdater week_sessions fra faktiske Intervals-aktiviteter
-    if week_sessions is not None:
-        existing['week_sessions'] = week_sessions
-        print(f"week_sessions opdateret: {len(week_sessions)} aktiviteter fra Intervals")
-    else:
-        print("Ingen aktiviteter denne uge endnu — bevarer eksisterende week_sessions")
+    # Merge planlagte sessioner med faktiske Intervals-aktiviteter
+    current_sessions = existing.get('week_sessions', [])
+    merged_sessions = get_week_sessions_merged(current_sessions)
+    existing['week_sessions'] = merged_sessions
+    print(f"week_sessions: {len(merged_sessions)} sessioner (planlagte + ekstra)")
 
     kpis = existing.get('kpis', {})
     def col(val, target, lower=True):
