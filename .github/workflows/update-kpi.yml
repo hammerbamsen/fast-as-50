@@ -2,8 +2,8 @@ name: Daglig dashboard-opdatering
 
 on:
   schedule:
-    - cron: '0,10,20,30,40,50 * * * *'  # Hvert 10 min — mange entries forhindrer GitHub skip
-    - cron: '5,15,25,35,45,55 * * * *'  # Offset 5 min — dækker gaps
+    - cron: '0,10,20,30,40,50 * * * *'
+    - cron: '5,15,25,35,45,55 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -35,9 +35,9 @@ jobs:
         run: |
           git config user.name "Fast as Fifty Bot"
           git config user.email "bot@hammerbamsen.github.io"
-          git add data.json
+          git add data.json debug_activities.json
           if git diff --staged --quiet; then
-            echo "Ingen ændringer i data.json"
+            echo "Ingen ændringer"
           else
             git commit -m "KPI auto-opdatering $(date +%Y-%m-%d_%H:%M)"
             git pull --rebase origin main
