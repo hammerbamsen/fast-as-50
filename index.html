@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260608-0450 --><!-- v20260608-0450 -->
+<!DOCTYPE html><!-- v8 --><!-- v20260608-0440 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -936,6 +936,8 @@ async function init() {
           {label:"FORM (TSB)",value:km.tsb?.value    ||"—", unit:"",   sub:km.tsb?.sub    ||"Bygger",               color:km.tsb?.color||"#F39C12"},
           {label:"SØVN",      value:km.sleep?.value  ||"—", unit:"t",  sub:km.sleep?.sub  ||"Mål 7t",               color:"#2874A6"},
           {label:"LØB KM",    value:km.runKm?.value  ||"—", unit:"km", sub:km.runKm?.sub  ||"Mål 40+ km",           color:"#C0392B"},
+          {label:"CYKEL KM",  value:km.bikeKm?.value ||"—", unit:"km", sub:km.bikeKm?.sub ||"Cykel denne uge",      color:"var(--bike)"},
+          {label:"AF STREAK", value:km.afStreak?.value||"—", unit:"",  sub:km.afStreak?.sub||"Dage i træk · mål 5",  color:"#59182A"},
           {label:"HRV",       value:km.hrv?.value    ||"—", unit:"ms", sub:km.hrv?.sub    ||"Stabil",               color:"#7A6A58"},
           {label:"TSS COMP.", value:km.tssComp?.value||"—", unit:km.tssComp?.unit||"", sub:km.tssComp?.sub||"TSS compliance", color:km.tssComp?.color||"#7A6A58"},
         ];
