@@ -55,6 +55,67 @@ def get_wellness_7d():
         }
     return None
 
+def get_history_7d():
+    """Bygger 7-dages historik-arrays til sparklines live fra Intervals wellness.
+    Returnerer kronologiske lister (ældste→nyeste) for vægt, HRV, søvn(t), TSB.
+    Manglende dage udelades, så grafen viser faktiske datapunkter.
+    """
+    oldest = str(date.today() - timedelta(days=6))
+    newest = str(date.today())
+    r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    if r.status_code != 200:
+        return None
+    rows = r.json()
+    # Sortér kronologisk på dato (feltet 'id' er datoen i Intervals)
+    rows.sort(key=lambda d: (d.get('id') or d.get('date') or ''))
+    weight, hrv, sleep, tsb = [], [], [], []
+    for d in rows:
+        if d.get('weight')   is not None: weight.append(round(d['weight'], 1))
+        if d.get('hrv')      is not None: hrv.append(round(d['hrv'], 1))
+        if d.get('sleepSecs')is not None: sleep.append(round(d['sleepSecs']/3600, 1))
+        if d.get('ctl') is not None and d.get('atl') is not None:
+            tsb.append(round(d['ctl'] - d['atl'], 1))
+        elif d.get('tsb') is not None:
+            tsb.append(round(d['tsb'], 1))
+    return {
+        'weightHistory': weight,
+        'hrvHistory':    hrv,
+        'sleepHistory':  sleep,
+        'tsbHistory':    tsb,
+    }
+
+def get_ctl_curve():
+    """Bygger CTL-kurve live fra projektstart til i dag (ét punkt pr. uge).
+    Viser faktisk fitnessudvikling i stedet for en hardcodet prognose.
+    """
+    week1 = date(2026, 6, 1)
+    today = date.today()
+    r = requests.get(f'{BASE}/wellness', auth=AUTH,
+                     params={'oldest': str(week1), 'newest': str(today)})
+    if r.status_code != 200:
+        return None
+    rows = r.json()
+    by_date = {}
+    for d in rows:
+        k = (d.get('id') or d.get('date') or '')[:10]
+        if d.get('ctl') is not None:
+            by_date[k] = round(d['ctl'], 1)
+    if not by_date:
+        return None
+    # Ét punkt pr. uge: CTL på (eller før) hver mandag fra start til nu
+    curve = []
+    wk = week1
+    while wk <= today:
+        # find seneste kendte CTL på eller før denne uges mandag+6
+        cutoff = min(wk + timedelta(days=6), today)
+        candidates = [v for k, v in by_date.items() if k <= str(cutoff)]
+        if candidates:
+            # seneste kendte værdi op til cutoff
+            latest_key = max(k for k in by_date if k <= str(cutoff))
+            curve.append(by_date[latest_key])
+        wk += timedelta(days=7)
+    return curve if curve else None
+
 def get_af_this_week():
     """AF-dage fra mandag denne uge.
     Returnerer (count, af_log) hvor af_log = {dato: True/False/None}
@@ -650,6 +711,8 @@ def main():
     planned    = planned_tss_this_week()
     af_days, af_log = get_af_this_week()
     af_streak = get_af_streak()
+    history    = get_history_7d()
+    ctl_curve  = get_ctl_curve()
 
     print(f"  Fitness:    {fitness}")
     print(f"  Wellness:   {wellness}")
@@ -733,6 +796,17 @@ def main():
 
     # --- Week sessions med done fra Intervals ---
     data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
+
+    # --- Historik-grafer live fra Intervals (sparklines + CTL-kurve) ---
+    if history:
+        if history.get('weightHistory'): data['weightHistory'] = history['weightHistory']
+        if history.get('hrvHistory'):    data['hrvHistory']    = history['hrvHistory']
+        if history.get('sleepHistory'):  data['sleepHistory']  = history['sleepHistory']
+        if history.get('tsbHistory'):    data['tsbHistory']    = history['tsbHistory']
+        print(f"  Historik: vægt={len(history.get('weightHistory',[]))} hrv={len(history.get('hrvHistory',[]))} søvn={len(history.get('sleepHistory',[]))} tsb={len(history.get('tsbHistory',[]))} punkter")
+    if ctl_curve:
+        data['ctlCurve'] = ctl_curve
+        print(f"  CTL-kurve: {len(ctl_curve)} ugepunkter, seneste {ctl_curve[-1]}")
 
     # --- all_weeks: forrige/denne/næste uge fra Intervals ---
     if planned_weeks:
