@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: kpi-update
+  cancel-in-progress: false
+
 jobs:
   opdater:
     runs-on: ubuntu-latest
@@ -32,5 +36,10 @@ jobs:
           git config user.name "Fast as Fifty Bot"
           git config user.email "bot@hammerbamsen.github.io"
           git add data.json
-          git diff --staged --quiet || git commit -m "KPI auto-opdatering $(date +%Y-%m-%d)"
-          git push
+          if git diff --staged --quiet; then
+            echo "Ingen ændringer i data.json"
+          else
+            git commit -m "KPI auto-opdatering $(date +%Y-%m-%d_%H:%M)"
+            git pull --rebase origin main
+            git push
+          fi
