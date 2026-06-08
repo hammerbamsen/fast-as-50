@@ -389,27 +389,35 @@ function afRing(done, target) {
 }
 
 function weekStrip() {
-  return `<div class="week-strip">${D.week_sessions.map(s=>{
-    const doneClass = s.done ? `done-${s.disc}` : "";
-    const todayClass = s.today ? "is-today" : "";
+  const DAGE = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
+  // Gruppér sessioner pr. ugedag — én boks pr. dag
+  const byDay = {};
+  D.week_sessions.forEach(s => {
+    (byDay[s.day] = byDay[s.day] || []).push(s);
+  });
+  return `<div class="week-strip">${DAGE.map(dag => {
+    const sessions = byDay[dag] || [];
+    const isToday = sessions.some(s => s.today);
+    const done = sessions.length > 0 && sessions.every(s => s.done);
+    const anyDone = sessions.some(s => s.done);
+    // Saml unikke discipliner for dagen (planlagt + ekstra)
+    const discs = [];
+    sessions.forEach(s => {
+      if (s.disc && !discs.includes(s.disc)) discs.push(s.disc);
+      if (s.disc2 && !discs.includes(s.disc2)) discs.push(s.disc2);
+    });
+    const doneClass = anyDone && discs.length ? `done-${discs[0]}` : "";
+    const todayClass = isToday ? "is-today" : "";
     let ico;
-    if (s.done) {
-      // Vis ikon(er) for udførte discipliner
-      if (s.disc2) {
-        ico = `<span style="display:flex;gap:2px;align-items:center">${icon(s.disc,13,C[s.disc])}${icon(s.disc2,13,C[s.disc2])}</span>`;
-      } else {
-        ico = icon(s.disc, 14, C[s.disc]);
-      }
+    if (discs.length === 0) {
+      ico = `<span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--cream-d)">·</span>`;
     } else {
-      // Ikke udført — vis disciplin-ikon dæmpet
-      if (s.disc2) {
-        ico = `<span style="display:flex;gap:2px;align-items:center">${icon(s.disc,13,s.today?"var(--wine)":"var(--muted)")}${icon(s.disc2,13,s.today?"var(--wine)":"var(--muted)")}</span>`;
-      } else {
-        ico = icon(s.disc,14,s.today?"var(--wine)":"var(--muted)");
-      }
+      const col = d => anyDone ? C[d] : (isToday ? "var(--wine)" : "var(--muted)");
+      const sz = discs.length > 2 ? 11 : 13;
+      ico = `<span style="display:flex;gap:2px;align-items:center;flex-wrap:wrap;justify-content:center">${discs.map(d => icon(d, sz, col(d))).join("")}</span>`;
     }
     return `<div class="wday ${doneClass} ${todayClass}">
-      <span class="wday-name">${s.day}</span>${ico}
+      <span class="wday-name">${dag}</span>${ico}
     </div>`;
   }).join("")}</div>`;
 }
