@@ -446,7 +446,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     else:
         intro = f"{day_name.capitalize()} — uge {week_num} af 14."
 
-    speech = f"{intro} {{HL}} {session_line} {streak_comment}"
+    speech = f"{intro} {{HL}} {session_line}"
     highlight = streak_comment
 
     return speech.strip(), highlight.strip()
