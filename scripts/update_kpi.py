@@ -220,6 +220,14 @@ def get_activities_week():
             for a in data
             if a.get('type') in ['Ride', 'VirtualRide', 'MountainBike']
         )
+        # Træningstimer per type (i minutter)
+        def mins(a): return round((a.get('moving_time') or a.get('elapsed_time') or 0) / 60, 0)
+        train_mins = {
+            'run':      round(sum(mins(a) for a in data if a.get('type') in ['Run','TrailRun','VirtualRun']), 0),
+            'bike':     round(sum(mins(a) for a in data if a.get('type') in ['Ride','VirtualRide','MountainBike']), 0),
+            'swim':     round(sum(mins(a) for a in data if a.get('type') in ['Swim']), 0),
+            'strength': round(sum(mins(a) for a in data if a.get('type') in ['WeightTraining','Workout','Strength']), 0),
+        }
         # Byg done-map: {dag_short: [disc, ...]}
         done_map = {}
         for a in data:
@@ -253,6 +261,7 @@ def get_activities_week():
             'tss_week': round(total_tss, 0),
             'run_km':   round(run_km, 1),
             'bike_km':  round(bike_km, 1),
+            'train_mins': train_mins,
             'done_map': done_map,
         }
     return None
@@ -307,6 +316,7 @@ def build_week_sessions(done_map, planned_sessions):
     today_idx = today.weekday()  # 0=Man, 6=Søn
 
     result = []
+    planned_days = set()
     for s in planned_sessions:
         day_key = s['day']
         try:
@@ -314,14 +324,13 @@ def build_week_sessions(done_map, planned_sessions):
         except:
             day_idx = -1
 
+        planned_days.add(day_key)
         new_s = dict(s)
         new_s.pop('today', None)
 
-        # Sæt today
         if day_idx == today_idx:
             new_s['today'] = True
 
-        # Sæt done fra Intervals hvis dagen er passeret eller i dag
         if day_idx <= today_idx and day_key in done_map:
             new_s['done'] = True
             discs = done_map[day_key]
@@ -330,12 +339,32 @@ def build_week_sessions(done_map, planned_sessions):
                 new_s['disc2'] = discs[1]
             elif len(discs) == 1:
                 new_s['disc'] = discs[0]
-                # Bevar disc2 fra den planlagte session hvis Intervals kun har én aktivitet
-                # (fx cykel ikke logget endnu men svøm er)
                 if 'disc2' not in new_s and 'disc2' in s:
                     new_s['disc2'] = s['disc2']
 
         result.append(new_s)
+
+    # Bonus-pas: aktiviteter på dage uden planlagt session
+    disc_labels = {'run': 'Løb', 'bike': 'Cykel', 'swim': 'Svøm', 'strength': 'Styrke', 'free': 'Aktiv restitution'}
+    for day_key, discs in done_map.items():
+        try:
+            day_idx = DAY_SHORT.index(day_key)
+        except:
+            continue
+        if day_key not in planned_days and day_idx <= today_idx:
+            label = ' + '.join(disc_labels.get(d, d) for d in discs)
+            bonus = {
+                'day': day_key, 'disc': discs[0],
+                'label': f'Bonus: {label}',
+                'done': True, 'bonus': True,
+            }
+            if len(discs) >= 2:
+                bonus['disc2'] = discs[1]
+            if day_idx == today_idx:
+                bonus['today'] = True
+            result.append(bonus)
+
+    result.sort(key=lambda s: DAY_SHORT.index(s['day']) if s['day'] in DAY_SHORT else 99)
     return result
 
 def get_planned_weeks():
@@ -512,7 +541,8 @@ def main():
     tss_act = activities.get('tss_week') if activities else None
     km_week  = activities.get('run_km')  if activities else None
     bike_km  = activities.get('bike_km') if activities else None
-    done_map = activities.get('done_map', {}) if activities else {}
+    done_map   = activities.get('done_map', {})    if activities else {}
+    train_mins = activities.get('train_mins', {}) if activities else {}
     compliance = round(tss_act / planned * 100, 0) if tss_act else None
 
     tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
@@ -551,6 +581,10 @@ def main():
     af_history = get_af_history()
     if af_history:
         data['af_history'] = af_history
+
+    # --- Træningstimer per type ---
+    if train_mins:
+        data['train_mins'] = train_mins
 
     # --- Week sessions med done fra Intervals ---
     data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
