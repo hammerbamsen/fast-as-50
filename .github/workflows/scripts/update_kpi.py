@@ -317,9 +317,19 @@ def main():
     existing['af_log'] = af_log
 
     # Merge planlagte sessioner med faktiske Intervals-aktiviteter
+    import os as _os
     current_sessions = existing.get('week_sessions', [])
     merged_sessions = get_week_sessions_merged(current_sessions)
     existing['week_sessions'] = merged_sessions
+    _dbg2 = {
+        'cwd': _os.getcwd(),
+        'data_json_exists': _os.path.exists('data.json'),
+        'current_count': len(current_sessions),
+        'merged_count': len(merged_sessions),
+        'merged': merged_sessions,
+    }
+    with open('debug_merge.json','w') as _f:
+        json.dump(_dbg2, _f, ensure_ascii=False, indent=2)
     print(f"week_sessions: {len(merged_sessions)} sessioner (planlagte + ekstra)")
 
     kpis = existing.get('kpis', {})
