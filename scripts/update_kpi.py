@@ -90,6 +90,57 @@ def get_af_this_week():
     
     return None, {}
 
+
+def get_af_history():
+    """Henter AF-historik uge for uge siden projektstart (2026-06-01).
+    Returnerer liste af dicts: [{week: 1, done: 7, total: 7, label: 'Uge 1'}, ...]
+    """
+    from datetime import date, timedelta
+    project_start = date(2026, 6, 2)  # Mandag uge 1
+    today = date.today()
+    
+    # Hent al wellness siden projektstart
+    r = requests.get(f"{BASE}/wellness", auth=AUTH,
+                     params={"oldest": str(project_start), "newest": str(today)})
+    if r.status_code != 200:
+        return []
+    
+    wellness_data = r.json()
+    wellness_by_date = {(d.get("id") or d.get("date") or "")[:10]: d for d in wellness_data}
+    
+    history = []
+    week_start = project_start
+    week_num = 1
+    
+    while week_start <= today:
+        week_end = week_start + timedelta(days=6)
+        count = 0
+        days_passed = 0
+        
+        current = week_start
+        while current <= min(week_end, today):
+            key = str(current)
+            alkohol = wellness_by_date.get(key, {}).get("Alkohol")
+            if alkohol == 0:
+                count += 1
+            days_passed += 1
+            current += timedelta(days=1)
+        
+        history.append({
+            "week": week_num,
+            "done": count,
+            "total": days_passed,
+            "label": f"Uge {week_num}"
+        })
+        
+        week_start += timedelta(days=7)
+        week_num += 1
+        if week_num > 14:
+            break
+    
+    print(f"  AF historik: {history}")
+    return history
+
 def get_af_streak():
     """Beregn sammenhængende AF-streak bagud fra i dag.
     Henter 90 dages wellness og tæller AF-dage (Alkohol=0) i træk,
@@ -413,6 +464,11 @@ def main():
             for k, v in af_log.items()
             if v is not None  # Gem kun registrerede dage
         }
+
+    # --- AF historik: uge-for-uge siden projektstart ---
+    af_history = get_af_history()
+    if af_history:
+        data['af_history'] = af_history
 
     # --- Week sessions med done fra Intervals ---
     data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
