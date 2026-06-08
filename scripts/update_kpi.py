@@ -455,15 +455,24 @@ def main():
         'streak': af_streak
     }
 
-    # --- AF log: dag-for-dag til af.html sync ---
-    if af_log:
-        # Konverter True/False/None til 0/1/None (Intervals format)
-        # True = AF = Alkohol 0, False = ikke AF = Alkohol 1
-        data['af_log'] = {
-            k: (0 if v is True else 1 if v is False else None)
-            for k, v in af_log.items()
-            if v is not None  # Gem kun registrerede dage
-        }
+    # --- AF log: dag-for-dag til af.html sync (alle uger siden projektstart) ---
+    from datetime import date as _date
+    _project_start = _date(2026, 6, 2)
+    _today = _date.today()
+    _r = __import__("requests").get(f"{BASE}/wellness", auth=AUTH,
+                     params={"oldest": str(_project_start), "newest": str(_today)})
+    if _r.status_code == 200:
+        _wellness = {(d.get("id") or d.get("date") or "")[:10]: d for d in _r.json()}
+        _full_log = {}
+        _cur = _project_start
+        while _cur <= _today:
+            _k = str(_cur)
+            _alkohol = _wellness.get(_k, {}).get("Alkohol")
+            if _alkohol is not None:
+                _full_log[_k] = 0 if _alkohol == 0 else 1
+            _cur += __import__("datetime").timedelta(days=1)
+        data["af_log"] = _full_log
+        print(f"  AF log (alle dage): {len(_full_log)} dage")
 
     # --- AF historik: uge-for-uge siden projektstart ---
     af_history = get_af_history()
