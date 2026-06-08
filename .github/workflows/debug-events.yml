@@ -1,0 +1,37 @@
+name: Debug events
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: debug-ev
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Run
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+        run: python scripts/debug_events.py
+      - name: Commit
+        run: |
+          git config user.name "Bot"
+          git config user.email "bot@x.com"
+          git add debug_events.json
+          git diff --staged --quiet && exit 0
+          git commit -m "debug events"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && git push origin main && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
+          exit 1
