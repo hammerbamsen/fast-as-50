@@ -1131,6 +1131,37 @@ async function init() {
 
 init();
 
+// ── Auto-poll: opdatér AF-streak + data hvert 30 sek ──────────
+(function() {
+  let lastDataJson = null;
+  async function pollData() {
+    try {
+      const r = await fetch('data.json?t=' + Date.now());
+      if (!r.ok) return;
+      const txt = await r.text();
+      if (txt === lastDataJson) return; // ingen ændring
+      lastDataJson = txt;
+      const remote = JSON.parse(txt);
+      // Opdatér kun AF-relaterede felter for hurtig visning
+      if (remote.af) {
+        D.afDays.weekDone = parseInt(remote.af.weekDone) || 0;
+        D.afDays.streak   = parseInt(remote.af.streak)   || 0;
+      }
+      if (remote.kpis?.afStreak) {
+        // Opdatér i D.kpis array
+        const afKpi = D.kpis.find(k => k.label === 'AF STREAK');
+        if (afKpi) afKpi.value = remote.kpis.afStreak.value;
+      }
+      if (remote.coachHighlight) D.coachHighlight = remote.coachHighlight;
+      if (remote.af_history) D.afHistory = remote.af_history;
+      // Re-render aktiv side
+      pageCache = {};
+      navigate(activePage);
+    } catch(e) {}
+  }
+  setInterval(pollData, 30000);
+})();
+
 // ── Refresh-knap: hent ny data.json fra server ─────────────────
 async function triggerRefresh() {
   const btn = document.getElementById('refresh-btn');
