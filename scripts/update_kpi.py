@@ -827,7 +827,7 @@ def main():
         this_week = planned_weeks.get(week_num, {})
         if this_week:
             this_week['sessions'] = build_week_sessions(done_map, this_week['sessions'])
-            this_week['focus'] = data.get('weekFocus', '')
+            this_week['focus'] = fix_enc(data.get('weekFocus', ''))
         data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
 
     # --- Today session ---
@@ -844,7 +844,8 @@ def main():
 
     # --- Coach speech (genereres dagligt) ---
     block_type = data.get('blockType', 'BUILD')
-    week_focus = data.get('weekFocus', '')
+    week_focus = fix_enc(data.get('weekFocus', ''))
+    data['weekFocus'] = week_focus  # Gem den rettede version tilbage
     af_this_week = data.get('af', {}).get('weekDone', 0)
     coach_speech, coach_highlight = generate_coach_speech(
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus
