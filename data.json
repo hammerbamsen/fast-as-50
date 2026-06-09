@@ -23,7 +23,7 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "35,2",
+      "value": "35,8",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
@@ -59,7 +59,7 @@
       "color": "#7A6A58"
     },
     "bikeKm": {
-      "value": "17,0",
+      "value": "33,2",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#C0392B"
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 8
   },
-  "coachSpeech": "Tirsdag — uge 2 af 14. {HL} I dag: Løb Z2 45 min (løb).",
+  "coachSpeech": "Tirsdag — uge 2 af 14. {HL} Dagens session er gennemført.",
   "coachHighlight": "8 dage i træk. Hold den streak i live.",
   "weekFocus": "Build uge 2 — én VO2-stimulus, max 3 løb, cykel på Mallorca tor-søn. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "run",
+    "discipline": "commute",
     "title": "Løb Z2 45 min",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -110,9 +110,9 @@
     },
     {
       "day": "Tir",
-      "disc": "run",
+      "disc": "commute",
       "label": "Løb Z2 45 min",
-      "done": false,
+      "done": true,
       "today": true
     },
     {
@@ -148,7 +148,7 @@
   ],
   "ctlCurve": [
     36.3,
-    35.2
+    35.8
   ],
   "weightHistory": [
     74.5,
@@ -183,7 +183,7 @@
     -13.4,
     -11.9,
     -10.3,
-    -4.9
+    -7.8
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -239,9 +239,9 @@
         },
         {
           "day": "Tir",
-          "disc": "run",
+          "disc": "commute",
           "label": "Løb Z2 45 min",
-          "done": false,
+          "done": true,
           "today": true
         },
         {
@@ -421,10 +421,10 @@
     }
   ],
   "train_mins": {
-    "commute": 50.0,
+    "commute": 100.0,
     "walk": 53.0,
     "strength": 26.0,
     "planned": 1050.0,
-    "actual_total": 129.0
+    "actual_total": 179.0
   }
 }
