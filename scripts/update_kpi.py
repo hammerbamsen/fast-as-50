@@ -535,25 +535,16 @@ def build_week_sessions(done_map, planned_sessions):
         if day_idx <= today_idx and day_key in done_map:
             acts = done_map[day_key]
             planned_disc = s.get('disc')
-            # Find første ubrugte aktivitet med samme disc som planlagt
+            # Kun match på korrekt disc — ingen fallback
+            # Kommute/cykel må ikke forbruge et planlagt løb
             match_idx = None
             for i, (disc, name) in enumerate(acts):
                 if i not in used[day_key] and disc == planned_disc:
                     match_idx = i
                     break
-            # Hvis ingen disc-match, men der findes aktiviteter, marker done med første
-            if match_idx is None:
-                for i, (disc, name) in enumerate(acts):
-                    if i not in used[day_key]:
-                        match_idx = i
-                        break
             if match_idx is not None:
                 new_s['done'] = True
                 used[day_key].add(match_idx)
-                matched_disc = acts[match_idx][0]
-                # Kun overskriv disc hvis det er et rigtig match — ikke fallback
-                if matched_disc == planned_disc:
-                    new_s['disc'] = matched_disc
 
         result.append(new_s)
 
