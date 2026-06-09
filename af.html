@@ -385,6 +385,23 @@ async function answer(isAF) {
       throw new Error(putResp.status + ' ' + JSON.stringify(err.message));
     }
 
+    // 4) Send til Intervals.icu wellness via GitHub dispatch
+    await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${getToken()}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        event_type: 'af-registrering',
+        client_payload: {
+          date: key,
+          alkohol: isAF ? 0 : 1
+        }
+      })
+    });
+
     const statusEl = document.getElementById('status');
     statusEl.className='status ok';
     statusEl.innerHTML = isAF
