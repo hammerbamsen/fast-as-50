@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-08",
+    "updated": "2026-06-09",
     "week": 2,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 89,
-    "daysToChristiansborg": 82,
-    "dayName": "Mandag",
-    "date": "8. jun"
+    "daysToMedoc": 88,
+    "daysToChristiansborg": 81,
+    "dayName": "Tirsdag",
+    "date": "9. jun"
   },
   "kpis": {
     "weight": {
@@ -23,7 +23,7 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "36,1",
+      "value": "35,2",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
@@ -35,7 +35,7 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,4",
+      "value": "7,3",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "53,5",
+      "value": "55,1",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,46 +76,44 @@
     "target": 5,
     "streak": 8
   },
-  "coachSpeech": "Ny uge starter — uge 2 af 14. Build-uge. {HL} Dagens session er gennemført.",
+  "coachSpeech": "Tirsdag — uge 2 af 14. {HL} I dag: Løb Z2 45 min (løb).",
   "coachHighlight": "8 dage i træk. Hold den streak i live.",
   "weekFocus": "Build uge 2 — én VO2-stimulus, max 3 løb, cykel på Mallorca tor-søn. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "strength",
-    "title": "Styrke A Functional Strength 3 sæt",
+    "discipline": "run",
+    "title": "Løb Z2 45 min",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
       "day": "Man",
       "disc": "strength",
       "label": "Styrke A Functional Strength 3 sæt",
-      "done": true,
-      "today": true
+      "done": true
     },
     {
       "day": "Man",
       "disc": "walk",
       "label": "Gentofte Gang",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Man",
       "disc": "commute",
       "label": "Gentofte Cykling",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Tir",
       "disc": "run",
       "label": "Løb Z2 45 min",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Ons",
@@ -150,7 +148,7 @@
   ],
   "ctlCurve": [
     36.3,
-    36.1
+    35.2
   ],
   "weightHistory": [
     74.5,
@@ -161,7 +159,6 @@
   ],
   "hrvHistory": [
     50.0,
-    50.0,
     43.0,
     63.0,
     59.0,
@@ -169,7 +166,6 @@
     65.0
   ],
   "sleepHistory": [
-    6.5,
     6.3,
     7.9,
     8.0,
@@ -178,13 +174,13 @@
     8.2
   ],
   "tsbHistory": [
-    -9.4,
     -7.5,
     -4.5,
     -2.2,
     -13.4,
     -11.9,
-    -10.3
+    -10.3,
+    -4.9
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -223,35 +219,34 @@
           "day": "Man",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": true,
-          "today": true
+          "done": true
         },
         {
           "day": "Man",
           "disc": "walk",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": true,
-          "today": true
+          "done": true
         },
         {
           "day": "Man",
           "disc": "commute",
           "label": "Gentofte Cykling",
           "done": true,
-          "extra": true,
+          "extra": true
+        },
+        {
+          "day": "Tir",
+          "disc": "run",
+          "label": "Løb Z2 45 min",
+          "done": false,
           "today": true
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 45 min",
-          "done": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb Z2 45 min",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Ons",
@@ -418,7 +413,7 @@
     {
       "week": 2,
       "done": 1,
-      "total": 1,
+      "total": 2,
       "label": "Uge 2"
     }
   ],
