@@ -13,6 +13,15 @@ REPO       = 'hammerbamsen/fast-as-50'
 BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH       = ('API_KEY', API_KEY)
 
+def fix_enc(s):
+    """Ret UTF-8 strenge der fejlagtigt er decoded som Latin-1 (fx 'LÃ¸b' → 'Løb')."""
+    if not isinstance(s, str):
+        return s
+    try:
+        return s.encode('latin-1').decode('utf-8')
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return s  # Allerede korrekt
+
 DK_DAYS   = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"]
 DAY_SHORT  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
 DK_MONTHS  = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"]
@@ -542,7 +551,9 @@ def build_week_sessions(done_map, planned_sessions):
                 new_s['done'] = True
                 used[day_key].add(match_idx)
                 matched_disc = acts[match_idx][0]
-                new_s['disc'] = matched_disc
+                # Kun overskriv disc hvis det er et rigtig match — ikke fallback
+                if matched_disc == planned_disc:
+                    new_s['disc'] = matched_disc
 
         result.append(new_s)
 
@@ -624,7 +635,7 @@ def get_planned_weeks():
                 continue
             day_idx = dt.weekday()  # 0=Man
             disc = TYPE_MAP.get(wo.get('type',''), 'free')
-            name = wo.get('name', 'Træning')
+            name = fix_enc(wo.get('name', 'Træning'))
             is_today = (dt == today)
             is_done = wo.get('athlete_id') and dt <= today  # planned er ikke done
 
