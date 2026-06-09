@@ -806,7 +806,9 @@ def main():
         data['train_mins']['actual_total'] = round(actual_total, 0)
 
     # --- Week sessions med done fra Intervals ---
-    data['week_sessions'] = build_week_sessions(done_map, data.get('week_sessions', []))
+    # Brug friske sessions fra Intervals (med fix_enc) — ikke stale labels fra data.json
+    this_week_planned = planned_weeks.get(week_num, {}).get('sessions', data.get('week_sessions', []))
+    data['week_sessions'] = build_week_sessions(done_map, this_week_planned)
 
     # --- Historik-grafer live fra Intervals (sparklines + CTL-kurve) ---
     if history:
