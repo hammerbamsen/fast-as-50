@@ -40,16 +40,16 @@ RUN_ZONES = {
     "Z2": {"desc": "4:56-5:34/km",   "doc": {"start": 78,  "end": 88,  "units": "%pace"}},
     "Z3": {"desc": "4:26-4:55/km",   "doc": {"start": 88,  "end": 98,  "units": "%pace"}},
     "Z4": {"desc": "4:13-4:25/km",   "doc": {"start": 98,  "end": 103, "units": "%pace"}},
-    "Z5": {"desc": "3:53-4:12/km",   "doc": {"start": 103, "end": 112, "units": "%pace"}},
+    "Z5": {"desc": "3:53-4:05/km",   "doc": {"start": 106, "end": 110, "units": "%pace"}},
 }
 
 # Cykel: absolut % FTP til description | %ftp til workout_doc
 BIKE_ZONES = {
-    "Z1": {"desc": "44-56%",   "doc": {"start": 44,  "end": 56,  "units": "%ftp"}},
-    "Z2": {"desc": "56-76%",   "doc": {"start": 56,  "end": 76,  "units": "%ftp"}},
-    "Z3": {"desc": "76-91%",   "doc": {"start": 76,  "end": 91,  "units": "%ftp"}},
-    "Z4": {"desc": "91-106%",  "doc": {"start": 91,  "end": 106, "units": "%ftp"}},
-    "Z5": {"desc": "106-120%", "doc": {"start": 106, "end": 120, "units": "%ftp"}},
+    "Z1": {"desc": "44-56% FTP",  "doc": {"start": 44,  "end": 56,  "units": "%ftp"}},
+    "Z2": {"desc": "56-76% FTP",  "doc": {"start": 56,  "end": 76,  "units": "%ftp"}},
+    "Z3": {"desc": "76-91% FTP",  "doc": {"start": 76,  "end": 91,  "units": "%ftp"}},
+    "Z4": {"desc": "91-100% FTP", "doc": {"start": 91,  "end": 100, "units": "%ftp"}},
+    "Z5": {"desc": "106-115% FTP","doc": {"start": 106, "end": 115, "units": "%ftp"}},
 }
 
 # ── Step-builders — returnerer {desc, doc} ──────────────────────
@@ -531,3 +531,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
