@@ -284,7 +284,7 @@ def get_activities_week():
         run_km = sum(
             (a.get('distance') or 0) / 1000
             for a in data
-            if a.get('type') in ['Run', 'TrailRun', 'VirtualRun']
+            if a.get('type') in ['Run', 'TrailRun', 'VirtualRun', 'IndoorRun']
         )
         bike_km = sum(
             (a.get('distance') or 0) / 1000
@@ -296,7 +296,7 @@ def get_activities_week():
         def disc_of(a):
             t = a.get('type', '')
             if t in ['Ride','VirtualRide'] and a.get('commute'): return 'commute'
-            if t in ['Run','TrailRun','VirtualRun']:             return 'run'
+            if t in ['Run','TrailRun','VirtualRun','IndoorRun']:             return 'run'
             if t in ['Ride','VirtualRide','MountainBike']:       return 'bike'
             if t in ['Swim']:                                    return 'swim'
             if t in ['OpenWaterSwim']:                           return 'openwater'
@@ -325,7 +325,7 @@ def get_activities_week():
             atype = a.get('type', '')
             if atype in ['Ride','VirtualRide'] and a.get('commute'):
                 disc = 'commute'
-            elif atype in ['Run','TrailRun','VirtualRun']:
+            elif atype in ['Run','TrailRun','VirtualRun','IndoorRun']:
                 disc = 'run'
             elif atype in ['Ride','VirtualRide','MountainBike']:
                 disc = 'bike'
@@ -588,7 +588,7 @@ def get_planned_weeks():
                    13:'TAPER',14:'RACE'}
 
     TYPE_MAP = {
-        'Run':'run','TrailRun':'run','VirtualRun':'run',
+        'Run':'run','TrailRun':'run','VirtualRun':'run','IndoorRun':'run',
         'Ride':'bike','VirtualRide':'bike','MountainBike':'bike',
         'Swim':'swim',
         'WeightTraining':'strength','Workout':'strength','Strength':'strength',
