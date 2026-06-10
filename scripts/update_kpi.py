@@ -273,13 +273,37 @@ def get_af_streak():
     return streak
 
 def get_activities_week():
-    """TSS, løbe-km og done-sessioner fra mandag denne uge"""
+    """TSS, løbe-km og done-sessioner fra mandag denne uge.
+    Primær kilde: /activities (importerede Garmin-aktiviteter).
+    Fallback: /events med paired_activity_id — fanger workouts markeret done
+    i Intervals selv om Garmin-sync er forsinket."""
     monday = monday_this_week()
     today  = date.today()
     r = requests.get(f'{BASE}/activities', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(today)})
     if r.status_code == 200:
         data = r.json()
+
+        # Supplement: hent events med paired_activity_id for at fange
+        # workouts der er markeret done i Intervals men endnu ikke synkroniseret
+        # som aktiviteter fra Garmin
+        r_ev = requests.get(f'{BASE}/events', auth=AUTH,
+                            params={'oldest': str(monday), 'newest': str(today)})
+        if r_ev.status_code == 200:
+            existing_ids = {a.get('id') for a in data}
+            for ev in r_ev.json():
+                paired_id = ev.get('paired_activity_id') or ev.get('activity_id')
+                if not paired_id or paired_id in existing_ids:
+                    continue
+                # Hent den pågældende aktivitet direkte
+                r_act = requests.get(f'{BASE}/activities/{paired_id}', auth=AUTH)
+                if r_act.status_code == 200:
+                    act = r_act.json()
+                    if act.get('id') not in existing_ids:
+                        data.append(act)
+                        existing_ids.add(act.get('id'))
+                        print(f"  Fallback aktivitet hentet: {act.get('name')} ({act.get('type')})")
+        print(f"  Aktiviteter denne uge: {len(data)}")
         total_tss = sum(a.get('icu_training_load') or a.get('training_load') or 0 for a in data)
         run_km = sum(
             (a.get('distance') or 0) / 1000
