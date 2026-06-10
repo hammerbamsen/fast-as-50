@@ -304,6 +304,8 @@ def get_activities_week():
                         existing_ids.add(act.get('id'))
                         print(f"  Fallback aktivitet hentet: {act.get('name')} ({act.get('type')})")
         print(f"  Aktiviteter denne uge: {len(data)}")
+        for _a in data:
+            print(f"    {_a.get('start_date_local','')[:16]} | {_a.get('type')} | {_a.get('name')} | moving={_a.get('moving_time')}s")
         total_tss = sum(a.get('icu_training_load') or a.get('training_load') or 0 for a in data)
         run_km = sum(
             (a.get('distance') or 0) / 1000
