@@ -23,16 +23,16 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "36,2",
+      "value": "36,7",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-8,1",
+      "value": "-10,8",
       "unit": "",
-      "sub": "Form",
-      "color": "#27AE60"
+      "sub": "Hård blok",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7,6",
@@ -53,16 +53,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "109",
+      "value": "133",
       "unit": "TSS",
-      "sub": "109 af 488 planlagt TSS",
+      "sub": "133 af 488 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "33,2",
+      "value": "48,7",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#C0392B"
+      "color": "#F39C12"
     },
     "afStreak": {
       "value": "9",
@@ -129,6 +129,14 @@
       "today": true
     },
     {
+      "day": "Ons",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
+      "done": true,
+      "extra": true,
+      "today": true
+    },
+    {
       "day": "Tor",
       "disc": "bike",
       "label": "Cykel Z2 60 min Mallorca",
@@ -155,7 +163,7 @@
   ],
   "ctlCurve": [
     36.3,
-    36.2
+    36.7
   ],
   "weightHistory": [
     74.5,
@@ -191,7 +199,7 @@
     -11.9,
     -10.3,
     -7.8,
-    -8.2
+    -10.8
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -303,6 +311,14 @@
           "today": true
         },
         {
+          "day": "Ons",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
+          "done": true,
+          "extra": true,
+          "today": true
+        },
+        {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
@@ -394,11 +410,11 @@
     }
   ],
   "train_mins": {
+    "commute": 146.0,
     "run": 45.0,
-    "commute": 100.0,
     "walk": 53.0,
     "strength": 26.0,
     "planned": 525.0,
-    "actual_total": 224.0
+    "actual_total": 270.0
   }
 }
