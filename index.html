@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260610-0540 --><!-- v20260610-0540 -->
+<!DOCTYPE html><!-- v20260610-0733 --><!-- v20260610-0733 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -38,7 +38,21 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
   .sidebar { display:none !important; }
   .main { margin-left:0 !important; padding:16px 14px 90px !important; max-width:100% !important; }
   .bottom-nav { display:flex !important; }
+  .mobile-refresh-btn { display:flex !important; }
+  .desktop-only { display:none !important; }
 }
+@media(min-width:769px) {
+  .mobile-refresh-btn { display:none !important; }
+}
+.mobile-refresh-btn {
+  display:none; align-items:center; gap:6px;
+  background:transparent; border:1px solid rgba(212,175,55,.35);
+  border-radius:6px; color:var(--gold);
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:.08em; cursor:pointer; padding:5px 10px;
+  transition:all .2s; flex-shrink:0;
+}
+.mobile-refresh-btn:active { background:rgba(212,175,55,.15); }
 
 /* Sidebar */
 .sidebar-logo { padding:22px 20px 18px; border-bottom:1px solid var(--wine-l); }
@@ -237,9 +251,12 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
       <div class="page-title" id="page-title">I dag</div>
       <div class="page-sub" id="page-sub"></div>
     </div>
-    <div class="page-meta">
-      <div class="page-meta-week" id="pm-week">UGE 1/14</div>
-      <div id="pm-block">BUILD</div>
+    <div class="page-meta" style="display:flex;align-items:center;gap:10px;">
+      <button class="mobile-refresh-btn" id="mobile-refresh-btn" onclick="triggerRefresh()">↻ OPDATÉR</button>
+      <div>
+        <div class="page-meta-week" id="pm-week">UGE 1/14</div>
+        <div id="pm-block">BUILD</div>
+      </div>
     </div>
   </div>
 
@@ -315,7 +332,7 @@ let D = {
     {label:"VÆGT", value:"74,2", unit:"kg", sub:"Mål <72 kg · snit 74,6 kg", color:"#F39C12"},
     {label:"FEDT%", value:"22,7", unit:"%", sub:"Mål <20%", color:"#C0392B"},
     {label:"CTL", value:"36,2", unit:"", sub:"Mål 60 (uge 11)", color:"#C0392B"},
-    {label:"TSS COMP.", value:"22", unit:"%", sub:"Planlagt 488 TSS", color:"#C0392B"},
+    {label:"TSS COMP.", value:"—", unit:"", sub:"Planlagt 488 TSS", color:"#7A6A58"},
     {label:"HRV", value:"57,6", unit:"ms", sub:"Snit 7d", color:"#7A6A58"},
     {label:"LØB KM", value:"8,4", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
   ],
@@ -1229,6 +1246,31 @@ async function triggerRefresh() {
         window.location.reload(true);
       }, 400);
     }
+  }, { passive: true });
+})();
+
+// Swipe navigation mellem sider
+(function() {
+  let startX = 0, startY = 0, swiping = false;
+  const threshold = 50;
+  const PAGE_IDS = ['today','week','overview','body','rules'];
+
+  document.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    swiping = true;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (!swiping) return;
+    swiping = false;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    // Kun horisontalt swipe (dx > dy)
+    if (Math.abs(dx) < threshold || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    const idx = PAGE_IDS.indexOf(activePage);
+    if (dx < 0 && idx < PAGE_IDS.length - 1) navigate(PAGE_IDS[idx + 1]);
+    if (dx > 0 && idx > 0) navigate(PAGE_IDS[idx - 1]);
   }, { passive: true });
 })();
 
