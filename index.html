@@ -455,8 +455,8 @@ function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
       <div style="font-family:'Newsreader',serif;font-size:38px;color:var(--wine);line-height:1">${nowVal}</div>
       <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">${unit}</div>
     </div>
-    <div style="width:120px;flex-shrink:0;text-align:right">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:${color};font-weight:700;margin-bottom:4px">${diffText}</div>
+    <div style="min-width:80px;flex-shrink:1;text-align:right">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:${color};font-weight:700;margin-bottom:4px;white-space:nowrap">${diffText}</div>
       <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">mål: ${goalVal}${unit}</div>
     </div>
   </div>`;
@@ -1292,5 +1292,6 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
 
 
