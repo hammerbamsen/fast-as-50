@@ -35,11 +35,12 @@ def get_fitness():
                      params={'oldest': str(date.today()), 'newest': str(date.today())})
     if r.status_code == 200 and r.json():
         d = r.json()[-1]
-        return {
-            'ctl': round(d.get('ctl') or 0, 1),
-            'atl': round(d.get('atl') or 0, 1),
-            'tsb': round(d.get('tsb') or 0, 1),
-        }
+        ctl = round(d.get('ctl') or 0, 1)
+        atl = round(d.get('atl') or 0, 1)
+        tsb_raw = d.get('tsb')
+        # Intervals returnerer nogle gange tsb=0 fejlagtigt — beregn selv hvis det ser forkert ud
+        tsb = round(tsb_raw, 1) if (tsb_raw is not None and tsb_raw != 0) else round(ctl - atl, 1)
+        return {'ctl': ctl, 'atl': atl, 'tsb': tsb}
     return None
 
 def get_wellness_7d():
