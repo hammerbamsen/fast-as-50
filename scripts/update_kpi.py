@@ -279,7 +279,7 @@ def get_activities_week():
                      params={'oldest': str(monday), 'newest': str(today)})
     if r.status_code == 200:
         data = r.json()
-        total_tss = sum(a.get('training_load') or 0 for a in data)
+        total_tss = sum(a.get('icu_training_load') or a.get('training_load') or 0 for a in data)
         run_km = sum(
             (a.get('distance') or 0) / 1000
             for a in data
@@ -454,8 +454,8 @@ def planned_tss_this_week():
         used_live = True
 
     result = round(total_tss)
-    if not used_live or result == 0:
-        print(f"  Ingen brugbare events — bruger fallback {fallback}")
+    if result == 0:
+        print(f"  Ingen brugbare events med TSS/varighed — bruger fallback {fallback}")
         return fallback
     print(f"  Planlagt TSS (live estimat): {result}")
     return result
@@ -877,5 +877,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
