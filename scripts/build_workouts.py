@@ -434,6 +434,10 @@ def upload(session, wo, dt):
         return None
     delete_existing(session, dt)
 
+    # external_id bruges af Intervals til at matche aktiviteter med workouts
+    # Format: fas50-YYYY-MM-DD-type (unikt pr. dag og disciplin)
+    ext_id = f"fas50-{dt.isoformat()}-{wo['type'].lower()}"
+
     payload = {
         "name":             wo["name"],
         "type":             wo["type"],
@@ -443,6 +447,7 @@ def upload(session, wo, dt):
         "category":         "WORKOUT",
         "description":      wo.get("description", ""),
         "workout_doc":      wo.get("workout_doc", {}),
+        "external_id":      ext_id,
     }
 
     for attempt in range(3):
