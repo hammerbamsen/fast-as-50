@@ -1,0 +1,50 @@
+name: Intervals Webhook Receiver
+
+on:
+  repository_dispatch:
+    types: [intervals-activity]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kpi-update
+  cancel-in-progress: false
+
+jobs:
+  opdater:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install requests
+        run: pip install requests
+      - name: Kør opdatering
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: python scripts/update_kpi.py
+      - name: Commit og push data.json
+        run: |
+          git config user.name "Fast as Fifty Bot"
+          git config user.email "bot@hammerbamsen.github.io"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "Ingen ændringer"
+            exit 0
+          fi
+          git commit -m "KPI webhook-opdatering $(date +%Y-%m-%d_%H:%M)"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && git push origin main && echo "Push OK" && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
+          exit 1
