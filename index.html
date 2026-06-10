@@ -181,7 +181,7 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 .wsession-body { flex:1; }
 .wsession-title { font-family:'Hanken Grotesk',sans-serif; font-size:15px; font-weight:600; color:var(--ink); }
 .wsession-day { font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); }
-.today-badge { font-family:'Space Mono',monospace; font-size:9px; background:rgba(89,24,42,.12); color:var(--wine); padding:2px 6px; border-radius:3px; margin-left:6px; }
+.today-badge { font-family:'Space Mono',monospace; font-size:9px; background:var(--wine); color:#fff; padding:2px 7px; border-radius:3px; margin-left:6px; letter-spacing:.04em; }
 .wsession.is-extra { margin-left:22px; margin-top:-4px; padding:10px 14px; background:rgba(221,211,195,.22); border-style:dashed; border-color:var(--cream-d); position:relative; }
 .wsession.is-extra::before { content:""; position:absolute; left:-13px; top:50%; width:11px; height:1.5px; background:var(--cream-d); }
 .wsession.is-extra .wsession-icon { width:30px; height:30px; }
@@ -365,8 +365,8 @@ const ICONS = {
   strength:`<i class="ti ti-barbell" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
   walk:`<i class="ti ti-walk" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
   hike:`<i class="ti ti-mountain" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
-  commute:`<i class="ti ti-bike" style="font-size:SIZEpx;color:COLOR;line-height:1;opacity:0.6"></i>`,
-  openwater:`<i class="ti ti-kayak" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
+  commute:`<i class="ti ti-bicycle" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
+  openwater:`<i class="ti ti-ripple" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
   free:`<i class="ti ti-activity" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
   check:`<i class="ti ti-check" style="font-size:SIZEpx;color:COLOR;line-height:1"></i>`,
   today:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="10" y1="16" x2="14" y2="16"/><line x1="12" y1="14" x2="12" y2="18"/></svg>`,
@@ -597,13 +597,14 @@ function renderWeek() {
   const isCurrentWeek = viewWeek === 0;
   const prevOk = w > 1;
   const nextOk = w < D.totalWeeks;
+  const weekLabel = isCurrentWeek ? 'DENNE UGE' : `UGE ${w} AF ${D.totalWeeks}`;
 
   return `
   <div class="hero-card">
-    <div class="hero-eyebrow">${isCurrentWeek ? 'DENNE UGE' : viewWeek < 0 ? 'FORRIGE UGE' : 'NÆSTE UGE'} · UGE ${w}/${D.totalWeeks} · ${block||D.blockType}</div>
+    <div class="hero-eyebrow">${weekLabel} · ${block||D.blockType}</div>
     <div class="hero-title" style="display:flex;align-items:center;justify-content:space-between">
       <button onclick="changeWeekView(-1)" style="background:none;border:none;color:${prevOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${prevOk?'pointer':'default'};padding:0 8px">‹</button>
-      <span>${isCurrentWeek ? 'Ugeoversigt' : viewWeek < 0 ? 'Forrige uge' : 'Næste uge'}</span>
+      <span>${isCurrentWeek ? 'Ugeoversigt' : `Uge ${w}`}</span>
       <button onclick="changeWeekView(1)" style="background:none;border:none;color:${nextOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${nextOk?'pointer':'default'};padding:0 8px">›</button>
     </div>
     ${isCurrentWeek ? '' : `<div style="text-align:center;margin-top:6px"><button onclick="changeWeekView(${-viewWeek})" style="background:rgba(255,255,255,.1);border:none;color:var(--gold);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;padding:4px 12px;border-radius:20px;cursor:pointer">→ GÅ TIL DENNE UGE</button></div>`}
@@ -628,7 +629,7 @@ function renderWeek() {
         : icon(s.disc,18,C[s.disc]||'#7A6A58')}
     </div>
     <div class="wsession-body">
-      <div class="wsession-title">${s.label}${(s.today&&isCurrentWeek&&!s.extra)?`<span class="today-badge">I DAG</span>`:""}${s.extra?`<span class="extra-badge">EKSTRA</span>`:""}</div>
+      <div class="wsession-title">${s.label.replace('Mallorca','<span style="font-size:10px;color:var(--muted)">📍 Mallorca</span>')}${(s.today&&isCurrentWeek&&!s.extra)?`<span class="today-badge">I DAG</span>`:""}${s.extra?`<span class="extra-badge">EKSTRA</span>`:""}</div>
       <div class="wsession-day">${s.day}</div>
     </div>
     ${s.disc2
@@ -741,7 +742,7 @@ function trainMinutesBar() {
     ? `<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--cream-d)">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
           <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">EKSTRA AKTIVITET</span>
-          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${fmt(extraTotal)}</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${fmt(extraTotal)} · egen skala</span>
         </div>
         ${extraBars}
       </div>`
@@ -979,13 +980,13 @@ function trainingDonut() {
     <svg viewBox="0 0 120 120" style="width:96px;height:96px;flex-shrink:0">
       ${total===1?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="${stroke}"/>`:''}
       ${segments.map(s=>s.seg).join('')}
-      <text x="${cx}" y="${cy+2}" text-anchor="middle" font-family="'Newsreader',serif" font-size="26" fill="var(--wine)" font-weight="700">${total}</text>
-      <text x="${cx}" y="${cy+18}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" letter-spacing="0.5" fill="var(--muted)">SESSIONER</text>
+      <text x="${cx}" y="${cy+2}" text-anchor="middle" font-family="'Newsreader',serif" font-size="${trainMin>=60?'20':'26'}" fill="var(--wine)" font-weight="700">${trainMin>=60?Math.floor(trainMin/60)+'t'+(trainMin%60>0?' '+Math.round(trainMin%60)+'m':''):trainMin+'m'}</text>
+      <text x="${cx}" y="${cy+18}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" letter-spacing="0.5" fill="var(--muted)">TRÆNINGSTID</text>
     </svg>
     <div style="flex:1">${segments.map(s=>`
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
         <span style="font-family:'Space Mono',monospace;font-size:10px;color:${colors[s.k]}">${labels[s.k].toUpperCase()}</span>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${s.v}×</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${s.v}× ${tm[s.k]>0?'· '+fmtDur(tm[s.k]):''}</span>
       </div>`).join('')}
       ${trainMin > 0 ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--cream-d)">
         <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em">TRÆNINGSTID</span>
