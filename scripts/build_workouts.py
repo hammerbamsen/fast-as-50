@@ -57,14 +57,14 @@ def s_run(dur_min, zone, label):
     z = RUN_ZONES[zone]
     return {
         "desc": f"- {label} {dur_min}m {z['desc']} Pace",
-        "doc":  {"text": label, "pace": z["doc"], "duration": dur_min * 60}
+        "doc":  {"text": f"{label} {z['desc']}", "pace": z["doc"], "duration": dur_min * 60}
     }
 
 def s_bike(dur_min, zone, label):
     z = BIKE_ZONES[zone]
     return {
         "desc": f"- {label} {dur_min}m {z['desc']}",
-        "doc":  {"text": label, "power": z["doc"], "duration": dur_min * 60}
+        "doc":  {"text": f"{label} {z['desc']}", "power": z["doc"], "duration": dur_min * 60}
     }
 
 def s_free(dur_min, label):
@@ -531,4 +531,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
