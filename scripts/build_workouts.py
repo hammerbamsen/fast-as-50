@@ -27,11 +27,28 @@ Opdatering juni 2026:
 import json, sys, time, requests
 from datetime import date, timedelta
 
-ATHLETE_ID = "i599466"
-BASE       = f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}"
-PLAN_START = date(2026, 6, 1)
-FTP        = 270   # watt
-THRESHOLD  = 260   # sek/km = 4:20/km
+ATHLETE_ID  = "i599466"
+BASE        = f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}"
+PLAN_START  = date(2026, 6, 1)
+FTP         = 270   # watt
+THRESHOLD   = 260   # sek/km = 4:20/km
+MAKE_WEBHOOK = "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj"
+
+def notify_make(action, event_id=None, payload=None):
+    """Send create/update/delete signal til Make → Outlook Calendar."""
+    try:
+        data = {"action": action}
+        if event_id:
+            data["event_id"] = event_id
+        if payload:
+            data.update(payload)
+        r = requests.post(MAKE_WEBHOOK, json=data, timeout=10)
+        if r.status_code == 200:
+            print(f"    📅 Make {action}: OK")
+        else:
+            print(f"    ⚠️  Make {action} fejl: {r.status_code}")
+    except Exception as e:
+        print(f"    ⚠️  Make webhook fejl: {e}")
 
 # ── Zone-definitioner ───────────────────────────────────────────
 # Løb: absolut pace til description | %pace til workout_doc
@@ -421,6 +438,13 @@ def make_plan():
     ]
 
 # ── Upload-hjælpere ─────────────────────────────────────────────
+def _end_time(wo):
+    """Beregn sluttidspunkt baseret på moving_time (sekunder)."""
+    mins = wo.get("moving_time", 3600) // 60
+    hours = 6 + mins // 60
+    mins_rem = mins % 60
+    return f"{hours:02d}:{mins_rem:02d}:00"
+
 def delete_existing(session, dt):
     """Slet alle WORKOUT-events på datoen — undgår dubletter."""
     try:
@@ -435,6 +459,7 @@ def delete_existing(session, dt):
                 rd = session.delete(f"{BASE}/events/{ev['id']}")
                 if rd.status_code in (200, 204):
                     print(f"    🗑️  Slettede: {ev.get('name')} ({ev['id']})")
+                    notify_make("delete", event_id=str(ev['id']))
     except Exception as e:
         print(f"    ⚠️  delete fejl {dt}: {e}")
 
@@ -464,6 +489,14 @@ def upload(session, wo, dt):
         if r.status_code in (200, 201):
             eid = r.json().get("id", "?")
             print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{eid})")
+            notify_make("create", event_id=str(eid), payload={
+                "subject": wo["name"],
+                "start":   f"{dt.isoformat()}T06:00:00",
+                "end":     f"{dt.isoformat()}T{_end_time(wo)}",
+                "body":    wo.get("description", ""),
+                "location": "",
+                "categories": "Træning"
+            })
             return eid
         elif r.status_code == 429:
             print(f"  ⏳ Rate limit — venter 5 sek...")
