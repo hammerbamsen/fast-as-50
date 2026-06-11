@@ -438,12 +438,26 @@ def make_plan():
     ]
 
 # ── Upload-hjælpere ─────────────────────────────────────────────
-def _end_time(wo):
-    """Beregn sluttidspunkt baseret på moving_time (sekunder)."""
-    mins = wo.get("moving_time", 3600) // 60
-    hours = 6 + mins // 60
-    mins_rem = mins % 60
-    return f"{hours:02d}:{mins_rem:02d}:00"
+def _start_hour(wo_type):
+    """Starttidspunkt baseret på disciplin."""
+    t = (wo_type or "").upper()
+    if t in ("SWIM", "OW"):           return 6, 0
+    if t in ("RUN", "TRAIL_RUN"):     return 6, 30
+    if t in ("RIDE", "VIRTUAL_RIDE"): return 7, 0
+    if t in ("WEIGHT_TRAINING", "WEIGHTTRAINING", "WEIGHTS"):     return 7, 0
+    return 6, 0  # fallback
+
+def _start_end(wo, dt):
+    """Returner (start_iso, end_iso) for et workout."""
+    sh, sm = _start_hour(wo.get("type", ""))
+    start_mins = sh * 60 + sm
+    duration_mins = wo.get("moving_time", 3600) // 60
+    end_mins = start_mins + duration_mins
+    eh, em = end_mins // 60, end_mins % 60
+    return (
+        f"{dt.isoformat()}T{sh:02d}:{sm:02d}:00",
+        f"{dt.isoformat()}T{eh:02d}:{em:02d}:00"
+    )
 
 def delete_existing(session, dt):
     """Slet alle WORKOUT-events på datoen — undgår dubletter."""
@@ -489,12 +503,13 @@ def upload(session, wo, dt):
         if r.status_code in (200, 201):
             eid = r.json().get("id", "?")
             print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{eid})")
+            start_iso, end_iso = _start_end(wo, dt)
             notify_make("create", event_id=str(eid), payload={
-                "subject": wo["name"],
-                "start":   f"{dt.isoformat()}T06:00:00",
-                "end":     f"{dt.isoformat()}T{_end_time(wo)}",
-                "body":    wo.get("description", ""),
-                "location": "",
+                "subject":    wo["name"],
+                "start":      start_iso,
+                "end":        end_iso,
+                "body":       wo.get("description", ""),
+                "location":   "",
                 "categories": "Træning"
             })
             return eid
