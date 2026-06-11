@@ -32,29 +32,74 @@ BASE        = f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}"
 PLAN_START  = date(2026, 6, 1)
 FTP         = 270   # watt
 THRESHOLD   = 260   # sek/km = 4:20/km
-MAKE_WEBHOOK = "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj"
+# ── Microsoft Graph / Outlook Calendar ─────────────────────────
+GRAPH_BASE   = "https://graph.microsoft.com/v1.0"
+AZURE_TENANT = "003c17d1-406c-4f3a-ba81-5ac09bf49036"
+AZURE_CLIENT = "d6cc8ce4-b681-4b87-8873-5d302b91f8bf"  # Fast as Fifty Calendar
+OUTLOOK_CAL  = "kennet@hammerby.com"
+
+def get_graph_token():
+    import os, json as _json, time
+    token_file = os.path.expanduser("~/.fast50_graph_token.json")
+    if os.path.exists(token_file):
+        with open(token_file) as f:
+            t = _json.load(f)
+        if t.get("expires_at", 0) > time.time() + 60:
+            return t["access_token"]
+    client_secret = os.environ.get("AZURE_CLIENT_SECRET", "")
+    if not client_secret:
+        print("    ⚠️  AZURE_CLIENT_SECRET ikke sat — Outlook sync springes over")
+        return None
+    r = requests.post(
+        f"https://login.microsoftonline.com/{AZURE_TENANT}/oauth2/v2.0/token",
+        data={"grant_type": "client_credentials", "client_id": AZURE_CLIENT,
+              "client_secret": client_secret, "scope": "https://graph.microsoft.com/.default"},
+        timeout=15)
+    if r.status_code != 200:
+        print(f"    ⚠️  Graph token fejl: {r.status_code}")
+        return None
+    td = r.json()
+    td["expires_at"] = time.time() + td.get("expires_in", 3600) - 60
+    with open(token_file, "w") as f:
+        _json.dump(td, f)
+    return td["access_token"]
+
+def outlook_delete(oid):
+    token = get_graph_token()
+    if not token: return
+    r = requests.delete(f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/events/{oid}",
+        headers={"Authorization": f"Bearer {token}"}, timeout=15)
+    if r.status_code in (200, 204):
+        print("    📅 Outlook slettet: OK")
+    else:
+        print(f"    ⚠️  Outlook slet fejl: {r.status_code}")
+
+def outlook_create(payload):
+    token = get_graph_token()
+    if not token: return None
+    body = {
+        "subject": payload["subject"],
+        "start":   {"dateTime": payload["start"], "timeZone": "Europe/Copenhagen"},
+        "end":     {"dateTime": payload["end"],   "timeZone": "Europe/Copenhagen"},
+        "body":    {"contentType": "text", "content": payload.get("body", "")},
+        "location": {"displayName": payload.get("location", "")},
+        "categories": [payload.get("categories", "Træning")],
+    }
+    r = requests.post(f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/events",
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        json=body, timeout=15)
+    if r.status_code in (200, 201):
+        print("    📅 Outlook oprettet: OK")
+        return r.json().get("id")
+    print(f"    ⚠️  Outlook opret fejl: {r.status_code} {r.text[:100]}")
+    return None
 
 def notify_make(action, event_id=None, payload=None):
-    """Send create/update/delete signal til Make → Outlook Calendar."""
-    try:
-        # Byg altid med action som første nøgle, eksplicit struktur
-        data = {
-            "action":     action,
-            "event_id":   event_id or "",
-            "subject":    payload.get("subject", "")    if payload else "",
-            "start":      payload.get("start", "")      if payload else "",
-            "end":        payload.get("end", "")        if payload else "",
-            "body":       payload.get("body", "")       if payload else "",
-            "location":   payload.get("location", "")   if payload else "",
-            "categories": payload.get("categories", "") if payload else "",
-        }
-        r = requests.post(MAKE_WEBHOOK, json=data, timeout=10)
-        if r.status_code == 200:
-            print(f"    📅 Make {action}: OK")
-        else:
-            print(f"    ⚠️  Make {action} fejl: {r.status_code}")
-    except Exception as e:
-        print(f"    ⚠️  Make webhook fejl: {e}")
+    """Dispatcher — kalder Graph direkte."""
+    if action == "delete" and event_id:
+        outlook_delete(event_id)
+    elif action == "create" and payload:
+        outlook_create(payload)
 
 # ── Zone-definitioner ───────────────────────────────────────────
 # Løb: absolut pace til description | %pace til workout_doc
