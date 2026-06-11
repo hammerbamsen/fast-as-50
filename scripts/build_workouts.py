@@ -79,8 +79,8 @@ def outlook_delete_by_date(dt):
     if r.status_code != 200:
         return
     for ev in r.json().get("value", []):
-        cats = ev.get("categories", [])
-        if any("ning" in c for c in cats):  # Træning / Traening
+        cats = [c.lower() for c in ev.get("categories", [])]
+        if any(c in ("træning", "traening", "træning", "training") for c in cats) or "træning" in ev.get("subject","").lower():  # Træning / Traening
             rd = requests.delete(
                 f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/events/{ev['id']}",
                 headers={"Authorization": f"Bearer {token}"}, timeout=15)
@@ -532,12 +532,15 @@ def delete_existing(session, dt):
         })
         if r.status_code != 200:
             return
+        outlook_deleted = False
         for ev in (r.json() if isinstance(r.json(), list) else []):
             if ev.get("category") == "WORKOUT":
                 rd = session.delete(f"{BASE}/events/{ev['id']}")
                 if rd.status_code in (200, 204):
                     print(f"    🗑️  Slettede: {ev.get('name')} ({ev['id']})")
-                    notify_make("delete", dt=dt)
+                    if not outlook_deleted:
+                        notify_make("delete", dt=dt)
+                        outlook_deleted = True
     except Exception as e:
         print(f"    ⚠️  delete fejl {dt}: {e}")
 
