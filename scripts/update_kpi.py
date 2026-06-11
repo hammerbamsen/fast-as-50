@@ -679,6 +679,36 @@ def get_planned_weeks():
     return all_weeks
 
 
+
+def generate_week_focus(week_num, sessions, block_type):
+    """Genererer weekFocus dynamisk fra ugens planlagte sessions i Intervals."""
+    BLOCK_LABELS = {
+        'BUILD': 'Build-uge', 'BUILD+': 'Intensiv build-uge',
+        'RECOVERY': 'Restituitionsuge', 'TAPER': 'Taper-uge', 'RACE': 'Race-uge'
+    }
+    block_label = BLOCK_LABELS.get(block_type, 'Træningsuge')
+
+    # Tæl discipliner
+    discs = [s.get('disc') for s in sessions]
+    runs   = discs.count('run')
+    bikes  = discs.count('bike')
+    swims  = discs.count('swim')
+    strengths = discs.count('strength')
+
+    parts = []
+    if runs:    parts.append(f"{runs} løb")
+    if bikes:   parts.append(f"{bikes} cykel")
+    if swims:   parts.append(f"{swims} svøm")
+    if strengths: parts.append(f"{strengths} styrke")
+
+    discipline_str = " · ".join(parts) if parts else "aktiv hvile"
+
+    # VO2-stimulus?
+    has_vo2 = any('VO2' in (s.get('label') or '') or 'Z4' in (s.get('label') or '') or 'Z5' in (s.get('label') or '') for s in sessions)
+    vo2_str = " · én VO2-stimulus" if has_vo2 else ""
+
+    return f"{block_label} {week_num} — {discipline_str}{vo2_str}. Fokus: konsistens over intensitet."
+
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus):
     """Genererer daglig coach-tekst baseret på kontekst."""
     DK_DAYS = ['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag']
@@ -845,7 +875,9 @@ def main():
         this_week = planned_weeks.get(week_num, {})
         if this_week:
             this_week['sessions'] = build_week_sessions(done_map, this_week['sessions'])
-            this_week['focus'] = fix_enc(data.get('weekFocus', ''))
+            dynamic_focus = generate_week_focus(week_num, this_week.get('sessions', []), BLOCK_TYPES.get(week_num, 'BUILD'))
+            this_week['focus'] = dynamic_focus
+            data['weekFocus'] = dynamic_focus
         data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
 
     # --- Today session ---
