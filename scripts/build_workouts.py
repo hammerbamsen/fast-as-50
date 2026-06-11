@@ -79,8 +79,9 @@ def outlook_delete_by_date(dt):
     if r.status_code != 200:
         return
     for ev in r.json().get("value", []):
-        cats = [c.lower() for c in ev.get("categories", [])]
-        if any(c in ("træning", "traening", "træning", "training") for c in cats) or "træning" in ev.get("subject","").lower():  # Træning / Traening
+        cats = " ".join(ev.get("categories", [])).encode("ascii", "ignore").decode().lower()
+        subj = ev.get("subject", "").encode("ascii", "ignore").decode().lower()
+        if "ning" in cats or "ning" in subj or "cykel" in subj or "l" + chr(248) + "b" in subj or "swim" in subj or "styrke" in subj or "svøm" in subj.lower():
             rd = requests.delete(
                 f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/events/{ev['id']}",
                 headers={"Authorization": f"Bearer {token}"}, timeout=15)
@@ -532,21 +533,19 @@ def delete_existing(session, dt):
         })
         if r.status_code != 200:
             return
-        outlook_deleted = False
         for ev in (r.json() if isinstance(r.json(), list) else []):
             if ev.get("category") == "WORKOUT":
                 rd = session.delete(f"{BASE}/events/{ev['id']}")
                 if rd.status_code in (200, 204):
                     print(f"    🗑️  Slettede: {ev.get('name')} ({ev['id']})")
-                    if not outlook_deleted:
-                        notify_make("delete", dt=dt)
-                        outlook_deleted = True
     except Exception as e:
         print(f"    ⚠️  delete fejl {dt}: {e}")
 
 def upload(session, wo, dt):
     if wo is None:
         return None
+    # Slet Outlook events på datoen FØR vi opretter nye
+    outlook_delete_by_date(dt)
     delete_existing(session, dt)
 
     # external_id bruges af Intervals til at matche aktiviteter med workouts
