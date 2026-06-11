@@ -628,10 +628,7 @@ def get_planned_weeks():
 
     all_weeks = {}
 
-    for offset in [-1, 0, 1]:
-        w = week_num + offset
-        if w < 1 or w > 14:
-            continue
+    for w in range(1, 15):  # Alle 14 uger altid
 
         # Beregn mandag for denne uge
         mon = week1 + timedelta(weeks=w-1)
