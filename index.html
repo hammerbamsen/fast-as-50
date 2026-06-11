@@ -518,7 +518,8 @@ function renderToday() {
     localStorage.removeItem("session_done_" + lastDone);
   }
   const s=D.today||{discipline:"free",title:"Ingen session planlagt",duration:"",zone:"–",desc:"",completed:false};
-  // Brug sessionDone (localStorage) ikke s.completed (data.json kan være fra i går)
+  // Brug sessionDone (localStorage) ELLER s.completed fra data.json (auto-markering)
+  if (s.completed && !sessionDone) { sessionDone = true; localStorage.setItem("session_done_date", todayStr); }
   const isCompleted = sessionDone;
   const parts=D.coachSpeech.split("{HL}");
   return `
