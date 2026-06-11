@@ -303,13 +303,20 @@ def make_plan():
     (p+timedelta(13), swim_let(),            "Open water svøm + cykel let Mallorca"),
 
     # ── UGE 3: 15-21 jun  BUILD+ ────────────────────────────────
-    (p+timedelta(14), bike_bjerg_z4(),       "Cykel bjerg Z4 Mallorca"),
-    (p+timedelta(15), run_z2(60),            "Løb Z2 60 min Mallorca"),
-    (p+timedelta(16), bike_z2(60,"Mallorca"),"Cykel let recovery Mallorca"),
-    (p+timedelta(17), None,                  "Hjemrejse (tor 18. jun)"),
-    (p+timedelta(18), run_z2(50),            "Løb Z2 let Gentofte — frokost Alice"),
-    (p+timedelta(19), bike_z2(60),           "Hometrainer Z2 60 min"),
-    (p+timedelta(20), strength_a(3),         "Styrke A + svøm 1500m"),
+    # Man: svøm + lang løb formiddag (møde kl 13)
+    (p+timedelta(14), swim_2000(),            "Svøm 2000m Mallorca (formiddag)"),
+    (p+timedelta(14), run_z2_lang(90),        "Lang løb Z2 90 min Mallorca (formiddag)"),
+    # Tirs: lang cykel Mallorca bakker
+    (p+timedelta(15), bike_z2(180,"Mallorca"),"Cykel Z2 lang 3t Mallorca"),
+    # Ons: VO2-stimulus cykel bakker
+    (p+timedelta(16), bike_bjerg_z4(),        "Cykel VO2 bjerg Z4 Mallorca"),
+    # Tor: let spin → fly hjem aften
+    (p+timedelta(17), bike_z2(60,"Mallorca"), "Cykel let 60 min → fly hjem aften"),
+    # Fre: lang løb hjemme
+    (p+timedelta(18), run_z2_lang(100),       "Lang løb Z2 100 min Gentofte"),
+    # Lør+Søn: svøm + styrke + hvile
+    (p+timedelta(19), swim_2000(),            "Svøm 2000m"),
+    (p+timedelta(20), strength_a(3),          "Styrke A"),
 
     # ── UGE 4: 22-28 jun  RECOVERY ──────────────────────────────
     (p+timedelta(21), None,                  "Hvile — walk"),
