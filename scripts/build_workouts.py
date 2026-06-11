@@ -316,7 +316,7 @@ def make_plan():
     # Fre: styrke morgen (frisk efter rejse)
     (p+timedelta(18), strength_a(3),          "Styrke A — morgen efter hjemrejse"),
     # Lør: lang løb når udhvilet
-    (p+timedelta(19), run_z2_lang(75),        "Lang løb Z2 75 min Gentofte"),
+    (p+timedelta(19), run_z2_lang(60),        "Lang løb Z2 60 min Gentofte"),
     # Søn: svøm
     (p+timedelta(20), swim_2000(),            "Svøm 2000m"),
 
