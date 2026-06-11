@@ -64,15 +64,28 @@ def get_graph_token():
         _json.dump(td, f)
     return td["access_token"]
 
-def outlook_delete(oid):
+def outlook_delete_by_date(dt):
+    """Slet alle Træning-events på dato via Graph API."""
     token = get_graph_token()
     if not token: return
-    r = requests.delete(f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/events/{oid}",
-        headers={"Authorization": f"Bearer {token}"}, timeout=15)
-    if r.status_code in (200, 204):
-        print("    📅 Outlook slettet: OK")
-    else:
-        print(f"    ⚠️  Outlook slet fejl: {r.status_code}")
+    start = f"{dt.isoformat()}T00:00:00"
+    end   = f"{dt.isoformat()}T23:59:59"
+    r = requests.get(
+        f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/calendarView",
+        headers={"Authorization": f"Bearer {token}"},
+        params={"startDateTime": start, "endDateTime": end,
+                "$select": "id,subject,categories", "$top": "20"},
+        timeout=15)
+    if r.status_code != 200:
+        return
+    for ev in r.json().get("value", []):
+        cats = ev.get("categories", [])
+        if any("ning" in c for c in cats):  # Træning / Traening
+            rd = requests.delete(
+                f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/events/{ev['id']}",
+                headers={"Authorization": f"Bearer {token}"}, timeout=15)
+            if rd.status_code in (200, 204):
+                print(f"    📅 Outlook slettet: {ev['subject']}")
 
 def outlook_create(payload):
     token = get_graph_token()
@@ -94,10 +107,10 @@ def outlook_create(payload):
     print(f"    ⚠️  Outlook opret fejl: {r.status_code} {r.text[:100]}")
     return None
 
-def notify_make(action, event_id=None, payload=None):
+def notify_make(action, event_id=None, payload=None, dt=None):
     """Dispatcher — kalder Graph direkte."""
-    if action == "delete" and event_id:
-        outlook_delete(event_id)
+    if action == "delete" and dt:
+        outlook_delete_by_date(dt)
     elif action == "create" and payload:
         outlook_create(payload)
 
@@ -524,7 +537,7 @@ def delete_existing(session, dt):
                 rd = session.delete(f"{BASE}/events/{ev['id']}")
                 if rd.status_code in (200, 204):
                     print(f"    🗑️  Slettede: {ev.get('name')} ({ev['id']})")
-                    notify_make("delete", event_id=str(ev['id']))
+                    notify_make("delete", dt=dt)
     except Exception as e:
         print(f"    ⚠️  delete fejl {dt}: {e}")
 
