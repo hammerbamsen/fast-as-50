@@ -26,6 +26,10 @@ DK_DAYS   = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"]
 DAY_SHORT  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
 DK_MONTHS  = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"]
 
+BLOCK_TYPES = {1:'BUILD',2:'BUILD+',3:'BUILD+',4:'RECOVERY',5:'BUILD',6:'BUILD',
+               7:'RECOVERY',8:'BUILD',9:'BUILD',10:'BUILD+',11:'BUILD+',12:'TAPER',
+               13:'TAPER',14:'RACE'}
+
 def monday_this_week():
     today = date.today()
     return today - timedelta(days=today.weekday())
