@@ -23,16 +23,16 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "37,1",
+      "value": "38,0",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-9,5",
+      "value": "-13,9",
       "unit": "",
-      "sub": "Form",
-      "color": "#27AE60"
+      "sub": "Hård blok",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7,5",
@@ -53,16 +53,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "187",
+      "value": "227",
       "unit": "TSS",
-      "sub": "187 af 488 planlagt TSS",
+      "sub": "227 af 488 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "48,7",
+      "value": "72,5",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#F39C12"
+      "color": "#27AE60"
     },
     "afStreak": {
       "value": "10",
@@ -76,7 +76,7 @@
     "target": 5,
     "streak": 10
   },
-  "coachSpeech": "Torsdag — uge 2 af 14. {HL} I dag: Cykel Z2 60 min Mallorca (cykel).",
+  "coachSpeech": "Torsdag — uge 2 af 14. {HL} Dagens session er gennemført.",
   "coachHighlight": "10 dage i træk. Hold den streak i live.",
   "weekFocus": "Intensiv build-uge 2 — 2 løb · 3 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet.",
   "today": {
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -138,7 +138,7 @@
       "day": "Tor",
       "disc": "bike",
       "label": "Cykel Z2 60 min Mallorca",
-      "done": false,
+      "done": true,
       "today": true
     },
     {
@@ -162,7 +162,7 @@
   ],
   "ctlCurve": [
     36.3,
-    37.1
+    38.0
   ],
   "weightHistory": [
     75.0,
@@ -197,7 +197,7 @@
     -10.3,
     -13.7,
     -15.8,
-    -9.5
+    -13.9
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -319,7 +319,7 @@
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
-          "done": false,
+          "done": true,
           "today": true
         },
         {
@@ -887,11 +887,12 @@
     }
   ],
   "train_mins": {
+    "bike": 69.0,
     "commute": 146.0,
     "run": 90.0,
     "walk": 53.0,
     "strength": 26.0,
     "planned": 525.0,
-    "actual_total": 315.0
+    "actual_total": 384.0
   }
 }
