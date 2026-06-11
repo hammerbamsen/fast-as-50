@@ -37,11 +37,17 @@ MAKE_WEBHOOK = "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj"
 def notify_make(action, event_id=None, payload=None):
     """Send create/update/delete signal til Make → Outlook Calendar."""
     try:
-        data = {"action": action}
-        if event_id:
-            data["event_id"] = event_id
-        if payload:
-            data.update(payload)
+        # Byg altid med action som første nøgle, eksplicit struktur
+        data = {
+            "action":     action,
+            "event_id":   event_id or "",
+            "subject":    payload.get("subject", "")    if payload else "",
+            "start":      payload.get("start", "")      if payload else "",
+            "end":        payload.get("end", "")        if payload else "",
+            "body":       payload.get("body", "")       if payload else "",
+            "location":   payload.get("location", "")   if payload else "",
+            "categories": payload.get("categories", "") if payload else "",
+        }
         r = requests.post(MAKE_WEBHOOK, json=data, timeout=10)
         if r.status_code == 200:
             print(f"    📅 Make {action}: OK")
