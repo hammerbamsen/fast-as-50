@@ -736,7 +736,8 @@ DAILY_QUOTES = [
 
 
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
-                           ctl=None, tsb=None, weight=None, sleep=None, compliance=None):
+                           ctl=None, tsb=None, weight=None, sleep=None, compliance=None,
+                           tss_act=None, planned=None, remaining_sessions=None):
     """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus)."""
     DK_DAYS = ['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag']
     day_name = DK_DAYS[weekday]
@@ -798,7 +799,17 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         if compliance >= 90:
             goods.append(f"{int(compliance)}% af ugens TSS i hus")
         else:
-            focus.append(f"kun {int(compliance)}% af ugens TSS — find de manglende sessioner")
+            done_tss = int(tss_act or 0)
+            target_tss = int(planned or 0)
+            remaining = remaining_sessions or []
+            if remaining:
+                if len(remaining) == 1:
+                    rest_str = f"{remaining[0]} står tilbage"
+                else:
+                    rest_str = f"{len(remaining)} sessioner står tilbage: {', '.join(remaining[:2])}"
+                focus.append(f"{done_tss} af {target_tss} TSS i hus — {rest_str}")
+            else:
+                focus.append(f"{done_tss} af {target_tss} TSS i hus — resten af ugen tæller")
 
     if weight is not None:
         if weight <= 72:
@@ -998,9 +1009,14 @@ def main():
     week_focus = fix_enc(data.get('weekFocus', ''))
     data['weekFocus'] = week_focus  # Gem den rettede version tilbage
     af_this_week = data.get('af', {}).get('weekDone', 0)
+    remaining_sessions = [
+        s.get('label', '') for s in data['week_sessions']
+        if not s.get('done') and not s.get('extra')
+    ]
     coach_speech, coach_highlight = generate_coach_speech(
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
-        ctl=ctl, tsb=tsb, weight=weight, sleep=sleep, compliance=compliance
+        ctl=ctl, tsb=tsb, weight=weight, sleep=sleep, compliance=compliance,
+        tss_act=tss_act, planned=planned, remaining_sessions=remaining_sessions
     )
     data['coachSpeech']    = coach_speech
     data['coachHighlight'] = coach_highlight
