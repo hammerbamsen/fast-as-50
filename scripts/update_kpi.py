@@ -946,7 +946,7 @@ def main():
         'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f'Mål <72 kg · snit {fmt(weight_avg)} kg' if weight_avg else 'Mål <72 kg', 'color': color_for(weight, 72, lower=True)  if weight     else '#7A6A58'},
         'fat':        {'value': fmt(fat),              'unit': '%',  'sub': 'Mål <20%',                       'color': color_for(fat, 20, lower=True)     if fat        else '#7A6A58'},
         'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': 'Mål 60 (uge 11)',                 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
-        'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': 'Hård blok' if tsb and tsb < -10 else 'Form', 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
+        'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': ('Hård blok · CTL−ATL, frisk >0' if tsb and tsb < -10 else 'Form · CTL−ATL, frisk >0'), 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
         'sleep':      {'value': fmt(sleep, 1),         'unit': 't',  'sub': 'Snit 7,5t · mål 7t',            'color': '#2874A6'},
         'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': 'Mål 40+ km uge 10',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
         'hrv':        {'value': fmt(hrv, 1),           'unit': 'ms', 'sub': 'Snit 7d',                       'color': '#7A6A58'},
