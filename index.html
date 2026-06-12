@@ -895,7 +895,7 @@ function renderRules() {
 
 function sparkline(data, color, label, unit, minV, maxV) {
   if (!data || data.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
-  const W=280, H=84, pad={l:8,r:8,t:14,b:20};
+  const W=280, H=92, pad={l:8,r:8,t:22,b:20};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const vals = data.map(d=>typeof d==='object'?d.v:d);
   const n = vals.length;
@@ -943,6 +943,7 @@ function sparkline(data, color, label, unit, minV, maxV) {
       <text x="${W-pad.r}" y="${y(mn)+10}" text-anchor="end" fill="var(--muted)" font-size="8" font-family="'Space Mono',monospace">${mn.toFixed(1).replace('.',',')}</text>
       <path d="${area}" fill="url(#${gid})"/>
       <path d="${path}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      ${vals.map((v,i)=>`<text x="${x(i)}" y="${y(v)-8}" text-anchor="middle" fill="${i===n-1?color:'var(--muted)'}" font-weight="${i===n-1?700:400}" font-size="8" font-family="'Space Mono',monospace">${v.toFixed(1).replace('.',',')}</text>`).join("")}
       ${(()=>{const i=n-1; return `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="${color}" stroke="var(--white)" stroke-width="1.5"/>`})()}
       ${xLabels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle" fill="${i===n-1?color:'var(--muted)'}" font-weight="${i===n-1?700:400}" font-size="8" font-family="'Space Mono',monospace">${l}</text>`).join("")}
     </svg>
