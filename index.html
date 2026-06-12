@@ -943,7 +943,7 @@ function sparkline(data, color, label, unit, minV, maxV) {
       <text x="${W-pad.r}" y="${y(mn)+10}" text-anchor="end" fill="var(--muted)" font-size="8" font-family="'Space Mono',monospace">${mn.toFixed(1).replace('.',',')}</text>
       <path d="${area}" fill="url(#${gid})"/>
       <path d="${path}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      ${vals.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="${i===n-1?3.5:2}" fill="${i===n-1?color:'var(--white)'}" stroke="${color}" stroke-width="${i===n-1?0:1.3}"/>`).join("")}
+      ${(()=>{const i=n-1; return `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="${color}" stroke="var(--white)" stroke-width="1.5"/>`})()}
       ${xLabels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle" fill="${i===n-1?color:'var(--muted)'}" font-weight="${i===n-1?700:400}" font-size="8" font-family="'Space Mono',monospace">${l}</text>`).join("")}
     </svg>
   </div>`;
