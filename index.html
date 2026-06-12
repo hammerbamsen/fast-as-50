@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260612-1710 --><!-- v20260612-1710 -->
+<!DOCTYPE html><!-- v20260612-1430 --><!-- v20260612-1430 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,31 @@
 <meta name="theme-color" content="#59182A">
 <title>Fast as Fifty</title>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link id="iconFont" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.31.0/tabler-icons.min.css">
+<style>
+/* Sikr at ikoner ikke shifter layout og forbliver synlige under font-load */
+[class^="ti-"], [class*=" ti-"] { font-display: swap; }
+</style>
+<script>
+// Selv-justerende fallback: hvis ikon-fonten ikke loader (mobilnetværk/CDN-blok), prøv alternativ CDN
+(function(){
+  function iconsLoaded(){
+    try { return [...document.fonts].some(f => /tabler/i.test(f.family)); } catch(e){ return false; }
+  }
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      if (!iconsLoaded()) {
+        var fallback = document.createElement('link');
+        fallback.rel = 'stylesheet';
+        fallback.href = 'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css';
+        document.head.appendChild(fallback);
+      }
+    }, 1500);
+  });
+})();
+</script>
 <style>
 :root {
   --wine: #59182A; --wine-d: #3E0F1D; --wine-l: #7A2038;
