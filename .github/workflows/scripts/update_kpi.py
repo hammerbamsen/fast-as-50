@@ -281,6 +281,61 @@ def week_meta():
         'date':               f"{today.day}. {dk_months[today.month-1]}",
     }
 
+def generate_coach_voice(meta, ctl, tsb, af_streak, week_af_count, weight, sleep, run_km, tss_comp):
+    """Friel (træning) + Kreutzer (krop/AF) kommentar — hvad er godt, hvad skal der fokuseres på."""
+    week = meta['week']
+    expected_ctl = 34 + (week - 1) * 1.9  # rute mod CTL 60 i uge 11
+
+    goods, focus = [], []
+
+    # Træning — Friel
+    if ctl is not None:
+        if ctl >= expected_ctl - 1:
+            goods.append(f"CTL {ctl} følger ramp-kurven mod 60")
+        else:
+            focus.append(f"CTL {ctl} er lidt under kurven — byg gradvist, ikke med vold")
+
+    if tsb is not None:
+        if tsb < -30:
+            focus.append(f"TSB {tsb} er under Friels bundgrænse (-30) — restitution før mere volumen")
+        elif tsb < -20:
+            goods.append(f"TSB {tsb} viser hård belastning — hold øje med trætheden")
+        else:
+            goods.append(f"TSB {tsb} er et sundt niveau — plads til næste belastning")
+
+    if tss_comp is not None:
+        if tss_comp >= 90:
+            goods.append(f"{int(tss_comp)}% af ugens planlagte TSS i hus")
+        else:
+            focus.append(f"kun {int(tss_comp)}% af ugens TSS — find de manglende sessioner")
+
+    # Krop — Kreutzer
+    if weight is not None:
+        if weight <= 72:
+            goods.append(f"vægt {weight} kg er i mål")
+        else:
+            focus.append(f"vægt {weight} kg — Martin vil have fokus på protein og let underskud")
+
+    if sleep is not None:
+        if sleep >= 7:
+            goods.append(f"søvn {sleep}t er solid")
+        else:
+            focus.append(f"søvn {sleep}t — under 7t-målet, prioriter den")
+
+    # AF
+    if week_af_count is not None:
+        if week_af_count >= 5:
+            goods.append(f"{week_af_count}/5 AF-dage i hus, streak {af_streak}")
+        else:
+            focus.append(f"kun {week_af_count}/5 AF-dage — {5 - week_af_count} mangler denne uge")
+
+    highlight = goods[0] if goods else "Hold rytmen — det er det, der bygger formen."
+    focus_text = " · ".join(focus[:2]) if focus else "alt kører efter planen — bare fortsæt"
+
+    speech = f"{meta['dayName']}, uge {week} af 14. {{HL}} Friel/Martin-fokus: {focus_text}."
+    return speech, highlight
+
+
 def main():
     print("Henter data fra Intervals.icu...")
 
@@ -368,6 +423,13 @@ def main():
     }
 
     existing['kpis'] = kpis
+
+    coach_speech, coach_highlight = generate_coach_voice(
+        meta, ctl, tsb, af_streak, week_af_count, weight, sleep, run_km, tss_comp
+    )
+    existing['coachSpeech'] = coach_speech
+    existing['coachHighlight'] = coach_highlight
+
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
