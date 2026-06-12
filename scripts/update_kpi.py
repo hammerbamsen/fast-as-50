@@ -710,28 +710,36 @@ def generate_week_focus(week_num, sessions, block_type):
 
     return f"{block_label} {week_num} — {discipline_str}{vo2_str}. Fokus: konsistens over intensitet."
 
-DAILY_QUOTES = [
+QUOTES_TRAINING = [
     "\"Det er ikke om at have tid. Det er om at tage den.\"",
-    "\"Sæt farten ned, så du kan gå langt.\" — Ironman-visdom",
-    "\"Disciplin er at vælge mellem hvad du vil nu, og hvad du vil mest.\"",
+    "\"Sæt farten ned, så du kan gå langt.\"",
     "\"Konsistens slår intensitet, hver gang.\"",
-    "\"Kroppen tror, hvad sindet siger.\"",
-    "\"Det er de små valg hver dag, der bygger den store form.\"",
     "\"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-    "\"Keep moving forward.\"",
     "\"Formen bygges i kedsomheden — ikke i begejstringen.\"",
-    "\"Du konkurrerer ikke mod andre i dag. Kun mod gårsdagens dig.\"",
-    "\"Et godt måltid og en god nats søvn slår en ekstra hård træning.\"",
-    "\"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-    "\"Smertegrænsen flytter sig — men kun hvis du respekterer den først.\"",
     "\"14 uger er lang tid. Men hver dag er kort.\"",
-    "\"Sæt målet højt, men sæt i dag realistisk.\"",
-    "\"Form kommer og går. Vaner bliver.\"",
     "\"Den bedste træning er den, du faktisk gennemfører.\"",
     "\"Recovery er ikke pause — det er produktion.\"",
-    "\"Hold roen. Hold rytmen. Hold farten.\"",
     "\"Du har gjort det 16 gange før. Kroppen kender vejen.\"",
+]
+
+QUOTES_DIET = [
+    "\"Et godt måltid og en god nats søvn slår en ekstra hård træning.\"",
+    "\"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
     "\"Mindre alkohol, mere søvn — den billigste performance-boost der findes.\"",
+    "\"Protein ved hvert måltid. Ingen undtagelser, ingen drama.\"",
+    "\"Kroppen tror, hvad sindet siger.\"",
+    "\"Vægten flytter sig ikke i dag. Men vanen gør.\"",
+]
+
+QUOTES_PHILOSOPHY = [
+    "\"Disciplin er at vælge mellem hvad du vil nu, og hvad du vil mest.\"",
+    "\"Det er de små valg hver dag, der bygger den store form.\"",
+    "\"Keep moving forward.\"",
+    "\"Du konkurrerer ikke mod andre i dag. Kun mod gårsdagens dig.\"",
+    "\"Smertegrænsen flytter sig — men kun hvis du respekterer den først.\"",
+    "\"Sæt målet højt, men sæt i dag realistisk.\"",
+    "\"Form kommer og går. Vaner bliver.\"",
+    "\"Hold roen. Hold rytmen. Hold farten.\"",
 ]
 
 
@@ -854,11 +862,14 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         closing = "Justér de små ting, og resten følger. Keep moving forward."
     parts.append(closing)
 
-    # Dagens citat — roterer med dag i året
+    # Citat — roterer mellem træning, kost og filosofi efter dag i året
     import datetime as _dt
     day_of_year = _dt.date.today().timetuple().tm_yday
-    quote = DAILY_QUOTES[day_of_year % len(DAILY_QUOTES)]
-    parts.append(f"Dagens citat: {quote}")
+    quote_pools = [QUOTES_TRAINING, QUOTES_DIET, QUOTES_PHILOSOPHY]
+    pool = quote_pools[day_of_year % len(quote_pools)]
+    quote = pool[day_of_year % len(pool)]
+    parts.append("")  # mellemrum/separator før citat
+    parts.append(quote)
 
     guide_line = " ".join(parts)
 
