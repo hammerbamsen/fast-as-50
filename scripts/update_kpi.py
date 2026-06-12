@@ -710,6 +710,31 @@ def generate_week_focus(week_num, sessions, block_type):
 
     return f"{block_label} {week_num} — {discipline_str}{vo2_str}. Fokus: konsistens over intensitet."
 
+DAILY_QUOTES = [
+    "\"Det er ikke om at have tid. Det er om at tage den.\" — Joel Friel",
+    "\"Sæt farten ned, så du kan gå langt.\" — Ironman-visdom",
+    "\"Disciplin er at vælge mellem hvad du vil nu, og hvad du vil mest.\"",
+    "\"Konsistens slår intensitet, hver gang.\" — Joel Friel",
+    "\"Kroppen tror, hvad sindet siger.\"",
+    "\"Det er de små valg hver dag, der bygger den store form.\"",
+    "\"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+    "\"Keep moving forward.\"",
+    "\"Formen bygges i kedsomheden — ikke i begejstringen.\"",
+    "\"Du konkurrerer ikke mod andre i dag. Kun mod gårsdagens dig.\"",
+    "\"Et godt måltid og en god nats søvn slår en ekstra hård træning.\" — Martin Kreutzer",
+    "\"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+    "\"Smertegrænsen flytter sig — men kun hvis du respekterer den først.\"",
+    "\"14 uger er lang tid. Men hver dag er kort.\"",
+    "\"Sæt målet højt, men sæt i dag realistisk.\"",
+    "\"Form kommer og går. Vaner bliver.\"",
+    "\"Den bedste træning er den, du faktisk gennemfører.\"",
+    "\"Recovery er ikke pause — det er produktion.\"",
+    "\"Hold roen. Hold rytmen. Hold farten.\"",
+    "\"Du har gjort det 16 gange før. Kroppen kender vejen.\"",
+    "\"Mindre alkohol, mere søvn — den billigste performance-boost der findes.\" — Martin Kreutzer",
+]
+
+
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
                            ctl=None, tsb=None, weight=None, sleep=None, compliance=None):
     """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus)."""
@@ -797,8 +822,34 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     else:
         highlight = streak_comment
 
-    focus_text = " · ".join(focus[:2]) if focus else "alt kører efter planen — bare fortsæt"
-    guide_line = f"Friel/Martin: {focus_text}."
+    # Tag op til 3 punkter af hver — det går til ilden, ikke bare en streg
+    rest_goods = goods[1:3]
+    focus_items = focus[:3]
+
+    parts = []
+    if rest_goods:
+        parts.append("Godt: " + " · ".join(rest_goods) + ".")
+    if focus_items:
+        parts.append("Friel/Martin-fokus: " + " · ".join(focus_items) + ".")
+    elif not rest_goods:
+        parts.append("Friel/Martin: alt kører efter planen — bare fortsæt.")
+
+    # Afsluttende motiverende linje afhænger af balance mellem godt/fokus
+    if len(focus) >= 3:
+        closing = "Det er en hård uge — men det er sådan formen bygges. Hold ved."
+    elif len(focus) == 0:
+        closing = "Alt peger den rigtige vej. Hold ilden ved — ikke sluk den."
+    else:
+        closing = "Justér de små ting, og resten følger. Keep moving forward."
+    parts.append(closing)
+
+    # Dagens citat — roterer med dag i året
+    import datetime as _dt
+    day_of_year = _dt.date.today().timetuple().tm_yday
+    quote = DAILY_QUOTES[day_of_year % len(DAILY_QUOTES)]
+    parts.append(f"Dagens citat: {quote}")
+
+    guide_line = " ".join(parts)
 
     speech = f"{intro} {{HL}} {session_line} {guide_line}"
 
