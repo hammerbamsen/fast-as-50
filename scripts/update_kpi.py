@@ -710,15 +710,16 @@ def generate_week_focus(week_num, sessions, block_type):
 
     return f"{block_label} {week_num} — {discipline_str}{vo2_str}. Fokus: konsistens over intensitet."
 
-def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus):
-    """Genererer daglig coach-tekst baseret på kontekst."""
+def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
+                           ctl=None, tsb=None, weight=None, sleep=None, compliance=None):
+    """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus)."""
     DK_DAYS = ['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag']
     day_name = DK_DAYS[weekday]
-    
+
     BLOCK_LABELS = {'BUILD':'build-uge','BUILD+':'intensiv build-uge','RECOVERY':'restituitionsuge','TAPER':'taper-uge','RACE':'race-uge'}
     block_label = BLOCK_LABELS.get(block_type, 'træningsuge')
-    
-    # Streak-kommentar
+
+    # Streak-kommentar (fallback highlight)
     if streak >= 14:
         streak_comment = f"{streak} dage i træk — imponerende disciplin."
     elif streak >= 7:
@@ -750,8 +751,56 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     else:
         intro = f"{day_name.capitalize()} — uge {week_num} af 14."
 
-    speech = f"{intro} {{HL}} {session_line}"
-    highlight = streak_comment
+    # --- Friel (træning) + Kreutzer (krop/AF): hvad er godt, hvad skal der fokuseres på ---
+    expected_ctl = 34 + (week_num - 1) * 1.9  # rute mod CTL 60 i uge 11
+    goods, focus = [], []
+
+    if ctl is not None:
+        if ctl >= expected_ctl - 1:
+            goods.append(f"CTL {fmt(ctl,1)} følger ramp-kurven mod 60")
+        else:
+            focus.append(f"CTL {fmt(ctl,1)} er lidt under kurven — byg gradvist")
+
+    if tsb is not None:
+        if tsb < -30:
+            focus.append(f"TSB {fmt(tsb,1)} er under Friels bundgrænse — restitution før mere volumen")
+        elif tsb < -20:
+            goods.append(f"TSB {fmt(tsb,1)} viser hård belastning — hold øje med trætheden")
+        else:
+            goods.append(f"TSB {fmt(tsb,1)} er sundt — plads til næste belastning")
+
+    if compliance is not None:
+        if compliance >= 90:
+            goods.append(f"{int(compliance)}% af ugens TSS i hus")
+        else:
+            focus.append(f"kun {int(compliance)}% af ugens TSS — find de manglende sessioner")
+
+    if weight is not None:
+        if weight <= 72:
+            goods.append(f"vægt {fmt(weight)} kg er i mål")
+        else:
+            focus.append(f"vægt {fmt(weight)} kg — Martin vil have fokus på protein og let underskud")
+
+    if sleep is not None:
+        if sleep >= 7:
+            goods.append(f"søvn {fmt(sleep,1)}t er solid")
+        else:
+            focus.append(f"søvn {fmt(sleep,1)}t — under 7t-målet, prioriter den")
+
+    if af_this_week >= 5:
+        goods.append(f"{af_this_week}/7 AF-dage — målet ramt")
+    else:
+        focus.append(f"{af_this_week}/7 AF-dage — {5 - af_this_week} mangler for ugens mål")
+
+    if goods:
+        highlight = goods[0]
+    else:
+        highlight = streak_comment
+
+    focus_text = " · ".join(focus[:2]) if focus else "alt kører efter planen — bare fortsæt"
+    guide_line = f"Friel/Martin: {focus_text}."
+
+    speech = f"{intro} {{HL}} {session_line} {guide_line}"
 
     return speech.strip(), highlight.strip()
 
@@ -899,7 +948,8 @@ def main():
     data['weekFocus'] = week_focus  # Gem den rettede version tilbage
     af_this_week = data.get('af', {}).get('weekDone', 0)
     coach_speech, coach_highlight = generate_coach_speech(
-        week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus
+        week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
+        ctl=ctl, tsb=tsb, weight=weight, sleep=sleep, compliance=compliance
     )
     data['coachSpeech']    = coach_speech
     data['coachHighlight'] = coach_highlight
