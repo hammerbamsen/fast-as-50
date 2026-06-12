@@ -867,7 +867,7 @@ function renderBody() {
     ${progressMetric("CTL (fitness)", STATIC.ctlStart, ctlNow, STATIC.ctlGoal, "", "var(--bike)")}
   </div>
   <div class="card">
-    <div class="label" style="margin-bottom:12px">Tendenser — 7 dage</div>
+    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
     ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', null, null)}
     <div style="height:14px"></div>
     ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', null, null)}
@@ -924,13 +924,23 @@ function sparkline(data, color, label, unit, minV, maxV) {
   path += ` T${x(n-1)},${y(vals[n-1])}`;
   const area = `${path} L${x(n-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
 
-  // Min/maks-grid + dage som x-labels (sidste n dage)
-  const dayNames=['S','M','T','O','T','F','L'];
+  // x-labels: ugedags-bogstav ved få punkter, sparsomme datoer ved mange
   const today=new Date();
-  const xLabels = vals.map((_,i)=>{
-    const d=new Date(today); d.setDate(today.getDate()-(n-1-i));
-    return dayNames[d.getDay()];
-  });
+  let xLabels;
+  if (n<=10) {
+    const dayNames=['S','M','T','O','T','F','L'];
+    xLabels = vals.map((_,i)=>{
+      const d=new Date(today); d.setDate(today.getDate()-(n-1-i));
+      return dayNames[d.getDay()];
+    });
+  } else {
+    const step = Math.ceil(n/5);
+    xLabels = vals.map((_,i)=>{
+      if (i!==0 && i!==n-1 && i%step!==0) return '';
+      const d=new Date(today); d.setDate(today.getDate()-(n-1-i));
+      return `${d.getDate()}/${d.getMonth()+1}`;
+    });
+  }
 
   const gid = `sg_${label.replace(/\s/g,'')}`;
   return `<div style="position:relative">
