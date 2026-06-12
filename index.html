@@ -503,7 +503,7 @@ function ctlGraph() {
   path += ` T${x(data.length-1)},${y(data[data.length-1])}`;
   const area=`${path} L${x(data.length-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
 
-  const labels=["B1","","","R","","","","R","","","","R","CB","MD"];
+  const labels=data.map((_,i)=>String(i+1));
   return `<svg class="ctl-svg" viewBox="0 0 ${W} ${H}" style="overflow:visible">
     <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="var(--gold)" stop-opacity=".35"/>
