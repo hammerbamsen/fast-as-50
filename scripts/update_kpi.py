@@ -70,11 +70,11 @@ def get_wellness_7d():
     return None
 
 def get_history_7d():
-    """Bygger 7-dages historik-arrays til sparklines live fra Intervals wellness.
+    """Bygger 3-ugers historik-arrays til sparklines live fra Intervals wellness.
     Returnerer kronologiske lister (ældste→nyeste) for vægt, HRV, søvn(t), TSB.
     Manglende dage udelades, så grafen viser faktiske datapunkter.
     """
-    oldest = str(date.today() - timedelta(days=6))
+    oldest = str(date.today() - timedelta(days=20))
     newest = str(date.today())
     r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
     if r.status_code != 200:
