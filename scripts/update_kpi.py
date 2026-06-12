@@ -711,17 +711,17 @@ def generate_week_focus(week_num, sessions, block_type):
     return f"{block_label} {week_num} — {discipline_str}{vo2_str}. Fokus: konsistens over intensitet."
 
 DAILY_QUOTES = [
-    "\"Det er ikke om at have tid. Det er om at tage den.\" — Joel Friel",
+    "\"Det er ikke om at have tid. Det er om at tage den.\"",
     "\"Sæt farten ned, så du kan gå langt.\" — Ironman-visdom",
     "\"Disciplin er at vælge mellem hvad du vil nu, og hvad du vil mest.\"",
-    "\"Konsistens slår intensitet, hver gang.\" — Joel Friel",
+    "\"Konsistens slår intensitet, hver gang.\"",
     "\"Kroppen tror, hvad sindet siger.\"",
     "\"Det er de små valg hver dag, der bygger den store form.\"",
     "\"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
     "\"Keep moving forward.\"",
     "\"Formen bygges i kedsomheden — ikke i begejstringen.\"",
     "\"Du konkurrerer ikke mod andre i dag. Kun mod gårsdagens dig.\"",
-    "\"Et godt måltid og en god nats søvn slår en ekstra hård træning.\" — Martin Kreutzer",
+    "\"Et godt måltid og en god nats søvn slår en ekstra hård træning.\"",
     "\"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
     "\"Smertegrænsen flytter sig — men kun hvis du respekterer den først.\"",
     "\"14 uger er lang tid. Men hver dag er kort.\"",
@@ -731,7 +731,7 @@ DAILY_QUOTES = [
     "\"Recovery er ikke pause — det er produktion.\"",
     "\"Hold roen. Hold rytmen. Hold farten.\"",
     "\"Du har gjort det 16 gange før. Kroppen kender vejen.\"",
-    "\"Mindre alkohol, mere søvn — den billigste performance-boost der findes.\" — Martin Kreutzer",
+    "\"Mindre alkohol, mere søvn — den billigste performance-boost der findes.\"",
 ]
 
 
@@ -788,7 +788,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     if tsb is not None:
         if tsb < -30:
-            focus.append(f"TSB {fmt(tsb,1)} er under Friels bundgrænse — restitution før mere volumen")
+            focus.append(f"TSB {fmt(tsb,1)} er under bundgrænsen for restitution — restitution før mere volumen")
         elif tsb < -20:
             goods.append(f"TSB {fmt(tsb,1)} viser hård belastning — hold øje med trætheden")
         else:
@@ -804,7 +804,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         if weight <= 72:
             goods.append(f"vægt {fmt(weight)} kg er i mål")
         else:
-            focus.append(f"vægt {fmt(weight)} kg — Martin vil have fokus på protein og let underskud")
+            focus.append(f"vægt {fmt(weight)} kg — fokus på protein og let kalorieunderskud")
 
     if sleep is not None:
         if sleep >= 7:
@@ -830,9 +830,9 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     if rest_goods:
         parts.append("Godt: " + " · ".join(rest_goods) + ".")
     if focus_items:
-        parts.append("Friel/Martin-fokus: " + " · ".join(focus_items) + ".")
+        parts.append("Fokus: " + " · ".join(focus_items) + ".")
     elif not rest_goods:
-        parts.append("Friel/Martin: alt kører efter planen — bare fortsæt.")
+        parts.append("Alt kører efter planen — bare fortsæt.")
 
     # Afsluttende motiverende linje afhænger af balance mellem godt/fokus
     if len(focus) >= 3:
