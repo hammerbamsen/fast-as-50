@@ -740,6 +740,13 @@ QUOTES_PHILOSOPHY = [
     "\"Sæt målet højt, men sæt i dag realistisk.\"",
     "\"Form kommer og går. Vaner bliver.\"",
     "\"Hold roen. Hold rytmen. Hold farten.\"",
+    "\"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+    "\"Begynd ikke at handle som om du har ti tusind år at leve i.\" — Marcus Aurelius",
+    "\"Hindringen for handling fremmer handlingen. Det, der står i vejen, bliver vejen.\" — Marcus Aurelius",
+    "\"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+    "\"Hver morgen: jeg vågner for at gøre menneskets arbejde.\" — Marcus Aurelius",
+    "\"Udholdenhed er bitter, men dens frugt er sød.\"",
+    "\"Du bliver til det, du gør ofte.\"",
 ]
 
 
