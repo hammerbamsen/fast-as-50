@@ -798,21 +798,21 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     if ctl is not None:
         if ctl >= expected_ctl - 1:
-            goods.append(f"CTL {fmt(ctl,1)} følger ramp-kurven mod 60")
+            goods.append(f"CTL {fmt(ctl,1)} følger ramp-kurven mod 60.")
         else:
-            focus.append(f"CTL {fmt(ctl,1)} er lidt under kurven — byg gradvist")
+            focus.append(f"CTL {fmt(ctl,1)} ligger lidt under kurven, så byg gradvist.")
 
     if tsb is not None:
         if tsb < -30:
-            focus.append(f"TSB {fmt(tsb,1)} er under bundgrænsen for restitution — restitution før mere volumen")
+            focus.append(f"TSB {fmt(tsb,1)} er under bundgrænsen for restitution, så prioriter restitution før mere volumen.")
         elif tsb < -20:
-            goods.append(f"TSB {fmt(tsb,1)} viser hård belastning — hold øje med trætheden")
+            goods.append(f"TSB {fmt(tsb,1)} viser hård belastning, så hold øje med trætheden.")
         else:
-            goods.append(f"TSB {fmt(tsb,1)} er sundt — plads til næste belastning")
+            goods.append(f"TSB {fmt(tsb,1)} er på et sundt niveau med plads til næste belastning.")
 
     if compliance is not None:
         if compliance >= 90:
-            goods.append(f"{int(compliance)}% af ugens TSS i hus")
+            goods.append(f"{int(compliance)} procent af ugens TSS er i hus.")
         else:
             done_tss = int(tss_act or 0)
             target_tss = int(planned or 0)
@@ -821,44 +821,44 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
                 if len(remaining) == 1:
                     rest_str = f"{remaining[0]} står tilbage"
                 else:
-                    rest_str = f"{len(remaining)} sessioner står tilbage: {', '.join(remaining[:2])}"
-                focus.append(f"{done_tss} af {target_tss} TSS i hus — {rest_str}")
+                    rest_str = f"{len(remaining)} sessioner står tilbage, heriblandt {', '.join(remaining[:2])}"
+                focus.append(f"{done_tss} af {target_tss} TSS er i hus, og {rest_str}.")
             else:
-                focus.append(f"{done_tss} af {target_tss} TSS i hus — resten af ugen tæller")
+                focus.append(f"{done_tss} af {target_tss} TSS er i hus, og resten af ugen tæller.")
 
     if weight is not None:
         if weight <= 72:
-            goods.append(f"vægt {fmt(weight)} kg er i mål")
+            goods.append(f"Vægt på {fmt(weight)} kg er i mål.")
         else:
-            focus.append(f"vægt {fmt(weight)} kg — fokus på protein og let kalorieunderskud")
+            focus.append(f"Vægt på {fmt(weight)} kg kalder på fokus på protein og et let kalorieunderskud.")
 
     if sleep is not None:
         if sleep >= 7:
-            goods.append(f"søvn {fmt(sleep,1)}t er solid")
+            goods.append(f"Søvn på {fmt(sleep,1)} timer er solid.")
         else:
-            focus.append(f"søvn {fmt(sleep,1)}t — under 7t-målet, prioriter den")
+            focus.append(f"Søvn på {fmt(sleep,1)} timer er under 7-timers målet, så prioriter den.")
 
     if af_this_week >= 5:
-        goods.append(f"{af_this_week}/7 AF-dage — målet ramt")
+        goods.append(f"{af_this_week} af 7 AF-dage er i hus, og ugens mål er ramt.")
     else:
-        focus.append(f"{af_this_week}/7 AF-dage — {5 - af_this_week} mangler for ugens mål")
+        focus.append(f"{af_this_week} af 7 AF-dage er i hus, og {5 - af_this_week} mangler for at nå ugens mål.")
 
     if goods:
-        highlight = goods[0]
+        highlight = goods[0].rstrip(".")
     else:
-        highlight = streak_comment
+        highlight = streak_comment.rstrip(".")
 
-    # Tag op til 3 punkter af hver — det går til ilden, ikke bare en streg
+    # Tag op til 3 punkter af hver — som sammenhængende sætninger
     rest_goods = goods[1:3]
     focus_items = focus[:3]
 
     parts = []
     if rest_goods:
-        parts.append("Godt: " + " · ".join(rest_goods) + ".")
+        parts.append("Godt: " + " ".join(rest_goods))
     if focus_items:
-        parts.append("Fokus: " + " · ".join(focus_items) + ".")
+        parts.append("Fokus: " + " ".join(focus_items))
     elif not rest_goods:
-        parts.append("Alt kører efter planen — bare fortsæt.")
+        parts.append("Alt kører efter planen, så bare fortsæt.")
 
     # Afsluttende motiverende linje afhænger af balance mellem godt/fokus
     if len(focus) >= 3:
