@@ -18,6 +18,10 @@ Uge 12: 17-23 aug  TAPER    Gentofte | Lør Norge start
 Uge 13: 24-30 aug  TAPER    Mon Norge hjem | Lør CHRISTIANSBORG RUNDT
 Uge 14: 31aug-6sep RACE     Tor fly Bordeaux | Lør MARATHON MÉDOC
 
+VIGTIGT: Dette script er MASTERPLANEN for alle workouts.
+Intervals.icu er master for selve træningspassene — opdateres KUN via dette script.
+Garmin og Outlook synkroniseres fra Intervals (delete_existing rydder gamle pas).
+
 Opdatering juni 2026:
 - description bruger absolut pace/watt (officielt Intervals format)
 - workout_doc bruger %pace/%ftp (bekræftet virker til Garmin-struktur)
