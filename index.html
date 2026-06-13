@@ -848,6 +848,15 @@ function renderOverview() {
     </div>
     ${ctlGraph()}
   </div>
+  <div class="card">
+    ${(()=>{
+      const ctlVal = parseFloat((D.kpis.find(k=>k.label==='CTL')||{}).value) || 0;
+      const tsbVal = parseFloat((D.kpis.find(k=>k.label==='FORM')||{}).value) || 0;
+      const atlVal = ctlVal - tsbVal;
+      const row = (l,v,c)=>`<div style="flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:2px">${l}</div><div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:${c}">${v.toFixed(1)}</div></div>`;
+      return `<div style="display:flex;margin-bottom:14px">${row('FITNESS (CTL)',ctlVal,'#3498DB')}${row('FATIGUE (ATL)',atlVal,'#9B59B6')}${row('FORM (TSB)',tsbVal,'#27AE60')}</div>${sparkline(D.tsbHistory,'#27AE60','FORM (TSB)','',null,null)}`;
+    })()}
+  </div>
   <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
     <div class="label" style="margin-bottom:6px">Ugens fokus</div>
     ${renderFocus(D.weekFocus)}
