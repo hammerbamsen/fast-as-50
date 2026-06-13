@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-06-12",
+    "updated": "2026-06-13",
     "week": 2,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 85,
-    "daysToChristiansborg": 78,
-    "dayName": "Fredag",
-    "date": "12. jun"
+    "daysToMedoc": 84,
+    "daysToChristiansborg": 77,
+    "dayName": "Lørdag",
+    "date": "13. jun"
   },
   "kpis": {
     "weight": {
       "value": "74,2",
       "unit": "kg",
-      "sub": "Mål <72 kg · snit 74,6 kg",
+      "sub": "Mål <72 kg · snit 74,5 kg",
       "color": "#F39C12"
     },
     "fat": {
@@ -23,19 +23,19 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "39,3",
+      "value": "38,4",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-18,2",
+      "value": "-11,5",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
     },
     "sleep": {
-      "value": "7,6",
+      "value": "7,5",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "59,8",
+      "value": "59,3",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 12
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 2. {HL} Dagens session er gennemført. Godt: TSB -18,2 er på et sundt niveau med plads til næste belastning. Søvn på 7,6 timer er solid. Fokus: 321 af 488 TSS er i hus, og 2 sessioner står tilbage, heriblandt Cykel Z2 150 min Mallorca, Svøm 1500m let teknisk. Vægt på 74,2 kg kalder på fokus på protein og et let kalorieunderskud. Justér de små ting, og resten følger. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "CTL 39,3 følger ramp-kurven mod 60",
+  "coachSpeech": "Lørdag — uge 2 af 14. {HL} I dag: Cykel Z2 150 min Mallorca (cykel). Godt: TSB -11,5 er på et sundt niveau med plads til næste belastning. Søvn på 7,5 timer er solid. Fokus: 321 af 488 TSS er i hus, og 2 sessioner står tilbage, heriblandt Cykel Z2 150 min Mallorca, Svøm 1500m let teknisk. Vægt på 74,2 kg kalder på fokus på protein og et let kalorieunderskud. Justér de små ting, og resten følger. Keep moving forward.  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "CTL 38,4 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 2 — 2 løb · 3 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
-    "title": "Cykel bjerg-intervaller Z4 Mallorca",
+    "title": "Cykel Z2 150 min Mallorca",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
@@ -144,14 +144,14 @@
       "day": "Fre",
       "disc": "bike",
       "label": "Cykel bjerg-intervaller Z4 Mallorca",
-      "done": true,
-      "today": true
+      "done": true
     },
     {
       "day": "Lør",
       "disc": "bike",
       "label": "Cykel Z2 150 min Mallorca",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Søn",
@@ -162,7 +162,7 @@
   ],
   "ctlCurve": [
     36.3,
-    39.3
+    38.4
   ],
   "weightHistory": [
     74.5,
@@ -177,7 +177,6 @@
     74.2
   ],
   "hrvHistory": [
-    34.0,
     31.0,
     48.0,
     45.0,
@@ -200,7 +199,6 @@
     60.0
   ],
   "sleepHistory": [
-    7.8,
     8.4,
     9.1,
     8.6,
@@ -223,7 +221,6 @@
   ],
   "tsbHistory": [
     -16.4,
-    -16.4,
     -14.3,
     -9.1,
     -8.3,
@@ -242,7 +239,8 @@
     -13.7,
     -15.8,
     -13.9,
-    -18.2
+    -18.2,
+    -11.5
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -372,14 +370,14 @@
           "day": "Fre",
           "disc": "bike",
           "label": "Cykel bjerg-intervaller Z4 Mallorca",
-          "done": true,
-          "today": true
+          "done": true
         },
         {
           "day": "Lør",
           "disc": "bike",
           "label": "Cykel Z2 150 min Mallorca",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Søn",
@@ -929,7 +927,7 @@
     {
       "week": 2,
       "done": 5,
-      "total": 5,
+      "total": 6,
       "label": "Uge 2"
     }
   ],
