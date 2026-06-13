@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260613-1920 --><!-- v20260613-1920 -->
+<!DOCTYPE html><!-- v20260613-2125 --><!-- v20260613-1730 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -707,7 +707,7 @@ function renderWeek() {
       : `<span style="display:flex;gap:3px;align-items:center">${discTag(s.disc,true)}${s.done ? icon("check",18,C[s.disc]||'#7A6A58') : ''}</span>`}
   </div>`).join("")
   }
-  <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6">${focus||'—'}</p></div>
+  <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div>${renderFocus(focus)}</div>
   `;
 }
 
