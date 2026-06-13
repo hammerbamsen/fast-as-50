@@ -943,8 +943,12 @@ def main():
     data = json.loads(data_raw)
 
     # --- Opdater meta ---
-    from zoneinfo import ZoneInfo
-    now_cph = datetime.now(ZoneInfo("Europe/Copenhagen"))
+    try:
+        from zoneinfo import ZoneInfo
+        now_cph = datetime.now(ZoneInfo("Europe/Copenhagen"))
+    except Exception:
+        # Fallback hvis tzdata mangler på runner: UTC+2 (DK sommertid)
+        now_cph = datetime.utcnow() + timedelta(hours=2)
     data['meta']['updated']              = now_cph.strftime("%Y-%m-%d %H:%M")
     data['meta']['dayName']              = DK_DAYS[weekday]
     data['meta']['date']                 = f"{today.day}. {DK_MONTHS[today.month-1]}"
