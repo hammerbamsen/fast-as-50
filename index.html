@@ -354,12 +354,12 @@ let D = {
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
   kpis:[
-    {label:"VÆGT", value:"74,2", unit:"kg", sub:"Mål <72 kg · snit 74,5 kg", color:"#F39C12"},
-    {label:"FEDT%", value:"22,7", unit:"%", sub:"Mål <20%", color:"#C0392B"},
-    {label:"CTL", value:"38,4", unit:"", sub:"Mål 60 (uge 11)", color:"#C0392B"},
+    {label:"VÆGT", value:"74.2", unit:"kg", sub:"Mål <72 kg · snit 74,5 kg", color:"#F39C12"},
+    {label:"FEDT%", value:"22.7", unit:"%", sub:"Mål <20%", color:"#C0392B"},
+    {label:"CTL", value:"38.4", unit:"", sub:"Mål 60 (uge 11)", color:"#C0392B"},
     {label:"TSS COMP.", value:"66", unit:"%", sub:"Planlagt 488 TSS", color:"#C0392B"},
-    {label:"HRV", value:"59,3", unit:"ms", sub:"Snit 7d", color:"#7A6A58"},
-    {label:"LØB KM", value:"17,1", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
+    {label:"HRV", value:"59.3", unit:"ms", sub:"Snit 7d", color:"#7A6A58"},
+    {label:"LØB KM", value:"17.1", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
   ],
   today:{ discipline:"swim", title:"Svøm 2000m + cykel", duration:"90 min", zone:"Z2", desc:"Svøm 2000m teknisk + rolig cykel 45 min Z2. Aktiv restitution efter en stærk uge." },
   week_sessions:[
@@ -524,7 +524,7 @@ function ctlGraph() {
     <path d="${actualArea}" fill="url(#g)"/>
     <path d="${actualPath}" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="${x(actual.length-1)}" cy="${y(cur)}" r="5" fill="var(--gold)" stroke="var(--wine)" stroke-width="2"/>
-    <text x="${x(actual.length-1)}" y="${y(cur)-12}" text-anchor="middle" fill="var(--wine)" font-size="11" font-weight="700" font-family="'Space Mono',monospace">${cur.toFixed(1).replace('.',',')}</text>
+    <text x="${x(actual.length-1)}" y="${y(cur)-12}" text-anchor="middle" fill="var(--wine)" font-size="11" font-weight="700" font-family="'Space Mono',monospace">${cur.toFixed(1)}</text>
     ${labels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle"
       fill="${i===wk-1?"var(--wine)":"var(--muted)"}" font-size="8" font-family="'Space Mono',monospace"
       font-weight="${i===wk-1?700:400}">${l||(i+1)}</text>`).join("")}
@@ -602,7 +602,7 @@ function renderToday() {
 
   ${kpiGrid()}
 
-  <div class="card"><div class="label">Ugefokus</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus}</p></div>
+  <div class="card"><div class="label">Ugefokus</div>${renderFocus(D.weekFocus)}</div>
   <div style="text-align:center;padding:8px 0 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">SIDST OPDATERET <span id='last-updated'></span> · <span id="live-time"></span></div>
   `;
   setTimeout(()=>{const el=document.getElementById('live-time');if(el)el.textContent=new Date().toLocaleTimeString('da-DK',{hour:'2-digit',minute:'2-digit'});},50);
@@ -618,6 +618,25 @@ function weekSessions(offset) {
   // Forrige/næste uge: brug all_weeks
   if (D.all_weeks && D.all_weeks[w]) return D.all_weeks[w].sessions || [];
   return [];
+}
+
+function renderFocus(text) {
+  if (!text) return '<p style="font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">—</p>';
+  const pStyle = "font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)";
+  const dashIdx = text.search(/[—-]\s/);
+  if (dashIdx === -1) return `<p style="${pStyle}">${text}</p>`;
+  const head = text.slice(0, dashIdx).trim();
+  const rest = text.slice(dashIdx + 1).trim();
+  const sentenceEnd = rest.indexOf('. ');
+  const itemsPart = sentenceEnd === -1 ? rest : rest.slice(0, sentenceEnd);
+  const trailing = sentenceEnd === -1 ? '' : rest.slice(sentenceEnd + 2).trim();
+  const items = itemsPart.split('·').map(s=>s.trim()).filter(Boolean);
+  let html = `<p style="${pStyle};margin:0 0 8px">${head}</p>`;
+  html += `<ul style="${pStyle};margin:0 0 8px;padding-left:18px">`;
+  items.forEach(i => html += `<li style="margin-bottom:2px">${i}</li>`);
+  html += `</ul>`;
+  if (trailing) html += `<p style="${pStyle};margin:0">${trailing}</p>`;
+  return html;
 }
 
 function weekFocusText(offset) {
@@ -903,7 +922,9 @@ function sparkline(data, color, label, unit, minV, maxV) {
   if (!data || data.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
   const W=280, H=92, pad={l:8,r:8,t:22,b:20};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
-  const vals = data.map(d=>typeof d==='object'?d.v:d);
+  const vals  = data.map(d=>typeof d==='object'?d.v:d);
+  const reals = data.map(d=>typeof d==='object' && 'real' in d ? !!d.real : true);
+  const dates = data.map(d=>typeof d==='object' && d.date ? d.date : null);
   const n = vals.length;
   const dataMin = Math.min(...vals), dataMax = Math.max(...vals);
   const mn = minV ?? dataMin - (dataMax-dataMin||1)*0.15;
@@ -915,29 +936,36 @@ function sparkline(data, color, label, unit, minV, maxV) {
   const trend = last > prev ? '↑' : last < prev ? '↓' : '→';
   const tcolor = last > prev ? 'var(--swim)' : last < prev ? 'var(--run)' : 'var(--muted)';
 
-  // Glat kurve via quadratic bezier mellem midpunkter
-  let path = `M${x(0)},${y(vals[0])}`;
-  for (let i=0;i<n-1;i++){
-    const mx0=(x(i)+x(i+1))/2, my0=(y(vals[i])+y(vals[i+1]))/2;
-    path += ` Q${x(i)},${y(vals[i])} ${mx0},${my0}`;
-  }
-  path += ` T${x(n-1)},${y(vals[n-1])}`;
-  const area = `${path} L${x(n-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
+  // Område til fyld (bruger samme punkter, lige linjer)
+  let areaPath = `M${x(0)},${y(vals[0])}`;
+  for (let i=1;i<n;i++) areaPath += ` L${x(i)},${y(vals[i])}`;
+  areaPath += ` L${x(n-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
 
-  // x-labels: ugedags-bogstav ved få punkter, sparsomme datoer ved mange
+  // Linjestykker: solid hvis begge punkter er reelle, stiplet/fladt hvis fremført
+  let lineSegments = '';
+  for (let i=0;i<n-1;i++){
+    const isDashed = !reals[i+1];
+    lineSegments += `<line x1="${x(i)}" y1="${y(vals[i])}" x2="${x(i+1)}" y2="${y(vals[i+1])}" stroke="${color}" stroke-width="2" stroke-linecap="round" ${isDashed ? 'stroke-dasharray="3,3" opacity="0.55"' : ''}/>`;
+  }
+
+  // x-labels: ugedags-bogstav baseret på faktisk dato hvis tilgængelig
   const today=new Date();
   let xLabels;
   if (n<=10) {
     const dayNames=['S','M','T','O','T','F','L'];
     xLabels = vals.map((_,i)=>{
-      const d=new Date(today); d.setDate(today.getDate()-(n-1-i));
+      let d;
+      if (dates[i]) { d = new Date(dates[i]+'T00:00:00'); }
+      else { d = new Date(today); d.setDate(today.getDate()-(n-1-i)); }
       return dayNames[d.getDay()];
     });
   } else {
     const step = Math.ceil(n/5);
     xLabels = vals.map((_,i)=>{
       if (i!==0 && i!==n-1 && i%step!==0) return '';
-      const d=new Date(today); d.setDate(today.getDate()-(n-1-i));
+      let d;
+      if (dates[i]) { d = new Date(dates[i]+'T00:00:00'); }
+      else { d = new Date(today); d.setDate(today.getDate()-(n-1-i)); }
       return `${d.getDate()}/${d.getMonth()+1}`;
     });
   }
@@ -946,7 +974,7 @@ function sparkline(data, color, label, unit, minV, maxV) {
   return `<div style="position:relative">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
       <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em">${label}</span>
-      <span style="font-family:'Space Mono',monospace;font-size:13px;color:${color};font-weight:700">${last.toFixed(1).replace('.',',')} <span style="font-size:9px">${unit}</span> <span style="color:${tcolor};font-size:11px">${trend}</span></span>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:${color};font-weight:700">${last.toFixed(1)} <span style="font-size:9px">${unit}</span> <span style="color:${tcolor};font-size:11px">${trend}</span></span>
     </div>
     <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:${H}px;overflow:visible">
       <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
@@ -955,11 +983,13 @@ function sparkline(data, color, label, unit, minV, maxV) {
       </linearGradient></defs>
       <line x1="${pad.l}" x2="${W-pad.r}" y1="${y(mx)}" y2="${y(mx)}" stroke="var(--cream-d)" stroke-width="1" stroke-dasharray="2,3"/>
       <line x1="${pad.l}" x2="${W-pad.r}" y1="${y(mn)}" y2="${y(mn)}" stroke="var(--cream-d)" stroke-width="1" stroke-dasharray="2,3"/>
-      <text x="${W-pad.r}" y="${y(mx)-3}" text-anchor="end" fill="var(--muted)" font-size="8" font-family="'Space Mono',monospace">${mx.toFixed(1).replace('.',',')}</text>
-      <text x="${W-pad.r}" y="${y(mn)+10}" text-anchor="end" fill="var(--muted)" font-size="8" font-family="'Space Mono',monospace">${mn.toFixed(1).replace('.',',')}</text>
-      <path d="${area}" fill="url(#${gid})"/>
-      <path d="${path}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      ${(()=>{const i=n-1; return `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="${color}" stroke="var(--white)" stroke-width="1.5"/>`})()}
+      <text x="${W-pad.r}" y="${y(mx)-3}" text-anchor="end" fill="var(--muted)" font-size="8" font-family="'Space Mono',monospace">${mx.toFixed(1)}</text>
+      <text x="${W-pad.r}" y="${y(mn)+10}" text-anchor="end" fill="var(--muted)" font-size="8" font-family="'Space Mono',monospace">${mn.toFixed(1)}</text>
+      <path d="${areaPath}" fill="url(#${gid})"/>
+      ${lineSegments}
+      ${(()=>{const i=n-1; return reals[i]
+        ? `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="${color}" stroke="var(--white)" stroke-width="1.5"/>`
+        : `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="var(--cream)" stroke="${color}" stroke-width="1.5" stroke-dasharray="2,2"/>`})()}
       ${xLabels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle" fill="${i===n-1?color:'var(--muted)'}" font-weight="${i===n-1?700:400}" font-size="8" font-family="'Space Mono',monospace">${l}</text>`).join("")}
     </svg>
   </div>`;

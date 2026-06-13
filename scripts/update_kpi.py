@@ -70,32 +70,58 @@ def get_wellness_7d():
     return None
 
 def get_history_7d():
-    """Bygger 3-ugers historik-arrays til sparklines live fra Intervals wellness.
+    """Bygger 10-dages historik-arrays til sparklines live fra Intervals wellness.
     Returnerer kronologiske lister (ældste→nyeste) for vægt, HRV, søvn(t), TSB.
-    Manglende dage udelades, så grafen viser faktiske datapunkter.
+    Hver post er {date, v, real}: real=False for dage uden måling, hvor
+    værdien er fremført fra sidste kendte (så grafen kan vises stiplet/fladt).
     """
-    oldest = str(date.today() - timedelta(days=20))
+    DAYS = 10
+    LOOKBACK = 20
+    oldest = str(date.today() - timedelta(days=LOOKBACK))
     newest = str(date.today())
     r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
     if r.status_code != 200:
         return None
     rows = r.json()
-    # Sortér kronologisk på dato (feltet 'id' er datoen i Intervals)
-    rows.sort(key=lambda d: (d.get('id') or d.get('date') or ''))
-    weight, hrv, sleep, tsb = [], [], [], []
-    for d in rows:
-        if d.get('weight')   is not None: weight.append(round(d['weight'], 1))
-        if d.get('hrv')      is not None: hrv.append(round(d['hrv'], 1))
-        if d.get('sleepSecs')is not None: sleep.append(round(d['sleepSecs']/3600, 1))
-        if d.get('ctl') is not None and d.get('atl') is not None:
-            tsb.append(round(d['ctl'] - d['atl'], 1))
-        elif d.get('tsb') is not None:
-            tsb.append(round(d['tsb'], 1))
+    by_date = {(d.get('id') or d.get('date')): d for d in rows}
+    dates = [date.today() - timedelta(days=i) for i in range(DAYS - 1, -1, -1)]
+
+    def build(getter):
+        out = []
+        last_val = None
+        for i in range(LOOKBACK, DAYS - 1, -1):
+            row = by_date.get(str(date.today() - timedelta(days=i)))
+            if row:
+                v = getter(row)
+                if v is not None:
+                    last_val = v
+        for d in dates:
+            row = by_date.get(str(d))
+            v = getter(row) if row else None
+            if v is not None:
+                last_val = v
+                out.append({'date': str(d), 'v': v, 'real': True})
+            else:
+                out.append({'date': str(d), 'v': last_val, 'real': False})
+        while out and out[0]['v'] is None:
+            out.pop(0)
+        return out
+
+    def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
+    def w_hrv(row):    return round(row['hrv'], 1) if row.get('hrv') is not None else None
+    def w_sleep(row):  return round(row['sleepSecs'] / 3600, 1) if row.get('sleepSecs') is not None else None
+    def w_tsb(row):
+        if row.get('ctl') is not None and row.get('atl') is not None:
+            return round(row['ctl'] - row['atl'], 1)
+        if row.get('tsb') is not None:
+            return round(row['tsb'], 1)
+        return None
+
     return {
-        'weightHistory': weight,
-        'hrvHistory':    hrv,
-        'sleepHistory':  sleep,
-        'tsbHistory':    tsb,
+        'weightHistory': build(w_weight),
+        'hrvHistory':    build(w_hrv),
+        'sleepHistory':  build(w_sleep),
+        'tsbHistory':    build(w_tsb),
     }
 
 def get_ctl_curve():
@@ -494,7 +520,7 @@ def planned_tss_this_week():
 def fmt(val, decimals=1):
     if val is None:
         return '—'
-    return f"{val:.{decimals}f}".replace('.', ',')
+    return f"{val:.{decimals}f}"
 
 def color_for(val, target, lower=True):
     if val is None:
