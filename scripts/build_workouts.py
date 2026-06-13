@@ -285,6 +285,21 @@ def bike_bjerg_z4(location="Mallorca"):
     return {"name": f"Cykel bjerg-intervaller Z4 {location}", "type": "Ride",
             "moving_time": 120*60, "description": desc, "workout_doc": doc}
 
+def bike_formentor():
+    desc, doc = build([
+        s_bike(30,  "Z2", "Varm-op"),
+        s_bike(240, "Z2", "Formentor lang tur"),
+        s_bike(60,  "Z3", "Klatre-sektioner Formentor"),
+        s_bike(30,  "Z2", "Cool-down hjem"),
+    ])
+    return {"name": "Cykel Formentor 149km", "type": "Ride",
+            "moving_time": 360*60, "description": desc, "workout_doc": doc}
+
+def hike_easy(tot_min=90):
+    desc, doc = build([s_free(tot_min, "Hike Z1-Z2")])
+    return {"name": f"Hike let {tot_min} min", "type": "Hike",
+            "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
+
 def bike_z2_z3(tot_min=80):
     main = tot_min - 40
     desc, doc = build([
@@ -384,15 +399,14 @@ def make_plan():
     (p+timedelta(12), bike_z2(150,"Mallorca"),"Cykel Z2 lang 2.5t Mallorca"),
     (p+timedelta(13), swim_let(),            "Open water svøm + cykel let Mallorca"),
 
-    # ── UGE 3: 15-21 jun  BUILD+ (justeret) ───────────────────
-    # Man: svøm + lang løb formiddag (møde kl 13)
-    (p+timedelta(14), swim_2000(),            "Svøm 2000m Mallorca (formiddag)"),
+    # ── UGE 3: 15-21 jun  BUILD+ (justeret v2 — Formentor) ─────
+    # Man: lang løb formiddag (møde kl 13)
     (p+timedelta(14), run_z2_lang(90),        "Lang løb Z2 90 min Mallorca (formiddag)"),
-    # Tirs: lang cykel + ekstra svøm Mallorca
-    (p+timedelta(15), bike_z2(180,"Mallorca"),"Cykel Z2 lang 3t Mallorca"),
-    (p+timedelta(15), swim_let(),             "Svøm 45 min åbent vand Mallorca"),
-    # Ons: VO2-stimulus cykel bakker
-    (p+timedelta(16), bike_bjerg_z4(),        "Cykel VO2 bjerg Z4 Mallorca"),
+    # Tirs: Formentor — ugens store belastning, 149km
+    (p+timedelta(15), bike_formentor(),       "Cykel Formentor 149km"),
+    # Ons: aktiv recovery — hike + let svøm
+    (p+timedelta(16), hike_easy(90),          "Hike Z1-Z2 Mallorca"),
+    (p+timedelta(16), swim_let(),             "Svøm let 1500m Mallorca"),
     # Tor: let spin → fly hjem aften
     (p+timedelta(17), bike_z2(60,"Mallorca"), "Cykel let 60 min → fly hjem aften"),
     # Fre: styrke morgen (frisk efter rejse)
