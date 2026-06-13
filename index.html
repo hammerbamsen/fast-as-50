@@ -845,7 +845,7 @@ function renderOverview() {
   </div>
   <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
     <div class="label" style="margin-bottom:6px">Ugens fokus</div>
-    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">${D.weekFocus||'—'}</p>
+    ${renderFocus(focus)}
   </div>
   <div class="card">
     <div class="label">Løb — træningszoner</div>
