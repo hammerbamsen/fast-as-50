@@ -1095,7 +1095,6 @@ def main():
         import re as _re
         html = _re.sub(r'kpis:\[[\s\S]*?\]', kpis_block, html, count=1)
         # Bump version
-        from datetime import datetime
         now = datetime.now().strftime("%Y%m%d-%H%M")
         html = _re.sub(r'<!-- v[\d\-]+ -->', f'<!-- v{now} -->', html)
         gh_put('index.html', sha_html, html, f'KPI kpis[] opdateret {today}')
