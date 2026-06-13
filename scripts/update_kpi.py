@@ -4,7 +4,7 @@ Henter KPI-data fra Intervals.icu og opdaterer data.json + index.html.
 Køres via GitHub Actions dagligt kl. 03:00 UTC.
 """
 import os, re, json, base64, requests
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 API_KEY    = os.environ.get('INTERVALS_API_KEY', '')
 ATHLETE_ID = os.environ.get('INTERVALS_ATHLETE_ID', 'i0')
@@ -943,7 +943,9 @@ def main():
     data = json.loads(data_raw)
 
     # --- Opdater meta ---
-    data['meta']['updated']              = str(today)
+    from zoneinfo import ZoneInfo
+    now_cph = datetime.now(ZoneInfo("Europe/Copenhagen"))
+    data['meta']['updated']              = now_cph.strftime("%Y-%m-%d %H:%M")
     data['meta']['dayName']              = DK_DAYS[weekday]
     data['meta']['date']                 = f"{today.day}. {DK_MONTHS[today.month-1]}"
     data['meta']['daysToMedoc']          = (date(2026, 9, 5) - today).days
