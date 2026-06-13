@@ -951,9 +951,10 @@ function sparkline(data, color, label, unit, minV, maxV) {
   const tcolor = last > prev ? 'var(--swim)' : last < prev ? 'var(--run)' : 'var(--muted)';
 
   // Område til fyld (bruger samme punkter, lige linjer)
+  const baseline = (mn < 0 && mx > 0) ? y(0) : (H-pad.b);
   let areaPath = `M${x(0)},${y(vals[0])}`;
   for (let i=1;i<n;i++) areaPath += ` L${x(i)},${y(vals[i])}`;
-  areaPath += ` L${x(n-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
+  areaPath += ` L${x(n-1)},${baseline} L${x(0)},${baseline} Z`;
 
   // Linjestykker: solid hvis begge punkter er reelle, stiplet/fladt hvis fremført
   let lineSegments = '';
