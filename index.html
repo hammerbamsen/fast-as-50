@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260613-0240 --><!-- v20260613-0240 -->
+<!DOCTYPE html><!-- v20260613-0230 --><!-- v20260613-0230 -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -354,7 +354,7 @@ let D = {
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
   kpis:[
-    {label:"VÆGT", value:"74.2", unit:"kg", sub:"Mål <72 kg · snit 74.5 kg", color:"#F39C12"},
+    {label:"VÆGT", value:"74.2", unit:"kg", sub:"Mål <72 kg · snit 74,5 kg", color:"#F39C12"},
     {label:"FEDT%", value:"22.7", unit:"%", sub:"Mål <20%", color:"#C0392B"},
     {label:"CTL", value:"38.4", unit:"", sub:"Mål 60 (uge 11)", color:"#C0392B"},
     {label:"TSS COMP.", value:"66", unit:"%", sub:"Planlagt 488 TSS", color:"#C0392B"},
@@ -620,22 +620,26 @@ function weekSessions(offset) {
   return [];
 }
 
+function capFirst(s) {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
 function renderFocus(text) {
   if (!text) return '<p style="font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">—</p>';
   const pStyle = "font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)";
   const dashIdx = text.search(/[—-]\s/);
-  if (dashIdx === -1) return `<p style="${pStyle}">${text}</p>`;
-  const head = text.slice(0, dashIdx).trim();
+  if (dashIdx === -1) return `<p style="${pStyle}">${capFirst(text)}</p>`;
+  const head = capFirst(text.slice(0, dashIdx).trim());
   const rest = text.slice(dashIdx + 1).trim();
   const sentenceEnd = rest.indexOf('. ');
   const itemsPart = sentenceEnd === -1 ? rest : rest.slice(0, sentenceEnd);
   const trailing = sentenceEnd === -1 ? '' : rest.slice(sentenceEnd + 2).trim();
-  const items = itemsPart.split('·').map(s=>s.trim()).filter(Boolean);
+  const items = itemsPart.split('·').map(s=>capFirst(s.trim())).filter(Boolean);
   let html = `<p style="${pStyle};margin:0 0 8px">${head}</p>`;
   html += `<ul style="${pStyle};margin:0 0 8px;padding-left:18px">`;
   items.forEach(i => html += `<li style="margin-bottom:2px">${i}</li>`);
   html += `</ul>`;
-  if (trailing) html += `<p style="${pStyle};margin:0">${trailing}</p>`;
+  if (trailing) html += `<p style="${pStyle};margin:0">${capFirst(trailing)}</p>`;
   return html;
 }
 
