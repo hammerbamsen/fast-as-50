@@ -75,8 +75,8 @@ def get_history_7d():
     Hver post er {date, v, real}: real=False for dage uden måling, hvor
     værdien er fremført fra sidste kendte (så grafen kan vises stiplet/fladt).
     """
-    DAYS = 10
-    LOOKBACK = 20
+    DAYS = 28
+    LOOKBACK = 35
     oldest = str(date.today() - timedelta(days=LOOKBACK))
     newest = str(date.today())
     r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
@@ -110,6 +110,7 @@ def get_history_7d():
     def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
     def w_hrv(row):    return round(row['hrv'], 1) if row.get('hrv') is not None else None
     def w_sleep(row):  return round(row['sleepSecs'] / 3600, 1) if row.get('sleepSecs') is not None else None
+    def w_fat(row):    return round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None
     def w_tsb(row):
         if row.get('ctl') is not None and row.get('atl') is not None:
             return round(row['ctl'] - row['atl'], 1)
@@ -119,6 +120,7 @@ def get_history_7d():
 
     return {
         'weightHistory': build(w_weight),
+        'fatHistory':    build(w_fat),
         'hrvHistory':    build(w_hrv),
         'sleepHistory':  build(w_sleep),
         'tsbHistory':    build(w_tsb),
