@@ -1106,13 +1106,13 @@ function trainingDonut() {
     <svg viewBox="0 0 120 120" style="width:96px;height:96px;flex-shrink:0">
       ${total===1?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="${stroke}"/>`:''}
       ${segments.map(s=>s.seg).join('')}
-      <text x="${cx}" y="${cy+2}" text-anchor="middle" font-family="'Newsreader',serif" font-size="${trainMin>=60?'20':'26'}" fill="var(--wine)" font-weight="700">${trainMin>=60?Math.floor(trainMin/60)+'t'+(trainMin%60>0?' '+Math.round(trainMin%60)+'m':''):trainMin+'m'}</text>
+      <text x="${cx}" y="${cy+2}" text-anchor="middle" font-family="'Newsreader',serif" font-size="${trainMin>=60?'17':'22'}" fill="var(--wine)" font-weight="700">${trainMin>=60?Math.floor(trainMin/60)+'t'+(trainMin%60>0?' '+Math.round(trainMin%60)+'m':''):trainMin+'m'}</text>
       <text x="${cx}" y="${cy+18}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" letter-spacing="0.5" fill="var(--muted)">TRÆNINGSTID</text>
     </svg>
     <div style="flex:1">${segments.map(s=>`
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
         <span style="font-family:'Space Mono',monospace;font-size:10px;color:${colors[s.k]}">${labels[s.k].toUpperCase()}</span>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${s.v}× ${tm[s.k]>0?'· '+fmtDur(tm[s.k]):''}</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${s.v}× ${tm[s.k]>0?fmtDur(tm[s.k]):''}</span>
       </div>`).join('')}
       ${trainMin > 0 ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--cream-d)">
         <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em">TRÆNINGSTID</span>
