@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-14 13:10",
+    "updated": "2026-06-14 13:20",
     "week": 2,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "40.3",
+      "value": "40.5",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-17.3",
+      "value": "-18.2",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "443",
+      "value": "451",
       "unit": "TSS",
-      "sub": "443 af 488 planlagt TSS",
+      "sub": "451 af 488 planlagt TSS",
       "color": "#27AE60"
     },
     "bikeKm": {
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 13
   },
-  "coachSpeech": "Søndag — afslut uge 2 stærkt. {HL} Dagens session er gennemført. Godt: TSB -17.3 er på et sundt niveau med plads til næste belastning. 91 procent af ugens TSS er i hus. Fokus: Vægt på 74.2 kg kalder på fokus på protein og et let kalorieunderskud. Justér de små ting, og resten følger. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-  "coachHighlight": "CTL 40.3 følger ramp-kurven mod 60",
+  "coachSpeech": "Søndag — afslut uge 2 stærkt. {HL} Dagens session er gennemført. Godt: TSB -18.2 er på et sundt niveau med plads til næste belastning. 92 procent af ugens TSS er i hus. Fokus: Vægt på 74.2 kg kalder på fokus på protein og et let kalorieunderskud. Justér de små ting, og resten følger. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachHighlight": "CTL 40.5 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 2 — 2 løb · 3 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "swim",
@@ -158,11 +158,19 @@
       "label": "Svøm 1500m let teknisk",
       "done": true,
       "today": true
+    },
+    {
+      "day": "Søn",
+      "disc": "hike",
+      "label": "Fornalutx Vandring",
+      "done": true,
+      "extra": true,
+      "today": true
     }
   ],
   "ctlCurve": [
     36.3,
-    40.3
+    40.5
   ],
   "weightHistory": [
     {
@@ -728,7 +736,7 @@
     },
     {
       "date": "2026-06-14",
-      "v": -17.3,
+      "v": -18.2,
       "real": true
     }
   ],
@@ -874,6 +882,14 @@
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
           "done": true,
+          "today": true
+        },
+        {
+          "day": "Søn",
+          "disc": "hike",
+          "label": "Fornalutx Vandring",
+          "done": true,
+          "extra": true,
           "today": true
         }
       ],
@@ -1423,6 +1439,7 @@
     }
   ],
   "train_mins": {
+    "hike": 39.0,
     "openwater": 34.0,
     "bike": 646.0,
     "commute": 146.0,
@@ -1430,6 +1447,6 @@
     "walk": 53.0,
     "strength": 26.0,
     "planned": 525.0,
-    "actual_total": 995.0
+    "actual_total": 1034.0
   }
 }
