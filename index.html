@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260614-coach --><!-- v20260614-coach -->
+<!DOCTYPE html><!-- v20260614-proxy --><!-- v20260614-proxy -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -749,7 +749,7 @@ async function loadCoachAssessment(force) {
   const prompt = 'Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\nKennet er i uge ' + D.week + ' af ' + D.totalWeeks + '. Filosofi: capacity-mode, ikke performance-mode. Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\nFriel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\nAktuelle data:\n- ' + kpis + '\n- ' + af + '\n- Ugefokus: ' + weekFocus + '\n\nGiv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n1. 💪 Træning & load (CTL=' + ctl + ', TSB=' + tsb + ')\n2. ⚖️ Krop & kost (vægt: ' + weight + ' kg)\n3. 🎯 AF-status & fokus for resten af ugen\n\nSkriv direkte til Kennet på dansk. Vær præcis — ingen tom ros. Highlight én konkret ting der kræver handling.';
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch('https://anthropic-proxy.kennet-3a4.workers.dev/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
