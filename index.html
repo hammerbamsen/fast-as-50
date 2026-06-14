@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260614-0620 --><!-- v20260614-0620 -->
+<!DOCTYPE html><!-- v20260614-coach --><!-- v20260614-coach -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -353,6 +353,7 @@ let D = {
   coachSpeech:"Du starter fra CTL 34 — lavere end din Ironman-baggrund tilsiger, men ærligt. {HL} Uge 1: etabler rytmen. 5 AF-dage, protein ved hvert måltid.",
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
+  coachAssessment: null,
   kpis:[
     {label:"VÆGT", value:"74.2", unit:"kg", sub:"Mål <72 kg · snit 74.4 kg", color:"#F39C12"},
     {label:"FEDT%", value:"22.7", unit:"%", sub:"Mål <20%", color:"#C0392B"},
@@ -687,6 +688,20 @@ function renderWeek() {
       </div>
     </div>` : ''}
   </div>
+  ${isCurrentWeek ? `
+  <div id="coach-assessment-box" class="card" style="border-left:3px solid var(--wine);padding:16px 18px;margin-bottom:14px;">
+    <div class="label" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <span>COACH-VURDERING</span>
+      <button onclick="refreshCoachAssessment()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:0 4px;" title="Opdatér">↻</button>
+    </div>
+    <div id="coach-assessment-content">
+      <div style="display:flex;align-items:center;gap:10px;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;">
+        <div class="spinner" style="width:14px;height:14px;border-width:2px"></div>
+        Analyserer ugedata...
+      </div>
+    </div>
+    <div id="coach-assessment-ts" style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-top:10px;"></div>
+  </div>` : ''}
   ${sessions.length === 0 ? `<div class="card" style="text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:32px">DATA IKKE TILGÆNGELIG</div>` :
     sessions.map(s=>`
   <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""} ${s.extra?"is-extra":""}">
@@ -709,6 +724,63 @@ function renderWeek() {
   }
   <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div>${renderFocus(focus)}</div>
   `;
+}
+
+async function loadCoachAssessment(force) {
+  const box = document.getElementById('coach-assessment-content');
+  const tsEl = document.getElementById('coach-assessment-ts');
+  if (!box) return;
+
+  if (D.coachAssessment && !force) {
+    box.innerHTML = D.coachAssessment.html;
+    if (tsEl) tsEl.textContent = 'Sidst opdateret: ' + D.coachAssessment.ts;
+    return;
+  }
+
+  box.innerHTML = '<div style="display:flex;align-items:center;gap:10px;color:var(--muted);font-family:\'Space Mono\',monospace;font-size:11px;"><div class="spinner" style="width:14px;height:14px;border-width:2px"></div>Analyserer ugedata...</div>';
+
+  const kpis = (D.kpis || []).map(k => k.label + ': ' + k.value + (k.unit||'') + ' (' + (k.sub||'') + ')').join(', ');
+  const af = 'AF denne uge: ' + D.afDays.weekDone + '/7, streak: ' + D.afDays.streak + ' dage';
+  const ctl = D.kpis ? (D.kpis.find(k=>k.label==='CTL')||{}).value || '?' : '?';
+  const tsb = D.kpis ? (D.kpis.find(k=>k.label==='FORM')||{}).value || '?' : '?';
+  const weight = D.kpis ? (D.kpis.find(k=>k.label==='VÆGT')||{}).value || '?' : '?';
+  const weekFocus = (D.weekFocus||'').substring(0,300);
+
+  const prompt = 'Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\nKennet er i uge ' + D.week + ' af ' + D.totalWeeks + '. Filosofi: capacity-mode, ikke performance-mode. Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\nFriel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\nAktuelle data:\n- ' + kpis + '\n- ' + af + '\n- Ugefokus: ' + weekFocus + '\n\nGiv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n1. 💪 Træning & load (CTL=' + ctl + ', TSB=' + tsb + ')\n2. ⚖️ Krop & kost (vægt: ' + weight + ' kg)\n3. 🎯 AF-status & fokus for resten af ugen\n\nSkriv direkte til Kennet på dansk. Vær præcis — ingen tom ros. Highlight én konkret ting der kræver handling.';
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{role: 'user', content: prompt}]
+      })
+    });
+    const result = await resp.json();
+    const text = result.content?.[0]?.text || 'Kunne ikke hente vurdering.';
+
+    const html = text
+      .split('\n')
+      .filter(l => l.trim())
+      .map(l => '<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">' + l + '</p>')
+      .join('');
+
+    D.coachAssessment = {
+      html: html,
+      ts: new Date().toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit'})
+    };
+    box.innerHTML = html;
+    if (tsEl) tsEl.textContent = 'Sidst opdateret: ' + D.coachAssessment.ts;
+  } catch(e) {
+    box.innerHTML = '<p style="font-family:\'Space Mono\',monospace;font-size:11px;color:var(--muted)">Kunne ikke hente AI-vurdering — tjek forbindelsen.</p>';
+  }
+}
+
+function refreshCoachAssessment() {
+  D.coachAssessment = null;
+  loadCoachAssessment(true);
 }
 
 function changeWeekView(delta) {
@@ -1164,6 +1236,9 @@ function navigate(pageId) {
   const renders = {today:renderToday, week:renderWeek, overview:renderOverview, body:renderBody, rules:renderRules};
   try {
     document.getElementById(`page-${pageId}`).innerHTML = renders[pageId]();
+    if (pageId === 'week' && typeof loadCoachAssessment === 'function') {
+      setTimeout(function(){ loadCoachAssessment(false); }, 60);
+    }
   } catch(e) {
     console.error('RENDER FEJL i ' + pageId + ':', e.message);
     document.getElementById(`page-${pageId}`).innerHTML = '<div style="padding:20px;color:red;font-family:monospace;font-size:11px">RENDER FEJL: ' + e.message + '</div>';
