@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-06-14 01:50",
+    "updated": "2026-06-14 02:01",
     "week": 2,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 84,
-    "daysToChristiansborg": 77,
-    "dayName": "Lørdag",
-    "date": "13. jun"
+    "daysToMedoc": 83,
+    "daysToChristiansborg": 76,
+    "dayName": "Søndag",
+    "date": "14. jun"
   },
   "kpis": {
     "weight": {
       "value": "74.2",
       "unit": "kg",
-      "sub": "Mål <72 kg · snit 74.5 kg",
+      "sub": "Mål <72 kg · snit 74.4 kg",
       "color": "#F39C12"
     },
     "fat": {
@@ -23,19 +23,19 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "40.9",
+      "value": "39.9",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-23.1",
+      "value": "-15.6",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
     },
     "sleep": {
-      "value": "7.5",
+      "value": "7.4",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "59.5",
+      "value": "59.6",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 13
   },
-  "coachSpeech": "Lørdag — uge 2 af 14. {HL} Dagens session er gennemført. Godt: TSB -23.1 viser hård belastning, så hold øje med trætheden. Søvn på 7.5 timer er solid. Fokus: 427 af 488 TSS er i hus, og Svøm 1500m let teknisk står tilbage. Vægt på 74.2 kg kalder på fokus på protein og et let kalorieunderskud. Justér de små ting, og resten følger. Keep moving forward.  \"Du bliver til det, du gør ofte.\"",
-  "coachHighlight": "CTL 40.9 følger ramp-kurven mod 60",
+  "coachSpeech": "Søndag — afslut uge 2 stærkt. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: TSB -15.6 er på et sundt niveau med plads til næste belastning. Søvn på 7.4 timer er solid. Fokus: 427 af 488 TSS er i hus, og Svøm 1500m let teknisk står tilbage. Vægt på 74.2 kg kalder på fokus på protein og et let kalorieunderskud. Justér de små ting, og resten følger. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachHighlight": "CTL 39.9 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 2 — 2 løb · 3 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "bike",
-    "title": "Cykel Z2 150 min Mallorca",
+    "discipline": "swim",
+    "title": "Svøm 1500m let teknisk",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
@@ -150,26 +150,21 @@
       "day": "Lør",
       "disc": "bike",
       "label": "Cykel Z2 150 min Mallorca",
-      "done": true,
-      "today": true
+      "done": true
     },
     {
       "day": "Søn",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
-      "done": false
+      "done": false,
+      "today": true
     }
   ],
   "ctlCurve": [
     36.3,
-    40.9
+    39.9
   ],
   "weightHistory": [
-    {
-      "date": "2026-06-04",
-      "v": 74.5,
-      "real": true
-    },
     {
       "date": "2026-06-05",
       "v": 75.0,
@@ -214,14 +209,14 @@
       "date": "2026-06-13",
       "v": 74.2,
       "real": false
+    },
+    {
+      "date": "2026-06-14",
+      "v": 74.2,
+      "real": false
     }
   ],
   "hrvHistory": [
-    {
-      "date": "2026-06-04",
-      "v": 43.0,
-      "real": true
-    },
     {
       "date": "2026-06-05",
       "v": 63.0,
@@ -266,14 +261,14 @@
       "date": "2026-06-13",
       "v": 61.0,
       "real": true
+    },
+    {
+      "date": "2026-06-14",
+      "v": 61.0,
+      "real": false
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-06-04",
-      "v": 7.9,
-      "real": true
-    },
     {
       "date": "2026-06-05",
       "v": 8.0,
@@ -318,14 +313,14 @@
       "date": "2026-06-13",
       "v": 7.3,
       "real": true
+    },
+    {
+      "date": "2026-06-14",
+      "v": 7.3,
+      "real": false
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-06-04",
-      "v": -4.5,
-      "real": true
-    },
     {
       "date": "2026-06-05",
       "v": -2.2,
@@ -369,6 +364,11 @@
     {
       "date": "2026-06-13",
       "v": -23.1,
+      "real": true
+    },
+    {
+      "date": "2026-06-14",
+      "v": -15.5,
       "real": true
     }
   ],
@@ -507,14 +507,14 @@
           "day": "Lør",
           "disc": "bike",
           "label": "Cykel Z2 150 min Mallorca",
-          "done": true,
-          "today": true
+          "done": true
         },
         {
           "day": "Søn",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
-          "done": false
+          "done": false,
+          "today": true
         }
       ],
       "blockType": "BUILD+",
@@ -1058,7 +1058,7 @@
     {
       "week": 2,
       "done": 6,
-      "total": 6,
+      "total": 7,
       "label": "Uge 2"
     }
   ],
