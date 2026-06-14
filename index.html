@@ -897,11 +897,12 @@ function renderBody() {
     <div class="label">Kropskomposition</div>
     ${progressMetric("Vægt", STATIC.weight.start, wNow, STATIC.weight.goal, " kg", "var(--gold)")}
     ${progressMetric("Fedt %", STATIC.bodyFat.start, fNow, STATIC.bodyFat.goal, "%", "var(--run)")}
-    ${progressMetric("CTL (fitness)", STATIC.ctlStart, ctlNow, STATIC.ctlGoal, "", "var(--bike)")}
   </div>
   <div class="card">
-    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
+    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
     ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', null, null)}
+    <div style="height:14px"></div>
+    ${sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null)}
     <div style="height:14px"></div>
     ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', null, null)}
     <div style="height:14px"></div>
