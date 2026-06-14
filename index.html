@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260614-proxy --><!-- v20260614-proxy -->
+<!DOCTYPE html><!-- v20260614-coachfix --><!-- v20260614-coachfix -->
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -731,7 +731,8 @@ async function loadCoachAssessment(force) {
   const tsEl = document.getElementById('coach-assessment-ts');
   if (!box) return;
 
-  if (D.coachAssessment && !force) {
+  const cacheAge = D.coachAssessment ? (Date.now() - (D.coachAssessment.timestamp || 0)) : Infinity;
+  if (D.coachAssessment && !force && cacheAge < 6 * 60 * 60 * 1000) {
     box.innerHTML = D.coachAssessment.html;
     if (tsEl) tsEl.textContent = 'Sidst opdateret: ' + D.coachAssessment.ts;
     return;
@@ -764,12 +765,28 @@ async function loadCoachAssessment(force) {
     const html = text
       .split('\n')
       .filter(l => l.trim())
-      .map(l => '<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">' + l + '</p>')
+      .map(l => {
+        if (/^#{1,3} /.test(l)) {
+          // Erstat ## Overskrift med kun teksten (COACH-VURDERING label er allerede der)
+          const txt = l.replace(/^#{1,3} /, '');
+          // Uge X vises som subtitle
+          if (/^Uge \d/.test(txt) || /^Coach-vurdering/.test(txt)) {
+            return '<p style="margin:0 0 12px;font-family:\'Space Mono\',sans-serif;font-size:10px;color:var(--muted);letter-spacing:.06em">' + txt.replace(/Coach-vurdering[\s·]*/, '') + '</p>';
+          }
+          return '';
+        }
+        // **fed** → <strong>
+        l = l.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        // *kursiv* → <em>
+        l = l.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        return '<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">' + l + '</p>';
+      })
       .join('');
 
     D.coachAssessment = {
       html: html,
-      ts: new Date().toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit'})
+      ts: new Date().toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit'}),
+      timestamp: Date.now()
     };
     box.innerHTML = html;
     if (tsEl) tsEl.textContent = 'Sidst opdateret: ' + D.coachAssessment.ts;
