@@ -778,10 +778,83 @@ QUOTES_PHILOSOPHY = [
 ]
 
 
+def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_act, planned):
+    """QA-tjek: returner liste af fejl hvis coach-teksten modsiger de faktiske data.
+    Bruges til at stoppe en forkert tekst fra at gå live.
+
+    Regler:
+    1. Nævn aldrig en session som manglende hvis den er done=True i week_sessions
+    2. Nævn aldrig VO2 som manglende hvis en Z4/Z5-session er done=True
+    3. CTL/TSB/vægt-referencer skal matche de faktiske tal
+    4. TSS-compliance må ikke kalde mangler hvis alle planlagte sessions er done
+    """
+    errors = []
+
+    # Byg sæt af done-labels (lowercase) og done-discs
+    done_labels = set()
+    done_discs = set()
+    all_planned_done = True
+    has_vo2_done = False
+
+    for s in (week_sessions or []):
+        if s.get('extra'):
+            continue  # ignorer ekstra-aktiviteter i QA
+        label = (s.get('label') or '').lower()
+        disc = s.get('disc', '')
+        if s.get('done'):
+            done_labels.add(label)
+            done_discs.add(disc)
+            if any(z in label for z in ['z4', 'z5', 'vo2', 'interval', 'bjerg']):
+                has_vo2_done = True
+        else:
+            all_planned_done = False
+
+    speech_lower = speech.lower()
+
+    # Regel 1+2: Ingen "mangler VO2" hvis VO2 er done
+    if has_vo2_done:
+        for phrase in ['mangler vo2', 'kør den vo2', 'vo2-session mangler', 'mangler stadig én vo2']:
+            if phrase in speech_lower:
+                errors.append(f"QA FEJL: Teksten nævner manglende VO2 men en Z4/Z5-session er done=True. Fjern: '{phrase}'")
+
+    # Regel 3: Alle planlagte sessions done — ingen "mangler sessioner"
+    if all_planned_done:
+        for phrase in ['sessioner står tilbage', 'mangler for at nå', 'ikke gennemført']:
+            if phrase in speech_lower:
+                errors.append(f"QA FEJL: Alle planlagte sessions er done men teksten antyder mangler. Fjern: '{phrase}'")
+
+    # Regel 4: TSB-referencer skal matche faktiske tal
+    if tsb is not None:
+        if tsb >= -10 and 'rød zone' in speech_lower:
+            errors.append(f"QA FEJL: TSB={tsb} er ikke i rød zone men teksten siger det.")
+        if tsb < -30 and 'sundt niveau' in speech_lower:
+            errors.append(f"QA FEJL: TSB={tsb} er under -30 (kritisk) men teksten siger 'sundt niveau'.")
+
+    # Regel 5: Vægt-referencer skal matche
+    if weight is not None:
+        if weight <= 72 and 'kalder på fokus på protein' in speech_lower:
+            errors.append(f"QA FEJL: Vægt={weight} er under mål (72) men teksten kalder på fokus.")
+
+    if errors:
+        print("  ⚠️  Coach QA fejl:")
+        for e in errors:
+            print(f"    {e}")
+    else:
+        print("  ✅ Coach QA: ingen fejl")
+
+    return errors
+
+
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
                            ctl=None, tsb=None, weight=None, sleep=None, compliance=None,
-                           tss_act=None, planned=None, remaining_sessions=None):
-    """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus)."""
+                           tss_act=None, planned=None, remaining_sessions=None, week_sessions=None):
+    """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus).
+
+    Coaching-princip: hold Kennet på sporet mod Christiansborg (29/8) og Médoc (5/9).
+    - Peg ALTID fremad: hvad er næste konkrete handling
+    - Nævn ALDRIG manglende sessions der faktisk er done=True
+    - Vær direkte og præcis — ikke generisk motivation
+    """
     DK_DAYS = ['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag']
     day_name = DK_DAYS[weekday]
 
@@ -798,6 +871,20 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     else:
         streak_comment = f"{af_this_week}/7 AF-dage denne uge. Hvert valg tæller."
 
+    # Tjek faktisk done-status fra week_sessions (ikke remaining_sessions der kan være stale)
+    sessions_list = week_sessions or []
+    planned_sessions = [s for s in sessions_list if not s.get('extra')]
+    done_count = sum(1 for s in planned_sessions if s.get('done'))
+    total_planned = len(planned_sessions)
+    all_done = (done_count == total_planned) and total_planned > 0
+    has_vo2_done = any(
+        any(z in (s.get('label') or '').lower() for z in ['z4', 'z5', 'vo2', 'interval', 'bjerg'])
+        for s in planned_sessions if s.get('done')
+    )
+
+    # Faktisk remaining baseret på week_sessions — ikke stale liste fra main()
+    actual_remaining = [s.get('label', '') for s in planned_sessions if not s.get('done')]
+
     # Dagens session
     if today_session and not today_session.get('done'):
         disc = today_session.get('disc','')
@@ -806,7 +893,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         disc_dk = disc_map.get(disc, 'træning')
         session_line = f"I dag: {title} ({disc_dk})."
     elif today_session and today_session.get('done'):
-        session_line = f"Dagens session er gennemført."
+        session_line = "Dagens session er gennemført."
     else:
         session_line = "Hviledag i dag."
 
@@ -832,51 +919,51 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     if tsb is not None:
         if tsb < -30:
-            focus.append(f"TSB {fmt(tsb,1)} er under bundgrænsen for restitution, så prioriter restitution før mere volumen.")
+            focus.append(f"TSB {fmt(tsb,1)} er under bundgrænsen — prioriter restitution før mere volumen.")
         elif tsb < -20:
             goods.append(f"TSB {fmt(tsb,1)} viser hård belastning, så hold øje med trætheden.")
         else:
             goods.append(f"TSB {fmt(tsb,1)} er på et sundt niveau med plads til næste belastning.")
 
+    # TSS-compliance — kun baseret på faktisk done status
     if compliance is not None:
-        if compliance >= 90:
+        if compliance >= 90 or all_done:
             goods.append(f"{int(compliance)} procent af ugens TSS er i hus.")
         else:
             done_tss = int(tss_act or 0)
             target_tss = int(planned or 0)
-            remaining = remaining_sessions or []
-            if remaining:
-                if len(remaining) == 1:
-                    rest_str = f"{remaining[0]} står tilbage"
+            if actual_remaining:
+                if len(actual_remaining) == 1:
+                    rest_str = f"{actual_remaining[0]} står tilbage"
                 else:
-                    rest_str = f"{len(remaining)} sessioner står tilbage, heriblandt {', '.join(remaining[:2])}"
-                focus.append(f"{done_tss} af {target_tss} TSS er i hus, og {rest_str}.")
+                    rest_str = f"{len(actual_remaining)} sessioner tilbage, heriblandt {', '.join(actual_remaining[:2])}"
+                focus.append(f"{done_tss} af {target_tss} TSS er i hus — {rest_str}.")
             else:
-                focus.append(f"{done_tss} af {target_tss} TSS er i hus, og resten af ugen tæller.")
+                # actual_remaining er tom = alt er done, selv om compliance < 90 (TSS-afvigelse)
+                goods.append(f"Alle sessioner gennemført — {int(compliance)}% af planlagt TSS.")
 
     if weight is not None:
         if weight <= 72:
             goods.append(f"Vægt på {fmt(weight)} kg er i mål.")
         else:
-            focus.append(f"Vægt på {fmt(weight)} kg kalder på fokus på protein og et let kalorieunderskud.")
+            focus.append(f"Vægt på {fmt(weight)} kg — hold protein højt og undgå lette kulhydrater om aftenen.")
 
     if sleep is not None:
         if sleep >= 7:
             goods.append(f"Søvn på {fmt(sleep,1)} timer er solid.")
         else:
-            focus.append(f"Søvn på {fmt(sleep,1)} timer er under 7-timers målet, så prioriter den.")
+            focus.append(f"Søvn på {fmt(sleep,1)} timer er under 7-timers målet — prioriter den.")
 
     if af_this_week >= 5:
-        goods.append(f"{af_this_week} af 7 AF-dage er i hus, og ugens mål er ramt.")
+        goods.append(f"{af_this_week}/7 AF-dage — ugens mål er ramt.")
     else:
-        focus.append(f"{af_this_week} af 7 AF-dage er i hus, og {5 - af_this_week} mangler for at nå ugens mål.")
+        focus.append(f"{af_this_week}/7 AF-dage — {5 - af_this_week} mangler for at nå ugens mål.")
 
     if goods:
         highlight = goods[0].rstrip(".")
     else:
         highlight = streak_comment.rstrip(".")
 
-    # Tag op til 3 punkter af hver — som sammenhængende sætninger
     rest_goods = goods[1:3]
     focus_items = focus[:3]
 
@@ -886,15 +973,20 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     if focus_items:
         parts.append("Fokus: " + " ".join(focus_items))
     elif not rest_goods:
-        parts.append("Alt kører efter planen, så bare fortsæt.")
+        parts.append("Alt kører efter planen — bare fortsæt.")
 
-    # Afsluttende motiverende linje afhænger af balance mellem godt/fokus
-    if len(focus) >= 3:
-        closing = "Det er en hård uge — men det er sådan formen bygges. Hold ved."
+    # Fremadrettet linje: hvad er næste skridt mod målet?
+    weeks_to_christiansborg = max(0, round((date(2026, 8, 29) - date.today()).days / 7, 0))
+    if all_done and len(focus) == 0:
+        closing = f"Stærk uge. {int(weeks_to_christiansborg)} uger til Christiansborg — hold sporet."
+    elif all_done:
+        closing = f"Alle sessioner i hus. Juster de små ting, og resten følger."
+    elif len(focus) >= 3:
+        closing = "Hård uge — men det er sådan formen bygges. Hold ved."
     elif len(focus) == 0:
         closing = "Alt peger den rigtige vej. Hold ilden ved — ikke sluk den."
     else:
-        closing = "Justér de små ting, og resten følger. Keep moving forward."
+        closing = "Keep moving forward."
     parts.append(closing)
 
     # Citat — roterer mellem træning, kost og filosofi efter dag i året
@@ -903,11 +995,10 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     quote_pools = [QUOTES_TRAINING, QUOTES_DIET, QUOTES_PHILOSOPHY]
     pool = quote_pools[day_of_year % len(quote_pools)]
     quote = pool[day_of_year % len(pool)]
-    parts.append("")  # mellemrum/separator før citat
+    parts.append("")
     parts.append(quote)
 
     guide_line = " ".join(parts)
-
     speech = f"{intro} {{HL}} {session_line} {guide_line}"
 
     return speech.strip(), highlight.strip()
@@ -1061,15 +1152,28 @@ def main():
     week_focus = fix_enc(data.get('weekFocus', ''))
     data['weekFocus'] = week_focus  # Gem den rettede version tilbage
     af_this_week = data.get('af', {}).get('weekDone', 0)
-    remaining_sessions = [
-        s.get('label', '') for s in data['week_sessions']
-        if not s.get('done') and not s.get('extra')
-    ]
+    # remaining_sessions beregnes nu inde i generate_coach_speech fra week_sessions
+    # -- send ikke stale liste her
     coach_speech, coach_highlight = generate_coach_speech(
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
         ctl=ctl, tsb=tsb, weight=weight, sleep=sleep, compliance=compliance,
-        tss_act=tss_act, planned=planned, remaining_sessions=remaining_sessions
+        tss_act=tss_act, planned=planned, week_sessions=data['week_sessions']
     )
+
+    # --- QA: valider coach-tekst mod faktiske data inden push ---
+    qa_errors = qa_coach_speech(
+        coach_speech, data['week_sessions'],
+        ctl=ctl, tsb=tsb, weight=weight,
+        af_this_week=af_this_week, tss_act=tss_act, planned=planned
+    )
+    if qa_errors:
+        # Behold forrige gyldige tekst -- skriv fejl til log men push ikke forkert tekst
+        print(f"  Coach QA fejlede -- beholder forrige coachSpeech")
+        existing_speech = data.get('coachSpeech', '')
+        if existing_speech:
+            coach_speech = existing_speech
+            coach_highlight = data.get('coachHighlight', coach_highlight)
+
     data['coachSpeech']    = coach_speech
     data['coachHighlight'] = coach_highlight
 
@@ -1105,6 +1209,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
