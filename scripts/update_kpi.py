@@ -598,7 +598,7 @@ def build_week_sessions(done_map, planned_sessions):
             # Kommute/cykel må ikke forbruge et planlagt løb
             match_idx = None
             for i, (disc, name) in enumerate(acts):
-                if i not in used[day_key] and disc == planned_disc:
+                if i not in used[day_key] and (disc == planned_disc or (disc == "openwater" and planned_disc == "swim")):
                     match_idx = i
                     break
             if match_idx is not None:
