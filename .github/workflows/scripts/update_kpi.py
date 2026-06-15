@@ -281,58 +281,110 @@ def week_meta():
         'date':               f"{today.day}. {dk_months[today.month-1]}",
     }
 
-def generate_coach_voice(meta, ctl, tsb, af_streak, week_af_count, weight, sleep, run_km, tss_comp):
-    """Friel (træning) + Kreutzer (krop/AF) kommentar — hvad er godt, hvad skal der fokuseres på."""
-    week = meta['week']
+def generate_coach_voice(meta, ctl, tsb, af_streak, week_af_count,
+                         weight, weight_is_today, sleep, run_km, tss_comp,
+                         week_sessions=None):
+    """
+    Genererer coach-tekst med:
+    - Korrekt fortid/fremtid baseret på session 'done'-status
+    - Vægt kun nævnt hvis målt i dag
+    - AF-kommentar tager højde for ugedag (ingen panik mandag)
+    - Eksplicit holdning/vurdering, ikke bare faktalister
+    """
+    from datetime import date
+    week      = meta['week']
+    day_name  = meta['dayName']
+    weekday   = date.today().weekday()  # 0=Man, 6=Søn
+    cb_days   = meta.get('daysToChristiansborg', 75)
+    cb_weeks  = cb_days // 7
+
     expected_ctl = 34 + (week - 1) * 1.9  # rute mod CTL 60 i uge 11
 
-    goods, focus = [], []
+    # ── Sessioner: hvad er gjort, hvad mangler ─────────────────────
+    done_sessions    = [s for s in (week_sessions or []) if s.get('done') and not s.get('extra')]
+    pending_sessions = [s for s in (week_sessions or []) if not s.get('done') and not s.get('extra')]
+
+    done_labels    = [s.get('label','') for s in done_sessions]
+    pending_labels = [s.get('label','') for s in pending_sessions]
+
+    # ── Vurderinger ───────────────────────────────────────────────
+    verdicts = []   # holdning/vurdering — det vigtigste
+    goods    = []   # positivt
+    focus    = []   # kræver handling
 
     # Træning — Friel
     if ctl is not None:
         if ctl >= expected_ctl - 1:
             goods.append(f"CTL {ctl} følger ramp-kurven mod 60")
         else:
-            focus.append(f"CTL {ctl} er lidt under kurven — byg gradvist, ikke med vold")
+            focus.append(f"CTL {ctl} er lidt under kurven — byg gradvist op")
 
     if tsb is not None:
         if tsb < -30:
-            focus.append(f"TSB {tsb} er under Friels bundgrænse (-30) — restitution før mere volumen")
+            verdicts.append(f"TSB {tsb} er under Friels -30-grænse — kroppen er i underskud. Restitution er nu højere prioritet end volumen.")
         elif tsb < -20:
-            goods.append(f"TSB {tsb} viser hård belastning — hold øje med trætheden")
+            verdicts.append(f"TSB {tsb} — hård belastningsuge. Hold øje med træthed og prioriter søvn.")
+        elif tsb < -10:
+            goods.append(f"TSB {tsb} — sund belastning med plads til næste session")
         else:
-            goods.append(f"TSB {tsb} er et sundt niveau — plads til næste belastning")
+            goods.append(f"TSB {tsb} — god form, klar til kvalitetstræning")
 
-    if tss_comp is not None:
-        if tss_comp >= 90:
-            goods.append(f"{int(tss_comp)}% af ugens planlagte TSS i hus")
-        else:
-            focus.append(f"kun {int(tss_comp)}% af ugens TSS — find de manglende sessioner")
+    # Sessioner — fortid/fremtid
+    if done_labels:
+        verdicts.append(f"Gennemført i dag: {done_labels[-1]}.")
+    if pending_labels:
+        next_s = pending_labels[0]
+        verdicts.append(f"Næste op: {next_s}.")
 
-    # Krop — Kreutzer
-    if weight is not None:
+    # Krop — Kreutzer (kun hvis vægt er målt i dag)
+    if weight is not None and weight_is_today:
         if weight <= 72:
-            goods.append(f"vægt {weight} kg er i mål")
+            goods.append(f"Vægt {weight} kg — i mål")
+        elif weight <= 73.5:
+            focus.append(f"Vægt {weight} kg — tæt på. Hold protein højt, lette kulhydrater ned om aftenen")
         else:
-            focus.append(f"vægt {weight} kg — Martin vil have fokus på protein og let underskud")
+            focus.append(f"Vægt {weight} kg — Martin: protein prioritet, underskud om aftenen")
 
     if sleep is not None:
-        if sleep >= 7:
-            goods.append(f"søvn {sleep}t er solid")
+        if sleep >= 7.5:
+            goods.append(f"Søvn {sleep}t — over målet")
+        elif sleep >= 7:
+            goods.append(f"Søvn {sleep}t er solid")
         else:
-            focus.append(f"søvn {sleep}t — under 7t-målet, prioriter den")
+            focus.append(f"Søvn {sleep}t — under 7t-målet, prioriter det")
 
-    # AF
+    # AF — tager højde for ugedag
     if week_af_count is not None:
+        remaining_days = 6 - weekday  # dage tilbage i ugen inkl. i dag
+        af_needed      = max(0, 5 - week_af_count)
         if week_af_count >= 5:
-            goods.append(f"{week_af_count}/5 AF-dage i hus, streak {af_streak}")
+            goods.append(f"{week_af_count}/5 AF-dage i hus — streak {af_streak} dage")
+        elif weekday == 0:
+            # Mandag: ingen grund til bekymring endnu
+            goods.append(f"AF-streak {af_streak} dage — uge 3 begyndt")
+        elif af_needed > remaining_days:
+            verdicts.append(f"Kun {week_af_count}/5 AF-dage og {remaining_days} dage tilbage — mål er matematisk svært. Sæt de næste dage i kalenderen nu.")
         else:
-            focus.append(f"kun {week_af_count}/5 AF-dage — {5 - week_af_count} mangler denne uge")
+            focus.append(f"{week_af_count}/5 AF-dage — {af_needed} mangler, {remaining_days} dage tilbage")
 
-    highlight = goods[0] if goods else "Hold rytmen — det er det, der bygger formen."
-    focus_text = " · ".join(focus[:2]) if focus else "alt kører efter planen — bare fortsæt"
+    # ── Byg speech-tekst ──────────────────────────────────────────
+    highlight = goods[0] if goods else f"CTL {ctl} — {cb_weeks} uger til Christiansborg"
 
-    speech = f"{meta['dayName']}, uge {week} af 14. {{HL}} Friel/Martin-fokus: {focus_text}."
+    parts = []
+    # Verdicts først (holdning)
+    if verdicts:
+        parts.append(" ".join(verdicts))
+    # Focus (handlinger)
+    if focus:
+        parts.append("Fokus: " + " · ".join(focus[:2]) + ".")
+    # Goods (positiv afslutning)
+    if goods and not verdicts:
+        parts.append(goods[0] + ".")
+
+    if not parts:
+        parts.append("Alt kører efter planen — hold rytmen.")
+
+    speech = f"{day_name}, uge {week} af 14. {{HL}} " + " ".join(parts)
     return speech, highlight
 
 
@@ -348,6 +400,23 @@ def main():
     meta       = week_meta()
 
     weight  = wellness.get('weight')   if wellness else None
+    # weight_is_today: True kun hvis Intervals har en måling dateret i dag
+    def _weight_today(raw_data):
+        from datetime import date as _date
+        today_str = str(_date.today())
+        for d in (raw_data or []):
+            if d.get('id','')[:10] == today_str and d.get('weight'):
+                return True
+        return False
+    _raw_wellness = None
+    try:
+        _r = requests.get(f'{BASE}/wellness', auth=AUTH,
+                          params={'oldest': str(date.today()), 'newest': str(date.today())})
+        if _r.status_code == 200:
+            _raw_wellness = _r.json()
+    except Exception:
+        pass
+    weight_is_today = _weight_today(_raw_wellness)
     fat     = wellness.get('body_fat') if wellness else None
     ctl     = fitness.get('ctl')       if fitness  else 34
     tsb     = fitness.get('tsb')       if fitness  else 0
@@ -425,7 +494,9 @@ def main():
     existing['kpis'] = kpis
 
     coach_speech, coach_highlight = generate_coach_voice(
-        meta, ctl, tsb, af_streak, week_af_count, weight, sleep, run_km, tss_comp
+        meta, ctl, tsb, af_streak, week_af_count,
+        weight, weight_is_today, sleep, run_km, tss_comp,
+        week_sessions=merged_sessions
     )
     existing['coachSpeech'] = coach_speech
     existing['coachHighlight'] = coach_highlight
