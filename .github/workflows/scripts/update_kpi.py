@@ -89,6 +89,40 @@ PLANNED_DISCS = {'run', 'bike', 'swim', 'openwater', 'strength'}
 # Disc-typer der altid er "ekstra" og aldrig matcher planlagte sessioner
 EXTRA_DISCS = {'walk', 'hike', 'commute', 'free'}
 
+def parse_planned_mins(label):
+    """Udtrækker planlagt varighed i minutter fra session-label. Fx '90 min' → 90."""
+    m = re.search(r'(\d+)\s*min', label or '', re.IGNORECASE)
+    return int(m.group(1)) if m else None
+
+def completion_status(actual_tss, planned_tss, actual_mins, planned_mins, threshold=0.80):
+    """
+    Returnerer (status, pct) hvor status er:
+      'done'    — ≥80% af planlagt TSS (eller tid hvis ingen TSS)
+      'partial' — 20–79% gennemført
+      'minimal' — <20% (dvs. nærmest ikke sket, fx 5 min løb)
+    Bruger TSS som primær metrik, tid som fallback.
+    """
+    # Primær: TSS
+    if planned_tss and planned_tss > 0 and actual_tss and actual_tss > 0:
+        pct = actual_tss / planned_tss
+        if pct >= threshold:
+            return 'done', round(pct * 100)
+        elif pct >= 0.20:
+            return 'partial', round(pct * 100)
+        else:
+            return 'minimal', round(pct * 100)
+    # Fallback: tid
+    if planned_mins and planned_mins > 0 and actual_mins and actual_mins > 0:
+        pct = actual_mins / planned_mins
+        if pct >= threshold:
+            return 'done', round(pct * 100)
+        elif pct >= 0.20:
+            return 'partial', round(pct * 100)
+        else:
+            return 'minimal', round(pct * 100)
+    # Ingen data til at vurdere — antag done hvis matchet
+    return 'done', None
+
 def get_week_sessions_merged(planned_sessions):
     """
     Hent faktiske aktiviteter denne uge fra Intervals.icu.
@@ -132,10 +166,11 @@ def get_week_sessions_merged(planned_sessions):
         if day_label not in actual_by_day:
             actual_by_day[day_label] = []
         actual_by_day[day_label].append({
-            'disc': disc,
-            'label': name,
-            'dur': dur_str,
-            'tss': tss,
+            'disc':     disc,
+            'label':    name,
+            'dur':      dur_str,
+            'dur_mins': dur_min,   # raw int til completion-beregning
+            'tss':      tss,
         })
 
     # Start med kopi af planlagte sessioner
@@ -158,7 +193,22 @@ def get_week_sessions_merged(planned_sessions):
                     break
 
             if match:
-                new_session['done'] = True
+                # Planlagt TSS: hentes fra session hvis sat, ellers estimér fra label
+                planned_tss_val = session.get('planned_tss') or None
+                planned_mins_val = parse_planned_mins(session.get('label', ''))
+                actual_tss_val  = match['tss'] or 0
+                actual_mins_val = match.get('dur_mins') or 0
+
+                status, pct = completion_status(
+                    actual_tss_val, planned_tss_val,
+                    actual_mins_val, planned_mins_val
+                )
+                new_session['completion']     = status   # 'done'/'partial'/'minimal'
+                new_session['completion_pct'] = pct      # fx 87 (%)
+                new_session['actual_tss']     = actual_tss_val
+                new_session['actual_mins']    = actual_mins_val
+                new_session['planned_mins']   = planned_mins_val
+                new_session['done'] = (status == 'done')
                 if match['dur']:
                     new_session['dur'] = match['dur']
                 if match['tss']:
