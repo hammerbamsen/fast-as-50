@@ -956,6 +956,9 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     if af_this_week >= 5:
         goods.append(f"{af_this_week}/7 AF-dage — ugens mål er ramt.")
+    elif weekday == 0 and af_this_week == 0:
+        # Mandag morgen: ny uge startet — ingen AF-dage endnu er normalt
+        goods.append(f"Ny uge med {streak} dages streak i ryggen. Hold den.")
     else:
         focus.append(f"{af_this_week}/7 AF-dage — {5 - af_this_week} mangler for at nå ugens mål.")
 
