@@ -1020,7 +1020,15 @@ function renderBody() {
     <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
     ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', null, null)}
     <div style="height:14px"></div>
-    ${sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null)}
+    ${D.fatHistory && D.fatHistory.filter(p=>p.real).length >= 2
+        ? sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null)
+        : `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 4px 2px">
+             <span style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:.08em;color:var(--muted)">FEDT%</span>
+             <span style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">
+               ${D.kpis && D.kpis.fat ? D.kpis.fat.value + ' % (seneste måling)' : 'Ingen målinger endnu'}
+             </span>
+           </div>`
+    }
     <div style="height:14px"></div>
     ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', null, null)}
     <div style="height:14px"></div>
