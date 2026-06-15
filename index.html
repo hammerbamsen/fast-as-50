@@ -748,8 +748,23 @@ async function loadCoachAssessment(force) {
   const weekFocus = (D.weekFocus||'').substring(0,300);
   const todaySession = (D.week_sessions||[]).find(s=>s.today);
   const todayLabel = todaySession ? todaySession.label : 'hviledag';
-  const todayDone  = todaySession ? !!todaySession.done : false;
-  const todayStatus = todayDone ? '✅ GENNEMFØRT' : '⏳ IKKE GENNEMFØRT ENDNU';
+  // Completion: 'done' (≥80% TSS/tid), 'partial' (20-79%), 'minimal' (<20%), eller null (ikke forsøgt)
+  const todayCompletion = todaySession ? (todaySession.completion || (todaySession.done ? 'done' : null)) : null;
+  const todayPct        = todaySession ? todaySession.completion_pct : null;
+  const todayActMins    = todaySession ? todaySession.actual_mins : null;
+  const todayPlanMins   = todaySession ? todaySession.planned_mins : null;
+
+  const todayStatus = (() => {
+    if (!todayCompletion || todayCompletion === null) return '⏳ IKKE FORSØGT ENDNU';
+    const pctStr = todayPct ? ' (' + todayPct + '%)' : '';
+    const timeStr = (todayActMins && todayPlanMins)
+      ? ' — ' + todayActMins + ' af ' + todayPlanMins + ' min'
+      : '';
+    if (todayCompletion === 'done')    return '✅ GENNEMFØRT' + pctStr + timeStr;
+    if (todayCompletion === 'partial') return '⚠️ DELVIST GENNEMFØRT' + pctStr + timeStr;
+    if (todayCompletion === 'minimal') return '❌ NÆRMEST IKKE GENNEMFØRT' + pctStr + timeStr;
+    return '⏳ IKKE FORSØGT ENDNU';
+  })();
   const remainingSessions = (D.week_sessions||[]).filter(s=>!s.done&&!s.today).map(s=>s.day+': '+s.label).join(', ');
   const weekday = new Date().getDay(); // 0=søn, 1=man
   const afNote = week_af_count >= 5
