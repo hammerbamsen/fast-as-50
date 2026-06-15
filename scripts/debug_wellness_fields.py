@@ -35,6 +35,9 @@ for k in sorted(all_keys):
     print(f"  {k}")
 
 print()
+print(f"Standard bodyFat felt: {[row.get('bodyFat') for row in rows if row.get('bodyFat')]}")
+print(f"Custom Kropsfedt felt: {[row.get('Kropsfedt') for row in rows if row.get('Kropsfedt')]}")
+print()
 print("=== RÆKKER MED VÆGT ELLER FEDT (alle felter) ===")
 for row in rows:
     has_weight = row.get('weight') is not None
