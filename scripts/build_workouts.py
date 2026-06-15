@@ -675,35 +675,6 @@ def main():
     if total_err > 0:
         sys.exit(1)
 
-    # Engangskørsel: ret uge 3 Outlook
-    fix_week3_outlook()
-
-
-def fix_week3_outlook():
-    """Engangskørsel: ret uge 3 Outlook-events (tirs=cykel, ons=svøm)."""
-    from datetime import date
-    print("\n=== Fix uge 3 Outlook ===")
-    # Slet forkerte events på tirs 16/6 og ons 17/6
-    outlook_delete_by_date(date(2026, 6, 16))
-    outlook_delete_by_date(date(2026, 6, 17))
-
-    # Opret korrekte
-    outlook_create({
-        "subject": "Cykel Formentor 149km",
-        "body": {"contentType": "text", "content": "Lang cykeltur Mallorca — Formentor-ruten Z2 base."},
-        "start": {"dateTime": "2026-06-16T06:00:00", "timeZone": "Europe/Copenhagen"},
-        "end":   {"dateTime": "2026-06-16T12:00:00", "timeZone": "Europe/Copenhagen"},
-        "categories": ["Træning"], "showAs": "busy"
-    })
-    outlook_create({
-        "subject": "Svøm 1500m let teknisk",
-        "body": {"contentType": "text", "content": "400m varm-op Z1\n5x100m teknik Z1-Z2\n300m cool"},
-        "start": {"dateTime": "2026-06-17T06:00:00", "timeZone": "Europe/Copenhagen"},
-        "end":   {"dateTime": "2026-06-17T06:45:00", "timeZone": "Europe/Copenhagen"},
-        "categories": ["Træning"], "showAs": "busy"
-    })
-    print("=== Fix uge 3 done ===\n")
-
 if __name__ == "__main__":
     main()
 
