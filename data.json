@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-15 09:50",
+    "updated": "2026-06-15 10:00",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "39.5",
+      "value": "41.3",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-11.4",
+      "value": "-19.5",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -41,10 +41,10 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "0.0",
+      "value": "13.5",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "hrv": {
       "value": "61.4",
@@ -53,10 +53,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "75",
       "unit": "TSS",
-      "sub": "0 af 602 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "75 af 602 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0.0",
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 14
   },
-  "coachSpeech": "Ny uge starter — uge 3 af 14. Build-uge. {HL} I dag: Lang løb Z2 90 min (løb). Godt: TSB -11.4 er på et sundt niveau med plads til næste belastning. Fuld uge foran — i dag: Lang løb Z2 90 min. Fokus: Vægt på 74.2 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "CTL 39.5 følger ramp-kurven mod 60",
+  "coachSpeech": "Ny uge starter — uge 3 af 14. Build-uge. {HL} Dagens session er gennemført. Godt: TSB -19.5 er på et sundt niveau med plads til næste belastning. Søvn på 7.7 timer er solid. Fokus: 75 af 602 TSS er i hus — 6 sessioner tilbage, heriblandt Cykel Formentor 149km, Svøm 1500m let teknisk. Vægt på 74.2 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
+  "coachHighlight": "CTL 41.3 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "run",
@@ -85,14 +85,14 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
       "day": "Man",
       "disc": "run",
       "label": "Lang løb Z2 90 min",
-      "done": false,
+      "done": true,
       "today": true
     },
     {
@@ -135,7 +135,7 @@
   "ctlCurve": [
     36.3,
     40.5,
-    39.5
+    41.3
   ],
   "weightHistory": [
     {
@@ -701,7 +701,7 @@
     },
     {
       "date": "2026-06-15",
-      "v": -11.3,
+      "v": -19.5,
       "real": true
     }
   ],
@@ -838,7 +838,7 @@
           "day": "Man",
           "disc": "run",
           "label": "Lang løb Z2 90 min",
-          "done": false,
+          "done": true,
           "today": true
         },
         {
@@ -1375,7 +1375,8 @@
     }
   ],
   "train_mins": {
+    "run": 89.0,
     "planned": 735.0,
-    "actual_total": 0
+    "actual_total": 89.0
   }
 }
