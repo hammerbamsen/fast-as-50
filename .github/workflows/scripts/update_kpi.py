@@ -69,6 +69,38 @@ def get_wellness_7d():
         }
     return None
 
+def get_history_28d():
+    """Henter daglige vægt, fedt%, HRV og søvn for seneste 28 dage til trend-grafer."""
+    oldest = str(date.today() - timedelta(days=27))
+    newest = str(date.today())
+    r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    if r.status_code != 200:
+        return {}
+
+    weight_hist, fat_hist, hrv_hist, sleep_hist = [], [], [], []
+
+    for d in r.json():
+        dt = (d.get('id') or d.get('date') or '')[:10]
+        if not dt:
+            continue
+        label = dt[8:10] + '/' + dt[5:7]   # "15/6"
+
+        if d.get('weight'):
+            weight_hist.append({'d': label, 'v': round(d['weight'], 1)})
+        if d.get('bodyFat'):
+            fat_hist.append({'d': label, 'v': round(d['bodyFat'], 1)})
+        if d.get('hrv'):
+            hrv_hist.append({'d': label, 'v': round(d['hrv'], 1)})
+        if d.get('sleepSecs'):
+            sleep_hist.append({'d': label, 'v': round(d['sleepSecs'] / 3600, 1)})
+
+    return {
+        'weightHistory': weight_hist,
+        'fatHistory':    fat_hist,
+        'hrvHistory':    hrv_hist,
+        'sleepHistory':  sleep_hist,
+    }
+
 def get_activities_7d():
     oldest = str(date.today() - timedelta(days=7))
     newest = str(date.today())
@@ -443,6 +475,7 @@ def main():
 
 
     fitness    = get_fitness()
+    history    = get_history_28d()
     wellness   = get_wellness_7d()
     activities = get_activities_7d()
     planned    = planned_tss_this_week()
@@ -542,6 +575,13 @@ def main():
     }
 
     existing['kpis'] = kpis
+
+    # Gem trend-historik (28 dage) til grafer
+    if history:
+        existing['weightHistory'] = history.get('weightHistory', [])
+        existing['fatHistory']    = history.get('fatHistory', [])
+        existing['hrvHistory']    = history.get('hrvHistory', [])
+        existing['sleepHistory']  = history.get('sleepHistory', [])
 
     coach_speech, coach_highlight = generate_coach_voice(
         meta, ctl, tsb, af_streak, week_af_count,
