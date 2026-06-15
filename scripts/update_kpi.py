@@ -1172,6 +1172,7 @@ def main():
     # --- Historik-grafer live fra Intervals (sparklines + CTL-kurve) ---
     if history:
         if history.get('weightHistory'): data['weightHistory'] = history['weightHistory']
+        if history.get('fatHistory'):    data['fatHistory']    = history['fatHistory']
         if history.get('hrvHistory'):    data['hrvHistory']    = history['hrvHistory']
         if history.get('sleepHistory'):  data['sleepHistory']  = history['sleepHistory']
         if history.get('tsbHistory'):    data['tsbHistory']    = history['tsbHistory']
