@@ -1102,11 +1102,11 @@ def main():
 
     # --- Træningstimer per type + planlagt ---
     planned_mins = get_planned_mins_this_week()
-    if train_mins:
-        actual_total = sum(train_mins.values())
-        data['train_mins'] = train_mins
-        data['train_mins']['planned'] = planned_mins
-        data['train_mins']['actual_total'] = round(actual_total, 0)
+    # Altid overskriv train_mins — også ved ugestart hvor der ingen aktiviteter er endnu
+    actual_total = sum(train_mins.values())
+    data['train_mins'] = train_mins
+    data['train_mins']['planned'] = planned_mins
+    data['train_mins']['actual_total'] = round(actual_total, 0)
 
     # --- Week sessions med done fra Intervals ---
     # Brug friske sessions fra Intervals (med fix_enc) — ikke stale labels fra data.json
@@ -1209,6 +1209,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
