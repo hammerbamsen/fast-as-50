@@ -1107,6 +1107,19 @@ def main():
 
     # --- KPIs ---
     weight     = wellness.get('weight')   if wellness else None
+
+    # weight_is_today: kun True hvis Intervals har en REEL måling dateret præcis i dag
+    def _weight_today(rows):
+        today_str = str(date.today())
+        for row in (rows or []):
+            dt = (row.get('id') or row.get('date') or '')[:10]
+            if dt == today_str and row.get('weight') is not None:
+                return True
+        return False
+    _r_today = requests.get(f'{BASE}/wellness', auth=AUTH,
+                            params={'oldest': str(date.today()), 'newest': str(date.today())})
+    _today_rows = _r_today.json() if _r_today.status_code == 200 else []
+    weight_is_today = _weight_today(_today_rows)
     weight_avg = wellness.get('weight_avg') if wellness else None
     fat        = wellness.get('fat')        if wellness else None
     protein    = wellness.get('protein')    if wellness else None
@@ -1213,7 +1226,7 @@ def main():
     # -- send ikke stale liste her
     coach_speech, coach_highlight = generate_coach_speech(
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
-        ctl=ctl, tsb=tsb, weight=weight, sleep=sleep, compliance=compliance,
+        ctl=ctl, tsb=tsb, weight=weight if weight_is_today else None, sleep=sleep, compliance=compliance,
         tss_act=tss_act, planned=planned, week_sessions=data['week_sessions']
     )
 
