@@ -1,0 +1,25 @@
+name: Debug wellness fields
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Kør debug
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+        run: python scripts/debug_wellness_fields.py > debug_output.txt 2>&1; cat debug_output.txt
+      - name: Gem output
+        run: |
+          git config user.name "Fast as Fifty Bot"
+          git config user.email "bot@hammerbamsen.github.io"
+          git add debug_output.txt
+          git diff --staged --quiet || git commit -m "debug: wellness fields output" && git push
