@@ -748,9 +748,20 @@ async function loadCoachAssessment(force) {
   const weekFocus = (D.weekFocus||'').substring(0,300);
   const todaySession = (D.week_sessions||[]).find(s=>s.today);
   const todayLabel = todaySession ? todaySession.label : 'hviledag';
+  const todayDone  = todaySession ? !!todaySession.done : false;
+  const todayStatus = todayDone ? '✅ GENNEMFØRT' : '⏳ IKKE GENNEMFØRT ENDNU';
   const remainingSessions = (D.week_sessions||[]).filter(s=>!s.done&&!s.today).map(s=>s.day+': '+s.label).join(', ');
+  const weekday = new Date().getDay(); // 0=søn, 1=man
+  const afNote = week_af_count >= 5
+    ? af
+    : (weekday <= 1
+        ? af + ' (uge lige startet — ingen alarm)'
+        : af + ' (' + (5 - week_af_count) + ' AF-dage mangler denne uge)');
+  const weightLine = weight && weight !== 'null' && weight !== '0'
+    ? '\n- Vægt: ' + weight + ' kg (seneste måling)'
+    : '';
 
-  const prompt = 'Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\nKennet er i uge ' + D.week + ' af ' + D.totalWeeks + '. Filosofi: capacity-mode, ikke performance-mode. Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\nFriel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\nAktuelle data:\n- ' + kpis + '\n- ' + af + '\n- Ugefokus: ' + weekFocus + '\n- I dag: ' + todayLabel + '\n- Resten af ugen: ' + (remainingSessions||'ingen planlagte') + '\n\nVIGTIGT: Brug disse planlagte sessions aktivt i din vurdering. Henvis konkret til hvad der er planlagt i dag og i morgen. Opfind IKKE opgaver der allerede er i planen.\n\nGiv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n1. 💪 Træning & load (CTL=' + ctl + ', TSB=' + tsb + ')\n2. ⚖️ Krop & kost (vægt: ' + weight + ' kg)\n3. 🎯 AF-status & fokus for resten af ugen\n\nSkriv direkte til Kennet på dansk. Vær præcis — ingen tom ros. Highlight én konkret ting der kræver handling.';
+  const prompt = 'Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\nKennet er i uge ' + D.week + ' af ' + D.totalWeeks + '. Filosofi: capacity-mode, ikke performance-mode. Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\nFriel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\nAktuelle data:\n- ' + kpis + '\n- ' + afNote + '\n- Ugefokus: ' + weekFocus + '\n- I dag: ' + todayLabel + ' [' + todayStatus + ']' + '\n- Resten af ugen: ' + (remainingSessions||'ingen planlagte') + weightLine + '\n\nVIGTIGT:\n- Hvis dagens session er GENNEMFØRT, skriv om den i DATID. Giv IKKE råd om hvad Kennet skal gøre under sessionen — den er overstået.\n- Hvis dagens session IKKE er gennemført endnu, må du gerne give konkrete råd (puls, tempo, fokus).\n- Nævn KUN vægt hvis der er en aktuel måling.\n- AF-alarm er kun relevant fra tirsdag og frem — mandag er for tidligt.\n\nGiv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n1. 💪 Træning & load (CTL=' + ctl + ', TSB=' + tsb + ')\n2. ⚖️ Krop & kost' + (weightLine ? ' (vægt: ' + weight + ' kg)' : '') + '\n3. 🎯 AF-status & fokus for resten af ugen\n\nSkriv direkte til Kennet på dansk. Vær præcis — ingen tom ros. Tag stilling — hvad er det VIGTIGSTE han skal fokusere på nu?';
 
   try {
     const resp = await fetch('https://anthropic-proxy.kennet-3a4.workers.dev/', {
