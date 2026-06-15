@@ -857,42 +857,11 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     - Brug masterplanen som kontekst — TSS=0 mandag morgen er normalt, ikke et rødt flag
     """
 
-    # Masterplan uge-for-uge: bruges til kontekst så coach-teksten ved hvad der er planlagt
-    # Format: {uge: [(dag, sport, label, varighed, zone, noter), ...]}
-    MASTERPLAN = {
-        1: [
-            ('Man', 'Styrke+Cykel', 'Hometrainer + Styrke', '45+20 min', 'Z2', 'Easy spin Z2 + grundprogram'),
-            ('Tirs', 'Løb', 'Løb easy', '30 min', 'Z1-Z2', 'Ben vækkes blidt'),
-            ('Ons', 'Løb', 'Løb easy', '35 min', 'Z2', 'Stadig roligt'),
-            ('Tor', 'Styrke', 'Styrke fuld + walk', '30+30 min', '-', 'Fuldt program'),
-            ('Fre', 'Løb', 'Løb fart', '50 min', 'Z3/Z1', '5×3 min Z3 intervaller'),
-            ('Lør', 'Løb', 'Løb lang', '90 min', 'Z2', 'Z2 base. Médoc-byggesten'),
-            ('Søn', 'Svøm+Cykel', 'Svøm + cykel let', '45+30 min', 'Z1-Z2', 'Pool + cool på cykel'),
-        ],
-        2: [
-            ('Man', 'Styrke', 'Styrke fuld + walk', '30+30 min', '-', 'Aktiv recovery'),
-            ('Tirs', 'Løb', 'Løb VO2 + styrke', '50+20 min', 'Z4/Z1', '5×3 min Z4 VO2-stimulus'),
-            ('Ons', 'Cykel', 'Hometrainer Z2', '60 min', 'Z2', 'Cross-training, easy'),
-            ('Tor', 'Walk', 'Let walk (rejsedag)', '30 min', '-', 'Mallorca-rejse'),
-            ('Fre', 'Cykel', 'Cykel base LANG', '2,5-3 t', 'Z2', 'Mallorca Z2 base'),
-            ('Lør', 'Cykel', 'Cykel bjerg-intervaller', '2 t', 'Z3-Z4', '4-6×5-8 min bjerg VO2'),
-            ('Søn', 'Svøm+Løb', 'Svøm + let løb', '45+30 min', 'Z1-Z2', 'Recovery-orienteret'),
-        ],
-        3: [
-            ('Man', 'Svøm+Løb', 'Svøm + lang løb', '30+60 min', 'Z2', 'Møde kl. 13 — træning inden. Lang løb Z2 base'),
-            ('Tirs', 'Cykel+Svøm', 'Lang cykel + open-water svøm', '2,5-3t + 20 min', 'Z2', 'Mallorca volumen-dag'),
-            ('Ons', 'Cykel', 'VO2 cykel-intervaller', '75 min', 'Z4-Z5', 'VO2-stimulus #1 i uge 3'),
-            ('Tor', 'Cykel', 'Easy cykel', '60 min', 'Z1-Z2', 'Fly hjem aften — let spin'),
-            ('Fre', 'Styrke', 'Styrke fuld', '45 min', '-', 'Hjemme igen. Fuldt styrkeprogram'),
-            ('Lør', 'Løb', 'Løb', '60 min', 'Z2', 'Z2 base løb'),
-            ('Søn', 'Svøm', 'Svøm', '45 min', 'Z1-Z2', 'Afslutning på uge 3. Recovery'),
-        ],
-    }
-
-    # Ugens plan fra masterplanen (fallback til tom liste)
-    week_plan = MASTERPLAN.get(week_num, [])
-    today_plan = week_plan[weekday] if week_plan and weekday < len(week_plan) else None
-    remaining_plan = week_plan[weekday+1:] if week_plan else []
+    # Brug week_sessions (live fra Intervals) som kilden til dagens og resten af ugens plan
+    # Dette er altid opdateret og matcher hvad der faktisk er i Intervals.icu
+    _all_sessions = [s for s in (week_sessions or []) if not s.get('extra')]
+    today_intervals = next((s for s in _all_sessions if s.get('today')), None)
+    remaining_intervals = [s for s in _all_sessions if not s.get('done') and not s.get('today')]
     DK_DAYS = ['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag']
     day_name = DK_DAYS[weekday]
 
@@ -981,10 +950,10 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
             else:
                 # actual_remaining er tom = alt er done, selv om compliance < 90 (TSS-afvigelse)
                 goods.append(f"Alle sessioner gennemført — {int(compliance)}% af planlagt TSS.")
-    elif is_monday_start and today_plan:
-        # Mandag morgen: vis hvad der er planlagt i dag fra masterplanen
-        dag, sport, label, varighed, zone, noter = today_plan
-        goods.append(f"Fuld uge foran — start med {label} ({varighed}, {zone}). {noter}.")
+    elif is_monday_start and today_intervals:
+        # Mandag morgen: vis hvad der er planlagt i dag direkte fra Intervals
+        label = today_intervals.get('label', 'træning')
+        goods.append(f"Fuld uge foran — i dag: {label}.")
 
     if weight is not None:
         if weight <= 72:
