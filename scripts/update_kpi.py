@@ -399,12 +399,15 @@ def get_activities_week():
                 disc = 'strength'
             else:
                 disc = 'free'
-            done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc, a.get('name') or atype))
+            _tss      = round(a.get('training_load') or 0)
+            _dur_secs = a.get('moving_time') or a.get('elapsed_time') or 0
+            _dur_mins = round(_dur_secs / 60)
+            done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc, a.get('name') or atype, _tss, _dur_mins))
 
         # Sortér efter tidspunkt og behold disc-navne + aktivitetsnavne
         for k in done_map:
             sorted_acts = sorted(done_map[k], key=lambda x: x[0])
-            done_map[k] = [(disc, name) for _, disc, name in sorted_acts]
+            done_map[k] = [(disc, name, tss, dur_mins) for _, disc, name, tss, dur_mins in sorted_acts]
 
         return {
             'tss_week': round(total_tss, 0),
@@ -555,6 +558,30 @@ def gh_put(path, sha, content, message):
     print(f"  {'✅' if ok else '❌'} {path}: {r.json().get('commit',{}).get('sha','')[:7] if ok else r.text[:100]}")
     return ok
 
+def parse_planned_mins(label):
+    """Parser planlagt varighed fra label. Fx 'Lang løb Z2 90 min' → 90."""
+    m = re.search(r'(\d+)\s*min', label or '', re.IGNORECASE)
+    return int(m.group(1)) if m else None
+
+def calc_completion(actual_tss, planned_tss, actual_mins, planned_mins, threshold=0.80):
+    """
+    Returnerer (status, pct):
+      'done'    ≥80% af planlagt TSS (primær) eller tid (fallback)
+      'partial' 20-79%
+      'minimal' <20% — nærmest ikke gennemført
+    """
+    if planned_tss and planned_tss > 0 and actual_tss and actual_tss > 0:
+        pct = actual_tss / planned_tss
+        if pct >= threshold:      return 'done',    round(pct * 100)
+        elif pct >= 0.20:         return 'partial', round(pct * 100)
+        else:                     return 'minimal', round(pct * 100)
+    if planned_mins and planned_mins > 0 and actual_mins and actual_mins > 0:
+        pct = actual_mins / planned_mins
+        if pct >= threshold:      return 'done',    round(pct * 100)
+        elif pct >= 0.20:         return 'partial', round(pct * 100)
+        else:                     return 'minimal', round(pct * 100)
+    return 'done', None  # matchet men ingen data — antag done
+
 def build_week_sessions(done_map, planned_sessions):
     """Opdater done-status på ugessessioner baseret på Intervals-aktiviteter.
     done_map: {dag_short: [(disc, navn), ...]} sorteret efter tidspunkt.
@@ -597,12 +624,25 @@ def build_week_sessions(done_map, planned_sessions):
             # Kun match på korrekt disc — ingen fallback
             # Kommute/cykel må ikke forbruge et planlagt løb
             match_idx = None
-            for i, (disc, name) in enumerate(acts):
+            for i, (disc, name, act_tss, act_dur_mins) in enumerate(acts):
                 if i not in used[day_key] and (disc == planned_disc or (disc == "openwater" and planned_disc == "swim")):
                     match_idx = i
                     break
             if match_idx is not None:
-                new_s['done'] = True
+                act_disc, act_name, act_tss, act_dur_mins = acts[match_idx]
+                planned_mins_val = parse_planned_mins(s.get('label', ''))
+                planned_tss_val  = s.get('planned_tss') or None
+
+                status, pct = calc_completion(
+                    act_tss, planned_tss_val,
+                    act_dur_mins, planned_mins_val
+                )
+                new_s['completion']     = status
+                new_s['completion_pct'] = pct
+                new_s['actual_tss']     = act_tss
+                new_s['actual_mins']    = act_dur_mins
+                new_s['planned_mins']   = planned_mins_val
+                new_s['done'] = (status in ('done', 'partial'))
                 used[day_key].add(match_idx)
 
         result.append(new_s)
@@ -615,7 +655,7 @@ def build_week_sessions(done_map, planned_sessions):
             continue
         if day_idx > today_idx:
             continue
-        for i, (disc, name) in enumerate(acts):
+        for i, (disc, name, tss, dur_mins) in enumerate(acts):
             if i in used.get(day_key, set()):
                 continue
             label = name if name else disc_labels.get(disc, disc)
