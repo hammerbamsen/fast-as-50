@@ -56,7 +56,7 @@ def get_wellness_7d():
         hrvs    = [d.get('hrv')       for d in data if d.get('hrv')]
         sleeps  = [d.get('sleepSecs') for d in data if d.get('sleepSecs')]
         weights  = [d.get('weight')    for d in data if d.get('weight')]
-        fats     = [d.get('Kropsfedt')   for d in data if d.get('Kropsfedt')]
+        fats     = [d.get('bodyFat') or d.get('Kropsfedt') for d in data if d.get('bodyFat') or d.get('Kropsfedt')]
         proteins = [d.get('Protein')   for d in data if d.get('Protein')]
         weight_avg = round(sum(weights)/len(weights), 1) if weights else None
         return {
@@ -110,7 +110,9 @@ def get_history_7d():
     def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
     def w_hrv(row):    return round(row['hrv'], 1) if row.get('hrv') is not None else None
     def w_sleep(row):  return round(row['sleepSecs'] / 3600, 1) if row.get('sleepSecs') is not None else None
-    def w_fat(row):    return round(row['Kropsfedt'], 1) if row.get('Kropsfedt') is not None else None
+    def w_fat(row):
+        v = row.get('bodyFat') if row.get('bodyFat') is not None else row.get('Kropsfedt')
+        return round(v, 1) if v is not None else None
     def w_tsb(row):
         if row.get('ctl') is not None and row.get('atl') is not None:
             return round(row['ctl'] - row['atl'], 1)
