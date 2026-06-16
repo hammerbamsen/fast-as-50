@@ -1094,7 +1094,8 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"1. 💪 Træning & load (CTL={ctl}, TSB={tsb})\n"
         f"2. ⚖️ Krop & kost\n"
         f"3. 🎯 AF-status & fokus for resten af ugen\n\n"
-        f"Skriv direkte til Kennet på dansk. Vær præcis — ingen tom ros."
+        f"Skriv direkte til Kennet på dansk. Vær præcis — ingen tom ros.\n"
+        f"Start IKKE med en header-linje som 'Dag X af Y uger' — den tilføjes automatisk."
     )
 
     try:
@@ -1321,7 +1322,11 @@ def main():
     )
     if ai_text:
         # Konverter til simpel HTML (samme logik som dashboardet)
-        html_lines = []
+        # Tilføj korrekt header hardcodet (forhindrer AI i at skrive forkert "Dag X af 14 uger")
+        program_day = (date.today() - date(2026, 6, 1)).days + 1
+        header_str = f"Dag {program_day} af 98 · {DK_DAYS[weekday]} · Uge {week_num}"
+        header_html = f'<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)"><strong>{header_str}</strong></p>'
+        html_lines = [header_html]
         for line in ai_text.split('\n'):
             line = line.strip()
             if not line:
