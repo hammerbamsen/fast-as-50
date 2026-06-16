@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-16 15:01",
+    "updated": "2026-06-16 15:10",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "40.3",
+      "value": "43.3",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-12.4",
+      "value": "-26.5",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -53,16 +53,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "75",
+      "value": "203",
       "unit": "TSS",
-      "sub": "75 af 602 planlagt TSS",
+      "sub": "203 af 602 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0.0",
+      "value": "148.5",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#27AE60"
     },
     "afStreak": {
       "value": "15",
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 15
   },
-  "coachSpeech": "Tirsdag — uge 3 af 14. {HL} I dag: Cykel Formentor 149km (cykel). Godt: TSB -12.4 er på et sundt niveau med plads til næste belastning. Søvn på 7.6 timer er solid. Fokus: 75 af 602 TSS er i hus — 6 sessioner tilbage, heriblandt Cykel Formentor 149km, Svøm 1500m let teknisk. 1/7 AF-dage — 4 mangler for at nå ugens mål. Keep moving forward.  \"Keep moving forward.\"",
-  "coachHighlight": "CTL 40.3 følger ramp-kurven mod 60",
+  "coachSpeech": "Tirsdag — uge 3 af 14. {HL} Dagens session er gennemført. Godt: TSB -26.5 viser hård belastning, så hold øje med trætheden. Søvn på 7.6 timer er solid. Fokus: 203 af 602 TSS er i hus — 5 sessioner tilbage, heriblandt Svøm 1500m let teknisk, Cykel Z2 60 min Mallorca. 1/7 AF-dage — 4 mangler for at nå ugens mål. Keep moving forward.  \"Keep moving forward.\"",
+  "coachHighlight": "CTL 43.3 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -103,8 +103,13 @@
       "day": "Tir",
       "disc": "bike",
       "label": "Cykel Formentor 149km",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 0,
+      "actual_mins": 448,
+      "planned_mins": null
     },
     {
       "day": "Ons",
@@ -140,7 +145,7 @@
   "ctlCurve": [
     36.3,
     40.5,
-    40.3
+    43.3
   ],
   "weightHistory": [
     {
@@ -706,7 +711,7 @@
     },
     {
       "date": "2026-06-16",
-      "v": -12.4,
+      "v": -26.4,
       "real": true
     }
   ],
@@ -855,8 +860,13 @@
           "day": "Tir",
           "disc": "bike",
           "label": "Cykel Formentor 149km",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 0,
+          "actual_mins": 448,
+          "planned_mins": null
         },
         {
           "day": "Ons",
@@ -1386,9 +1396,10 @@
     }
   ],
   "train_mins": {
+    "bike": 448.0,
     "run": 89.0,
     "planned": 735.0,
-    "actual_total": 89.0
+    "actual_total": 537.0
   },
   "fatHistory": [
     {
@@ -1532,6 +1543,6 @@
       "real": false
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"># Coach-vurdering — Tirsdag, Uge 3</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 40.3 er solid fremgang, og TSB på -12.4 er håndterbart — men Formentor er 149 km og vil koste. Kør den i ægte Z2-disciplin: hold power/puls i skak hele vejen, især i første halvdel op mod Col de Formentor. Hvis benene ikke er der, er det bedre at afkorte end at lade TSB falde under -25 inden onsdag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling i dag, så ingen kommentar på tal. En lang cykeltur som denne kræver, at du spiser undervejs — minimum 60g kulhydrat/time fra time to — ellers sparer du kalorier på den forkerte måde og kompromitterer resten af ugen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 1/7 AF-dage med en 15-dages streak — streaken er ikke et mål i sig selv, og en AF-dag *er* træning i capacity-mode. Prioritér onsdag som ægte restitution efter Formentor: svøm teknisk og roligt, ingen ekstra. Resten af ugen er fornuftigt bygget op — hold torsdag og lørdag strikt Z2, og lad styrkedagen fredag sidde som planlagt.</p>",
-  "coachAssessmentTs": "13:01"
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"># Coach-vurdering — Tirsdag, uge 3</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Formentor-turen på 149 km var et solidt stykke arbejde og har sandsynligvis skubbet CTL tæt på 45 — men TSB er nu presset ned mod -28 til -30, hvilket er grænsen. De resterende sessioner denne uge skal holdes i Z2 uden diskussion — ingen \"just a little harder\"-fristelser på torsdag på Mallorca.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtstatus — men 149 km i varmen på Mallorca kræver seriøs restitutionsernæring i dag: protein inden for 30 min efter ankomst, kulhydrater til at genopbygge glykogen, og væske hele aftenen. Det er ikke en dag at spare kalorier på.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 1/7 AF-dage — streak på 15 er fin, men det tæller ikke som aktiv restitution. Onsdag svøm og fredag styrke er dine naturlige AF-kandidater i morgen; sørg for at én af de resterende dage reelt er let nok til at TSB kan trække i positiv retning inden weekend. Lang løb lørdag bliver din vigtigste session — beskyt den ved ikke at overbelaste torsdag.</p>",
+  "coachAssessmentTs": "13:11"
 }
