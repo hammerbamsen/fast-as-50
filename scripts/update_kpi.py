@@ -3,12 +3,13 @@
 Henter KPI-data fra Intervals.icu og opdaterer data.json + index.html.
 Køres via GitHub Actions dagligt kl. 03:00 UTC.
 """
-import os, re, json, base64, requests
+import os, re, json, base64, requests, urllib.request as _urllib_req
 from datetime import date, datetime, timedelta
 
 API_KEY    = os.environ.get('INTERVALS_API_KEY', '')
 ATHLETE_ID = os.environ.get('INTERVALS_ATHLETE_ID', 'i0')
 GH_TOKEN   = os.environ.get('GH_TOKEN', '')
+ANTHROPIC_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
 REPO       = 'hammerbamsen/fast-as-50'
 BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH       = ('API_KEY', API_KEY)
@@ -1060,6 +1061,68 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     return speech.strip(), highlight.strip()
 
 
+
+def generate_ai_assessment(week_num, ctl, tsb, weight, af_this_week, af_streak,
+                             week_sessions, week_focus, today_session, tss_act, planned):
+    """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
+    if not ANTHROPIC_KEY:
+        print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
+        return None
+
+    kpis_str = f"CTL: {ctl}, TSB: {tsb}, Vægt: {weight} kg" if weight else f"CTL: {ctl}, TSB: {tsb}"
+    af_note = f"AF denne uge: {af_this_week}/7, streak: {af_streak} dage"
+    today_label = today_session.get('label', 'hviledag') if today_session else 'hviledag'
+    today_done = today_session.get('done', False) if today_session else False
+    today_status = "✅ GENNEMFØRT" if today_done else "⏳ IKKE FORSØGT ENDNU"
+    remaining = ", ".join(
+        f"{s['day']}: {s['label']}" for s in week_sessions if not s.get('done') and not s.get('today')
+    ) or "ingen planlagte"
+    weight_line = f"\n- Vægt: {weight} kg (seneste måling)" if weight else ""
+
+    prompt = (
+        f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
+        f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
+        f"Kennet er i uge {week_num} af 14. Filosofi: capacity-mode, ikke performance-mode. "
+        f"Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\n"
+        f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
+        f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
+        f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
+        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}\n\n"
+        f"VIGTIGT:\n- Hvis dagens session er GENNEMFØRT, skriv om den i DATID.\n"
+        f"- Hvis ikke gennemført, giv konkrete råd.\n- Nævn KUN vægt hvis aktuel måling.\n\n"
+        f"Giv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n"
+        f"1. 💪 Træning & load (CTL={ctl}, TSB={tsb})\n"
+        f"2. ⚖️ Krop & kost\n"
+        f"3. 🎯 AF-status & fokus for resten af ugen\n\n"
+        f"Skriv direkte til Kennet på dansk. Vær præcis — ingen tom ros."
+    )
+
+    try:
+        payload = json.dumps({
+            "model": "claude-sonnet-4-6",
+            "max_tokens": 400,
+            "messages": [{"role": "user", "content": prompt}]
+        }).encode()
+
+        req = _urllib_req.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=payload,
+            method="POST",
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": ANTHROPIC_KEY,
+                "anthropic-version": "2023-06-01"
+            }
+        )
+        with _urllib_req.urlopen(req, timeout=30) as r:
+            result = json.loads(r.read())
+            text = result["content"][0]["text"]
+            print(f"  ✅ AI-vurdering genereret ({len(text)} tegn)")
+            return text
+    except Exception as e:
+        print(f"  ⚠️  AI-vurdering fejlede: {e}")
+        return None
+
 def main():
     today     = date.today()
     weekday   = today.weekday()
@@ -1246,6 +1309,32 @@ def main():
 
     data['coachSpeech']    = coach_speech
     data['coachHighlight'] = coach_highlight
+
+    # --- AI coach-vurdering (genereres server-side, caches i data.json) ---
+    ai_text = generate_ai_assessment(
+        week_num, ctl, tsb,
+        weight if weight_is_today else None,
+        af_this_week, af_streak,
+        data['week_sessions'], week_focus,
+        today_session, tss_act, planned
+    )
+    if ai_text:
+        # Konverter til simpel HTML (samme logik som dashboardet)
+        html_lines = []
+        for line in ai_text.split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+            line = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', line)
+            html_lines.append(f'<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">{line}</p>')
+        from datetime import datetime as _dt
+        data['coachAssessmentHtml'] = ''.join(html_lines)
+        data['coachAssessmentTs']   = _dt.now().strftime('%H:%M')
+    else:
+        # Behold eksisterende hvis API fejler
+        if not data.get('coachAssessmentHtml'):
+            data['coachAssessmentHtml'] = ''
+            data['coachAssessmentTs']   = ''
 
     # --- Push data.json ---
     gh_put('data.json', sha_data,
