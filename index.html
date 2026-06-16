@@ -354,6 +354,8 @@ let D = {
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
   weekFocus:"Aktivér systemet. Første build-uge — hold igen på intensitet, byg volumen gradvist. Fokus: protein ≥ 150 g/dag, søvn ≥ 7 t, 5 AF-dage.",
   coachAssessment: null,
+  coachAssessmentHtml: '',
+  coachAssessmentTs: '',
   kpis:[
     {label:"VÆGT", value:"74.2", unit:"kg", sub:"Mål <72 kg · snit 74.5 kg", color:"#F39C12"},
     {label:"FEDT%", value:"22.7", unit:"%", sub:"Mål <20%", color:"#C0392B"},
@@ -731,12 +733,18 @@ async function loadCoachAssessment(force) {
   const tsEl = document.getElementById('coach-assessment-ts');
   if (!box) return;
 
-  const cacheAge = D.coachAssessment ? (Date.now() - (D.coachAssessment.timestamp || 0)) : Infinity;
-  if (D.coachAssessment && !force && cacheAge < 6 * 60 * 60 * 1000) {
-    box.innerHTML = D.coachAssessment.html;
-    if (tsEl) tsEl.textContent = 'Sidst opdateret: ' + D.coachAssessment.ts;
+  // Læs fra data.json (genereret server-side af update_kpi.py — ingen proxy nødvendig)
+  if (D.coachAssessmentHtml) {
+    box.innerHTML = D.coachAssessmentHtml;
+    if (tsEl && D.coachAssessmentTs) tsEl.textContent = 'Opdateret: ' + D.coachAssessmentTs;
     return;
   }
+
+  box.innerHTML = '<p style="font-family:\'Space Mono\',monospace;font-size:11px;color:var(--muted)">Vurdering opdateres næste gang update-kpi kører (dagligt kl. 03 UTC).</p>';
+  return;
+
+  // ---- Følgende kode er deaktiveret (proxy returnerer 403) ----
+  const _DISABLED = true; if (_DISABLED) return;
 
   box.innerHTML = '<div style="display:flex;align-items:center;gap:10px;color:var(--muted);font-family:\'Space Mono\',monospace;font-size:11px;"><div class="spinner" style="width:14px;height:14px;border-width:2px"></div>Analyserer ugedata...</div>';
 
@@ -1396,8 +1404,10 @@ async function init() {
       if (remote.hrvHistory)     D.hrvHistory     = remote.hrvHistory;
       if (remote.sleepHistory)   D.sleepHistory   = remote.sleepHistory;
       if (remote.tsbHistory)     D.tsbHistory     = remote.tsbHistory;
-      if (remote.coachSpeech)    D.coachSpeech    = remote.coachSpeech;
-      if (remote.coachHighlight) D.coachHighlight = remote.coachHighlight;
+      if (remote.coachSpeech)          D.coachSpeech          = remote.coachSpeech;
+      if (remote.coachHighlight)       D.coachHighlight       = remote.coachHighlight;
+      if (remote.coachAssessmentHtml)  D.coachAssessmentHtml  = remote.coachAssessmentHtml;
+      if (remote.coachAssessmentTs)    D.coachAssessmentTs    = remote.coachAssessmentTs;
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
       if (remote.week_sessions)  D.week_sessions  = remote.week_sessions;
       if (remote.all_weeks)      D.all_weeks      = remote.all_weeks;
@@ -1442,6 +1452,8 @@ init();
         if (afKpi) afKpi.value = remote.kpis.afStreak.value;
       }
       if (remote.coachHighlight) D.coachHighlight = remote.coachHighlight;
+      if (remote.coachAssessmentHtml) D.coachAssessmentHtml = remote.coachAssessmentHtml;
+      if (remote.coachAssessmentTs) D.coachAssessmentTs = remote.coachAssessmentTs;
       if (remote.af_history) D.afHistory = remote.af_history;
       // Re-render aktiv side
       pageCache = {};
