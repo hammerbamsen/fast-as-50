@@ -1062,7 +1062,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 
 
-def generate_ai_assessment(week_num, ctl, tsb, weight, af_this_week, af_streak,
+def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     if not ANTHROPIC_KEY:
@@ -1082,7 +1082,7 @@ def generate_ai_assessment(week_num, ctl, tsb, weight, af_this_week, af_streak,
     prompt = (
         f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
         f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
-        f"Kennet er i uge {week_num} af 14. Filosofi: capacity-mode, ikke performance-mode. "
+        f"Kennet er i uge {week_num} af 14, dag {weekday + 1} af 7 ({day_name}). Filosofi: capacity-mode, ikke performance-mode. "
         f"Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\n"
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
@@ -1312,7 +1312,8 @@ def main():
 
     # --- AI coach-vurdering (genereres server-side, caches i data.json) ---
     ai_text = generate_ai_assessment(
-        week_num, ctl, tsb,
+        week_num, weekday, DK_DAYS[weekday],
+        ctl, tsb,
         weight if weight_is_today else None,
         af_this_week, af_streak,
         data['week_sessions'], week_focus,
@@ -1368,6 +1369,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
