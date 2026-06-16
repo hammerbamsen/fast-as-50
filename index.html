@@ -779,15 +779,30 @@ async function loadCoachAssessment(force) {
   const prompt = 'Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\nKennet er i uge ' + D.week + ' af ' + D.totalWeeks + '. Filosofi: capacity-mode, ikke performance-mode. Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\nFriel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\nAktuelle data:\n- ' + kpis + '\n- ' + afNote + '\n- Ugefokus: ' + weekFocus + '\n- I dag: ' + todayLabel + ' [' + todayStatus + ']' + '\n- Resten af ugen: ' + (remainingSessions||'ingen planlagte') + weightLine + '\n\nVIGTIGT:\n- Hvis dagens session er GENNEMFØRT, skriv om den i DATID. Giv IKKE råd om hvad Kennet skal gøre under sessionen — den er overstået.\n- Hvis dagens session IKKE er gennemført endnu, må du gerne give konkrete råd (puls, tempo, fokus).\n- Nævn KUN vægt hvis der er en aktuel måling.\n- AF-alarm er kun relevant fra tirsdag og frem — mandag er for tidligt.\n\nGiv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n1. 💪 Træning & load (CTL=' + ctl + ', TSB=' + tsb + ')\n2. ⚖️ Krop & kost' + (weightLine ? ' (vægt: ' + weight + ' kg)' : '') + '\n3. 🎯 AF-status & fokus for resten af ugen\n\nSkriv direkte til Kennet på dansk. Vær præcis — ingen tom ros. Tag stilling — hvad er det VIGTIGSTE han skal fokusere på nu?';
 
   try {
-    const resp = await fetch('https://anthropic-proxy.kennet-3a4.workers.dev/', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{role: 'user', content: prompt}]
-      })
-    });
+    const _ctrl = new AbortController();
+    const _timer = setTimeout(() => _ctrl.abort(), 8000);
+    let resp;
+    try {
+      resp = await fetch('https://anthropic-proxy.kennet-3a4.workers.dev/', {
+        method: 'POST',
+        signal: _ctrl.signal,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 400,
+          messages: [{role: 'user', content: prompt}]
+        })
+      });
+      clearTimeout(_timer);
+    } catch(fetchErr) {
+      clearTimeout(_timer);
+      box.innerHTML = '<p style="font-family:\'Space Mono\',monospace;font-size:11px;color:var(--muted)">⚠️ Proxy utilgængelig — prøv igen senere.</p>';
+      return;
+    }
+    if (!resp.ok) {
+      box.innerHTML = '<p style="font-family:\'Space Mono\',monospace;font-size:11px;color:var(--muted)">⚠️ Proxy fejl (' + resp.status + ') — prøv igen.</p>';
+      return;
+    }
     const result = await resp.json();
     const text = result.content?.[0]?.text || 'Kunne ikke hente vurdering.';
 
