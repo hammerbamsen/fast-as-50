@@ -1008,13 +1008,30 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         else:
             focus.append(f"Søvn på {fmt(sleep,1)} timer er under 7-timers målet — prioriter den.")
 
+    # AF-vurdering: relativ til gennemførte dage (weekday 0=man, 1=tirs, osv.)
+    # weekday er 0-baseret, men antallet af afsluttede dage = weekday (ikke inkl. i dag)
+    days_completed = weekday  # antal dage afsluttet før i dag (mandag=0, tirsdag=1, onsdag=2, ...)
     if af_this_week >= 5:
         goods.append(f"{af_this_week}/7 AF-dage — ugens mål er ramt.")
     elif weekday == 0 and af_this_week == 0:
         # Mandag morgen: ny uge startet — ingen AF-dage endnu er normalt
         goods.append(f"Ny uge med {streak} dages streak i ryggen. Hold den.")
+    elif days_completed > 0 and af_this_week >= days_completed:
+        # AF-dage svarer til eller overstiger antallet af afsluttede dage — på rette spor
+        remaining_days = 6 - weekday  # dage tilbage inkl. i dag
+        needed = max(0, 5 - af_this_week)
+        if needed == 0:
+            goods.append(f"{af_this_week} AF-dage hid — mål nået allerede.")
+        elif needed <= remaining_days:
+            goods.append(f"{af_this_week} AF-dage i {days_completed} gennemførte dage — på rette spor. {needed} mere og ugens mål er i hus.")
+        else:
+            focus.append(f"{af_this_week} AF-dage hidtil — {needed} mangler i {remaining_days} dage tilbage. Stram op nu.")
     else:
-        focus.append(f"{af_this_week}/7 AF-dage — {5 - af_this_week} mangler for at nå ugens mål.")
+        # Bag kurven relativt til ugedagen
+        days_completed_display = max(days_completed, 1)
+        remaining_days = 6 - weekday
+        needed = max(0, 5 - af_this_week)
+        focus.append(f"{af_this_week} AF-dage i {days_completed_display} afsluttede dage — {needed} mangler i {remaining_days} dage tilbage.")
 
     if goods:
         highlight = goods[0].rstrip(".")
@@ -1070,7 +1087,15 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         return None
 
     kpis_str = f"CTL: {ctl}, TSB: {tsb}, Vægt: {weight} kg" if weight else f"CTL: {ctl}, TSB: {tsb}"
-    af_note = f"AF denne uge: {af_this_week}/7, streak: {af_streak} dage"
+    days_completed = weekday  # afsluttede dage før i dag
+    af_note = (
+        f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} afsluttede dage "
+        f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
+        f"Vurder AF-status RELATIVT til hvor mange dage der er gået i ugen — ikke absolut ift. 7. "
+        f"Hvis Kennet har {af_this_week} AF-dage ud af {days_completed} afsluttede dage, er det {af_this_week}/{max(days_completed,1)}. "
+        f"AF-dage handler UDELUKKENDE om alkohol — IKKE om hvilken type træning der er planlagt. "
+        f"Skriv ALDRIG at en specifik træningstype 'tæller' eller 'ikke tæller' som AF-dag."
+    )
     today_label = today_session.get('label', 'hviledag') if today_session else 'hviledag'
     today_done = today_session.get('done', False) if today_session else False
     today_status = "✅ GENNEMFØRT" if today_done else "⏳ IKKE FORSØGT ENDNU"
