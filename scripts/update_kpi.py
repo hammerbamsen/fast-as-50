@@ -1087,7 +1087,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         return None
 
     kpis_str = f"CTL: {ctl}, TSB: {tsb}, Vægt: {weight} kg" if weight else f"CTL: {ctl}, TSB: {tsb}"
-    days_completed = weekday  # afsluttede dage før i dag
+    days_completed = weekday + 1  # afsluttede dage inkl. i dag
     af_note = (
         f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} afsluttede dage "
         f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
