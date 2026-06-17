@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-17 09:50",
+    "updated": "2026-06-17 10:01",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "42.3",
+      "value": "42.7",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-18.2",
+      "value": "-19.9",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "203",
+      "value": "219",
       "unit": "TSS",
-      "sub": "203 af 602 planlagt TSS",
+      "sub": "219 af 602 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 16
   },
-  "coachSpeech": "Onsdag — uge 3 af 14. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: TSB -18.2 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 203 af 602 TSS er i hus — 5 sessioner tilbage, heriblandt Svøm 1500m let teknisk, Cykel Z2 60 min Mallorca. 2/7 AF-dage — 3 mangler for at nå ugens mål. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "CTL 42.3 følger ramp-kurven mod 60",
+  "coachSpeech": "Onsdag — uge 3 af 14. {HL} Dagens session er gennemført. Godt: TSB -19.9 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 219 af 602 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 60 min Mallorca, Styrke A Functional Strength 3 sæt. 2/7 AF-dage — 3 mangler for at nå ugens mål. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
+  "coachHighlight": "CTL 42.7 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "swim",
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -114,8 +114,13 @@
       "day": "Ons",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 0,
+      "actual_mins": 34,
+      "planned_mins": null
     },
     {
       "day": "Tor",
@@ -145,7 +150,7 @@
   "ctlCurve": [
     36.3,
     40.5,
-    42.3
+    42.7
   ],
   "weightHistory": [
     {
@@ -711,7 +716,7 @@
     },
     {
       "date": "2026-06-17",
-      "v": -18.2,
+      "v": -19.9,
       "real": true
     }
   ],
@@ -872,8 +877,13 @@
           "day": "Ons",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 0,
+          "actual_mins": 34,
+          "planned_mins": null
         },
         {
           "day": "Tor",
@@ -1397,10 +1407,11 @@
     }
   ],
   "train_mins": {
+    "openwater": 34.0,
     "bike": 448.0,
     "run": 89.0,
     "planned": 735.0,
-    "actual_total": 537.0
+    "actual_total": 571.0
   },
   "fatHistory": [
     {
@@ -1544,6 +1555,6 @@
       "real": false
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 17 af 98 · Onsdag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 42.3 er godt momentum, og TSB på -18.2 er håndterbart — men hold øje med at du ikke glider længere ned i minus hen mod weekenden. Dagens 1500m teknisk svøm er et oplagt lavintensitets-valg: hold det præcis der — tempo, ikke træning.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtmåling, så ingen kommentar her — men en intensiv build-uge er ikke ugen hvor du sparer på kulhydrater. Sørg for at have brændstof til torsdag og lørdagens Z2-sessioner.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">2 AF-dage ud af 7 med streak på 16 — streaken er solid, men uge-AF'en halter. Svøm i dag tæller <strong>ikke</strong> som AF-dag, så prioriter at bygge dem aktivt ind: fredag styrke og søndag svøm er dine næste naturlige muligheder. Husk at AF-dagene <strong>beskytter</strong> CTL-stigningen — de er ikke spildtid.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">---</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Til dagens session:</strong> Gå i bassinet med fokus på ét teknisk cue ad gangen — f.eks. høj albue i catch-fasen. 1500m fordelt på f.eks. 300m opvarmning → 6×150m med 20 sek pause → 300m nedvarmning. Puls skal ikke op. Formålet er neuromuskulær</p>",
-  "coachAssessmentTs": "07:50"
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 17 af 98 · Onsdag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong> — Du fik 1500m teknisk svøm i kassen i dag, og det var den rigtige prioritering med TSB på -19.9. Load er under kontrol, men du er tæt på den nedre grænse — torsdagens Z2-cykel skal holdes disciplineret i zone, ikke glide op i Z3.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong> — Ingen aktuel vægtmåling, så ingen vurdering der. Med to hårde dage forude (lang løb lørdag + 2000m svøm søndag) skal du sikre tilstrækkeligt kulhydrat ind torsdag og fredag — underernæring her koster dig mere end kalorieunderskuddet giver.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong> — Du er på 2 AF-dage ud af 7 denne uge, og det er helt fint med streak på 16 dage. Fredag styrke er din næste naturlige AF-kandidat — hold den kortere end 45 minutter og undgå excentrisk overload, så lørdagens lange løb ikke lider. Prioriter søvn torsdag nat.</p>",
+  "coachAssessmentTs": "08:01"
 }
