@@ -408,8 +408,7 @@ def make_plan():
     (p+timedelta(14), run_z2_lang(90),        "Lang løb Z2 90 min Mallorca (formiddag)"),
     # Tirs: Formentor — ugens store belastning, 149km
     (p+timedelta(15), bike_formentor(),       "Cykel Formentor 149km"),
-    # Ons: aktiv recovery — hike + let svøm
-    (p+timedelta(16), hike_easy(90),          "Hike Z1-Z2 Mallorca"),
+    # Ons: aktiv recovery — kun let svøm (hike udgået)
     (p+timedelta(16), swim_let(),             "Svøm let 1500m Mallorca"),
     # Tor: let spin → fly hjem aften
     (p+timedelta(17), bike_z2(60,"Mallorca"), "Cykel let 60 min → fly hjem aften"),
@@ -677,5 +676,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
