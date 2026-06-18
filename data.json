@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-18 09:40",
+    "updated": "2026-06-18 09:50",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "41.7",
+      "value": "42.3",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-12.6",
+      "value": "-15.3",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -53,13 +53,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "219",
+      "value": "244",
       "unit": "TSS",
-      "sub": "219 af 602 planlagt TSS",
+      "sub": "244 af 602 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "148.5",
+      "value": "179.0",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 17
   },
-  "coachSpeech": "Torsdag — uge 3 af 14. {HL} I dag: Cykel Z2 60 min Mallorca (cykel). Godt: TSB -12.6 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 219 af 602 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 60 min Mallorca, Styrke A Functional Strength 3 sæt. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "CTL 41.7 følger ramp-kurven mod 60",
+  "coachSpeech": "Torsdag — uge 3 af 14. {HL} Dagens session er gennemført. Godt: TSB -15.3 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 244 af 602 TSS er i hus — 3 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Lang løb Z2 60 min. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+  "coachHighlight": "CTL 42.3 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -125,8 +125,13 @@
       "day": "Tor",
       "disc": "bike",
       "label": "Cykel Z2 60 min Mallorca",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 158,
+      "actual_tss": 0,
+      "actual_mins": 95,
+      "planned_mins": 60
     },
     {
       "day": "Fre",
@@ -150,7 +155,7 @@
   "ctlCurve": [
     36.3,
     40.5,
-    41.7
+    42.3
   ],
   "weightHistory": [
     {
@@ -716,7 +721,7 @@
     },
     {
       "date": "2026-06-18",
-      "v": -12.6,
+      "v": -15.3,
       "real": true
     }
   ],
@@ -889,8 +894,13 @@
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 158,
+          "actual_tss": 0,
+          "actual_mins": 95,
+          "planned_mins": 60
         },
         {
           "day": "Fre",
@@ -1408,11 +1418,11 @@
     }
   ],
   "train_mins": {
+    "bike": 543.0,
     "openwater": 34.0,
-    "bike": 448.0,
     "run": 89.0,
     "planned": 735.0,
-    "actual_total": 571.0
+    "actual_total": 666.0
   },
   "fatHistory": [
     {
@@ -1556,6 +1566,6 @@
       "real": false
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 18 af 98 · Torsdag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 CTL på 41.7 er god fremgang, og TSB på -12.6 holder dig godt inden for grænsen — cykel Z2 i dag er præcis den rigtige dosis til at holde momentum uden at grave for dybt. Kør 60 minutter Mallorca, hold dig disciplineret i Z2, og lad benene arbejde uden at jage pulsen op.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ Ingen aktuel vægtmåling — hold fokus på at spise til restitution frem for at spare kalorier, særligt med lang løbetur lørdag og 2000m svøm søndag i sigte.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 3 AF-dage ud af 4 afsluttede dage er stærkt — du er på rette spor mod ugens mål om 5. Med de næste tre dages sessioner kan du sagtens lukke ugen solidt.</p>",
-  "coachAssessmentTs": "07:40"
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 18 af 98 · Torsdag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong> — Du fik gennemført cykel Z2 på Mallorca i dag, og med CTL på 42.3 og TSB på -15.3 er du i et kontrolleret build uden at overbelaste. Hold Z2-disciplinen i morgen og i weekenden — det er konsistensen over de næste par dage, der konsoliderer ugens CTL-løft.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong> — Ingen aktuel vejning at forholde sig til i dag. Fokus: hold protein oppe og undgå at kompensere kalorier efter træning — det er her kiloene sniger sig ind i en builduge.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong> — 3 AF-dage ud af 4 afsluttede dage er stærkt — du er foran ugepacen. Resten af ugen: styrke fredag, lang løb lørdag og teknisk svøm søndag lukker en solid uge 3. Hold dig til planen uden at tilføje ekstra load.</p>",
+  "coachAssessmentTs": "07:50"
 }
