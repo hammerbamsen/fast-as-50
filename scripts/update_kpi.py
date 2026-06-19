@@ -429,6 +429,19 @@ def get_activities_week():
             'bike_km':  round(bike_km, 1),
             'train_mins': train_mins,
             'done_map': done_map,
+            'raw_debug': [
+                {
+                    'date': a.get('start_date_local','')[:16],
+                    'type': a.get('type'),
+                    'name': a.get('name'),
+                    'moving_min': round((a.get('moving_time') or 0)/60),
+                    'distance_km': round((a.get('distance') or 0)/1000, 1),
+                    'icu_training_load': a.get('icu_training_load'),
+                    'training_load': a.get('training_load'),
+                    'icu_power_meter': a.get('icu_power_meter'),
+                    'has_heartrate': a.get('has_heartrate'),
+                } for a in data
+            ],
         }
     return None
 
@@ -1527,6 +1540,11 @@ def main():
         if not data.get('coachAssessmentHtml'):
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
+
+    # --- MIDLERTIDIG DEBUG: dump rå TSS-felter pr. aktivitet for at diagnosticere
+    # hvorfor ugens TSS-total virker lav. Fjernes igen efter diagnose. ---
+    if activities and activities.get('raw_debug'):
+        data['_debug_activities_tss'] = activities['raw_debug']
 
     # --- Push data.json ---
     gh_put('data.json', sha_data,
