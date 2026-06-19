@@ -349,7 +349,9 @@ def get_activities_week():
                         print(f"  Fallback aktivitet hentet: {act.get('name')} ({act.get('type')})")
         print(f"  Aktiviteter denne uge: {len(data)}")
         for _a in data:
-            print(f"    {_a.get('start_date_local','')[:16]} | {_a.get('type')} | {_a.get('name')} | moving={_a.get('moving_time')}s")
+            print(f"    {_a.get('start_date_local','')[:16]} | {_a.get('type')} | {_a.get('name')} | "
+                  f"moving={_a.get('moving_time')}s | icu_training_load={_a.get('icu_training_load')} | "
+                  f"training_load={_a.get('training_load')}")
         total_tss = sum(a.get('icu_training_load') or a.get('training_load') or 0 for a in data)
         run_km = sum(
             (a.get('distance') or 0) / 1000
@@ -411,7 +413,7 @@ def get_activities_week():
                 disc = 'strength'
             else:
                 disc = 'free'
-            _tss      = round(a.get('training_load') or 0)
+            _tss      = round(a.get('icu_training_load') or a.get('training_load') or 0)
             _dur_secs = a.get('moving_time') or a.get('elapsed_time') or 0
             _dur_mins = round(_dur_secs / 60)
             done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc, a.get('name') or atype, _tss, _dur_mins))
