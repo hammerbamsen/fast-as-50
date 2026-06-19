@@ -14,6 +14,17 @@ REPO       = 'hammerbamsen/fast-as-50'
 BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH       = ('API_KEY', API_KEY)
 
+# Autoritativ uge-for-uge CTL-plan (matcher CTL_PLAN i index.html — SAMME kilde,
+# må ikke afvige). Indeholder bevidste recovery-dyk, fx uge 7 (41) og uge 12 (55).
+# Slutmål 60 nås i uge 14 — IKKE uge 11 (det er en tidligere fejl der gav 'Mål 60
+# (uge 11)' i KPI-teksten, som er rettet til at bruge denne plan i stedet).
+CTL_PLAN = [34, 36, 38, 41, 44, 43, 41, 45, 49, 53, 57, 55, 58, 60]
+
+def ctl_plan_for_week(week_num):
+    """Returnerer planlagt CTL for en given uge (1-indekseret), clamped til planens længde."""
+    idx = min(max(week_num, 1), len(CTL_PLAN)) - 1
+    return CTL_PLAN[idx]
+
 def fix_enc(s):
     """Ret UTF-8 strenge der fejlagtigt er decoded som Latin-1 (fx 'LÃ¸b' → 'Løb')."""
     if not isinstance(s, str):
@@ -871,6 +882,37 @@ def build_weight_context_note(travel_label, delta, prior_date, threshold=0.8):
     return None
 
 
+def build_trajectory_note(week_num, ctl, weight, weight_history):
+    """Bygger en 'store billede'-sætning til den UGENTLIGE opsummering (søndage) —
+    i modsætning til den daglige tekst, som kun ser på i dags snapshot, kigger denne
+    på CTL-pace mod den rigtige (recovery-justerede) ugeplan og vægtens udvikling
+    over de seneste uger. Returnerer None hvis der ikke er nok data."""
+    parts = []
+
+    if ctl is not None and week_num:
+        plan_target = ctl_plan_for_week(week_num)
+        delta = round(ctl - plan_target, 1)
+        if delta >= 0:
+            parts.append(f"CTL {fmt(ctl,1)} er {delta} point FORAN ugeplanen (planmål uge {week_num}: {plan_target}).")
+        else:
+            parts.append(f"CTL {fmt(ctl,1)} er {abs(delta)} point BAG ugeplanen (planmål uge {week_num}: {plan_target}).")
+
+    if weight is not None and weight_history:
+        reals = [h for h in weight_history if h.get('real') and h.get('v') is not None]
+        if len(reals) >= 2:
+            earliest = reals[0]
+            try:
+                days = (date.today() - date.fromisoformat(earliest['date'])).days
+            except ValueError:
+                days = None
+            w_delta = round(weight - earliest['v'], 1)
+            if days and days >= 7 and abs(w_delta) >= 0.3:
+                retning = "tabt" if w_delta < 0 else "taget på"
+                parts.append(f"Vægten har {retning} {abs(w_delta)} kg over de seneste {days} dage ({fmt(earliest['v'])} → {fmt(weight)} kg).")
+
+    return " ".join(parts) if parts else None
+
+
 def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_act, planned):
     """QA-tjek: returner liste af fejl hvis coach-teksten modsiger de faktiske data.
     Bruges til at stoppe en forkert tekst fra at gå live.
@@ -941,7 +983,7 @@ def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_a
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
                            ctl=None, tsb=None, weight=None, sleep=None, compliance=None,
                            tss_act=None, planned=None, remaining_sessions=None, week_sessions=None,
-                           travel_note=None):
+                           travel_note=None, trajectory_note=None):
     """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus).
 
     Coaching-princip: hold Kennet på sporet mod Christiansborg (29/8) og Médoc (5/9).
@@ -1009,7 +1051,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         intro = f"{day_name.capitalize()} — uge {week_num} af 14."
 
     # --- Friel (træning) + Kreutzer (krop/AF): hvad er godt, hvad skal der fokuseres på ---
-    expected_ctl = 34 + (week_num - 1) * 1.9  # rute mod CTL 60 i uge 11
+    expected_ctl = ctl_plan_for_week(week_num)  # rigtig plan m. recovery-dyk, ikke lineær tilnærmelse
     goods, focus = [], []
 
     if ctl is not None:
@@ -1126,6 +1168,10 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         closing = "Keep moving forward."
     parts.append(closing)
 
+    # Store billede — kun når trajectory_note er givet (søndage), ikke trunkeret
+    if trajectory_note:
+        parts.append(f"📊 Store billede: {trajectory_note}")
+
     # Citat — roterer mellem træning, kost og filosofi efter dag i året
     import datetime as _dt
     day_of_year = _dt.date.today().timetuple().tm_yday
@@ -1143,13 +1189,19 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
-                             week_sessions, week_focus, today_session, tss_act, planned, travel_note=None):
+                             week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
+                             trajectory_note=None):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     if not ANTHROPIC_KEY:
         print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
         return None
 
-    kpis_str = f"CTL: {ctl}, TSB: {tsb}, Vægt: {weight} kg" if weight else f"CTL: {ctl}, TSB: {tsb}"
+    ctl_target = ctl_plan_for_week(week_num)
+    kpis_str = (
+        f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}, Vægt: {weight} kg"
+        if weight else
+        f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}"
+    )
     days_completed = weekday + 1  # afsluttede dage inkl. i dag
     af_note = (
         f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} afsluttede dage "
@@ -1172,22 +1224,32 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"disciplin når denne kontekst er givet."
         if travel_note else ""
     )
+    trajectory_line = (
+        f"\n- UGENTLIGT STORE BILLEDE (kun søndage): {trajectory_note}"
+        if trajectory_note else ""
+    )
+    fourth_line_instruction = (
+        "\n4. 📊 Store billede — brug PRÆCIS tallene fra 'UGENTLIGT STORE BILLEDE' ovenfor "
+        "(CTL vs. planmål, vægtudvikling over flere uger). Gæt eller genberegn intet selv."
+        if trajectory_note else ""
+    )
 
     prompt = (
         f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
         f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
         f"Kennet er i uge {week_num} af 14, dag {weekday + 1} af 7 ({day_name}). Filosofi: capacity-mode, ikke performance-mode. "
-        f"Mål: bygge CTL fra 34 til 60, tabe sig til under 72 kg, 5 AF-dage/uge.\n\n"
+        f"Mål: bygge CTL fra 34 til 60 (uge 14), tabe sig til under 72 kg, 5 AF-dage/uge.\n\n"
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
         f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
-        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}{travel_line}\n\n"
+        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}{travel_line}{trajectory_line}\n\n"
         f"VIGTIGT:\n- Hvis dagens session er GENNEMFØRT, skriv om den i DATID.\n"
         f"- Hvis ikke gennemført, giv konkrete råd.\n- Nævn KUN vægt hvis aktuel måling.\n\n"
-        f"Giv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n"
+        f"Giv en KORT coach-vurdering (max 4 sætninger pr. linje) opdelt i linjer med emoji-header:\n"
         f"1. 💪 Træning & load (CTL={ctl}, TSB={tsb})\n"
         f"2. ⚖️ Krop & kost\n"
-        f"3. 🎯 AF-status & fokus for resten af ugen\n\n"
+        f"3. 🎯 AF-status & fokus for resten af ugen"
+        f"{fourth_line_instruction}\n\n"
         f"Skriv direkte til Kennet på dansk. Vær præcis — ingen tom ros.\n"
         f"Start IKKE med en header-linje som 'Dag X af Y uger' — den tilføjes automatisk."
     )
@@ -1306,11 +1368,24 @@ def main():
     train_mins = activities.get('train_mins', {}) if activities else {}
     compliance = round(tss_act / planned * 100, 0) if tss_act else None
 
+    # --- Ugentligt 'store billede' — kun søndage (weekday 6), så det ikke
+    # drukner den daglige tekst resten af ugen. Viser CTL-pace mod den rigtige
+    # ugeplan + vægtens udvikling over flere uger, ikke kun dagens snapshot. ---
+    trajectory_note = None
+    if weekday == 6:
+        trajectory_note = build_trajectory_note(
+            week_num, ctl,
+            weight if weight_is_today else None,
+            (history or {}).get('weightHistory', [])
+        )
+        if trajectory_note:
+            print(f"  Store billede (søndag): {trajectory_note}")
+
     tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
     data['kpis'] = {
         'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f'Mål <72 kg · snit {fmt(weight_avg)} kg' if weight_avg else 'Mål <72 kg', 'color': color_for(weight, 72, lower=True)  if weight     else '#7A6A58'},
         'fat':        {'value': fmt(fat),              'unit': '%',  'sub': 'Mål <20%',                       'color': color_for(fat, 20, lower=True)     if fat        else '#7A6A58'},
-        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': 'Mål 60 (uge 11)',                 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
+        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f'Uge {week_num}-mål {ctl_plan_for_week(week_num)} · Slutmål 60 (uge 14)', 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
         'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': ('Hård blok · CTL−ATL, frisk >0' if tsb and tsb < -10 else 'Form · CTL−ATL, frisk >0'), 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
         'sleep':      {'value': fmt(sleep, 1),         'unit': 't',  'sub': 'Snit 7,5t · mål 7t',            'color': '#2874A6'},
         'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': 'Mål 40+ km uge 10',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
@@ -1399,7 +1474,7 @@ def main():
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
         ctl=ctl, tsb=tsb, weight=weight if weight_is_today else None, sleep=sleep, compliance=compliance,
         tss_act=tss_act, planned=planned, week_sessions=data['week_sessions'],
-        travel_note=context_note
+        travel_note=context_note, trajectory_note=trajectory_note
     )
 
     # --- QA: valider coach-tekst mod faktiske data inden push ---
@@ -1427,7 +1502,7 @@ def main():
         af_this_week, af_streak,
         data['week_sessions'], week_focus,
         today_session, tss_act, planned,
-        travel_note=context_note
+        travel_note=context_note, trajectory_note=trajectory_note
     )
     if ai_text:
         # Konverter til simpel HTML (samme logik som dashboardet)
