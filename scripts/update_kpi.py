@@ -819,12 +819,11 @@ QUOTES_PHILOSOPHY = [
 ]
 
 
-def load_travel_context(today_str):
-    """Læs data/travel_days.json og returner en kontekst-note hvis i dag falder i
-    eller lige efter en registreret rejseperiode (fx træningslejr). Listen
-    vedligeholdes manuelt (typisk i søndagsrutinen ud fra Outlook-kalenderen) —
-    scriptet selv har ikke live kalenderadgang. Bruges til at undgå at
-    coach-teksten bebrejder kost/disciplin når et vægtudsving skyldes rejse."""
+def get_travel_label(today_str):
+    """Læs data/travel_days.json og returner en KORT rejse-label for i dag (eller
+    None) — uden nogen antagelse om hvilken retning vægten har bevæget sig.
+    Listen vedligeholdes manuelt (typisk i søndagsrutinen ud fra Outlook-
+    kalenderen) — scriptet selv har ikke live kalenderadgang."""
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'travel_days.json')
     try:
         with open(path, encoding='utf-8') as f:
@@ -833,29 +832,42 @@ def load_travel_context(today_str):
         return None
     for trip in trips:
         if trip.get('travel_home_date') == today_str:
-            return trip.get('note') or f"Hjemrejse fra {trip.get('label', 'rejse')}."
+            return trip.get('label_home') or f"dagen efter hjemrejse fra {trip.get('label', 'rejse')}"
         start, end = trip.get('start'), trip.get('end')
         if start and end and start <= today_str <= end:
-            return trip.get('note_during') or f"Midt i {trip.get('label', 'rejse')} — rejsedage kan påvirke søvn, vægt og TSS."
+            return trip.get('label_during') or f"midt i {trip.get('label', 'rejse')}"
     return None
 
 
-def detect_weight_jump(weight_history, today_str, weight_today, threshold=0.8):
+def weight_delta_vs_recent(weight_history, today_str, weight_today):
     """Sammenlign dagens reelle vægt med seneste forudgående REELLE måling (ikke en
-    fremført/fyldt værdi). Fallback for udsving der ikke er dækket af en kendt
-    rejsedag i travel_days.json — fx en enkelt natrium-tung middag eller en
-    rejsedag der ikke nåede at blive registreret."""
+    fremført/fyldt værdi). Returnerer (delta, dato) eller (None, None)."""
     if weight_today is None or not weight_history:
-        return None
+        return None, None
     prior_real = [h for h in weight_history if h.get('real') and h.get('date') != today_str]
     if not prior_real:
-        return None
+        return None, None
     prior = prior_real[-1]
     if prior.get('v') is None:
+        return None, None
+    return round(weight_today - prior['v'], 1), prior['date']
+
+
+def build_weight_context_note(travel_label, delta, prior_date, threshold=0.8):
+    """Kombinerer rejse-label og FAKTISK vægt-delta til én note. Kritisk: 'sandsynligvis
+    væske/retention'-sproget bruges KUN når vægten reelt er steget — en rejsedag-label
+    må aldrig i sig selv få coachen til at påstå retention hvis vægten faktisk er faldet
+    eller uændret. Bruges både til den hårdkodede coachSpeech og AI-prompten."""
+    if delta is None:
         return None
-    delta = round(weight_today - prior['v'], 1)
+    suffix = f", {travel_label}" if travel_label else ""
     if delta >= threshold:
-        return f"Vægten er {delta} kg højere end seneste reelle måling ({prior['date']}) — kan være væske/natrium snarere end fedt."
+        return (f"Vægten er {delta} kg højere end seneste måling ({prior_date}){suffix} — "
+                f"sandsynligvis væske/natrium snarere end fedt, ikke et disciplinproblem. "
+                f"Giv den et par dage før du dømmer tallet.")
+    if delta <= -threshold and travel_label:
+        return (f"Vægten er allerede {abs(delta)} kg lavere end seneste måling ({prior_date}) "
+                f"({travel_label}) — ser ud til at have normaliseret sig hurtigt. Godt tegn.")
     return None
 
 
@@ -1044,7 +1056,10 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         elif travel_note:
             # Holdes UDENFOR goods[]/focus[] med vilje — begge lister trunkeres til
             # de første par punkter, og denne kontekst skal aldrig kunne drukne.
-            weight_aside = f"Vægt på {fmt(weight)} kg — {travel_note} Ikke et disciplinproblem, giv den et par dage før du dømmer tallet."
+            # travel_note er her allerede en komplet, retnings-korrekt sætning
+            # (bygget af build_weight_context_note) — tilføj ikke mere tekst der
+            # kan modsige den faktiske retning.
+            weight_aside = f"Vægt på {fmt(weight)} kg — {travel_note}"
         else:
             focus.append(f"Vægt på {fmt(weight)} kg — hold protein højt og undgå lette kulhydrater om aftenen.")
 
@@ -1152,9 +1167,9 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     ) or "ingen planlagte"
     weight_line = f"\n- Vægt: {weight} kg (seneste måling)" if weight else ""
     travel_line = (
-        f"\n- VIGTIG KONTEKST: {travel_note} Hvis vægten er steget, skal du EKSPLICIT nævne at det "
-        f"sandsynligvis er væske/natrium-retention og IKKE manglende disciplin — undgå bebrejdende "
-        f"tone om kost/protein i 'Krop & kost'-linjen i dag."
+        f"\n- VIGTIG KONTEKST om vægt: {travel_note} Brug PRÆCIS denne forklaring/retning i "
+        f"'Krop & kost'-linjen i dag — gæt eller modsig den ikke. Bebrejd ALDRIG manglende "
+        f"disciplin når denne kontekst er givet."
         if travel_note else ""
     )
 
@@ -1265,14 +1280,14 @@ def main():
     weight_is_today = _weight_today(_today_rows)
 
     # --- Rejse-/vægtudsving-kontekst: undgå at coachen bebrejder disciplin når
-    # et udsving skyldes rejse (fx hjemkomst fra Mallorca) fremfor fedt ---
-    travel_note = load_travel_context(str(today))
-    context_note = travel_note or (
-        detect_weight_jump(
-            (history or {}).get('weightHistory', []), str(today),
-            weight if weight_is_today else None
-        )
+    # et udsving skyldes rejse (fx hjemkomst fra Mallorca) fremfor fedt — og,
+    # lige så vigtigt, undgå at påstå retention hvis vægten faktisk er FALDET ---
+    travel_label = get_travel_label(str(today))
+    w_delta, w_prior_date = weight_delta_vs_recent(
+        (history or {}).get('weightHistory', []), str(today),
+        weight if weight_is_today else None
     )
+    context_note = build_weight_context_note(travel_label, w_delta, w_prior_date)
     if context_note:
         print(f"  Kontekst-note (vægt): {context_note}")
 
