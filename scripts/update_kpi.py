@@ -429,9 +429,6 @@ def get_activities_week():
             'bike_km':  round(bike_km, 1),
             'train_mins': train_mins,
             'done_map': done_map,
-            # MIDLERTIDIG: fuld, ufiltreret dump af den store Fornalutx-tur (148+ km)
-            # for at se de RIGTIGE watt/power-feltnavne i stedet for at gætte dem.
-            'raw_debug': [a for a in data if (a.get('distance') or 0) > 100000],
         }
     return None
 
@@ -1532,11 +1529,6 @@ def main():
         if not data.get('coachAssessmentHtml'):
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
-
-    # --- MIDLERTIDIG DEBUG: fuld rå aktivitet for den store tur, for at finde de
-    # rigtige watt/power-feltnavne (ikke gættede). Fjernes igen efter diagnose. ---
-    if activities and activities.get('raw_debug'):
-        data['_debug_full_activity'] = activities['raw_debug']
 
     # --- Push data.json ---
     gh_put('data.json', sha_data,
