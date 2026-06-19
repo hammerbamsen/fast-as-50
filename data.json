@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-19 01:50",
+    "updated": "2026-06-19 02:01",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 79,
-    "daysToChristiansborg": 72,
-    "dayName": "Torsdag",
-    "date": "18. jun"
+    "daysToMedoc": 78,
+    "daysToChristiansborg": 71,
+    "dayName": "Fredag",
+    "date": "19. jun"
   },
   "kpis": {
     "weight": {
@@ -23,19 +23,19 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "42.3",
+      "value": "41.3",
       "unit": "",
       "sub": "Mål 60 (uge 11)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-15.3",
+      "value": "-8.6",
       "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
+      "sub": "Form · CTL−ATL, frisk >0",
+      "color": "#27AE60"
     },
     "sleep": {
-      "value": "7.8",
+      "value": "8.2",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "65.2",
+      "value": "67.4",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 18
   },
-  "coachSpeech": "Torsdag — uge 3 af 14. {HL} Dagens session er gennemført. Godt: TSB -15.3 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 244 af 602 TSS er i hus — 3 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Lang løb Z2 60 min. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "CTL 42.3 følger ramp-kurven mod 60",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 3. {HL} I dag: Styrke A Functional Strength 3 sæt (styrke). Godt: TSB -8.6 er på et sundt niveau med plads til næste belastning. Søvn på 8.2 timer er solid. Fokus: 244 af 602 TSS er i hus — 3 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Lang løb Z2 60 min. Keep moving forward.  \"Sæt målet højt, men sæt i dag realistisk.\"",
+  "coachHighlight": "CTL 41.3 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "bike",
-    "title": "Cykel Z2 60 min Mallorca",
+    "discipline": "strength",
+    "title": "Styrke A Functional Strength 3 sæt",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
@@ -126,7 +126,6 @@
       "disc": "bike",
       "label": "Cykel Z2 60 min Mallorca",
       "done": true,
-      "today": true,
       "completion": "done",
       "completion_pct": 158,
       "actual_tss": 0,
@@ -137,7 +136,8 @@
       "day": "Fre",
       "disc": "strength",
       "label": "Styrke A Functional Strength 3 sæt",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Lør",
@@ -155,14 +155,9 @@
   "ctlCurve": [
     36.3,
     40.5,
-    42.3
+    41.3
   ],
   "weightHistory": [
-    {
-      "date": "2026-05-22",
-      "v": 75.7,
-      "real": false
-    },
     {
       "date": "2026-05-23",
       "v": 75.7,
@@ -297,14 +292,14 @@
       "date": "2026-06-18",
       "v": 74.2,
       "real": false
+    },
+    {
+      "date": "2026-06-19",
+      "v": 74.2,
+      "real": false
     }
   ],
   "hrvHistory": [
-    {
-      "date": "2026-05-22",
-      "v": 43.0,
-      "real": true
-    },
     {
       "date": "2026-05-23",
       "v": 34.0,
@@ -439,14 +434,14 @@
       "date": "2026-06-18",
       "v": 82.0,
       "real": true
+    },
+    {
+      "date": "2026-06-19",
+      "v": 82.0,
+      "real": false
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-05-22",
-      "v": 8.7,
-      "real": true
-    },
     {
       "date": "2026-05-23",
       "v": 7.8,
@@ -581,14 +576,14 @@
       "date": "2026-06-18",
       "v": 8.0,
       "real": true
+    },
+    {
+      "date": "2026-06-19",
+      "v": 8.0,
+      "real": false
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-05-22",
-      "v": -8.6,
-      "real": true
-    },
     {
       "date": "2026-05-23",
       "v": -16.4,
@@ -722,6 +717,11 @@
     {
       "date": "2026-06-18",
       "v": -15.3,
+      "real": true
+    },
+    {
+      "date": "2026-06-19",
+      "v": -8.6,
       "real": true
     }
   ],
@@ -896,7 +896,6 @@
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
           "done": true,
-          "today": true,
           "completion": "done",
           "completion_pct": 158,
           "actual_tss": 0,
@@ -907,7 +906,8 @@
           "day": "Fre",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Lør",
@@ -1414,7 +1414,7 @@
     {
       "week": 3,
       "done": 4,
-      "total": 4,
+      "total": 5,
       "label": "Uge 3"
     }
   ],
@@ -1426,11 +1426,6 @@
     "actual_total": 666.0
   },
   "fatHistory": [
-    {
-      "date": "2026-05-22",
-      "v": 22.3,
-      "real": false
-    },
     {
       "date": "2026-05-23",
       "v": 22.3,
@@ -1565,8 +1560,13 @@
       "date": "2026-06-18",
       "v": 22.7,
       "real": false
+    },
+    {
+      "date": "2026-06-19",
+      "v": 22.7,
+      "real": false
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 18 af 98 · Torsdag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du gennemførte 60 min Z2 på Mallorca i dag — solid dag i benene uden at sprænge budgettet. TSB på -15.3 er helt acceptabelt midt i en build-uge, og CTL på 42.3 bevæger sig i den rigtige retning. Hold intensiteten nede i morgen under styrke, så du ikke griber ind i weekendens løb og svøm.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtnåling — husk at tjekke ind om morgenen efter toiletbesøg og inden mad for et retvisende billede. En build-uge som denne øger appetitten, så vær bevidst om portionsstørrelser om aftenen, hvor det typisk smutter.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4/4 — du er helt i mål på det frontalt. Weekenden er vigtig: det lange løb lørdag og 2000m teknisk svøm søndag er direkte forberedelse til begge A-events, så beskyt søvn og restitution fra i aften. Slut ugen stærkt — og tørt.</p>",
-  "coachAssessmentTs": "23:50"
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 19 af 98 · Fredag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong> — CTL på 41.3 er godt momentum, og TSB på -8.6 er helt uproblematisk — du har plads til styrketræningen i dag uden at rykke ved balancen. Kom i gang med Functional Strength A: 3 sæt, fokus på kvalitet i bevægelse frem for at presse vægtene.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong> — Ingen aktuel vejning, så ingen vurdering her — hold fokus på at spise til restitution efter en hård uge.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong> — 4 ud af 5 dage er stærkt — det er 80%, og det holder. Stræk er 18 dage, og weekendens program er overskueligt: lang Z2 løb lørdag og teknisk svøm søndag lukker ugen pænt af.</p>",
+  "coachAssessmentTs": "00:01"
 }
