@@ -1325,6 +1325,7 @@ def main():
         print("❌ Kunne ikke hente data.json")
         return
     data = json.loads(data_raw)
+    data.pop('_debug_activities_tss', None)  # ryd op efter midlertidig TSS-diagnose
 
     # --- Opdater meta ---
     try:
@@ -1540,11 +1541,6 @@ def main():
         if not data.get('coachAssessmentHtml'):
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
-
-    # --- MIDLERTIDIG DEBUG: dump rå TSS-felter pr. aktivitet for at diagnosticere
-    # hvorfor ugens TSS-total virker lav. Fjernes igen efter diagnose. ---
-    if activities and activities.get('raw_debug'):
-        data['_debug_activities_tss'] = activities['raw_debug']
 
     # --- Push data.json ---
     gh_put('data.json', sha_data,
