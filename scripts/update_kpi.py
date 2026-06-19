@@ -819,6 +819,46 @@ QUOTES_PHILOSOPHY = [
 ]
 
 
+def load_travel_context(today_str):
+    """Læs data/travel_days.json og returner en kontekst-note hvis i dag falder i
+    eller lige efter en registreret rejseperiode (fx træningslejr). Listen
+    vedligeholdes manuelt (typisk i søndagsrutinen ud fra Outlook-kalenderen) —
+    scriptet selv har ikke live kalenderadgang. Bruges til at undgå at
+    coach-teksten bebrejder kost/disciplin når et vægtudsving skyldes rejse."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'travel_days.json')
+    try:
+        with open(path, encoding='utf-8') as f:
+            trips = json.load(f).get('trips', [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+    for trip in trips:
+        if trip.get('travel_home_date') == today_str:
+            return trip.get('note') or f"Hjemrejse fra {trip.get('label', 'rejse')}."
+        start, end = trip.get('start'), trip.get('end')
+        if start and end and start <= today_str <= end:
+            return trip.get('note_during') or f"Midt i {trip.get('label', 'rejse')} — rejsedage kan påvirke søvn, vægt og TSS."
+    return None
+
+
+def detect_weight_jump(weight_history, today_str, weight_today, threshold=0.8):
+    """Sammenlign dagens reelle vægt med seneste forudgående REELLE måling (ikke en
+    fremført/fyldt værdi). Fallback for udsving der ikke er dækket af en kendt
+    rejsedag i travel_days.json — fx en enkelt natrium-tung middag eller en
+    rejsedag der ikke nåede at blive registreret."""
+    if weight_today is None or not weight_history:
+        return None
+    prior_real = [h for h in weight_history if h.get('real') and h.get('date') != today_str]
+    if not prior_real:
+        return None
+    prior = prior_real[-1]
+    if prior.get('v') is None:
+        return None
+    delta = round(weight_today - prior['v'], 1)
+    if delta >= threshold:
+        return f"Vægten er {delta} kg højere end seneste reelle måling ({prior['date']}) — kan være væske/natrium snarere end fedt."
+    return None
+
+
 def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_act, planned):
     """QA-tjek: returner liste af fejl hvis coach-teksten modsiger de faktiske data.
     Bruges til at stoppe en forkert tekst fra at gå live.
@@ -888,7 +928,8 @@ def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_a
 
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
                            ctl=None, tsb=None, weight=None, sleep=None, compliance=None,
-                           tss_act=None, planned=None, remaining_sessions=None, week_sessions=None):
+                           tss_act=None, planned=None, remaining_sessions=None, week_sessions=None,
+                           travel_note=None):
     """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus).
 
     Coaching-princip: hold Kennet på sporet mod Christiansborg (29/8) og Médoc (5/9).
@@ -996,9 +1037,14 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         label = today_intervals.get('label', 'træning')
         goods.append(f"Fuld uge foran — i dag: {label}.")
 
+    weight_aside = None
     if weight is not None:
         if weight <= 72:
             goods.append(f"Vægt på {fmt(weight)} kg er i mål.")
+        elif travel_note:
+            # Holdes UDENFOR goods[]/focus[] med vilje — begge lister trunkeres til
+            # de første par punkter, og denne kontekst skal aldrig kunne drukne.
+            weight_aside = f"Vægt på {fmt(weight)} kg — {travel_note} Ikke et disciplinproblem, giv den et par dage før du dømmer tallet."
         else:
             focus.append(f"Vægt på {fmt(weight)} kg — hold protein højt og undgå lette kulhydrater om aftenen.")
 
@@ -1044,9 +1090,11 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     parts = []
     if rest_goods:
         parts.append("Godt: " + " ".join(rest_goods))
+    if weight_aside:
+        parts.append(weight_aside)
     if focus_items:
         parts.append("Fokus: " + " ".join(focus_items))
-    elif not rest_goods:
+    elif not rest_goods and not weight_aside:
         parts.append("Alt kører efter planen — bare fortsæt.")
 
     # Fremadrettet linje: hvad er næste skridt mod målet?
@@ -1080,7 +1128,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
-                             week_sessions, week_focus, today_session, tss_act, planned):
+                             week_sessions, week_focus, today_session, tss_act, planned, travel_note=None):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     if not ANTHROPIC_KEY:
         print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
@@ -1103,6 +1151,12 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"{s['day']}: {s['label']}" for s in week_sessions if not s.get('done') and not s.get('today')
     ) or "ingen planlagte"
     weight_line = f"\n- Vægt: {weight} kg (seneste måling)" if weight else ""
+    travel_line = (
+        f"\n- VIGTIG KONTEKST: {travel_note} Hvis vægten er steget, skal du EKSPLICIT nævne at det "
+        f"sandsynligvis er væske/natrium-retention og IKKE manglende disciplin — undgå bebrejdende "
+        f"tone om kost/protein i 'Krop & kost'-linjen i dag."
+        if travel_note else ""
+    )
 
     prompt = (
         f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
@@ -1112,7 +1166,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
         f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
-        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}\n\n"
+        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}{travel_line}\n\n"
         f"VIGTIGT:\n- Hvis dagens session er GENNEMFØRT, skriv om den i DATID.\n"
         f"- Hvis ikke gennemført, giv konkrete råd.\n- Nævn KUN vægt hvis aktuel måling.\n\n"
         f"Giv en KORT coach-vurdering (max 4 sætninger) opdelt i tre linjer med emoji-header:\n"
@@ -1209,6 +1263,19 @@ def main():
                             params={'oldest': str(date.today()), 'newest': str(date.today())})
     _today_rows = _r_today.json() if _r_today.status_code == 200 else []
     weight_is_today = _weight_today(_today_rows)
+
+    # --- Rejse-/vægtudsving-kontekst: undgå at coachen bebrejder disciplin når
+    # et udsving skyldes rejse (fx hjemkomst fra Mallorca) fremfor fedt ---
+    travel_note = load_travel_context(str(today))
+    context_note = travel_note or (
+        detect_weight_jump(
+            (history or {}).get('weightHistory', []), str(today),
+            weight if weight_is_today else None
+        )
+    )
+    if context_note:
+        print(f"  Kontekst-note (vægt): {context_note}")
+
     weight_avg = wellness.get('weight_avg') if wellness else None
     fat        = wellness.get('fat')        if wellness else None
     protein    = wellness.get('protein')    if wellness else None
@@ -1316,7 +1383,8 @@ def main():
     coach_speech, coach_highlight = generate_coach_speech(
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
         ctl=ctl, tsb=tsb, weight=weight if weight_is_today else None, sleep=sleep, compliance=compliance,
-        tss_act=tss_act, planned=planned, week_sessions=data['week_sessions']
+        tss_act=tss_act, planned=planned, week_sessions=data['week_sessions'],
+        travel_note=context_note
     )
 
     # --- QA: valider coach-tekst mod faktiske data inden push ---
@@ -1343,7 +1411,8 @@ def main():
         weight if weight_is_today else None,
         af_this_week, af_streak,
         data['week_sessions'], week_focus,
-        today_session, tss_act, planned
+        today_session, tss_act, planned,
+        travel_note=context_note
     )
     if ai_text:
         # Konverter til simpel HTML (samme logik som dashboardet)
