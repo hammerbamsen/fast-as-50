@@ -357,9 +357,9 @@ let D = {
   coachAssessmentHtml: '',
   coachAssessmentTs: '',
   kpis:[
-    {label:"VÆGT", value:"73.0", unit:"kg", sub:"Mål <72 kg · snit 73.0 kg", color:"#F39C12"},
-    {label:"FEDT%", value:"21.7", unit:"%", sub:"Mål <20%", color:"#F39C12"},
-    {label:"CTL", value:"41.3", unit:"", sub:"Mål 60 (uge 11)", color:"#C0392B"},
+    {label:"VÆGT", value:"75.2", unit:"kg", sub:"Mål <72 kg · snit 75.2 kg", color:"#F39C12"},
+    {label:"FEDT%", value:"23.0", unit:"%", sub:"Mål <20%", color:"#C0392B"},
+    {label:"CTL", value:"41.3", unit:"", sub:"Mål 60 (uge 14)", color:"#C0392B"},
     {label:"TSS COMP.", value:"41", unit:"%", sub:"Planlagt 602 TSS", color:"#C0392B"},
     {label:"HRV", value:"69.5", unit:"ms", sub:"Snit 7d", color:"#7A6A58"},
     {label:"LØB KM", value:"13.5", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
@@ -1284,7 +1284,7 @@ async function init() {
         const km = remote.kpis;
         D.kpis = [
           // Træning
-          {cat:"Træning", label:"CTL",       value:km.ctl?.value    ||"—", unit:"",    sub:km.ctl?.sub    ||"Mål 60 (uge 11)",   color:"#C0392B"},
+          {cat:"Træning", label:"CTL",       value:km.ctl?.value    ||"—", unit:"",    sub:km.ctl?.sub    ||"Mål 60 (uge 14)",   color:"#C0392B"},
           {cat:"Træning", label:"FORM",       value:km.tsb?.value    ||"—", unit:"",    sub:km.tsb?.sub    ||"Bygger",             color:km.tsb?.color||"#F39C12"},
           {cat:"Træning", label:"LØB KM",     value:km.runKm?.value  ||"—", unit:"km",  sub:km.runKm?.sub  ||"Mål 40+ km",         color:"#C0392B"},
           {cat:"Træning", label:"CYKEL KM",   value:km.bikeKm?.value ||"—", unit:"km",  sub:km.bikeKm?.sub ||"Cykel denne uge",    color:"var(--bike)"},
