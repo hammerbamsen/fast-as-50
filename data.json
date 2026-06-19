@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-19 07:54",
+    "updated": "2026-06-19 08:00",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -29,7 +29,7 @@
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-8.6",
+      "value": "-9.4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "244",
+      "value": "250",
       "unit": "TSS",
-      "sub": "244 af 602 planlagt TSS",
+      "sub": "250 af 602 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -76,7 +76,7 @@
     "target": 5,
     "streak": 18
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 3. {HL} I dag: Styrke A Functional Strength 3 sæt (styrke). Godt: TSB -8.6 er på et sundt niveau med plads til næste belastning. Søvn på 7.9 timer er solid. Vægt på 73.0 kg — Vægten er allerede 1.2 kg lavere end seneste måling (2026-06-10) (dagen efter hjemrejse fra Mallorca-træningslejren) — ser ud til at have normaliseret sig hurtigt. Godt tegn. Fokus: 244 af 602 TSS er i hus — 3 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Lang løb Z2 60 min. Keep moving forward.  \"Sæt målet højt, men sæt i dag realistisk.\"",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 3. {HL} Dagens session er gennemført. Godt: TSB -9.4 er på et sundt niveau med plads til næste belastning. Søvn på 7.9 timer er solid. Vægt på 73.0 kg — Vægten er allerede 1.2 kg lavere end seneste måling (2026-06-10) (dagen efter hjemrejse fra Mallorca-træningslejren) — ser ud til at have normaliseret sig hurtigt. Godt tegn. Fokus: 250 af 602 TSS er i hus — 2 sessioner tilbage, heriblandt Lang løb Z2 60 min, Svøm 2000m teknisk. Keep moving forward.  \"Sæt målet højt, men sæt i dag realistisk.\"",
   "coachHighlight": "CTL 41.3 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -136,8 +136,13 @@
       "day": "Fre",
       "disc": "strength",
       "label": "Styrke A Functional Strength 3 sæt",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 6,
+      "actual_mins": 30,
+      "planned_mins": null
     },
     {
       "day": "Lør",
@@ -721,7 +726,7 @@
     },
     {
       "date": "2026-06-19",
-      "v": -8.6,
+      "v": -9.4,
       "real": true
     }
   ],
@@ -906,8 +911,13 @@
           "day": "Fre",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 6,
+          "actual_mins": 30,
+          "planned_mins": null
         },
         {
           "day": "Lør",
@@ -1419,11 +1429,12 @@
     }
   ],
   "train_mins": {
+    "strength": 30.0,
     "bike": 543.0,
     "openwater": 34.0,
     "run": 89.0,
     "planned": 735.0,
-    "actual_total": 666.0
+    "actual_total": 696.0
   },
   "fatHistory": [
     {
@@ -1567,6 +1578,6 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 19 af 98 · Fredag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 41.3 — det er over ugemålet på 38, og TSB er -8.6, hvilket er helt komfortabelt. I dag venter styrke A, og det er en vigtig session: functional strength på dette tidspunkt i buildet er ikke frivillig tilvalg, det er det der holder løbsøkonomien og skadesmodstanden intakt hen over de næste 11 uger. Tre sæt, kontrolleret bevægelse, ingen forkortelse. Lørdag og søndag er allerede planlagt — hold dem som skrevet og lad weekenden afslutte ugen solidt.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.0 kg — og det er allerede 1.2 kg lavere end målingen dagen efter hjemkomst fra Mallorca, så kroppen er ved at normalisere sig hurtigt efter rejsen. Det er et godt tegn og ingen grund til at trække i nogen håndtag. Hold fokus på protein og søvn hen over weekenden — det er her restitutionen fra ugens belastning faktisk sker.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4 ud af 5 dage er AF — det er stærkt, og streaken på 18 dage er reel fremdrift mod 72 kg-målet. Resten af ugen handler om at lukke ugen rent: styrke i dag, lang Z2 løb lørdag, teknisk svøm søndag. Ingen grund til at improvisere — planen</p>",
-  "coachAssessmentTs": "05:54"
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 19 af 98 · Fredag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Styrketræningen er i hus — godt. CTL på 41.3 ligger allerede over ugemålet på 38, og TSB på -9.4 er fuldt håndterbart. Weekenden er let: Z2-løb lørdag og teknisk svøm søndag holder trykket oppe uden at grave hullet dybere. Du er foran planen — pas på ikke at overcorrect ved at tilføje ekstra.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.0 kg er 1.2 kg lavere end målingen lige efter Mallorca-lejren — kroppen har normaliseret sig hurtigt, hvilket er et godt tegn på, at baseline er på vej ned. Fortsat 1.1 kg fra målet på under 72 kg. Ingen dramatiske ændringer nødvendige — hold maden ren i weekenden og lad trenden arbejde for dig.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4 ud af 5 dage i denne uge — det er 4/5, og streaken står på 18 dage. Lørdag og søndag er dine to resterende dage i ugen: hold dem alkoholfrie, og du lukker ugen med 5/5 plus en streak der nærmer sig tre uger. Det er konsistens, der rykker — luk ugen rent.</p>",
+  "coachAssessmentTs": "06:01"
 }
