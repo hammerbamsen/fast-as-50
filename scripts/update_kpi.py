@@ -429,19 +429,9 @@ def get_activities_week():
             'bike_km':  round(bike_km, 1),
             'train_mins': train_mins,
             'done_map': done_map,
-            'raw_debug': [
-                {
-                    'date': a.get('start_date_local','')[:16],
-                    'type': a.get('type'),
-                    'name': a.get('name'),
-                    'moving_min': round((a.get('moving_time') or 0)/60),
-                    'distance_km': round((a.get('distance') or 0)/1000, 1),
-                    'icu_training_load': a.get('icu_training_load'),
-                    'training_load': a.get('training_load'),
-                    'icu_power_meter': a.get('icu_power_meter'),
-                    'has_heartrate': a.get('has_heartrate'),
-                } for a in data
-            ],
+            # MIDLERTIDIG: fuld, ufiltreret dump af den store Fornalutx-tur (148+ km)
+            # for at se de RIGTIGE watt/power-feltnavne i stedet for at gætte dem.
+            'raw_debug': [a for a in data if (a.get('distance') or 0) > 100000],
         }
     return None
 
@@ -1325,7 +1315,8 @@ def main():
         print("❌ Kunne ikke hente data.json")
         return
     data = json.loads(data_raw)
-    data.pop('_debug_activities_tss', None)  # ryd op efter midlertidig TSS-diagnose
+    data.pop('_debug_activities_tss', None)  # ryd op efter tidligere TSS-diagnose
+    data.pop('_debug_full_activity', None)   # ryd op efter denne kørsel (sat igen nedenfor om nødvendigt)
 
     # --- Opdater meta ---
     try:
@@ -1541,6 +1532,11 @@ def main():
         if not data.get('coachAssessmentHtml'):
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
+
+    # --- MIDLERTIDIG DEBUG: fuld rå aktivitet for den store tur, for at finde de
+    # rigtige watt/power-feltnavne (ikke gættede). Fjernes igen efter diagnose. ---
+    if activities and activities.get('raw_debug'):
+        data['_debug_full_activity'] = activities['raw_debug']
 
     # --- Push data.json ---
     gh_put('data.json', sha_data,
