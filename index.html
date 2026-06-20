@@ -376,6 +376,7 @@ let D = {
   ],
   ctlCurve:[34,36,38,41,44,43,41,45,49,53,57,55,58,60],
   weightHistory: [],
+  fatHistory: [],
   hrvHistory: [],
   sleepHistory: [],
   tsbHistory: [],
@@ -1301,6 +1302,7 @@ async function init() {
       if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
       if (remote.hrvHistory)     D.hrvHistory     = remote.hrvHistory;
       if (remote.sleepHistory)   D.sleepHistory   = remote.sleepHistory;
+      if (remote.fatHistory)     D.fatHistory     = remote.fatHistory;
       if (remote.tsbHistory)     D.tsbHistory     = remote.tsbHistory;
       if (remote.coachSpeech)          D.coachSpeech          = remote.coachSpeech;
       if (remote.coachHighlight)       D.coachHighlight       = remote.coachHighlight;
