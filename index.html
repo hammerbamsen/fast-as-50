@@ -1040,7 +1040,7 @@ function sparkline(data, color, label, unit, minV, maxV) {
       <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em">${label}</span>
       <span style="font-family:'Space Mono',monospace;font-size:13px;color:${color};font-weight:700">${last.toFixed(1)} <span style="font-size:9px">${unit}</span> <span style="color:${tcolor};font-size:11px">${trend}</span></span>
     </div>
-    <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:${H}px;overflow:visible">
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:${H}px;overflow:visible">
       <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="${color}" stop-opacity=".32"/>
         <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
