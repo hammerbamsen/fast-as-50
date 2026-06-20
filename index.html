@@ -384,6 +384,8 @@ let D = {
 };
 
 let sessionDone = false;
+let sparklineSeq = 0;
+const SPARKLINE_DATA = {};
 
 // ── SVG Icons ─────────────────────────────────────────────────
 const ICONS = {
@@ -981,9 +983,16 @@ function renderRules() {
 }
 
 
-function sparkline(data, color, label, unit, minV, maxV) {
-  if (!data || data.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
-  const W=280, H=92, pad={l:8,r:8,t:22,b:20};
+// Tegner selve <svg>'et ved en EKSAKT pixelbredde (W == den faktiske renderede bredde).
+// Fordi viewBox-bredden altid matcher den rigtige CSS-bredde 1:1, er der intet behov for at
+// skalere ujævnt (preserveAspectRatio="none") — det var det, der gjorde tal/tekst forvrænget.
+// Før den rigtige bredde er målt i DOM'en bruges et fallback-tal (280px), som redrawSparklines()
+// straks erstatter med det korrekte mål via et requestAnimationFrame-kald.
+function buildSparklineSVG(chartId, W) {
+  const cfg = SPARKLINE_DATA[chartId];
+  if (!cfg) return '';
+  const { data, color, minV, maxV } = cfg;
+  const H=92, pad={l:8,r:8,t:22,b:20};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const vals  = data.map(d=>typeof d==='object'?d.v:d);
   const reals = data.map(d=>typeof d==='object' && 'real' in d ? !!d.real : true);
@@ -994,10 +1003,6 @@ function sparkline(data, color, label, unit, minV, maxV) {
   const mx = maxV ?? dataMax + (dataMax-dataMin||1)*0.15;
   const x = i => pad.l + (n===1?0:(i/(n-1))*iW);
   const y = v => pad.t + iH - ((v-mn)/(mx-mn||1))*iH;
-  const last = vals[n-1];
-  const prev = vals[n-2];
-  const trend = last > prev ? '↑' : last < prev ? '↓' : '→';
-  const tcolor = last > prev ? 'var(--swim)' : last < prev ? 'var(--run)' : 'var(--muted)';
 
   // Område til fyld (bruger samme punkter, lige linjer)
   const baseline = (mn < 0 && mx > 0) ? y(0) : (H-pad.b);
@@ -1034,13 +1039,8 @@ function sparkline(data, color, label, unit, minV, maxV) {
     });
   }
 
-  const gid = `sg_${label.replace(/[^a-zA-Z0-9]/g,'')}`;
-  return `<div style="position:relative">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-      <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em">${label}</span>
-      <span style="font-family:'Space Mono',monospace;font-size:13px;color:${color};font-weight:700">${last.toFixed(1)} <span style="font-size:9px">${unit}</span> <span style="color:${tcolor};font-size:11px">${trend}</span></span>
-    </div>
-    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:${H}px;overflow:visible">
+  const gid = `sg_${chartId}`;
+  return `<svg data-spk="${chartId}" viewBox="0 0 ${W} ${H}" style="width:${W}px;height:${H}px;overflow:visible;display:block">
       <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="${color}" stop-opacity=".32"/>
         <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
@@ -1057,9 +1057,49 @@ function sparkline(data, color, label, unit, minV, maxV) {
         ? `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="${color}" stroke="var(--white)" stroke-width="1.5"/>`
         : `<circle cx="${x(i)}" cy="${y(vals[i])}" r="3.5" fill="var(--cream)" stroke="${color}" stroke-width="1.5" stroke-dasharray="2,2"/>`})()}
       ${xLabels.map((l,i)=>`<text x="${x(i)}" y="${H-4}" text-anchor="middle" fill="${i===n-1?color:'var(--muted)'}" font-weight="${i===n-1?700:400}" font-size="8" font-family="'Space Mono',monospace">${l}</text>`).join("")}
-    </svg>
+    </svg>`;
+}
+
+function sparkline(data, color, label, unit, minV, maxV) {
+  if (!data || data.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
+  const chartId = `spk${++sparklineSeq}`;
+  SPARKLINE_DATA[chartId] = { data, color, label, unit, minV, maxV };
+  const vals = data.map(d=>typeof d==='object'?d.v:d);
+  const last = vals[vals.length-1];
+  const prev = vals[vals.length-2];
+  const trend = last > prev ? '↑' : last < prev ? '↓' : '→';
+  const tcolor = last > prev ? 'var(--swim)' : last < prev ? 'var(--run)' : 'var(--muted)';
+  return `<div style="position:relative">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+      <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em">${label}</span>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:${color};font-weight:700">${last.toFixed(1)} <span style="font-size:9px">${unit}</span> <span style="color:${tcolor};font-size:11px">${trend}</span></span>
+    </div>
+    ${buildSparklineSVG(chartId, 280)}
   </div>`;
 }
+
+// Måler den faktiske renderede bredde for hver sparkline og gentegner SVG'et 1:1 i den bredde —
+// kaldes lige efter hver side-render samt ved resize (orientering/sidebar-skift på mobil).
+function redrawSparklines() {
+  document.querySelectorAll('svg[data-spk]').forEach(svg => {
+    const chartId = svg.getAttribute('data-spk');
+    const parent = svg.parentElement;
+    if (!parent || !SPARKLINE_DATA[chartId]) return;
+    const w = Math.round(parent.clientWidth);
+    if (!w) return;
+    const currentVB = parseFloat((svg.getAttribute('viewBox')||'').split(' ')[2]) || 0;
+    if (Math.abs(currentVB - w) < 1) return; // allerede korrekt bredde
+    const tmp = document.createElement('div');
+    tmp.innerHTML = buildSparklineSVG(chartId, w);
+    if (tmp.firstElementChild) svg.replaceWith(tmp.firstElementChild);
+  });
+}
+
+let _sparklineResizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_sparklineResizeTimer);
+  _sparklineResizeTimer = setTimeout(redrawSparklines, 150);
+});
 
 
 function afHistoryViz(history) {
@@ -1212,6 +1252,7 @@ function navigate(pageId) {
   const renders = {today:renderToday, week:renderWeek, overview:renderOverview, body:renderBody, rules:renderRules};
   try {
     document.getElementById(`page-${pageId}`).innerHTML = renders[pageId]();
+    requestAnimationFrame(redrawSparklines);
     if (pageId === 'week' && typeof loadCoachAssessment === 'function') {
       setTimeout(function(){ loadCoachAssessment(false); }, 60);
     }
