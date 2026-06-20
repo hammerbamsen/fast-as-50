@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-20 01:50",
+    "updated": "2026-06-20 02:01",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 78,
-    "daysToChristiansborg": 71,
-    "dayName": "Fredag",
-    "date": "19. jun"
+    "daysToMedoc": 77,
+    "daysToChristiansborg": 70,
+    "dayName": "Lørdag",
+    "date": "20. jun"
   },
   "kpis": {
     "weight": {
@@ -23,19 +23,19 @@
       "color": "#F39C12"
     },
     "ctl": {
-      "value": "41.3",
+      "value": "40.3",
       "unit": "",
       "sub": "Uge 3-mål 38 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-9.4",
+      "value": "-3.7",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7.9",
+      "value": "7.8",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "69.5",
+      "value": "70.9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 19
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 3. {HL} Dagens session er gennemført. Godt: TSB -9.4 er på et sundt niveau med plads til næste belastning. Søvn på 7.9 timer er solid. Vægt på 73.0 kg — Vægten er allerede 1.2 kg lavere end seneste måling (2026-06-10) (dagen efter hjemrejse fra Mallorca-træningslejren) — ser ud til at have normaliseret sig hurtigt. Godt tegn. Fokus: 250 af 602 TSS er i hus — 2 sessioner tilbage, heriblandt Lang løb Z2 60 min, Svøm 2000m teknisk. Keep moving forward.  \"Sæt målet højt, men sæt i dag realistisk.\"",
-  "coachHighlight": "CTL 41.3 følger ramp-kurven mod 60",
+  "coachSpeech": "Lørdag — uge 3 af 14. {HL} I dag: Lang løb Z2 60 min (løb). Godt: TSB -3.7 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 250 af 602 TSS er i hus — 2 sessioner tilbage, heriblandt Lang løb Z2 60 min, Svøm 2000m teknisk. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachHighlight": "CTL 40.3 følger ramp-kurven mod 60",
   "weekFocus": "Intensiv build-uge 3 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "strength",
-    "title": "Styrke A Functional Strength 3 sæt",
+    "discipline": "run",
+    "title": "Lang løb Z2 60 min",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
@@ -137,7 +137,6 @@
       "disc": "strength",
       "label": "Styrke A Functional Strength 3 sæt",
       "done": true,
-      "today": true,
       "completion": "done",
       "completion_pct": null,
       "actual_tss": 6,
@@ -148,7 +147,8 @@
       "day": "Lør",
       "disc": "run",
       "label": "Lang løb Z2 60 min",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Søn",
@@ -160,14 +160,9 @@
   "ctlCurve": [
     36.3,
     40.5,
-    41.3
+    40.3
   ],
   "weightHistory": [
-    {
-      "date": "2026-05-23",
-      "v": 75.7,
-      "real": false
-    },
     {
       "date": "2026-05-24",
       "v": 75.7,
@@ -302,14 +297,14 @@
       "date": "2026-06-19",
       "v": 73.0,
       "real": true
+    },
+    {
+      "date": "2026-06-20",
+      "v": 73.0,
+      "real": false
     }
   ],
   "hrvHistory": [
-    {
-      "date": "2026-05-23",
-      "v": 34.0,
-      "real": true
-    },
     {
       "date": "2026-05-24",
       "v": 31.0,
@@ -444,14 +439,14 @@
       "date": "2026-06-19",
       "v": 84.0,
       "real": true
+    },
+    {
+      "date": "2026-06-20",
+      "v": 84.0,
+      "real": false
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-05-23",
-      "v": 7.8,
-      "real": true
-    },
     {
       "date": "2026-05-24",
       "v": 8.4,
@@ -586,14 +581,14 @@
       "date": "2026-06-19",
       "v": 6.4,
       "real": true
+    },
+    {
+      "date": "2026-06-20",
+      "v": 6.4,
+      "real": false
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-05-23",
-      "v": -16.4,
-      "real": true
-    },
     {
       "date": "2026-05-24",
       "v": -16.4,
@@ -727,6 +722,11 @@
     {
       "date": "2026-06-19",
       "v": -9.4,
+      "real": true
+    },
+    {
+      "date": "2026-06-20",
+      "v": -3.7,
       "real": true
     }
   ],
@@ -913,7 +913,6 @@
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
           "done": true,
-          "today": true,
           "completion": "done",
           "completion_pct": null,
           "actual_tss": 6,
@@ -924,7 +923,8 @@
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 60 min",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Søn",
@@ -1425,7 +1425,7 @@
     {
       "week": 3,
       "done": 5,
-      "total": 5,
+      "total": 6,
       "label": "Uge 3"
     }
   ],
@@ -1438,11 +1438,6 @@
     "actual_total": 696.0
   },
   "fatHistory": [
-    {
-      "date": "2026-05-23",
-      "v": 22.3,
-      "real": false
-    },
     {
       "date": "2026-05-24",
       "v": 22.3,
@@ -1577,8 +1572,13 @@
       "date": "2026-06-19",
       "v": 21.7,
       "real": true
+    },
+    {
+      "date": "2026-06-20",
+      "v": 21.7,
+      "real": false
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 19 af 98 · Fredag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du gennemførte styrke A i dag — funktionel styrke som understøtter både løb og svøm uden at æde ind i din recovery. CTL er på 41.3 og ligger allerede over uge 3-målet på 38, hvilket er godt, men det kræver at du holder igen på intensiteten de næste to dage. TSB på -9.4 er helt fint — du har rum til weekendens arbejde uden at nærme dig -30. Lørdag kører du lang Z2-løb på 60 min og søndag teknisk svøm 2000m — hold begge sessionerne disciplineret i zone, det er ikke weekender for at bevise noget.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.0 kg er 1.2 kg lavere end målingen den 10. juni dagen efter Mallorca-lejren — vægten har normaliseret sig hurtigt, og det er et godt tegn på at kroppen responderer som den skal. Du er tæt på 72 kg-målet, men der er stadig arbejde. Hold proteinindtaget oppe i weekenden, særligt efter lørdagens løb, og undgå at overeat på baggrund af træningsvolumen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">5/5 AF-dage — stregen er 19 dage og kører præcist som den skal. Weekenden er enkel: to sessions, ingen pres, ingen alkohol. Luk ugen rent.</p>",
-  "coachAssessmentTs": "23:50"
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 20 af 98 · Lørdag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 40.3 er allerede over ugemålet på 38 — det er solidt, men pas på ikke at overstyre. TSB på -3.7 er helt komfortabelt, og du har god frihed til at gennemføre den lange Z2-løbetur i dag. Hold dig disciplineret i zone 2 — det er ikke en dag at \"bruge\" overskuddet på tempo. Søndagens svøm lukker ugen fint og holder loadet kontrolleret.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægttjek — ingen kommentar herfra. Men efter en intens byggeuge er det værd at mærke efter energibalancen: tilstrækkeligt protein og kulhydrater til at støtte recovery, uden at kompensere for træthed med overspising.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">5 AF-dage ud af 6 afsluttede dage er præcis det, du sigter efter — du er på sporet og behøver ikke gøre mere. Ugen afsluttes med lørdag og søndag, og du har allerede nået ugemålet. Fokusér på at lukke ugen rent: en rolig Z2-løbetur i dag og en teknisk svøm i morgen — ingen heroisme, bare konsistens.</p>",
+  "coachAssessmentTs": "00:01"
 }
