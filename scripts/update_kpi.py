@@ -1204,7 +1204,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         if weight else
         f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}"
     )
-    days_completed = weekday + 1  # afsluttede dage inkl. i dag
+    days_completed = weekday  # afsluttede dage FØR i dag (i dag er ikke slut endnu — samme logik som linje ~1118)
     af_note = (
         f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} afsluttede dage "
         f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
