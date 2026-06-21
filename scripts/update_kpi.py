@@ -1499,7 +1499,8 @@ def main():
     data['coachSpeech']    = coach_speech
     data['coachHighlight'] = coach_highlight
 
-    # --- AI coach-vurdering (genereres server-side, caches i data.json, maks 1x/6t) ---
+    # --- AI coach-vurdering (genereres server-side, caches i data.json, maks 1x/6t,
+    #     MEN brydes tidligt hvis der kommer en ny vejning der afviger fra cachen) ---
     CACHE_HOURS = 6
     _cache_age_h = None
     _last_ts_full = data.get('coachAssessmentTsFull')
@@ -1510,10 +1511,18 @@ def main():
         except Exception:
             _cache_age_h = None
 
-    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS:
+    _weight_at_gen = data.get('coachAssessmentWeightAtGen')
+    _weight_changed = (
+        weight_is_today and weight is not None and _weight_at_gen is not None
+        and abs(weight - _weight_at_gen) > 0.05
+    )
+
+    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed:
         print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
         ai_text = None
     else:
+        if _weight_changed:
+            print(f"  Ny vejning ({_weight_at_gen} -> {weight}) -- bryder cache tidligt")
         ai_text = generate_ai_assessment(
             week_num, weekday, DK_DAYS[weekday],
             ctl, tsb,
@@ -1537,9 +1546,10 @@ def main():
             line = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', line)
             html_lines.append(f'<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">{line}</p>')
         from datetime import datetime as _dt
-        data['coachAssessmentHtml']   = ''.join(html_lines)
-        data['coachAssessmentTs']     = _dt.now().strftime('%H:%M')
-        data['coachAssessmentTsFull'] = datetime.utcnow().isoformat()
+        data['coachAssessmentHtml']        = ''.join(html_lines)
+        data['coachAssessmentTs']          = _dt.now().strftime('%H:%M')
+        data['coachAssessmentTsFull']      = datetime.utcnow().isoformat()
+        data['coachAssessmentWeightAtGen'] = weight if weight_is_today else _weight_at_gen
     else:
         # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
