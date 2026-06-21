@@ -1314,6 +1314,7 @@ def main():
     data = json.loads(data_raw)
     data.pop('_debug_activities_tss', None)  # ryd op efter tidligere TSS-diagnose
     data.pop('_debug_full_activity', None)   # ryd op efter denne kørsel (sat igen nedenfor om nødvendigt)
+    data.pop('_debug_today_wellness', None)  # ryd op efter vægt-diagnose (sat igen nedenfor)
 
     # --- Opdater meta ---
     try:
@@ -1344,6 +1345,13 @@ def main():
                             params={'oldest': str(date.today()), 'newest': str(date.today())})
     _today_rows = _r_today.json() if _r_today.status_code == 200 else []
     weight_is_today = _weight_today(_today_rows)
+    data['_debug_today_wellness'] = {
+        'status_code': _r_today.status_code,
+        'raw': _today_rows,
+        'weight_is_today': weight_is_today,
+        'wellness_7d_weight': wellness.get('weight') if wellness else None,
+        'today_str': str(date.today()),
+    }
 
     # --- Rejse-/vægtudsving-kontekst: undgå at coachen bebrejder disciplin når
     # et udsving skyldes rejse (fx hjemkomst fra Mallorca) fremfor fedt — og,
