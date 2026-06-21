@@ -1513,7 +1513,7 @@ def main():
 
     _weight_at_gen = data.get('coachAssessmentWeightAtGen')
     _weight_changed = (
-        weight_is_today and weight is not None
+        weight is not None
         and (_weight_at_gen is None or abs(weight - _weight_at_gen) > 0.05)
     )
 
@@ -1549,7 +1549,7 @@ def main():
         data['coachAssessmentHtml']        = ''.join(html_lines)
         data['coachAssessmentTs']          = _dt.now().strftime('%H:%M')
         data['coachAssessmentTsFull']      = datetime.utcnow().isoformat()
-        data['coachAssessmentWeightAtGen'] = weight if weight_is_today else _weight_at_gen
+        data['coachAssessmentWeightAtGen'] = weight if weight is not None else _weight_at_gen
     else:
         # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
