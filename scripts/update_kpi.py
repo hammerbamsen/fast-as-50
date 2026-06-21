@@ -1290,6 +1290,29 @@ def main():
 
     print(f"=== KPI opdatering {today} (uge {week_num}) ===")
 
+    # DIAGNOSTIC: prove the script can reach/auth to GitHub at all, before anything
+    # else runs. If this file never appears, GH_TOKEN/auth or networking is broken
+    # at the very start, before any Intervals/data.json logic.
+    try:
+        _diag_sha, _ = gh_get('_debug_earliest_ping.json')
+        _diag_payload = json.dumps({
+            'ran_at_utc': datetime.utcnow().isoformat(),
+            'gh_token_set': bool(GH_TOKEN),
+            'gh_token_len': len(GH_TOKEN) if GH_TOKEN else 0,
+            'intervals_key_set': bool(API_KEY),
+            'athlete_id': ATHLETE_ID,
+        }, indent=2)
+        _diag_r = requests.put(
+            f'https://api.github.com/repos/{REPO}/contents/_debug_earliest_ping.json',
+            headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
+            json={'message': f'earliest ping {today}',
+                  'content': base64.b64encode(_diag_payload.encode()).decode(),
+                  **({'sha': _diag_sha} if _diag_sha else {})}
+        )
+        print(f"  EARLIEST PING status: {_diag_r.status_code}")
+    except Exception as _diag_e:
+        print(f"  EARLIEST PING fejlede hårdt: {_diag_e}")
+
     fitness    = get_fitness()
     wellness   = get_wellness_7d()
     activities   = get_activities_week()
