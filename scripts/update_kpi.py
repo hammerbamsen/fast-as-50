@@ -1513,8 +1513,8 @@ def main():
 
     _weight_at_gen = data.get('coachAssessmentWeightAtGen')
     _weight_changed = (
-        weight_is_today and weight is not None and _weight_at_gen is not None
-        and abs(weight - _weight_at_gen) > 0.05
+        weight_is_today and weight is not None
+        and (_weight_at_gen is None or abs(weight - _weight_at_gen) > 0.05)
     )
 
     if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed:
