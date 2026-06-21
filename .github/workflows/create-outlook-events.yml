@@ -79,7 +79,7 @@ jobs:
           }
 
           # ── 4. Opret Outlook-events ──────────────────────────
-          GRAPH = "https://graph.microsoft.com/v1.0/me/events"
+          GRAPH = "https://graph.microsoft.com/v1.0/users/kennet@hammerby.com/events"
           ok = err = 0
 
           for w in workouts:
