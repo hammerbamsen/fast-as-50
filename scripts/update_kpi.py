@@ -1532,6 +1532,7 @@ def main():
             today_session, tss_act, planned,
             travel_note=context_note, trajectory_note=trajectory_note
         )
+        ai_text = fix_enc(ai_text)  # AI-svar kan komme tilbage Latin-1-mis-decoded -- ret ved kilden
     if ai_text:
         # Konverter til simpel HTML (samme logik som dashboardet)
         # Tilføj korrekt header hardcodet (forhindrer AI i at skrive forkert "Dag X af 14 uger")
