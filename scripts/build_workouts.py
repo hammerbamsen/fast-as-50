@@ -352,6 +352,15 @@ def swim_let():
     return {"name": "Svøm 1500m let teknisk", "type": "Swim",
             "moving_time": 45*60, "description": desc, "workout_doc": doc}
 
+def swim_recovery(tot_min=30):
+    desc, doc = build([
+        s_free(8,  "300m varm-op Z1"),
+        s_reps(4,  [s_free(2, "100m teknik Z1-Z2")]),
+        s_free(6,  "300m cool"),
+    ])
+    return {"name": f"Svøm let {tot_min} min recovery", "type": "Swim",
+            "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
+
 def strength_a(sets=3):
     desc, doc = build([
         s_reps(sets, [
@@ -419,14 +428,21 @@ def make_plan():
     # Søn: svøm
     (p+timedelta(20), swim_2000(),            "Svøm 2000m"),
 
-    # ── UGE 4: 22-28 jun  RECOVERY ──────────────────────────────
-    (p+timedelta(21), None,                  "Hvile — walk"),
-    (p+timedelta(22), run_let(30),           "Løb let 30 min"),
-    (p+timedelta(23), swim_let(),            "Svøm let 1500m"),
-    (p+timedelta(24), strength_let(),        "Styrke let"),
-    (p+timedelta(25), bike_z2(45),           "Cykel Z1 let 45 min"),
-    (p+timedelta(26), run_z2(65),            "Løb medium Z2 65 min"),
-    (p+timedelta(27), None,                  "Hvile / walk"),
+    # ── UGE 4: 22-28 jun  RECOVERY (justeret v2 — DK-hverdag) ────
+    # Man: svøm før hjemmekontor
+    (p+timedelta(21), swim_recovery(30),     "Let svøm 30 min teknik — før hjemmekontor"),
+    # Tirs: god formiddag til løb
+    (p+timedelta(22), run_z2(45),            "Løb Z2 45 min"),
+    # Ons: workshop — kort spin
+    (p+timedelta(23), bike_z2(30),           "Let cykel-spin 30 min — workshop dag"),
+    # Tor: job fylder formiddag, træning eftermiddag (se TIME_OVERRIDES)
+    (p+timedelta(24), bike_z2(45),           "Cykel Z2 45 min — eftermiddag"),
+    # Fre: job-fyldt dag — hvile
+    (p+timedelta(25), None,                  "Hvile — job-fyldt dag"),
+    # Lør: god weekend, lang løb 1,5 time
+    (p+timedelta(26), run_z2_lang(90),       "Lang løb Z2 1,5 time"),
+    # Søn: let svøm/cykel
+    (p+timedelta(27), swim_let(),            "Let svøm 1500m / 45 min"),
 
     # ── UGE 5: 29 jun–5 jul  BUILD ──────────────────────────────
     (p+timedelta(28), strength_a(3),         "Styrke A + cykel Z2"),
@@ -520,6 +536,12 @@ def make_plan():
     ]
 
 # ── Upload-hjælpere ─────────────────────────────────────────────
+# Tidspunkt-overrides for dage hvor standardtid (se _start_hour) ikke
+# passer med Kennets skema (job/møder/workshop fylder standard-vinduet).
+TIME_OVERRIDES = {
+    date(2026, 6, 25): (16, 0),   # Tor uge 4 — job fylder formiddag, træning kl 16
+}
+
 def _start_hour(wo_type):
     """Starttidspunkt baseret på disciplin."""
     t = (wo_type or "").upper()
@@ -531,7 +553,10 @@ def _start_hour(wo_type):
 
 def _start_end(wo, dt):
     """Returner (start_iso, end_iso) for et workout."""
-    sh, sm = _start_hour(wo.get("type", ""))
+    if dt in TIME_OVERRIDES:
+        sh, sm = TIME_OVERRIDES[dt]
+    else:
+        sh, sm = _start_hour(wo.get("type", ""))
     start_mins = sh * 60 + sm
     duration_mins = wo.get("moving_time", 3600) // 60
     end_mins = start_mins + duration_mins
@@ -618,6 +643,10 @@ def run_plan(session, week_filter=0):
         if week != cur_week:
             cur_week = week
             print(f"\n📅 UGE {week} ({dt.strftime('%d. %b')})")
+        # Ryd ALTID evt. eksisterende events for datoen først — også når
+        # dagens (nye) plan er hvile, så stale entries fra tidligere runs ikke hænger
+        delete_existing(session, dt)
+        outlook_delete_by_date(dt)
         if wo is None:
             print(f"  ⚪ {dt.strftime('%d. %b')} {days_da[dt.weekday()]} — {note}")
             skip += 1
