@@ -90,8 +90,23 @@ jobs:
               desc  = w.get('description', '')
               emoji = TYPE_EMOJI.get(wtype, '🏋️')
 
-              start_dt = f"{dt}T06:00:00"
-              end_dt   = f"{dt}T{str(6 + dur//3600).zfill(2)}:{str((dur%3600)//60).zfill(2)}:00"
+              # Standardtid pr. disciplin — matcher _start_hour() i scripts/build_workouts.py
+              START_HOUR = {
+                  'SWIM': (6, 0), 'OW': (6, 0),
+                  'RUN': (6, 30), 'TRAIL_RUN': (6, 30),
+                  'RIDE': (7, 0), 'VIRTUAL_RIDE': (7, 0),
+                  'WEIGHTTRAINING': (7, 0), 'WEIGHT_TRAINING': (7, 0), 'WEIGHTS': (7, 0),
+              }
+              # Overrides for dage med skema-konflikt — matcher TIME_OVERRIDES i build_workouts.py
+              TIME_OVERRIDES = {
+                  '2026-06-25': (16, 0),  # Tor uge 4 — job fylder formiddag
+              }
+              sh, sm = TIME_OVERRIDES.get(dt, START_HOUR.get(wtype.upper(), (6, 0)))
+              start_min = sh * 60 + sm
+              end_min   = start_min + dur // 60
+              eh, em    = end_min // 60, end_min % 60
+              start_dt  = f"{dt}T{sh:02d}:{sm:02d}:00"
+              end_dt    = f"{dt}T{eh:02d}:{em:02d}:00"
 
               event = {
                   'subject': f"{emoji} {name}",
