@@ -985,7 +985,7 @@ def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_a
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
                            ctl=None, tsb=None, weight=None, sleep=None, compliance=None,
                            tss_act=None, planned=None, remaining_sessions=None, week_sessions=None,
-                           travel_note=None, trajectory_note=None):
+                           travel_note=None, trajectory_note=None, days_completed=None):
     """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus).
 
     Coaching-princip: hold Kennet på sporet mod Christiansborg (29/8) og Médoc (5/9).
@@ -1114,8 +1114,10 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
             focus.append(f"Søvn på {fmt(sleep,1)} timer er under 7-timers målet — prioriter den.")
 
     # AF-vurdering: relativ til gennemførte dage (weekday 0=man, 1=tirs, osv.)
-    # weekday er 0-baseret, men antallet af afsluttede dage = weekday (ikke inkl. i dag)
-    days_completed = weekday  # antal dage afsluttet før i dag (mandag=0, tirsdag=1, onsdag=2, ...)
+    # days_completed kommer fra main() og tæller faktisk registrerede AF-dage
+    # (inkl. i dag hvis allerede logget) -- IKKE blot kalenderens ugedag.
+    if days_completed is None:
+        days_completed = weekday  # fallback hvis ikke angivet
     if af_this_week >= 5:
         goods.append(f"{af_this_week}/7 AF-dage — ugens mål er ramt.")
     elif weekday == 0 and af_this_week == 0:
@@ -1192,7 +1194,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
-                             trajectory_note=None):
+                             trajectory_note=None, days_completed=None):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     if not ANTHROPIC_KEY:
         print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
@@ -1204,7 +1206,8 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         if weight else
         f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}"
     )
-    days_completed = weekday  # afsluttede dage FØR i dag (i dag er ikke slut endnu — samme logik som linje ~1118)
+    if days_completed is None:
+        days_completed = weekday  # fallback hvis ikke angivet -- afsluttede dage FØR i dag
     af_note = (
         f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} afsluttede dage "
         f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
@@ -1298,6 +1301,10 @@ def main():
     planned    = planned_tss_this_week()
     af_days, af_log = get_af_this_week()
     af_streak = get_af_streak()
+    # Dage anses for "afsluttede" når de har en registreret AF-værdi i af_log
+    # (inkl. i dag, hvis Alkohol allerede er logget) -- IKKE blot kalenderens
+    # ugedag. Forhindrer mismatch som "7 AF-dage ud af 6 afsluttede dage".
+    days_completed = sum(1 for v in af_log.values() if v is not None) if af_log else weekday
     history    = get_history_7d()
     ctl_curve  = get_ctl_curve()
 
@@ -1479,7 +1486,7 @@ def main():
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
         ctl=ctl, tsb=tsb, weight=weight if weight_is_today else None, sleep=sleep, compliance=compliance,
         tss_act=tss_act, planned=planned, week_sessions=data['week_sessions'],
-        travel_note=context_note, trajectory_note=trajectory_note
+        travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed
     )
 
     # --- QA: valider coach-tekst mod faktiske data inden push ---
@@ -1535,7 +1542,7 @@ def main():
             af_this_week, af_streak,
             data['week_sessions'], week_focus,
             today_session, tss_act, planned,
-            travel_note=context_note, trajectory_note=trajectory_note
+            travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed
         )
         ai_text = fix_enc(ai_text)  # AI-svar kan komme tilbage Latin-1-mis-decoded -- ret ved kilden
     if ai_text:
@@ -1595,6 +1602,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
