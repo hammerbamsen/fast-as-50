@@ -1280,24 +1280,6 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
             return text
     except Exception as e:
         print(f"  ⚠️  AI-vurdering fejlede: {e}")
-        try:
-            import traceback as _tb
-            _err_payload = json.dumps({
-                'ran_at_utc': datetime.utcnow().isoformat(),
-                'error': str(e),
-                'error_type': type(e).__name__,
-                'traceback': _tb.format_exc(),
-            }, indent=2)
-            _esha, _ = gh_get('_debug_ai_error.json')
-            requests.put(
-                f'https://api.github.com/repos/{REPO}/contents/_debug_ai_error.json',
-                headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
-                json={'message': 'debug ai error',
-                      'content': base64.b64encode(_err_payload.encode()).decode(),
-                      **({'sha': _esha} if _esha else {})}
-            )
-        except Exception:
-            pass
         return None
 
 
@@ -1308,29 +1290,6 @@ def main():
     week_num  = min(max((today - week1).days // 7 + 1, 1), 14)
 
     print(f"=== KPI opdatering {today} (uge {week_num}) ===")
-
-    # DIAGNOSTIC: prove the script can reach/auth to GitHub at all, before anything
-    # else runs. If this file never appears, GH_TOKEN/auth or networking is broken
-    # at the very start, before any Intervals/data.json logic.
-    try:
-        _diag_sha, _ = gh_get('_debug_earliest_ping.json')
-        _diag_payload = json.dumps({
-            'ran_at_utc': datetime.utcnow().isoformat(),
-            'gh_token_set': bool(GH_TOKEN),
-            'gh_token_len': len(GH_TOKEN) if GH_TOKEN else 0,
-            'intervals_key_set': bool(API_KEY),
-            'athlete_id': ATHLETE_ID,
-        }, indent=2)
-        _diag_r = requests.put(
-            f'https://api.github.com/repos/{REPO}/contents/_debug_earliest_ping.json',
-            headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
-            json={'message': f'earliest ping {today}',
-                  'content': base64.b64encode(_diag_payload.encode()).decode(),
-                  **({'sha': _diag_sha} if _diag_sha else {})}
-        )
-        print(f"  EARLIEST PING status: {_diag_r.status_code}")
-    except Exception as _diag_e:
-        print(f"  EARLIEST PING fejlede hårdt: {_diag_e}")
 
     fitness    = get_fitness()
     wellness   = get_wellness_7d()
@@ -1356,7 +1315,6 @@ def main():
     data = json.loads(data_raw)
     data.pop('_debug_activities_tss', None)  # ryd op efter tidligere TSS-diagnose
     data.pop('_debug_full_activity', None)   # ryd op efter denne kørsel (sat igen nedenfor om nødvendigt)
-    data.pop('_debug_today_wellness', None)  # ryd op efter vægt-diagnose (sat igen nedenfor)
 
     # --- Opdater meta ---
     try:
@@ -1387,13 +1345,6 @@ def main():
                             params={'oldest': str(date.today()), 'newest': str(date.today())})
     _today_rows = _r_today.json() if _r_today.status_code == 200 else []
     weight_is_today = _weight_today(_today_rows)
-    data['_debug_today_wellness'] = {
-        'status_code': _r_today.status_code,
-        'raw': _today_rows,
-        'weight_is_today': weight_is_today,
-        'wellness_7d_weight': wellness.get('weight') if wellness else None,
-        'today_str': str(date.today()),
-    }
 
     # --- Rejse-/vægtudsving-kontekst: undgå at coachen bebrejder disciplin når
     # et udsving skyldes rejse (fx hjemkomst fra Mallorca) fremfor fedt — og,
@@ -1548,16 +1499,30 @@ def main():
     data['coachSpeech']    = coach_speech
     data['coachHighlight'] = coach_highlight
 
-    # --- AI coach-vurdering (genereres server-side, caches i data.json) ---
-    ai_text = generate_ai_assessment(
-        week_num, weekday, DK_DAYS[weekday],
-        ctl, tsb,
-        weight if weight_is_today else None,
-        af_this_week, af_streak,
-        data['week_sessions'], week_focus,
-        today_session, tss_act, planned,
-        travel_note=context_note, trajectory_note=trajectory_note
-    )
+    # --- AI coach-vurdering (genereres server-side, caches i data.json, maks 1x/6t) ---
+    CACHE_HOURS = 6
+    _cache_age_h = None
+    _last_ts_full = data.get('coachAssessmentTsFull')
+    if _last_ts_full:
+        try:
+            _last_dt = datetime.fromisoformat(_last_ts_full)
+            _cache_age_h = (datetime.utcnow() - _last_dt).total_seconds() / 3600
+        except Exception:
+            _cache_age_h = None
+
+    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS:
+        print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
+        ai_text = None
+    else:
+        ai_text = generate_ai_assessment(
+            week_num, weekday, DK_DAYS[weekday],
+            ctl, tsb,
+            weight if weight_is_today else None,
+            af_this_week, af_streak,
+            data['week_sessions'], week_focus,
+            today_session, tss_act, planned,
+            travel_note=context_note, trajectory_note=trajectory_note
+        )
     if ai_text:
         # Konverter til simpel HTML (samme logik som dashboardet)
         # Tilføj korrekt header hardcodet (forhindrer AI i at skrive forkert "Dag X af 14 uger")
@@ -1572,43 +1537,19 @@ def main():
             line = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', line)
             html_lines.append(f'<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">{line}</p>')
         from datetime import datetime as _dt
-        data['coachAssessmentHtml'] = ''.join(html_lines)
-        data['coachAssessmentTs']   = _dt.now().strftime('%H:%M')
+        data['coachAssessmentHtml']   = ''.join(html_lines)
+        data['coachAssessmentTs']     = _dt.now().strftime('%H:%M')
+        data['coachAssessmentTsFull'] = datetime.utcnow().isoformat()
     else:
-        # Behold eksisterende hvis API fejler
+        # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
 
     # --- Push data.json ---
-    _r_main_put = requests.put(
-        f'https://api.github.com/repos/{REPO}/contents/data.json',
-        headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
-        json={'message': f'KPI auto-opdatering {today}',
-              'content': base64.b64encode(json.dumps(data, indent=2, ensure_ascii=False).encode()).decode(),
-              'sha': sha_data}
-    )
-    print(f"  {'✅' if _r_main_put.status_code in (200,201) else '❌'} data.json: {_r_main_put.status_code}")
-
-    # DEBUG: log the outcome to an INDEPENDENT file with its OWN fresh sha, so we
-    # can see why the main push fails/succeeds even if data.json itself goes stale.
-    try:
-        _dbg_sha, _ = gh_get('_debug_push_log.json')
-        _dbg_payload = {
-            'run_utc': datetime.utcnow().isoformat(),
-            'sha_data_used_for_main_put': sha_data,
-            'main_put_status_code': _r_main_put.status_code,
-            'main_put_response': _r_main_put.json() if _r_main_put.headers.get('content-type','').startswith('application/json') else _r_main_put.text[:1000],
-        }
-        requests.put(
-            f'https://api.github.com/repos/{REPO}/contents/_debug_push_log.json',
-            headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
-            json={'message': f'debug push log {today}',
-                  'content': base64.b64encode(json.dumps(_dbg_payload, indent=2, default=str).encode()).decode(),
-                  **({'sha': _dbg_sha} if _dbg_sha else {})}
-        )
-    except Exception as _e:
-        print(f"  debug log fejlede: {_e}")
+    gh_put('data.json', sha_data,
+           json.dumps(data, indent=2, ensure_ascii=False),
+           f'KPI auto-opdatering {today}')
 
     # --- Opdater kpis[] i index.html ---
     sha_html, html = gh_get('index.html')
