@@ -1280,7 +1280,26 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
             return text
     except Exception as e:
         print(f"  ⚠️  AI-vurdering fejlede: {e}")
+        try:
+            import traceback as _tb
+            _err_payload = json.dumps({
+                'ran_at_utc': datetime.utcnow().isoformat(),
+                'error': str(e),
+                'error_type': type(e).__name__,
+                'traceback': _tb.format_exc(),
+            }, indent=2)
+            _esha, _ = gh_get('_debug_ai_error.json')
+            requests.put(
+                f'https://api.github.com/repos/{REPO}/contents/_debug_ai_error.json',
+                headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
+                json={'message': 'debug ai error',
+                      'content': base64.b64encode(_err_payload.encode()).decode(),
+                      **({'sha': _esha} if _esha else {})}
+            )
+        except Exception:
+            pass
         return None
+
 
 def main():
     today     = date.today()
