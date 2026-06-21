@@ -56,15 +56,16 @@ jobs:
           headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
           print("✅ Azure token hentet")
 
-          # ── 2. Hent planlagte workouts fra Intervals ─────────
+          # ── 2. Hent planlagte workouts fra Intervals (kalenderen, ikke biblioteket) ─
           plan_start = date(2026, 6, 1)
           week_start = plan_start + timedelta(weeks=WEEK-1)
           week_end   = week_start + timedelta(days=6)
 
           r = requests.get(
-              f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}/workouts",
+              f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}/events",
               auth=("API_KEY", API_KEY),
-              params={'oldest': str(week_start), 'newest': str(week_end)}
+              params={'oldest': f"{week_start}T00:00:00", 'newest': f"{week_end}T23:59:00",
+                      'category': 'WORKOUT'}
           )
           workouts = r.json() if r.status_code == 200 else []
           print(f"✅ {len(workouts)} workouts fundet uge {WEEK} ({week_start}–{week_end})")
