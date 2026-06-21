@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-21 15:00",
+    "updated": "2026-06-21 15:10",
     "week": 3,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -55,7 +55,7 @@
     "tssComp": {
       "value": "386",
       "unit": "TSS",
-      "sub": "386 af 602 planlagt TSS",
+      "sub": "386 af 694 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 21
   },
-  "coachSpeech": "Søndag — afslut uge 3 stærkt. {HL} I dag: Svøm 2000m teknisk (svøm). Godt: TSB -12.4 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 386 af 602 TSS er i hus — Svøm 2000m teknisk står tilbage. Vægt på 73.6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward. 📊 Store billede: CTL 42.5 er 4.5 point FORAN ugeplanen (planmål uge 3: 38). Vægten har tabt 0.9 kg over de seneste 23 dage (74.5 → 73.6 kg).  \"Kroppen tror, hvad sindet siger.\"",
+  "coachSpeech": "Søndag — afslut uge 3 stærkt. {HL} Dagens session er gennemført. Godt: TSB -12.4 er på et sundt niveau med plads til næste belastning. 56 procent af ugens TSS er i hus. Fokus: Vægt på 73.6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Alle sessioner i hus. Juster de små ting, og resten følger. 📊 Store billede: CTL 42.5 er 4.5 point FORAN ugeplanen (planmål uge 3: 38). Vægten har tabt 0.9 kg over de seneste 23 dage (74.5 → 73.6 kg).  \"Kroppen tror, hvad sindet siger.\"",
   "coachHighlight": "CTL 42.5 følger ramp-kurven mod 60",
-  "weekFocus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
+  "weekFocus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
     "title": "Cykeltur til Helsingør",
-    "duration": "3t",
-    "zone": "Z2",
+    "duration": "",
+    "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -165,16 +165,13 @@
       "day": "Søn",
       "disc": "bike",
       "label": "Cykeltur til Helsingør",
-      "done": false,
-      "today": true
-    },
-    {
-      "day": "Søn",
-      "disc": "bike",
-      "label": "Gentofte Cykling på vej",
       "done": true,
-      "extra": true,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 60,
+      "actual_mins": 173,
+      "planned_mins": null
     }
   ],
   "ctlCurve": [
@@ -961,22 +958,19 @@
         },
         {
           "day": "Søn",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": true
-        },
-        {
-          "day": "Søn",
           "disc": "bike",
-          "label": "Gentofte Cykling på vej",
+          "label": "Cykeltur til Helsingør",
           "done": true,
-          "extra": true,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 60,
+          "actual_mins": 173,
+          "planned_mins": null
         }
       ],
       "blockType": "BUILD+",
-      "focus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet."
+      "focus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
     },
     "4": {
       "sessions": [
@@ -1477,7 +1471,7 @@
     "run": 152.0,
     "strength": 30.0,
     "openwater": 34.0,
-    "planned": 735.0,
+    "planned": 855.0,
     "actual_total": 974.0
   },
   "fatHistory": [
