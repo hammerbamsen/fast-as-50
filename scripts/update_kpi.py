@@ -1539,9 +1539,34 @@ def main():
             data['coachAssessmentTs']   = ''
 
     # --- Push data.json ---
-    gh_put('data.json', sha_data,
-           json.dumps(data, indent=2, ensure_ascii=False),
-           f'KPI auto-opdatering {today}')
+    _r_main_put = requests.put(
+        f'https://api.github.com/repos/{REPO}/contents/data.json',
+        headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
+        json={'message': f'KPI auto-opdatering {today}',
+              'content': base64.b64encode(json.dumps(data, indent=2, ensure_ascii=False).encode()).decode(),
+              'sha': sha_data}
+    )
+    print(f"  {'✅' if _r_main_put.status_code in (200,201) else '❌'} data.json: {_r_main_put.status_code}")
+
+    # DEBUG: log the outcome to an INDEPENDENT file with its OWN fresh sha, so we
+    # can see why the main push fails/succeeds even if data.json itself goes stale.
+    try:
+        _dbg_sha, _ = gh_get('_debug_push_log.json')
+        _dbg_payload = {
+            'run_utc': datetime.utcnow().isoformat(),
+            'sha_data_used_for_main_put': sha_data,
+            'main_put_status_code': _r_main_put.status_code,
+            'main_put_response': _r_main_put.json() if _r_main_put.headers.get('content-type','').startswith('application/json') else _r_main_put.text[:1000],
+        }
+        requests.put(
+            f'https://api.github.com/repos/{REPO}/contents/_debug_push_log.json',
+            headers={'Authorization': f'token {GH_TOKEN}', 'Accept': 'application/vnd.github+json'},
+            json={'message': f'debug push log {today}',
+                  'content': base64.b64encode(json.dumps(_dbg_payload, indent=2, default=str).encode()).decode(),
+                  **({'sha': _dbg_sha} if _dbg_sha else {})}
+        )
+    except Exception as _e:
+        print(f"  debug log fejlede: {_e}")
 
     # --- Opdater kpis[] i index.html ---
     sha_html, html = gh_get('index.html')
