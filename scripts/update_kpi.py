@@ -1517,12 +1517,17 @@ def main():
         and (_weight_at_gen is None or abs(weight - _weight_at_gen) > 0.05)
     )
 
-    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed:
+    _af_at_gen = data.get('coachAssessmentAfAtGen')
+    _af_changed = (_af_at_gen is None or af_this_week != _af_at_gen)
+
+    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _af_changed:
         print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
         ai_text = None
     else:
         if _weight_changed:
             print(f"  Ny vejning ({_weight_at_gen} -> {weight}) -- bryder cache tidligt")
+        if _af_changed:
+            print(f"  AF-status ændret ({_af_at_gen} -> {af_this_week}) -- bryder cache tidligt")
         ai_text = generate_ai_assessment(
             week_num, weekday, DK_DAYS[weekday],
             ctl, tsb,
@@ -1551,6 +1556,7 @@ def main():
         data['coachAssessmentTs']          = _dt.now().strftime('%H:%M')
         data['coachAssessmentTsFull']      = datetime.utcnow().isoformat()
         data['coachAssessmentWeightAtGen'] = weight if weight is not None else _weight_at_gen
+        data['coachAssessmentAfAtGen']     = af_this_week
     else:
         # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
