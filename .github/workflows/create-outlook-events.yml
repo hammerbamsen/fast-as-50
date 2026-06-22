@@ -123,6 +123,22 @@ jobs:
                   'reminderMinutesBeforeStart': 30,
               }
 
+              # Tjek for duplikat: hent eksisterende events på denne dato
+              check = requests.get(
+                  f"https://graph.microsoft.com/v1.0/users/kennet@hammerby.com/calendarView",
+                  headers={k: v for k, v in headers.items() if k != 'Content-Type'},
+                  params={
+                      'startDateTime': f"{dt}T00:00:00",
+                      'endDateTime':   f"{dt}T23:59:59",
+                      '$select':       'subject',
+                  }
+              )
+              existing = [e['subject'] for e in check.json().get('value', [])] if check.status_code == 200 else []
+              subject = f"{emoji} {name}"
+              if subject in existing:
+                  print(f"  ⏭️  {dt} — {subject} (eksisterer allerede)")
+                  continue
+
               resp = requests.post(GRAPH, headers=headers, json=event)
               if resp.status_code == 201:
                   print(f"  ✅ {dt} — {emoji} {name}")
