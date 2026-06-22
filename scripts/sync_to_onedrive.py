@@ -41,8 +41,10 @@ def main():
         if not os.path.exists(local):
             print("SKIP " + local)
             continue
-        url = ("https://graph.microsoft.com/v1.0/drives/{}"
-               "/items/{}:/{}/content").format(DRIVE, FOLDER_ID, remote)
+        # Korrekt Graph URL: /drives/{id}/items/{folderId}:/{filename}:/content
+        url = "https://graph.microsoft.com/v1.0/drives/{}/items/{}:/{}:/content".format(
+            DRIVE, FOLDER_ID, remote
+        )
         with open(local, "rb") as fi:
             r = requests.put(url, headers=hdrs, data=fi)
         if r.status_code in (200, 201):
