@@ -75,3 +75,10 @@ jobs:
             -H "Content-Type: application/octet-stream" \
             --data-binary @data/Eva_Medoc_Master.xlsx
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
+
+      - name: Notifikation ved fejl
+        if: failure()
+        run: |
+          curl -s -X POST "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj" \
+            -H "Content-Type: application/json" \
+            -d '{"workflow":"${{ github.workflow }}","status":"FEJL","repo":"${{ github.repository }}","run":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
