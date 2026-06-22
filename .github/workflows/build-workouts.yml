@@ -24,3 +24,10 @@ jobs:
           INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
           WEEK_ONLY: ${{ github.event.inputs.week_only || '0' }}
         run: python3 scripts/build_workouts.py $INTERVALS_API_KEY $WEEK_ONLY
+
+      - name: Notifikation ved fejl
+        if: failure()
+        run: |
+          curl -s -X POST "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj" \
+            -H "Content-Type: application/json" \
+            -d '{"workflow":"${{ github.workflow }}","status":"FEJL","repo":"${{ github.repository }}","run":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
