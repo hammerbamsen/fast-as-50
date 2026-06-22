@@ -1,0 +1,70 @@
+# QA-RAPPORT: Fast as Fifty
+
+## 1. KONKRETE FEJL
+
+**update_kpi.py – TSB-beregning er forkert**
+TSB = ctl - atl er matematisk forkert. Korrekt formel er TSB = CTL(yesterday) - ATL(yesterday). Når begge hentes fra *dagens* wellness, giver det 0 med korrekte data — netop den edge case koden forsøger at undgå, men løser det forkert.
+
+**update_kpi.py – `get_history_7d()` er afskåret**
+Funktionen er trunkeret i koden — returner-statement mangler. Runtime-fejl garanteret.
+
+**build_workouts.py – API-nøgle sendes som CLI-argument**
+```python
+run: python3 scripts/build_workouts.py $INTERVALS_API_KEY $WEEK_ONLY
+```
+API-nøglen vises i `sys.argv`, dvs. synlig i process-listen og GitHub Actions-logs. Brug environment variable i stedet.
+
+**create-outlook-events.yml – Duplikate events ved genafvikling**
+Ingen tjek for eksisterende events før oprettelse. Kører workflowen to gange → dobbelte Outlook-entries.
+
+**build_workouts.py – Hardkodet secret i kildekode**
+```python
+AZURE_TENANT = "003c17d1-..."
+AZURE_CLIENT = "d6cc8ce4-..."
+```
+Tenant-ID og Client-ID er eksponeret i repo. Ikke passwords, men reducerer angrebsflade unødigt.
+
+---
+
+## 2. SIKKERHEDSRISICI
+
+**KRITISK – API-nøgle i process-argument** (se ovenfor)
+Enhver bruger med shell-adgang på ubuntu-latest runner kan se `ps aux`.
+
+**MEDIUM – `eval`-lignende risiko i inline Python (create-outlook-events.yml)**
+Hele Python-scriptet er inlined i YAML med `python3 << 'EOF'`. Miljøvariabler injiceres direkte — hvis `WEEK` nogensinde kom fra bruger-input uden validering til en shell-kommando, er det en injection-vektor. `int(os.environ.get('WEEK', 2))` redder dog denne konkrete case.
+
+**LAV – OneDrive Drive-ID hardkodet i sync-workflow**
+Drive-ID `b!l3-EhhmboES...` eksponerer intern SharePoint-struktur. Bør ligge som secret eller variabel.
+
+**LAV – Token-fil på disk i build_workouts.py**
+`~/.fast50_graph_token.json` skrives til runner-filsystemet. Ephemere runners gør dette acceptabelt, men er dårlig praksis generelt.
+
+---
+
+## 3. TOP 3 FORBEDRINGER
+
+**#1 – build-workouts.yml: Fjern API-nøgle fra CLI-argument**
+*Ændr til:*
+```yaml
+env:
+  INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+run: python3 scripts/build_workouts.py $WEEK_ONLY
+```
+Læs nøglen i scriptet via `os.environ['INTERVALS_API_KEY']`.
+
+**#2 – create-outlook-events.yml: Tilføj idempotens-tjek**
+Før `requests.post(GRAPH, ...)` — kald `calendarView` for datoen og spring oprettelse over hvis subject allerede eksisterer. Forhindrer duplikater ved manuelle genkørsler.
+
+**#3 – update_kpi.py: Fix `get_history_7d()` og TSB**
+Funktionen skal returnere en dict med arrays. Tilføj den manglende `return`-sætning. For TSB: hent wellness for `date.today() - 1` og beregn `CTL(i-1) - ATL(i-1)`.
+
+---
+
+## 4. HVAD ER SOLIDT
+
+- **Concurrency-guard** i update-kpi.yml (`cancel-in-progress: false`) er korrekt — forhindrer race conditions ved overlappende kørsler.
+- **Rebase-retry-loop** (3 forsøg med sleep) ved git push er robust og håndterer parallelle opdateringer elegant.
+- **Token masking** (`add-mask`) i sync-onedrive.yml er korrekt implementeret.
+- **`fix_enc()`** til Latin-1/UTF-8 dobbelt-encoding er pragmatisk løsning på et reelt Intervals.icu API-problem.
+- Workflow-strukturen med `workflow_dispatch` + `schedule` giver god fleksibilitet til manuel override.
