@@ -2,8 +2,10 @@ name: Daglig dashboard-opdatering
 
 on:
   schedule:
-    - cron: '0,10,20,30,40,50 * * * *'
-    - cron: '5,15,25,35,45,55 * * * *'
+    # Dag (05-22 UTC): hvert 10. minut
+    - cron: '0,10,20,30,40,50 5-22 * * *'
+    # Nat (22-05 UTC): hvert 30. minut
+    - cron: '0,30 22-23,0-4 * * *'
   workflow_dispatch:
 
 permissions:
