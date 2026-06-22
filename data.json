@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-22 08:01",
+    "updated": "2026-06-22 08:10",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#F39C12"
     },
     "ctl": {
-      "value": "41.5",
+      "value": "42.2",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-6.1",
+      "value": "-9.0",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -53,10 +53,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "27",
       "unit": "TSS",
-      "sub": "0 af 240 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "27 af 240 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0.0",
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 21
   },
-  "coachSpeech": "Ny uge starter — uge 4 af 14. Build-uge. {HL} I dag: Svøm let 30 min recovery (svøm). Godt: TSB -6.1 er på et sundt niveau med plads til næste belastning. Fuld uge foran — i dag: Svøm let 30 min recovery. Fokus: Vægt på 73.2 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
-  "coachHighlight": "CTL 41.5 følger ramp-kurven mod 60",
+  "coachSpeech": "Ny uge starter — uge 4 af 14. Build-uge. {HL} Dagens session er gennemført. Godt: TSB -9.0 er på et sundt niveau med plads til næste belastning. Søvn på 7.9 timer er solid. Fokus: 27 af 240 TSS er i hus — 5 sessioner tilbage, heriblandt Løb Z2 45 min, Cykel Z2 30 min. Vægt på 73.2 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+  "coachHighlight": "CTL 42.2 følger ramp-kurven mod 60",
   "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "swim",
@@ -85,15 +85,20 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
       "day": "Man",
       "disc": "swim",
       "label": "Svøm let 30 min recovery",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 103,
+      "actual_tss": 27,
+      "actual_mins": 31,
+      "planned_mins": 30
     },
     {
       "day": "Tir",
@@ -130,7 +135,7 @@
     36.3,
     40.5,
     42.5,
-    41.5
+    42.2
   ],
   "weightHistory": [
     {
@@ -681,7 +686,7 @@
     },
     {
       "date": "2026-06-22",
-      "v": -6.1,
+      "v": -9.0,
       "real": true
     }
   ],
@@ -880,8 +885,13 @@
           "day": "Man",
           "disc": "swim",
           "label": "Svøm let 30 min recovery",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 103,
+          "actual_tss": 27,
+          "actual_mins": 31,
+          "planned_mins": 30
         },
         {
           "day": "Tir",
@@ -1376,8 +1386,9 @@
     }
   ],
   "train_mins": {
+    "swim": 31.0,
     "planned": 285.0,
-    "actual_total": 0
+    "actual_total": 31.0
   },
   "fatHistory": [
     {
