@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-23 00:32",
+    "updated": "2026-06-23 00:40",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 74,
-    "daysToChristiansborg": 67,
-    "dayName": "Tirsdag",
-    "date": "23. jun"
+    "daysToMedoc": 75,
+    "daysToChristiansborg": 68,
+    "dayName": "Mandag",
+    "date": "22. jun"
   },
   "kpis": {
     "weight": {
@@ -23,19 +23,19 @@
       "color": "#F39C12"
     },
     "ctl": {
-      "value": "41.2",
+      "value": "42.2",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-3.5",
+      "value": "-9.4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7.8",
+      "value": "7.9",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "71.3",
+      "value": "71.2",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,16 +76,16 @@
     "target": 5,
     "streak": 22
   },
-  "coachSpeech": "Tirsdag — uge 4 af 14. {HL} I dag: Løb Z2 45 min (løb). Godt: TSB -3.5 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 30 af 240 TSS er i hus — 5 sessioner tilbage, heriblandt Løb Z2 45 min, Cykel Z2 30 min. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-  "coachHighlight": "CTL 41.2 følger ramp-kurven mod 60",
+  "coachSpeech": "Ny uge starter — uge 4 af 14. Build-uge. {HL} Dagens session er gennemført. Godt: TSB -9.4 er på et sundt niveau med plads til næste belastning. Søvn på 7.9 timer er solid. Fokus: 30 af 240 TSS er i hus — 5 sessioner tilbage, heriblandt Løb Z2 45 min, Cykel Z2 30 min. Vægt på 73.2 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+  "coachHighlight": "CTL 42.2 følger ramp-kurven mod 60",
   "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "run",
-    "title": "Løb Z2 45 min",
+    "discipline": "swim",
+    "title": "Svøm let 30 min recovery",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -93,6 +93,7 @@
       "disc": "swim",
       "label": "Svøm let 30 min recovery",
       "done": true,
+      "today": true,
       "completion": "done",
       "completion_pct": 103,
       "actual_tss": 27,
@@ -104,14 +105,14 @@
       "disc": "walk",
       "label": "Gentofte Gang",
       "done": true,
-      "extra": true
+      "extra": true,
+      "today": true
     },
     {
       "day": "Tir",
       "disc": "run",
       "label": "Løb Z2 45 min",
-      "done": false,
-      "today": true
+      "done": false
     },
     {
       "day": "Ons",
@@ -142,7 +143,7 @@
     36.3,
     40.5,
     42.5,
-    41.2
+    42.2
   ],
   "weightHistory": [
     {
@@ -269,14 +270,14 @@
       "date": "2026-06-22",
       "v": 73.2,
       "real": true
-    },
-    {
-      "date": "2026-06-23",
-      "v": 73.2,
-      "real": false
     }
   ],
   "hrvHistory": [
+    {
+      "date": "2026-05-26",
+      "v": 45.0,
+      "real": true
+    },
     {
       "date": "2026-05-27",
       "v": 47.0,
@@ -411,14 +412,14 @@
       "date": "2026-06-22",
       "v": 65.0,
       "real": true
-    },
-    {
-      "date": "2026-06-23",
-      "v": 65.0,
-      "real": false
     }
   ],
   "sleepHistory": [
+    {
+      "date": "2026-05-26",
+      "v": 8.6,
+      "real": true
+    },
     {
       "date": "2026-05-27",
       "v": 7.7,
@@ -553,14 +554,14 @@
       "date": "2026-06-22",
       "v": 8.7,
       "real": true
-    },
-    {
-      "date": "2026-06-23",
-      "v": 8.7,
-      "real": false
     }
   ],
   "tsbHistory": [
+    {
+      "date": "2026-05-26",
+      "v": -9.1,
+      "real": true
+    },
     {
       "date": "2026-05-27",
       "v": -8.3,
@@ -694,11 +695,6 @@
     {
       "date": "2026-06-22",
       "v": -9.3,
-      "real": true
-    },
-    {
-      "date": "2026-06-23",
-      "v": -3.5,
       "real": true
     }
   ],
@@ -899,6 +895,7 @@
           "disc": "swim",
           "label": "Svøm let 30 min recovery",
           "done": true,
+          "today": true,
           "completion": "done",
           "completion_pct": 103,
           "actual_tss": 27,
@@ -910,14 +907,14 @@
           "disc": "walk",
           "label": "Gentofte Gang",
           "done": true,
-          "extra": true
+          "extra": true,
+          "today": true
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 45 min",
-          "done": false,
-          "today": true
+          "done": false
         },
         {
           "day": "Ons",
@@ -1401,7 +1398,7 @@
     {
       "week": 4,
       "done": 1,
-      "total": 2,
+      "total": 1,
       "label": "Uge 4"
     }
   ],
@@ -1536,11 +1533,6 @@
       "date": "2026-06-22",
       "v": 21.8,
       "real": true
-    },
-    {
-      "date": "2026-06-23",
-      "v": 21.8,
-      "real": false
     }
   ],
   "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 23 af 98 · Tirsdag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 41.2 rammer planmålet for uge 4 præcist — det er solid eksekvering. TSB på -3.5 er næsten neutralt, og det matcher fint med en restitutionsuge: kroppen er ikke i hul, men heller ikke overfed med hvile. Dagens løb Z2 45 min skal holdes roligt — puls i zone 2 hele vejen, ingen \"næsten Z3\"-drift sidst i turen. Tænk på det som aktiv restitution der forbereder dig til lørdagens 90 min.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling i dag, så ingen specifik kommentar til tallene. Generelt gælder i restitutionsuger at mange underestimerer behovet for protein og overestimerer kaloriereduktionen — let træning betyder ikke sultedag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">1/1 AF-dage i ugen indtil nu — det holder. Streaken på 22 dage er reel fremdrift, og den må ikke ryge på en restitutionsuge hvor der ikke er nogen god grund til at bryde den. Ugen er designet til konsistens: to korte cykler, et langt løb lørdag og teknisk svøm søndag — ingen session er i sig selv hård, men summen bygger vanen. Hold fokus der.</p>",
