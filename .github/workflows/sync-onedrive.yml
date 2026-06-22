@@ -22,7 +22,7 @@ jobs:
       - name: Installer afhængigheder
         run: pip install requests
 
-      - name: Debug og sync
+      - name: Sync filer til OneDrive
         env:
           AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
           AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
@@ -31,38 +31,51 @@ jobs:
           python3 - << 'PYEOF'
           import os, sys, requests
 
-          TENANT = os.environ.get("AZURE_TENANT_ID", "MANGLER")
-          CLIENT = os.environ.get("AZURE_CLIENT_ID", "MANGLER")
-          SECRET = os.environ.get("AZURE_CLIENT_SECRET", "MANGLER")
-
-          print(f"TENANT: {TENANT[:8]}...")
-          print(f"CLIENT: {CLIENT[:8]}...")
-          print(f"SECRET sat: {'JA' if SECRET and SECRET != 'MANGLER' else 'NEJ'}")
-
+          # Token
           resp = requests.post(
-              f"https://login.microsoftonline.com/{TENANT}/oauth2/v2.0/token",
-              data={"grant_type": "client_credentials", "client_id": CLIENT,
-                    "client_secret": SECRET, "scope": "https://graph.microsoft.com/.default"}
+              f"https://login.microsoftonline.com/{os.environ['AZURE_TENANT_ID']}/oauth2/v2.0/token",
+              data={
+                  "grant_type":    "client_credentials",
+                  "client_id":     os.environ["AZURE_CLIENT_ID"],
+                  "client_secret": os.environ["AZURE_CLIENT_SECRET"],
+                  "scope":         "https://graph.microsoft.com/.default",
+              }
           )
-          print(f"Token HTTP: {resp.status_code}")
           if resp.status_code != 200:
-              print(f"Token fejl: {resp.text}")
+              print(f"Token fejl: {resp.status_code} {resp.text}", file=sys.stderr)
               sys.exit(1)
-
           token = resp.json()["access_token"]
-          print("Token OK")
+          print("✅ Token OK")
 
-          DRIVE = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
+          # Upload alle filer
+          DRIVE  = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
           FOLDER = "Claude/Fast as Fifty - træningsplan"
-          hdrs = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
+          hdrs   = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
 
-          # Test med lille fil først
-          local = "data/Eva_Medoc_Master.xlsx"
-          remote = "Eva_Medoc_Master.xlsx"
-          url = f"https://graph.microsoft.com/v1.0/drives/{DRIVE}/root:/{FOLDER}/{remote}:/content"
-          print(f"Upload URL: {url[:80]}...")
-          with open(local, "rb") as f:
-              r = requests.put(url, headers=hdrs, data=f)
-          print(f"Upload HTTP: {r.status_code}")
-          print(f"Upload svar: {r.text[:400]}")
+          files = [
+              ("data/Master_Plan.xlsx",                   "Master_Plan.xlsx"),
+              ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
+              ("data/Eva_Medoc_Traningsplan_2026.docx",   "Eva_Medoc_Traningsplan_2026.docx"),
+              ("data/Eva_Medoc_Master.xlsx",              "Eva_Medoc_Master.xlsx"),
+          ]
+
+          ok = err = 0
+          for local, remote in files:
+              if not os.path.exists(local):
+                  print(f"⚠️  {local} ikke fundet - springer over")
+                  continue
+              url = (f"https://graph.microsoft.com/v1.0/drives/{DRIVE}"
+                     f"/root:/{FOLDER}/{remote}:/content")
+              with open(local, "rb") as f:
+                  r = requests.put(url, headers=hdrs, data=f)
+              if r.status_code in (200, 201):
+                  print(f"✅ {remote} ({os.path.getsize(local):,} bytes)")
+                  ok += 1
+              else:
+                  print(f"❌ {remote}: HTTP {r.status_code} - {r.text[:200]}")
+                  err += 1
+
+          print(f"\nResultat: {ok} uploadet, {err} fejl")
+          if err:
+              sys.exit(1)
           PYEOF
