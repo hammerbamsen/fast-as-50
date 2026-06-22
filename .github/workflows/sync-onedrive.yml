@@ -31,9 +31,8 @@ jobs:
           python3 - << 'PYEOF'
           import os, sys, requests
 
-          # Token
           resp = requests.post(
-              f"https://login.microsoftonline.com/{os.environ['AZURE_TENANT_ID']}/oauth2/v2.0/token",
+              "https://login.microsoftonline.com/{}/oauth2/v2.0/token".format(os.environ['AZURE_TENANT_ID']),
               data={
                   "grant_type":    "client_credentials",
                   "client_id":     os.environ["AZURE_CLIENT_ID"],
@@ -42,15 +41,14 @@ jobs:
               }
           )
           if resp.status_code != 200:
-              print(f"Token fejl: {resp.status_code} {resp.text}", file=sys.stderr)
+              print("Token fejl: {} {}".format(resp.status_code, resp.text), file=sys.stderr)
               sys.exit(1)
           token = resp.json()["access_token"]
-          print("✅ Token OK")
+          print("Token OK")
 
-          # Upload alle filer
-          DRIVE  = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
-          FOLDER = "Claude/Fast as Fifty - træningsplan"
-          hdrs   = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
+          DRIVE   = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
+          FOLDER  = "01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS"
+          hdrs    = {"Authorization": "Bearer {}".format(token), "Content-Type": "application/octet-stream"}
 
           files = [
               ("data/Master_Plan.xlsx",                   "Master_Plan.xlsx"),
@@ -62,20 +60,19 @@ jobs:
           ok = err = 0
           for local, remote in files:
               if not os.path.exists(local):
-                  print(f"⚠️  {local} ikke fundet - springer over")
+                  print("SKIP {}".format(local))
                   continue
-              url = (f"https://graph.microsoft.com/v1.0/drives/{DRIVE}"
-                     f"/root:/{FOLDER}/{remote}:/content")
+              url = "https://graph.microsoft.com/v1.0/drives/{}/items/{}:/{}:/content".format(DRIVE, FOLDER, remote)
               with open(local, "rb") as f:
                   r = requests.put(url, headers=hdrs, data=f)
               if r.status_code in (200, 201):
-                  print(f"✅ {remote} ({os.path.getsize(local):,} bytes)")
+                  print("OK {} ({} bytes)".format(remote, os.path.getsize(local)))
                   ok += 1
               else:
-                  print(f"❌ {remote}: HTTP {r.status_code} - {r.text[:200]}")
+                  print("FAIL {}: {} {}".format(remote, r.status_code, r.text[:200]))
                   err += 1
 
-          print(f"\nResultat: {ok} uploadet, {err} fejl")
+          print("Done: {} ok, {} fejl".format(ok, err))
           if err:
               sys.exit(1)
           PYEOF
