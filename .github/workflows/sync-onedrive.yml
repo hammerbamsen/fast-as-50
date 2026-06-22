@@ -18,12 +18,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Hent Graph API token
-        id: token
+      - name: Installer afhængigheder
+        run: pip install requests
+
+      - name: Sync filer til OneDrive
+        env:
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
         run: |
           python3 << 'EOF'
-          import os, requests, sys
+          import os, sys, requests
 
+          # ── 1. Token ────────────────────────────────────────────
           resp = requests.post(
               f"https://login.microsoftonline.com/{os.environ['AZURE_TENANT_ID']}/oauth2/v2.0/token",
               data={
@@ -34,72 +41,42 @@ jobs:
               }
           )
           if resp.status_code != 200:
-              print(f"Token fejl: {resp.status_code} {resp.text}", file=sys.stderr)
+              print(f"❌ Token fejl: {resp.status_code} {resp.text}", file=sys.stderr)
               sys.exit(1)
-
           token = resp.json()["access_token"]
-          # Mask token i logs
-          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-              print(f"token={token}", file=f)
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
-              print("✅ Azure token hentet", file=f)
-          EOF
-        env:
-          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
-          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          print("✅ Azure token hentet")
 
-      - name: Upload filer til OneDrive
-        run: |
-          python3 << 'EOF'
-          import os, requests, sys
-
-          TOKEN    = "${{ steps.token.outputs.token }}"
+          # ── 2. Upload ───────────────────────────────────────────
           DRIVE_ID = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
           FOLDER   = "Claude/Fast as Fifty - træningsplan"
-
-          headers = {
-              "Authorization": f"Bearer {TOKEN}",
-              "Content-Type":  "application/octet-stream",
-          }
+          headers  = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
 
           files = [
-              ("data/Master_Plan.xlsx",                 "Master_Plan.xlsx"),
+              ("data/Master_Plan.xlsx",                   "Master_Plan.xlsx"),
               ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
-              ("data/Eva_Medoc_Traningsplan_2026.docx", "Eva_Medoc_Traningsplan_2026.docx"),
-              ("data/Eva_Medoc_Master.xlsx",            "Eva_Medoc_Master.xlsx"),
+              ("data/Eva_Medoc_Traningsplan_2026.docx",   "Eva_Medoc_Traningsplan_2026.docx"),
+              ("data/Eva_Medoc_Master.xlsx",              "Eva_Medoc_Master.xlsx"),
           ]
 
           ok = err = 0
-          summary = []
-
           for local_path, remote_name in files:
               if not os.path.exists(local_path):
-                  print(f"⚠️  {local_path} ikke fundet — springer over")
+                  print(f"⚠️  {local_path} ikke fundet")
                   continue
-
               size = os.path.getsize(local_path)
-              url  = (f"https://graph.microsoft.com/v1.0/drives/{DRIVE_ID}"
-                      f"/root:/{FOLDER}/{remote_name}:/content")
-
+              url = (f"https://graph.microsoft.com/v1.0/drives/{DRIVE_ID}"
+                     f"/root:/{FOLDER}/{remote_name}:/content")
               with open(local_path, "rb") as f:
-                  resp = requests.put(url, headers=headers, data=f)
-
-              if resp.status_code in (200, 201):
+                  r = requests.put(url, headers=headers, data=f)
+              if r.status_code in (200, 201):
                   print(f"✅ {remote_name} ({size:,} bytes)")
-                  summary.append(f"✅ {remote_name}")
                   ok += 1
               else:
-                  print(f"❌ {remote_name}: HTTP {resp.status_code} — {resp.text[:200]}")
-                  summary.append(f"❌ {remote_name}: {resp.status_code}")
+                  print(f"❌ {remote_name}: HTTP {r.status_code} — {r.text[:300]}")
                   err += 1
 
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
-              f.write(f"\n## OneDrive sync resultat\n")
-              for line in summary:
-                  f.write(f"- {line}\n")
-              f.write(f"\n**{ok} uploadet, {err} fejl**\n")
-
+          print(f"\n{'='*40}")
+          print(f"Resultat: {ok} uploadet, {err} fejl")
           if err:
               sys.exit(1)
           EOF
