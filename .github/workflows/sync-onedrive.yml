@@ -9,6 +9,9 @@ on:
       - 'data/Eva_Medoc_Master.xlsx'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -18,37 +21,85 @@ jobs:
       - name: Hent Graph API token
         id: token
         run: |
-          RESPONSE=$(curl -s -X POST \
-            "https://login.microsoftonline.com/${{ secrets.AZURE_TENANT_ID }}/oauth2/v2.0/token" \
-            -d "client_id=${{ secrets.AZURE_CLIENT_ID }}&client_secret=${{ secrets.AZURE_CLIENT_SECRET_ONEDRIVE }}&scope=https://graph.microsoft.com/.default&grant_type=client_credentials")
-          TOKEN=$(echo $RESPONSE | python3 -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
-          echo "::add-mask::$TOKEN"
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+          python3 << 'EOF'
+          import os, requests, sys
+
+          resp = requests.post(
+              f"https://login.microsoftonline.com/{os.environ['AZURE_TENANT_ID']}/oauth2/v2.0/token",
+              data={
+                  "grant_type":    "client_credentials",
+                  "client_id":     os.environ["AZURE_CLIENT_ID"],
+                  "client_secret": os.environ["AZURE_CLIENT_SECRET"],
+                  "scope":         "https://graph.microsoft.com/.default",
+              }
+          )
+          if resp.status_code != 200:
+              print(f"Token fejl: {resp.status_code} {resp.text}", file=sys.stderr)
+              sys.exit(1)
+
+          token = resp.json()["access_token"]
+          # Mask token i logs
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              print(f"token={token}", file=f)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+              print("✅ Azure token hentet", file=f)
+          EOF
+        env:
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
 
       - name: Upload filer til OneDrive
         run: |
-          TOKEN="${{ steps.token.outputs.token }}"
-          DRIVE_ID="b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
+          python3 << 'EOF'
+          import os, requests, sys
 
-          upload_file() {
-            local filepath=$1
-            local filename=$2
-            echo "Uploader $filename..."
-            HTTP_CODE=$(curl -s -o /tmp/resp.json -w "%{http_code}" -X PUT \
-              "https://graph.microsoft.com/v1.0/drives/${DRIVE_ID}/root:/Claude/Fast%20as%20Fifty%20-%20tr%C3%A6ningsplan/${filename}:/content" \
-              -H "Authorization: Bearer $TOKEN" \
-              -H "Content-Type: application/octet-stream" \
-              --data-binary "@${filepath}")
-            if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ]; then
-              echo "✅ $filename uploadet (HTTP $HTTP_CODE)"
-            else
-              echo "❌ $filename fejlede (HTTP $HTTP_CODE)"
-              cat /tmp/resp.json
-              exit 1
-            fi
+          TOKEN    = "${{ steps.token.outputs.token }}"
+          DRIVE_ID = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
+          FOLDER   = "Claude/Fast as Fifty - træningsplan"
+
+          headers = {
+              "Authorization": f"Bearer {TOKEN}",
+              "Content-Type":  "application/octet-stream",
           }
 
-          upload_file "data/Master_Plan.xlsx" "Master_Plan.xlsx"
-          upload_file "data/Fast_as_Fifty_Masterplan_2026.docx" "Fast_as_Fifty_Masterplan_2026.docx"
-          upload_file "data/Eva_Medoc_Traningsplan_2026.docx" "Eva_Medoc_Traningsplan_2026.docx"
-          upload_file "data/Eva_Medoc_Master.xlsx" "Eva_Medoc_Master.xlsx"
+          files = [
+              ("data/Master_Plan.xlsx",                 "Master_Plan.xlsx"),
+              ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
+              ("data/Eva_Medoc_Traningsplan_2026.docx", "Eva_Medoc_Traningsplan_2026.docx"),
+              ("data/Eva_Medoc_Master.xlsx",            "Eva_Medoc_Master.xlsx"),
+          ]
+
+          ok = err = 0
+          summary = []
+
+          for local_path, remote_name in files:
+              if not os.path.exists(local_path):
+                  print(f"⚠️  {local_path} ikke fundet — springer over")
+                  continue
+
+              size = os.path.getsize(local_path)
+              url  = (f"https://graph.microsoft.com/v1.0/drives/{DRIVE_ID}"
+                      f"/root:/{FOLDER}/{remote_name}:/content")
+
+              with open(local_path, "rb") as f:
+                  resp = requests.put(url, headers=headers, data=f)
+
+              if resp.status_code in (200, 201):
+                  print(f"✅ {remote_name} ({size:,} bytes)")
+                  summary.append(f"✅ {remote_name}")
+                  ok += 1
+              else:
+                  print(f"❌ {remote_name}: HTTP {resp.status_code} — {resp.text[:200]}")
+                  summary.append(f"❌ {remote_name}: {resp.status_code}")
+                  err += 1
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+              f.write(f"\n## OneDrive sync resultat\n")
+              for line in summary:
+                  f.write(f"- {line}\n")
+              f.write(f"\n**{ok} uploadet, {err} fejl**\n")
+
+          if err:
+              sys.exit(1)
+          EOF
