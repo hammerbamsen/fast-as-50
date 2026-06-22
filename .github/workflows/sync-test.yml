@@ -16,7 +16,7 @@ jobs:
       - name: Installer afhængigheder
         run: pip install requests
 
-      - name: Upload Master_Plan.xlsx
+      - name: Upload
         env:
           AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
           AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
@@ -28,30 +28,36 @@ jobs:
           CLIENT = os.environ["AZURE_CLIENT_ID"]
           SECRET = os.environ["AZURE_CLIENT_SECRET"]
           resp = requests.post(
-              f"https://login.microsoftonline.com/{TENANT}/oauth2/v2.0/token",
+              "https://login.microsoftonline.com/" + TENANT + "/oauth2/v2.0/token",
               data={"grant_type": "client_credentials", "client_id": CLIENT,
                     "client_secret": SECRET, "scope": "https://graph.microsoft.com/.default"}
           )
           if resp.status_code != 200:
-              print(f"Token fejl: {resp.status_code} {resp.text}", file=sys.stderr)
+              print("Token fejl: " + str(resp.status_code) + " " + resp.text)
               sys.exit(1)
           token = resp.json()["access_token"]
           print("Token OK")
           DRIVE = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
           FOLDER_ID = "01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS"
-          hdrs = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
-          for local, remote in [
+          hdrs = {"Authorization": "Bearer " + token, "Content-Type": "application/octet-stream"}
+          files = [
               ("data/Master_Plan.xlsx", "Master_Plan.xlsx"),
               ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
               ("data/Eva_Medoc_Traningsplan_2026.docx", "Eva_Medoc_Traningsplan_2026.docx"),
               ("data/Eva_Medoc_Master.xlsx", "Eva_Medoc_Master.xlsx"),
-          ]:
-              url = f"https://graph.microsoft.com/v1.0/drives/{DRIVE}/items/{FOLDER_ID}:/{remote}:/content"
-              print(f"Uploading {remote}...")
-              with open(local, "rb") as f:
-                  r = requests.put(url, headers=hdrs, data=f)
-              print(f"  HTTP {r.status_code}: {r.text[:300]}")
-              if r.status_code not in (200, 201):
-                  sys.exit(1)
-          print("Alle filer uploadet!")
+          ]
+          ok = err = 0
+          for local, remote in files:
+              url = "https://graph.microsoft.com/v1.0/drives/" + DRIVE + "/items/" + FOLDER_ID + ":/" + remote + ":/content"
+              with open(local, "rb") as fi:
+                  r = requests.put(url, headers=hdrs, data=fi)
+              if r.status_code in (200, 201):
+                  print("OK " + remote)
+                  ok += 1
+              else:
+                  print("FAIL " + remote + ": " + str(r.status_code) + " " + r.text[:200])
+                  err += 1
+          if err:
+              sys.exit(1)
+          print("Alle filer uploadet: " + str(ok))
           PYEOF
