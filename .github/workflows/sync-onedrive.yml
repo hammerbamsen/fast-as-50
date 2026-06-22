@@ -15,15 +15,65 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Installer afhængigheder
         run: pip install requests
 
-      - name: Sync til OneDrive
+      - name: Debug og sync
         env:
           AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
           AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-        run: python3 scripts/sync_to_onedrive.py
+        run: |
+          python3 - << 'PYEOF'
+          import os, sys, requests
+
+          TENANT = os.environ.get("AZURE_TENANT_ID", "MANGLER")
+          CLIENT = os.environ.get("AZURE_CLIENT_ID", "MANGLER")
+          SECRET = os.environ.get("AZURE_CLIENT_SECRET", "MANGLER")
+
+          print(f"TENANT: {TENANT[:8]}...")
+          print(f"CLIENT: {CLIENT[:8]}...")
+          print(f"SECRET sat: {'JA' if SECRET and SECRET != 'MANGLER' else 'NEJ'}")
+
+          resp = requests.post(
+              f"https://login.microsoftonline.com/{TENANT}/oauth2/v2.0/token",
+              data={"grant_type": "client_credentials", "client_id": CLIENT,
+                    "client_secret": SECRET, "scope": "https://graph.microsoft.com/.default"}
+          )
+          print(f"Token HTTP: {resp.status_code}")
+          if resp.status_code != 200:
+              print(f"Token fejl: {resp.text}")
+              sys.exit(1)
+
+          token = resp.json()["access_token"]
+          print("Token OK")
+
+          DRIVE = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
+          FOLDER = "Claude/Fast as Fifty - træningsplan"
+          hdrs = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
+
+          files = [
+              ("data/Master_Plan.xlsx", "Master_Plan.xlsx"),
+              ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
+              ("data/Eva_Medoc_Traningsplan_2026.docx", "Eva_Medoc_Traningsplan_2026.docx"),
+              ("data/Eva_Medoc_Master.xlsx", "Eva_Medoc_Master.xlsx"),
+          ]
+          ok = err = 0
+          for local, remote in files:
+              url = f"https://graph.microsoft.com/v1.0/drives/{DRIVE}/root:/{FOLDER}/{remote}:/content"
+              print(f"Uploader {remote}...")
+              with open(local, "rb") as f:
+                  r = requests.put(url, headers=hdrs, data=f)
+              print(f"  HTTP {r.status_code}: {r.text[:150]}")
+              if r.status_code in (200, 201):
+                  ok += 1
+              else:
+                  err += 1
+          print(f"Done: {ok} ok, {err} fejl")
+          if err:
+              sys.exit(1)
+          PYEOF
