@@ -660,8 +660,8 @@ def run_plan(session, week_filter=0):
 
 def main():
     import os
-    api_key    = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("INTERVALS_API_KEY","")
-    week_arg   = int(sys.argv[2]) if len(sys.argv) > 2 else int(os.environ.get("WEEK_ONLY","0"))
+    api_key    = os.environ.get("INTERVALS_API_KEY", "")
+    week_arg   = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("WEEK_ONLY","0"))
 
     if not api_key:
         print("Mangler API-nøgle. Brug: python3 build_workouts.py API_NOEGLE [uge]")
