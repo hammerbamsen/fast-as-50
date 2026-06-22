@@ -1,0 +1,54 @@
+name: Sync filer til OneDrive
+
+on:
+  push:
+    paths:
+      - 'data/Master_Plan.xlsx'
+      - 'data/Fast_as_Fifty_Masterplan_2026.docx'
+      - 'data/Eva_Medoc_Traningsplan_2026.docx'
+      - 'data/Eva_Medoc_Master.xlsx'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Hent Graph API token
+        id: token
+        run: |
+          RESPONSE=$(curl -s -X POST \
+            "https://login.microsoftonline.com/${{ secrets.AZURE_TENANT_ID }}/oauth2/v2.0/token" \
+            -d "client_id=${{ secrets.AZURE_CLIENT_ID }}&client_secret=${{ secrets.AZURE_CLIENT_SECRET_ONEDRIVE }}&scope=https://graph.microsoft.com/.default&grant_type=client_credentials")
+          TOKEN=$(echo $RESPONSE | python3 -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+          echo "::add-mask::$TOKEN"
+          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+
+      - name: Upload filer til OneDrive
+        run: |
+          TOKEN="${{ steps.token.outputs.token }}"
+          DRIVE_ID="b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
+
+          upload_file() {
+            local filepath=$1
+            local filename=$2
+            echo "Uploader $filename..."
+            HTTP_CODE=$(curl -s -o /tmp/resp.json -w "%{http_code}" -X PUT \
+              "https://graph.microsoft.com/v1.0/drives/${DRIVE_ID}/root:/Claude/Fast%20as%20Fifty%20-%20tr%C3%A6ningsplan/${filename}:/content" \
+              -H "Authorization: Bearer $TOKEN" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary "@${filepath}")
+            if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ]; then
+              echo "✅ $filename uploadet (HTTP $HTTP_CODE)"
+            else
+              echo "❌ $filename fejlede (HTTP $HTTP_CODE)"
+              cat /tmp/resp.json
+              exit 1
+            fi
+          }
+
+          upload_file "data/Master_Plan.xlsx" "Master_Plan.xlsx"
+          upload_file "data/Fast_as_Fifty_Masterplan_2026.docx" "Fast_as_Fifty_Masterplan_2026.docx"
+          upload_file "data/Eva_Medoc_Traningsplan_2026.docx" "Eva_Medoc_Traningsplan_2026.docx"
+          upload_file "data/Eva_Medoc_Master.xlsx" "Eva_Medoc_Master.xlsx"
