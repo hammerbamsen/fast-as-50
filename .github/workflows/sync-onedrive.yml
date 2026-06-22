@@ -15,65 +15,63 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
 
     steps:
       - uses: actions/checkout@v4
+      - run: pip install requests
 
-      - name: Installer afhængigheder
-        run: pip install requests
-
-      - name: Debug og sync
-        env:
-          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
-          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      - name: Hent token
+        id: token
         run: |
-          python3 - << 'PYEOF'
-          import os, sys, requests
-
-          TENANT = os.environ.get("AZURE_TENANT_ID", "MANGLER")
-          CLIENT = os.environ.get("AZURE_CLIENT_ID", "MANGLER")
-          SECRET = os.environ.get("AZURE_CLIENT_SECRET", "MANGLER")
-
-          print(f"TENANT: {TENANT[:8]}...")
-          print(f"CLIENT: {CLIENT[:8]}...")
-          print(f"SECRET sat: {'JA' if SECRET and SECRET != 'MANGLER' else 'NEJ'}")
-
-          resp = requests.post(
-              f"https://login.microsoftonline.com/{TENANT}/oauth2/v2.0/token",
-              data={"grant_type": "client_credentials", "client_id": CLIENT,
-                    "client_secret": SECRET, "scope": "https://graph.microsoft.com/.default"}
+          TOKEN=$(python3 -c "
+          import os, requests, sys
+          r = requests.post(
+              'https://login.microsoftonline.com/' + os.environ['AZURE_TENANT_ID'] + '/oauth2/v2.0/token',
+              data={'grant_type':'client_credentials','client_id':os.environ['AZURE_CLIENT_ID'],'client_secret':os.environ['AZURE_CLIENT_SECRET'],'scope':'https://graph.microsoft.com/.default'}
           )
-          print(f"Token HTTP: {resp.status_code}")
-          if resp.status_code != 200:
-              print(f"Token fejl: {resp.text}")
-              sys.exit(1)
+          if r.status_code != 200: print('FEJL:'+str(r.status_code)+r.text,file=sys.stderr); sys.exit(1)
+          print(r.json()['access_token'])
+          ")
+          echo "::add-mask::$TOKEN"
+          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+          echo "Token hentet OK"
 
-          token = resp.json()["access_token"]
-          print("Token OK")
+      - name: Upload Master_Plan.xlsx
+        run: |
+          curl -s -o /tmp/r.json -w "HTTP %{http_code}" -X PUT \
+            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Master_Plan.xlsx:/content" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @data/Master_Plan.xlsx
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
 
-          DRIVE = "b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ"
-          FOLDER = "Claude/Fast as Fifty - træningsplan"
-          hdrs = {"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"}
+      - name: Upload Fast_as_Fifty_Masterplan_2026.docx
+        run: |
+          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
+            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Fast_as_Fifty_Masterplan_2026.docx:/content" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @data/Fast_as_Fifty_Masterplan_2026.docx
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
 
-          files = [
-              ("data/Master_Plan.xlsx", "Master_Plan.xlsx"),
-              ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
-              ("data/Eva_Medoc_Traningsplan_2026.docx", "Eva_Medoc_Traningsplan_2026.docx"),
-              ("data/Eva_Medoc_Master.xlsx", "Eva_Medoc_Master.xlsx"),
-          ]
-          ok = err = 0
-          for local, remote in files:
-              url = f"https://graph.microsoft.com/v1.0/drives/{DRIVE}/root:/{FOLDER}/{remote}:/content"
-              print(f"Uploader {remote}...")
-              with open(local, "rb") as f:
-                  r = requests.put(url, headers=hdrs, data=f)
-              print(f"  HTTP {r.status_code}: {r.text[:150]}")
-              if r.status_code in (200, 201):
-                  ok += 1
-              else:
-                  err += 1
-          print(f"Done: {ok} ok, {err} fejl")
-          if err:
-              sys.exit(1)
-          PYEOF
+      - name: Upload Eva_Medoc_Traningsplan_2026.docx
+        run: |
+          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
+            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Traningsplan_2026.docx:/content" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @data/Eva_Medoc_Traningsplan_2026.docx
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
+
+      - name: Upload Eva_Medoc_Master.xlsx
+        run: |
+          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
+            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Master.xlsx:/content" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @data/Eva_Medoc_Master.xlsx
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
