@@ -1209,10 +1209,12 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     if days_completed is None:
         days_completed = weekday  # fallback hvis ikke angivet -- afsluttede dage FØR i dag
     af_note = (
-        f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} afsluttede dage "
+        f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} registrerede dage "
         f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
+        f"VIGTIGT: I dag ({day_name}) er STADIG I GANG — skriv aldrig at 'dag {days_completed} er afsluttet' "
+        f"eller at det er 'dag X af Y' som om ugen er overstået. "
         f"Vurder AF-status RELATIVT til hvor mange dage der er gået i ugen — ikke absolut ift. 7. "
-        f"Hvis Kennet har {af_this_week} AF-dage ud af {days_completed} afsluttede dage, er det {af_this_week}/{max(days_completed,1)}. "
+        f"Hvis Kennet har {af_this_week} AF-dage ud af {days_completed} registrerede dage, er det {af_this_week}/{max(days_completed,1)}. "
         f"AF-dage handler UDELUKKENDE om alkohol — IKKE om hvilken type træning der er planlagt. "
         f"Skriv ALDRIG at en specifik træningstype 'tæller' eller 'ikke tæller' som AF-dag."
     )
