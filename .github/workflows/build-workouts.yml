@@ -23,7 +23,7 @@ jobs:
         env:
           INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
           WEEK_ONLY: ${{ github.event.inputs.week_only || '0' }}
-        run: python3 scripts/build_workouts.py $INTERVALS_API_KEY $WEEK_ONLY
+        run: python3 scripts/build_workouts.py $WEEK_ONLY
 
       - name: Notifikation ved fejl
         if: failure()
