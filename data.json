@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-22 01:50",
-    "week": 3,
+    "updated": "2026-06-22 02:01",
+    "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 76,
-    "daysToChristiansborg": 69,
-    "dayName": "Søndag",
-    "date": "21. jun"
+    "daysToMedoc": 75,
+    "daysToChristiansborg": 68,
+    "dayName": "Mandag",
+    "date": "22. jun"
   },
   "kpis": {
     "weight": {
@@ -23,16 +23,16 @@
       "color": "#F39C12"
     },
     "ctl": {
-      "value": "42.5",
+      "value": "41.5",
       "unit": "",
-      "sub": "Uge 3-mål 38 · Slutmål 60 (uge 14)",
+      "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-12.4",
+      "value": "-6.1",
       "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
+      "sub": "Form · CTL−ATL, frisk >0",
+      "color": "#27AE60"
     },
     "sleep": {
       "value": "7.8",
@@ -41,28 +41,28 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "25.2",
+      "value": "0.0",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "hrv": {
-      "value": "70.5",
+      "value": "72.1",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "386",
+      "value": "0",
       "unit": "TSS",
-      "sub": "386 af 694 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "0 af 240 planlagt TSS",
+      "color": "#7A6A58"
     },
     "bikeKm": {
-      "value": "266.3",
+      "value": "0.0",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "afStreak": {
       "value": "21",
@@ -72,134 +72,67 @@
     }
   },
   "af": {
-    "weekDone": 7,
+    "weekDone": 0,
     "target": 5,
     "streak": 21
   },
-  "coachSpeech": "Søndag — afslut uge 3 stærkt. {HL} Dagens session er gennemført. Godt: TSB -12.4 er på et sundt niveau med plads til næste belastning. 56 procent af ugens TSS er i hus. Fokus: Vægt på 73.6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Alle sessioner i hus. Juster de små ting, og resten følger. 📊 Store billede: CTL 42.5 er 4.5 point FORAN ugeplanen (planmål uge 3: 38). Vægten har tabt 0.9 kg over de seneste 23 dage (74.5 → 73.6 kg).  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "CTL 42.5 følger ramp-kurven mod 60",
-  "weekFocus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet.",
+  "coachSpeech": "Ny uge starter — uge 4 af 14. Build-uge. {HL} I dag: Svøm let 30 min recovery (svøm). Godt: TSB -6.1 er på et sundt niveau med plads til næste belastning. Fuld uge foran — i dag: Svøm let 30 min recovery. Alt peger den rigtige vej. Hold ilden ved — ikke sluk den.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+  "coachHighlight": "CTL 41.5 følger ramp-kurven mod 60",
+  "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet.",
   "today": {
-    "discipline": "bike",
-    "title": "Cykeltur til Helsingør",
+    "discipline": "swim",
+    "title": "Svøm let 30 min recovery",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
       "day": "Man",
-      "disc": "run",
-      "label": "Lang løb Z2 90 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 99,
-      "actual_tss": 75,
-      "actual_mins": 89,
-      "planned_mins": 90
+      "disc": "swim",
+      "label": "Svøm let 30 min recovery",
+      "done": false,
+      "today": true
     },
     {
       "day": "Tir",
-      "disc": "bike",
-      "label": "Cykel Formentor 149km",
-      "done": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 128,
-      "actual_mins": 448,
-      "planned_mins": null
+      "disc": "run",
+      "label": "Løb Z2 45 min",
+      "done": false
     },
     {
       "day": "Ons",
-      "disc": "swim",
-      "label": "Svøm 1500m let teknisk",
-      "done": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 16,
-      "actual_mins": 34,
-      "planned_mins": null
+      "disc": "bike",
+      "label": "Cykel Z2 30 min",
+      "done": false
     },
     {
       "day": "Tor",
       "disc": "bike",
-      "label": "Cykel Z2 60 min Mallorca",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 158,
-      "actual_tss": 25,
-      "actual_mins": 95,
-      "planned_mins": 60
-    },
-    {
-      "day": "Fre",
-      "disc": "strength",
-      "label": "Styrke A Functional Strength 3 sæt",
-      "done": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 6,
-      "actual_mins": 30,
-      "planned_mins": null
+      "label": "Cykel Z2 45 min",
+      "done": false
     },
     {
       "day": "Lør",
       "disc": "run",
-      "label": "Lang løb Z2 60 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 105,
-      "actual_tss": 67,
-      "actual_mins": 63,
-      "planned_mins": 60
-    },
-    {
-      "day": "Lør",
-      "disc": "commute",
-      "label": "Gentofte Cykling",
-      "done": true,
-      "extra": true
+      "label": "Lang løb Z2 90 min",
+      "done": false
     },
     {
       "day": "Søn",
-      "disc": "bike",
-      "label": "Cykeltur til Helsingør",
-      "done": true,
-      "today": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 60,
-      "actual_mins": 173,
-      "planned_mins": null
+      "disc": "swim",
+      "label": "Svøm 1500m let teknisk",
+      "done": false
     }
   ],
   "ctlCurve": [
     36.3,
     40.5,
-    42.5
+    42.5,
+    41.5
   ],
   "weightHistory": [
-    {
-      "date": "2026-05-25",
-      "v": 75.7,
-      "real": false
-    },
-    {
-      "date": "2026-05-26",
-      "v": 75.7,
-      "real": false
-    },
-    {
-      "date": "2026-05-27",
-      "v": 75.7,
-      "real": false
-    },
-    {
-      "date": "2026-05-28",
-      "v": 75.7,
-      "real": false
-    },
     {
       "date": "2026-05-29",
       "v": 74.5,
@@ -319,14 +252,14 @@
       "date": "2026-06-21",
       "v": 73.6,
       "real": true
+    },
+    {
+      "date": "2026-06-22",
+      "v": 73.6,
+      "real": false
     }
   ],
   "hrvHistory": [
-    {
-      "date": "2026-05-25",
-      "v": 48.0,
-      "real": true
-    },
     {
       "date": "2026-05-26",
       "v": 45.0,
@@ -461,14 +394,14 @@
       "date": "2026-06-21",
       "v": 60.0,
       "real": true
+    },
+    {
+      "date": "2026-06-22",
+      "v": 60.0,
+      "real": false
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-05-25",
-      "v": 9.1,
-      "real": true
-    },
     {
       "date": "2026-05-26",
       "v": 8.6,
@@ -603,14 +536,14 @@
       "date": "2026-06-21",
       "v": 5.6,
       "real": true
+    },
+    {
+      "date": "2026-06-22",
+      "v": 5.6,
+      "real": false
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-05-25",
-      "v": -14.3,
-      "real": true
-    },
     {
       "date": "2026-05-26",
       "v": -9.1,
@@ -744,6 +677,11 @@
     {
       "date": "2026-06-21",
       "v": -12.4,
+      "real": true
+    },
+    {
+      "date": "2026-06-22",
+      "v": -6.1,
       "real": true
     }
   ],
@@ -887,90 +825,54 @@
           "day": "Man",
           "disc": "run",
           "label": "Lang løb Z2 90 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 99,
-          "actual_tss": 75,
-          "actual_mins": 89,
-          "planned_mins": 90
+          "done": false,
+          "today": false
         },
         {
           "day": "Tir",
           "disc": "bike",
           "label": "Cykel Formentor 149km",
-          "done": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 128,
-          "actual_mins": 448,
-          "planned_mins": null
+          "done": false,
+          "today": false
         },
         {
           "day": "Ons",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
-          "done": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 16,
-          "actual_mins": 34,
-          "planned_mins": null
+          "done": false,
+          "today": false
         },
         {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 158,
-          "actual_tss": 25,
-          "actual_mins": 95,
-          "planned_mins": 60
+          "done": false,
+          "today": false
         },
         {
           "day": "Fre",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 6,
-          "actual_mins": 30,
-          "planned_mins": null
+          "done": false,
+          "today": false
         },
         {
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 60 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 105,
-          "actual_tss": 67,
-          "actual_mins": 63,
-          "planned_mins": 60
-        },
-        {
-          "day": "Lør",
-          "disc": "commute",
-          "label": "Gentofte Cykling",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Søn",
           "disc": "bike",
           "label": "Cykeltur til Helsingør",
-          "done": true,
-          "today": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 60,
-          "actual_mins": 173,
-          "planned_mins": null
+          "done": false,
+          "today": false
         }
       ],
       "blockType": "BUILD+",
-      "focus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
+      "focus": ""
     },
     "4": {
       "sessions": [
@@ -979,46 +881,41 @@
           "disc": "swim",
           "label": "Svøm let 30 min recovery",
           "done": false,
-          "today": false
+          "today": true
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 45 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 30 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 45 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 90 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Søn",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false
+          "done": false
         }
       ],
       "blockType": "RECOVERY",
-      "focus": ""
+      "focus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet."
     },
     "5": {
       "sessions": [
@@ -1470,38 +1367,19 @@
       "done": 7,
       "total": 7,
       "label": "Uge 3"
+    },
+    {
+      "week": 4,
+      "done": 0,
+      "total": 1,
+      "label": "Uge 4"
     }
   ],
   "train_mins": {
-    "bike": 716.0,
-    "commute": 42.0,
-    "run": 152.0,
-    "strength": 30.0,
-    "openwater": 34.0,
-    "planned": 855.0,
-    "actual_total": 974.0
+    "planned": 285.0,
+    "actual_total": 0
   },
   "fatHistory": [
-    {
-      "date": "2026-05-25",
-      "v": 22.3,
-      "real": false
-    },
-    {
-      "date": "2026-05-26",
-      "v": 22.3,
-      "real": false
-    },
-    {
-      "date": "2026-05-27",
-      "v": 22.3,
-      "real": false
-    },
-    {
-      "date": "2026-05-28",
-      "v": 22.3,
-      "real": false
-    },
     {
       "date": "2026-05-29",
       "v": 22.0,
@@ -1621,11 +1499,16 @@
       "date": "2026-06-21",
       "v": 21.7,
       "real": true
+    },
+    {
+      "date": "2026-06-22",
+      "v": 21.7,
+      "real": false
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 21 af 98 · Søndag · Uge 3</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Cykeltur til Helsingør var en god afslutning på en hård uge. CTL på 42.5 med TSB på -12.4 er kontrolleret — du er ikke i overskud, men heller ikke i fare. Nu er ugen lukket, og kroppen skal have ro.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.6 kg er registreret. Sørg for at spise nok i de kommende restitutionsdage — underspis ikke for at fremskynde vægttabet, det bremser recovery og adaptation.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">7 AF-dage ud af 6 afsluttede dage — det er stærkt, og streaken på 21 dage taler for sig selv. Ugen er slut, så resten er restitution og god søvn — intet mere at bevise her.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">📊 <strong>Store billede</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 42.5 er 4.5 point foran ugeplanen (planmål uge 3: 38) — du har bygget hurtigere end planlagt, og det er nu vigtigt at lade kroppen følge med i stedet for at fortsætte optrappen. Vægten er gået fra 74.5 til 73.6 kg over de seneste 23 dage — 0.9 kg i den rigtige retning, men i et tempo der er bæredygtigt. Næste uge bør prioritere lidt lavere belastning så TSB kan rest</p>",
-  "coachAssessmentTs": "23:18",
-  "coachAssessmentTsFull": "2026-06-21T19:20:46.551604",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 22 af 98 · Mandag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 41.5 rammer uge 4-målet præcist — det er godt arbejde. TSB på -6.1 er uproblematisk og viser at du har lavet noget, men ikke for meget. Denne restitutionsuge handler om at lade kroppen absorbere de seneste tre ugers arbejde, så hold dig disciplineret til Z2 og lad være med at skrue op for intensiteten bare fordi du føler dig frisk. Dagens svøm på 30 min let recovery er dagens opgave — hold det roligt, fokus på teknik og vejrtrækning, ikke tempo.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtvurdering i dag. En restitutionsuge som denne er faktisk en god mulighed for at holde kalorieindtaget i balance — lavere træningsvolumen betyder lavere forbrænding, så juster portionsstørrelserne let ned frem for at spise som i en hård træningsuge.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ugen er startet — 0 af 0 afsluttede dage, så der er ingen AF-dage at vurdere endnu, men streaken på 21 dage er et fundament der er værd at beskytte. Ugen har 7 dage og et mål om 5 AF-dage, så strukturen er til det — det kræver blot bevidste valg undervejs. Denne uge handler om konsistens: gennemfør sessionerne som planlagt,</p>",
+  "coachAssessmentTs": "00:01",
+  "coachAssessmentTsFull": "2026-06-22T00:01:14.074105",
   "coachAssessmentWeightAtGen": 73.6,
-  "coachAssessmentAfAtGen": 7
+  "coachAssessmentAfAtGen": 0
 }
