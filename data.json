@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-23 08:00",
+    "updated": "2026-06-23 08:10",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "41.2",
+      "value": "42.3",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-3.5",
+      "value": "-8.3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -41,10 +41,10 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "0.0",
+      "value": "8.2",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "hrv": {
       "value": "71.1",
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "30",
+      "value": "74",
       "unit": "TSS",
-      "sub": "30 af 240 planlagt TSS",
+      "sub": "74 af 240 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 22
   },
-  "coachSpeech": "Tirsdag — uge 4 af 14. {HL} I dag: Løb Z2 45 min (løb). Godt: TSB -3.5 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 30 af 240 TSS er i hus — 5 sessioner tilbage, heriblandt Løb Z2 45 min, Cykel Z2 30 min. Vægt på 73.4 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-  "coachHighlight": "CTL 41.2 følger ramp-kurven mod 60",
+  "coachSpeech": "Tirsdag — uge 4 af 14. {HL} Dagens session er gennemført. Godt: TSB -8.3 er på et sundt niveau med plads til næste belastning. Søvn på 7.8 timer er solid. Fokus: 74 af 240 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 30 min, Cykel Z2 45 min. Vægt på 73.4 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachHighlight": "CTL 42.3 følger ramp-kurven mod 60",
   "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "run",
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -110,8 +110,13 @@
       "day": "Tir",
       "disc": "run",
       "label": "Løb Z2 45 min",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 104,
+      "actual_tss": 44,
+      "actual_mins": 47,
+      "planned_mins": 45
     },
     {
       "day": "Ons",
@@ -142,7 +147,7 @@
     36.3,
     40.5,
     42.5,
-    41.2
+    42.3
   ],
   "weightHistory": [
     {
@@ -698,7 +703,7 @@
     },
     {
       "date": "2026-06-23",
-      "v": -3.5,
+      "v": -8.3,
       "real": true
     }
   ],
@@ -916,8 +921,13 @@
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 45 min",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 104,
+          "actual_tss": 44,
+          "actual_mins": 47,
+          "planned_mins": 45
         },
         {
           "day": "Ons",
@@ -1406,10 +1416,11 @@
     }
   ],
   "train_mins": {
+    "run": 47.0,
     "walk": 27.0,
     "swim": 31.0,
     "planned": 285.0,
-    "actual_total": 58.0
+    "actual_total": 105.0
   },
   "fatHistory": [
     {
