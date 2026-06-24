@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-24 06:30",
+    "updated": "2026-06-24 06:40",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -29,7 +29,7 @@
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-3.7",
+      "value": "-5.1",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "87",
+      "value": "97",
       "unit": "TSS",
-      "sub": "87 af 240 planlagt TSS",
+      "sub": "97 af 240 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -76,9 +76,9 @@
     "target": 5,
     "streak": 23
   },
-  "coachSpeech": "Onsdag — uge 4 af 14. {HL} I dag: Cykel Z2 30 min (cykel). Godt: TSB -3.7 er på et sundt niveau med plads til næste belastning. Søvn på 7.6 timer er solid. Fokus: 87 af 240 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 30 min, Cykel Z2 45 min. Vægt på 72.5 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+  "coachSpeech": "Onsdag — uge 4 af 14. {HL} I dag: Cykel Z2 30 min (cykel). Godt: TSB -5.1 er på et sundt niveau med plads til næste belastning. Søvn på 7.6 timer er solid. Fokus: 97 af 240 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 30 min, Cykel Z2 45 min. Vægt på 72.5 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
   "coachHighlight": "CTL 41.6 følger ramp-kurven mod 60",
-  "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet.",
+  "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
     "title": "Cykel Z2 30 min",
@@ -136,6 +136,14 @@
       "disc": "bike",
       "label": "Cykel Z2 30 min",
       "done": false,
+      "today": true
+    },
+    {
+      "day": "Ons",
+      "disc": "strength",
+      "label": "Styrketræning",
+      "done": true,
+      "extra": true,
       "today": true
     },
     {
@@ -722,7 +730,7 @@
     },
     {
       "date": "2026-06-24",
-      "v": -3.8,
+      "v": -5.1,
       "real": true
     }
   ],
@@ -970,6 +978,14 @@
           "today": true
         },
         {
+          "day": "Ons",
+          "disc": "strength",
+          "label": "Styrketræning",
+          "done": true,
+          "extra": true,
+          "today": true
+        },
+        {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 45 min",
@@ -989,7 +1005,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm. Fokus: konsistens over intensitet."
+      "focus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet."
     },
     "5": {
       "sessions": [
@@ -1450,12 +1466,13 @@
     }
   ],
   "train_mins": {
+    "strength": 26.0,
     "commute": 23.0,
     "walk": 50.0,
     "run": 47.0,
     "swim": 31.0,
     "planned": 285.0,
-    "actual_total": 151.0
+    "actual_total": 177.0
   },
   "fatHistory": [
     {
