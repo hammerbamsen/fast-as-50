@@ -70,11 +70,14 @@ def get_wellness_7d():
         weights  = [d.get('weight')    for d in data if d.get('weight')]
         fats     = [d.get('bodyFat') for d in data if d.get('bodyFat')]
         proteins = [d.get('Protein')   for d in data if d.get('Protein')]
-        weight_avg = round(sum(weights)/len(weights), 1) if weights else None
+        def _round1(v):
+            import decimal
+            return float(decimal.Decimal(str(v)).quantize(decimal.Decimal('0.1'), rounding=decimal.ROUND_HALF_UP))
+        weight_avg = _round1(sum(weights)/len(weights)) if weights else None
         return {
             'hrv_avg':    round(sum(hrvs)/len(hrvs), 1)          if hrvs   else None,
             'sleep_avg':  round(sum(sleeps)/len(sleeps)/3600, 1) if sleeps else None,
-            'weight':     round(weights[-1], 1)                  if weights else None,
+            'weight':     _round1(weights[-1])                   if weights else None,
             'weight_avg': weight_avg,
             'fat':        round(fats[-1], 1)                     if fats   else None,
             'protein':    round(proteins[-1], 0)                 if proteins else None,
@@ -1604,6 +1607,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
