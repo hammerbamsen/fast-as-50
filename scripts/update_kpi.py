@@ -1856,6 +1856,40 @@ def main():
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
 
+    # --- Check: er et workout-event fejlagtigt parret med en commute-aktivitet? ---
+    try:
+        _events_today = requests.get(
+            f'{BASE}/events',
+            auth=AUTH,
+            params={'oldest': str(today), 'newest': str(today)}
+        ).json()
+        _commute_warnings = []
+        for _ev in (_events_today if isinstance(_events_today, list) else []):
+            if _ev.get('category') != 'WORKOUT':
+                continue
+            _paired_id = _ev.get('paired_activity_id')
+            if not _paired_id:
+                continue
+            _act_r = requests.get(f'{BASE}/activities/{_paired_id}', auth=AUTH)
+            if _act_r.status_code != 200:
+                continue
+            _act_list = _act_r.json()
+            _act = _act_list[0] if isinstance(_act_list, list) else _act_list
+            if _act.get('commute'):
+                _commute_warnings.append({
+                    'event': _ev.get('name', '?'),
+                    'activity': _act.get('name', '?'),
+                    'activity_id': _paired_id,
+                    'event_id': _ev.get('id'),
+                })
+                print(f"  ⚠️ Commute-parring: '{_ev.get('name')}' er parret med commute '{_act.get('name')}' ({_paired_id})")
+        data['commute_pairing_warnings'] = _commute_warnings
+        if not _commute_warnings:
+            print("  ✅ Ingen commute-parring-fejl i dag")
+    except Exception as _e:
+        print(f"  ⚠️ Commute-parring check fejlede: {_e}")
+        data['commute_pairing_warnings'] = []
+
     # --- Push data.json ---
     gh_put('data.json', sha_data,
            json.dumps(data, indent=2, ensure_ascii=False),
@@ -1888,6 +1922,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
