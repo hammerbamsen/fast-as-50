@@ -419,12 +419,21 @@ def get_activities_week():
             _tss      = round(a.get('icu_training_load') or a.get('training_load') or 0)
             _dur_secs = a.get('moving_time') or a.get('elapsed_time') or 0
             _dur_mins = round(_dur_secs / 60)
-            done_map.setdefault(day_key, []).append((a.get('start_date_local',''), disc, a.get('name') or atype, _tss, _dur_mins))
+            # Zone-data til compliance-vurdering
+            _compliance   = a.get('compliance')
+            _pace_zt      = a.get('pace_zone_times')    # løb
+            _power_zt     = a.get('icu_zone_times')     # cykel (list of {id, secs})
+            _hr_zt        = a.get('icu_hr_zone_times')  # alle
+            done_map.setdefault(day_key, []).append((
+                a.get('start_date_local',''), disc, a.get('name') or atype, _tss, _dur_mins,
+                _compliance, _pace_zt, _power_zt, _hr_zt, a.get('id')
+            ))
 
         # Sortér efter tidspunkt og behold disc-navne + aktivitetsnavne
         for k in done_map:
             sorted_acts = sorted(done_map[k], key=lambda x: x[0])
-            done_map[k] = [(disc, name, tss, dur_mins) for _, disc, name, tss, dur_mins in sorted_acts]
+            done_map[k] = [(disc, name, tss, dur_mins, compliance, pace_zt, power_zt, hr_zt, act_id)
+                           for _, disc, name, tss, dur_mins, compliance, pace_zt, power_zt, hr_zt, act_id in sorted_acts]
 
         return {
             'tss_week': round(total_tss, 0),
@@ -434,6 +443,242 @@ def get_activities_week():
             'done_map': done_map,
         }
     return None
+
+def get_workout_compliance_this_week(events_this_week, activities_this_week):
+    """Beregner zone-compliance for hvert planlagt workout denne uge.
+
+    Matcher planlagte events med faktiske aktiviteter via paired_activity_id,
+    og ekstraherer zone-fordeling (pace/power/HR) pr. disciplin.
+
+    Returnerer liste af dicts:
+      {
+        'day':         str,    # 'Tir'
+        'date':        str,    # '2026-06-23'
+        'label':       str,    # 'Løb Z2 45 min'
+        'disc':        str,    # 'run'
+        'planned_zone': str,   # 'Z2'
+        'intervals_compliance': float,  # 104.3 (Intervals' egen score, 0 = ikke paired)
+        'zone_pct':    float,  # 14.7 (% tid i target zone)
+        'hr_z1_pct':   float,  # 97.9 (% tid i HR-Z1, nyttigt for drift-vurdering)
+        'hr_z2plus_pct': float, # 2.1 (% tid i HR-Z2+, viser faktisk HR-intensitet)
+        'zone_flag':   str,    # 'ok' / 'under' / 'over' / 'no_data'
+        'metric':      str,    # 'pace' / 'power' / 'hr'
+        'moving_mins': float,  # 47
+        'planned_mins': float, # 45
+        'note':        str,    # Coach-fortolkning
+      }
+    """
+    TYPE_MAP = {
+        'Run': 'run', 'TrailRun': 'run', 'VirtualRun': 'run', 'IndoorRun': 'run',
+        'Ride': 'bike', 'VirtualRide': 'bike', 'MountainBike': 'bike',
+        'Swim': 'swim', 'OpenWaterSwim': 'swim',
+        'WeightTraining': 'strength', 'Workout': 'strength', 'Strength': 'strength',
+    }
+    DAY_SHORT_LOCAL = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
+
+    # Byg lookup: activity_id -> aktivitet
+    act_by_id = {a.get('id'): a for a in (activities_this_week or [])}
+    # Byg lookup: (dato, disc) -> aktivitet (fallback)
+    act_by_date_disc = {}
+    for a in (activities_this_week or []):
+        dt = a.get('start_date_local', '')[:10]
+        disc = TYPE_MAP.get(a.get('type', ''), 'free')
+        key = (dt, disc)
+        if key not in act_by_date_disc:
+            act_by_date_disc[key] = a
+
+    def detect_planned_zone(event_name):
+        """Udtræk planlagt zone fra workout-navn."""
+        name_upper = (event_name or '').upper()
+        for z in ['Z5', 'Z4', 'Z3', 'Z2', 'Z1']:
+            if z in name_upper:
+                return z
+        if any(kw in name_upper for kw in ['INTERVAL', 'BJERG', 'VO2', 'TEMPO']):
+            return 'Z4'
+        if any(kw in name_upper for kw in ['RECOVERY', 'LET', 'EASY']):
+            return 'Z1'
+        return 'Z2'  # default
+
+    def zone_target_floor(planned_zone, disc):
+        """Mindste acceptable % tid i target zone (Friel-baseret)."""
+        if planned_zone in ('Z4', 'Z5'):
+            return 15   # Interval-træning: lav pct er OK (restitutionstid ml. intervals)
+        if disc == 'swim':
+            return 30   # Svøm: zone-måling er HR, mere spredt
+        return 55       # Z2 base: ønsker 55%+ i target zone
+
+    results = []
+    for ev in (events_this_week or []):
+        if ev.get('category') not in ('WORKOUT', None):
+            continue
+        ev_type = ev.get('type', '')
+        disc = TYPE_MAP.get(ev_type, 'free')
+        if disc in ('free', 'strength'):
+            continue  # Ingen zone-vurdering for styrke/gåtur
+
+        ev_date = ev.get('start_date_local', '')[:10]
+        ev_name = fix_enc(ev.get('name', ''))
+        planned_zone = detect_planned_zone(ev_name)
+        planned_secs = ev.get('moving_time') or ev.get('elapsed_time') or 0
+        planned_mins = round(planned_secs / 60) if planned_secs else None
+
+        try:
+            dt = date.fromisoformat(ev_date)
+            day_key = DAY_SHORT_LOCAL[dt.weekday()]
+        except Exception:
+            day_key = '?'
+
+        # Find matchet aktivitet
+        act = None
+        paired_id = ev.get('paired_activity_id') or ev.get('activity_id')
+        if paired_id and paired_id in act_by_id:
+            act = act_by_id[paired_id]
+        else:
+            act = act_by_date_disc.get((ev_date, disc))
+
+        if not act:
+            results.append({
+                'day': day_key, 'date': ev_date, 'label': ev_name,
+                'disc': disc, 'planned_zone': planned_zone,
+                'intervals_compliance': None, 'zone_pct': None,
+                'hr_z1_pct': None, 'hr_z2plus_pct': None,
+                'zone_flag': 'no_data', 'metric': None,
+                'moving_mins': None, 'planned_mins': planned_mins,
+                'note': 'Ingen matchet aktivitet fundet',
+            })
+            continue
+
+        moving_time = act.get('moving_time') or act.get('elapsed_time') or 0
+        moving_mins = round(moving_time / 60, 0) if moving_time else 0
+        intervals_compliance = act.get('compliance')
+        if intervals_compliance == 0.0:
+            intervals_compliance = None  # 0.0 = ikke paired, None = ukendt
+
+        # HR-zone data (fælles for alle discipliner)
+        hr_zt = act.get('icu_hr_zone_times') or []
+        total_hr = sum(hr_zt) if hr_zt else 0
+        hr_z1_pct = round(hr_zt[0] / total_hr * 100, 1) if total_hr and hr_zt else None
+        hr_z2plus_pct = round(sum(hr_zt[1:]) / total_hr * 100, 1) if total_hr and len(hr_zt) > 1 else None
+
+        # Zone-kilde og beregning per disciplin
+        zone_pct = None
+        metric = None
+
+        if disc == 'run':
+            # Primær: pace_zone_times (gap-korrigeret pace)
+            pzt = act.get('pace_zone_times') or []
+            if pzt and sum(pzt) > 0:
+                total_p = sum(pzt)
+                z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                zone_pct = round(pzt[z_idx] / total_p * 100, 1) if z_idx < len(pzt) else 0
+                metric = 'pace'
+            elif hr_zt and total_hr > 0:
+                z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                zone_pct = round(hr_zt[z_idx] / total_hr * 100, 1) if z_idx < len(hr_zt) else 0
+                metric = 'hr'
+
+        elif disc == 'bike':
+            # Primær: icu_zone_times (power)
+            pzt_raw = act.get('icu_zone_times') or []
+            if pzt_raw:
+                pzt = [z.get('secs', 0) for z in pzt_raw if isinstance(z, dict)]
+                total_p = sum(pzt)
+                if total_p > 0:
+                    z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                    zone_pct = round(pzt[z_idx] / total_p * 100, 1) if z_idx < len(pzt) else 0
+                    metric = 'power'
+            if zone_pct is None and hr_zt and total_hr > 0:
+                z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                zone_pct = round(hr_zt[z_idx] / total_hr * 100, 1) if z_idx < len(hr_zt) else 0
+                metric = 'hr'
+
+        elif disc == 'swim':
+            # Kun HR tilgængeligt for svøm
+            if hr_zt and total_hr > 0:
+                z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                zone_pct = round(hr_zt[z_idx] / total_hr * 100, 1) if z_idx < len(hr_zt) else 0
+                metric = 'hr'
+
+        # Zone-flag
+        if zone_pct is None:
+            zone_flag = 'no_data'
+        else:
+            floor = zone_target_floor(planned_zone, disc)
+            zone_flag = 'ok' if zone_pct >= floor else 'under'
+
+        # Coaching-note
+        note = ''
+        if zone_flag == 'no_data':
+            note = 'Ingen zone-data'
+        elif zone_flag == 'ok':
+            note = f'{zone_pct}% i {planned_zone} ({metric}) — on target'
+        else:
+            # Under-zone: skeln mellem tempo/HR-drift og reel for lav intensitet
+            if disc == 'run' and metric == 'pace' and hr_z1_pct and hr_z1_pct < 80:
+                note = f'{zone_pct}% i {planned_zone} (pace), men HR-Z2+ = {hr_z2plus_pct}% — HR-drift (varme?), pace faldt'
+            elif disc == 'run' and metric == 'pace' and hr_z1_pct and hr_z1_pct >= 80:
+                note = f'{zone_pct}% i {planned_zone} (pace) + {hr_z1_pct}% HR-Z1 — løbet for roligt, overvej at skrue op for tempoet'
+            elif disc == 'bike':
+                z1_power_pct = None
+                pzt_raw = act.get('icu_zone_times') or []
+                if pzt_raw:
+                    pzt = [z.get('secs', 0) for z in pzt_raw if isinstance(z, dict)]
+                    total_p = sum(pzt)
+                    z1_power_pct = round(pzt[0] / total_p * 100, 1) if total_p and pzt else None
+                if z1_power_pct and z1_power_pct > 50:
+                    note = f'{zone_pct}% i {planned_zone} (power), {z1_power_pct}% Z1 — for let/commute-præget, ikke struktureret Z2'
+                else:
+                    note = f'{zone_pct}% i {planned_zone} (power) — under {floor}%-målet, overvej højere watt'
+            else:
+                note = f'{zone_pct}% i {planned_zone} ({metric}) — under {floor}%-målet'
+
+        # Tilføj Intervals compliance hvis tilgængeligt
+        if intervals_compliance and intervals_compliance > 0:
+            note = f'Steps: {intervals_compliance:.0f}% · {note}'
+
+        results.append({
+            'day': day_key, 'date': ev_date, 'label': ev_name,
+            'disc': disc, 'planned_zone': planned_zone,
+            'intervals_compliance': intervals_compliance,
+            'zone_pct': zone_pct, 'hr_z1_pct': hr_z1_pct,
+            'hr_z2plus_pct': hr_z2plus_pct,
+            'zone_flag': zone_flag, 'metric': metric,
+            'moving_mins': moving_mins, 'planned_mins': planned_mins,
+            'note': note,
+        })
+
+        print(f"  Zone-compliance {day_key} {ev_name[:30]}: {note}")
+
+    return results
+
+
+def format_compliance_for_prompt(compliance_list):
+    """Formaterer compliance-liste til en kompakt streng til AI-prompten."""
+    if not compliance_list:
+        return None
+    lines = []
+    for c in compliance_list:
+        day = c.get('day', '?')
+        label = c.get('label', '')[:30]
+        flag = c.get('zone_flag', 'no_data')
+        note = c.get('note', '')
+        moving = c.get('moving_mins')
+        planned = c.get('planned_mins')
+
+        dur_str = ''
+        if moving and planned:
+            dur_str = f' ({int(moving)}/{int(planned)} min)'
+        elif moving:
+            dur_str = f' ({int(moving)} min)'
+
+        if flag == 'no_data':
+            lines.append(f'- {day}: {label}{dur_str} → ikke gennemført')
+        elif flag == 'ok':
+            lines.append(f'- {day}: {label}{dur_str} → ✅ {note}')
+        else:
+            lines.append(f'- {day}: {label}{dur_str} → ⚠️  {note}')
+    return '\n'.join(lines)
+
 
 def get_planned_mins_this_week():
     """Henter planlagt træningstid i minutter fra Intervals denne uge.
@@ -641,12 +886,18 @@ def build_week_sessions(done_map, planned_sessions):
             # Kun match på korrekt disc — ingen fallback
             # Kommute/cykel må ikke forbruge et planlagt løb
             match_idx = None
-            for i, (disc, name, act_tss, act_dur_mins) in enumerate(acts):
+            for i, act_entry in enumerate(acts):
+                disc = act_entry[0]
                 if i not in used[day_key] and (disc == planned_disc or (disc == "openwater" and planned_disc == "swim")):
                     match_idx = i
                     break
             if match_idx is not None:
-                act_disc, act_name, act_tss, act_dur_mins = acts[match_idx]
+                act_entry = acts[match_idx]
+                act_disc, act_name, act_tss, act_dur_mins = act_entry[0], act_entry[1], act_entry[2], act_entry[3]
+                act_compliance = act_entry[4] if len(act_entry) > 4 else None
+                act_pace_zt    = act_entry[5] if len(act_entry) > 5 else None
+                act_power_zt   = act_entry[6] if len(act_entry) > 6 else None
+                act_hr_zt      = act_entry[7] if len(act_entry) > 7 else None
                 planned_mins_val = parse_planned_mins(s.get('label', ''))
                 planned_tss_val  = s.get('planned_tss') or None
 
@@ -660,6 +911,9 @@ def build_week_sessions(done_map, planned_sessions):
                 new_s['actual_mins']    = act_dur_mins
                 new_s['planned_mins']   = planned_mins_val
                 new_s['done'] = (status in ('done', 'partial'))
+                # Zone-compliance data (til dashboard og AI-coaching)
+                if act_compliance and act_compliance > 0:
+                    new_s['intervals_compliance'] = round(act_compliance, 1)
                 used[day_key].add(match_idx)
 
         result.append(new_s)
@@ -672,9 +926,11 @@ def build_week_sessions(done_map, planned_sessions):
             continue
         if day_idx > today_idx:
             continue
-        for i, (disc, name, tss, dur_mins) in enumerate(acts):
+        for i, act_entry in enumerate(acts):
             if i in used.get(day_key, set()):
                 continue
+            disc, name = act_entry[0], act_entry[1]
+            tss, dur_mins = act_entry[2], act_entry[3]
             label = name if name else disc_labels.get(disc, disc)
             extra = {
                 'day': day_key,
@@ -1197,7 +1453,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
-                             trajectory_note=None, days_completed=None):
+                             trajectory_note=None, days_completed=None, compliance_summary=None):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     if not ANTHROPIC_KEY:
         print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
@@ -1228,6 +1484,16 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"{s['day']}: {s['label']}" for s in week_sessions if not s.get('done') and not s.get('today')
     ) or "ingen planlagte"
     weight_line = f"\n- Vægt: {weight} kg (seneste måling)" if weight else ""
+    compliance_line = (
+        f"\n\nZone-compliance denne uge (Friel-analyse):\n{compliance_summary}\n"
+        f"VIGTIGT: Vurder BÅDE om workouts er gennemført (tid/TSS) OG om de rigtige zoner er ramt. "
+        f"'Steps: X%' = Intervals' compliance-score for workout-steps. "
+        f"Zone-% viser faktisk tid i target-zone. Lav zone-% kan skyldes HR-drift (varme), "
+        f"terræn, bevidst lavere intensitet, eller at intensiteten faktisk var for lav. "
+        f"Løb Z2 med høj HR-Z1 (>95%) og lav pace-Z2 (<30%) i varme er acceptabelt — nævn det som kontekst. "
+        f"Cykel Z2 med >50% Z1 og ingen power-struktur tyder på commute, ikke struktureret Z2."
+        if compliance_summary else ""
+    )
     travel_line = (
         f"\n- VIGTIG KONTEKST om vægt: {travel_note} Brug PRÆCIS denne forklaring/retning i "
         f"'Krop & kost'-linjen i dag — gæt eller modsig den ikke. Bebrejd ALDRIG manglende "
@@ -1252,7 +1518,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
         f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
-        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}{travel_line}{trajectory_line}\n\n"
+        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}{travel_line}{trajectory_line}{compliance_line}\n\n"
         f"VIGTIGT:\n- Hvis dagens session er GENNEMFØRT, skriv om den i DATID.\n"
         f"- Hvis ikke gennemført, giv konkrete råd.\n- Nævn KUN vægt hvis aktuel måling.\n\n"
         f"Giv en KORT coach-vurdering (max 4 sætninger pr. linje) opdelt i linjer med emoji-header:\n"
@@ -1304,6 +1570,20 @@ def main():
     activities   = get_activities_week()
     planned_weeks = get_planned_weeks()
     planned    = planned_tss_this_week()
+
+    # Hent planlagte events og beregn zone-compliance
+    _monday_ce = date.today() - timedelta(days=date.today().weekday())
+    _r_events_ce = requests.get(f'{BASE}/events', auth=AUTH,
+                                 params={'oldest': str(_monday_ce), 'newest': str(date.today())})
+    _events_this_week = _r_events_ce.json() if _r_events_ce.status_code == 200 else []
+    _r_acts_ce = requests.get(f'{BASE}/activities', auth=AUTH,
+                               params={'oldest': str(_monday_ce), 'newest': str(date.today())})
+    _acts_this_week = _r_acts_ce.json() if _r_acts_ce.status_code == 200 else []
+    workout_compliance = get_workout_compliance_this_week(_events_this_week, _acts_this_week)
+    compliance_summary = format_compliance_for_prompt(workout_compliance)
+    if compliance_summary:
+        print(f"  Compliance summary:\n{compliance_summary}")
+
     af_days, af_log = get_af_this_week()
     af_streak = get_af_streak()
     # Dage anses for "afsluttede" når de har en registreret AF-værdi i af_log
@@ -1547,7 +1827,8 @@ def main():
             af_this_week, af_streak,
             data['week_sessions'], week_focus,
             today_session, tss_act, planned,
-            travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed
+            travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed,
+            compliance_summary=compliance_summary
         )
         ai_text = fix_enc(ai_text)  # AI-svar kan komme tilbage Latin-1-mis-decoded -- ret ved kilden
     if ai_text:
