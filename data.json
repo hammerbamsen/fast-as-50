@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-25 15:20",
+    "updated": "2026-06-25 15:30",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,16 +23,16 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "41.7",
+      "value": "42.9",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-5.7",
+      "value": "-11.0",
       "unit": "",
-      "sub": "Form · CTL−ATL, frisk >0",
-      "color": "#27AE60"
+      "sub": "Hård blok · CTL−ATL, frisk >0",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7.3",
@@ -53,16 +53,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "152",
+      "value": "201",
       "unit": "TSS",
-      "sub": "152 af 240 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "201 af 240 planlagt TSS",
+      "color": "#F39C12"
     },
     "bikeKm": {
-      "value": "40.7",
+      "value": "79.5",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#C0392B"
+      "color": "#27AE60"
     },
     "afStreak": {
       "value": "24",
@@ -76,8 +76,8 @@
     "target": 5,
     "streak": 24
   },
-  "coachSpeech": "Torsdag — uge 4 af 14. {HL} I dag: Cykel Z2 45 min (cykel). Godt: TSB -5.7 er på et sundt niveau med plads til næste belastning. Søvn på 7.3 timer er solid. Fokus: 152 af 240 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 30 min, Cykel Z2 45 min. Vægt på 72.9 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
-  "coachHighlight": "CTL 41.7 følger ramp-kurven mod 60",
+  "coachSpeech": "Torsdag — uge 4 af 14. {HL} Dagens session er gennemført. Godt: TSB -11.0 er på et sundt niveau med plads til næste belastning. Søvn på 7.3 timer er solid. Fokus: 201 af 240 TSS er i hus — 3 sessioner tilbage, heriblandt Cykel Z2 30 min, Lang løb Z2 90 min. Vægt på 72.9 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+  "coachHighlight": "CTL 42.9 følger ramp-kurven mod 60",
   "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm · 2 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
@@ -85,7 +85,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -155,8 +155,13 @@
       "day": "Tor",
       "disc": "bike",
       "label": "Cykel Z2 45 min",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 191,
+      "actual_tss": 49,
+      "actual_mins": 86,
+      "planned_mins": 45
     },
     {
       "day": "Tor",
@@ -191,7 +196,7 @@
     36.3,
     40.5,
     42.5,
-    41.7
+    42.9
   ],
   "weightHistory": [
     {
@@ -757,7 +762,7 @@
     },
     {
       "date": "2026-06-25",
-      "v": -5.7,
+      "v": -11.1,
       "real": true
     }
   ],
@@ -1022,8 +1027,13 @@
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 45 min",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 191,
+          "actual_tss": 49,
+          "actual_mins": 86,
+          "planned_mins": 45
         },
         {
           "day": "Tor",
@@ -1516,13 +1526,14 @@
     }
   ],
   "train_mins": {
+    "bike": 86.0,
     "commute": 126.0,
     "strength": 51.0,
     "walk": 50.0,
     "run": 47.0,
     "swim": 31.0,
     "planned": 285.0,
-    "actual_total": 305.0
+    "actual_total": 391.0
   },
   "fatHistory": [
     {
