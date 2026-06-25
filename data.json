@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-25 01:50",
+    "updated": "2026-06-25 02:01",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 73,
-    "daysToChristiansborg": 66,
-    "dayName": "Onsdag",
-    "date": "24. jun"
+    "daysToMedoc": 72,
+    "daysToChristiansborg": 65,
+    "dayName": "Torsdag",
+    "date": "25. jun"
   },
   "kpis": {
     "weight": {
@@ -23,19 +23,19 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "42.1",
+      "value": "41.1",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-7.4",
+      "value": "-1.8",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7.6",
+      "value": "7.3",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "71.8",
+      "value": "72.6",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -76,12 +76,12 @@
     "target": 5,
     "streak": 24
   },
-  "coachSpeech": "Onsdag — uge 4 af 14. {HL} I dag: Cykel Z2 30 min (cykel). Godt: TSB -7.4 er på et sundt niveau med plads til næste belastning. Søvn på 7.6 timer er solid. Fokus: 118 af 240 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 30 min, Cykel Z2 45 min. Vægt på 72.6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "CTL 42.1 følger ramp-kurven mod 60",
+  "coachSpeech": "Torsdag — uge 4 af 14. {HL} I dag: Cykel Z2 45 min (cykel). Godt: TSB -1.8 er på et sundt niveau med plads til næste belastning. Søvn på 7.3 timer er solid. Fokus: 118 af 240 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 30 min, Cykel Z2 45 min. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+  "coachHighlight": "CTL 41.1 følger ramp-kurven mod 60",
   "weekFocus": "Restituitionsuge 4 — 2 løb · 2 cykel · 2 svøm · 1 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "bike",
-    "title": "Cykel Z2 30 min",
+    "title": "Cykel Z2 45 min",
     "duration": "",
     "zone": "–",
     "desc": "",
@@ -135,30 +135,28 @@
       "day": "Ons",
       "disc": "bike",
       "label": "Cykel Z2 30 min",
-      "done": false,
-      "today": true
+      "done": false
     },
     {
       "day": "Ons",
       "disc": "strength",
       "label": "Styrketræning",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Ons",
       "disc": "commute",
       "label": "Ballerup Cykling",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Tor",
       "disc": "bike",
       "label": "Cykel Z2 45 min",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Lør",
@@ -177,7 +175,7 @@
     36.3,
     40.5,
     42.5,
-    42.1
+    41.1
   ],
   "weightHistory": [
     {
@@ -314,14 +312,14 @@
       "date": "2026-06-24",
       "v": 72.5,
       "real": true
+    },
+    {
+      "date": "2026-06-25",
+      "v": 72.5,
+      "real": false
     }
   ],
   "hrvHistory": [
-    {
-      "date": "2026-05-28",
-      "v": 27.0,
-      "real": true
-    },
     {
       "date": "2026-05-29",
       "v": 53.0,
@@ -456,14 +454,14 @@
       "date": "2026-06-24",
       "v": 78.0,
       "real": true
+    },
+    {
+      "date": "2026-06-25",
+      "v": 78.0,
+      "real": false
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-05-28",
-      "v": 7.4,
-      "real": true
-    },
     {
       "date": "2026-05-29",
       "v": 6.6,
@@ -598,14 +596,14 @@
       "date": "2026-06-24",
       "v": 5.8,
       "real": true
+    },
+    {
+      "date": "2026-06-25",
+      "v": 5.8,
+      "real": false
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-05-28",
-      "v": -5.0,
-      "real": true
-    },
     {
       "date": "2026-05-29",
       "v": -1.8,
@@ -739,6 +737,11 @@
     {
       "date": "2026-06-24",
       "v": -7.4,
+      "real": true
+    },
+    {
+      "date": "2026-06-25",
+      "v": -1.8,
       "real": true
     }
   ],
@@ -983,30 +986,28 @@
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 30 min",
-          "done": false,
-          "today": true
+          "done": false
         },
         {
           "day": "Ons",
           "disc": "strength",
           "label": "Styrketræning",
           "done": true,
-          "extra": true,
-          "today": true
+          "extra": true
         },
         {
           "day": "Ons",
           "disc": "commute",
           "label": "Ballerup Cykling",
           "done": true,
-          "extra": true,
-          "today": true
+          "extra": true
         },
         {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 45 min",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Lør",
@@ -1478,7 +1479,7 @@
     {
       "week": 4,
       "done": 3,
-      "total": 3,
+      "total": 4,
       "label": "Uge 4"
     }
   ],
@@ -1626,6 +1627,11 @@
       "date": "2026-06-24",
       "v": 23.1,
       "real": true
+    },
+    {
+      "date": "2026-06-25",
+      "v": 23.1,
+      "real": false
     }
   ],
   "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 24 af 98 · Onsdag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 41.6 rammer uge 4-målet præcist — det er præcis der du skal være. TSB på -5.1 er komfortabelt og viser at restituitionsugen gør sit arbejde. Din cykel Z2 i dag er 30 min — hold det let og hold cadence oppe frem for watt. Resten af ugen er overkommeligt: du har god energi i banken til lørdagens 90 min.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">72.6 kg — du er 0.6 kg fra målet, og retningen er rigtig. Restituitionsuger er faktisk gode uger til at komme lidt tættere på målvægten, fordi energiforbruget falder mindre end mange tror, men appetitten ofte også falder. Hold protein højt og vær opmærksom på, at du ikke kompenserer for den lette uge med ekstra kalorier.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">3 AF-dage ud af 3 registrerede dage — streaken på 24 dage kører. Du har fire dage tilbage i ugen til at nå målet på 5 AF-dage, så der er luft. Fokus for resten af ugen er simpelt: gør det enkle godt — Z2 er Z2, ikke Z3 fordi det \"føles let.\"</p>",
