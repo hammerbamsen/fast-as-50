@@ -70,7 +70,7 @@ def main():
     # (inkl. i dag, hvis Alkohol allerede er logget) -- IKKE blot kalenderens
     # ugedag. Forhindrer mismatch som "7 AF-dage ud af 6 afsluttede dage".
     days_completed = weekday + 1  # Alle kalenderdage fra mandag t.o.m. i dag (0=man, 4=fre)
-    history    = get_history_7d(existing=data)
+    history    = get_history_7d()  # existing tilføjes efter data.json er hentet
     ctl_curve  = get_ctl_curve()
     swim_history = get_swim_history()
     print(f"  Svøm historik: {len(swim_history)} uger")
@@ -87,6 +87,9 @@ def main():
         print("❌ Kunne ikke hente data.json")
         return
     data = json.loads(data_raw)
+    # Opdater history med existing cache nu hvor data er hentet
+    if history:
+        history = get_history_7d(existing=data)
     data.pop('_debug_activities_tss', None)  # ryd op efter tidligere TSS-diagnose
     data.pop('_debug_full_activity', None)   # ryd op efter denne kørsel (sat igen nedenfor om nødvendigt)
 
