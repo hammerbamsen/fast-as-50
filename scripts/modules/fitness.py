@@ -48,65 +48,63 @@ def get_wellness_7d():
 
 
 def get_history_7d(existing=None):
-    """Bygger historik-lister dag for dag ved at tilføje dagens wellness til eksisterende cache."""
+    """Inkrementel historik: tilføj dagens wellness til eksisterende cache."""
     from datetime import date, timedelta
     DAYS = 90
     today_str = str(date.today())
 
-    # Hent dagens og seneste uges wellness (virker stabilt)
+    # Brug 7-dages kald - præcist samme som get_wellness_7d der virker
     oldest = str(date.today() - timedelta(days=7))
     newest = str(date.today())
     r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
-    
-    raw = {}
+
+    daily = {}  # dato -> {weight, hrv, sleep, fat, tsb}
     if r and r.status_code == 200:
-        raw = {d['date'][:10]: d for d in r.json() if d.get('date')}
-        print(f"  History wellness: {len(raw)} dage fra API")
+        rows = r.json()
+        print(f"  history_7d: {len(rows)} rækker fra API")
+        if rows:
+            print(f"  history_7d sample keys: {list(rows[-1].keys())[:20]}")
+        for row in rows:
+            # Intervals bruger 'id' felt som dato (YYYY-MM-DD), ikke 'date'
+            d = (row.get('id') or row.get('date') or '')[:10]
+            if not d:
+                continue
+            ctl = row.get('ctl')
+            atl = row.get('atl')
+            tsb = row.get('tsb')
+            tsb_val = round(ctl - atl, 1) if (ctl and atl) else (round(tsb, 1) if tsb else None)
+            s = row.get('sleepSecs')
+            daily[d] = {
+                'weight': round(row['weight'], 1) if row.get('weight') is not None else None,
+                'fat':    round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None,
+                'hrv':    round(row['hrv'], 1) if row.get('hrv') is not None else None,
+                'sleep':  round(s / 3600, 1) if s else None,
+                'tsb':    tsb_val,
+            }
+        print(f"  history_7d: {len(daily)} dage med dato")
     else:
-        print(f"  History wellness: API fejl")
+        print(f"  history_7d: API fejl")
 
-    def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
-    def w_fat(row):    return round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None
-    def w_hrv(row):    return round(row['hrv'], 1) if row.get('hrv') is not None else None
-    def w_sleep(row):
-        s = row.get('sleepSecs')
-        return round(s / 3600, 1) if s else None
-    def w_tsb(row):
-        if row.get('ctl') is not None and row.get('atl') is not None:
-            return round(row['ctl'] - row['atl'], 1)
-        return round(row['tsb'], 1) if row.get('tsb') is not None else None
+    dates = [str(date.today() - timedelta(days=i)) for i in range(DAYS - 1, -1, -1)]
+    date_to_idx = {d: i for i, d in enumerate(dates)}
 
-    def build(fn, cache_key):
-        # Start med eksisterende cache (90 punkter)
+    def build(field, cache_key):
         cache = list((existing or {}).get(cache_key, []))
         if len(cache) < DAYS:
             cache = [None] * (DAYS - len(cache)) + cache
         elif len(cache) > DAYS:
             cache = cache[-DAYS:]
-        
-        # Opbyg dato-index: hvilken index svarer til hvilken dato
-        dates = [str(date.today() - timedelta(days=i)) for i in range(DAYS - 1, -1, -1)]
-        date_to_idx = {d: i for i, d in enumerate(dates)}
-        
-        # Overskriv med API-data for de dage vi har
-        updated = 0
-        for d_str, row in raw.items():
-            if d_str in date_to_idx:
-                v = fn(row)
-                if v is not None:
-                    cache[date_to_idx[d_str]] = v
-                    updated += 1
-        
-        if updated:
-            print(f"    {cache_key}: {updated} dage opdateret fra API")
+        for d_str, vals in daily.items():
+            if d_str in date_to_idx and vals.get(field) is not None:
+                cache[date_to_idx[d_str]] = vals[field]
         return cache
 
     return {
-        'weightHistory': build(w_weight, 'weightHistory'),
-        'fatHistory':    build(w_fat,    'fatHistory'),
-        'hrvHistory':    build(w_hrv,    'hrvHistory'),
-        'sleepHistory':  build(w_sleep,  'sleepHistory'),
-        'tsbHistory':    build(w_tsb,    'tsbHistory'),
+        'weightHistory': build('weight', 'weightHistory'),
+        'fatHistory':    build('fat',    'fatHistory'),
+        'hrvHistory':    build('hrv',    'hrvHistory'),
+        'sleepHistory':  build('sleep',  'sleepHistory'),
+        'tsbHistory':    build('tsb',    'tsbHistory'),
     }
 
 
