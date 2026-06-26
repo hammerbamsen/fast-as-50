@@ -3,6 +3,46 @@ import os, re, json, urllib.request as _urllib_req
 from datetime import date, timedelta
 from .config import BASE, AUTH, api_get, fix_enc, fmt, ctl_plan_for_week, ANTHROPIC_KEY, DK_DAYS, DK_MONTHS, DAY_SHORT
 
+QUOTES_TRAINING = [
+    "\"Det er ikke om at have tid. Det er om at tage den.\"",
+    "\"Sæt farten ned, så du kan gå langt.\"",
+    "\"Konsistens slår intensitet, hver gang.\"",
+    "\"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+    "\"Formen bygges i kedsomheden — ikke i begejstringen.\"",
+    "\"14 uger er lang tid. Men hver dag er kort.\"",
+    "\"Den bedste træning er den, du faktisk gennemfører.\"",
+    "\"Recovery er ikke pause — det er produktion.\"",
+    "\"Du har gjort det 16 gange før. Kroppen kender vejen.\"",
+]
+
+QUOTES_DIET = [
+    "\"Et godt måltid og en god nats søvn slår en ekstra hård træning.\"",
+    "\"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+    "\"Mindre alkohol, mere søvn — den billigste performance-boost der findes.\"",
+    "\"Protein ved hvert måltid. Ingen undtagelser, ingen drama.\"",
+    "\"Kroppen tror, hvad sindet siger.\"",
+    "\"Vægten flytter sig ikke i dag. Men vanen gør.\"",
+]
+
+QUOTES_PHILOSOPHY = [
+    "\"Disciplin er at vælge mellem hvad du vil nu, og hvad du vil mest.\"",
+    "\"Det er de små valg hver dag, der bygger den store form.\"",
+    "\"Keep moving forward.\"",
+    "\"Du konkurrerer ikke mod andre i dag. Kun mod gårsdagens dig.\"",
+    "\"Smertegrænsen flytter sig — men kun hvis du respekterer den først.\"",
+    "\"Sæt målet højt, men sæt i dag realistisk.\"",
+    "\"Form kommer og går. Vaner bliver.\"",
+    "\"Hold roen. Hold rytmen. Hold farten.\"",
+    "\"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+    "\"Begynd ikke at handle som om du har ti tusind år at leve i.\" — Marcus Aurelius",
+    "\"Hindringen for handling fremmer handlingen. Det, der står i vejen, bliver vejen.\" — Marcus Aurelius",
+    "\"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+    "\"Hver morgen: jeg vågner for at gøre menneskets arbejde.\" — Marcus Aurelius",
+    "\"Udholdenhed er bitter, men dens frugt er sød.\"",
+    "\"Du bliver til det, du gør ofte.\"",
+]
+
+
 
 def get_travel_label(today_str):
     """Læs data/travel_days.json og returner en KORT rejse-label for i dag (eller
