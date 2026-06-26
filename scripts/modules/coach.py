@@ -69,7 +69,7 @@ def weight_delta_vs_recent(weight_history, today_str, weight_today):
     fremført/fyldt værdi). Returnerer (delta, dato) eller (None, None)."""
     if weight_today is None or not weight_history:
         return None, None
-    prior_real = [h for h in weight_history if h is not None and h.get('real') and h.get('date') != today_str]
+    prior_real = [h for h in weight_history if h is not None and isinstance(h, dict) and h.get('real') and h.get('date') != today_str]
     if not prior_real:
         return None, None
     prior = prior_real[-1]
