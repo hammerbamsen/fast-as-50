@@ -1091,8 +1091,9 @@ function buildSparklineSVG(chartId, W) {
   const { data, color, minV, maxV } = cfg;
   const H=92, pad={l:8,r:8,t:22,b:20};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
-  const vals  = data.map(d=>typeof d==='object'?d.v:d);
-  const reals = data.map(d=>typeof d==='object' && 'real' in d ? !!d.real : true);
+  const safeData = (data||[]).filter(d => d !== null && d !== undefined);
+  const vals  = safeData.map(d=>typeof d==='object'?d.v:d).filter(v=>v!==null&&v!==undefined&&!isNaN(v));
+  const reals = safeData.map(d=>typeof d==='object' && 'real' in d ? !!d.real : true);
   const dates = data.map(d=>typeof d==='object' && d.date ? d.date : null);
   const n = vals.length;
   const dataMin = Math.min(...vals), dataMax = Math.max(...vals);
