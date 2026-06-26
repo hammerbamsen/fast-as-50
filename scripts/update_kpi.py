@@ -247,6 +247,9 @@ def main():
     data['week_sessions'] = build_week_sessions(done_map, this_week_planned)
 
     # --- Historik-grafer live fra Intervals (sparklines + CTL-kurve) ---
+    # Debug: gem wellness-rådata direkte i data.json så vi kan se det
+    _debug_wellness = get_wellness_7d()
+    data['_debug_wellness_raw'] = str(_debug_wellness)[:500] if _debug_wellness else "NONE"
     if history:
         if history.get('weightHistory'): data['weightHistory'] = history['weightHistory']
         if history.get('fatHistory'):    data['fatHistory']    = history['fatHistory']
