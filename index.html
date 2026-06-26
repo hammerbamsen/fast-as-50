@@ -981,38 +981,6 @@ function renderOverview() {
     <div>${STATIC.strength.map(e=>`<span class="strength-tag">${e}</span>`).join("")}</div>
     <div class="eq-note">KB: 12.5 / 16 / 20 kg · DB: 5 / 7 / 10 / 12.5 / 15 kg</div>
   </div>
-`;
-}
-
-function renderBody() {
-  const ctlNow = parseFloat((D.kpis.find(k=>k.label==="CTL FITNESS"||k.label==="CTL")||{}).value) || STATIC.ctlStart;
-  const wNow   = parseFloat((D.kpis.find(k=>k.label==="VÆGT")||{}).value?.replace(",",".")) || STATIC.weight.start;
-  const fNow   = parseFloat((D.kpis.find(k=>k.label==="FEDT%")||{}).value?.replace(",",".")) || STATIC.bodyFat.start;
-  return `
-  <div class="hero-card"><div class="hero-eyebrow">BASELINE → MÅL</div><div class="hero-title">Krop</div></div>
-  <div class="card">
-    <div class="label">Kropskomposition</div>
-    ${progressMetric("Vægt", STATIC.weight.start, wNow, STATIC.weight.goal, " kg", "var(--gold)")}
-    ${progressMetric("Fedt %", STATIC.bodyFat.start, fNow, STATIC.bodyFat.goal, "%", "var(--run)")}
-  </div>
-  <div class="card">
-    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
-    ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', null, null)}
-    <div style="height:14px"></div>
-    ${D.fatHistory && D.fatHistory.filter(p=>p && p.real).length >= 2
-        ? sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null)
-        : `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 4px 2px">
-             <span style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:.08em;color:var(--muted)">FEDT%</span>
-             <span style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">
-               ${D.kpis && D.kpis.fat ? D.kpis.fat.value + ' % (seneste måling)' : 'Ingen målinger endnu'}
-             </span>
-           </div>`
-    }
-    <div style="height:14px"></div>
-    ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', null, null)}
-    <div style="height:14px"></div>
-    ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', null, null)}
-  </div>
   <div class="card">
     <div class="label" style="margin-bottom:12px">Svøm — Christiansborg Rundt 29. aug</div>
     ${(() => {
@@ -1060,6 +1028,39 @@ function renderBody() {
       `;
     })()}
   </div>
+`;
+}
+
+function renderBody() {
+  const ctlNow = parseFloat((D.kpis.find(k=>k.label==="CTL FITNESS"||k.label==="CTL")||{}).value) || STATIC.ctlStart;
+  const wNow   = parseFloat((D.kpis.find(k=>k.label==="VÆGT")||{}).value?.replace(",",".")) || STATIC.weight.start;
+  const fNow   = parseFloat((D.kpis.find(k=>k.label==="FEDT%")||{}).value?.replace(",",".")) || STATIC.bodyFat.start;
+  return `
+  <div class="hero-card"><div class="hero-eyebrow">BASELINE → MÅL</div><div class="hero-title">Krop</div></div>
+  <div class="card">
+    <div class="label">Kropskomposition</div>
+    ${progressMetric("Vægt", STATIC.weight.start, wNow, STATIC.weight.goal, " kg", "var(--gold)")}
+    ${progressMetric("Fedt %", STATIC.bodyFat.start, fNow, STATIC.bodyFat.goal, "%", "var(--run)")}
+  </div>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
+    ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', null, null)}
+    <div style="height:14px"></div>
+    ${D.fatHistory && D.fatHistory.filter(p=>p && p.real).length >= 2
+        ? sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null)
+        : `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 4px 2px">
+             <span style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:.08em;color:var(--muted)">FEDT%</span>
+             <span style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">
+               ${D.kpis && D.kpis.fat ? D.kpis.fat.value + ' % (seneste måling)' : 'Ingen målinger endnu'}
+             </span>
+           </div>`
+    }
+    <div style="height:14px"></div>
+    ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', null, null)}
+    <div style="height:14px"></div>
+    ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', null, null)}
+  </div>
+
   <div class="card">
     <div class="label" style="margin-bottom:12px">AF-dage — uge ${D.week}</div>
     ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
