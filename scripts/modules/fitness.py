@@ -44,31 +44,22 @@ def get_wellness_7d():
 
 
 def get_history_7d(existing=None):
-    """Bygger historik-lister (ældste→nyeste) for vægt, HRV, søvn, TSB.
-    Bruger inkrementel strategi: henter 30 dage fra Intervals og merger med eksisterende cache."""
-    DAYS = 90
+    """Bygger historik-lister dag for dag ved at tilføje dagens wellness til eksisterende cache."""
     from datetime import date, timedelta
-    dates = [date.today() - timedelta(days=i) for i in range(DAYS - 1, -1, -1)]
-    date_strs = [str(d) for d in dates]
+    DAYS = 90
+    today_str = str(date.today())
 
-    # Byg raw lookup fra Intervals (30 dage er nok til at dække huller)
-    oldest = str(date.today() - timedelta(days=30))
+    # Hent dagens og seneste uges wellness (virker stabilt)
+    oldest = str(date.today() - timedelta(days=7))
     newest = str(date.today())
     r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    
     raw = {}
     if r and r.status_code == 200:
         raw = {d['date'][:10]: d for d in r.json() if d.get('date')}
-        print(f"  Intervals wellness: {len(raw)} dage hentet (seneste 30)")
-        if raw:
-            sample = list(raw.values())[-1]
-            print(f"  Sample felt (seneste dag): {list(sample.keys())[:15]}")
-            print(f"  Sample weight={sample.get('weight')} hrv={sample.get('hrv')} sleep={sample.get('sleepSecs')} ctl={sample.get('ctl')}")
-        else:
-            print(f"  RAW TOMT - API returnerede ingen dage med 'date' felt")
-            if r.json():
-                print(f"  Første rå element: {r.json()[0]}")
+        print(f"  History wellness: {len(raw)} dage fra API")
     else:
-        print(f"  Intervals wellness: HTTP {r.status_code if r else 'None'} - bruger kun cache")
+        print(f"  History wellness: API fejl")
 
     def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
     def w_fat(row):    return round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None
@@ -79,25 +70,32 @@ def get_history_7d(existing=None):
     def w_tsb(row):
         if row.get('ctl') is not None and row.get('atl') is not None:
             return round(row['ctl'] - row['atl'], 1)
-        if row.get('tsb') is not None:
-            return round(row['tsb'], 1)
-        return None
+        return round(row['tsb'], 1) if row.get('tsb') is not None else None
 
     def build(fn, cache_key):
-        cache = (existing or {}).get(cache_key, [None] * DAYS)
-        # Pad/trim cache til DAYS længde
+        # Start med eksisterende cache (90 punkter)
+        cache = list((existing or {}).get(cache_key, []))
         if len(cache) < DAYS:
-            cache = [None] * (DAYS - len(cache)) + list(cache)
+            cache = [None] * (DAYS - len(cache)) + cache
         elif len(cache) > DAYS:
-            cache = list(cache)[-DAYS:]
-        result = list(cache)
-        # Overskriv med friske Intervals-data for de dage vi har
-        for i, d_str in enumerate(date_strs):
-            if d_str in raw:
-                v = fn(raw[d_str])
+            cache = cache[-DAYS:]
+        
+        # Opbyg dato-index: hvilken index svarer til hvilken dato
+        dates = [str(date.today() - timedelta(days=i)) for i in range(DAYS - 1, -1, -1)]
+        date_to_idx = {d: i for i, d in enumerate(dates)}
+        
+        # Overskriv med API-data for de dage vi har
+        updated = 0
+        for d_str, row in raw.items():
+            if d_str in date_to_idx:
+                v = fn(row)
                 if v is not None:
-                    result[i] = v
-        return result
+                    cache[date_to_idx[d_str]] = v
+                    updated += 1
+        
+        if updated:
+            print(f"    {cache_key}: {updated} dage opdateret fra API")
+        return cache
 
     return {
         'weightHistory': build(w_weight, 'weightHistory'),
