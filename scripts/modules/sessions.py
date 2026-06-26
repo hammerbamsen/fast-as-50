@@ -2,6 +2,7 @@
 import re
 from datetime import date, timedelta
 from .config import BASE, AUTH, api_get, fix_enc, fmt, color_for, ctl_plan_for_week, DAY_SHORT, BLOCK_TYPES
+from .af import monday_this_week
 
 
 def get_activities_week():
