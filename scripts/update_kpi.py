@@ -70,7 +70,7 @@ def main():
     # (inkl. i dag, hvis Alkohol allerede er logget) -- IKKE blot kalenderens
     # ugedag. Forhindrer mismatch som "7 AF-dage ud af 6 afsluttede dage".
     days_completed = weekday + 1  # Alle kalenderdage fra mandag t.o.m. i dag (0=man, 4=fre)
-    history    = get_history_7d()
+    history    = get_history_7d(existing=data)
     ctl_curve  = get_ctl_curve()
     swim_history = get_swim_history()
     print(f"  Svøm historik: {len(swim_history)} uger")
