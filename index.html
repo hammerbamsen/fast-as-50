@@ -371,7 +371,7 @@ let D = {
     {label:"HRV", value:"67.5", unit:"ms", sub:"Snit 7d", color:"#7A6A58"},
     {label:"LØB KM", value:"8.2", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
   ],
-  today:{ discipline:"swim", title:"Svøm 2000m + cykel", duration:"90 min", zone:"Z2", desc:"Svøm 2000m teknisk + rolig cykel 45 min Z2. Aktiv restitution efter en stærk uge." },
+  // today: (sættes fra data.json)
   week_sessions:[
     {day:"Man", disc:"bike",     label:"Hometrainer + Styrke", done:true},
     {day:"Tir", disc:"run",      label:"Løb easy (Malmø)",     done:true},
@@ -387,6 +387,7 @@ let D = {
   hrvHistory: [],
   sleepHistory: [],
   tsbHistory: [],
+  tsb: null,  // sættes fra data.json — null = ukendt (viser ingen advarsel)
   today:{ discipline:"swim", title:"Svøm 2000m + cykel", duration:"90 min", zone:"Z1-Z2", desc:"Aktiv restitution. Luk uge 1 af.", completed:false },
 };
 
@@ -978,7 +979,7 @@ function renderOverview() {
 }
 
 function renderBody() {
-  const ctlNow = parseFloat((D.kpis.find(k=>k.label==="CTL FITNESS")||{}).value) || STATIC.ctlStart;
+  const ctlNow = parseFloat((D.kpis.find(k=>k.label==="CTL FITNESS"||k.label==="CTL")||{}).value) || STATIC.ctlStart;
   const wNow   = parseFloat((D.kpis.find(k=>k.label==="VÆGT")||{}).value?.replace(",",".")) || STATIC.weight.start;
   const fNow   = parseFloat((D.kpis.find(k=>k.label==="FEDT%")||{}).value?.replace(",",".")) || STATIC.bodyFat.start;
   return `

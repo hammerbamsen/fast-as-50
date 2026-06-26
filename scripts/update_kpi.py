@@ -1926,11 +1926,9 @@ def main():
     # --- Check: er et workout-event fejlagtigt parret med en commute-aktivitet? ---
     try:
         _week_start = today - timedelta(days=today.weekday())  # Mandag denne uge
-        _events_today = requests.get(
-            f'{BASE}/events',
-            auth=AUTH,
-            params={'oldest': str(_week_start), 'newest': str(today)}
-        ).json()
+        _r_commute = api_get(f'{BASE}/events', auth=AUTH,
+            params={'oldest': str(_week_start), 'newest': str(today)})
+        _events_today = _r_commute.json() if _r_commute and _r_commute.status_code == 200 else []
         _commute_warnings = []
         for _ev in (_events_today if isinstance(_events_today, list) else []):
             if _ev.get('category') != 'WORKOUT':
