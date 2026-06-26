@@ -1158,10 +1158,12 @@ function buildSparklineSVG(chartId, W) {
 }
 
 function sparkline(data, color, label, unit, minV, maxV) {
-  if (!data || data.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
+  // Filtrer nulls/undefined ud — vis fallback hvis ingen reelle data
+  const cleaned=(data||[]).filter(d=>{const v=typeof d==='object'?d.v:d;return v!==null&&v!==undefined&&!isNaN(v);});
+  if (!cleaned || cleaned.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
   const chartId = `spk${++sparklineSeq}`;
-  SPARKLINE_DATA[chartId] = { data, color, label, unit, minV, maxV };
-  const vals = data.map(d=>typeof d==='object'?d.v:d);
+  SPARKLINE_DATA[chartId] = { data: cleaned, color, label, unit, minV, maxV };
+  const vals = cleaned.map(d=>typeof d==='object'?d.v:d);
   const last = vals[vals.length-1];
   const prev = vals[vals.length-2];
   const trend = last > prev ? '↑' : last < prev ? '↓' : '→';
