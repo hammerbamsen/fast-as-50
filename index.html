@@ -1160,7 +1160,7 @@ function buildSparklineSVG(chartId, W) {
 
 function sparkline(data, color, label, unit, minV, maxV) {
   // Filtrer nulls/undefined ud — vis fallback hvis ingen reelle data
-  const cleaned=(data||[]).filter(d=>{const v=typeof d==='object'?d.v:d;return v!==null&&v!==undefined&&!isNaN(v);});
+  const cleaned=(data||[]).filter(d=>d!==null&&d!==undefined).filter(d=>{const v=typeof d==='object'?d.v:d;return v!==null&&v!==undefined&&!isNaN(v);});
   if (!cleaned || cleaned.length < 2) return '<div style="height:60px;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Ingen data endnu</div>';
   const chartId = `spk${++sparklineSeq}`;
   SPARKLINE_DATA[chartId] = { data: cleaned, color, label, unit, minV, maxV };
