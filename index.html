@@ -505,12 +505,17 @@ function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
 const CTL_PLAN=[34,36,38,41,44,43,41,45,49,53,57,55,58,60];
 
 function ctlGraph() {
-  const actual=D.ctlCurve, plan=CTL_PLAN, W=500, H=140, pad={t:18,r:24,b:30,l:30};
+  // Filtrer nulls — brug CTL_PLAN som fallback hvis ingen live data
+  const rawActual=D.ctlCurve||[];
+  const actual=rawActual.filter(v=>v!==null&&v!==undefined).length>0
+    ? rawActual.map((v,i)=>v!==null&&v!==undefined?v:CTL_PLAN[i])
+    : CTL_PLAN.slice(0,D.week);
+  const plan=CTL_PLAN, W=500, H=140, pad={t:18,r:24,b:30,l:30};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b, mn=30, mx=65;
   const x=i=>pad.l+(i/(plan.length-1))*iW;
   const y=v=>pad.t+iH-((v-mn)/(mx-mn))*iH;
   const wk=D.week;
-  const cur=actual[actual.length-1];
+  const cur=actual[actual.length-1]||CTL_PLAN[D.week-1]||34;
 
   const smoothPath=(arr)=>{
     let p=`M${x(0)},${y(arr[0])}`;
