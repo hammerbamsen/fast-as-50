@@ -402,7 +402,7 @@ def main():
             if not _paired_id:
                 continue
             _act_r = api_get(f'{BASE}/activities/{_paired_id}', auth=AUTH)
-            if _act_r.status_code != 200:
+            if not _act_r or _act_r.status_code != 200:
                 continue
             _act_list = _act_r.json()
             _act = _act_list[0] if isinstance(_act_list, list) else _act_list
@@ -452,7 +452,15 @@ def main():
     print("=== Done ===")
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as _fatal:
+        import traceback
+        err = traceback.format_exc()
+        print(f'FATAL ERROR: {_fatal}')
+        print(err)
+        # Skriv fejl til en fil der kan pushes
+        raise
 
 
 
