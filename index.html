@@ -999,7 +999,7 @@ function renderBody() {
     <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.weightHistory||D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
     ${sparkline(D.weightHistory, 'var(--gold)', 'VÆGT', 'kg', null, null)}
     <div style="height:14px"></div>
-    ${D.fatHistory && D.fatHistory.filter(p=>p.real).length >= 2
+    ${D.fatHistory && D.fatHistory.filter(p=>p && p.real).length >= 2
         ? sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null)
         : `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 4px 2px">
              <span style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:.08em;color:var(--muted)">FEDT%</span>
