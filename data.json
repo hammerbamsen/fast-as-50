@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-26 12:40",
+    "updated": "2026-06-26 12:50",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,16 +23,16 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "42,1",
+      "value": "43,2",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-5,8",
+      "value": "-10,9",
       "unit": "",
-      "sub": "Form · CTL−ATL, frisk >0",
-      "color": "#27AE60"
+      "sub": "Hård blok · CTL−ATL, frisk >0",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7,3",
@@ -53,13 +53,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "210",
+      "value": "256",
       "unit": "TSS",
-      "sub": "210 af 232 planlagt TSS",
+      "sub": "256 af 232 planlagt TSS",
       "color": "#27AE60"
     },
     "bikeKm": {
-      "value": "79,5",
+      "value": "113,7",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -82,9 +82,9 @@
     "target": 5,
     "streak": 25
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 4. {HL} Dagens session er gennemført. Godt: TSB -5,8 er på et sundt niveau med plads til næste belastning. 91 procent af ugens TSS er i hus. Fokus: Vægt på 73,1 kg — hold protein højt og undgå lette kulhydrater om aftenen. 4 AF-dage i 5 afsluttede dage — 1 mangler i 2 dage tilbage. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "CTL 42,1 følger ramp-kurven mod 60",
-  "weekFocus": "Restituitionsuge 4 — 2 løb · 3 cykel · 3 svøm · 2 styrke. Fokus: konsistens over intensitet.",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 4. {HL} Dagens session er gennemført. Godt: TSB -10,9 er på et sundt niveau med plads til næste belastning. 110 procent af ugens TSS er i hus. Fokus: Vægt på 73,1 kg — hold protein højt og undgå lette kulhydrater om aftenen. 4 AF-dage i 5 afsluttede dage — 1 mangler i 2 dage tilbage. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
+  "coachHighlight": "CTL 43,2 følger ramp-kurven mod 60",
+  "weekFocus": "Restituitionsuge 4 — 2 løb · 4 cykel · 3 svøm · 2 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "swim",
     "title": "Svøm i pool",
@@ -186,6 +186,14 @@
       "day": "Fre",
       "disc": "swim",
       "label": "Svøm i pool",
+      "done": true,
+      "extra": true,
+      "today": true
+    },
+    {
+      "day": "Fre",
+      "disc": "bike",
+      "label": "Gentofte Cykling på vej",
       "done": true,
       "extra": true,
       "today": true
@@ -869,6 +877,14 @@
           "today": true
         },
         {
+          "day": "Fre",
+          "disc": "bike",
+          "label": "Gentofte Cykling på vej",
+          "done": true,
+          "extra": true,
+          "today": true
+        },
+        {
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 90 min",
@@ -882,7 +898,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Restituitionsuge 4 — 2 løb · 3 cykel · 3 svøm · 2 styrke. Fokus: konsistens over intensitet."
+      "focus": "Restituitionsuge 4 — 2 løb · 4 cykel · 3 svøm · 2 styrke. Fokus: konsistens over intensitet."
     },
     "5": {
       "sessions": [
@@ -1343,14 +1359,14 @@
     }
   ],
   "train_mins": {
+    "bike": 168.0,
     "swim": 63.0,
-    "bike": 86.0,
     "commute": 126.0,
     "strength": 51.0,
     "walk": 50.0,
     "run": 47.0,
     "planned": 285.0,
-    "actual_total": 423.0
+    "actual_total": 505.0
   },
   "fatHistory": [
     null,
@@ -1444,9 +1460,9 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 26 af 98 · Fredag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>💪 Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 41.9 og er foran ugeplanen (mål: 41) — det er godt, men husk at det primært afspejler volumen, ikke kvalitet. Zone-compliance har været skuffende denne uge: tirsdagens løb var for roligt (14.7% pace-Z2, selv med varme-kontekst), og onsdagens og torsdagens cykel lignede mere pendling end struktureret Z2-arbejde. I dag er hviledag, og det er korrekt valg — lad TSB kravle op inden weekenden. Lørdag er den vigtigste session denne uge: 90 min lang løb Z2, og her skal du aktivt holde dig i pace-Z2, ikke blot lade HR styre dig ned i Z1.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>⚖️ Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.1 kg — du er 1.1 kg fra målet. Vægten bevæger sig i den rigtige retning, men det kræver fortsat fokus på kaloriernivo, særligt i weekenden hvor lange sessioner ofte udløser kompensationsspisning. Hviledage er ikke frihedsdage på kostfronten.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>🎯 AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4 AF-dage ud af 4 registrerede dage — det er stærkt, og du er godt på vej til ugens mål på 5. Fredag er hviledag, så alkohol er den eneste variabel du styrer i dag — hold linjen. Kom stærkt igennem lør</p>",
-  "coachAssessmentTs": "04:40",
-  "coachAssessmentTsFull": "2026-06-26T04:40:56.458121",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 26 af 98 · Fredag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>💪 Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 43.2 er stærkt — du er 2 point foran uge 4-målet på 41, og TSB på -10.9 er komfortabelt inden for Friel-grænsen. Svømmen i dag er i kassen, og det var det rigtige valg til en restitutionsuge. Ugens cykelture har haft for lidt struktureret Z2-arbejde — torsdag lignede mest en commute, og onsdag var watt for lav. Tag det med ind i næste uge: cykel kræver bevidst indsats for at ramme zonen, ikke bare tid i sadlen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>⚖️ Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.1 kg — du er 1.1 kg fra 72-kg-målet. Det går den rigtige vej, men langsomt, og det er fint i capacity-mode. Hold et lille kalorie-underskud i hverdagene uden at gå på kompromis med restitution og kvalitetssessioner i weekenden.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>🎯 AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4 AF-dage ud af 5 dage gået — det er solidt. Weekenden giver dig to dage til at holde linjen og afslutte ugen rent. Lørdag er lang løb Z2 90 min — prioritér pace frem for HR, og husk tirsdagens lektion: løb ikke for roligt bare fordi det føles nemt. Søndag er teknisk svøm, og med to AF-dage i weekenden er</p>",
+  "coachAssessmentTs": "10:50",
+  "coachAssessmentTsFull": "2026-06-26T10:50:53.088103",
   "coachAssessmentWeightAtGen": 73.1,
   "coachAssessmentAfAtGen": 4,
   "commute_pairing_warnings": [],
@@ -1457,7 +1473,7 @@
       "message": "HRV 56,0 ms — 17% under 7d-snit (67,5 ms). Kroppen er presset."
     }
   ],
-  "tsb": -5.8,
+  "tsb": -10.9,
   "swimHistory": [
     {
       "week": 1,
@@ -1480,8 +1496,8 @@
     {
       "week": 4,
       "date": "2026-06-22",
-      "meters": 95251.0,
-      "cumulative": 767805.0
+      "meters": 129422.0,
+      "cumulative": 801976.0
     }
   ]
 }
