@@ -405,6 +405,7 @@ const ICONS = {
   body:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg>`,
   rules:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3l8 -8"/><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"/></svg>`,
   flag:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1 -7 0a5 5 0 0 0 -7 0v-9z"/><line x1="5" y1="21" x2="5" y2="14"/></svg>`,
+  rest:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1 -9 -9z"/></svg>`,
 };
 
 function icon(name, size=20, color="currentColor") {
@@ -707,8 +708,22 @@ function renderWeek() {
     </div>
     <div id="coach-assessment-ts" style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-top:10px;"></div>
   </div>` : ''}
-  ${sessions.length === 0 ? `<div class="card" style="text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:32px">DATA IKKE TILGÆNGELIG</div>` :
-    sessions.map(s=>`
+  ${sessions.length === 0 ? `<div class="card" style="text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:32px">DATA IKKE TILGÆNGELIG</div>` : (() => {
+    const ALL_DAYS = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
+    const byDay = {};
+    ALL_DAYS.forEach(d => byDay[d] = []);
+    sessions.forEach(s => { if (byDay[s.day] !== undefined) byDay[s.day].push(s); });
+    return ALL_DAYS.map(day => {
+      const ds = byDay[day];
+      if (ds.length === 0) return `
+  <div class="wsession" style="opacity:0.45">
+    <div class="wsession-icon" style="background:#7A6A5812">${icon("rest",18,"#7A6A58")}</div>
+    <div class="wsession-body">
+      <div class="wsession-title" style="color:var(--muted)">Hviledag</div>
+      <div class="wsession-day">${day}</div>
+    </div>
+  </div>`;
+      return ds.map(s=>`
   <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""} ${s.extra?"is-extra":""}">
     <div class="wsession-icon" style="background:${C[s.disc]||'#7A6A58'}18">
       ${s.disc2
@@ -725,8 +740,9 @@ function renderWeek() {
            <span style="display:flex;gap:3px;align-items:center">${discTag(s.disc2,true)}${s.done ? icon("check",15,C[s.disc2]||'#7A6A58') : ''}</span>
          </span>`
       : `<span style="display:flex;gap:3px;align-items:center">${discTag(s.disc,true)}${s.done ? icon("check",18,C[s.disc]||'#7A6A58') : ''}</span>`}
-  </div>`).join("")
-  }
+  </div>`).join("");
+    }).join("");
+  })()}
   <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div>${renderFocus(focus)}</div>
   `;
 }
