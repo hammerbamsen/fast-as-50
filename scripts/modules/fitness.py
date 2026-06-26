@@ -43,28 +43,24 @@ def get_wellness_7d():
     return None
 
 
-def get_history_7d():
-    """Bygger historik-lister (ældste→nyeste) for vægt, HRV, søvn, TSB."""
-    LOOKBACK = 90
-    DAYS     = 90
+def get_history_7d(existing=None):
+    """Bygger historik-lister (ældste→nyeste) for vægt, HRV, søvn, TSB.
+    Bruger inkrementel strategi: henter 30 dage fra Intervals og merger med eksisterende cache."""
+    DAYS = 90
     from datetime import date, timedelta
-    dates  = [date.today() - timedelta(days=i) for i in range(DAYS - 1, -1, -1)]
-    oldest = str(dates[0])
-    newest = str(dates[-1])
-    r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
-    if not r or r.status_code != 200:
-        return None
-    raw = {d['date'][:10]: d for d in r.json() if d.get('date')}
+    dates = [date.today() - timedelta(days=i) for i in range(DAYS - 1, -1, -1)]
+    date_strs = [str(d) for d in dates]
 
-    def build(fn):
-        result = []
-        for i in range(LOOKBACK, DAYS - 1, -1):
-            pass
-        for d in dates:
-            row = raw.get(str(d), {})
-            v = fn(row)
-            result.append(v)
-        return result
+    # Byg raw lookup fra Intervals (30 dage er nok til at dække huller)
+    oldest = str(date.today() - timedelta(days=30))
+    newest = str(date.today())
+    r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    raw = {}
+    if r and r.status_code == 200:
+        raw = {d['date'][:10]: d for d in r.json() if d.get('date')}
+        print(f"  Intervals wellness: {len(raw)} dage hentet (seneste 30)")
+    else:
+        print(f"  Intervals wellness: API fejl - bruger kun cache")
 
     def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
     def w_fat(row):    return round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None
@@ -79,12 +75,28 @@ def get_history_7d():
             return round(row['tsb'], 1)
         return None
 
+    def build(fn, cache_key):
+        cache = (existing or {}).get(cache_key, [None] * DAYS)
+        # Pad/trim cache til DAYS længde
+        if len(cache) < DAYS:
+            cache = [None] * (DAYS - len(cache)) + list(cache)
+        elif len(cache) > DAYS:
+            cache = list(cache)[-DAYS:]
+        result = list(cache)
+        # Overskriv med friske Intervals-data for de dage vi har
+        for i, d_str in enumerate(date_strs):
+            if d_str in raw:
+                v = fn(raw[d_str])
+                if v is not None:
+                    result[i] = v
+        return result
+
     return {
-        'weightHistory': build(w_weight),
-        'fatHistory':    build(w_fat),
-        'hrvHistory':    build(w_hrv),
-        'sleepHistory':  build(w_sleep),
-        'tsbHistory':    build(w_tsb),
+        'weightHistory': build(w_weight, 'weightHistory'),
+        'fatHistory':    build(w_fat,    'fatHistory'),
+        'hrvHistory':    build(w_hrv,    'hrvHistory'),
+        'sleepHistory':  build(w_sleep,  'sleepHistory'),
+        'tsbHistory':    build(w_tsb,    'tsbHistory'),
     }
 
 
