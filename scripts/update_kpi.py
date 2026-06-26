@@ -55,10 +55,10 @@ def main():
     _monday_ce = date.today() - timedelta(days=date.today().weekday())
     _r_events_ce = api_get(f'{BASE}/events', auth=AUTH,
                                  params={'oldest': str(_monday_ce), 'newest': str(date.today())})
-    _events_this_week = _r_events_ce.json() if _r_events_ce.status_code == 200 else []
+    _events_this_week = _r_events_ce.json() if _r_events_ce and _r_events_ce.status_code == 200 else []
     _r_acts_ce = api_get(f'{BASE}/activities', auth=AUTH,
                                params={'oldest': str(_monday_ce), 'newest': str(date.today())})
-    _acts_this_week = _r_acts_ce.json() if _r_acts_ce.status_code == 200 else []
+    _acts_this_week = _r_acts_ce.json() if _r_acts_ce and _r_acts_ce.status_code == 200 else []
     workout_compliance = get_workout_compliance_this_week(_events_this_week, _acts_this_week)
     compliance_summary = format_compliance_for_prompt(workout_compliance)
     if compliance_summary:
@@ -256,9 +256,6 @@ def main():
     data['week_sessions'] = build_week_sessions(done_map, this_week_planned)
 
     # --- Historik-grafer live fra Intervals (sparklines + CTL-kurve) ---
-    # Debug: gem wellness-rådata direkte i data.json så vi kan se det
-    _debug_wellness = get_wellness_7d()
-    data['_debug_wellness_raw'] = str(_debug_wellness)[:500] if _debug_wellness else "NONE"
     if history:
         if history.get('weightHistory'): data['weightHistory'] = history['weightHistory']
         if history.get('fatHistory'):    data['fatHistory']    = history['fatHistory']
