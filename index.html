@@ -715,7 +715,8 @@ function renderWeek() {
     sessions.forEach(s => { if (byDay[s.day] !== undefined) byDay[s.day].push(s); });
     return ALL_DAYS.map(day => {
       const ds = byDay[day];
-      if (ds.length === 0) return `
+      const hasPlanned = ds.some(s => !s.extra);
+      const restBlock = `
   <div class="wsession" style="opacity:0.45">
     <div class="wsession-icon" style="background:#7A6A5812">${icon("rest",18,"#7A6A58")}</div>
     <div class="wsession-body">
@@ -723,7 +724,8 @@ function renderWeek() {
       <div class="wsession-day">${day}</div>
     </div>
   </div>`;
-      return ds.map(s=>`
+      if (ds.length === 0) return restBlock;
+      return (!hasPlanned ? restBlock : '') + ds.map(s=>`
   <div class="wsession ${(s.today && isCurrentWeek)?"is-today":""} ${s.extra?"is-extra":""}">
     <div class="wsession-icon" style="background:${C[s.disc]||'#7A6A58'}18">
       ${s.disc2

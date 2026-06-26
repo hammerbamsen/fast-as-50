@@ -14,6 +14,23 @@ REPO       = 'hammerbamsen/fast-as-50'
 BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH       = ('API_KEY', API_KEY)
 
+import time
+
+def api_get(url, auth=None, params=None, timeout=20, retries=3):
+    """requests.get med exponential backoff retry på transiente fejl."""
+    for attempt in range(retries):
+        try:
+            r = requests.get(url, auth=auth, params=params, timeout=timeout)
+            if r.status_code < 500:
+                return r
+            print(f"  ⚠️  api_get {url} → HTTP {r.status_code}, forsøg {attempt+1}/{retries}")
+        except (requests.ConnectionError, requests.Timeout) as e:
+            print(f"  ⚠️  api_get {url} → {e}, forsøg {attempt+1}/{retries}")
+        if attempt < retries - 1:
+            time.sleep(2 ** attempt)  # 1s, 2s, 4s
+    return None  # Alle forsøg fejlede
+
+
 # Autoritativ uge-for-uge CTL-plan (matcher CTL_PLAN i index.html — SAMME kilde,
 # må ikke afvige). Indeholder bevidste recovery-dyk, fx uge 7 (41) og uge 12 (55).
 # Slutmål 60 nås i uge 14 — IKKE uge 11 (det er en tidligere fejl der gav 'Mål 60
@@ -47,7 +64,7 @@ def monday_this_week():
     return today - timedelta(days=today.weekday())
 
 def get_fitness():
-    r = requests.get(f'{BASE}/wellness', auth=AUTH,
+    r = api_get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': str(date.today()), 'newest': str(date.today())})
     if r.status_code == 200 and r.json():
         d = r.json()[-1]
@@ -62,7 +79,7 @@ def get_fitness():
 def get_wellness_7d():
     oldest = str(date.today() - timedelta(days=7))
     newest = str(date.today())
-    r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
     if r.status_code == 200:
         data = r.json()
         hrvs    = [d.get('hrv')       for d in data if d.get('hrv')]
@@ -94,7 +111,7 @@ def get_history_7d():
     LOOKBACK = 35
     oldest = str(date.today() - timedelta(days=LOOKBACK))
     newest = str(date.today())
-    r = requests.get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
     if r.status_code != 200:
         return None
     rows = r.json()
@@ -147,7 +164,7 @@ def get_ctl_curve():
     """
     week1 = date(2026, 6, 1)
     today = date.today()
-    r = requests.get(f'{BASE}/wellness', auth=AUTH,
+    r = api_get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': str(week1), 'newest': str(today)})
     if r.status_code != 200:
         return None
@@ -180,7 +197,7 @@ def get_af_this_week():
     """
     monday = monday_this_week()
     today  = date.today()
-    r = requests.get(f'{BASE}/wellness', auth=AUTH,
+    r = api_get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(today)})
     
     af_log = {}
@@ -222,7 +239,7 @@ def get_af_history():
     today = date.today()
     
     # Hent al wellness siden projektstart
-    r = requests.get(f"{BASE}/wellness", auth=AUTH,
+    r = api_get(f"{BASE}/wellness", auth=AUTH,
                      params={"oldest": str(project_start), "newest": str(today)})
     if r.status_code != 200:
         return []
@@ -270,7 +287,7 @@ def get_full_af_log():
     """
     project_start = date(2026, 6, 1)
     today = date.today()
-    r = requests.get(f"{BASE}/wellness", auth=AUTH,
+    r = api_get(f"{BASE}/wellness", auth=AUTH,
                      params={"oldest": str(project_start), "newest": str(today)})
     if r.status_code != 200:
         return {}
@@ -293,7 +310,7 @@ def get_af_streak():
     """
     oldest = str(date.today() - timedelta(days=90))
     newest = str(date.today())
-    r = requests.get(f'{BASE}/wellness', auth=AUTH,
+    r = api_get(f'{BASE}/wellness', auth=AUTH,
                      params={'oldest': oldest, 'newest': newest})
     if r.status_code != 200:
         return 0
@@ -326,7 +343,7 @@ def get_activities_week():
     i Intervals selv om Garmin-sync er forsinket."""
     monday = monday_this_week()
     today  = date.today()
-    r = requests.get(f'{BASE}/activities', auth=AUTH,
+    r = api_get(f'{BASE}/activities', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(today)})
     if r.status_code == 200:
         data = r.json()
@@ -334,7 +351,7 @@ def get_activities_week():
         # Supplement: hent events med paired_activity_id for at fange
         # workouts der er markeret done i Intervals men endnu ikke synkroniseret
         # som aktiviteter fra Garmin
-        r_ev = requests.get(f'{BASE}/events', auth=AUTH,
+        r_ev = api_get(f'{BASE}/events', auth=AUTH,
                             params={'oldest': str(monday), 'newest': str(today)})
         if r_ev.status_code == 200:
             existing_ids = {a.get('id') for a in data}
@@ -343,7 +360,7 @@ def get_activities_week():
                 if not paired_id or paired_id in existing_ids:
                     continue
                 # Hent den pågældende aktivitet direkte
-                r_act = requests.get(f'{BASE}/activities/{paired_id}', auth=AUTH)
+                r_act = api_get(f'{BASE}/activities/{paired_id}', auth=AUTH)
                 if r_act.status_code == 200:
                     act = r_act.json()
                     if act.get('id') not in existing_ids:
@@ -704,7 +721,7 @@ def get_planned_mins_this_week():
     today  = date.today()
     monday = today - timedelta(days=today.weekday())
     sunday = monday + timedelta(days=6)
-    r = requests.get(f'{BASE}/events', auth=AUTH,
+    r = api_get(f'{BASE}/events', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(sunday)})
     if r.status_code != 200:
         print(f"  Planned mins API fejl: {r.status_code}")
@@ -749,7 +766,7 @@ def planned_tss_this_week():
     fallback = {1:383,2:460,3:466,4:167,5:511,6:490,7:546,8:186,
                 9:596,10:598,11:638,12:194,13:345,14:245}.get(week_num, 400)
 
-    r = requests.get(f'{BASE}/events', auth=AUTH,
+    r = api_get(f'{BASE}/events', auth=AUTH,
                      params={'oldest': str(monday), 'newest': str(sunday)})
     if r.status_code != 200:
         print(f"  Planned TSS API fejl: {r.status_code} — bruger fallback {fallback}")
@@ -992,7 +1009,7 @@ def get_planned_weeks():
         mon = week1 + timedelta(weeks=w-1)
         sun = mon + timedelta(days=6)
 
-        r = requests.get(f'{BASE}/events', auth=AUTH,
+        r = api_get(f'{BASE}/events', auth=AUTH,
                          params={'oldest': str(mon), 'newest': str(sun)})
         if r.status_code != 200:
             continue
@@ -1590,10 +1607,10 @@ def main():
 
     # Hent planlagte events og beregn zone-compliance
     _monday_ce = date.today() - timedelta(days=date.today().weekday())
-    _r_events_ce = requests.get(f'{BASE}/events', auth=AUTH,
+    _r_events_ce = api_get(f'{BASE}/events', auth=AUTH,
                                  params={'oldest': str(_monday_ce), 'newest': str(date.today())})
     _events_this_week = _r_events_ce.json() if _r_events_ce.status_code == 200 else []
-    _r_acts_ce = requests.get(f'{BASE}/activities', auth=AUTH,
+    _r_acts_ce = api_get(f'{BASE}/activities', auth=AUTH,
                                params={'oldest': str(_monday_ce), 'newest': str(date.today())})
     _acts_this_week = _r_acts_ce.json() if _r_acts_ce.status_code == 200 else []
     workout_compliance = get_workout_compliance_this_week(_events_this_week, _acts_this_week)
@@ -1650,7 +1667,7 @@ def main():
             if dt == today_str and row.get('weight') is not None:
                 return True
         return False
-    _r_today = requests.get(f'{BASE}/wellness', auth=AUTH,
+    _r_today = api_get(f'{BASE}/wellness', auth=AUTH,
                             params={'oldest': str(date.today()), 'newest': str(date.today())})
     _today_rows = _r_today.json() if _r_today.status_code == 200 else []
     weight_is_today = _weight_today(_today_rows)
@@ -1888,7 +1905,7 @@ def main():
             _paired_id = _ev.get('paired_activity_id')
             if not _paired_id:
                 continue
-            _act_r = requests.get(f'{BASE}/activities/{_paired_id}', auth=AUTH)
+            _act_r = api_get(f'{BASE}/activities/{_paired_id}', auth=AUTH)
             if _act_r.status_code != 200:
                 continue
             _act_list = _act_r.json()
