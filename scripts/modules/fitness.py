@@ -59,8 +59,16 @@ def get_history_7d(existing=None):
     if r and r.status_code == 200:
         raw = {d['date'][:10]: d for d in r.json() if d.get('date')}
         print(f"  Intervals wellness: {len(raw)} dage hentet (seneste 30)")
+        if raw:
+            sample = list(raw.values())[-1]
+            print(f"  Sample felt (seneste dag): {list(sample.keys())[:15]}")
+            print(f"  Sample weight={sample.get('weight')} hrv={sample.get('hrv')} sleep={sample.get('sleepSecs')} ctl={sample.get('ctl')}")
+        else:
+            print(f"  RAW TOMT - API returnerede ingen dage med 'date' felt")
+            if r.json():
+                print(f"  Første rå element: {r.json()[0]}")
     else:
-        print(f"  Intervals wellness: API fejl - bruger kun cache")
+        print(f"  Intervals wellness: HTTP {r.status_code if r else 'None'} - bruger kun cache")
 
     def w_weight(row): return round(row['weight'], 1) if row.get('weight') is not None else None
     def w_fat(row):    return round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None
