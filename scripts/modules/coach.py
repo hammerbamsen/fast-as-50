@@ -1,5 +1,5 @@
 """Coach-tekst, AI-assessment og QA-logik."""
-import re, json, urllib.request as _urllib_req
+import os, re, json, urllib.request as _urllib_req
 from datetime import date, timedelta
 from .config import BASE, AUTH, api_get, fix_enc, fmt, ctl_plan_for_week, ANTHROPIC_KEY, DK_DAYS, DK_MONTHS, DAY_SHORT
 
