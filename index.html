@@ -1025,12 +1025,17 @@ function renderBody() {
       const barColor = pct >= 90 ? 'var(--swim)' : pct >= 60 ? '#E67E22' : 'var(--run)';
       // Sparkline-data: ugentlig svømdistance
       const swimBars = sh.map(w => w.meters || 0);
-      const maxBar = Math.max(...swimBars, 1000);
+      const maxBar = Math.max(...swimBars, 1);
       const barW = sh.length ? Math.max(Math.floor(240 / sh.length) - 2, 4) : 8;
+      const cmToKm = m => (m / 100000).toFixed(1);
+      const swimThisWeekKm = cmToKm(parseFloat(swimThisWeek));
+      const cumulativeKm = cmToKm(cumulative);
       const barsHtml = sh.map((w, i) => {
         const h = Math.round((w.meters / maxBar) * 48);
         const isThisWeek = (i === sh.length - 1);
+        const kmLabel = w.meters >= 1000 ? cmToKm(w.meters) : '';
         return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <div style="font-family:Space Mono,monospace;font-size:7px;color:${isThisWeek ? 'var(--swim)' : 'var(--muted)'};min-height:10px;line-height:10px">${kmLabel}</div>
           <div style="width:${barW}px;height:${h}px;background:${isThisWeek ? 'var(--swim)' : 'rgba(26,122,94,.35)'};border-radius:2px 2px 0 0;min-height:2px"></div>
           <div style="font-family:Space Mono,monospace;font-size:7px;color:var(--muted)">${w.week}</div>
         </div>`;
@@ -1038,8 +1043,8 @@ function renderBody() {
       return `
         <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:10px">
           <div>
-            <div style="font-family:'Newsreader',serif;font-size:28px;color:var(--swim);line-height:1">${swimThisWeek}<span style="font-size:14px;color:var(--muted);margin-left:4px">m uge</span></div>
-            <div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);margin-top:4px">KUMULATIVT ${cumulative.toLocaleString('da-DK')} m · MÅL RACE 2000 m</div>
+            <div style="font-family:'Newsreader',serif;font-size:28px;color:var(--swim);line-height:1">${swimThisWeekKm}<span style="font-size:14px;color:var(--muted);margin-left:4px">km uge</span></div>
+            <div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);margin-top:4px">KUMULATIVT ${cumulativeKm} km · MÅL RACE 2 km</div>
           </div>
           <div style="text-align:right">
             <div style="font-family:'Newsreader',serif;font-size:22px;color:var(--gold)">${D.daysToChristiansborg}</div>
