@@ -22,6 +22,10 @@ def get_wellness_7d():
     r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
     if r and r.status_code == 200:
         data = r.json()
+        print(f"  [DEBUG] wellness_7d: HTTP 200, {len(data)} rækker")
+        if data:
+            print(f"  [DEBUG] Første element keys: {list(data[0].keys())[:20]}")
+            print(f"  [DEBUG] Første element: {str(data[0])[:300]}")
         hrvs    = [d.get('hrv')       for d in data if d.get('hrv')]
         sleeps  = [d.get('sleepSecs') for d in data if d.get('sleepSecs')]
         weights = [d.get('weight')    for d in data if d.get('weight')]
