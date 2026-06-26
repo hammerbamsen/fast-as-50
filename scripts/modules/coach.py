@@ -112,7 +112,7 @@ def build_trajectory_note(week_num, ctl, weight, weight_history):
             parts.append(f"CTL {fmt(ctl,1)} er {abs(delta)} point BAG ugeplanen (planmål uge {week_num}: {plan_target}).")
 
     if weight is not None and weight_history:
-        reals = [h for h in weight_history if h.get('real') and h.get('v') is not None]
+        reals = [h for h in weight_history if isinstance(h, dict) and h.get('real') and h.get('v') is not None]
         if len(reals) >= 2:
             earliest = reals[0]
             try:
