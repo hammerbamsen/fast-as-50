@@ -621,8 +621,10 @@ function renderToday() {
     const tsbVal = parseFloat(D.tsb) || 0;
     const ctlGoal = D.kpis ? (parseInt((D.kpis.find(k=>k.label==='CTL'||k.label==='CTL FITNESS')||{}).sub?.match(/\d+/)?.[0]||60)) : 60;
     const ctlColor = ctlVal >= ctlGoal*0.95 ? '#27AE60' : ctlVal >= ctlGoal*0.8 ? '#E67E22' : '#C0392B';
+    const warnings = D.warnings || [];
+    const hrvWarn = warnings.find(w=>w.type==='hrv') ? `<div style="background:#E67E2215;border:1px solid #E67E2240;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">💜</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#E67E22;line-height:1.4">${warnings.find(w=>w.type==='hrv').message}</span></div>` : '';
     const tsbWarn = tsbVal < -30 ? `<div style="background:#C0392B15;border:1px solid #C0392B40;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">⚠️</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#C0392B;line-height:1.4">TSB ${tsbVal.toFixed(0)} — høj træthed. Overvej let dag eller hvile.</span></div>` : '';
-    return tsbWarn + \`<div class="status-row">
+    return tsbWarn + hrvWarn + \`<div class="status-row">
     <div class="stat-card"><div class="stat-label">MÉDOC</div><div class="stat-value">\${D.daysToMedoc}</div><div class="stat-sub">dage</div></div>
     <div class="stat-card"><div class="stat-label">CTL FITNESS</div><div class="stat-value" style="color:\${ctlColor}">\${ctlVal||'—'}</div><div class="stat-sub">mål \${ctlGoal}</div></div>
     <div class="stat-card"><div class="stat-label">UGE</div><div class="stat-value">\${D.week}/\${D.totalWeeks}</div><div class="stat-sub">\${D.blockType}</div></div>
@@ -1398,6 +1400,9 @@ async function init() {
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
       if (remote.week_sessions)  D.week_sessions  = remote.week_sessions;
       if (remote.all_weeks)      D.all_weeks      = remote.all_weeks;
+      if (remote.warnings)       D.warnings       = remote.warnings || [];
+      if (remote.tsb !== undefined) D.tsb = remote.tsb;
+      if (remote.warnings)       D.warnings = remote.warnings || [];
       if (remote.train_mins)     D.train_mins     = remote.train_mins;
       if (remote.today) {
         // Håndter både flat og nested format

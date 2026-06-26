@@ -93,6 +93,7 @@ def get_wellness_7d():
         weight_avg = _round1(sum(weights)/len(weights)) if weights else None
         return {
             'hrv_avg':    round(sum(hrvs)/len(hrvs), 1)          if hrvs   else None,
+            'hrv':        round(hrvs[-1], 1)                     if hrvs   else None,
             'sleep_avg':  round(sum(sleeps)/len(sleeps)/3600, 1) if sleeps else None,
             'weight':     _round1(weights[-1])                   if weights else None,
             'weight_avg': weight_avg,
@@ -1003,54 +1004,52 @@ def get_planned_weeks():
 
     all_weeks = {}
 
-    for w in range(1, 15):  # Alle 14 uger altid
+    # Ét samlet API-kald for hele planperioden (uge 1-14) i stedet for 14 individuelle kald
+    plan_start = week1
+    plan_end   = week1 + timedelta(weeks=14) - timedelta(days=1)
+    r = api_get(f'{BASE}/events', auth=AUTH,
+                params={'oldest': str(plan_start), 'newest': str(plan_end)})
+    if not r or r.status_code != 200:
+        print(f"  ⚠️  get_planned_weeks: events API fejlede ({r.status_code if r else 'ingen svar'})")
+        return all_weeks
 
-        # Beregn mandag for denne uge
-        mon = week1 + timedelta(weeks=w-1)
-        sun = mon + timedelta(days=6)
+    all_events = r.json()
 
-        r = api_get(f'{BASE}/events', auth=AUTH,
-                         params={'oldest': str(mon), 'newest': str(sun)})
-        if r.status_code != 200:
+    # Initialiser alle 14 uger
+    for w in range(1, 15):
+        all_weeks[w] = {'sessions': [], 'blockType': BLOCK_TYPES.get(w, 'BUILD'), 'focus': ''}
+
+    day_order = {d:i for i,d in enumerate(DAY_SHORT)}
+
+    for wo in all_events:
+        if wo.get('category') not in ('WORKOUT', None):
             continue
+        dt_str = wo.get('start_date_local', '')[:10]
+        if not dt_str:
+            continue
+        try:
+            dt = date.fromisoformat(dt_str)
+        except:
+            continue
+        # Beregn hvilken planuge dette event tilhører
+        delta_days = (dt - week1).days
+        if delta_days < 0 or delta_days >= 14 * 7:
+            continue
+        w = delta_days // 7 + 1
+        day_idx = dt.weekday()
+        disc = TYPE_MAP.get(wo.get('type',''), 'free')
+        name = fix_enc(wo.get('name', 'Træning'))
+        all_weeks[w]['sessions'].append({
+            'day':   DAY_SHORT[day_idx],
+            'disc':  disc,
+            'label': name,
+            'done':  False,
+            'today': (dt == today),
+        })
 
-        workouts = r.json()
-        sessions = []
-        for wo in workouts:
-            # Spring over completed activities — kun planlagte WORKOUT events
-            if wo.get('category') not in ('WORKOUT', None):
-                continue
-            dt_str = wo.get('start_date_local', '')[:10]
-            if not dt_str:
-                continue
-            try:
-                dt = date.fromisoformat(dt_str)
-            except:
-                continue
-            day_idx = dt.weekday()  # 0=Man
-            disc = TYPE_MAP.get(wo.get('type',''), 'free')
-            name = fix_enc(wo.get('name', 'Træning'))
-            is_today = (dt == today)
-            is_done = wo.get('athlete_id') and dt <= today  # planned er ikke done
-
-            # Tjek om der er en faktisk completed aktivitet samme dag
-            sessions.append({
-                'day':   DAY_SHORT[day_idx],
-                'disc':  disc,
-                'label': name,
-                'done':  False,  # opdateres af done_map i main()
-                'today': is_today,
-            })
-
-        # Sorter efter ugedag
-        day_order = {d:i for i,d in enumerate(DAY_SHORT)}
-        sessions.sort(key=lambda s: day_order.get(s['day'], 7))
-
-        all_weeks[w] = {
-            'sessions':  sessions,
-            'blockType': BLOCK_TYPES.get(w, 'BUILD'),
-            'focus':     '',  # kan tilføjes senere
-        }
+    # Sorter sessions i alle uger
+    for w in all_weeks:
+        all_weeks[w]['sessions'].sort(key=lambda s: day_order.get(s['day'], 7))
 
     return all_weeks
 
@@ -1728,6 +1727,40 @@ def main():
         'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': 'Dage i træk · mål 5/uge',           'color': '#59182A'},
     }
 
+    # --- TSB / HRV advarsler (sendes til dashboard for visning) ---
+    warnings = []
+    if tsb is not None and tsb < -30:
+        warnings.append({
+            'type':    'tsb',
+            'level':   'critical',
+            'message': f'TSB {fmt(tsb,1)} — høj træthed. Overvej let dag eller hvile.',
+        })
+    elif tsb is not None and tsb < -20:
+        warnings.append({
+            'type':    'tsb',
+            'level':   'warn',
+            'message': f'TSB {fmt(tsb,1)} — hård belastning. Hold øje med trætheden.',
+        })
+
+    # HRV-advarsel: sammenlign dagens HRV med 7d-snit
+    hrv_today = None
+    if wellness:
+        hrv_today = wellness.get('hrv')   # direkte dagens HRV (wellness_7d sætter altid hrv = seneste)
+        hrv_avg7  = wellness.get('hrv_avg')
+        if hrv_today and hrv_avg7 and hrv_avg7 > 0:
+            hrv_drop_pct = (hrv_avg7 - hrv_today) / hrv_avg7 * 100
+            if hrv_drop_pct > 10:
+                warnings.append({
+                    'type':    'hrv',
+                    'level':   'warn',
+                    'message': f'HRV {fmt(hrv_today,1)} ms — {round(hrv_drop_pct)}% under 7d-snit ({fmt(hrv_avg7,1)} ms). Kroppen er presset.',
+                })
+
+    data['warnings'] = warnings
+    if warnings:
+        print(f"  ⚠️  Advarsler: {[w['message'] for w in warnings]}")
+
+    data['tsb'] = tsb  # direkte TSB-tal til brug i frontend advarsler
     # --- AF-dage (man–søn denne uge) ---
     data['af'] = {
         'weekDone': af_days if af_days is not None else data.get('af', {}).get('weekDone', 0),
