@@ -532,7 +532,24 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
         act = None
         paired_id = ev.get('paired_activity_id') or ev.get('activity_id')
         if paired_id and paired_id in act_by_id:
-            act = act_by_id[paired_id]
+            candidate = act_by_id[paired_id]
+            if candidate.get('commute'):
+                # Paired aktivitet er en pendlingstur — find ikke-commute alternativ samme dag+type
+                non_commute = [
+                    a for a in (activities_this_week or [])
+                    if a.get('start_date_local', '')[:10] == ev_date
+                    and TYPE_MAP.get(a.get('type', ''), 'free') == disc
+                    and not a.get('commute')
+                ]
+                if non_commute:
+                    # Vælg den tidsmæssigt tætteste på eventet
+                    act = non_commute[0]
+                    print(f"  ⚠️ Paired aktivitet for '{ev_name}' er commute — bruger ikke-commute alternativ: '{act.get('name')}'")
+                else:
+                    act = candidate  # ingen alternativ fundet, brug commute som fallback
+                    print(f"  ⚠️ Paired aktivitet for '{ev_name}' er commute — ingen alternativ fundet")
+            else:
+                act = candidate
         else:
             act = act_by_date_disc.get((ev_date, disc))
 
@@ -1858,10 +1875,11 @@ def main():
 
     # --- Check: er et workout-event fejlagtigt parret med en commute-aktivitet? ---
     try:
+        _week_start = today - timedelta(days=today.weekday())  # Mandag denne uge
         _events_today = requests.get(
             f'{BASE}/events',
             auth=AUTH,
-            params={'oldest': str(today), 'newest': str(today)}
+            params={'oldest': str(_week_start), 'newest': str(today)}
         ).json()
         _commute_warnings = []
         for _ev in (_events_today if isinstance(_events_today, list) else []):
@@ -1922,6 +1940,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
