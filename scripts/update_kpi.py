@@ -1485,12 +1485,12 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     if days_completed is None:
         days_completed = weekday  # fallback hvis ikke angivet -- afsluttede dage FØR i dag
     af_note = (
-        f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} registrerede dage "
+        f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} kalenderdage gået (mandag t.o.m. i dag) "
         f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
         f"VIGTIGT: I dag ({day_name}) er STADIG I GANG — skriv aldrig at 'dag {days_completed} er afsluttet' "
         f"eller at det er 'dag X af Y' som om ugen er overstået. "
         f"Vurder AF-status RELATIVT til hvor mange dage der er gået i ugen — ikke absolut ift. 7. "
-        f"Hvis Kennet har {af_this_week} AF-dage ud af {days_completed} registrerede dage, er det {af_this_week}/{max(days_completed,1)}. "
+        f"Hvis Kennet har {af_this_week} AF-dage ud af {days_completed} dage gået i ugen, er det {af_this_week}/{max(days_completed,1)}. "
         f"AF-dage handler UDELUKKENDE om alkohol — IKKE om hvilken type træning der er planlagt. "
         f"Skriv ALDRIG at en specifik træningstype 'tæller' eller 'ikke tæller' som AF-dag."
     )
@@ -1606,7 +1606,7 @@ def main():
     # Dage anses for "afsluttede" når de har en registreret AF-værdi i af_log
     # (inkl. i dag, hvis Alkohol allerede er logget) -- IKKE blot kalenderens
     # ugedag. Forhindrer mismatch som "7 AF-dage ud af 6 afsluttede dage".
-    days_completed = sum(1 for v in af_log.values() if v is not None) if af_log else weekday
+    days_completed = weekday + 1  # Alle kalenderdage fra mandag t.o.m. i dag (0=man, 4=fre)
     history    = get_history_7d()
     ctl_curve  = get_ctl_curve()
 
