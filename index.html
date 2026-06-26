@@ -1028,8 +1028,8 @@ function renderBody() {
       const maxBar = Math.max(...swimBars, 1);
       const barW = sh.length ? Math.max(Math.floor(240 / sh.length) - 2, 4) : 8;
       const cmToKm = m => (m / 100000).toFixed(1);
-      const swimThisWeekKm = cmToKm(parseFloat(swimThisWeek));
-      const cumulativeKm = cmToKm(cumulative);
+      const swimThisWeekKm = (parseFloat(swimThisWeek) / 1000).toFixed(1);  // kpis er i meter
+      const cumulativeKm = cmToKm(cumulative);  // history er i cm
       const barsHtml = sh.map((w, i) => {
         const h = Math.round((w.meters / maxBar) * 48);
         const isThisWeek = (i === sh.length - 1);
@@ -1051,10 +1051,10 @@ function renderBody() {
             <div style="font-family:Space Mono,monospace;font-size:8px;color:var(--muted)">DAGE TIL RACE</div>
           </div>
         </div>
-        <div style="background:rgba(255,255,255,.07);border-radius:6px;height:8px;margin-bottom:14px;overflow:hidden">
+        <div style="background:rgba(255,255,255,.07);border-radius:6px;height:8px;margin-bottom:24px;overflow:hidden">
           <div style="height:100%;width:${pct.toFixed(1)}%;background:${barColor};border-radius:6px;transition:width .4s"></div>
         </div>
-        <div style="display:flex;align-items:flex-end;gap:2px;height:56px;padding-bottom:4px">
+        <div style="display:flex;align-items:flex-end;gap:2px;height:70px;padding-bottom:4px">
           ${barsHtml || '<div style="color:var(--muted);font-size:11px;font-family:Space Mono,monospace">Ingen svømdata endnu</div>'}
         </div>
       `;
