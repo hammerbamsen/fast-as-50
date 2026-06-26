@@ -946,42 +946,6 @@ function renderOverview() {
     ${ctlGraph()}
   </div>
   <div class="card">
-    ${(()=>{
-      const ctlVal = parseFloat((D.kpis.find(k=>k.label==='CTL')||{}).value) || 0;
-      const tsbVal = parseFloat((D.kpis.find(k=>k.label==='FORM')||{}).value) || 0;
-      const atlVal = ctlVal - tsbVal;
-      const row = (l,v,c)=>`<div style="flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:2px">${l}</div><div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:${c}">${v.toFixed(1)}</div></div>`;
-      return `<div style="display:flex;margin-bottom:14px">${row('FITNESS (CTL)',ctlVal,'#3498DB')}${row('FATIGUE (ATL)',atlVal,'#9B59B6')}${row('FORM (TSB)',tsbVal,'#27AE60')}</div>${sparkline(D.tsbHistory,'#27AE60','FORM (TSB)','',null,null)}`;
-    })()}
-  </div>
-  <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
-    <div class="label" style="margin-bottom:6px">Ugens fokus</div>
-    ${renderFocus(D.weekFocus)}
-  </div>
-  <div class="card">
-    <div class="label">Løb — træningszoner</div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">THRESHOLD: 4:20 MIN/KM</div>
-    ${STATIC.zones_run.map(z=>`<div class="zone-row">
-      <span class="zone-lbl" style="color:${z.color}">${z.label}</span>
-      <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
-      <span class="zone-range">${z.range}</span>
-    </div>`).join("")}
-  </div>
-  <div class="card">
-    <div class="label">Cykel — træningszoner</div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">FTP: 270 W</div>
-    ${STATIC.zones_bike.map(z=>`<div class="zone-row">
-      <span class="zone-lbl" style="color:${z.color}">${z.label}</span>
-      <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
-      <span class="zone-range">${z.range}</span>
-    </div>`).join("")}
-  </div>
-  <div class="card">
-    <div class="label">Styrke — Functional Strength 2</div>
-    <div>${STATIC.strength.map(e=>`<span class="strength-tag">${e}</span>`).join("")}</div>
-    <div class="eq-note">KB: 12.5 / 16 / 20 kg · DB: 5 / 7 / 10 / 12.5 / 15 kg</div>
-  </div>
-  <div class="card">
     <div class="label" style="margin-bottom:12px">Svøm — Christiansborg Rundt 29. aug</div>
     ${(() => {
       const sh = D.swimHistory || [];
@@ -1028,6 +992,43 @@ function renderOverview() {
       `;
     })()}
   </div>
+  <div class="card">
+    ${(()=>{
+      const ctlVal = parseFloat((D.kpis.find(k=>k.label==='CTL')||{}).value) || 0;
+      const tsbVal = parseFloat((D.kpis.find(k=>k.label==='FORM')||{}).value) || 0;
+      const atlVal = ctlVal - tsbVal;
+      const row = (l,v,c)=>`<div style="flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:2px">${l}</div><div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:${c}">${v.toFixed(1)}</div></div>`;
+      return `<div style="display:flex;margin-bottom:14px">${row('FITNESS (CTL)',ctlVal,'#3498DB')}${row('FATIGUE (ATL)',atlVal,'#9B59B6')}${row('FORM (TSB)',tsbVal,'#27AE60')}</div>${sparkline(D.tsbHistory,'#27AE60','FORM (TSB)','',null,null)}`;
+    })()}
+  </div>
+  <div class="card" style="border-left:3px solid var(--gold);padding-left:14px">
+    <div class="label" style="margin-bottom:6px">Ugens fokus</div>
+    ${renderFocus(D.weekFocus)}
+  </div>
+  <div class="card">
+    <div class="label">Løb — træningszoner</div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">THRESHOLD: 4:20 MIN/KM</div>
+    ${STATIC.zones_run.map(z=>`<div class="zone-row">
+      <span class="zone-lbl" style="color:${z.color}">${z.label}</span>
+      <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
+      <span class="zone-range">${z.range}</span>
+    </div>`).join("")}
+  </div>
+  <div class="card">
+    <div class="label">Cykel — træningszoner</div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">FTP: 270 W</div>
+    ${STATIC.zones_bike.map(z=>`<div class="zone-row">
+      <span class="zone-lbl" style="color:${z.color}">${z.label}</span>
+      <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
+      <span class="zone-range">${z.range}</span>
+    </div>`).join("")}
+  </div>
+  <div class="card">
+    <div class="label">Styrke — Functional Strength 2</div>
+    <div>${STATIC.strength.map(e=>`<span class="strength-tag">${e}</span>`).join("")}</div>
+    <div class="eq-note">KB: 12.5 / 16 / 20 kg · DB: 5 / 7 / 10 / 12.5 / 15 kg</div>
+  </div>
+
 `;
 }
 
