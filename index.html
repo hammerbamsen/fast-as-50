@@ -154,10 +154,17 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 .wday.is-today .wday-name { color:var(--wine); font-weight:700; }
 
 /* Status row */
-.status-row { display:grid; grid-template-columns:1fr 1fr auto; gap:10px; margin-bottom:14px; }
+.status-row { display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:10px; margin-bottom:14px; }
 .stat-card { background:var(--white); border-radius:10px; padding:14px 10px; border:1px solid var(--cream-d); text-align:center; }
 .stat-label { font-family:'Space Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:.08em; margin-bottom:4px; }
 .stat-value { font-family:'Newsreader',serif; font-size:26px; color:var(--wine); line-height:1; }
+
+/* Sticky statusbar */
+.sticky-bar { position:sticky; top:0; z-index:100; background:var(--wine); padding:7px 16px; display:flex; justify-content:space-between; align-items:center; margin:0 -16px 14px; border-bottom:2px solid rgba(255,255,255,.1); }
+.sticky-bar-item { display:flex; flex-direction:column; align-items:center; }
+.sticky-bar-label { font-family:'Space Mono',monospace; font-size:8px; color:rgba(255,255,255,.5); letter-spacing:.08em; }
+.sticky-bar-value { font-family:'Newsreader',serif; font-size:18px; color:var(--gold); line-height:1.1; }
+
 .stat-sub { font-family:'Space Mono',monospace; font-size:9px; color:var(--muted); margin-top:2px; }
 
 /* AF Ring */
@@ -595,12 +602,33 @@ function renderToday() {
     <div class="label">Uge ${D.week} — overblik</div>
     ${weekStrip()}
   </div>
-
-  <div class="status-row">
-    <div class="stat-card"><div class="stat-label">MÉDOC</div><div class="stat-value">${D.daysToMedoc}</div><div class="stat-sub">dage</div></div>
-    <div class="stat-card"><div class="stat-label">UGE</div><div class="stat-value">${D.week}/${D.totalWeeks}</div><div class="stat-sub">${D.blockType}</div></div>
-    ${afRing(D.afDays.weekDone, D.afDays.target)}
+  <div class="sticky-bar">
+    ${(() => {
+      const ctlVal = parseFloat((D.kpis||[]).find(k=>k.label==='CTL'||k.label==='CTL FITNESS')?.value) || '—';
+      const tsbVal = parseFloat(D.tsb) || 0;
+      const tsbColor = tsbVal < -30 ? '#E74C3C' : tsbVal < -10 ? '#E67E22' : '#27AE60';
+      return `
+        <div class="sticky-bar-item"><div class="sticky-bar-label">CTL</div><div class="sticky-bar-value">${ctlVal}</div></div>
+        <div class="sticky-bar-item"><div class="sticky-bar-label">FORM</div><div class="sticky-bar-value" style="color:${tsbColor}">${tsbVal >= 0 ? '+' : ''}${tsbVal.toFixed ? tsbVal.toFixed(0) : tsbVal}</div></div>
+        <div class="sticky-bar-item"><div class="sticky-bar-label">AF DAGE</div><div class="sticky-bar-value">${D.afDays.weekDone}/${D.afDays.target}</div></div>
+        <div class="sticky-bar-item"><div class="sticky-bar-label">MÉDOC</div><div class="sticky-bar-value">${D.daysToMedoc}d</div></div>
+      `;
+    })()}
   </div>
+
+  ${(() => {
+    const ctlVal = parseFloat((D.kpis||[]).find(k=>k.label==='CTL'||k.label==='CTL FITNESS')?.['value']) || 0;
+    const tsbVal = parseFloat(D.tsb) || 0;
+    const ctlGoal = D.kpis ? (parseInt((D.kpis.find(k=>k.label==='CTL'||k.label==='CTL FITNESS')||{}).sub?.match(/\d+/)?.[0]||60)) : 60;
+    const ctlColor = ctlVal >= ctlGoal*0.95 ? '#27AE60' : ctlVal >= ctlGoal*0.8 ? '#E67E22' : '#C0392B';
+    const tsbWarn = tsbVal < -30 ? `<div style="background:#C0392B15;border:1px solid #C0392B40;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">⚠️</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#C0392B;line-height:1.4">TSB ${tsbVal.toFixed(0)} — høj træthed. Overvej let dag eller hvile.</span></div>` : '';
+    return tsbWarn + \`<div class="status-row">
+    <div class="stat-card"><div class="stat-label">MÉDOC</div><div class="stat-value">\${D.daysToMedoc}</div><div class="stat-sub">dage</div></div>
+    <div class="stat-card"><div class="stat-label">CTL FITNESS</div><div class="stat-value" style="color:\${ctlColor}">\${ctlVal||'—'}</div><div class="stat-sub">mål \${ctlGoal}</div></div>
+    <div class="stat-card"><div class="stat-label">UGE</div><div class="stat-value">\${D.week}/\${D.totalWeeks}</div><div class="stat-sub">\${D.blockType}</div></div>
+    \${afRing(D.afDays.weekDone, D.afDays.target)}
+  </div>\`;
+  })()}
 
   <div class="card card-wine" style="padding:20px 18px">
     <div class="label label-gold" style="margin-bottom:10px">TRÆNER + DIÆTIST · UGE ${D.week}</div>
