@@ -29,7 +29,8 @@ from modules.af       import (get_af_this_week, get_af_history, get_full_af_log,
 from modules.sessions import (get_activities_week, get_workout_compliance_this_week,
                                format_compliance_for_prompt, get_planned_mins_this_week,
                                planned_tss_this_week, parse_planned_mins, calc_completion,
-                               build_week_sessions, get_planned_weeks, generate_week_focus)
+                               build_week_sessions, get_planned_weeks, generate_week_focus,
+                               get_swim_history)
 from modules.coach    import (get_travel_label, weight_delta_vs_recent,
                                build_weight_context_note, build_trajectory_note,
                                qa_coach_speech, generate_coach_speech, generate_ai_assessment)
@@ -71,6 +72,8 @@ def main():
     days_completed = weekday + 1  # Alle kalenderdage fra mandag t.o.m. i dag (0=man, 4=fre)
     history    = get_history_7d()
     ctl_curve  = get_ctl_curve()
+    swim_history = get_swim_history()
+    print(f"  Svøm historik: {len(swim_history)} uger")
 
     print(f"  Fitness:    {fitness}")
     print(f"  Wellness:   {wellness}")
@@ -139,6 +142,7 @@ def main():
     tsb    = fitness.get('tsb')      if fitness else None
     tss_act = activities.get('tss_week') if activities else None
     km_week  = activities.get('run_km')  if activities else None
+    swim_m   = activities.get('swim_m')   if activities else None
     bike_km  = activities.get('bike_km') if activities else None
     done_map   = activities.get('done_map', {})    if activities else {}
     train_mins = activities.get('train_mins', {}) if activities else {}
@@ -170,6 +174,7 @@ def main():
                        'sub': f'{int(tss_act or 0)} af {int(planned)} planlagt TSS',
                        'color': tss_color},
         'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
+        'swimM':      {'value': fmt(swim_m, 0) if swim_m else '0',    'unit': 'm',  'sub': 'Svøm denne uge · mål 2000m (Christiansborg)',  'color': color_for(swim_m, 2000, lower=False) if swim_m else '#7A6A58'},
         'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': 'Dage i træk · mål 5/uge',           'color': '#59182A'},
     }
 
@@ -249,6 +254,8 @@ def main():
     if ctl_curve:
         data['ctlCurve'] = ctl_curve
         print(f"  CTL-kurve: {len(ctl_curve)} ugepunkter, seneste {ctl_curve[-1]}")
+    if swim_history:
+        data['swimHistory'] = swim_history
 
     # --- all_weeks: forrige/denne/næste uge fra Intervals ---
     if planned_weeks:

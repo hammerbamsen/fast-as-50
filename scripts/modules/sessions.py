@@ -120,10 +120,16 @@ def get_activities_week():
             done_map[k] = [(disc, name, tss, dur_mins, compliance, pace_zt, power_zt, hr_zt, act_id)
                            for _, disc, name, tss, dur_mins, compliance, pace_zt, power_zt, hr_zt, act_id in sorted_acts]
 
+        swim_m = sum(
+            (a.get('distance') or 0)
+            for a in data
+            if a.get('type') in ['Swim', 'OpenWaterSwim']
+        )
         return {
             'tss_week': round(total_tss, 0),
             'run_km':   round(run_km, 1),
             'bike_km':  round(bike_km, 1),
+            'swim_m':   round(swim_m, 0),
             'train_mins': train_mins,
             'done_map': done_map,
         }
@@ -754,3 +760,55 @@ QUOTES_PHILOSOPHY = [
     "\"Udholdenhed er bitter, men dens frugt er sød.\"",
     "\"Du bliver til det, du gør ofte.\"",
 ]
+
+
+def get_swim_history():
+    """Hent ugentlig svømdistance (meter) siden projektstart uge 1.
+    Bruges til svøm-progression mod Christiansborg Rundt 2000m (29/8-2026).
+    Returnerer liste: [{week, date_str, meters, cumulative}]
+    """
+    from datetime import date, timedelta
+    week1 = date(2026, 6, 1)
+    today = date.today()
+    oldest = str(week1)
+    newest = str(today)
+
+    r = api_get(f'{BASE}/activities', auth=AUTH,
+                params={'oldest': oldest, 'newest': newest,
+                        'types': 'Swim,OpenWaterSwim', 'limit': 200})
+    if not r or r.status_code != 200:
+        return []
+
+    acts = r.json()
+    # Gruppér pr. uge
+    by_week = {}
+    for a in acts:
+        dt_str = (a.get('start_date_local') or '')[:10]
+        if not dt_str:
+            continue
+        try:
+            dt = date.fromisoformat(dt_str)
+        except:
+            continue
+        delta = (dt - week1).days
+        if delta < 0:
+            continue
+        w = delta // 7 + 1
+        dist_m = a.get('distance') or 0
+        by_week[w] = round(by_week.get(w, 0) + dist_m, 0)
+
+    # Byg kronologisk liste uge 1 → nu
+    current_week = min(max((today - week1).days // 7 + 1, 1), 14)
+    result = []
+    cumulative = 0
+    for w in range(1, current_week + 1):
+        m = by_week.get(w, 0)
+        cumulative += m
+        mon = week1 + timedelta(weeks=w - 1)
+        result.append({
+            'week':       w,
+            'date':       str(mon),
+            'meters':     m,
+            'cumulative': round(cumulative, 0),
+        })
+    return result
