@@ -818,3 +818,74 @@ def get_swim_history():
             'cumulative': round(cumulative, 0),
         })
     return result
+
+
+def generate_week_focus_ai(week_num, sessions, block_type, ctl=None, tsb=None, week_note=None, anthropic_key=None):
+    """Genererer weekFocus via Anthropic API — caches per uge i update_kpi.
+    Fallback til generate_week_focus() hvis API fejler eller key mangler."""
+    if not anthropic_key:
+        return generate_week_focus(week_num, sessions, block_type)
+
+    import json
+    try:
+        import urllib.request as _req
+    except ImportError:
+        return generate_week_focus(week_num, sessions, block_type)
+
+    BLOCK_LABELS = {
+        'BUILD': 'Build-uge', 'BUILD+': 'Intensiv build-uge',
+        'RECOVERY': 'Restituitionsuge', 'TAPER': 'Taper-uge', 'RACE': 'Race-uge'
+    }
+    block_label = BLOCK_LABELS.get(block_type, 'Træningsuge')
+
+    discs = [s.get('disc') for s in sessions]
+    session_lines = [f"- {s.get('day','?')}: {s.get('label','?')}" for s in sessions]
+    has_vo2 = any('VO2' in (s.get('label') or '') or 'Z4' in (s.get('label') or '') or 'Z5' in (s.get('label') or '') for s in sessions)
+
+    fitness_str = ""
+    if ctl is not None:
+        fitness_str += f"CTL: {ctl}"
+    if tsb is not None:
+        fitness_str += f", TSB: {tsb}"
+
+    note_str = f"\nMaster Plan-note for ugen: \"{week_note}\"" if week_note else ""
+
+    prompt = (
+        f"Du er træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet.\n"
+        f"Han er i uge {week_num} af 14 i sit 'Fast as Fifty' program.\n"
+        f"Ugetype: {block_label}.\n"
+        f"Fitness: {fitness_str}.\n"
+        f"{'VO2-stimulus planlagt denne uge.' if has_vo2 else 'Ingen VO2-stimulus denne uge.'}"
+        f"{note_str}\n"
+        f"Planlagte sessioner:\n" + "\n".join(session_lines) + "\n\n"
+        f"Skriv ÉT ugefokus på dansk — max 12 ord. Ingen overskrift, ingen emoji, ingen punktum til sidst.\n"
+        f"Det skal være præcist og motiverende — ikke generisk. "
+        f"Eksempel-format: 'Genopbyg intensitet og rytme efter recovery — første VO2-stimulus'\n"
+        f"Svar KUN med selve fokus-teksten — intet andet."
+    )
+
+    try:
+        payload = json.dumps({
+            "model": "claude-sonnet-4-6",
+            "max_tokens": 60,
+            "messages": [{"role": "user", "content": prompt}]
+        }).encode()
+
+        req = _req.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=payload,
+            method="POST",
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": anthropic_key,
+                "anthropic-version": "2023-06-01"
+            }
+        )
+        with _req.urlopen(req, timeout=15) as r:
+            result = json.loads(r.read())
+            text = result["content"][0]["text"].strip().strip('"').strip("'")
+            print(f"  ✅ weekFocus AI genereret: {text}")
+            return text
+    except Exception as e:
+        print(f"  ⚠️  weekFocus AI fejlede: {e} — bruger fallback")
+        return generate_week_focus(week_num, sessions, block_type)
