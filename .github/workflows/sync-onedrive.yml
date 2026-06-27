@@ -76,6 +76,15 @@ jobs:
             --data-binary @data/Eva_Medoc_Master.xlsx
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
 
+
+      - name: Upload about-me.md
+        run: |
+          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
+            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4DAHA6BW32YAJA3DSKD74JVC5EW/content" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
+            -H "Content-Type: text/markdown" \
+            --data-binary @data/about-me.md
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
       - name: Notifikation ved fejl
         if: failure()
         run: |
