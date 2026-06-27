@@ -344,7 +344,15 @@ def main():
     _af_at_gen = data.get('coachAssessmentAfAtGen')
     _af_changed = (_af_at_gen is None or af_this_week != _af_at_gen)
 
-    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _af_changed:
+    # Ny aktivitet siden sidst cache blev genereret?
+    _last_act_id_at_gen = data.get('coachAssessmentLastActId')
+    _latest_act_id = (_acts_this_week[0].get('id') if _acts_this_week else None)
+    _activity_changed = (
+        _latest_act_id is not None
+        and _latest_act_id != _last_act_id_at_gen
+    )
+
+    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _af_changed and not _activity_changed:
         print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
         ai_text = None
     else:
@@ -352,6 +360,8 @@ def main():
             print(f"  Ny vejning ({_weight_at_gen} -> {weight}) -- bryder cache tidligt")
         if _af_changed:
             print(f"  AF-status ændret ({_af_at_gen} -> {af_this_week}) -- bryder cache tidligt")
+        if _activity_changed:
+            print(f"  Ny aktivitet ({_last_act_id_at_gen} -> {_latest_act_id}) -- bryder cache tidligt")
         ai_text = generate_ai_assessment(
             week_num, weekday, DK_DAYS[weekday],
             ctl, tsb,
@@ -382,6 +392,7 @@ def main():
         data['coachAssessmentTsFull']      = datetime.utcnow().isoformat()
         data['coachAssessmentWeightAtGen'] = weight if weight is not None else _weight_at_gen
         data['coachAssessmentAfAtGen']     = af_this_week
+        data['coachAssessmentLastActId']   = _latest_act_id
     else:
         # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
@@ -461,6 +472,7 @@ if __name__ == '__main__':
         print(err)
         # Skriv fejl til en fil der kan pushes
         raise
+
 
 
 
