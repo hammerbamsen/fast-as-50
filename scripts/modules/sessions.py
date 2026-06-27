@@ -858,10 +858,11 @@ def generate_week_focus_ai(week_num, sessions, block_type, ctl=None, tsb=None, w
         f"{'VO2-stimulus planlagt denne uge.' if has_vo2 else 'Ingen VO2-stimulus denne uge.'}"
         f"{note_str}\n"
         f"Planlagte sessioner:\n" + "\n".join(session_lines) + "\n\n"
-        f"Skriv ÉT ugefokus på dansk — max 12 ord. Ingen overskrift, ingen emoji, ingen punktum til sidst.\n"
-        f"Det skal være præcist og motiverende — ikke generisk. "
-        f"Eksempel-format: 'Genopbyg intensitet og rytme efter recovery — første VO2-stimulus'\n"
-        f"Svar KUN med selve fokus-teksten — intet andet."
+        f"Skriv ÉT ugefokus på dansk. ALDRIG linjeskift, ALDRIG punktopstilling — kun én enkelt sætning.\n"
+        f"Max 12 ord. Ingen overskrift, ingen emoji, ingen punktum til sidst.\n"
+        f"Det skal være præcist og motiverende — ikke generisk.\n"
+        f"Eksempel: 'Genopbyg intensitet og rytme efter recovery — første VO2-stimulus'\n"
+        f"Svar KUN med selve fokus-teksten — intet andet. Ingen forklaring, ingen citationstegn."
     )
 
     try:
@@ -883,9 +884,10 @@ def generate_week_focus_ai(week_num, sessions, block_type, ctl=None, tsb=None, w
         )
         with _req.urlopen(req, timeout=15) as r:
             result = json.loads(r.read())
-            text = result["content"][0]["text"].strip().strip('"').strip("'")
+            text = result["content"][0]["text"].strip().split("\n")[0].strip().strip('"').strip("'")[:120]
             print(f"  ✅ weekFocus AI genereret: {text}")
             return text
     except Exception as e:
         print(f"  ⚠️  weekFocus AI fejlede: {e} — bruger fallback")
         return generate_week_focus(week_num, sessions, block_type)
+
