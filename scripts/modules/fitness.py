@@ -120,7 +120,7 @@ def get_ctl_curve():
         return None
     by_date = {}
     for d in r.json():
-        k = d.get('date', '')[:10]
+        k = (d.get('id') or d.get('date') or '')[:10]
         if d.get('ctl') is not None:
             by_date[k] = round(d['ctl'], 1)
     curve = []
