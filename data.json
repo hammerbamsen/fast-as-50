@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-27 08:40",
+    "updated": "2026-06-27 08:50",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,16 +23,16 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "42,1",
+      "value": "44,6",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-4,8",
+      "value": "-16,0",
       "unit": "",
-      "sub": "Form · CTL−ATL, frisk >0",
-      "color": "#27AE60"
+      "sub": "Hård blok · CTL−ATL, frisk >0",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7,5",
@@ -41,10 +41,10 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "8,2",
+      "value": "24,8",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#C0392B"
+      "color": "#27AE60"
     },
     "hrv": {
       "value": "64,5",
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "256",
+      "value": "359",
       "unit": "TSS",
-      "sub": "256 af 232 planlagt TSS",
+      "sub": "359 af 232 planlagt TSS",
       "color": "#27AE60"
     },
     "bikeKm": {
@@ -82,8 +82,8 @@
     "target": 5,
     "streak": 26
   },
-  "coachSpeech": "Lørdag — uge 4 af 14. {HL} I dag: Lang løb Z2 90 min (løb). Godt: TSB -4,8 er på et sundt niveau med plads til næste belastning. 110 procent af ugens TSS er i hus. Fokus: Vægt på 73,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "CTL 42,1 følger ramp-kurven mod 60",
+  "coachSpeech": "Lørdag — uge 4 af 14. {HL} Dagens session er gennemført. Godt: TSB -16,0 er på et sundt niveau med plads til næste belastning. 155 procent af ugens TSS er i hus. Fokus: Vægt på 73,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
+  "coachHighlight": "CTL 44,6 følger ramp-kurven mod 60",
   "weekFocus": "Restituitionsuge 4 — 2 løb · 4 cykel · 3 svøm · 2 styrke. Fokus: konsistens over intensitet.",
   "today": {
     "discipline": "run",
@@ -91,7 +91,7 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
@@ -200,8 +200,14 @@
       "day": "Lør",
       "disc": "run",
       "label": "Lang løb Z2 90 min",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 94,
+      "actual_tss": 103,
+      "actual_mins": 85,
+      "planned_mins": 90,
+      "intervals_compliance": 94.3
     },
     {
       "day": "Søn",
@@ -582,7 +588,7 @@
     -7.4,
     -11.1,
     -10.9,
-    -4.7
+    -16.0
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -886,8 +892,14 @@
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 90 min",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 94,
+          "actual_tss": 103,
+          "actual_mins": 85,
+          "planned_mins": 90,
+          "intervals_compliance": 94.3
         },
         {
           "day": "Søn",
@@ -1358,14 +1370,14 @@
     }
   ],
   "train_mins": {
+    "run": 132.0,
     "bike": 168.0,
     "swim": 63.0,
     "commute": 126.0,
     "strength": 51.0,
     "walk": 50.0,
-    "run": 47.0,
     "planned": 285.0,
-    "actual_total": 505.0
+    "actual_total": 590.0
   },
   "fatHistory": [
     null,
@@ -1466,7 +1478,7 @@
   "coachAssessmentAfAtGen": 5,
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -4.8,
+  "tsb": -16.0,
   "swimHistory": [
     {
       "week": 1,
@@ -1489,8 +1501,8 @@
     {
       "week": 4,
       "date": "2026-06-22",
-      "meters": 129422.0,
-      "cumulative": 801976.0
+      "meters": 146041.0,
+      "cumulative": 818595.0
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}"
