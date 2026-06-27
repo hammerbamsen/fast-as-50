@@ -197,7 +197,9 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
             return 15   # Interval-træning: lav pct er OK (restitutionstid ml. intervals)
         if disc == 'swim':
             return 30   # Svøm: zone-måling er HR, mere spredt
-        return 55       # Z2 base: ønsker 55%+ i target zone
+        if disc == 'bike':
+            return 40   # Cykel: Z2+Z3 samlet, coasting+trapper giver naturligt mere Z1
+        return 55       # Løb Z2: pace er præcis nok til strikt krav
 
     results = []
     for ev in (events_this_week or []):
@@ -288,14 +290,26 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
 
         elif disc == 'bike':
             # Primær: icu_zone_times (power)
+            # Trim warmup+cooldown fra Z1 så opvarmning ikke forvrænger zone-billedet
             pzt_raw = act.get('icu_zone_times') or []
             if pzt_raw:
                 pzt = [z.get('secs', 0) for z in pzt_raw if isinstance(z, dict)]
+                # Træk warmup+cooldown fra Z1 (de sidder næsten altid i Z1)
+                trim_secs = (act.get('icu_warmup_time') or 0) + (act.get('icu_cooldown_time') or 0)
+                if trim_secs > 0 and pzt:
+                    pzt[0] = max(0, pzt[0] - trim_secs)
                 total_p = sum(pzt)
                 if total_p > 0:
-                    z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
-                    zone_pct = round(pzt[z_idx] / total_p * 100, 1) if z_idx < len(pzt) else 0
-                    metric = 'power'
+                    if planned_zone == 'Z2':
+                        # Z2+Z3 tælles samlet (Friel: Z3 er acceptabel overskridelse i aerob base)
+                        z2_secs = pzt[1] if len(pzt) > 1 else 0
+                        z3_secs = pzt[2] if len(pzt) > 2 else 0
+                        zone_pct = round((z2_secs + z3_secs) / total_p * 100, 1)
+                        metric = 'power (Z2+Z3)'
+                    else:
+                        z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                        zone_pct = round(pzt[z_idx] / total_p * 100, 1) if z_idx < len(pzt) else 0
+                        metric = 'power'
             if zone_pct is None and hr_zt and total_hr > 0:
                 z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
                 zone_pct = round(hr_zt[z_idx] / total_hr * 100, 1) if z_idx < len(hr_zt) else 0
@@ -328,16 +342,7 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
             elif disc == 'run' and metric == 'pace' and hr_z1_pct and hr_z1_pct >= 80:
                 note = f'{zone_pct}% i {planned_zone} (pace) + {hr_z1_pct}% HR-Z1 — løbet for roligt, overvej at skrue op for tempoet'
             elif disc == 'bike':
-                z1_power_pct = None
-                pzt_raw = act.get('icu_zone_times') or []
-                if pzt_raw:
-                    pzt = [z.get('secs', 0) for z in pzt_raw if isinstance(z, dict)]
-                    total_p = sum(pzt)
-                    z1_power_pct = round(pzt[0] / total_p * 100, 1) if total_p and pzt else None
-                if z1_power_pct and z1_power_pct > 50:
-                    note = f'{zone_pct}% i {planned_zone} (power), {z1_power_pct}% Z1 — for let/commute-præget, ikke struktureret Z2'
-                else:
-                    note = f'{zone_pct}% i {planned_zone} (power) — under {floor}%-målet, overvej højere watt'
+                note = f'{zone_pct}% i {planned_zone} ({metric}) — under {floor}%-målet (Z2+Z3 kombineret), skru wattene op'
             else:
                 note = f'{zone_pct}% i {planned_zone} ({metric}) — under {floor}%-målet'
 
