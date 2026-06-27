@@ -30,7 +30,7 @@ from modules.sessions import (get_activities_week, get_workout_compliance_this_w
                                format_compliance_for_prompt, get_planned_mins_this_week,
                                planned_tss_this_week, parse_planned_mins, calc_completion,
                                build_week_sessions, get_planned_weeks, generate_week_focus,
-                               get_swim_history)
+                               generate_week_focus_ai, get_swim_history)
 from modules.coach    import (get_travel_label, weight_delta_vs_recent,
                                build_weight_context_note, build_trajectory_note,
                                qa_coach_speech, generate_coach_speech, generate_ai_assessment)
@@ -275,7 +275,38 @@ def main():
         this_week = planned_weeks.get(week_num, {})
         if this_week:
             this_week['sessions'] = build_week_sessions(done_map, this_week['sessions'])
-            dynamic_focus = generate_week_focus(week_num, this_week.get('sessions', []), BLOCK_TYPES.get(week_num, 'BUILD'))
+            _focus_cached_week = data.get('weekFocusWeek')
+            _focus_cached_text = data.get('weekFocus', '')
+            if _focus_cached_week == week_num and _focus_cached_text:
+                print(f"  weekFocus cached (uge {week_num}) -- springer AI-kald over")
+                dynamic_focus = _focus_cached_text
+            else:
+                # Hent Master Plan-note for denne uge
+                _master_notes = {
+                    1: 'Etableringsuge — TSB endte -8',
+                    2: 'Mallorca uge. TSS synkroniseringsfejl.',
+                    3: 'Mallorca-camp gennemført.',
+                    4: 'Recovery uge. Fuldt AF 7/7.',
+                    5: 'Tilbage til hverdagsrytme.',
+                    6: 'Rejseuge — let cykel/løb, vedligehold.',
+                    7: 'Stor cykel-uge #2.',
+                    8: 'Restitution + rejsedag hjem.',
+                    9: 'Musik i Gentofte i ugen efter (31/7–2/8) – planlæg let.',
+                    10: 'Svømme-fokus øges mod Christiansborg Rundt.',
+                    11: 'Peak TSS-uge.',
+                    12: 'Svømme-specifik uge, nedtrapning starter.',
+                    13: 'Race week: 2000 m svøm 29/8. Taper ind, kort løb.',
+                    14: 'Marathon Médoc 5/9.',
+                }
+                _week_note = _master_notes.get(week_num)
+                dynamic_focus = generate_week_focus_ai(
+                    week_num, this_week.get('sessions', []),
+                    BLOCK_TYPES.get(week_num, 'BUILD'),
+                    ctl=ctl, tsb=tsb,
+                    week_note=_week_note,
+                    anthropic_key=ANTHROPIC_KEY
+                )
+                data['weekFocusWeek'] = week_num
             this_week['focus'] = dynamic_focus
             data['weekFocus'] = dynamic_focus
         data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
@@ -472,6 +503,7 @@ if __name__ == '__main__':
         print(err)
         # Skriv fejl til en fil der kan pushes
         raise
+
 
 
 
