@@ -383,7 +383,12 @@ def main():
         and _latest_act_id != _last_act_id_at_gen
     )
 
-    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _af_changed and not _activity_changed:
+    # Plan ændret siden cache? (bytte af sessioner, fx svøm <-> styrke)
+    _today_label = (today_session.get('label', '') if today_session else '')
+    _plan_at_gen = data.get('coachAssessmentPlanAtGen', '')
+    _plan_changed = _today_label != _plan_at_gen
+
+    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _af_changed and not _activity_changed and not _plan_changed:
         print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
         ai_text = None
     else:
@@ -424,6 +429,7 @@ def main():
         data['coachAssessmentWeightAtGen'] = weight if weight is not None else _weight_at_gen
         data['coachAssessmentAfAtGen']     = af_this_week
         data['coachAssessmentLastActId']   = _latest_act_id
+        data['coachAssessmentPlanAtGen']   = _today_label
     else:
         # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
