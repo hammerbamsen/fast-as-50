@@ -505,8 +505,8 @@ def make_plan():
     (p+timedelta(64), run_z2(75),            "Løb Z2 75 min — Hudlæge"),
     (p+timedelta(65), bike_3x15_z3(90),      "Hometrainer 3×15 Z3"),
     (p+timedelta(66), run_z2_lang(110),      "Lang løb Z2 110 min"),
-    (p+timedelta(67), swim_2000(),           "Svøm 2000m"),
-    (p+timedelta(68), run_z2_lang(100),      "Lang løb Z2 100 min — Frokost Alice"),
+    (p+timedelta(67), bike_z2(60),           "Cykel Z2 60 min — aktiv recovery"),
+    (p+timedelta(68), swim_2000(),            "Svøm 2000m — Frokost Alice"),
     (p+timedelta(69), None,                  "Fly → Mallorca #2 (søn 9. aug)"),
 
     # ── UGE 11: 10-16 aug  BUILD+ ───────────────────────────────
