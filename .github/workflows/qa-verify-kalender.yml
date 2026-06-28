@@ -1,0 +1,51 @@
+name: QA verify kalender
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Tjek events
+        env:
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        run: |
+          python3 - << 'PYEOF'
+
+import os, requests
+
+CLIENT_ID     = os.environ['AZURE_CLIENT_ID']
+TENANT_ID     = os.environ['AZURE_TENANT_ID']
+CLIENT_SECRET = os.environ['AZURE_CLIENT_SECRET']
+USER          = 'kennet@hammerby.com'
+
+resp = requests.post(
+    f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token',
+    data={'grant_type':'client_credentials','client_id':CLIENT_ID,
+          'client_secret':CLIENT_SECRET,'scope':'https://graph.microsoft.com/.default'},
+    timeout=30
+)
+token = resp.json()['access_token']
+hdrs  = {'Authorization': f'Bearer {token}'}
+
+for dato in ['2026-07-03', '2026-07-04', '2026-07-05']:
+    r = requests.get(
+        f'https://graph.microsoft.com/v1.0/users/{USER}/calendarView',
+        headers=hdrs,
+        params={'startDateTime': f'{dato}T00:00:00',
+                'endDateTime':   f'{dato}T23:59:59',
+                '$select': 'subject,categories', '$top': '50'},
+        timeout=30
+    )
+    events = r.json().get('value', [])
+    traening = [e for e in events if any(c in ('Træning','Traening') for c in e.get('categories',[]))]
+    print(f"{dato}: {len(traening)} Træning-events — {[e['subject'] for e in traening]}")
+
+          PYEOF
