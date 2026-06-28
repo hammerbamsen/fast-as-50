@@ -1,0 +1,33 @@
+name: Slet Outlook event
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Dato YYYY-MM-DD'
+        required: true
+      subject:
+        description: 'Del af subject at matche (tom = alle Traening-events denne dag)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Slet event(s)
+        env:
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          EVENT_DATE:    ${{ github.event.inputs.date }}
+          EVENT_SUBJECT: ${{ github.event.inputs.subject }}
+        run: python3 .github/workflows/scripts/delete_outlook_event.py
