@@ -37,7 +37,7 @@ existing = r.json().get('value', []) if r.status_code == 200 else []
 deleted = 0
 for e in existing:
     cats = e.get('categories', [])
-    if 'Træning' in cats:
+    if any(c in ('Træning', 'Traening') for c in cats):
         dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs)
         status = 'OK' if dr.status_code == 204 else f'FEJL {dr.status_code}'
         print(f'  Slet {status}: {e["subject"]}')
