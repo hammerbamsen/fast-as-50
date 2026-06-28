@@ -646,6 +646,7 @@ def run_plan(session, week_filter=0):
     days_da  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
     ok = skip = err = 0
     cur_week = 0
+    posted = {}   # {date: antal POSTede WORKOUT-events}
 
     # Gruppér plan per dato saa vi kun sletter én gang per dag
     from collections import defaultdict
@@ -675,11 +676,58 @@ def run_plan(session, week_filter=0):
                 skip += 1
                 continue
             eid = upload(session, wo, dt)
-            if eid: ok += 1
-            else:   err += 1
+            if eid:
+                ok += 1
+                posted[dt] = posted.get(dt, 0) + 1
+            else:
+                err += 1
             time.sleep(1.0)
 
-    return ok, skip, err
+    return ok, skip, err, posted
+
+def verify_uploads(session, posted):
+    """GET events på alle uploadede datoer og verificer antal WORKOUT-events matcher."""
+    if not posted:
+        print("\n⚠️  Ingen uploadede events at verificere.")
+        return True
+
+    mismatches = []
+    print(f"\n🔍 Verificerer {len(posted)} dato(er) i Intervals.icu...")
+    for dt in sorted(posted.keys()):
+        expected = posted[dt]
+        try:
+            r = session.get(f"{BASE}/events", params={
+                "oldest": f"{dt.isoformat()}T00:00:00",
+                "newest": f"{dt.isoformat()}T23:59:00"
+            })
+            if r.status_code != 200:
+                mismatches.append((dt, expected, f"GET fejlede ({r.status_code})"))
+                continue
+            events = r.json() if isinstance(r.json(), list) else []
+            actual = sum(1 for e in events if e.get("category") == "WORKOUT")
+            if actual != expected:
+                names = [e.get("name", "?") for e in events if e.get("category") == "WORKOUT"]
+                mismatches.append((dt, expected, actual, names))
+        except Exception as e:
+            mismatches.append((dt, expected, f"exception: {e}"))
+
+    if mismatches:
+        print("❌ Verifikation fejlede — mismatch på følgende datoer:")
+        for entry in mismatches:
+            dt = entry[0]
+            exp = entry[1]
+            act = entry[2]
+            if isinstance(act, int):
+                names = entry[3] if len(entry) > 3 else []
+                print(f"   {dt.strftime('%d. %b %Y')}: forventet {exp}, fandt {act}"
+                      + (f" ({', '.join(names)})" if names else ""))
+            else:
+                print(f"   {dt.strftime('%d. %b %Y')}: forventet {exp} — {act}")
+        return False
+
+    print(f"✅ Verifikation OK — alle {len(posted)} datoer matcher")
+    return True
+
 
 def main():
     import os
@@ -701,23 +749,27 @@ def main():
     print(f"✅ Forbundet: {r.json().get('name', ATHLETE_ID)}\n")
 
     total_ok = total_skip = total_err = 0
+    all_posted = {}  # akkumuleret posted dict på tværs af uger
 
     if week_arg == -1:
         # Alle 14 uger
         print("Uploader alle 14 uger...")
-        ok, skip, err = run_plan(session, week_filter=0)
+        ok, skip, err, posted_week = run_plan(session, week_filter=0)
         total_ok += ok; total_skip += skip; total_err += err
+        all_posted.update(posted_week)
     elif week_arg == 0:
         # Auto: fra aktuel uge til 14
         current_week = min(max((date.today() - PLAN_START).days // 7 + 1, 1), 14)
         print(f"Auto-tilstand: uploader uge {current_week}–14")
         for w in range(current_week, 15):
-            ok, skip, err = run_plan(session, week_filter=w)
+            ok, skip, err, posted_week = run_plan(session, week_filter=w)
             total_ok += ok; total_skip += skip; total_err += err
+            all_posted.update(posted_week)
     else:
         # Specifik uge
-        ok, skip, err = run_plan(session, week_filter=week_arg)
+        ok, skip, err, posted_week = run_plan(session, week_filter=week_arg)
         total_ok += ok; total_skip += skip; total_err += err
+        all_posted.update(posted_week)
 
     print(f"\n{'='*50}")
     print(f"✅ Uploadet:    {total_ok}")
@@ -726,8 +778,14 @@ def main():
     if total_err > 0:
         sys.exit(1)
 
+    verify_ok = verify_uploads(session, all_posted)
+    if not verify_ok:
+        print("\n❌ Upload-verifikation fejlede — tjek Intervals.icu manuelt.")
+        sys.exit(1)
+
 if __name__ == "__main__":
     main()
+
 
 
 
