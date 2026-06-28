@@ -309,6 +309,21 @@ def main():
                 data['weekFocusWeek'] = week_num
             this_week['focus'] = dynamic_focus
             data['weekFocus'] = dynamic_focus
+        # Sæt fokus-tekst for alle uger — aktuel uge er allerede sat ovenfor,
+        # fremtidige og forrige uger bruger cached fokus fra eksisterende data.json
+        # eller fallback til den hurtige regelbaserede generator (ikke AI).
+        _existing_all_weeks = data.get('all_weeks', {})
+        for w_num, w_data in planned_weeks.items():
+            if w_num == week_num:
+                continue  # Aktuel uge allerede håndteret
+            _cached_focus = _existing_all_weeks.get(str(w_num), {}).get('focus', '')
+            if _cached_focus:
+                w_data['focus'] = _cached_focus
+            else:
+                w_data['focus'] = generate_week_focus(
+                    w_num, w_data.get('sessions', []),
+                    BLOCK_TYPES.get(w_num, 'BUILD')
+                )
         data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
 
     # --- Today session ---
