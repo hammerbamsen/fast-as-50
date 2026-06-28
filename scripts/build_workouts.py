@@ -441,11 +441,11 @@ def make_plan():
     (p+timedelta(25), None,                  "Hvile — job-fyldt dag"),
     # Lør: god weekend, lang løb 1,5 time
     (p+timedelta(26), run_z2_lang(90),       "Lang løb Z2 1,5 time"),
-    # Søn: let svøm/cykel
-    (p+timedelta(27), swim_let(),            "Let svøm 1500m / 45 min"),
+    # Søn: styrke (byttet med man svøm)
+    (p+timedelta(27), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
 
     # ── UGE 5: 29 jun–5 jul  BUILD ──────────────────────────────
-    (p+timedelta(28), strength_a(3),         "Styrke A + cykel Z2"),
+    (p+timedelta(28), swim_let(),            "Svøm 1500m let teknisk (byttet med søn styrke)"),
     (p+timedelta(29), run_vo2_5x3(),         "Løb VO2 5×3 Z4"),
     (p+timedelta(30), bike_z2(75),           "Hometrainer Z2 75 min"),
     (p+timedelta(31), run_z2(65),            "Løb Z2 65 min"),
