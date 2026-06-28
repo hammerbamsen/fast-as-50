@@ -626,7 +626,7 @@ function renderToday() {
   ${(() => {
     const ctlVal = parseFloat((D.kpis||[]).find(k=>k.label==='CTL'||k.label==='CTL FITNESS')?.['value']) || 0;
     const tsbVal = parseFloat(D.tsb) || 0;
-    const ctlGoal = D.kpis ? (parseInt((D.kpis.find(k=>k.label==='CTL'||k.label==='CTL FITNESS')||{}).sub?.match(/\d+/)?.[0]||60)) : 60;
+    const ctlGoal = (() => { const w = (D.meta && D.meta.week) ? D.meta.week : 0; return w > 0 && w <= CTL_PLAN.length ? CTL_PLAN[w-1] : 60; })();
     const ctlColor = ctlVal >= ctlGoal*0.95 ? '#27AE60' : ctlVal >= ctlGoal*0.8 ? '#E67E22' : '#C0392B';
     const warnings = D.warnings || [];
     const hrvWarn = warnings.find(w=>w.type==='hrv') ? `<div style="background:#E67E2215;border:1px solid #E67E2240;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">💜</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#E67E22;line-height:1.4">${warnings.find(w=>w.type==='hrv').message}</span></div>` : '';
