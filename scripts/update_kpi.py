@@ -175,7 +175,7 @@ def main():
 
     tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
     data['kpis'] = {
-        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f'Mål <72 kg · snit {fmt(weight_avg)} kg' if weight_avg else 'Mål <72 kg', 'color': color_for(weight, 72, lower=True)  if weight     else '#7A6A58'},
+        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f'Mål <70 kg · snit {fmt(weight_avg)} kg' if weight_avg else 'Mål <70 kg', 'color': color_for(weight, 70, lower=True)  if weight     else '#7A6A58'},
         'fat':        {'value': fmt(fat),              'unit': '%',  'sub': 'Mål <20%',                       'color': color_for(fat, 20, lower=True)     if fat        else '#7A6A58'},
         'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f'Uge {week_num}-mål {ctl_plan_for_week(week_num)} · Slutmål 60 (uge 14)', 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
         'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': ('Hård blok · CTL−ATL, frisk >0' if tsb and tsb < -10 else 'Form · CTL−ATL, frisk >0'), 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
@@ -263,6 +263,27 @@ def main():
         if history.get('sleepHistory'):  data['sleepHistory']  = history['sleepHistory']
         if history.get('tsbHistory'):    data['tsbHistory']    = history['tsbHistory']
         print(f"  Historik: vægt={len(history.get('weightHistory',[]))} hrv={len(history.get('hrvHistory',[]))} søvn={len(history.get('sleepHistory',[]))} tsb={len(history.get('tsbHistory',[]))} punkter")
+
+    # --- Glidende 7-dages gennemsnit (vægt + fedt) ---
+    def _moving_avg_7(series):
+        result = []
+        for i in range(len(series)):
+            window_vals = [v for v in series[max(0, i-6):i+1] if v is not None]
+            result.append(round(sum(window_vals)/len(window_vals), 2) if len(window_vals) >= 3 else None)
+        return result
+
+    _wh = data.get('weightHistory', [])
+    _fh = data.get('fatHistory', [])
+    data['weightMovingAvg7'] = _moving_avg_7(_wh)
+    data['fatMovingAvg7']    = _moving_avg_7(_fh)
+
+    # --- Mål og afstand til mål ---
+    data['weightGoal']   = 70
+    data['bodyFatGoal']  = 20
+    _latest_w = next((v for v in reversed(_wh) if v is not None), None)
+    _latest_f = next((v for v in reversed(_fh) if v is not None), None)
+    data['weightToGoal']   = round(_latest_w - 70, 2) if _latest_w else None
+    data['bodyFatToGoal']  = round(_latest_f - 20, 1) if _latest_f else None
     if ctl_curve:
         data['ctlCurve'] = ctl_curve
         print(f"  CTL-kurve: {len(ctl_curve)} ugepunkter, seneste {ctl_curve[-1]}")
@@ -524,6 +545,7 @@ if __name__ == '__main__':
         print(err)
         # Skriv fejl til en fil der kan pushes
         raise
+
 
 
 
