@@ -25,6 +25,26 @@ jobs:
           WEEK_ONLY: ${{ github.event.inputs.week_only || '0' }}
         run: python3 scripts/build_workouts.py $WEEK_ONLY
 
+      - name: Trigger Outlook-sync for næste uge
+        if: success()
+        run: |
+          WEEK=$(python3 -c "
+          from datetime import date
+          PLAN_START = date(2026, 6, 1)
+          today = date.today()
+          current_week = min(max((today - PLAN_START).days // 7 + 1, 1), 14)
+          next_week = min(current_week + 1, 14)
+          print(next_week)
+          ")
+          echo "Trigger Outlook-sync for uge $WEEK"
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: application/json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/create-outlook-events.yml/dispatches" \
+            -d "{\"ref\":\"main\",\"inputs\":{\"week\":\"$WEEK\"}}" \
+            -w "\nOutlook dispatch HTTP: %{http_code}"
+
       - name: Notifikation ved fejl
         if: failure()
         run: |
