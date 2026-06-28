@@ -10,7 +10,7 @@ BASE          = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH          = ('API_KEY', API_KEY)
 
 # Autoritativ uge-for-uge CTL-plan (matcher CTL_PLAN i index.html)
-CTL_PLAN = [34, 36, 38, 41, 44, 43, 41, 45, 49, 53, 57, 55, 58, 60]
+CTL_PLAN = [34, 36, 38, 41, 48, 52, 49, 54, 59, 64, 68, 64, 61, 58]
 
 DK_DAYS    = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"]
 DAY_SHORT  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
