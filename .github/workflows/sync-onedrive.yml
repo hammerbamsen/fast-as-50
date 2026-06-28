@@ -80,7 +80,7 @@ jobs:
       - name: Upload about-me.md
         run: |
           curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
-            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/root:/Claude/About%20me/About%20me/about-me.md:/content" \
+            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4HMOISMIYAKQBBLUE3OBQAYJVB6:/about-me.md:/content" \
             -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
             -H "Content-Type: application/octet-stream" \
             --data-binary @data/about-me.md
