@@ -1,7 +1,12 @@
 name: Fix mandag 29jun swim
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-monday-swim.yml'
+      - 'tmp/trigger-fix-swim'
+  repository_dispatch:
+    types: [fix-monday-swim]
 
 jobs:
   fix:
@@ -45,7 +50,7 @@ jobs:
           for e in events:
               subj = e['subject']
               cats = e.get('categories', [])
-              if 'Styrke' in subj or 'Svøm' in subj:
+              if 'Styrke' in subj or 'Svøm' in subj or 'Swim' in subj:
                   dr = requests.delete(
                       f"https://graph.microsoft.com/v1.0/users/{USER}/events/{e['id']}",
                       headers=hdrs
