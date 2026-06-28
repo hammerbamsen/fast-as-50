@@ -13,6 +13,7 @@ TIMEOUT       = 30
 
 assert 1 <= WEEK <= 14, f'Ugyldig uge: {WEEK}'
 
+# Token
 resp = requests.post(
     f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token',
     data={'grant_type':'client_credentials','client_id':CLIENT_ID,
@@ -23,13 +24,38 @@ resp.raise_for_status()
 token    = resp.json()['access_token']
 hdrs     = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
 hdrs_get = {k:v for k,v in hdrs.items() if k != 'Content-Type'}
-print('Azure token OK')
+print('Token OK')
 
 plan_start = date(2026, 6, 1)
 week_start = plan_start + timedelta(weeks=WEEK-1)
 week_end   = week_start + timedelta(days=6)
 print(f'Uge {WEEK}: {week_start} til {week_end}')
 
+# TRIN 1: Slet alle eksisterende Traening-events i perioden
+url    = f'{GRAPH}/calendarView'
+params = {'startDateTime': f'{week_start}T00:00:00',
+          'endDateTime':   f'{week_end}T23:59:59',
+          '$select': 'id,subject,categories', '$top': '50'}
+existing = []
+while url:
+    r = requests.get(url, headers=hdrs_get, params=params, timeout=TIMEOUT)
+    params = None
+    body   = r.json()
+    existing.extend(body.get('value', []))
+    url = body.get('@odata.nextLink')
+
+deleted = 0
+for e in existing:
+    if any(c in ('Træning', 'Traening') for c in e.get('categories', [])):
+        dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs, timeout=TIMEOUT)
+        if dr.status_code in (204, 404):
+            print(f'  Slettet: {e["subject"]}')
+            deleted += 1
+        else:
+            print(f'  FEJL slet {e["subject"]}: {dr.status_code}')
+print(f'Slettet: {deleted}')
+
+# TRIN 2: Hent workouts fra Intervals
 r = requests.get(
     f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}/events',
     auth=('API_KEY', API_KEY),
@@ -51,14 +77,13 @@ START_HOUR = {
     'WEIGHTTRAINING': (7, 0), 'WEIGHT_TRAINING': (7, 0), 'WEIGHTS': (7, 0),
 }
 
-# TRIN 1: Opret nye events FOERST
-new_ids = []
+# TRIN 3: Opret nye events
 ok = err = 0
 for w in workouts:
     dt    = w.get('start_date_local', '')[:10]
     name  = w.get('name', 'Træning')
     wtype = w.get('type', 'Run')
-    dur   = w.get('moving_time') or 3600  # fallback hvis Intervals mangler moving_time
+    dur   = w.get('moving_time') or 3600
     desc  = w.get('description', '')
     emoji = TYPE_EMOJI.get(wtype, '🏋')
     sh, sm = START_HOUR.get(wtype.upper(), (6, 0))
@@ -76,7 +101,6 @@ for w in workouts:
     }
     resp = requests.post(f'{GRAPH}/events', headers=hdrs, json=event, timeout=TIMEOUT)
     if resp.status_code == 201:
-        new_ids.append(resp.json()['id'])
         print(f'  Oprettet: {dt} {emoji} {name}')
         ok += 1
     else:
@@ -84,39 +108,4 @@ for w in workouts:
         err += 1
 
 print(f'Oprettet: {ok} | Fejl: {err}')
-if err > 0:
-    print('ADVARSEL: Fejl ved oprettelse - springer sletning over for at undgaa tom kalender')
-    exit(1)
-
-# TRIN 2: Slet gamle Traening-events med pagination
-url    = f'{GRAPH}/calendarView'
-params = {
-    'startDateTime': f'{week_start}T00:00:00',
-    'endDateTime':   f'{week_end}T23:59:59',
-    '$select': 'id,subject,categories',
-    '$top': '50',
-}
-existing = []
-while url:
-    r = requests.get(url, headers=hdrs_get, params=params, timeout=TIMEOUT)
-    params = None
-    body   = r.json()
-    existing.extend(body.get('value', []))
-    url = body.get('@odata.nextLink')
-
-print(f'Fandt {len(existing)} eksisterende events')
-deleted = 0
-for e in existing:
-    if e['id'] in new_ids:
-        continue
-    cats = e.get('categories', [])
-    if any(c in ('Træning', 'Traening') for c in cats):
-        dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs, timeout=TIMEOUT)
-        if dr.status_code in (204, 404):
-            print(f'  Slettet: {e["subject"]}')
-            deleted += 1
-        else:
-            print(f'  FEJL slet {e["subject"]}: {dr.status_code}')
-
-print(f'Slettet: {deleted} gamle events')
 print('DONE')
