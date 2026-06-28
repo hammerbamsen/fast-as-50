@@ -323,6 +323,15 @@ def bike_3x15_z3(tot_min=90):
     return {"name": f"Hometrainer 3×15 min Z3 {tot_min} min", "type": "Ride",
             "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
 
+def bike_hundested():
+    desc = (
+        "Lang Z2 cykeltur fra Charlottenlund til Hundested. "
+        "Ca. 65-70 km. Hold Z2 hele vejen — lav kadence, kontrolleret indsats. "
+        "Frokost i Hundested bagefter."
+    )
+    return {"name": "Cykel Z2 til Hundested", "type": "Ride",
+            "moving_time": 9000, "description": desc, "workout_doc": None}
+
 def swim_2000():
     desc, doc = build([
         s_free(10, "400m varm-op Z1"),
@@ -444,14 +453,15 @@ def make_plan():
     # Søn: styrke (byttet med man svøm)
     (p+timedelta(27), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
 
-    # ── UGE 5: 29 jun–5 jul  BUILD ──────────────────────────────
-    (p+timedelta(28), swim_let(),            "Svøm 1500m let teknisk (byttet med søn styrke)"),
+    # ── UGE 5: 29 jun–5 jul  BUILD (justeret: styrke tir, svøm fre, cykel Hundested søn) ──
+    (p+timedelta(28), swim_let(),            "Svøm 1500m let teknisk"),
     (p+timedelta(29), run_vo2_5x3(),         "Løb VO2 5×3 Z4"),
+    (p+timedelta(29), strength_let(),        "Styrke let 2 sæt recovery"),
     (p+timedelta(30), bike_z2(75),           "Hometrainer Z2 75 min"),
     (p+timedelta(31), run_z2(65),            "Løb Z2 65 min"),
-    (p+timedelta(32), strength_let(),        "Styrke B"),
+    (p+timedelta(32), swim_2000(),           "Svøm 2000m teknisk"),
     (p+timedelta(33), run_z2_lang(115),      "Lang løb Z2 115 min"),
-    (p+timedelta(34), swim_2000(),           "Svøm 2000m"),
+    (p+timedelta(34), bike_hundested(),      "Cykel Z2 til Hundested"),
 
     # ── UGE 6: 6-12 jul  BUILD ──────────────────────────────────
     (p+timedelta(35), strength_a(3),         "Styrke A + cykel Z2 60 min"),
