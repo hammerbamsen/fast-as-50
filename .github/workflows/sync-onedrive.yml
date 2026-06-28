@@ -7,6 +7,7 @@ on:
       - 'data/Fast_as_Fifty_Masterplan_2026.docx'
       - 'data/Eva_Medoc_Traningsplan_2026.docx'
       - 'data/Eva_Medoc_Master.xlsx'
+      - 'data/about-me.md'
   workflow_dispatch:
 
 permissions:
@@ -24,70 +25,73 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install requests
 
-      - name: Hent token
+      - name: Hent token og validér rettigheder
         id: token
         run: |
-          TOKEN=$(python3 -c "
-          import os, requests, sys
+          python3 << 'PYEOF'
+          import os, requests, sys, json, base64
+
           r = requests.post(
               'https://login.microsoftonline.com/' + os.environ['AZURE_TENANT_ID'] + '/oauth2/v2.0/token',
-              data={'grant_type':'client_credentials','client_id':os.environ['AZURE_CLIENT_ID'],'client_secret':os.environ['AZURE_CLIENT_SECRET'],'scope':'https://graph.microsoft.com/.default'}
+              data={'grant_type':'client_credentials','client_id':os.environ['AZURE_CLIENT_ID'],
+                    'client_secret':os.environ['AZURE_CLIENT_SECRET'],'scope':'https://graph.microsoft.com/.default'}
           )
-          if r.status_code != 200: print('FEJL:'+str(r.status_code)+r.text,file=sys.stderr); sys.exit(1)
-          print(r.json()['access_token'])
-          ")
-          echo "::add-mask::$TOKEN"
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
-          echo "Token hentet OK"
+          if r.status_code != 200:
+              print(f"FEJL: Token hentning fejlede ({r.status_code})", file=sys.stderr)
+              sys.exit(1)
+
+          token = r.json()['access_token']
+
+          # Validér at Files.ReadWrite.All er i token roles
+          parts = token.split('.')
+          padding = 4 - len(parts[1]) % 4
+          claims = json.loads(base64.b64decode(parts[1] + '='*padding).decode('utf-8','replace'))
+          roles = claims.get('roles', [])
+          print(f"Token roles: {roles}")
+
+          if 'Files.ReadWrite.All' not in roles:
+              print("FEJL: Files.ReadWrite.All mangler i token roles!", file=sys.stderr)
+              print("Løsning: Azure Portal -> Fast as Fifty Calendar -> API permissions -> Grant admin consent", file=sys.stderr)
+              sys.exit(1)
+
+          print("Rettigheder OK: Files.ReadWrite.All er granted")
+
+          # Mask token og skriv til output
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f"token={token}\n")
+          PYEOF
 
       - name: Upload Master_Plan.xlsx
         run: |
-          curl -s -o /tmp/r.json -w "HTTP %{http_code}" -X PUT \
-            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Master_Plan.xlsx:/content" \
-            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary @data/Master_Plan.xlsx
-          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
+          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Master_Plan.xlsx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Master_Plan.xlsx)
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
+          [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload Fast_as_Fifty_Masterplan_2026.docx
         run: |
-          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
-            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Fast_as_Fifty_Masterplan_2026.docx:/content" \
-            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary @data/Fast_as_Fifty_Masterplan_2026.docx
-          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
+          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Fast_as_Fifty_Masterplan_2026.docx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Fast_as_Fifty_Masterplan_2026.docx)
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
+          [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload Eva_Medoc_Traningsplan_2026.docx
         run: |
-          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
-            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Traningsplan_2026.docx:/content" \
-            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary @data/Eva_Medoc_Traningsplan_2026.docx
-          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
+          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Traningsplan_2026.docx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Eva_Medoc_Traningsplan_2026.docx)
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
+          [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload Eva_Medoc_Master.xlsx
         run: |
-          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
-            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Master.xlsx:/content" \
-            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary @data/Eva_Medoc_Master.xlsx
-          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
-
+          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Master.xlsx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Eva_Medoc_Master.xlsx)
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
+          [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload about-me.md
         run: |
-          curl -s -o /tmp/r.json -w " HTTP %{http_code}" -X PUT \
-            "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4HMOISMIYAKQBBLUE3OBQAYJVB6:/about-me.md:/content" \
-            -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary @data/about-me.md
-          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || cat /tmp/r.json
+          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4HMOISMIYAKQBBLUE3OBQAYJVB6:/about-me.md:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/about-me.md)
+          cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
+          [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
+
       - name: Notifikation ved fejl
         if: failure()
         run: |
-          curl -s -X POST "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj" \
-            -H "Content-Type: application/json" \
-            -d '{"workflow":"${{ github.workflow }}","status":"FEJL","repo":"${{ github.repository }}","run":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
+          curl -s -X POST "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj"             -H "Content-Type: application/json"             -d '{"workflow":"${{ github.workflow }}","status":"FEJL","repo":"${{ github.repository }}","run":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
