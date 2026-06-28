@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import sys; sys.stdout.reconfigure(encoding='utf-8')
 import os, requests
 
 CLIENT_ID      = os.environ['AZURE_CLIENT_ID']
@@ -35,7 +37,7 @@ deleted = skipped = 0
 for e in events:
     subj = e.get('subject', '')
     cats = e.get('categories', [])
-    is_training = 'Traening' in cats or 'Træning' in cats
+    is_training = any('r' in c.lower() and 'ning' in c.lower() for c in cats)
 
     if is_training and (not SUBJECT_FILTER or SUBJECT_FILTER in subj.lower()):
         dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs)
