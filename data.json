@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-28 01:50",
+    "updated": "2026-06-28 02:01",
     "week": 4,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 70,
-    "daysToChristiansborg": 63,
-    "dayName": "Lørdag",
-    "date": "27. jun"
+    "daysToMedoc": 69,
+    "daysToChristiansborg": 62,
+    "dayName": "Søndag",
+    "date": "28. jun"
   },
   "kpis": {
     "weight": {
@@ -23,19 +23,19 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "44,6",
+      "value": "43,5",
       "unit": "",
       "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-16,0",
+      "value": "-9,0",
       "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
+      "sub": "Form · CTL−ATL, frisk >0",
+      "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,5",
+      "value": "7,3",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#27AE60"
     },
     "hrv": {
-      "value": "64,5",
+      "value": "63,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -82,16 +82,16 @@
     "target": 5,
     "streak": 27
   },
-  "coachSpeech": "Lørdag — uge 4 af 14. {HL} Dagens session er gennemført. Godt: TSB -16,0 er på et sundt niveau med plads til næste belastning. 155 procent af ugens TSS er i hus. Fokus: Vægt på 73,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "CTL 44,6 følger ramp-kurven mod 60",
+  "coachSpeech": "Søndag — afslut uge 4 stærkt. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: TSB -9,0 er på et sundt niveau med plads til næste belastning. 155 procent af ugens TSS er i hus. Alt peger den rigtige vej. Hold ilden ved — ikke sluk den. 📊 Store billede: CTL 43,5 er 2.5 point FORAN ugeplanen (planmål uge 4: 41).  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "CTL 43,5 følger ramp-kurven mod 60",
   "weekFocus": "Lad kroppen absorbere arbejdet — restitution er træning",
   "today": {
-    "discipline": "run",
-    "title": "Lang løb Z2 90 min",
+    "discipline": "swim",
+    "title": "Svøm 1500m let teknisk",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
@@ -201,7 +201,6 @@
       "disc": "run",
       "label": "Lang løb Z2 90 min",
       "done": true,
-      "today": true,
       "completion": "done",
       "completion_pct": 94,
       "actual_tss": 103,
@@ -213,14 +212,15 @@
       "day": "Søn",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
-      "done": false
+      "done": false,
+      "today": true
     }
   ],
   "ctlCurve": [
     36.3,
     40.5,
     42.5,
-    44.6
+    43.5
   ],
   "weightHistory": [
     null,
@@ -305,13 +305,13 @@
     null,
     null,
     null,
-    73.4,
     73.6,
     73.2,
     73.4,
     72.5,
     72.9,
     73.1,
+    73.7,
     73.7
   ],
   "hrvHistory": [
@@ -397,13 +397,13 @@
     null,
     null,
     null,
-    69.0,
     60.0,
     65.0,
     70.0,
     78.0,
     58.0,
     56.0,
+    60.0,
     60.0
   ],
   "sleepHistory": [
@@ -489,13 +489,13 @@
     null,
     null,
     null,
-    8.8,
     5.6,
     8.7,
     7.8,
     5.8,
     7.3,
     8.0,
+    7.9,
     7.9
   ],
   "tsbHistory": [
@@ -581,14 +581,14 @@
     null,
     null,
     null,
-    -12.0,
     -12.4,
     -9.3,
     -9.7,
     -7.4,
     -11.1,
     -10.9,
-    -16.0
+    -16.0,
+    -9.0
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -894,7 +894,6 @@
           "disc": "run",
           "label": "Lang løb Z2 90 min",
           "done": true,
-          "today": true,
           "completion": "done",
           "completion_pct": 94,
           "actual_tss": 103,
@@ -906,7 +905,8 @@
           "day": "Søn",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
-          "done": false
+          "done": false,
+          "today": true
         }
       ],
       "blockType": "RECOVERY",
@@ -1373,7 +1373,7 @@
     {
       "week": 4,
       "done": 6,
-      "total": 6,
+      "total": 7,
       "label": "Uge 4"
     }
   ],
@@ -1470,13 +1470,13 @@
     null,
     null,
     null,
-    22.4,
     21.7,
     21.8,
     22.4,
     23.1,
     22.7,
     22.7,
+    21.6,
     21.6
   ],
   "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 27 af 98 · Lørdag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>💪 Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du gennemførte dit lange løb – 85/90 min og 52,9% i pace-Z2 er solidt, men HR-Z2+ på 86,9% afslører at kroppen arbejdede hårdere end tempoet antyder – klassisk HR-drift i varme, pace faldt forventeligt. CTL på 44,6 er allerede over ugens mål på 41, og TSB på -16,0 er håndterbart men mærkeligt – kroppen har absorberet en ordentlig blok. Søndagens 1500m teknisk svøm er præcis det rigtige afslut: hold det let og lad systemet lukke ugen ned.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>⚖️ Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73,7 kg – målet er under 72 kg, så der er 1,7 kg tilbage at arbejde med. Med en restitutionsuge forude og lavere TSS i weekenden er det et godt tidspunkt at holde kalorierne stramme uden at gå på kompromis med restitutionen – prioritér protein og grøntsager, dæmp kulhydraterne let om aftenen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>🎯 AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">6 AF-dage ud af 6 dage gået i ugen – du er fuldstændig på sporet og streaken er på 27 dage. Søndagens svømning er teknisk og let, så den eneste opgave resten af ugen er at holde hovedet koldt og ikke tilføje noget ekstra fordi</p>",
@@ -1486,7 +1486,7 @@
   "coachAssessmentAfAtGen": 6,
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -16.0,
+  "tsb": -9.0,
   "swimHistory": [
     {
       "week": 1,
