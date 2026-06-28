@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-import sys; sys.stdout.reconfigure(encoding='utf-8')
 import os, requests
 from datetime import date, timedelta
 
@@ -12,7 +10,6 @@ WEEK          = int(os.environ.get('WEEK', 2))
 USER          = 'kennet@hammerby.com'
 GRAPH         = f'https://graph.microsoft.com/v1.0/users/{USER}'
 
-# Token
 resp = requests.post(
     f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token',
     data={'grant_type':'client_credentials','client_id':CLIENT_ID,
@@ -24,13 +21,11 @@ hdrs     = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/jso
 hdrs_get = {k:v for k,v in hdrs.items() if k != 'Content-Type'}
 print('Azure token OK')
 
-# Datoer
 plan_start = date(2026, 6, 1)
 week_start = plan_start + timedelta(weeks=WEEK-1)
 week_end   = week_start + timedelta(days=6)
 print(f'Uge {WEEK}: {week_start} til {week_end}')
 
-# Slet alle Traening-events i perioden
 r = requests.get(
     f'{GRAPH}/calendarView',
     headers=hdrs_get,
@@ -41,7 +36,8 @@ r = requests.get(
 existing = r.json().get('value', []) if r.status_code == 200 else []
 deleted = 0
 for e in existing:
-    if any('r' in c.lower() and 'ning' in c.lower() for c in e.get('categories', [])):
+    cats = e.get('categories', [])
+    if 'Træning' in cats:
         dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs)
         status = 'OK' if dr.status_code == 204 else f'FEJL {dr.status_code}'
         print(f'  Slet {status}: {e["subject"]}')
@@ -49,7 +45,6 @@ for e in existing:
             deleted += 1
 print(f'Slettet: {deleted}')
 
-# Hent workouts fra Intervals
 r = requests.get(
     f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}/events',
     auth=('API_KEY', API_KEY),
@@ -80,7 +75,7 @@ for w in workouts:
     wtype = w.get('type', 'Run')
     dur   = w.get('moving_time', 3600)
     desc  = w.get('description', '')
-    emoji = TYPE_EMOJI.get(wtype, '🏋️')
+    emoji = TYPE_EMOJI.get(wtype, '🏋')
 
     sh, sm = TIME_OVERRIDES.get(dt, START_HOUR.get(wtype.upper(), (6, 0)))
     end_min = sh * 60 + sm + dur // 60
@@ -92,7 +87,7 @@ for w in workouts:
                  'content': desc or f'Fast as Fifty - {wtype}'},
         'start': {'dateTime': f'{dt}T{sh:02d}:{sm:02d}:00', 'timeZone': 'Europe/Copenhagen'},
         'end':   {'dateTime': f'{dt}T{eh:02d}:{em:02d}:00', 'timeZone': 'Europe/Copenhagen'},
-        'categories': ['Tr\u00e6ning'],
+        'categories': ['Træning'],
         'showAs': 'busy',
         'isReminderOn': True,
         'reminderMinutesBeforeStart': 30,
