@@ -597,10 +597,6 @@ def delete_existing(session, dt):
 def upload(session, wo, dt):
     if wo is None:
         return None
-    # Slet Outlook events på datoen FØR vi opretter nye
-    outlook_delete_by_date(dt)
-    delete_existing(session, dt)
-
     # external_id bruges af Intervals til at matche aktiviteter med workouts
     # Format: fas50-YYYY-MM-DD-type (unikt pr. dag og disciplin)
     ext_id = f"fas50-{dt.isoformat()}-{wo['type'].lower()}"
