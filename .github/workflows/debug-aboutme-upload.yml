@@ -18,51 +18,42 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install requests -q
 
-      - name: Hent token og upload about-me.md med debug
+      - name: Upload about-me med fuld debug output
         run: |
-          python3 << 'EOF'
-          import os, requests, sys
+          python3 - << 'EOF'
+import os, requests, sys, json
 
-          # Hent token
-          r = requests.post(
-              'https://login.microsoftonline.com/' + os.environ['AZURE_TENANT_ID'] + '/oauth2/v2.0/token',
-              data={
-                  'grant_type': 'client_credentials',
-                  'client_id': os.environ['AZURE_CLIENT_ID'],
-                  'client_secret': os.environ['AZURE_CLIENT_SECRET'],
-                  'scope': 'https://graph.microsoft.com/.default'
-              }
-          )
-          if r.status_code != 200:
-              print('TOKEN FEJL:', r.status_code, r.text[:200])
-              sys.exit(1)
+r = requests.post(
+    'https://login.microsoftonline.com/' + os.environ['AZURE_TENANT_ID'] + '/oauth2/v2.0/token',
+    data={'grant_type':'client_credentials','client_id':os.environ['AZURE_CLIENT_ID'],'client_secret':os.environ['AZURE_CLIENT_SECRET'],'scope':'https://graph.microsoft.com/.default'}
+)
+if r.status_code != 200:
+    print('TOKEN FEJL:', r.status_code, r.text[:200])
+    sys.exit(1)
+token = r.json()['access_token']
 
-          token = r.json()['access_token']
-          print('Token OK, laengde:', len(token))
+with open('data/about-me.md', 'rb') as f:
+    content = f.read()
+print(f'Fil: {len(content)} bytes, Regel 1 present:', b'Regel 1' in content)
 
-          # Laes filen
-          with open('data/about-me.md', 'rb') as f:
-              content = f.read()
-          print(f'Fil laest: {len(content)} bytes')
-          print(f'Indeholder Regel 1:', 'Regel 1' in content.decode())
+drive_id = 'b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ'
+item_id = '01Y5SFS4DAHA6BW32YAJA3DSKD74JVC5EW'
 
-          drive_id = 'b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ'
-          item_id = '01Y5SFS4DAHA6BW32YAJA3DSKD74JVC5EW'
-
-          headers = {
-              'Authorization': f'Bearer {token}',
-              'Content-Type': 'text/plain; charset=utf-8'
-          }
-
-          # Metode 1: item ID /content
-          url1 = f'https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{item_id}/content'
-          print('\nMetode 1 (item ID):', url1[:80])
-          r1 = requests.put(url1, headers=headers, data=content)
-          print(f'Status: {r1.status_code}')
-          if r1.status_code in (200, 201):
-              d = r1.json()
-              print(f'OK: name={d.get("name")}, size={d.get("size")}, modified={d.get("lastModifiedDateTime")}')
-          else:
-              print('FEJL:', r1.text[:300])
-
-          EOF
+hdrs = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/octet-stream'}
+url = f'https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{item_id}/content'
+print('URL:', url)
+r2 = requests.put(url, headers=hdrs, data=content)
+print('HTTP Status:', r2.status_code)
+try:
+    d = r2.json()
+    print('Response JSON:')
+    print('  id:', d.get('id'))
+    print('  name:', d.get('name'))
+    print('  size:', d.get('size'))
+    print('  lastModified:', d.get('lastModifiedDateTime'))
+    print('  webUrl:', d.get('webUrl'))
+    if 'parentReference' in d:
+        print('  parent path:', d['parentReference'].get('path'))
+except:
+    print('Response text:', r2.text[:400])
+EOF
