@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   debug-upload:
@@ -13,6 +13,7 @@ jobs:
       AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
       AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      GITHUB_TOKEN:        ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
