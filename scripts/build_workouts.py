@@ -646,25 +646,37 @@ def run_plan(session, week_filter=0):
     ok = skip = err = 0
     cur_week = 0
 
+    # Gruppér plan per dato saa vi kun sletter én gang per dag
+    from collections import defaultdict
+    by_date = defaultdict(list)
     for dt, wo, note in plan:
         week = (dt - PLAN_START).days // 7 + 1
         if week_filter > 0 and week != week_filter:
             continue
+        by_date[dt].append((wo, note, week))
+
+    for dt in sorted(by_date.keys()):
+        entries = by_date[dt]
+        week = entries[0][2]
         if week != cur_week:
             cur_week = week
             print(f"\n📅 UGE {week} ({dt.strftime('%d. %b')})")
-        # Ryd ALTID evt. eksisterende events for datoen først — også når
-        # dagens (nye) plan er hvile, så stale entries fra tidligere runs ikke hænger
+        # Slet eksisterende events for datoen én gang
         delete_existing(session, dt)
         outlook_delete_by_date(dt)
-        if wo is None:
-            print(f"  ⚪ {dt.strftime('%d. %b')} {days_da[dt.weekday()]} — {note}")
+        all_none = all(wo is None for wo, note, _ in entries)
+        if all_none:
+            print(f"  ⚪ {dt.strftime('%d. %b')} {days_da[dt.weekday()]} — {entries[0][1]}")
             skip += 1
             continue
-        eid = upload(session, wo, dt)
-        if eid: ok += 1
-        else:   err += 1
-        time.sleep(1.0)
+        for wo, note, _ in entries:
+            if wo is None:
+                skip += 1
+                continue
+            eid = upload(session, wo, dt)
+            if eid: ok += 1
+            else:   err += 1
+            time.sleep(1.0)
 
     return ok, skip, err
 
