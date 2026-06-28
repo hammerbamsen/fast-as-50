@@ -39,7 +39,7 @@ r = requests.get(
 existing = r.json().get('value', []) if r.status_code == 200 else []
 deleted = 0
 for e in existing:
-    if 'Traening' in e.get('categories', []) or 'Træning' in e.get('categories', []):
+    if 'Træning' in e.get('categories', []) or 'Træning' in e.get('categories', []):
         dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs)
         status = 'OK' if dr.status_code == 204 else f'FEJL {dr.status_code}'
         print(f'  Slet {status}: {e["subject"]}')
@@ -74,7 +74,7 @@ TIME_OVERRIDES = {
 ok = err = 0
 for w in workouts:
     dt    = w.get('start_date_local', '')[:10]
-    name  = w.get('name', 'Traening')
+    name  = w.get('name', 'Træning')
     wtype = w.get('type', 'Run')
     dur   = w.get('moving_time', 3600)
     desc  = w.get('description', '')
@@ -90,7 +90,7 @@ for w in workouts:
                  'content': desc or f'Fast as Fifty - {wtype}'},
         'start': {'dateTime': f'{dt}T{sh:02d}:{sm:02d}:00', 'timeZone': 'Europe/Copenhagen'},
         'end':   {'dateTime': f'{dt}T{eh:02d}:{em:02d}:00', 'timeZone': 'Europe/Copenhagen'},
-        'categories': ['Traening'],
+        'categories': ['Træning'],
         'showAs': 'busy',
         'isReminderOn': True,
         'reminderMinutesBeforeStart': 30,
