@@ -453,12 +453,13 @@ def make_plan():
     # Søn: styrke (byttet med man svøm)
     (p+timedelta(27), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
 
-    # ── UGE 5: 29 jun–5 jul  BUILD (justeret: styrke tir, svøm fre, cykel Hundested søn) ──
+    # ── UGE 5: 29 jun–5 jul  BUILD (tir: styrke+løb Z2, tor: styrke A+VO2, fre: svøm 2000m, søn: Hundested) ──
     (p+timedelta(28), swim_let(),            "Svøm 1500m let teknisk"),
-    (p+timedelta(29), run_vo2_5x3(),         "Løb VO2 5×3 Z4"),
     (p+timedelta(29), strength_let(),        "Styrke let 2 sæt recovery"),
+    (p+timedelta(29), run_z2(65),            "Løb Z2 65 min"),
     (p+timedelta(30), bike_z2(75),           "Hometrainer Z2 75 min"),
-    (p+timedelta(31), run_z2(65),            "Løb Z2 65 min"),
+    (p+timedelta(31), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
+    (p+timedelta(31), run_vo2_5x3(),         "Løb VO2 5×3 min Z4"),
     (p+timedelta(32), swim_2000(),           "Svøm 2000m teknisk"),
     (p+timedelta(33), run_z2_lang(115),      "Lang løb Z2 115 min"),
     (p+timedelta(34), bike_hundested(),      "Cykel Z2 til Hundested"),
