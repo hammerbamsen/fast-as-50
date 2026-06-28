@@ -1,47 +1,59 @@
-# -*- coding: utf-8 -*-
-import sys; sys.stdout.reconfigure(encoding='utf-8')
-import os, requests
+import os, sys, requests
+from datetime import datetime
 
 CLIENT_ID      = os.environ['AZURE_CLIENT_ID']
 TENANT_ID      = os.environ['AZURE_TENANT_ID']
 CLIENT_SECRET  = os.environ['AZURE_CLIENT_SECRET']
-EVENT_DATE     = os.environ['EVENT_DATE']
+EVENT_DATE     = os.environ.get('EVENT_DATE', '').strip()
 SUBJECT_FILTER = os.environ.get('EVENT_SUBJECT', '').strip().lower()
-USER           = 'kennet@hammerby.com'
-GRAPH          = f'https://graph.microsoft.com/v1.0/users/{USER}'
+TIMEOUT        = 30
 
-# Token
+try:
+    datetime.strptime(EVENT_DATE, '%Y-%m-%d')
+except ValueError:
+    print(f'FEJL: Ugyldig dato: {EVENT_DATE!r} - skal vaere YYYY-MM-DD')
+    sys.exit(1)
+
+USER  = 'kennet@hammerby.com'
+GRAPH = f'https://graph.microsoft.com/v1.0/users/{USER}'
+
 resp = requests.post(
     f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token',
     data={'grant_type':'client_credentials','client_id':CLIENT_ID,
-          'client_secret':CLIENT_SECRET,'scope':'https://graph.microsoft.com/.default'}
+          'client_secret':CLIENT_SECRET,'scope':'https://graph.microsoft.com/.default'},
+    timeout=TIMEOUT
 )
 resp.raise_for_status()
-token = resp.json()['access_token']
+token    = resp.json()['access_token']
 hdrs     = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
 hdrs_get = {k:v for k,v in hdrs.items() if k != 'Content-Type'}
 
-# Hent alle events paa datoen
-r = requests.get(
-    f'{GRAPH}/calendarView',
-    headers=hdrs_get,
-    params={'startDateTime': f'{EVENT_DATE}T00:00:00',
-            'endDateTime':   f'{EVENT_DATE}T23:59:59',
-            '$select': 'id,subject,categories'}
-)
-events = r.json().get('value', []) if r.status_code == 200 else []
+url    = f'{GRAPH}/calendarView'
+params = {
+    'startDateTime': f'{EVENT_DATE}T00:00:00',
+    'endDateTime':   f'{EVENT_DATE}T23:59:59',
+    '$select': 'id,subject,categories',
+    '$top': '50',
+}
+events = []
+while url:
+    r = requests.get(url, headers=hdrs_get, params=params, timeout=TIMEOUT)
+    params = None
+    body   = r.json()
+    events.extend(body.get('value', []))
+    url = body.get('@odata.nextLink')
+
 print(f'{EVENT_DATE}: {len(events)} events fundet')
-print(f'Filter: "{SUBJECT_FILTER or "alle Traening-events"}"')
+print(f'Filter: "{SUBJECT_FILTER or "alle Traening-events"}')
 
 deleted = skipped = 0
 for e in events:
     subj = e.get('subject', '')
     cats = e.get('categories', [])
-    is_training = any('r' in c.lower() and 'ning' in c.lower() for c in cats)
-
+    is_training = any(c in ('Træning', 'Traening') for c in cats)
     if is_training and (not SUBJECT_FILTER or SUBJECT_FILTER in subj.lower()):
-        dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs)
-        if dr.status_code == 204:
+        dr = requests.delete(f'{GRAPH}/events/{e["id"]}', headers=hdrs, timeout=TIMEOUT)
+        if dr.status_code in (204, 404):
             print(f'  Slettet: {subj}')
             deleted += 1
         else:
