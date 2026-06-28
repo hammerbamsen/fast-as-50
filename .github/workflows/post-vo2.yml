@@ -7,41 +7,13 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install requests
-      - name: Post VO2 til Intervals
+      - name: Post VO2
         env:
           INTERVALS_API_KEY:    ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
-        run: |
-          python3 - << 'PYEOF'
-
-import os, requests
-
-API_KEY    = os.environ['INTERVALS_API_KEY']
-ATHLETE_ID = os.environ['INTERVALS_ATHLETE_ID']
-BASE       = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
-AUTH       = ('API_KEY', API_KEY)
-
-event = {
-    'start_date_local': '2026-06-30T06:30:00',
-    'type': 'Run',
-    'category': 'WORKOUT',
-    'name': 'L\u00f8b VO2 5\xd73 min Z4',
-    'description': '- Varm-op 15m >5:35/km Pace\n\n5x\n- Interval 3m 4:13-4:25/km Pace\n- Pause 2m >5:35/km Pace\n\n- Cool-down 10m >5:35/km Pace',
-    'moving_time': 3900,
-}
-r = requests.post(f'{BASE}/events', auth=AUTH, json=event, timeout=30)
-print(f'Status: {r.status_code}')
-if r.status_code == 200:
-    result = r.json()
-    if isinstance(result, list):
-        print(f'Oprettet: {result[0]["name"]} id={result[0]["id"]}')
-    else:
-        print(f'Oprettet: {result.get("name")} id={result.get("id")}')
-else:
-    print(f'Fejl: {r.text[:200]}')
-
-          PYEOF
+        run: python3 .github/workflows/scripts/post_vo2.py
