@@ -168,40 +168,104 @@ Gift med Eva. Bor i Charlottenlund. Besøgt 100 lande (nået målet i 2024). Læ
 ---
 ---
 
-## Claude — Arbejdsproces og regler (ufravigelige)
+## Instruks til Claude (læs dette FØR enhver teknisk opgave)
 
-### Arbejdsproces
+*Disse regler er ikke vejledning — de er krav. Bryd dem ikke under tidspres.*
+
+### Regel 1: Saml HELE planen inden implementering
+
+Spørg altid: "Er der flere ændringer?" inden første API-kald.
+Vent på eksplicit "nej" fra Kennet før implementering starter.
+Implementer aldrig iterativt mens planen er under forhandling.
+Én implementeringsrunde — ikke fire.
+
+### Regel 2: Præsenter plan — vent på accept
+
+Vis præcist hvad du har tænkt dig at gøre og i hvilken rækkefølge.
+Vent på eksplicit "ja" fra Kennet. Spring ikke dette over.
+Gælder også ved simple ændringer og ved selvstændigt subagent-arbejde.
+
+### Regel 3: QA med subagent FØR push
+
+Brug bash_tool som subagent til al validering inden push:
+- Syntax: `python3 -m py_compile` / `node --check`
+- Logik: test med mock-data i bash
+- Én operation: test på ét element, verificer, skaler derefter
+
+Subagents bruges også til: API-kald, filvalidering, parallelle checks.
+Arbejd parallelt hvor muligt. Præsenter samlet resultat — aldrig delresultater.
+"Det ser rigtigt ud" er ikke QA. Kør det.
+
+### Regel 4: Verificer OUTPUT — ikke status
+
+"Workflow success" og "200 OK" er ikke verifikation. Indholdet skal tjekkes.
+
+Efter hver handling:
+- **GitHub push**: re-fetch filen via Contents API og læs den
+- **Intervals events**: GET events, sorter, sammenlign mod plan
+- **Outlook push**: kør calendar_search og match events mod aftalt plan
+- **data.json**: re-fetch og læs sessions-array eksplicit
+- **OneDrive**: læs filen via M365 read_resource efter sync
+
+### Regel 5: Fast as Fifty — systemregler
+
+Workout-master er Intervals.icu. Rækkefølge: Intervals → build_workouts.py → Outlook. Aldrig omvendt.
+
+Inden POST til Intervals: GET eksisterende events, slet dem der erstattes, POST nye.
+Aldrig POST uden forudgående GET+slet — ellers dobbelt-events.
+
+data.json opdateres via GitHub Contents API direkte — vent ikke på launchd/Mac.
+Intervals.icu blokerer GitHub Actions IPs; direkte Intervals-kald kører fra Claude's sandbox eller lokalt.
+
+Outlook-push: trigger `create-outlook-events.yml` via workflow_dispatch.
+Verificer derefter via calendar_search — workflow-success er ikke nok.
+
+SHA til GitHub Contents API: hent frisk SHA umiddelbart før PUT. Brug aldrig cached SHA.
+
+### Regel 6: Aldrig Kennet i terminalen
+
+Udtøm alle API- og tool-muligheder før terminal overvejes.
+Diagnosticer via GitHub API, Intervals API, M365 connector.
+Hvis terminal er absolut nødvendig: giv én samlet kommando.
+
+### Regel 7: Fuldfør åbne opgaver
+
+Påbegyndte opgaver fuldføres inden svar på næste besked.
+Sig eksplicit "er i gang med X" hvis det tager tid.
+Lad aldrig en opgave stå halvfærdig.
+
+### Regel 8: Kontekstkomprimering
+
+Foreslå ny samtale når: mange tool-kald, gentagne fejl, meget kode, ~50+ beskeder.
+
+### Hurtig-tjekliste (scan dette FØR implementering)
+
+☐ Har jeg spurgt "er der flere ændringer?"
+☐ Har Kennet godkendt planen eksplicit?
+☐ Har jeg kørt QA i bash inden push?
+☐ Har jeg verificeret OUTPUT — ikke bare status?
+☐ Har jeg tjekket eksisterende Intervals-events inden POST?
+☐ Er data.json opdateret via GitHub API?
+☐ Er Outlook verificeret via calendar_search?
+
+---
+
+## Claude — Arbejdsproces (ufravigelig rækkefølge)
+
 1. Analyser + lav plan
 2. **Præsenter plan til Kennet — vent på eksplicit accept**
-3. Implementer + QA (brug subagents til QA og underopgaver)
-4. Verificer
+3. QA via subagent (bash_tool) — syntaks + mock + én operation
+4. Implementer
+5. Verificer OUTPUT via API for hvert berørt system
+6. Rapporter samlet resultat til Kennet
 
-Spring aldrig trin 2 over — heller ikke ved selvstændigt arbejde med subagents.
-
-### Subagents
-Brug altid subagents til QA og afgrænsede underopgaver (API-kald, syntakstjek, 
-mock-tests, filvalidering). Arbejd parallelt hvor muligt. Vend aldrig tilbage til 
-Kennet med delresultater — fuldfør opgaven og præsenter et samlet resultat.
-
-### Kontekstkomprimering
-Mind Kennet om at starte en ny samtale når konteksten bliver tung (lange samtaler 
-med meget kode, mange tool-kald, eller gentagne fejl). Tegn på tung kontekst: 
-svar bliver langsommere, samme fejl gentages, eller samtalen overstiger ~50 beskeder.
+Spring aldrig trin 2, 3 eller 5 over.
 
 ### Fillagring
-Gem altid filer på OneDrive via Microsoft 365-connectoren. Aldrig Dropbox eller 
-lokale mapper.
-
-### QA-regel
-Ingen kode pushes til GitHub uden lokal validering først:
-syntaks-tjek → mock-test → test én operation → push → verificér output.
+Gem altid filer på OneDrive via Microsoft 365-connectoren eller sync-onedrive.yml workflow. Aldrig Dropbox eller lokale mapper.
 
 ### Generelt
-- Arbejd autonomt via API/tools — send aldrig Kennet ind i UI hvis Claude kan 
-  løse det programmatisk
 - Alle tider i CET (UTC+1, sommertid UTC+2)
-- Outlook kalender-push til Fast as Fifty: brug GitHub Actions workflow `create-outlook-events.yml` via workflow_dispatch med input `week` (1-14). Virker direkte fra Claude — kræver IKKE Mac eller terminal. GitHub Actions har adgang til login.microsoftonline.com selvom Claude's sandbox ikke har. Claude må ALDRIG konkludere at Outlook-push kræver Mac.
-- OneDrive filskrivning: GitHub Actions `sync-onedrive.yml` har Files.ReadWrite.All adgang (tilføjet 27. juni 2026). Workflow kan trigges via workflow_dispatch og skriver filer fra GitHub repo direkte til OneDrive via Graph API med Azure-appen "Fast as Fifty Calendar".
 ____________
 ## Kontakt
 
