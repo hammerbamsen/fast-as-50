@@ -266,9 +266,11 @@ def main():
 
     # --- Glidende 7-dages gennemsnit (vægt + fedt) ---
     def _moving_avg_7(series):
+        def _v(x):
+            return x.get('v') if isinstance(x, dict) else x
         result = []
         for i in range(len(series)):
-            window_vals = [v for v in series[max(0, i-6):i+1] if v is not None]
+            window_vals = [_v(x) for x in series[max(0, i-6):i+1] if x is not None and _v(x) is not None]
             result.append(round(sum(window_vals)/len(window_vals), 2) if len(window_vals) >= 3 else None)
         return result
 
@@ -280,8 +282,8 @@ def main():
     # --- Mål og afstand til mål ---
     data['weightGoal']   = 70
     data['bodyFatGoal']  = 20
-    _latest_w = next((v for v in reversed(_wh) if v is not None), None)
-    _latest_f = next((v for v in reversed(_fh) if v is not None), None)
+    _latest_w = next((v['v'] if isinstance(v, dict) else v for v in reversed(_wh) if v is not None and (v.get('v') if isinstance(v, dict) else v) is not None), None)
+    _latest_f = next((v['v'] if isinstance(v, dict) else v for v in reversed(_fh) if v is not None and (v.get('v') if isinstance(v, dict) else v) is not None), None)
     data['weightToGoal']   = round(_latest_w - 70, 2) if _latest_w else None
     data['bodyFatToGoal']  = round(_latest_f - 20, 1) if _latest_f else None
     if ctl_curve:
@@ -545,6 +547,7 @@ if __name__ == '__main__':
         print(err)
         # Skriv fejl til en fil der kan pushes
         raise
+
 
 
 
