@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-29 05:50",
+    "updated": "2026-06-29 06:01",
     "week": 5,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -35,7 +35,7 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,8",
+      "value": "7,7",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "65,9",
+      "value": "64,6",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 28
   },
-  "coachSpeech": "Ny uge starter — uge 5 af 14. Build-uge. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: Fuld uge foran — i dag: Svøm 1500m let teknisk. Søvn på 7,8 timer er solid. Fokus: CTL 42,5 ligger lidt under kurven, så byg gradvist. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachSpeech": "Ny uge starter — uge 5 af 14. Build-uge. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: Fuld uge foran — i dag: Svøm 1500m let teknisk. Søvn på 7,7 timer er solid. Fokus: CTL 42,5 ligger lidt under kurven, så byg gradvist. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
   "coachHighlight": "TSB -4,0 er på et sundt niveau med plads til næste belastning",
   "weekFocus": "Tilbage i hverdagsrytmen med ugens første VO2-stimulus torsdag",
   "today": {
@@ -339,7 +339,7 @@
     56.0,
     60.0,
     74.0,
-    74.0
+    56.0
   ],
   "sleepHistory": [
     null,
@@ -431,7 +431,7 @@
     8.0,
     7.9,
     9.2,
-    9.2
+    7.2
   ],
   "tsbHistory": [
     null,
@@ -1341,7 +1341,13 @@
   "coachAssessmentWeightAtGen": 73.2,
   "coachAssessmentAfAtGen": 0,
   "commute_pairing_warnings": [],
-  "warnings": [],
+  "warnings": [
+    {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 56,0 ms — 13% under 7d-snit (64,6 ms). Kroppen er presset."
+    }
+  ],
   "tsb": -4.0,
   "swimHistory": [
     {
