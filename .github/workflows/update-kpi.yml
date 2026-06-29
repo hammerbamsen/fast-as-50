@@ -1,11 +1,9 @@
 name: Daglig dashboard-opdatering
 
 on:
-  schedule:
-    # Dag (05-22 UTC): hvert 10. minut
-    - cron: '0,10,20,30,40,50 5-22 * * *'
-    # Nat (22-05 UTC): hvert 30. minut
-    - cron: '0,30 22-23,0-4 * * *'
+  # CRON DEAKTIVERET 2026-06-29: launchd på Mac er primær opdater-kilde.
+  # Actions crashede pga. dict/fladt format-konflikt + Intervals blokerer Actions-IPs.
+  # Behold workflow_dispatch til manuel/nødkørsel.
   workflow_dispatch:
 
 permissions:
