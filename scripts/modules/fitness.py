@@ -94,9 +94,14 @@ def get_history_7d(existing=None):
             cache = [None] * (DAYS - len(cache)) + cache
         elif len(cache) > DAYS:
             cache = cache[-DAYS:]
+        # Normalisér eksisterende flade tal → dict (real=False: ukendt oprindelse)
+        for i in range(DAYS):
+            if cache[i] is not None and not isinstance(cache[i], dict):
+                cache[i] = {'date': dates[i], 'v': cache[i], 'real': False}
+        # Overskriv/tilføj dagens faktiske Intervals-målinger (real=True)
         for d_str, vals in daily.items():
             if d_str in date_to_idx and vals.get(field) is not None:
-                cache[date_to_idx[d_str]] = vals[field]
+                cache[date_to_idx[d_str]] = {'date': d_str, 'v': vals[field], 'real': True}
         return cache
 
     return {
