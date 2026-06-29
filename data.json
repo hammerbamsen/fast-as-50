@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-06-29 01:50",
-    "week": 4,
+    "updated": "2026-06-29 02:01",
+    "week": 5,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 69,
-    "daysToChristiansborg": 62,
-    "dayName": "Søndag",
-    "date": "28. jun"
+    "daysToMedoc": 68,
+    "daysToChristiansborg": 61,
+    "dayName": "Mandag",
+    "date": "29. jun"
   },
   "kpis": {
     "weight": {
       "value": "73,2",
       "unit": "kg",
-      "sub": "Mål <70 kg · snit 73,2 kg",
+      "sub": "Mål <70 kg · snit 73,1 kg",
       "color": "#E67E22"
     },
     "fat": {
@@ -23,52 +23,52 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "43,5",
+      "value": "42,5",
       "unit": "",
-      "sub": "Uge 4-mål 41 · Slutmål 60 (uge 14)",
+      "sub": "Uge 5-mål 48 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-10,1",
+      "value": "-4,0",
       "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
+      "sub": "Form · CTL−ATL, frisk >0",
+      "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,5",
+      "value": "7,8",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "24,8",
+      "value": "0,0",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "hrv": {
-      "value": "65,1",
+      "value": "65,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "367",
+      "value": "0",
       "unit": "TSS",
-      "sub": "367 af 239 planlagt TSS",
-      "color": "#27AE60"
+      "sub": "0 af 581 planlagt TSS",
+      "color": "#7A6A58"
     },
     "bikeKm": {
-      "value": "113,7",
+      "value": "0,0",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "swimM": {
-      "value": "3000",
+      "value": "0",
       "unit": "m",
       "sub": "Svøm denne uge · mål 2000m (Christiansborg)",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "afStreak": {
       "value": "28",
@@ -78,151 +78,84 @@
     }
   },
   "af": {
-    "weekDone": 7,
+    "weekDone": 0,
     "target": 5,
     "streak": 28
   },
-  "coachSpeech": "Søndag — afslut uge 4 stærkt. {HL} Dagens session er gennemført. Godt: TSB -10,1 er på et sundt niveau med plads til næste belastning. 154 procent af ugens TSS er i hus. Fokus: Vægt på 73,2 kg — hold protein højt og undgå lette kulhydrater om aftenen. Alle sessioner i hus. Juster de små ting, og resten følger. 📊 Store billede: CTL 43,5 er 2.5 point FORAN ugeplanen (planmål uge 4: 41).  \"Du bliver til det, du gør ofte.\"",
-  "coachHighlight": "CTL 43,5 følger ramp-kurven mod 60",
-  "weekFocus": "Lad kroppen absorbere arbejdet — restitution er træning",
+  "coachSpeech": "Ny uge starter — uge 5 af 14. Build-uge. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: Fuld uge foran — i dag: Svøm 1500m let teknisk. Søvn på 7,8 timer er solid. Fokus: CTL 42,5 ligger lidt under kurven, så byg gradvist. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachHighlight": "TSB -4,0 er på et sundt niveau med plads til næste belastning",
+  "weekFocus": "Tilbage i hverdagsrytmen med ugens første VO2-stimulus torsdag",
   "today": {
-    "discipline": "strength",
-    "title": "Styrke A Functional Strength 3 sæt",
+    "discipline": "swim",
+    "title": "Svøm 1500m let teknisk",
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": true
+    "completed": false
   },
   "week_sessions": [
     {
       "day": "Man",
       "disc": "swim",
-      "label": "Svøm let 30 min recovery",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 103,
-      "actual_tss": 27,
-      "actual_mins": 31,
-      "planned_mins": 30
+      "label": "Svøm 1500m let teknisk",
+      "done": false,
+      "today": true
     },
     {
-      "day": "Man",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true
+      "day": "Tir",
+      "disc": "strength",
+      "label": "Styrke let 2 sæt recovery",
+      "done": false
     },
     {
       "day": "Tir",
       "disc": "run",
-      "label": "Løb Z2 45 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 104,
-      "actual_tss": 44,
-      "actual_mins": 47,
-      "planned_mins": 45
-    },
-    {
-      "day": "Tir",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true
-    },
-    {
-      "day": "Tir",
-      "disc": "commute",
-      "label": "Gentofte Cykling",
-      "done": true,
-      "extra": true
+      "label": "Løb Z2 65 min",
+      "done": false
     },
     {
       "day": "Ons",
       "disc": "bike",
-      "label": "Cykel Z2 30 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 180,
-      "actual_tss": 21,
-      "actual_mins": 54,
-      "planned_mins": 30
-    },
-    {
-      "day": "Ons",
-      "disc": "strength",
-      "label": "Styrketræning",
-      "done": true,
-      "extra": true
-    },
-    {
-      "day": "Tor",
-      "disc": "bike",
-      "label": "Cykel Z2 45 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 109,
-      "actual_tss": 27,
-      "actual_mins": 49,
-      "planned_mins": 45
+      "label": "Cykel Z2 75 min",
+      "done": false
     },
     {
       "day": "Tor",
       "disc": "strength",
-      "label": "Styrketræning",
-      "done": true,
-      "extra": true
+      "label": "Styrke A Functional Strength 3 sæt",
+      "done": false
     },
     {
       "day": "Tor",
-      "disc": "bike",
-      "label": "Gentofte - Cykel Z2 45 min",
-      "done": true,
-      "extra": true
+      "disc": "run",
+      "label": "Løb VO2 5×3 min Z4",
+      "done": false
     },
     {
       "day": "Fre",
       "disc": "swim",
-      "label": "Svøm i pool",
-      "done": true,
-      "extra": true
-    },
-    {
-      "day": "Fre",
-      "disc": "bike",
-      "label": "Gentofte Cykling på vej",
-      "done": true,
-      "extra": true
+      "label": "Svøm 2000m teknisk",
+      "done": false
     },
     {
       "day": "Lør",
       "disc": "run",
-      "label": "Lang løb Z2 90 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 94,
-      "actual_tss": 103,
-      "actual_mins": 85,
-      "planned_mins": 90
+      "label": "Lang løb Z2 115 min",
+      "done": false
     },
     {
       "day": "Søn",
-      "disc": "strength",
-      "label": "Styrke A Functional Strength 3 sæt",
-      "done": true,
-      "today": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 8,
-      "actual_mins": 27,
-      "planned_mins": null
+      "disc": "bike",
+      "label": "Cykel Z2 til Hundested",
+      "done": false
     }
   ],
   "ctlCurve": [
     36.3,
     40.5,
     42.5,
-    43.5
+    43.5,
+    42.5
   ],
   "weightHistory": [
     null,
@@ -307,13 +240,13 @@
     null,
     null,
     null,
-    73.6,
     73.2,
     73.4,
     72.5,
     72.9,
     73.1,
     73.7,
+    73.2,
     73.2
   ],
   "hrvHistory": [
@@ -399,13 +332,13 @@
     null,
     null,
     null,
-    60.0,
     65.0,
     70.0,
     78.0,
     58.0,
     56.0,
     60.0,
+    74.0,
     74.0
   ],
   "sleepHistory": [
@@ -491,13 +424,13 @@
     null,
     null,
     null,
-    5.6,
     8.7,
     7.8,
     5.8,
     7.3,
     8.0,
     7.9,
+    9.2,
     9.2
   ],
   "tsbHistory": [
@@ -583,14 +516,14 @@
     null,
     null,
     null,
-    -12.4,
     -9.3,
     -9.7,
     -7.4,
     -11.1,
     -10.9,
     -16.0,
-    -10.1
+    -10.1,
+    -4.0
   ],
   "af_log": {
     "2026-06-01": 0,
@@ -794,124 +727,43 @@
           "day": "Man",
           "disc": "swim",
           "label": "Svøm let 30 min recovery",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 103,
-          "actual_tss": 27,
-          "actual_mins": 31,
-          "planned_mins": 30
-        },
-        {
-          "day": "Man",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 45 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 104,
-          "actual_tss": 44,
-          "actual_mins": 47,
-          "planned_mins": 45
-        },
-        {
-          "day": "Tir",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true
-        },
-        {
-          "day": "Tir",
-          "disc": "commute",
-          "label": "Gentofte Cykling",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 30 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 180,
-          "actual_tss": 21,
-          "actual_mins": 54,
-          "planned_mins": 30
-        },
-        {
-          "day": "Ons",
-          "disc": "strength",
-          "label": "Styrketræning",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 45 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 109,
-          "actual_tss": 27,
-          "actual_mins": 49,
-          "planned_mins": 45
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrketræning",
-          "done": true,
-          "extra": true
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "Gentofte - Cykel Z2 45 min",
-          "done": true,
-          "extra": true
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm i pool",
-          "done": true,
-          "extra": true
-        },
-        {
-          "day": "Fre",
-          "disc": "bike",
-          "label": "Gentofte Cykling på vej",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 90 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 94,
-          "actual_tss": 103,
-          "actual_mins": 85,
-          "planned_mins": 90
+          "done": false,
+          "today": false
         },
         {
           "day": "Søn",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": true,
-          "today": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 8,
-          "actual_mins": 27,
-          "planned_mins": null
+          "done": false,
+          "today": false
         }
       ],
       "blockType": "RECOVERY",
@@ -924,67 +776,59 @@
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
           "done": false,
-          "today": false
+          "today": true
         },
         {
           "day": "Tir",
           "disc": "strength",
           "label": "Styrke let 2 sæt recovery",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb Z2 65 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 75 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Tor",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Tor",
           "disc": "run",
           "label": "Løb VO2 5×3 min Z4",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Fre",
           "disc": "swim",
           "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Lør",
           "disc": "run",
           "label": "Lang løb Z2 115 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Søn",
           "disc": "bike",
           "label": "Cykel Z2 til Hundested",
-          "done": false,
-          "today": false
+          "done": false
         }
       ],
       "blockType": "BUILD",
-      "focus": "Build-uge 5 â 3 lÃ¸b Â· 2 cykel Â· 2 svÃ¸m Â· 2 styrke Â· Ã©n VO2-stimulus. Fokus: konsistens over intensitet."
+      "focus": "Tilbage i hverdagsrytmen med ugens første VO2-stimulus torsdag"
     },
     "6": {
       "sessions": [
@@ -1387,17 +1231,17 @@
       "done": 7,
       "total": 7,
       "label": "Uge 4"
+    },
+    {
+      "week": 5,
+      "done": 0,
+      "total": 1,
+      "label": "Uge 5"
     }
   ],
   "train_mins": {
-    "strength": 78.0,
-    "run": 132.0,
-    "bike": 168.0,
-    "swim": 63.0,
-    "commute": 126.0,
-    "walk": 50.0,
-    "planned": 300.0,
-    "actual_total": 617.0
+    "planned": 675.0,
+    "actual_total": 0
   },
   "fatHistory": [
     null,
@@ -1482,23 +1326,23 @@
     null,
     null,
     null,
-    21.7,
     21.8,
     22.4,
     23.1,
     22.7,
     22.7,
     21.6,
+    21.8,
     21.8
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 28 af 98 · Søndag · Uge 4</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du afsluttede ugen med styrke i dag og har leveret solidt arbejde hen over blokken. CTL på 43,5 med TSB på -10,1 er præcis der, en kapacitetsblok bør lande — kroppen er belastet, men ikke overbelastet. Zone-compliance havde et par ting at kigge på: tirsdagens løb kørte for roligt på pace (kun 14,7% i Z2-pace), og onsdagscyklen nåede knapt Z2 (2,6% i HR-Z2) — det lignede en pendlertur mere end struktureret arbejde. Lørdag var HR-driften et tegn på varmebelastning, ikke dårlig form — det er kontekst, ikke en fejl.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73,2 kg — du er på vej mod 72 kg, men ikke der endnu. Det kræver fortsat præcision i køkkenet hen over den kommende restituktionsuge, hvor træningsvolumen falder og fristelsen til at spise ligesom i en hård uge er reel. Brug den lavere belastning til at skabe et lille kaloriemæssigt underskud — ikke et stort et, kroppen skal stadig absorbere blokkens arbejde.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">7/7 dage denne uge — streaken er oppe på 28 dage, og det er en reel præstation. Der er ingen flere planlagte sessioner denne</p>",
-  "coachAssessmentTs": "22:01",
-  "coachAssessmentTsFull": "2026-06-28T22:01:12.388465",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 29 af 98 · Mandag · Uge 5</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>💪 Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 42.5 er 5.5 under ugemålet på 48 — det er et hul der kræver opmærksomhed, men TSB på -4.0 betyder du er frisk og klar. Dagens svøm på 1500m teknisk er dit første træk i ugen — hold den let og fokuser på teknik, ikke tempo. Torsdag er VO2-stimulussen der skal løfte ugens TSS, så sæt dig ikke under pres nu. Få svømmen gjort i dag og byg ugen op derfra.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>⚖️ Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtstatus i dag, så ingen kommentar her.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>🎯 AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">0 AF-dage ud af 1 dag gået i ugen — det er præcis som forventet på en mandag, ingen grund til bekymring endnu. Streaken er stadig intakt på 28 dage, og det er værd at holde i hævd. Ugen har god struktur med VO2 torsdag som ankerpunkt — men det kræver at du rammer Z2-arbejdet tirsdag og onsdag disciplineret uden at overdrive. Hold fokus og lad ugen bygge sig naturligt op.</p>",
+  "coachAssessmentTs": "00:01",
+  "coachAssessmentTsFull": "2026-06-29T00:01:14.315980",
   "coachAssessmentWeightAtGen": 73.2,
-  "coachAssessmentAfAtGen": 7,
+  "coachAssessmentAfAtGen": 0,
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -10.1,
+  "tsb": -4.0,
   "swimHistory": [
     {
       "week": 1,
@@ -1523,12 +1367,18 @@
       "date": "2026-06-22",
       "meters": 146041.0,
       "cumulative": 818595.0
+    },
+    {
+      "week": 5,
+      "date": "2026-06-29",
+      "meters": 0,
+      "cumulative": 818595.0
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i160868958",
-  "weekFocusWeek": 4,
-  "coachAssessmentPlanAtGen": "Styrke A Functional Strength 3 sæt",
+  "coachAssessmentLastActId": null,
+  "weekFocusWeek": 5,
+  "coachAssessmentPlanAtGen": "Svøm 1500m let teknisk",
   "weightGoal": 70,
   "bodyFatGoal": 20,
   "weightMovingAvg7": [
@@ -1616,11 +1466,11 @@
     null,
     null,
     null,
-    73.4,
-    73.18,
-    73.12,
-    73.12,
-    73.2,
+    73.03,
+    73.0,
+    73.02,
+    73.13,
+    73.14,
     73.14
   ],
   "fatMovingAvg7": [
@@ -1708,11 +1558,11 @@
     null,
     null,
     null,
-    21.97,
-    22.25,
-    22.34,
-    22.4,
-    22.29,
+    22.43,
+    22.5,
+    22.54,
+    22.38,
+    22.3,
     22.3
   ],
   "weightToGoal": 3.2,
