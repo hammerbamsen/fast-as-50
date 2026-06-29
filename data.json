@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-06-29 07:40",
+    "updated": "2026-06-29 07:50",
     "week": 5,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "42,5",
+      "value": "42,9",
       "unit": "",
       "sub": "Uge 5-mål 48 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-4,0",
+      "value": "-5,9",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -53,10 +53,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "18",
       "unit": "TSS",
-      "sub": "0 af 581 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "18 af 581 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0,0",
@@ -65,10 +65,10 @@
       "color": "#7A6A58"
     },
     "swimM": {
-      "value": "0",
+      "value": "1509",
       "unit": "m",
       "sub": "Svøm denne uge · mål 2000m (Christiansborg)",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "afStreak": {
       "value": "28",
@@ -82,8 +82,8 @@
     "target": 5,
     "streak": 28
   },
-  "coachSpeech": "Ny uge starter — uge 5 af 14. Build-uge. {HL} I dag: Svøm 1500m let teknisk (svøm). Godt: Fuld uge foran — i dag: Svøm 1500m let teknisk. Søvn på 7,7 timer er solid. Fokus: CTL 42,5 ligger lidt under kurven, så byg gradvist. Vægt på 73,3 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
-  "coachHighlight": "TSB -4,0 er på et sundt niveau med plads til næste belastning",
+  "coachSpeech": "Ny uge starter — uge 5 af 14. Build-uge. {HL} Dagens session er gennemført. Godt: Søvn på 7,7 timer er solid. Ny uge med 28 dages streak i ryggen. Hold den. Fokus: CTL 42,9 ligger lidt under kurven, så byg gradvist. 18 af 581 TSS er i hus — 8 sessioner tilbage, heriblandt Styrke let 2 sæt recovery, Løb Z2 65 min. Vægt på 73,3 kg — hold protein højt og undgå lette kulhydrater om aftenen. Hård uge — men det er sådan formen bygges. Hold ved.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachHighlight": "TSB -5,9 er på et sundt niveau med plads til næste belastning",
   "weekFocus": "Tilbage i hverdagsrytmen med ugens første VO2-stimulus torsdag",
   "today": {
     "discipline": "swim",
@@ -91,15 +91,21 @@
     "duration": "",
     "zone": "–",
     "desc": "",
-    "completed": false
+    "completed": true
   },
   "week_sessions": [
     {
       "day": "Man",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 18,
+      "actual_mins": 34,
+      "planned_mins": null,
+      "intervals_compliance": 75.1
     },
     {
       "day": "Tir",
@@ -155,7 +161,7 @@
     40.5,
     42.5,
     43.5,
-    42.5
+    42.9
   ],
   "weightHistory": [
     null,
@@ -775,8 +781,14 @@
           "day": "Man",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 18,
+          "actual_mins": 34,
+          "planned_mins": null,
+          "intervals_compliance": 75.1
         },
         {
           "day": "Tir",
@@ -1240,8 +1252,9 @@
     }
   ],
   "train_mins": {
+    "openwater": 34.0,
     "planned": 675.0,
-    "actual_total": 0
+    "actual_total": 34.0
   },
   "fatHistory": [
     null,
@@ -1335,9 +1348,9 @@
     21.8,
     21.9
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 29 af 98 · Mandag · Uge 5</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 42.5 mod et ugemål på 48 — der er et gap, og det kræver at ugen leveres fuldt ud. TSB på -4.0 er fin og betyder du har krudt til dagens tekniske svømsession. Svømmet er ikke forsøgt endnu, så sæt dig i vandet i dag — 1500m let teknisk, ingen undskyldninger.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.3 kg — du er 1.3 kg fra målet. Retningen er rigtig, men tempoet kræver at du holder styr på kalorieunderskuddet uden at underminere træningen. Denne uge med relativt moderat load er et godt sted at skrue lidt på kostdisciplinen uden at miste energi til torsdag VO2-session.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">0 AF-dage ud af 1 dag gået i ugen — mandag er stadig i gang, så der er stadig mulighed. Streaken på 28 dage er et aktiv du ikke skal smide væk på en mandag. Ugens vigtigste session er torsdag VO2 5×3 min Z4 — hold Z2-dagene ægte Z2, så du ankommer frisk til den.</p>",
-  "coachAssessmentTs": "04:31",
-  "coachAssessmentTsFull": "2026-06-29T04:31:03.575799",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 29 af 98 · Mandag · Uge 5</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>💪 Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Svømmet 1500m teknisk i dag — 98% af tiden i Z1 på HR, hvilket er præcis rigtigt for en let teknisk session. CTL ligger på 42.9 mod ugemålet på 48, så der er arbejde forude denne uge — torsdag VO2-løbet er det centrale løft. TSB på -5.9 er uproblematisk og giver rum til at bygge videre uden at gå på kompromis med recovery.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>⚖️ Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">73.3 kg — stadig 1.3 kg fra målet under 72. Ingen dramatik, men det kræver konsekvent kaloriekontrol i hverdagen, ikke kun på træningsdage. Med en uge der indeholder både VO2-løb torsdag og lang tur lørdag, vil appetitten stige — hold øje med, at du ikke kompenserer mere end belastningen berettiger.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>🎯 AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">0 AF-dage ud af 1 dag gået — helt neutral start, ingen alarm. Ugen har stadig al sin potentiale intakt. Prioritér at holde strukturen: Z2 skal være Z2, VO2 torsdag skal ramme hårdt og præcist, og lørdag er den vigtigste session volummæssigt. Lad de lette dage forblive lette.</p>",
+  "coachAssessmentTs": "05:50",
+  "coachAssessmentTsFull": "2026-06-29T05:50:53.767446",
   "coachAssessmentWeightAtGen": 73.3,
   "coachAssessmentAfAtGen": 0,
   "commute_pairing_warnings": [],
@@ -1348,7 +1361,7 @@
       "message": "HRV 56,0 ms — 13% under 7d-snit (64,6 ms). Kroppen er presset."
     }
   ],
-  "tsb": -4.0,
+  "tsb": -5.9,
   "swimHistory": [
     {
       "week": 1,
@@ -1382,7 +1395,7 @@
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i161122454",
   "weekFocusWeek": 5,
   "coachAssessmentPlanAtGen": "Svøm 1500m let teknisk",
   "weightGoal": 70,
