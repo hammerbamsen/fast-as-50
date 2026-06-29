@@ -228,6 +228,10 @@ Udtøm alle API- og tool-muligheder før terminal overvejes.
 Diagnosticer via GitHub API, Intervals API, M365 connector.
 Hvis terminal er absolut nødvendig: giv én samlet kommando.
 
+**UFRAVIGELIG sti-verifikation (skærpet 29/6):** ENHVER terminal-kommando skal være verificeret mod den FAKTISKE filsti og mappestruktur FØR den sendes. Bekræft stien via `find`/`ls` i sandbox eller via et tidligere tool-resultat. Send ALDRIG en kommando med en antaget sti — fx `python3 scripts/x.py` uden `cd` til repo-roden først. Den lokale Mac-sti for fast-as-50 er `/Users/hammerby/Developer/fast-as-50`. Antag aldrig hvor en fil ligger — verificér. En kommando der fejler pga. forkert sti er spild af Kennets tid og er uacceptabelt. Kan stien ikke verificeres: løs opgaven selv via API i stedet for at gætte.
+
+**Batch-operationer (29/6):** Ved flere push/slet i træk — verificér målet for HVER enkelt operation (rigtig sti? afhængigheder?) før udførelse. Grep ALTID efter referencer til en fil i andre `.yml`/`.py` før den slettes. "Test én operation, verificér, skalér" gælder også her.
+
 ### Regel 7: Fuldfør åbne opgaver
 
 Påbegyndte opgaver fuldføres inden svar på næste besked.
