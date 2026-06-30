@@ -322,7 +322,7 @@ def main():
                     10: 'Svømme-fokus øges mod Christiansborg Rundt.',
                     11: 'Peak TSS-uge.',
                     12: 'Svømme-specifik uge, nedtrapning starter.',
-                    13: 'Race week: 2000 m svøm 29/8. Taper ind, kort løb.',
+                    13: f'Race week: {SWIM_GOAL_M} m svøm 29/8. Taper ind, kort løb.',
                     14: 'Marathon Médoc 5/9.',
                 }
                 _week_note = _master_notes.get(week_num)
@@ -554,6 +554,7 @@ if __name__ == '__main__':
         print(err)
         # Skriv fejl til en fil der kan pushes
         raise
+
 
 
 
