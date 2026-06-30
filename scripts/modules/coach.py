@@ -446,7 +446,13 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"Zone-% viser faktisk tid i target-zone. Lav zone-% kan skyldes HR-drift (varme), "
         f"terræn, bevidst lavere intensitet, eller at intensiteten faktisk var for lav. "
         f"Løb Z2 med høj HR-Z1 (>95%) og lav pace-Z2 (<30%) i varme er acceptabelt — nævn det som kontekst. "
-        f"Cykel Z2 med >50% Z1 og ingen power-struktur tyder på commute, ikke struktureret Z2."
+        f"Cykel Z2 med >50% Z1 og ingen power-struktur tyder på commute, ikke struktureret Z2. "
+        f"TERMINOLOGI (altid): for LØB tales der KUN om pace-zone — brug aldrig 'watt' eller 'effekt' om løb. "
+        f"For CYKEL tales der KUN om watt-zone/effekt — brug aldrig 'pace' om cykling. Bland aldrig de to. "
+        f"RETNING: noten fra compliance-listen siger allerede eksplicit om en afvigelse var for HURTIGT/HÅRDT "
+        f"(over target-zonen) eller for ROLIGT/LET (under target-zonen) — brug den retning PRÆCIS som angivet, "
+        f"og gæt eller modsig den ALDRIG ud fra HR alene. Lav HR ved en for hurtig pace/watt betyder IKKE at "
+        f"intensiteten var for lav — det betyder typisk bare at HR ikke nåede at indhente en for høj pace/watt."
         if compliance_summary else ""
     )
     travel_line = (
