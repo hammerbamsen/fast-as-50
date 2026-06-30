@@ -329,22 +329,60 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
             floor = zone_target_floor(planned_zone, disc)
             zone_flag = 'ok' if zone_pct >= floor else 'under'
 
+        # Bestem altid (uanset ok/under) hvor evt. afvigende tid faktisk landede
+        # ift. target-zonen — hurtigere/højere zone vs. langsommere/lavere zone.
+        # Gæt ALDRIG retning ud fra HR alene: lav HR ved en for hurtig pace/watt
+        # betyder ikke lav intensitet, bare at HR ikke nåede at følge med.
+        direction = None
+        below_pct = above_pct = None
+        if disc == 'run' and metric == 'pace' and pzt and sum(pzt) > 0:
+            total_p = sum(pzt)
+            z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+            below_pct = round(sum(pzt[:z_idx]) / total_p * 100, 1) if z_idx > 0 else 0.0
+            above_pct = round(sum(pzt[z_idx + 1:]) / total_p * 100, 1)
+            if above_pct - below_pct >= 10:
+                direction = 'fast'
+            elif below_pct - above_pct >= 10:
+                direction = 'slow'
+        elif disc == 'bike' and metric and metric.startswith('power') and pzt and sum(pzt) > 0:
+            total_p = sum(pzt)
+            target_idxs = {1, 2} if planned_zone == 'Z2' else {int(planned_zone[1]) - 1}
+            below_pct = round(sum(v for i, v in enumerate(pzt) if i < min(target_idxs)) / total_p * 100, 1)
+            above_pct = round(sum(v for i, v in enumerate(pzt) if i > max(target_idxs)) / total_p * 100, 1)
+            if above_pct - below_pct >= 10:
+                direction = 'fast'
+            elif below_pct - above_pct >= 10:
+                direction = 'slow'
+
         # Coaching-note
         note = ''
         if zone_flag == 'no_data':
             note = 'Ingen zone-data'
+        elif disc == 'run' and metric == 'pace':
+            base = f'{zone_pct}% i {planned_zone} (pace-zone)'
+            tag = ' — on target' if zone_flag == 'ok' else f' — under {floor}%-målet'
+            if direction == 'fast':
+                note = (f'{base}{tag}, men {above_pct}% af tiden lå i en HURTIGERE pace-zone end target '
+                        f'(HR-Z1 = {hr_z1_pct}% — HR nåede ikke at følge med en for høj pace). Sænk tempoet.')
+            elif direction == 'slow':
+                note = (f'{base}{tag}, og {below_pct}% lå i en LANGSOMMERE pace-zone — '
+                        f'løbet for roligt, overvej at skrue op for tempoet')
+            else:
+                note = f'{base}{tag}'
+        elif disc == 'bike':
+            base = f'{zone_pct}% i {planned_zone} ({metric})'
+            tag = ' — on target' if zone_flag == 'ok' else f' — under {floor}%-målet (Z2+Z3 kombineret)'
+            if direction == 'fast':
+                note = (f'{base}{tag}, men {above_pct}% af tiden lå i en HØJERE watt-zone end target — '
+                        f'kørt for hårdt. Sænk wattene.')
+            elif direction == 'slow':
+                note = f'{base}{tag}, og {below_pct}% lå i en LAVERE watt-zone — skru wattene op'
+            else:
+                note = f'{base}{tag}'
         elif zone_flag == 'ok':
             note = f'{zone_pct}% i {planned_zone} ({metric}) — on target'
         else:
-            # Under-zone: skeln mellem tempo/HR-drift og reel for lav intensitet
-            if disc == 'run' and metric == 'pace' and hr_z1_pct and hr_z1_pct < 80:
-                note = f'{zone_pct}% i {planned_zone} (pace), men HR-Z2+ = {hr_z2plus_pct}% — HR-drift (varme?), pace faldt'
-            elif disc == 'run' and metric == 'pace' and hr_z1_pct and hr_z1_pct >= 80:
-                note = f'{zone_pct}% i {planned_zone} (pace) + {hr_z1_pct}% HR-Z1 — løbet for roligt, overvej at skrue op for tempoet'
-            elif disc == 'bike':
-                note = f'{zone_pct}% i {planned_zone} ({metric}) — under {floor}%-målet (Z2+Z3 kombineret), skru wattene op'
-            else:
-                note = f'{zone_pct}% i {planned_zone} ({metric}) — under {floor}%-målet'
+            note = f'{zone_pct}% i {planned_zone} ({metric}) — under {floor}%-målet'
 
         # Tilføj Intervals compliance hvis tilgængeligt
         if intervals_compliance and intervals_compliance > 0:
