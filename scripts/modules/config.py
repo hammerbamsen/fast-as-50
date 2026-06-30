@@ -12,6 +12,16 @@ AUTH          = ('API_KEY', API_KEY)
 # Autoritativ uge-for-uge CTL-plan (matcher CTL_PLAN i index.html)
 CTL_PLAN = [34, 36, 38, 41, 48, 52, 49, 54, 59, 64, 68, 64, 61, 58]
 
+# Faste programmål -- én kilde, brugt i både dashboard-KPI'er og coach-tekst.
+# CTL-start/slutmål udledes ALTID af CTL_PLAN, så de aldrig kan komme ud af sync med planen.
+CTL_START = CTL_PLAN[0]
+CTL_GOAL = CTL_PLAN[-1]
+AF_GOAL = 5
+SLEEP_GOAL_HOURS = 7
+SWIM_GOAL_M = 2000
+RUN_KM_GOAL = 40
+RUN_KM_GOAL_WEEK = 10
+
 DK_DAYS    = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"]
 DAY_SHORT  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
 DK_MONTHS  = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"]
