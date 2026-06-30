@@ -22,6 +22,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from modules.config   import (API_KEY, ATHLETE_ID, GH_TOKEN, ANTHROPIC_KEY,
                                REPO, BASE, AUTH, CTL_PLAN, BLOCK_TYPES,
                                DK_DAYS, DAY_SHORT, DK_MONTHS,
+                               CTL_START, CTL_GOAL, AF_GOAL, SLEEP_GOAL_HOURS,
+                               SWIM_GOAL_M, RUN_KM_GOAL, RUN_KM_GOAL_WEEK,
                                api_get, ctl_plan_for_week, fix_enc, fmt, color_for)
 from modules.fitness  import get_fitness, get_wellness_7d, get_history_7d, get_ctl_curve
 from modules.af       import (get_af_this_week, get_af_history, get_full_af_log,
@@ -175,19 +177,19 @@ def main():
 
     tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
     data['kpis'] = {
-        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f'Mål <70 kg · snit {fmt(weight_avg)} kg' if weight_avg else 'Mål <70 kg', 'color': color_for(weight, 70, lower=True)  if weight     else '#7A6A58'},
-        'fat':        {'value': fmt(fat),              'unit': '%',  'sub': 'Mål <20%',                       'color': color_for(fat, 20, lower=True)     if fat        else '#7A6A58'},
-        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f'Uge {week_num}-mål {ctl_plan_for_week(week_num)} · Slutmål 60 (uge 14)', 'color': color_for(ctl, 60, lower=False)    if ctl        else '#7A6A58'},
+        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f"Mål <{data['weightGoal']} kg · snit {fmt(weight_avg)} kg" if weight_avg else f"Mål <{data['weightGoal']} kg", 'color': color_for(weight, data['weightGoal'], lower=True)  if weight     else '#7A6A58'},
+        'fat':        {'value': fmt(fat),              'unit': '%',  'sub': f"Mål <{data['bodyFatGoal']}%",                       'color': color_for(fat, data['bodyFatGoal'], lower=True)     if fat        else '#7A6A58'},
+        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f'Uge {week_num}-mål {ctl_plan_for_week(week_num)} · Slutmål {CTL_GOAL} (uge {len(CTL_PLAN)})', 'color': color_for(ctl, CTL_GOAL, lower=False)    if ctl        else '#7A6A58'},
         'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': ('Hård blok · CTL−ATL, frisk >0' if tsb and tsb < -10 else 'Form · CTL−ATL, frisk >0'), 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
-        'sleep':      {'value': fmt(sleep, 1),         'unit': 't',  'sub': 'Snit 7,5t · mål 7t',            'color': '#2874A6'},
-        'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': 'Mål 40+ km uge 10',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
+        'sleep':      {'value': fmt(sleep, 1),         'unit': 't',  'sub': f'Snit 7,5t · mål {SLEEP_GOAL_HOURS}t',            'color': '#2874A6'},
+        'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': f'Mål {RUN_KM_GOAL}+ km uge {RUN_KM_GOAL_WEEK}',             'color': color_for(km_week, 20, lower=False) if km_week   else '#7A6A58'},
         'hrv':        {'value': fmt(hrv, 1),           'unit': 'ms', 'sub': 'Snit 7d',                       'color': '#7A6A58'},
         'tssComp':    {'value': fmt(tss_act, 0) if tss_act else '0', 'unit': 'TSS',
                        'sub': f'{int(tss_act or 0)} af {int(planned)} planlagt TSS',
                        'color': tss_color},
         'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
-        'swimM':      {'value': fmt(swim_m, 0) if swim_m else '0',    'unit': 'm',  'sub': 'Svøm denne uge · mål 2000m (Christiansborg)',  'color': color_for(swim_m, 2000, lower=False) if swim_m else '#7A6A58'},
-        'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': 'Dage i træk · mål 5/uge',           'color': '#59182A'},
+        'swimM':      {'value': fmt(swim_m, 0) if swim_m else '0',    'unit': 'm',  'sub': f'Svøm denne uge · mål {SWIM_GOAL_M}m (Christiansborg)',  'color': color_for(swim_m, SWIM_GOAL_M, lower=False) if swim_m else '#7A6A58'},
+        'afStreak':   {'value': str(af_streak),        'unit': '',   'sub': f'Dage i træk · mål {AF_GOAL}/uge',           'color': '#59182A'},
     }
 
     # --- TSB / HRV advarsler (sendes til dashboard for visning) ---
