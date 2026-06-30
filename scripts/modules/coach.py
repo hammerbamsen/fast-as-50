@@ -1,7 +1,9 @@
 """Coach-tekst, AI-assessment og QA-logik."""
 import os, re, json, urllib.request as _urllib_req
 from datetime import date, timedelta
-from .config import BASE, AUTH, api_get, fix_enc, fmt, ctl_plan_for_week, ANTHROPIC_KEY, DK_DAYS, DK_MONTHS, DAY_SHORT
+from .config import (BASE, AUTH, api_get, fix_enc, fmt, ctl_plan_for_week, ANTHROPIC_KEY,
+                      DK_DAYS, DK_MONTHS, DAY_SHORT,
+                      CTL_START, CTL_GOAL, AF_GOAL, SLEEP_GOAL_HOURS, SWIM_GOAL_M)
 
 QUOTES_TRAINING = [
     "\"Det er ikke om at have tid. Det er om at tage den.\"",
@@ -270,7 +272,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     if ctl is not None:
         if ctl >= expected_ctl - 1:
-            goods.append(f"CTL {fmt(ctl,1)} følger ramp-kurven mod 60.")
+            goods.append(f"CTL {fmt(ctl,1)} følger ramp-kurven mod {CTL_GOAL}.")
         else:
             focus.append(f"CTL {fmt(ctl,1)} ligger lidt under kurven, så byg gradvist.")
 
@@ -320,17 +322,17 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
             focus.append(f"Vægt på {fmt(weight)} kg — hold protein højt og undgå lette kulhydrater om aftenen.")
 
     if sleep is not None:
-        if sleep >= 7:
+        if sleep >= SLEEP_GOAL_HOURS:
             goods.append(f"Søvn på {fmt(sleep,1)} timer er solid.")
         else:
-            focus.append(f"Søvn på {fmt(sleep,1)} timer er under 7-timers målet — prioriter den.")
+            focus.append(f"Søvn på {fmt(sleep,1)} timer er under {SLEEP_GOAL_HOURS}-timers målet — prioriter den.")
 
     # AF-vurdering: relativ til gennemførte dage (weekday 0=man, 1=tirs, osv.)
     # days_completed kommer fra main() og tæller faktisk registrerede AF-dage
     # (inkl. i dag hvis allerede logget) -- IKKE blot kalenderens ugedag.
     if days_completed is None:
         days_completed = weekday  # fallback hvis ikke angivet
-    if af_this_week >= 5:
+    if af_this_week >= AF_GOAL:
         goods.append(f"{af_this_week}/7 AF-dage — ugens mål er ramt.")
     elif weekday == 0 and af_this_week == 0:
         # Mandag morgen: ny uge startet — ingen AF-dage endnu er normalt
@@ -338,7 +340,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     elif days_completed > 0 and af_this_week >= days_completed:
         # AF-dage svarer til eller overstiger antallet af afsluttede dage — på rette spor
         remaining_days = 6 - weekday  # dage tilbage inkl. i dag
-        needed = max(0, 5 - af_this_week)
+        needed = max(0, AF_GOAL - af_this_week)
         if needed == 0:
             goods.append(f"{af_this_week} AF-dage hid — mål nået allerede.")
         elif needed <= remaining_days:
@@ -349,7 +351,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         # Bag kurven relativt til ugedagen
         days_completed_display = max(days_completed, 1)
         remaining_days = 6 - weekday
-        needed = max(0, 5 - af_this_week)
+        needed = max(0, AF_GOAL - af_this_week)
         focus.append(f"{af_this_week} AF-dage i {days_completed_display} afsluttede dage — {needed} mangler i {remaining_days} dage tilbage.")
 
     if goods:
@@ -422,7 +424,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         days_completed = weekday  # fallback hvis ikke angivet -- afsluttede dage FØR i dag
     af_note = (
         f"AF denne uge: {af_this_week} AF-dage ud af {days_completed} kalenderdage gået (mandag t.o.m. i dag) "
-        f"(mål: 5 AF-dage/uge), streak: {af_streak} dage. "
+        f"(mål: {AF_GOAL} AF-dage/uge), streak: {af_streak} dage. "
         f"VIGTIGT: I dag ({day_name}) er STADIG I GANG — skriv aldrig at 'dag {days_completed} er afsluttet' "
         f"eller at det er 'dag X af Y' som om ugen er overstået. "
         f"Vurder AF-status RELATIVT til hvor mange dage der er gået i ugen — ikke absolut ift. 7. "
@@ -465,9 +467,9 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
 
     prompt = (
         f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
-        f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
+        f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt ({SWIM_GOAL_M}m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
         f"Kennet er i uge {week_num} af 14, dag {weekday + 1} af 7 ({day_name}). Filosofi: capacity-mode, ikke performance-mode. "
-        f"Mål: bygge CTL fra 34 til 60 (uge 14), tabe sig til under {weight_goal} kg, 5 AF-dage/uge.\n\n"
+        f"Mål: bygge CTL fra {CTL_START} til {CTL_GOAL} (uge 14), tabe sig til under {weight_goal} kg, {AF_GOAL} AF-dage/uge.\n\n"
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
         f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
