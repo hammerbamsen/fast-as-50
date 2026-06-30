@@ -353,17 +353,22 @@ def main():
                 )
         data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
 
-    # --- Today session ---
-    today_session = next((s for s in data['week_sessions'] if s.get('today')), None)
-    if today_session:
-        data['today'] = {
-            'discipline': today_session.get('disc', 'free'),
-            'title':      today_session.get('label', ''),
-            'duration':   today_session.get('duration', ''),
-            'zone':       today_session.get('zone', '–'),
-            'desc':       today_session.get('desc', ''),
-            'completed':  today_session.get('done', False),
-        }
+    # --- Today session(s) ---
+    # NB: der kan være flere sessioner samme dag (fx styrke + løb) — tag dem ALLE, ikke kun den første.
+    today_sessions_all = [s for s in data['week_sessions'] if s.get('today')]
+    today_session = today_sessions_all[0] if today_sessions_all else None  # bruges til coach-speech mv. (primær session)
+    if today_sessions_all:
+        data['today'] = [
+            {
+                'discipline': s.get('disc', 'free'),
+                'title':      s.get('label', ''),
+                'duration':   s.get('duration', ''),
+                'zone':       s.get('zone', '–'),
+                'desc':       s.get('desc', ''),
+                'completed':  s.get('done', False),
+            }
+            for s in today_sessions_all
+        ]
 
     # --- Coach speech (genereres dagligt) ---
     block_type = data.get('blockType', 'BUILD')
@@ -554,6 +559,7 @@ if __name__ == '__main__':
         print(err)
         # Skriv fejl til en fil der kan pushes
         raise
+
 
 
 
