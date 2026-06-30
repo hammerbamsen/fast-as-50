@@ -333,9 +333,12 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
         # ift. target-zonen — hurtigere/højere zone vs. langsommere/lavere zone.
         # Gæt ALDRIG retning ud fra HR alene: lav HR ved en for hurtig pace/watt
         # betyder ikke lav intensitet, bare at HR ikke nåede at følge med.
+        # Z4/Z5 (interval-træning) undtages: recovery mellem intervals giver
+        # naturligt meget tid i lavere zoner — det er IKKE "for roligt".
         direction = None
         below_pct = above_pct = None
-        if disc == 'run' and metric == 'pace' and pzt and sum(pzt) > 0:
+        is_interval_zone = planned_zone in ('Z4', 'Z5')
+        if not is_interval_zone and disc == 'run' and metric == 'pace' and pzt and sum(pzt) > 0:
             total_p = sum(pzt)
             z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
             below_pct = round(sum(pzt[:z_idx]) / total_p * 100, 1) if z_idx > 0 else 0.0
@@ -344,7 +347,7 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
                 direction = 'fast'
             elif below_pct - above_pct >= 10:
                 direction = 'slow'
-        elif disc == 'bike' and metric and metric.startswith('power') and pzt and sum(pzt) > 0:
+        elif not is_interval_zone and disc == 'bike' and metric and metric.startswith('power') and pzt and sum(pzt) > 0:
             total_p = sum(pzt)
             target_idxs = {1, 2} if planned_zone == 'Z2' else {int(planned_zone[1]) - 1}
             below_pct = round(sum(v for i, v in enumerate(pzt) if i < min(target_idxs)) / total_p * 100, 1)
