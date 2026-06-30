@@ -392,7 +392,7 @@ let D = {
   today:{ discipline:"swim", title:"Svøm 2000m + cykel", duration:"90 min", zone:"Z1-Z2", desc:"Aktiv restitution. Luk uge 1 af.", completed:false },
 };
 
-let sessionDone = false;
+let sessionDoneList = [];
 let sparklineSeq = 0;
 const SPARKLINE_DATA = {};
 
@@ -573,19 +573,33 @@ function periodTimeline() {
 }
 
 function renderToday() {
-  // Reset completed-flag hvis det er en ny dag
+  // Reset completed-flags hvis det er en ny dag
   const todayStr = new Date().toISOString().split("T")[0];
   const lastDone = localStorage.getItem("session_done_date");
   if (lastDone !== todayStr) {
-    sessionDone = false;
+    sessionDoneList = [];
     localStorage.removeItem("session_done_" + lastDone);
   }
-  const s=D.today||{discipline:"free",title:"Ingen session planlagt",duration:"",zone:"–",desc:"",completed:false};
-  // Brug sessionDone (localStorage) ELLER s.completed fra data.json (auto-markering)
-  if (s.completed && !sessionDone) { sessionDone = true; localStorage.setItem("session_done_date", todayStr); }
-  const isCompleted = sessionDone;
+  // Normaliser D.today til altid at være et array (bagudkompatibelt med gammelt flat format)
+  let todaySessions = D.today;
+  if (!todaySessions) todaySessions = [];
+  else if (!Array.isArray(todaySessions)) todaySessions = [todaySessions];
+  if (todaySessions.length === 0) {
+    todaySessions = [{discipline:"free",title:"Ingen session planlagt",duration:"",zone:"–",desc:"",completed:false}];
+  }
+  // Init/sync sessionDoneList med antal sessioner i dag
+  if (sessionDoneList.length !== todaySessions.length) {
+    sessionDoneList = todaySessions.map(s => !!s.completed);
+  }
+  todaySessions.forEach((s, i) => {
+    if (s.completed && !sessionDoneList[i]) sessionDoneList[i] = true;
+  });
+  if (sessionDoneList.some(Boolean)) localStorage.setItem("session_done_date", todayStr);
   const parts=D.coachSpeech.split("{HL}");
   return `
+  ${todaySessions.map((s, i) => {
+    const isCompleted = sessionDoneList[i];
+    return `
   <div class="card card-wine session-hero">
     <div class="session-top">
       <div>
@@ -599,11 +613,12 @@ function renderToday() {
         </div>
         <div class="session-desc">${s.desc}</div>
       </div>
-      <button class="complete-btn ${isCompleted?"done":""}" onclick="toggleDone(this)">
-        ${icon("check",15,sessionDone?"var(--wine)":"var(--gold)")} ${sessionDone?"Gennemført":"Markér gennemført"}
+      <button class="complete-btn ${isCompleted?"done":""}" onclick="toggleDone(this, ${i})">
+        ${icon("check",15,isCompleted?"var(--wine)":"var(--gold)")} ${isCompleted?"Gennemført":"Markér gennemført"}
       </button>
     </div>
-  </div>
+  </div>`;
+  }).join("")}
 
   <div class="card">
     <div class="label">Uge ${D.week} — overblik</div>
@@ -1371,13 +1386,14 @@ function navigate(pageId) {
   renderNav();
 }
 
-function toggleDone(btn) {
-  sessionDone = !sessionDone;
+function toggleDone(btn, idx) {
+  sessionDoneList[idx] = !sessionDoneList[idx];
   const todayStr2 = new Date().toISOString().split("T")[0];
-  localStorage.setItem("session_done_" + todayStr2, sessionDone ? "1" : "0");
+  localStorage.setItem("session_done_" + todayStr2, JSON.stringify(sessionDoneList));
   localStorage.setItem("session_done_date", todayStr2);
-  btn.className = `complete-btn ${sessionDone?"done":""}`;
-  btn.innerHTML = `${icon("check",15,sessionDone?"var(--wine)":"var(--gold)")} ${sessionDone?"Gennemført":"Markér gennemført"}`;
+  const isDone = sessionDoneList[idx];
+  btn.className = `complete-btn ${isDone?"done":""}`;
+  btn.innerHTML = `${icon("check",15,isDone?"var(--wine)":"var(--gold)")} ${isDone?"Gennemført":"Markér gennemført"}`;
 }
 
 function updateMeta() {
@@ -1401,8 +1417,16 @@ async function init() {
   // Gendan completed-state fra localStorage
   const todayStr = new Date().toISOString().split("T")[0];
   const lastDoneInit = localStorage.getItem("session_done_date");
-  if (lastDoneInit === todayStr && localStorage.getItem("session_done_" + todayStr) === "1") {
-    sessionDone = true;
+  if (lastDoneInit === todayStr) {
+    const raw = localStorage.getItem("session_done_" + todayStr);
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        sessionDoneList = Array.isArray(parsed) ? parsed : (parsed === "1" || parsed === 1 ? [true] : []);
+      } catch(e) {
+        sessionDoneList = raw === "1" ? [true] : [];
+      }
+    }
   }
   renderNav();
   updateMeta();
@@ -1466,8 +1490,9 @@ async function init() {
       if (remote.swimHistory)    D.swimHistory = remote.swimHistory || [];
       if (remote.train_mins)     D.train_mins     = remote.train_mins;
       if (remote.today) {
-        // Håndter både flat og nested format
-        if (remote.today.title) D.today = remote.today;
+        // Håndter array (nyt format, flere sessioner pr. dag), flat, og nested format
+        if (Array.isArray(remote.today)) D.today = remote.today;
+        else if (remote.today.title) D.today = remote.today;
         else if (remote.today.session) D.today = remote.today.session;
       }
 
@@ -1627,6 +1652,7 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
 
 
 
