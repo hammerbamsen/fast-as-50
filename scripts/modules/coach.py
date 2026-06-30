@@ -127,7 +127,7 @@ def build_trajectory_note(week_num, ctl, weight, weight_history):
     return " ".join(parts) if parts else None
 
 
-def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_act, planned):
+def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_act, planned, weight_goal=72):
     """QA-tjek: returner liste af fejl hvis coach-teksten modsiger de faktiske data.
     Bruges til at stoppe en forkert tekst fra at gå live.
 
@@ -181,8 +181,8 @@ def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_a
 
     # Regel 5: Vægt-referencer skal matche
     if weight is not None:
-        if weight <= 72 and 'kalder på fokus på protein' in speech_lower:
-            errors.append(f"QA FEJL: Vægt={weight} er under mål (72) men teksten kalder på fokus.")
+        if weight <= weight_goal and 'kalder på fokus på protein' in speech_lower:
+            errors.append(f"QA FEJL: Vægt={weight} er under mål ({weight_goal}) men teksten kalder på fokus.")
 
     if errors:
         print("  ⚠️  Coach QA fejl:")
@@ -197,7 +197,7 @@ def qa_coach_speech(speech, week_sessions, ctl, tsb, weight, af_this_week, tss_a
 def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session, block_type, week_focus,
                            ctl=None, tsb=None, weight=None, sleep=None, compliance=None,
                            tss_act=None, planned=None, remaining_sessions=None, week_sessions=None,
-                           travel_note=None, trajectory_note=None, days_completed=None):
+                           travel_note=None, trajectory_note=None, days_completed=None, weight_goal=72):
     """Genererer daglig coach-tekst: dagsintro + session + Friel/Martin-vurdering (godt/fokus).
 
     Coaching-princip: hold Kennet på sporet mod Christiansborg (29/8) og Médoc (5/9).
@@ -307,7 +307,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     weight_aside = None
     if weight is not None:
-        if weight <= 72:
+        if weight <= weight_goal:
             goods.append(f"Vægt på {fmt(weight)} kg er i mål.")
         elif travel_note:
             # Holdes UDENFOR goods[]/focus[] med vilje — begge lister trunkeres til
@@ -406,7 +406,7 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
-                             trajectory_note=None, days_completed=None, compliance_summary=None):
+                             trajectory_note=None, days_completed=None, compliance_summary=None, weight_goal=72):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     if not ANTHROPIC_KEY:
         print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
@@ -467,7 +467,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
         f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt (2000m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
         f"Kennet er i uge {week_num} af 14, dag {weekday + 1} af 7 ({day_name}). Filosofi: capacity-mode, ikke performance-mode. "
-        f"Mål: bygge CTL fra 34 til 60 (uge 14), tabe sig til under 72 kg, 5 AF-dage/uge.\n\n"
+        f"Mål: bygge CTL fra 34 til 60 (uge 14), tabe sig til under {weight_goal} kg, 5 AF-dage/uge.\n\n"
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
         f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
