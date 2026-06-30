@@ -372,14 +372,16 @@ def main():
         week_num, weekday, af_streak, af_this_week, today_session, block_type, week_focus,
         ctl=ctl, tsb=tsb, weight=weight if weight_is_today else None, sleep=sleep, compliance=compliance,
         tss_act=tss_act, planned=planned, week_sessions=data['week_sessions'],
-        travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed
+        travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed,
+        weight_goal=data['weightGoal']
     )
 
     # --- QA: valider coach-tekst mod faktiske data inden push ---
     qa_errors = qa_coach_speech(
         coach_speech, data['week_sessions'],
         ctl=ctl, tsb=tsb, weight=weight,
-        af_this_week=af_this_week, tss_act=tss_act, planned=planned
+        af_this_week=af_this_week, tss_act=tss_act, planned=planned,
+        weight_goal=data['weightGoal']
     )
     if qa_errors:
         # Behold forrige gyldige tekst -- skriv fejl til log men push ikke forkert tekst
@@ -444,7 +446,8 @@ def main():
             data['week_sessions'], week_focus,
             today_session, tss_act, planned,
             travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed,
-            compliance_summary=compliance_summary
+            compliance_summary=compliance_summary,
+            weight_goal=data['weightGoal']
         )
         ai_text = fix_enc(ai_text)  # AI-svar kan komme tilbage Latin-1-mis-decoded -- ret ved kilden
     if ai_text:
