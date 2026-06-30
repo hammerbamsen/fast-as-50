@@ -118,6 +118,10 @@ def main():
     data['meta']['daysToChristiansborg'] = (date(2026, 8, 29) - today).days
     data['meta']['week']                 = week_num
 
+    # --- Mål (sættes FØR KPI-blokken bygges, da den læser disse felter) ---
+    data['weightGoal']   = 70
+    data['bodyFatGoal']  = 20
+
     # --- KPIs ---
     weight     = wellness.get('weight')   if wellness else None
 
@@ -281,13 +285,11 @@ def main():
     data['weightMovingAvg7'] = _moving_avg_7(_wh)
     data['fatMovingAvg7']    = _moving_avg_7(_fh)
 
-    # --- Mål og afstand til mål ---
-    data['weightGoal']   = 70
-    data['bodyFatGoal']  = 20
+    # --- Afstand til mål ---
     _latest_w = next((v['v'] if isinstance(v, dict) else v for v in reversed(_wh) if v is not None and (v.get('v') if isinstance(v, dict) else v) is not None), None)
     _latest_f = next((v['v'] if isinstance(v, dict) else v for v in reversed(_fh) if v is not None and (v.get('v') if isinstance(v, dict) else v) is not None), None)
-    data['weightToGoal']   = round(_latest_w - 70, 2) if _latest_w else None
-    data['bodyFatToGoal']  = round(_latest_f - 20, 1) if _latest_f else None
+    data['weightToGoal']   = round(_latest_w - data['weightGoal'], 2) if _latest_w else None
+    data['bodyFatToGoal']  = round(_latest_f - data['bodyFatGoal'], 1) if _latest_f else None
     if ctl_curve:
         data['ctlCurve'] = ctl_curve
         print(f"  CTL-kurve: {len(ctl_curve)} ugepunkter, seneste {ctl_curve[-1]}")
