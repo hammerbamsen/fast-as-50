@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-01 12:20",
+    "updated": "2026-07-01 12:31",
     "week": 5,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -59,10 +59,10 @@
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "45,1",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#E67E22"
     },
     "swimM": {
       "value": "1509",
@@ -82,21 +82,13 @@
     "target": 5,
     "streak": 30
   },
-  "coachSpeech": "Onsdag — uge 5 af 14. {HL} I dag: Cykel Z2 75 min (cykel). Godt: Søvn på 7,7 timer er solid. Fokus: CTL 44,6 ligger lidt under kurven, så byg gradvist. 180 af 581 TSS er i hus — 6 sessioner tilbage, heriblandt Cykel Z2 75 min, Styrke A Functional Strength 3 sæt. Vægt på 72,8 kg — hold protein højt og undgå lette kulhydrater om aftenen. Hård uge — men det er sådan formen bygges. Hold ved.  \"Keep moving forward.\"",
+  "coachSpeech": "Onsdag — uge 5 af 14. {HL} Dagens session er gennemført. Godt: Søvn på 7,7 timer er solid. Fokus: CTL 44,6 ligger lidt under kurven, så byg gradvist. 180 af 581 TSS er i hus — 5 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Løb VO2 5×3 min Z4. Vægt på 72,8 kg — hold protein højt og undgå lette kulhydrater om aftenen. Hård uge — men det er sådan formen bygges. Hold ved.  \"Keep moving forward.\"",
   "coachHighlight": "TSB -12,2 er på et sundt niveau med plads til næste belastning",
   "weekFocus": "Build-uge 5 — 3 løb · 2 cykel · 2 svøm · 2 styrke · én VO2-stimulus. Fokus: konsistens over intensitet.",
   "today": [
     {
       "discipline": "bike",
       "title": "Cykel Z2 75 min",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": false
-    },
-    {
-      "discipline": "free",
-      "title": "Gentofte - Cykel Z2 75 min",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -151,16 +143,14 @@
       "day": "Ons",
       "disc": "bike",
       "label": "Cykel Z2 75 min",
-      "done": false,
-      "today": true
-    },
-    {
-      "day": "Ons",
-      "disc": "free",
-      "label": "Gentofte - Cykel Z2 75 min",
       "done": true,
-      "extra": true,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 143,
+      "actual_tss": 77,
+      "actual_mins": 107,
+      "planned_mins": 75,
+      "intervals_compliance": 143.3
     },
     {
       "day": "Tor",
@@ -1311,16 +1301,14 @@
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 75 min",
-          "done": false,
-          "today": true
-        },
-        {
-          "day": "Ons",
-          "disc": "free",
-          "label": "Gentofte - Cykel Z2 75 min",
           "done": true,
-          "extra": true,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 143,
+          "actual_tss": 77,
+          "actual_mins": 107,
+          "planned_mins": 75,
+          "intervals_compliance": 143.3
         },
         {
           "day": "Tor",
@@ -1766,7 +1754,7 @@
     }
   ],
   "train_mins": {
-    "free": 107.0,
+    "bike": 107.0,
     "walk": 22.0,
     "run": 62.0,
     "strength": 20.0,
