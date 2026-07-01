@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-07-02 01:40",
+    "updated": "2026-07-02 01:41",
     "week": 5,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 66,
-    "daysToChristiansborg": 59,
-    "dayName": "Onsdag",
-    "date": "1. jul"
+    "daysToMedoc": 65,
+    "daysToChristiansborg": 58,
+    "dayName": "Torsdag",
+    "date": "2. jul"
   },
   "kpis": {
     "weight": {
       "value": "72,8",
       "unit": "kg",
-      "sub": "Mål <70 kg · snit 73,0 kg",
+      "sub": "Mål <70 kg · snit 73,1 kg",
       "color": "#E67E22"
     },
     "fat": {
@@ -23,19 +23,19 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "44,8",
+      "value": "43,8",
       "unit": "",
-      "sub": "Uge 5-mål 48 · Slutmål 58 (uge 14)",
+      "sub": "Uge 5-mål 48 · Slutmål 60 (uge 14)",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-13,3",
+      "value": "-6,6",
       "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
+      "sub": "Form · CTL−ATL, frisk >0",
+      "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,7",
+      "value": "8,0",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "64,8",
+      "value": "62,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -71,7 +71,7 @@
       "color": "#C0392B"
     },
     "afStreak": {
-      "value": "30",
+      "value": "0",
       "unit": "",
       "sub": "Dage i træk · mål 5/uge",
       "color": "#59182A"
@@ -80,29 +80,19 @@
   "af": {
     "weekDone": 2,
     "target": 5,
-    "streak": 30
+    "streak": 0
   },
-  "coachSpeech": "Onsdag — uge 5 af 14. {HL} Dagens session er gennemført. Godt: Søvn på 7,7 timer er solid. Fokus: CTL 44,8 ligger lidt under kurven, så byg gradvist. 190 af 581 TSS er i hus — 5 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Løb VO2 5×3 min Z4. Vægt på 72,8 kg — hold protein højt og undgå lette kulhydrater om aftenen. Hård uge — men det er sådan formen bygges. Hold ved.  \"Keep moving forward.\"",
-  "coachHighlight": "TSB -13,3 er på et sundt niveau med plads til næste belastning",
+  "coachSpeech": "Torsdag — uge 5 af 14. {HL} I dag: Styrke A Functional Strength 3 sæt (styrke). Godt: Søvn på 8,0 timer er solid. Fokus: CTL 43,8 ligger lidt under kurven, så byg gradvist. 190 af 581 TSS er i hus — 5 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Løb VO2 5×3 min Z4. 2 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachHighlight": "TSB -6,6 er på et sundt niveau med plads til næste belastning",
   "weekFocus": "Build-uge 5 — 3 løb · 2 cykel · 2 svøm · 2 styrke · én VO2-stimulus. Fokus: konsistens over intensitet.",
-  "today": [
-    {
-      "discipline": "bike",
-      "title": "Cykel Z2 75 min",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
-    },
-    {
-      "discipline": "walk",
-      "title": "Gentofte Gang",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
-    }
-  ],
+  "today": {
+    "discipline": "strength",
+    "title": "Styrke A Functional Strength 3 sæt",
+    "duration": "",
+    "zone": "–",
+    "desc": "",
+    "completed": false
+  },
   "week_sessions": [
     {
       "day": "Man",
@@ -152,7 +142,6 @@
       "disc": "bike",
       "label": "Cykel Z2 75 min",
       "done": true,
-      "today": true,
       "completion": "done",
       "completion_pct": 143,
       "actual_tss": 77,
@@ -165,20 +154,21 @@
       "disc": "walk",
       "label": "Gentofte Gang",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Tor",
       "disc": "strength",
       "label": "Styrke A Functional Strength 3 sæt",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Tor",
       "disc": "run",
       "label": "Løb VO2 5×3 min Z4",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Fre",
@@ -204,7 +194,7 @@
     40.5,
     42.5,
     43.5,
-    44.8
+    43.8
   ],
   "weightHistory": [
     null,
@@ -370,11 +360,6 @@
       "real": true
     },
     {
-      "date": "2026-06-24",
-      "v": 72.5,
-      "real": true
-    },
-    {
       "date": "2026-06-25",
       "v": 72.9,
       "real": true
@@ -401,6 +386,11 @@
     },
     {
       "date": "2026-06-30",
+      "v": 72.8,
+      "real": true
+    },
+    {
+      "date": "2026-07-01",
       "v": 72.8,
       "real": true
     },
@@ -574,11 +564,6 @@
       "real": true
     },
     {
-      "date": "2026-06-24",
-      "v": 78.0,
-      "real": true
-    },
-    {
       "date": "2026-06-25",
       "v": 58.0,
       "real": true
@@ -605,6 +590,11 @@
     },
     {
       "date": "2026-06-30",
+      "v": 68.0,
+      "real": true
+    },
+    {
+      "date": "2026-07-01",
       "v": 68.0,
       "real": true
     },
@@ -778,11 +768,6 @@
       "real": true
     },
     {
-      "date": "2026-06-24",
-      "v": 5.8,
-      "real": true
-    },
-    {
       "date": "2026-06-25",
       "v": 7.3,
       "real": true
@@ -810,6 +795,11 @@
     {
       "date": "2026-06-30",
       "v": 7.4,
+      "real": true
+    },
+    {
+      "date": "2026-07-01",
+      "v": 9.0,
       "real": true
     },
     {
@@ -982,11 +972,6 @@
       "real": true
     },
     {
-      "date": "2026-06-24",
-      "v": -7.4,
-      "real": true
-    },
-    {
       "date": "2026-06-25",
       "v": -11.1,
       "real": true
@@ -1019,6 +1004,11 @@
     {
       "date": "2026-07-01",
       "v": -13.3,
+      "real": true
+    },
+    {
+      "date": "2026-07-02",
+      "v": -6.6,
       "real": true
     }
   ],
@@ -1318,7 +1308,6 @@
           "disc": "bike",
           "label": "Cykel Z2 75 min",
           "done": true,
-          "today": true,
           "completion": "done",
           "completion_pct": 143,
           "actual_tss": 77,
@@ -1331,20 +1320,21 @@
           "disc": "walk",
           "label": "Gentofte Gang",
           "done": true,
-          "extra": true,
-          "today": true
+          "extra": true
         },
         {
           "day": "Tor",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Tor",
           "disc": "run",
           "label": "Løb VO2 5×3 min Z4",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Fre",
@@ -1773,7 +1763,7 @@
     {
       "week": 5,
       "done": 2,
-      "total": 3,
+      "total": 4,
       "label": "Uge 5"
     }
   ],
@@ -1950,11 +1940,6 @@
       "real": true
     },
     {
-      "date": "2026-06-24",
-      "v": 23.1,
-      "real": true
-    },
-    {
       "date": "2026-06-25",
       "v": 22.7,
       "real": true
@@ -1988,16 +1973,21 @@
       "date": "2026-07-01",
       "v": 23.0,
       "real": true
+    },
+    {
+      "date": "2026-07-01",
+      "v": 23.0,
+      "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 31 af 98 · Onsdag · Uge 5</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 44.8 mod ugemålet på 48 — der er stadig fire dage til at lukke gabet, og de tunge sessioner (VO2-løb lørdag inkluderet) er endnu ikke i benene. Onsdagens cykeltur blev 107 minutter mod planlagte 75, og kun 43.7% ramte Z2-power — det tyder på commute-kørsel frem for struktureret Z2, og det ekstra volumen tæller selvfølgelig i TSS, men giv zonestrukturen mere opmærksomhed på søndagens tur til Hundested. TSB på -13.3 er uproblematisk og giver god margin til torsdagens VO2-stimulus. Hold 5×3 min Z4 på løbet i morgen skarpt — det er ugens vigtigste fysiologiske stimulus.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">72.8 kg — du er 0.8 kg fra målet, og retningen er rigtig. Ingen dramatiske justeringer nødvendige, men vær bevidst om, at to hårde sessioner (VO2 torsdag + lang Z2 lørdag) skaber appetitpres — hold proteinindtaget oppe og undgå at kompensere med tomme kalorier efter de lange ture.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">2 AF-dage ud af 3 dage i ugen er stærkt — du er fuldt på sporet. De resterende</p>",
-  "coachAssessmentTs": "20:05",
-  "coachAssessmentTsFull": "2026-07-01T18:05:48.761700",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 32 af 98 · Torsdag · Uge 5</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 43.8 mod ugens mål på 48 — der er et stykke vej endnu, men TSB på -6.6 viser at du ikke er overbelastet. Styrke A er ikke forsøgt endnu i dag — det er opgaven nu. VO2-sessionen (5×3 min Z4 løb) røg ud af ugen, og det efterlader en hul i den planlagte stimulus — vurder om den kan passes ind fredag inden svøm, eller om den simpelthen udgår denne uge. Onsdagens cykel kørte 143% af planlagt tid men med 43.7% i Z2 (power) — ser ud som en pendling med blandet intensitet, ikke struktureret Z2, og det skal du tage med som kontekst når du vurderer den reelle træningskvalitet for ugen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling i dag, så ingen tal herfra. Husk at fredag morgen — inden svøm — er et godt tidspunkt for en klar måling.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">2 AF-dage ud af 4 dage gået er præcis 50% — acceptabelt men ikke stærkt. Du har stadig torsdag, fredag, lørdag og søndag til at lande på 5 AF-dage i alt, og det er realistisk hvis du holder fokus de resterende dage. Prioritér det nu — det er ikke en</p>",
+  "coachAssessmentTs": "01:41",
+  "coachAssessmentTsFull": "2026-07-01T23:41:44.586835",
   "coachAssessmentWeightAtGen": 72.8,
   "coachAssessmentAfAtGen": 2,
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -13.3,
+  "tsb": -6.6,
   "swimHistory": [
     {
       "week": 1,
@@ -2033,7 +2023,7 @@
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
   "coachAssessmentLastActId": "i161838610",
   "weekFocusWeek": 5,
-  "coachAssessmentPlanAtGen": "Cykel Z2 75 min",
+  "coachAssessmentPlanAtGen": "Styrke A Functional Strength 3 sæt",
   "weightGoal": 70,
   "bodyFatGoal": 20,
   "weightMovingAvg7": [
@@ -2119,14 +2109,14 @@
     74.03,
     73.91,
     73.83,
-    73.59,
-    73.4,
-    73.24,
-    73.17,
-    73.2,
-    73.19,
-    73.07,
-    73.11
+    73.64,
+    73.49,
+    73.41,
+    73.27,
+    73.31,
+    73.23,
+    73.11,
+    73.1
   ],
   "fatMovingAvg7": [
     null,
@@ -2211,14 +2201,14 @@
     22.56,
     22.51,
     22.37,
-    22.43,
-    22.43,
-    22.43,
-    22.27,
-    22.29,
+    22.37,
+    22.37,
     22.21,
-    22.43,
-    22.41
+    22.09,
+    22.11,
+    22.23,
+    22.41,
+    22.46
   ],
   "weightToGoal": 2.8,
   "bodyFatToGoal": 3.0
