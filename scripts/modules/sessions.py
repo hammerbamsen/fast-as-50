@@ -291,12 +291,16 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
 
         elif disc == 'bike':
             # Primær: icu_zone_times (power)
-            # Trim warmup+cooldown fra Z1 så opvarmning ikke forvrænger zone-billedet
+            # Trim warmup+cooldown+coasting fra Z1 så opvarmning og nedkørsler
+            # (0W frihjul, typisk på kuperede/gravel-ruter) ikke forvrænger zone-billedet
+            coasting_secs = act.get('coasting_time') or 0
+            moving_total = act.get('moving_time') or act.get('elapsed_time') or 0
+            high_coasting = bool(moving_total and coasting_secs / moving_total > 0.10)
             pzt_raw = act.get('icu_zone_times') or []
             if pzt_raw:
                 pzt = [z.get('secs', 0) for z in pzt_raw if isinstance(z, dict)]
-                # Træk warmup+cooldown fra Z1 (de sidder næsten altid i Z1)
-                trim_secs = (act.get('icu_warmup_time') or 0) + (act.get('icu_cooldown_time') or 0)
+                # Træk warmup+cooldown+coasting fra Z1 (de sidder næsten altid i Z1)
+                trim_secs = (act.get('icu_warmup_time') or 0) + (act.get('icu_cooldown_time') or 0) + coasting_secs
                 if trim_secs > 0 and pzt:
                     pzt[0] = max(0, pzt[0] - trim_secs)
                 total_p = sum(pzt)
@@ -376,13 +380,29 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
         elif disc == 'bike':
             base = f'{zone_pct}% i {planned_zone} ({metric})'
             tag = ' — on target' if zone_flag == 'ok' else f' — under {floor}%-målet (Z2+Z3 kombineret)'
+            np_watts = act.get('icu_weighted_avg_watts')
+            coasting_note = ''
+            if high_coasting and moving_total:
+                coasting_pct = round(coasting_secs / moving_total * 100, 1)
+                coasting_note = (f' (NB: {coasting_pct}% coasting/frihjul — sandsynligt kuperet/gravel-terræn; '
+                                  f'NP={np_watts}W er et mere retvisende effekt-mål end rå tid-i-zone her)')
             if direction == 'fast':
-                note = (f'{base}{tag}, men {above_pct}% af tiden lå i en HØJERE watt-zone end target — '
-                        f'kørt for hårdt. Sænk wattene.')
+                if zone_flag == 'ok':
+                    note = (f'{base}{tag}, {above_pct}% af tiden lå i højere watt-zone end target '
+                             f'(fint hvis det var bevidste stigninger/indsatser){coasting_note}')
+                else:
+                    note = (f'{base}{tag}, men {above_pct}% af tiden lå i en HØJERE watt-zone end target — '
+                            f'kørt for hårdt. Sænk wattene.{coasting_note}')
             elif direction == 'slow':
-                note = f'{base}{tag}, og {below_pct}% lå i en LAVERE watt-zone — skru wattene op'
+                if zone_flag == 'ok':
+                    # Zonen er allerede opfyldt (>= floor) — "slow"-signalet er kun kontekst,
+                    # ALDRIG en instruktion om at "skrue op", da det modsiger on-target-vurderingen
+                    note = (f'{base}{tag}, {below_pct}% af tiden lå i lavere watt-zone '
+                             f'(typisk nedkørsler/frihjul på kuperet terræn, ikke lav indsats){coasting_note}')
+                else:
+                    note = f'{base}{tag}, og {below_pct}% lå i en LAVERE watt-zone — skru wattene op{coasting_note}'
             else:
-                note = f'{base}{tag}'
+                note = f'{base}{tag}{coasting_note}'
         elif zone_flag == 'ok':
             note = f'{zone_pct}% i {planned_zone} ({metric}) — on target'
         else:
