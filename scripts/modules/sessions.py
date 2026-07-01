@@ -50,7 +50,7 @@ def get_activities_week():
         bike_km = sum(
             (a.get('distance') or 0) / 1000
             for a in data
-            if a.get('type') in ['Ride', 'VirtualRide', 'MountainBike']
+            if a.get('type') in ['Ride', 'VirtualRide', 'MountainBike', 'Cyclocross', 'Gravel', 'GravelRide']
         )
         # Træningstimer per type (i minutter)
         def mins(a): return round((a.get('moving_time') or a.get('elapsed_time') or 0) / 60, 0)
@@ -58,7 +58,7 @@ def get_activities_week():
             t = a.get('type', '')
             if t in ['Ride','VirtualRide'] and a.get('commute'): return 'commute'
             if t in ['Run','TrailRun','VirtualRun','IndoorRun']:             return 'run'
-            if t in ['Ride','VirtualRide','MountainBike']:       return 'bike'
+            if t in ['Ride','VirtualRide','MountainBike','Cyclocross','Gravel','GravelRide']:       return 'bike'
             if t in ['Swim']:                                    return 'swim'
             if t in ['OpenWaterSwim']:                           return 'openwater'
             if t in ['Walk']:                                    return 'walk'
@@ -88,7 +88,7 @@ def get_activities_week():
                 disc = 'commute'
             elif atype in ['Run','TrailRun','VirtualRun','IndoorRun']:
                 disc = 'run'
-            elif atype in ['Ride','VirtualRide','MountainBike']:
+            elif atype in ['Ride','VirtualRide','MountainBike','Cyclocross','Gravel','GravelRide']:
                 disc = 'bike'
             elif atype in ['Swim']:
                 disc = 'swim'
@@ -163,6 +163,7 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
     TYPE_MAP = {
         'Run': 'run', 'TrailRun': 'run', 'VirtualRun': 'run', 'IndoorRun': 'run',
         'Ride': 'bike', 'VirtualRide': 'bike', 'MountainBike': 'bike',
+        'Cyclocross': 'bike', 'Gravel': 'bike', 'GravelRide': 'bike',
         'Swim': 'swim', 'OpenWaterSwim': 'swim',
         'WeightTraining': 'strength', 'Workout': 'strength', 'Strength': 'strength',
     }
@@ -681,6 +682,7 @@ def get_planned_weeks():
     TYPE_MAP = {
         'Run':'run','TrailRun':'run','VirtualRun':'run','IndoorRun':'run',
         'Ride':'bike','VirtualRide':'bike','MountainBike':'bike',
+        'Cyclocross':'bike','Gravel':'bike','GravelRide':'bike',
         'Swim':'swim',
         'WeightTraining':'strength','Workout':'strength','Strength':'strength',
         'Walk':'free','Hike':'free',
