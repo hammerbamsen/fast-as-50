@@ -1,7 +1,8 @@
 """Sessions, aktiviteter og planlagte workouts fra Intervals.icu."""
 import re
 from datetime import date, timedelta
-from .config import BASE, AUTH, api_get, fix_enc, fmt, color_for, ctl_plan_for_week, DAY_SHORT, BLOCK_TYPES
+from .config import (BASE, AUTH, api_get, fix_enc, fmt, color_for, ctl_plan_for_week,
+                      DAY_SHORT, BLOCK_TYPES, RUN_PACE_ZONES_SEC_PER_KM)
 from .af import monday_this_week
 
 
@@ -135,6 +136,39 @@ def get_activities_week():
             'done_map': done_map,
         }
     return None
+
+def compute_run_pace_zone_secs(act_id):
+    """Beregn sek. pr. Friel-zone (Z1-Z6, i den rækkefølge) for en løbeaktivitet
+    ud fra rå pace-stream (velocity_smooth), IKKE Intervals.icu's egen
+    pace_zone_times -- da ICU's generiske %-tabel ikke matcher Kennets
+    Friel-grænser for Z3 og opefter (bug fundet + verificeret 2/7-26).
+    Returnerer [] hvis stream ikke kan hentes (fx svøm eller manglende GPS)."""
+    if not act_id:
+        return []
+    r = api_get(f'https://intervals.icu/api/v1/activity/{act_id}/streams',
+                auth=AUTH, params={'types': 'time,velocity_smooth'})
+    if not r or r.status_code != 200:
+        return []
+    try:
+        streams = {s['type']: s.get('data', []) for s in r.json()}
+    except Exception:
+        return []
+    vel = streams.get('velocity_smooth') or []
+    if not vel:
+        return []
+    zone_order = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5', 'Z6']
+    secs = [0, 0, 0, 0, 0, 0]
+    for v in vel:
+        if not v or v <= 0:
+            continue
+        pace = 1000.0 / v  # sek/km
+        for i, z in enumerate(zone_order):
+            lo, hi = RUN_PACE_ZONES_SEC_PER_KM[z]
+            if lo <= pace <= hi:
+                secs[i] += 1
+                break
+    return secs
+
 
 def get_workout_compliance_this_week(events_this_week, activities_this_week):
     """Beregner zone-compliance for hvert planlagt workout denne uge.
@@ -277,16 +311,26 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
         metric = None
 
         if disc == 'run':
-            # Primær: pace_zone_times (gap-korrigeret pace)
-            pzt = act.get('pace_zone_times') or []
+            # Primær: rå pace-stream bucketet mod Kennets egne Friel-zoner.
+            # (IKKE act['pace_zone_times'] -- ICU's generiske 7-zone %-tabel
+            # matcher ikke Friel-grænserne for Z3+, se compute_run_pace_zone_secs.)
+            pzt = compute_run_pace_zone_secs(act.get('id'))
             if pzt and sum(pzt) > 0:
                 total_p = sum(pzt)
-                z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
-                zone_pct = round(pzt[z_idx] / total_p * 100, 1) if z_idx < len(pzt) else 0
+                if planned_zone in ('Z4', 'Z5'):
+                    # Interval-zone: Z4+Z5 tælles samlet (naturlig rep-til-rep
+                    # variation omkring threshold-pace er ikke "for langsomt/hurtigt")
+                    zone_pct = round((pzt[3] + pzt[4]) / total_p * 100, 1)
+                else:
+                    z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
+                    zone_pct = round(pzt[z_idx] / total_p * 100, 1) if z_idx < len(pzt) else 0
                 metric = 'pace'
             elif hr_zt and total_hr > 0:
                 z_idx = int(planned_zone[1]) - 1 if planned_zone.startswith('Z') else 1
-                zone_pct = round(hr_zt[z_idx] / total_hr * 100, 1) if z_idx < len(hr_zt) else 0
+                if planned_zone in ('Z4', 'Z5') and z_idx + 1 < len(hr_zt):
+                    zone_pct = round((hr_zt[z_idx] + hr_zt[z_idx + 1]) / total_hr * 100, 1)
+                else:
+                    zone_pct = round(hr_zt[z_idx] / total_hr * 100, 1) if z_idx < len(hr_zt) else 0
                 metric = 'hr'
 
         elif disc == 'bike':
@@ -367,7 +411,8 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
         if zone_flag == 'no_data':
             note = 'Ingen zone-data'
         elif disc == 'run' and metric == 'pace':
-            base = f'{zone_pct}% i {planned_zone} (pace-zone)'
+            combined_note = ' (Z4+Z5 kombineret)' if planned_zone in ('Z4', 'Z5') else ''
+            base = f'{zone_pct}% i {planned_zone} (pace-zone){combined_note}'
             tag = ' — on target' if zone_flag == 'ok' else f' — under {floor}%-målet'
             if direction == 'fast':
                 note = (f'{base}{tag}, men {above_pct}% af tiden lå i en HURTIGERE pace-zone end target '
