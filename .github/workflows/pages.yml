@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 45
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,9 +33,24 @@ jobs:
         with:
           path: "."
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy (forsøg 1)
+        id: deploy1
+        continue-on-error: true
         uses: actions/deploy-pages@v4
         with:
-          timeout: 2400000
+          error_count: 30
+
+      - name: Deploy (forsøg 2)
+        id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          error_count: 30
+
+      - name: Deploy (forsøg 3)
+        id: deploy3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
           error_count: 30
