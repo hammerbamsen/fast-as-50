@@ -425,7 +425,7 @@ async function answer(isAF) {
 // ── Sync fra data.json (Intervals-data) ───────────────────────
 async function syncFromIntervals() {
   try {
-    const r = await fetch('https://hammerbamsen.github.io/fast-as-50/data.json?t=' + Date.now());
+    const r = await fetch('https://raw.githubusercontent.com/hammerbamsen/fast-as-50/main/data.json?t=' + Date.now());
     if(!r.ok) return;
     const data = await r.json();
 
