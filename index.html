@@ -1436,7 +1436,7 @@ async function init() {
 
   // Hent friske data i baggrunden
   try {
-    const r = await fetch("data.json?t=" + Date.now());
+    const r = await fetch("https://raw.githubusercontent.com/hammerbamsen/fast-as-50/main/data.json?t=" + Date.now());
     if (r.ok) {
       const remote = await r.json();
       const m = remote.meta || {};
@@ -1516,7 +1516,7 @@ init();
   let lastDataJson = null;
   async function pollData() {
     try {
-      const r = await fetch('data.json?t=' + Date.now());
+      const r = await fetch('https://raw.githubusercontent.com/hammerbamsen/fast-as-50/main/data.json?t=' + Date.now());
       if (!r.ok) return;
       const txt = await r.text();
       if (txt === lastDataJson) return; // ingen ændring
