@@ -506,7 +506,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     try:
         payload = json.dumps({
             "model": "claude-sonnet-4-6",
-            "max_tokens": 400,
+            "max_tokens": 800,
             "messages": [{"role": "user", "content": prompt}]
         }).encode()
 
@@ -522,6 +522,9 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         )
         with _urllib_req.urlopen(req, timeout=30) as r:
             result = json.loads(r.read())
+            if result.get("stop_reason") == "max_tokens":
+                print("  ⚠️  AI-vurdering trunkeret (max_tokens) — kasseres, beholder forrige")
+                return None
             text = result["content"][0]["text"]
             print(f"  ✅ AI-vurdering genereret ({len(text)} tegn)")
             return text
