@@ -399,6 +399,63 @@ def strength_let():
     return {"name": "Styrke let 2 sæt recovery", "type": "WeightTraining",
             "moving_time": 40*60, "description": desc, "workout_doc": doc}
 
+def run_long_km(km, tot_min):
+    """Langtur navngivet i km (marathon-ladder mod Médoc)."""
+    desc, doc = build([
+        s_run(15,           "Z1", "Varm-op"),
+        s_run(tot_min - 25, "Z2", f"Lang base {km} km"),
+        s_run(10,           "Z1", "Cool-down"),
+    ])
+    return {"name": f"Lang løb Z2 {km} km ({tot_min} min)", "type": "Run",
+            "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
+
+def run_trail(tot_min, label="Trail-løb Z2 Wales"):
+    """Trail-løb efter tid og følelse — Z2 på puls/åndedræt, terræn styrer pace."""
+    desc, doc = build([
+        s_run(10,           "Z1", "Varm-op"),
+        s_free(tot_min-15,  f"{label} — Z2-indsats, pace følger terræn"),
+        s_run(5,            "Z1", "Cool-down"),
+    ])
+    return {"name": f"{label} {tot_min} min", "type": "Run",
+            "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
+
+def bike_ftp_test():
+    """20-min FTP-test — resultatet opdaterer FTP og watt-zoner i Intervals."""
+    desc, doc = build([
+        s_bike(20, "Z2", "Varm-op progressiv"),
+        s_bike(5,  "Z4", "Åbner 5 min"),
+        s_bike(5,  "Z1", "Let"),
+        s_free(20, "20 MIN ALL-OUT TEST — jævn max-indsats"),
+        s_bike(15, "Z1", "Cool-down"),
+    ])
+    return {"name": "FTP-TEST 20 min (opdatér zoner efter)", "type": "Ride",
+            "moving_time": 65*60,
+            "description": desc + "\n\nEfter testen: nyt FTP = 95% af 20-min snit-watt. Opdatér i Intervals → Settings.",
+            "workout_doc": doc}
+
+def run_threshold_test():
+    """30-min løbetest — snit-pace for sidste 20 min = ny threshold."""
+    desc, doc = build([
+        s_run(15, "Z1", "Varm-op"),
+        s_reps(3, [s_free(1, "Stride 20 sek"), s_free(1, "Jog 40 sek")]),
+        s_free(30, "30 MIN TEST — jævn max-indsats, flad rute"),
+        s_run(10, "Z1", "Cool-down"),
+    ])
+    return {"name": "THRESHOLD-TEST løb 30 min (opdatér pace-zoner efter)", "type": "Run",
+            "moving_time": 65*60,
+            "description": desc + "\n\nEfter testen: threshold-pace = snit af sidste 20 min. Opdatér zoner i Intervals + config.",
+            "workout_doc": doc}
+
+def ow_swim(tot_min=45, label="Open water"):
+    """Åbent vand — Christiansborg-forberedelse. Sigtning, våddragt, start-rutine."""
+    desc, doc = build([
+        s_free(10, "Tilvænning + let svøm langs kant"),
+        s_free(tot_min-20, f"{label}: kontinuerlig svøm, sigtning hver 8.-10. tag"),
+        s_free(10, "Let ud-svøm + exit-rutine"),
+    ])
+    return {"name": f"OW-svøm {label} {tot_min} min", "type": "OpenWaterSwim",
+            "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
+
 # ── 14-ugers plan ───────────────────────────────────────────────
 def make_plan():
     p = PLAN_START
@@ -464,75 +521,78 @@ def make_plan():
     (p+timedelta(33), run_z2_lang(115),      "Lang løb Z2 115 min"),
     (p+timedelta(34), bike_hundested(),      "Cykel Z2 til Hundested"),
 
-    # ── UGE 6: 6-12 jul  BUILD ──────────────────────────────────
-    (p+timedelta(35), strength_a(3),         "Styrke A + cykel Z2 60 min"),
-    (p+timedelta(36), run_vo2_4x5(),         "Løb VO2 4×5 Z4-Z5"),
-    (p+timedelta(37), bike_z2_z3(80),        "Hometrainer Z2-Z3 80 min"),
-    (p+timedelta(38), run_z2(70),            "Løb Z2 70 min"),
-    (p+timedelta(39), swim_2000(),           "Svøm 2000m"),
-    (p+timedelta(40), run_z2_lang(125),      "Lang løb Z2 125 min"),
-    (p+timedelta(41), bike_z2(90),           "Cykel Z2 udendørs 90 min"),
+    # ── UGE 6: 6-12 jul  BUILD let (løbefokus — Wales ons-søn) ──
+    (p+timedelta(35), swim_2000(),           "Svøm 2000m — morgen"),
+    (p+timedelta(35), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
+    (p+timedelta(36), run_z2(60),            "Løb Z2 60 min — sidste før Wales"),
+    (p+timedelta(37), None,                  "Fly → Wales (ons 8. jul morgen)"),
+    (p+timedelta(38), run_trail(65),         "Trail-løb Z2 Wales 65 min"),
+    (p+timedelta(39), hike_easy(120),        "Vandring Wales 2 timer"),
+    (p+timedelta(40), run_trail(90, "Trail langtur Z2 Wales"), "Trail langtur Z2 Wales 90 min"),
+    (p+timedelta(41), None,                  "Hjemrejse Wales (søn 12. jul aften) — evt. kort gåtur"),
 
-    # ── UGE 7: 13-19 jul  RECOVERY ──────────────────────────────
-    (p+timedelta(42), None,                  "Hvile"),
-    (p+timedelta(43), run_let(35),           "Løb let 35 min"),
-    (p+timedelta(44), swim_let(),            "Svøm let 1500m"),
-    (p+timedelta(45), strength_let(),        "Styrke let"),
-    (p+timedelta(46), bike_z2(50),           "Cykel let 50 min"),
-    (p+timedelta(47), run_z2(70),            "Løb Z2 medium 70 min"),
-    (p+timedelta(48), None,                  "Hvile"),
+    # ── UGE 7: 13-19 jul  BUILD (man-ons Gentofte, tor-søn Mallorca) ──
+    (p+timedelta(42), swim_2000(),           "Svøm 2000m — morgen"),
+    (p+timedelta(42), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
+    (p+timedelta(43), run_vo2_5x3(),         "Løb VO2 5×3 Z4 — ugens stimulus"),
+    (p+timedelta(44), bike_z2_z3(80),        "Hometrainer Z2-Z3 80 min"),
+    (p+timedelta(45), bike_z2(60,"Mallorca"),"Aktivering cykel Z2 60 min — ankomst Mallorca (tor 16.)"),
+    (p+timedelta(46), bike_z2(180,"Mallorca"),"Cykel Z2 lang 3t Mallorca"),
+    (p+timedelta(47), bike_z2(240,"Mallorca"),"Cykel Z2 lang 4t Mallorca"),
+    (p+timedelta(48), run_z2(60),            "Løb Z2 60 min Mallorca — morgen"),
 
-    # ── UGE 8: 20-26 jul  BUILD ─────────────────────────────────
-    (p+timedelta(49), strength_a(3),         "Styrke A + cykel Z2 60 min"),
-    (p+timedelta(50), run_vo2_6x3_z5(),      "Løb VO2 6×3 Z5"),
-    (p+timedelta(51), bike_z2_z3(90),        "Hometrainer Z2-Z3 90 min"),
-    (p+timedelta(52), run_z2(70),            "Løb Z2 70 min"),
+    # ── UGE 8: 20-26 jul  BUILD+ (Mallorca man-tir, hjem ons 22.) ──
+    (p+timedelta(49), bike_bjerg_z4(),       "Cykel bjerg Z4 Mallorca — VO2 stimulus"),
+    (p+timedelta(50), bike_z2(210,"Mallorca"),"Cykel Z2 stor dag 3.5t Mallorca"),
+    (p+timedelta(51), None,                  "Hjemrejse Mallorca (ons 22. jul) — hvile"),
+    (p+timedelta(52), strength_a(2),         "Styrke let 2 sæt"),
+    (p+timedelta(52), run_z2(50),            "Løb Z2 50 min let"),
     (p+timedelta(53), swim_2500(),           "Svøm 2500m"),
-    (p+timedelta(54), run_z2_lang(130),      "Lang løb Z2 130 min"),
-    (p+timedelta(55), bike_z2(120),          "Cykel Z2 lang 2t"),
+    (p+timedelta(54), run_long_km(26, 140),  "Lang løb 26 km — marathon-ladder start"),
+    (p+timedelta(55), bike_z2(90),           "Cykel Z2 90 min recovery-spin"),
 
-    # ── UGE 9: 27 jul–2 aug  BUILD ──────────────────────────────
-    (p+timedelta(56), strength_a(3),         "Styrke A tung + cykel 60 min"),
-    (p+timedelta(57), run_vo2_4x5_z5(),      "Løb VO2 4×5 Z5 peak"),
-    (p+timedelta(58), bike_3x15_z3(90),      "Hometrainer 3×15 Z3"),
-    (p+timedelta(59), run_z2(75),            "Løb Z2 75 min"),
+    # ── UGE 9: 27 jul–2 aug  RECOVERY + RETEST ──────────────────
+    (p+timedelta(56), None,                  "Hvile"),
+    (p+timedelta(57), swim_let(),            "Svøm let 1500m"),
+    (p+timedelta(58), bike_ftp_test(),       "FTP-TEST 20 min — opdatér watt-zoner"),
+    (p+timedelta(59), run_threshold_test(),  "THRESHOLD-TEST løb 30 min — opdatér pace-zoner"),
     (p+timedelta(60), None,                  "Musik i Gentofte — hvile (fre 31. jul)"),
-    (p+timedelta(61), run_z2_lang(90),       "Lang løb Z2 90 min — Musik i Gentofte"),
-    (p+timedelta(62), swim_let(),            "Svøm let — Musik i Gentofte (søn 2. aug)"),
+    (p+timedelta(61), run_z2(60),            "Løb Z2 60 min let — Musik i Gentofte"),
+    (p+timedelta(62), swim_2000(),           "Svøm 2000m — Musik i Gentofte (søn 2. aug)"),
 
-    # ── UGE 10: 3-9 aug  BUILD+ ─────────────────────────────────
-    (p+timedelta(63), bike_z2(60),           "Cykel Z2 60 min Gentofte"),
-    (p+timedelta(64), run_z2(75),            "Løb Z2 75 min — Hudlæge"),
+    # ── UGE 10: 3-9 aug  BUILD (fly Mallorca søn 9.) ────────────
+    (p+timedelta(63), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
+    (p+timedelta(64), run_vo2_4x5(),         "Løb VO2 4×5 Z4-Z5 — nye zoner efter retest"),
     (p+timedelta(65), bike_3x15_z3(90),      "Hometrainer 3×15 Z3"),
-    (p+timedelta(66), run_z2_lang(110),      "Lang løb Z2 110 min"),
-    (p+timedelta(67), bike_z2(60),           "Cykel Z2 60 min — aktiv recovery"),
-    (p+timedelta(68), swim_2000(),            "Svøm 2000m — Frokost Alice"),
+    (p+timedelta(66), ow_swim(45),           "OW-svøm 45 min — Christiansborg-prep starter"),
+    (p+timedelta(67), run_z2(60),            "Løb Z2 60 min"),
+    (p+timedelta(68), run_long_km(29, 155),  "Lang løb 28-30 km — marathon-ladder"),
     (p+timedelta(69), None,                  "Fly → Mallorca #2 (søn 9. aug)"),
 
-    # ── UGE 11: 10-16 aug  BUILD+ ───────────────────────────────
+    # ── UGE 11: 10-16 aug  BUILD+ Mallorca camp #2 (hjem søn 16.) ──
     (p+timedelta(70), bike_z2(180,"Mallorca"),"Cykel base lang 3t Mallorca"),
     (p+timedelta(71), run_z2(75),            "Løb Z2 75 min Mallorca"),
-    (p+timedelta(72), bike_bjerg_z4(),       "Cykel bjerg Z4 Mallorca"),
+    (p+timedelta(72), bike_bjerg_z4(),       "Cykel bjerg Z4 Mallorca — VO2 stimulus"),
     (p+timedelta(73), run_z2_lang(120),      "Lang løb Z2 120 min Mallorca"),
-    (p+timedelta(74), swim_2000(),           "Svøm 2000m Mallorca"),
+    (p+timedelta(74), swim_2000(),           "Svøm 2000m Mallorca (OW hvis muligt)"),
     (p+timedelta(75), bike_z2(210,"Mallorca"),"Cykel Z2 peak 3.5t Mallorca"),
     (p+timedelta(76), None,                  "Hjemrejse Mallorca (søn 16. aug)"),
 
-    # ── UGE 12: 17-23 aug  TAPER ────────────────────────────────
-    (p+timedelta(77), strength_let(),        "Styrke let"),
-    (p+timedelta(78), run_vo2_taper(),       "Løb VO2 taper 4×3"),
-    (p+timedelta(79), bike_z2(50),           "Hometrainer Z2 50 min"),
-    (p+timedelta(80), run_z2(60),            "Løb Z2 60 min"),
-    (p+timedelta(81), None,                  "Hvile"),
+    # ── UGE 12: 17-23 aug  TAPER (Norge lør 22.) ────────────────
+    (p+timedelta(77), ow_swim(45),           "OW-svøm 45 min — Christiansborg-prep"),
+    (p+timedelta(78), run_long_km(32, 170),  "Lang løb 32 km — SIDSTE langtur før Médoc"),
+    (p+timedelta(79), bike_z2(50),           "Hometrainer Z2 50 min let"),
+    (p+timedelta(80), ow_swim(40),           "OW-svøm 40 min — sigtning + startrutine"),
+    (p+timedelta(81), run_shakeout(),        "Shakeout løb + strides"),
     (p+timedelta(82), None,                  "Norge start (lør 22. aug)"),
     (p+timedelta(83), run_let(30),           "Let løb Norge (søn 23. aug)"),
 
-    # ── UGE 13: 24-30 aug  TAPER ────────────────────────────────
+    # ── UGE 13: 24-30 aug  TAPER → CHRISTIANSBORG ───────────────
     (p+timedelta(84), None,                  "Hjem fra Norge (man 24. aug)"),
-    (p+timedelta(85), bike_z2(40),           "Cykel let 40 min"),
+    (p+timedelta(85), ow_swim(30, "Kort tilvænning"), "OW-svøm 30 min — race-tilvænning"),
     (p+timedelta(86), run_shakeout(),        "Løb Z2 + strides"),
     (p+timedelta(87), None,                  "Hvile"),
-    (p+timedelta(88), None,                  "Hvile"),
+    (p+timedelta(88), swim_recovery(20),     "Svøm 20 min aktivering — dagen før race"),
     (p+timedelta(89), None,                  "⭐ CHRISTIANSBORG RUNDT (lør 29. aug)"),
     (p+timedelta(90), None,                  "Recovery walk"),
 

@@ -502,7 +502,9 @@ function progressMetric(label, startVal, nowVal, goalVal, unit, color) {
   </div>`;
 }
 // ── Pages ─────────────────────────────────────────────────────
-const CTL_PLAN=[34,36,38,41,48,52,49,54,59,64,68,64,61,58];
+// CTL-plan læses fra data.json (genereret fra data/plan.json — Goal Engine).
+// Array-literal herunder er KUN fallback hvis data endnu ikke har ctlPlan.
+let CTL_PLAN=[34,36,38,41,48,50,54,60,56,61,67,63,59,56];
 
 function ctlGraph() {
   // Filtrer nulls — brug CTL_PLAN som fallback hvis ingen live data
@@ -1443,6 +1445,7 @@ async function init() {
       if (luEl) luEl.textContent = m.updated || D.lastUpdated || '—';
       if (m.week)                       D.week                   = m.week;
       if (m.totalWeeks)                 D.totalWeeks             = m.totalWeeks;
+      if (Array.isArray(remote.ctlPlan) && remote.ctlPlan.length) CTL_PLAN = remote.ctlPlan;
       if (m.blockType)                  D.blockType              = m.blockType;
       if (m.daysToMedoc != null)        D.daysToMedoc            = m.daysToMedoc;
       if (m.daysToChristiansborg!=null) D.daysToChristiansborg   = m.daysToChristiansborg;

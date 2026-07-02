@@ -1,7 +1,7 @@
 """Sessions, aktiviteter og planlagte workouts fra Intervals.icu."""
 import re
 from datetime import date, timedelta
-from .config import (BASE, AUTH, api_get, fix_enc, fmt, color_for, ctl_plan_for_week,
+from .config import (TOTAL_WEEKS, BASE, AUTH, api_get, fix_enc, fmt, color_for, ctl_plan_for_week,
                       DAY_SHORT, BLOCK_TYPES, RUN_PACE_ZONES_SEC_PER_KM)
 from .af import monday_this_week
 
@@ -549,7 +549,7 @@ def planned_tss_this_week():
     # Fallback-tabel (bruges kun hvis live-data ikke kan hentes)
     week1 = date(2026, 6, 1)
     diff  = (today - week1).days
-    week_num = min(max(diff // 7 + 1, 1), 14)
+    week_num = min(max(diff // 7 + 1, 1), TOTAL_WEEKS)
     fallback = {1:383,2:460,3:466,4:167,5:511,6:490,7:546,8:186,
                 9:596,10:598,11:638,12:194,13:345,14:245}.get(week_num, 400)
 
@@ -738,7 +738,7 @@ def get_planned_weeks():
     """
     week1     = date(2026, 6, 1)
     today     = date.today()
-    week_num  = min(max((today - week1).days // 7 + 1, 1), 14)
+    week_num  = min(max((today - week1).days // 7 + 1, 1), TOTAL_WEEKS)
 
     BLOCK_TYPES = {1:'BUILD',2:'BUILD+',3:'BUILD+',4:'RECOVERY',5:'BUILD',6:'BUILD',
                    7:'RECOVERY',8:'BUILD',9:'BUILD',10:'BUILD+',11:'BUILD+',12:'TAPER',
@@ -912,7 +912,7 @@ def get_swim_history():
         by_week[w] = round(by_week.get(w, 0) + dist_m, 0)
 
     # Byg kronologisk liste uge 1 → nu
-    current_week = min(max((today - week1).days // 7 + 1, 1), 14)
+    current_week = min(max((today - week1).days // 7 + 1, 1), TOTAL_WEEKS)
     result = []
     cumulative = 0
     for w in range(1, current_week + 1):

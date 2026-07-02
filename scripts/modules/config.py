@@ -9,8 +9,43 @@ REPO          = 'hammerbamsen/fast-as-50'
 BASE          = f'https://intervals.icu/api/v1/athlete/{ATHLETE_ID}'
 AUTH          = ('API_KEY', API_KEY)
 
-# Autoritativ uge-for-uge CTL-plan (matcher CTL_PLAN i index.html)
-CTL_PLAN = [34, 36, 38, 41, 48, 52, 49, 54, 59, 64, 68, 64, 61, 58]
+# ── Goal Engine: al plan-data læses fra data/plan.json ─────────
+# plan.json er den ENESTE kilde til CTL-plan, blok-typer, racedatoer,
+# programstart og mål. Hardcodede fallbacks bruges kun hvis filen mangler.
+import json as _json
+from datetime import date as _date
+
+_PLAN_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'plan.json')
+
+def _load_plan():
+    try:
+        with open(_PLAN_PATH, encoding='utf-8') as f:
+            return _json.load(f)
+    except Exception as e:
+        print(f"  ⚠️  plan.json kunne ikke læses ({e}) — bruger fallback-konstanter")
+        return None
+
+PLAN = _load_plan()
+
+if PLAN:
+    _weeks      = sorted(PLAN['weeks'], key=lambda w: w['week'])
+    CTL_PLAN    = [w['ctlTarget'] for w in _weeks]
+    BLOCK_TYPES = {w['week']: w['blockType'] for w in _weeks}
+    TOTAL_WEEKS = PLAN['program']['totalWeeks']
+    PLAN_START  = _date.fromisoformat(PLAN['program']['start'])
+    RACES       = PLAN.get('races', [])
+    GOALS       = PLAN.get('goals', {})
+else:
+    # Fallback (bør aldrig rammes i drift)
+    CTL_PLAN    = [34, 36, 38, 41, 48, 50, 54, 60, 56, 61, 67, 63, 59, 56]
+    BLOCK_TYPES = {1:'BUILD',2:'BUILD+',3:'BUILD+',4:'RECOVERY',5:'BUILD',6:'BUILD',
+                   7:'BUILD',8:'BUILD+',9:'RECOVERY',10:'BUILD',11:'BUILD+',12:'TAPER',
+                   13:'TAPER',14:'RACE'}
+    TOTAL_WEEKS = 14
+    PLAN_START  = _date(2026, 6, 1)
+    RACES       = [{"name": "Christiansborg Rundt", "date": "2026-08-29"},
+                   {"name": "Marathon du Médoc", "date": "2026-09-05"}]
+    GOALS       = {"weightKg": 70, "bodyFatPct": 20}
 
 # Faste programmål -- én kilde, brugt i både dashboard-KPI'er og coach-tekst.
 # CTL-start/slutmål udledes ALTID af CTL_PLAN, så de aldrig kan komme ud af sync med planen.
@@ -26,9 +61,7 @@ DK_DAYS    = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"
 DAY_SHORT  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
 DK_MONTHS  = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"]
 
-BLOCK_TYPES = {1:'BUILD',2:'BUILD+',3:'BUILD+',4:'RECOVERY',5:'BUILD',6:'BUILD',
-               7:'RECOVERY',8:'BUILD',9:'BUILD',10:'BUILD+',11:'BUILD+',12:'TAPER',
-               13:'TAPER',14:'RACE'}
+# (BLOCK_TYPES defineres ovenfor af Goal Engine / plan.json)
 
 # Friel-baserede løb-pace-zoner (sek/km), baseret på threshold 4:20/km.
 # VIGTIGT: Intervals.icu's egen pace_zone_times bruger en generisk 7-zone

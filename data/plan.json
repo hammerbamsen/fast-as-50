@@ -1,0 +1,70 @@
+{
+  "version": 2,
+  "updated": "2026-07-02",
+  "program": {
+    "name": "Fast as Fifty",
+    "start": "2026-06-01",
+    "totalWeeks": 14,
+    "philosophy": "capacity",
+    "description": "14-ugers reset-år: kapacitet, ikke performance. CTL-opbygning, fedttab, AF-disciplin."
+  },
+  "goals": {
+    "weightKg": 70,
+    "bodyFatPct": 20,
+    "afDaysPerWeek": 5,
+    "sleepHours": 7,
+    "swimMeters": 2000,
+    "runKmPerWeek": 40
+  },
+  "races": [
+    {
+      "name": "Christiansborg Rundt",
+      "date": "2026-08-29",
+      "type": "openwater_swim",
+      "distance": "2000m",
+      "priority": "A"
+    },
+    {
+      "name": "Marathon du M\u00e9doc",
+      "date": "2026-09-05",
+      "type": "marathon",
+      "distance": "42.2km",
+      "priority": "A"
+    }
+  ],
+  "weeks": [
+    {"week": 1,  "start": "2026-06-01", "blockType": "BUILD",    "ctlTarget": 34, "tssTarget": 290, "location": "Malm\u00f8/Gentofte"},
+    {"week": 2,  "start": "2026-06-08", "blockType": "BUILD+",   "ctlTarget": 36, "tssTarget": 340, "location": "Gentofte \u2192 Mallorca"},
+    {"week": 3,  "start": "2026-06-15", "blockType": "BUILD+",   "ctlTarget": 38, "tssTarget": 370, "location": "Mallorca \u2192 Gentofte"},
+    {"week": 4,  "start": "2026-06-22", "blockType": "RECOVERY", "ctlTarget": 41, "tssTarget": 180, "location": "Gentofte"},
+    {"week": 5,  "start": "2026-06-29", "blockType": "BUILD",    "ctlTarget": 48, "tssTarget": 385, "location": "Gentofte"},
+    {"week": 6,  "start": "2026-07-06", "blockType": "BUILD",    "ctlTarget": 50, "tssTarget": 300, "location": "Gentofte \u2192 Wales 8.-12.", "note": "L\u00f8befokus \u2014 ingen cykel i Wales. Trail Z2 + vandring."},
+    {"week": 7,  "start": "2026-07-13", "blockType": "BUILD",    "ctlTarget": 54, "tssTarget": 430, "location": "Gentofte \u2192 Mallorca 16.", "note": "Man-ons Gentofte, tor-s\u00f8n Mallorca ride-block."},
+    {"week": 8,  "start": "2026-07-20", "blockType": "BUILD+",   "ctlTarget": 60, "tssTarget": 480, "location": "Mallorca \u2192 hjem 22.", "note": "Store cykeldage man-tir. Langtur 26 km l\u00f8rdag \u2014 ladder starter. TSB-gulv -35."},
+    {"week": 9,  "start": "2026-07-27", "blockType": "RECOVERY", "ctlTarget": 56, "tssTarget": 200, "location": "Gentofte", "note": "Fuld aflastning + FTP- og threshold-retest. Musik i Gentofte fre-s\u00f8n."},
+    {"week": 10, "start": "2026-08-03", "blockType": "BUILD",    "ctlTarget": 61, "tssTarget": 420, "location": "Gentofte \u2192 fly s\u00f8n 9.", "note": "Langtur 28-30 km. Open water-sv\u00f8m starter."},
+    {"week": 11, "start": "2026-08-10", "blockType": "BUILD+",   "ctlTarget": 67, "tssTarget": 500, "location": "Mallorca (hjem s\u00f8n 16.)", "note": "Camp #2. TSB-gulv -35 overv\u00e5ges dagligt."},
+    {"week": 12, "start": "2026-08-17", "blockType": "TAPER",    "ctlTarget": 63, "tssTarget": 300, "location": "Gentofte \u2192 Norge l\u00f8r", "note": "Sidste langtur 32 km tirsdag. OW-sv\u00f8m x2."},
+    {"week": 13, "start": "2026-08-24", "blockType": "TAPER",    "ctlTarget": 59, "tssTarget": 180, "location": "Norge \u2192 hjem man. RACE l\u00f8r", "note": "Christiansborg Rundt l\u00f8r 29. aug. Kort og skarpt + OW-tilv\u00e6nning."},
+    {"week": 14, "start": "2026-08-31", "blockType": "RACE",     "ctlTarget": 56, "tssTarget": 120, "location": "Gentofte \u2192 Bordeaux tor", "note": "Marathon du M\u00e9doc l\u00f8r 5. sep. Ren taper + race-ern\u00e6ringsplan."}
+  ],
+  "travel": [
+    {"label": "Wales-tur (l\u00f8b + vandring)", "start": "2026-07-08", "end": "2026-07-12", "travel_home_date": "2026-07-12", "label_home": "aftenen efter hjemrejse fra Wales", "label_during": "p\u00e5 Wales-turen \u2014 trail-l\u00f8b og vandring, ingen vane-k\u00f8kken"},
+    {"label": "Mallorca ride-block", "start": "2026-07-16", "end": "2026-07-22", "travel_home_date": "2026-07-22", "label_home": "dagen efter hjemrejse fra Mallorca ride-blocken", "label_during": "p\u00e5 Mallorca ride-block \u2014 h\u00f8j belastning, v\u00e6gt kan svinge med glykogen/v\u00e6ske"},
+    {"label": "Mallorca camp #2", "start": "2026-08-09", "end": "2026-08-16", "travel_home_date": "2026-08-16", "label_home": "dagen efter hjemrejse fra Mallorca camp #2", "label_during": "p\u00e5 Mallorca camp #2 \u2014 h\u00f8j belastning, v\u00e6gt kan svinge med glykogen/v\u00e6ske"},
+    {"label": "Norge-tur", "start": "2026-08-22", "end": "2026-08-24", "travel_home_date": "2026-08-24", "label_home": "dagen efter hjemrejse fra Norge", "label_during": "p\u00e5 Norge-turen midt i taper"},
+    {"label": "Bordeaux / M\u00e9doc", "start": "2026-09-03", "end": "2026-09-06", "travel_home_date": "2026-09-06", "label_home": "dagen efter hjemrejse fra Bordeaux", "label_during": "i Bordeaux til Marathon du M\u00e9doc"}
+  ],
+  "nextSeason": {
+    "year": 2027,
+    "phase": "transition_then_base",
+    "transitionWeeks": 3,
+    "races": [
+      {"name": "Santini Stelvio Gran Fondo (lang rute)", "date": "2027-06-06", "type": "granfondo", "distance": "130km / 4500hm", "priority": "A"},
+      {"name": "Tour des Stations Ultrafondo", "date": "2027-08-07", "dateApprox": true, "type": "ultrafondo", "distance": "242km / 8848hm", "priority": "A"}
+    ],
+    "deadlines": [
+      {"name": "Stelvio couples early-bird tilmelding (med Eva)", "date": "2026-10-29", "url": "https://lastelviosantini.com"}
+    ]
+  }
+}

@@ -21,6 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # ── Moduler ──────────────────────────────────────────────────────────────────
 from modules.config   import (API_KEY, ATHLETE_ID, GH_TOKEN, ANTHROPIC_KEY,
                                REPO, BASE, AUTH, CTL_PLAN, BLOCK_TYPES,
+                               PLAN_START, TOTAL_WEEKS, RACES,
                                DK_DAYS, DAY_SHORT, DK_MONTHS,
                                CTL_START, CTL_GOAL, AF_GOAL, SLEEP_GOAL_HOURS,
                                SWIM_GOAL_M, RUN_KM_GOAL, RUN_KM_GOAL_WEEK,
@@ -42,8 +43,8 @@ from modules.github   import gh_get, gh_put
 def main():
     today     = date.today()
     weekday   = today.weekday()
-    week1     = date(2026, 6, 1)
-    week_num  = min(max((today - week1).days // 7 + 1, 1), 14)
+    week1     = PLAN_START
+    week_num  = min(max((today - week1).days // 7 + 1, 1), TOTAL_WEEKS)
 
     print(f"=== KPI opdatering {today} (uge {week_num}) ===")
 
@@ -114,9 +115,12 @@ def main():
     data['meta']['updated']              = now_cph.strftime("%Y-%m-%d %H:%M")
     data['meta']['dayName']              = DK_DAYS[weekday]
     data['meta']['date']                 = f"{today.day}. {DK_MONTHS[today.month-1]}"
-    data['meta']['daysToMedoc']          = (date(2026, 9, 5) - today).days
-    data['meta']['daysToChristiansborg'] = (date(2026, 8, 29) - today).days
+    _race_dates = {r['name']: date.fromisoformat(r['date']) for r in RACES}
+    data['meta']['daysToMedoc']          = ((_race_dates.get('Marathon du Médoc') or date(2026, 9, 5)) - today).days
+    data['meta']['daysToChristiansborg'] = ((_race_dates.get('Christiansborg Rundt') or date(2026, 8, 29)) - today).days
     data['meta']['week']                 = week_num
+    data['meta']['totalWeeks']           = TOTAL_WEEKS
+    data['ctlPlan']                      = CTL_PLAN
 
     # --- Mål (sættes FØR KPI-blokken bygges, da den læser disse felter) ---
     data['weightGoal']   = 70
@@ -462,7 +466,7 @@ def main():
     if ai_text:
         # Konverter til simpel HTML (samme logik som dashboardet)
         # Tilføj korrekt header hardcodet (forhindrer AI i at skrive forkert "Dag X af 14 uger")
-        program_day = (date.today() - date(2026, 6, 1)).days + 1
+        program_day = (date.today() - PLAN_START).days + 1
         header_str = f"Dag {program_day} af 98 · {DK_DAYS[weekday]} · Uge {week_num}"
         header_html = f'<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)"><strong>{header_str}</strong></p>'
         html_lines = [header_html]

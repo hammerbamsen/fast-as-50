@@ -1,7 +1,7 @@
 """Coach-tekst, AI-assessment og QA-logik."""
 import os, re, json, urllib.request as _urllib_req
 from datetime import date, timedelta
-from .config import (BASE, AUTH, api_get, fix_enc, fmt, ctl_plan_for_week, ANTHROPIC_KEY,
+from .config import (TOTAL_WEEKS, BASE, AUTH, api_get, fix_enc, fmt, ctl_plan_for_week, ANTHROPIC_KEY,
                       DK_DAYS, DK_MONTHS, DAY_SHORT,
                       CTL_START, CTL_GOAL, AF_GOAL, SLEEP_GOAL_HOURS, SWIM_GOAL_M)
 
@@ -258,13 +258,13 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     # Ugedag-intro
     if weekday == 0:  # mandag
-        intro = f"Ny uge starter — uge {week_num} af 14. {block_label.capitalize()}."
+        intro = f"Ny uge starter — uge {week_num} af {TOTAL_WEEKS}. {block_label.capitalize()}."
     elif weekday == 4:  # fredag
         intro = f"Fredag — tre dage tilbage af uge {week_num}."
     elif weekday == 6:  # søndag
         intro = f"Søndag — afslut uge {week_num} stærkt."
     else:
-        intro = f"{day_name.capitalize()} — uge {week_num} af 14."
+        intro = f"{day_name.capitalize()} — uge {week_num} af {TOTAL_WEEKS}."
 
     # --- Friel (træning) + Kreutzer (krop/AF): hvad er godt, hvad skal der fokuseres på ---
     expected_ctl = ctl_plan_for_week(week_num)  # rigtig plan m. recovery-dyk, ikke lineær tilnærmelse
@@ -480,7 +480,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     prompt = (
         f"Du er Joel Friel-inspireret træningscoach for Kennet Hammerby, 51 år, erfaren Ironman-atlet "
         f"i et 14-ugers reset-år mod to mål: Christiansborg Rundt ({SWIM_GOAL_M}m svøm, 29. aug) og Marathon Médoc (5. sep).\n\n"
-        f"Kennet er i uge {week_num} af 14, dag {weekday + 1} af 7 ({day_name}). Filosofi: capacity-mode, ikke performance-mode. "
+        f"Kennet er i uge {week_num} af {TOTAL_WEEKS}, dag {weekday + 1} af 7 ({day_name}). Filosofi: capacity-mode, ikke performance-mode. "
         f"Mål: bygge CTL fra {CTL_START} til {CTL_GOAL} (uge 14), tabe sig til under {weight_goal} kg, {AF_GOAL} AF-dage/uge.\n\n"
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
