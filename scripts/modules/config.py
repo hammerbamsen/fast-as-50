@@ -30,6 +30,21 @@ BLOCK_TYPES = {1:'BUILD',2:'BUILD+',3:'BUILD+',4:'RECOVERY',5:'BUILD',6:'BUILD',
                7:'RECOVERY',8:'BUILD',9:'BUILD',10:'BUILD+',11:'BUILD+',12:'TAPER',
                13:'TAPER',14:'RACE'}
 
+# Friel-baserede løb-pace-zoner (sek/km), baseret på threshold 4:20/km.
+# VIGTIGT: Intervals.icu's egen pace_zone_times bruger en generisk 7-zone
+# %-tabel der IKKE matcher disse grænser for Z3 og opefter (verificeret
+# 2/7-26 -- se sessions.py: compute_run_pace_zone_secs).
+# Z2 matcher tilfældigvis ICU's egen tabel, men Z3-Z6 gør ikke -- derfor
+# beregnes løb-zone-tid altid ud fra rå pace-stream mod DISSE grænser.
+RUN_PACE_ZONES_SEC_PER_KM = {
+    'Z1': (335, 99999),   # langsommere end 5:35/km
+    'Z2': (296, 334),     # 4:56-5:34/km
+    'Z3': (266, 295),     # 4:26-4:55/km
+    'Z4': (253, 265),     # 4:13-4:25/km
+    'Z5': (233, 252),     # 3:53-4:12/km
+    'Z6': (0, 232),       # hurtigere end 3:52/km
+}
+
 
 def api_get(url, auth=None, params=None, timeout=20, retries=3):
     """requests.get med exponential backoff retry på transiente fejl."""
