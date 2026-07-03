@@ -976,13 +976,13 @@ function renderOverview() {
       const swimBars = sh.map(w => w.meters || 0);
       const maxBar = Math.max(...swimBars, 1);
       const barW = sh.length ? Math.max(Math.floor(240 / sh.length) - 2, 4) : 8;
-      const cmToKm = m => (m / 100000).toFixed(1);
+      const mToKm = m => (m / 1000).toFixed(1);
       const swimThisWeekKm = (parseFloat(swimThisWeek) / 1000).toFixed(1);  // kpis er i meter
-      const cumulativeKm = cmToKm(cumulative);  // history er i cm
+      const cumulativeKm = mToKm(cumulative);  // history er i meter
       const barsHtml = sh.map((w, i) => {
         const h = Math.round((w.meters / maxBar) * 48);
         const isThisWeek = (i === sh.length - 1);
-        const kmLabel = w.meters >= 1000 ? cmToKm(w.meters) : '';
+        const kmLabel = w.meters >= 1000 ? mToKm(w.meters) : '';
         return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
           <div style="font-family:Space Mono,monospace;font-size:7px;color:${isThisWeek ? 'var(--swim)' : 'var(--muted)'};min-height:10px;line-height:10px">${kmLabel}</div>
           <div style="width:${barW}px;height:${h}px;background:${isThisWeek ? 'var(--swim)' : 'rgba(26,122,94,.35)'};border-radius:2px 2px 0 0;min-height:2px"></div>
