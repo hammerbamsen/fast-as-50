@@ -88,17 +88,13 @@ let globalStreak = 0;
 function calcStreak(log) {
   // Gå baglæns fra i går og tæl sammenhængende AF-dage
   let streak = 0;
-  const today = todayKey();
-  // Inkluder i dag hvis registreret som AF
   let check = new Date();
-  if(log[today] === true) { streak++; check = addDays(check, -1); }
-  else if(log[today] === false) { return streak; } // Ikke-AF dag stopper streak
-  else { check = addDays(check, -1); } // Ikke registreret endnu — start fra i går
-  while(true) {
-    const k = toKey(check);
-    if(log[k] === true) { streak++; check = addDays(check, -1); }
-    else { break; }
-  }
+  // Tillad op til 2 uregistrerede dage i halen (i dag + i går
+  // kan mangle, da check-in ofte sker næste aften)
+  let grace = 2;
+  while(grace > 0 && log[toKey(check)] === undefined) { check = addDays(check, -1); grace--; }
+  if(log[toKey(check)] === false) { return 0; } // Ikke-AF dag stopper streak
+  while(log[toKey(check)] === true) { streak++; check = addDays(check, -1); }
   return streak;
 }
 
