@@ -26,9 +26,15 @@ jobs:
           if [ -n "$STRESS" ]; then PAYLOAD="$PAYLOAD, \"Fatigue\": $STRESS"; fi
           PAYLOAD="$PAYLOAD}"
           
-          curl -s -X PUT \
+          HTTP=$(curl -s -o /tmp/resp.txt -w "%{http_code}" -X PUT \
             "https://intervals.icu/api/v1/athlete/${{ secrets.INTERVALS_ATHLETE_ID }}/wellness/$DATE" \
             -u "API_KEY:${{ secrets.INTERVALS_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d "$PAYLOAD"
+            -d "$PAYLOAD")
+          echo "Intervals svar ($HTTP):"
+          cat /tmp/resp.txt
+          if [ "$HTTP" != "200" ]; then
+            echo "::error::Intervals PUT fejlede med HTTP $HTTP for $DATE"
+            exit 1
+          fi
           echo "Gemt: $DATE alkohol=$ALKOHOL protein=$PROTEIN energi=$ENERGI stress=$STRESS"
