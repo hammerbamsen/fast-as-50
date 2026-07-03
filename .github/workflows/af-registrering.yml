@@ -27,7 +27,7 @@ jobs:
           PAYLOAD="$PAYLOAD}"
 
           HTTP=$(curl -s -o /tmp/resp.txt -w "%{http_code}" --max-time 30 -X PUT \
-            "https://intervals.icu/api/v1/athlete/${{ secrets.INTERVALS_ATHLETE_ID }}/wellness/$DATE" \
+            "https://intervals.icu/api/v1/athlete/i599466/wellness/$DATE" \
             -u "API_KEY:${{ secrets.INTERVALS_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD" || echo "000")
