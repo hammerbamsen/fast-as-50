@@ -144,9 +144,12 @@ def get_af_streak():
 
     streak = 0
     check = date.today()
-    # Hvis i dag ikke er registreret endnu, start fra i gaar
-    if str(check) not in af_by_date:
+    # Tillad op til 2 uregistrerede dage i halen (i dag + i gaar
+    # kan mangle check-in, da registrering ofte sker naeste aften)
+    grace = 2
+    while grace > 0 and str(check) not in af_by_date:
         check -= timedelta(days=1)
+        grace -= 1
     while True:
         k = str(check)
         if af_by_date.get(k) == 0:
