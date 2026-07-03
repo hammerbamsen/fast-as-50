@@ -177,14 +177,14 @@ function showSetup() {
     <p style="font-size:13px;color:#7A6A58;margin-bottom:20px;line-height:1.6">
       Indsæt dit GitHub token — gemmes kun på din telefon.
     </p>
-    <input class="setup-input" id="token-input" type="password" placeholder="ghp_xxxxxxxxxxxx">
+    <input class="setup-input" id="token-input" type="password" placeholder="github_pat_xxxx eller ghp_xxxx">
     <button class="btn-setup" onclick="saveSetup()">Gem og fortsæt</button>
   `;
 }
 
 function saveSetup() {
   const t = document.getElementById('token-input').value.trim();
-  if(!t.startsWith('ghp_')) { alert('Token skal starte med ghp_'); return; }
+  if(!t.startsWith('ghp_') && !t.startsWith('github_pat_')) { alert('Token skal starte med ghp_ eller github_pat_'); return; }
   saveToken(t);
   init();
 }
