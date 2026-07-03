@@ -897,6 +897,9 @@ def get_swim_history():
     # Gruppér pr. uge
     by_week = {}
     for a in acts:
+        # Intervals.icu ignorerer 'types'-parameteren, saa filtrer selv
+        if a.get('type') not in ('Swim', 'OpenWaterSwim'):
+            continue
         dt_str = (a.get('start_date_local') or '')[:10]
         if not dt_str:
             continue
