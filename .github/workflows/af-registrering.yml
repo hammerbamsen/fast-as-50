@@ -5,7 +5,7 @@ on:
     types: [af-registrering, checkin]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   send-to-intervals:
@@ -18,23 +18,38 @@ jobs:
           PROTEIN="${{ github.event.client_payload.protein }}"
           ENERGI="${{ github.event.client_payload.energi }}"
           STRESS="${{ github.event.client_payload.stress }}"
-          
+
           # Byg JSON payload
           PAYLOAD="{\"Alkohol\": $ALKOHOL"
           if [ -n "$PROTEIN" ]; then PAYLOAD="$PAYLOAD, \"Protein\": $PROTEIN"; fi
           if [ -n "$ENERGI" ]; then PAYLOAD="$PAYLOAD, \"Motivation\": $ENERGI"; fi
           if [ -n "$STRESS" ]; then PAYLOAD="$PAYLOAD, \"Fatigue\": $STRESS"; fi
           PAYLOAD="$PAYLOAD}"
-          
-          HTTP=$(curl -s -o /tmp/resp.txt -w "%{http_code}" -X PUT \
+
+          HTTP=$(curl -s -o /tmp/resp.txt -w "%{http_code}" --max-time 30 -X PUT \
             "https://intervals.icu/api/v1/athlete/${{ secrets.INTERVALS_ATHLETE_ID }}/wellness/$DATE" \
             -u "API_KEY:${{ secrets.INTERVALS_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d "$PAYLOAD")
+            -d "$PAYLOAD" || echo "000")
           echo "Intervals svar ($HTTP):"
-          cat /tmp/resp.txt
+          cat /tmp/resp.txt 2>/dev/null || true
+
+          # Skriv debug-fil til repo (altid, uanset udfald)
+          BODY=$(head -c 400 /tmp/resp.txt 2>/dev/null || echo "intet svar")
+          printf 'tid_utc: %s\ndato: %s\nhttp: %s\nsvar: %s\n' "$(date -u +%FT%T)" "$DATE" "$HTTP" "$BODY" > /tmp/debug.txt
+          B64=$(base64 -w0 /tmp/debug.txt)
+          SHA=$(curl -s -H "Authorization: Bearer ${{ github.token }}" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/debug/af_dispatch_debug.txt" \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('sha',''))")
+          if [ -n "$SHA" ]; then SHAFIELD=", \"sha\": \"$SHA\""; else SHAFIELD=""; fi
+          curl -s -o /dev/null -w "debug-fil skrevet: HTTP %{http_code}\n" -X PUT \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Content-Type: application/json" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/debug/af_dispatch_debug.txt" \
+            -d "{\"message\": \"debug: af-dispatch $DATE http=$HTTP\", \"content\": \"$B64\"$SHAFIELD}"
+
           if [ "$HTTP" != "200" ]; then
             echo "::error::Intervals PUT fejlede med HTTP $HTTP for $DATE"
             exit 1
           fi
-          echo "Gemt: $DATE alkohol=$ALKOHOL protein=$PROTEIN energi=$ENERGI stress=$STRESS"
+          echo "Gemt: $DATE alkohol=$ALKOHOL"
