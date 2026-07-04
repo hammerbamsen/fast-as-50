@@ -1,9 +1,11 @@
 name: Daglig dashboard-opdatering
 
 on:
-  # CRON DEAKTIVERET 2026-06-29: launchd på Mac er primær opdater-kilde.
-  # Actions crashede pga. dict/fladt format-konflikt + Intervals blokerer Actions-IPs.
-  # Behold workflow_dispatch til manuel/nødkørsel.
+  # CRON GENAKTIVERET 2026-07-04: Actions er primær opdater-kilde (kører uden Mac).
+  # Tidligere antagelse om at Intervals blokerer Actions-IPs var forkert (bevist 2/7 + 4/7).
+  # launchd på Mac beholdes som redundans — concurrency-lås håndterer overlap.
+  schedule:
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 permissions:
