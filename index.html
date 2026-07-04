@@ -1226,6 +1226,38 @@ window.addEventListener('resize', () => {
 });
 
 
+// ── AF per-dag opslag: 0 = AF (✓), 1 = ikke-AF (rød ✕), undefined = uregistreret ──
+function _afMondayOf(d) {
+  const m = new Date(d); const diff = m.getDay() === 0 ? -6 : 1 - m.getDay();
+  m.setDate(m.getDate() + diff); m.setHours(0, 0, 0, 0); return m;
+}
+function _afKey(dt) {
+  return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+}
+function _afWeek1Monday() {
+  const keys = Object.keys(D.af_log || {}).sort();
+  if (!keys.length) return null;
+  return _afMondayOf(new Date(keys[0] + 'T12:00:00'));
+}
+function _afValFor(weekNum, dayIdx) {
+  const m = _afWeek1Monday();
+  if (!m || !D.af_log) return undefined;
+  const dt = new Date(m); dt.setDate(m.getDate() + (weekNum - 1) * 7 + dayIdx);
+  return D.af_log[_afKey(dt)];
+}
+function _afDotHtml(val, label, labelGap) {
+  let bg, fg, sym, lbl;
+  if (val === 0)      { bg = 'var(--wine)';    fg = 'var(--gold)';  sym = '✓'; lbl = 'var(--wine)'; }
+  else if (val === 1) { bg = 'var(--run)';     fg = 'var(--cream)'; sym = '✕'; lbl = 'var(--run)'; }
+  else                { bg = 'var(--cream-d)'; fg = 'var(--muted)'; sym = '·'; lbl = 'var(--muted)'; }
+  return '<div style="display:flex;flex-direction:column;align-items:center;gap:' + labelGap + 'px">' +
+    '<div style="width:28px;height:28px;border-radius:50%;background:' + bg + ';display:flex;align-items:center;justify-content:center">' +
+    '<span style="font-size:9px;font-weight:700;color:' + fg + '">' + sym + '</span>' +
+    '</div>' +
+    '<span style="font-family:Space Mono,monospace;font-size:8px;color:' + lbl + '">' + label + '</span>' +
+    '</div>';
+}
+
 function afHistoryViz(history) {
   if (!history || history.length === 0) return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);text-align:center;padding:8px">Ingen historik endnu</div>';
   
@@ -1242,13 +1274,10 @@ function afHistoryViz(history) {
           '<span style="font-family:Space Mono,monospace;font-size:8px;color:var(--cream-d)">' + label + '</span>' +
           '</div>';
       }
-      const filled = i < w.done;
-      return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px">' +
-        '<div style="width:28px;height:28px;border-radius:50%;background:' + (filled ? 'var(--wine)' : 'var(--cream-d)') + ';display:flex;align-items:center;justify-content:center">' +
-        '<span style="font-size:9px;font-weight:700;color:' + (filled ? 'var(--gold)' : 'var(--muted)') + '">' + (filled ? '✓' : '·') + '</span>' +
-        '</div>' +
-        '<span style="font-family:Space Mono,monospace;font-size:8px;color:' + (filled ? 'var(--wine)' : 'var(--muted)') + '">' + label + '</span>' +
-        '</div>';
+      // Per-dag opslag i af_log; fallback til gammel tælle-logik hvis log mangler
+      let val = _afValFor(w.week, i);
+      if (val === undefined && !D.af_log) val = (i < w.done) ? 0 : undefined;
+      return _afDotHtml(val, label, 2);
     }).join('');
 
     const color = w.done >= 5 ? 'var(--swim)' : w.done >= 3 ? 'var(--gold)' : 'var(--run)';
@@ -1265,12 +1294,28 @@ function afHistoryViz(history) {
 }
 function afStreakViz(done, target, streak) {
   const days = ['M','T','O','T','F','L','S'];
+  const nowMon = _afMondayOf(new Date());
+  const todayKey = _afKey(new Date());
   let dots = '';
   for (let i = 0; i < 7; i++) {
-    const filled = i < done;
+    const dt = new Date(nowMon); dt.setDate(nowMon.getDate() + i);
+    const k = _afKey(dt);
+    let val = (D.af_log || {})[k];
+    if (val === undefined && !D.af_log) val = (i < done) ? 0 : undefined;
+    if (val === undefined || k > todayKey) {
+      // Uregistreret eller fremtidig dag: vis dagbogstav som hidtil
+      dots += '<div style="display:flex;flex-direction:column;align-items:center;gap:3px">' +
+        '<div style="width:28px;height:28px;border-radius:50%;background:var(--cream-d);display:flex;align-items:center;justify-content:center">' +
+        '<span style="font-size:9px;color:var(--muted);font-weight:700">' + days[i] + '</span>' +
+        '</div></div>';
+      continue;
+    }
+    const bg  = val === 0 ? 'var(--wine)' : 'var(--run)';
+    const fg  = val === 0 ? 'var(--gold)' : 'var(--cream)';
+    const sym = val === 0 ? '✓' : '✕';
     dots += '<div style="display:flex;flex-direction:column;align-items:center;gap:3px">' +
-      '<div style="width:28px;height:28px;border-radius:50%;background:' + (filled?'var(--wine)':'var(--cream-d)') + ';display:flex;align-items:center;justify-content:center">' +
-      '<span style="font-size:9px;color:' + (filled?'var(--gold)':'var(--muted)') + ';font-weight:700">' + (filled?'✓':days[i]) + '</span>' +
+      '<div style="width:28px;height:28px;border-radius:50%;background:' + bg + ';display:flex;align-items:center;justify-content:center">' +
+      '<span style="font-size:9px;color:' + fg + ';font-weight:700">' + sym + '</span>' +
       '</div></div>';
   }
   const s = streak || 0;
