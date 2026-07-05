@@ -392,7 +392,11 @@ async function answer(isAF) {
   } catch(e) {
     console.error('AF push fejl:', e);
     const statusEl = document.getElementById('status');
-    statusEl.innerHTML = '\u26a0 Ikke gemt — sp\u00f8rgsm\u00e5let kommer igen n\u00e6ste gang';
+    const detail = String(e && e.message ? e.message : e).replace(/[<>]/g,'');
+    const hint = /401|403|Bad credentials/i.test(detail)
+      ? '<br><span style="font-weight:400">Token er ugyldigt \u2014 \u00e5bn af.html?reset og inds\u00e6t det nye token</span>'
+      : '';
+    statusEl.innerHTML = '\u26a0 Ikke gemt \u2014 ' + detail + hint;
     statusEl.style.cssText='color:#633806;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#FAEEDA;border-radius:10px;margin-top:8px';
     await new Promise(r=>setTimeout(r,2500));
   }
