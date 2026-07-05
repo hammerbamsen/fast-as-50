@@ -11,7 +11,7 @@ on:
     types: [workouts-built]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   sync-outlook:
@@ -30,4 +30,17 @@ jobs:
           INTERVALS_API_KEY:    ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
           WEEK: ${{ github.event.inputs.week || github.event.client_payload.week || '2' }}
-        run: python3 .github/workflows/scripts/sync_outlook.py
+        run: |
+          set -o pipefail
+          python3 .github/workflows/scripts/sync_outlook.py 2>&1 | tee /tmp/sync_out.txt
+      - name: Gem debug-log
+        if: always()
+        run: |
+          git config user.name "fast50-debug"
+          git config user.email "debug@fast50.local"
+          mkdir -p debug
+          cp /tmp/sync_out.txt debug/outlook_sync_debug.txt 2>/dev/null || echo "ingen output" > debug/outlook_sync_debug.txt
+          git add debug/outlook_sync_debug.txt
+          git commit -m "debug: outlook sync log" || true
+          git pull --rebase origin main || true
+          git push || true
