@@ -246,7 +246,12 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     _today_iso = date.today().isoformat()
     def _is_past(s):
         d = s.get('date')
-        return bool(d) and d < _today_iso
+        if d:
+            return d < _today_iso
+        day = s.get('day')
+        if day in DAY_SHORT:
+            return DAY_SHORT.index(day) < weekday
+        return False
     missed_sessions = [s.get('label', '') for s in planned_sessions if not s.get('done') and _is_past(s)]
     actual_remaining = [s.get('label', '') for s in planned_sessions if not s.get('done') and not _is_past(s)]
 
