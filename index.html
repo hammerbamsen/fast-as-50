@@ -1450,8 +1450,8 @@ function checkStaleness(updatedStr) {
   const ts = new Date(updatedStr.replace(' ', 'T'));
   if (isNaN(ts.getTime())) return;
   const ageMin = Math.round((Date.now() - ts.getTime()) / 60000);
-  if (ageMin > 120) {
-    const ageTxt = ageMin >= 120 ? Math.round(ageMin/60) + ' timer' : ageMin + ' min';
+  if (ageMin > 180) {
+    const ageTxt = ageMin >= 180 ? Math.round(ageMin/60) + ' timer' : ageMin + ' min';
     const html = '⚠️ Data er ' + ageTxt + ' gamle (sidst opdateret ' + updatedStr + '). Er Mac\u0027en vågen med åbent låg?';
     if (existing) { existing.innerHTML = html; return; }
     const b = document.createElement('div');
