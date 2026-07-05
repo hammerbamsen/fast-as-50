@@ -8,7 +8,7 @@ Uge  2: 08-14 jun  BUILD+   Man-Ons Gentofte | Tor-Søn Mallorca #1
 Uge  3: 15-21 jun  BUILD+   Man-Ons Mallorca | Tor hjem | Fre-Søn Gentofte
 Uge  4: 22-28 jun  RECOVERY Gentofte
 Uge  5: 29jun-5jul BUILD    Gentofte
-Uge  6: 06-12 jul  BUILD    Gentofte
+Uge  6: 06-12 jul  RECOVERY Man-Tir Gentofte | Ons-Søn Skotland
 Uge  7: 13-19 jul  RECOVERY Gentofte
 Uge  8: 20-26 jul  BUILD    Gentofte
 Uge  9: 27jul-2aug BUILD    Gentofte | Fre-Søn Musik i Gentofte
@@ -521,15 +521,15 @@ def make_plan():
     (p+timedelta(33), run_z2_lang(115),      "Lang løb Z2 115 min"),
     (p+timedelta(34), bike_hundested(),      "Cykel Z2 til Hundested"),
 
-    # ── UGE 6: 6-12 jul  BUILD let (løbefokus — Wales ons-søn) ──
-    (p+timedelta(35), swim_2000(),           "Svøm 2000m — morgen"),
-    (p+timedelta(35), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
-    (p+timedelta(36), run_z2(60),            "Løb Z2 60 min — sidste før Wales"),
-    (p+timedelta(37), None,                  "Fly → Wales (ons 8. jul morgen)"),
-    (p+timedelta(38), run_trail(65),         "Trail-løb Z2 Wales 65 min"),
-    (p+timedelta(39), hike_easy(120),        "Vandring Wales 2 timer"),
-    (p+timedelta(40), run_trail(90, "Trail langtur Z2 Wales"), "Trail langtur Z2 Wales 90 min"),
-    (p+timedelta(41), None,                  "Hjemrejse Wales (søn 12. jul aften) — evt. kort gåtur"),
+    # ── UGE 6: 6-12 jul  RECOVERY let (Skotland ons-søn, tå-hensyn: kun 2 løb) ──
+    (p+timedelta(35), ow_swim(40, "Christiansborg-prep"), "OW-svøm 40 min — Christiansborg-prep"),
+    (p+timedelta(35), strength_let(),        "Styrke let 2 sæt recovery"),
+    (p+timedelta(36), bike_z2(70),           "Cykel Z2 70 min — sidste før Skotland"),
+    (p+timedelta(37), None,                  "Fly → Skotland (ons 8. jul) — hvile/gang"),
+    (p+timedelta(38), hike_easy(120),        "Vandring Skotland 2 timer — lav intensitet"),
+    (p+timedelta(39), run_trail(55, "Trail-løb Z2 Skotland"), "Trail-løb Z2 Skotland 55 min — TÅ-TEST: stop ved smerte"),
+    (p+timedelta(40), hike_easy(90),         "Vandring Skotland let / hvile"),
+    (p+timedelta(41), run_trail(75, "Trail langtur Z2 Skotland"), "Trail langtur Z2 Skotland 75 min — kun hvis tåen holdt fredag. Hjemrejse aften"),
 
     # ── UGE 7: 13-19 jul  BUILD (man-ons Gentofte, tor-søn Mallorca) ──
     (p+timedelta(42), swim_2000(),           "Svøm 2000m — morgen"),
