@@ -63,8 +63,14 @@ r = requests.get(
             'category': 'WORKOUT'},
     timeout=TIMEOUT
 )
-workouts = r.json() if r.status_code == 200 else []
+if r.status_code != 200:
+    print(f'FEJL: Intervals GET returnerede {r.status_code}: {r.text[:200]}')
+    raise SystemExit(1)
+workouts = r.json()
 print(f'{len(workouts)} workouts fra Intervals')
+if not workouts:
+    print('FEJL: 0 workouts fra Intervals — forventede en planlagt uge. Afbryder.')
+    raise SystemExit(1)
 
 TYPE_EMOJI = {
     'Run': '🏃', 'Ride': '🚴', 'Swim': '🏊',
@@ -108,4 +114,6 @@ for w in workouts:
         err += 1
 
 print(f'Oprettet: {ok} | Fejl: {err}')
+if err > 0:
+    raise SystemExit(1)
 print('DONE')
