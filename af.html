@@ -85,6 +85,17 @@ function saveLog(log) { localStorage.setItem(STORAGE_KEY, JSON.stringify(log)); 
 // ── Streak beregning (fra data.json + localStorage) ──────────
 let globalStreak = 0;
 
+function calcStreakFromAfLog(afLog) {
+  // Streak fra data.af_log (0 = AF, 1 = ikke-AF) — baglæns fra i dag med 2 dages grace
+  let streak = 0;
+  let check = new Date();
+  let grace = 2;
+  while(grace > 0 && afLog[toKey(check)] === undefined) { check = addDays(check, -1); grace--; }
+  if(afLog[toKey(check)] === 1) { return 0; }
+  while(afLog[toKey(check)] === 0) { streak++; check = addDays(check, -1); }
+  return streak;
+}
+
 function calcStreak(log) {
   // Gå baglæns fra i går og tæl sammenhængende AF-dage
   let streak = 0;
@@ -331,13 +342,16 @@ async function answer(isAF) {
 
       // af_log: 0 = AF, 1 = ikke-AF (Intervals konvention)
       data.af_log[key] = isAF ? 0 : 1;
-      streak = calcStreak(log);
-      data.af.weekDone = Object.entries(log)
-        .filter(([d,v]) => { const mon = weekStart(); const dt = new Date(d); return dt >= mon && v===true; }).length;
+
+      // ÉN SANDHEDSKILDE: alt beregnes fra frisk data.af_log — aldrig localStorage
+      streak = calcStreakFromAfLog(data.af_log);
+      const monKey = toKey(weekStart());
+      data.af.weekDone = Object.entries(data.af_log)
+        .filter(([d,v]) => d >= monKey && v === 0).length;
       data.af.streak = streak;
       data.kpis.afStreak.value = String(streak);
-      const wk = data.meta ? data.meta.week : 2;
-      if(data.af_history) {
+      const wk = data.meta && data.meta.week;
+      if(wk && data.af_history) {
         for(const w of data.af_history) {
           if(w.week === wk) { w.done = data.af.weekDone; break; }
         }
