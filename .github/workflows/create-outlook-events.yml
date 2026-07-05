@@ -29,9 +29,10 @@ jobs:
           AZURE_CLIENT_SECRET:  ${{ secrets.AZURE_CLIENT_SECRET }}
           INTERVALS_API_KEY:    ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
-          WEEK: ${{ github.event.inputs.week || github.event.client_payload.week || '2' }}
+          WEEK: ${{ github.event.inputs.week || github.event.client_payload.week }}
         run: |
           set -o pipefail
+          if [ -z "$WEEK" ]; then echo "FEJL: week-input mangler — afbryder (ingen default)"; exit 1; fi
           python3 .github/workflows/scripts/sync_outlook.py 2>&1 | tee /tmp/sync_out.txt
       - name: Gem debug-log
         if: always()
