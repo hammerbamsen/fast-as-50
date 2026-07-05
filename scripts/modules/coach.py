@@ -242,7 +242,13 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     )
 
     # Faktisk remaining baseret på week_sessions — ikke stale liste fra main()
-    actual_remaining = [s.get('label', '') for s in planned_sessions if not s.get('done')]
+    # Split på dato: en session hvis dag er passeret er MISSET — ikke "tilbage"
+    _today_iso = date.today().isoformat()
+    def _is_past(s):
+        d = s.get('date')
+        return bool(d) and d < _today_iso
+    missed_sessions = [s.get('label', '') for s in planned_sessions if not s.get('done') and _is_past(s)]
+    actual_remaining = [s.get('label', '') for s in planned_sessions if not s.get('done') and not _is_past(s)]
 
     # Dagens session
     if today_session and not today_session.get('done'):
@@ -293,12 +299,21 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
         else:
             done_tss = int(tss_act or 0)
             target_tss = int(planned or 0)
+            if missed_sessions:
+                if len(missed_sessions) == 1:
+                    missed_str = f" {missed_sessions[0]} er misset — vinduet er lukket."
+                else:
+                    missed_str = f" {len(missed_sessions)} sessioner er misset — vinduerne er lukket."
+            else:
+                missed_str = ""
             if actual_remaining:
                 if len(actual_remaining) == 1:
                     rest_str = f"{actual_remaining[0]} står tilbage"
                 else:
                     rest_str = f"{len(actual_remaining)} sessioner tilbage, heriblandt {', '.join(actual_remaining[:2])}"
-                focus.append(f"{done_tss} af {target_tss} TSS er i hus — {rest_str}.")
+                focus.append(f"{done_tss} af {target_tss} TSS er i hus — {rest_str}.{missed_str}")
+            elif missed_sessions:
+                focus.append(f"{done_tss} af {target_tss} TSS er i hus.{missed_str}")
             else:
                 # actual_remaining er tom = alt er done, selv om compliance < 90 (TSS-afvigelse)
                 goods.append(f"Alle sessioner gennemført — {int(compliance)}% af planlagt TSS.")
