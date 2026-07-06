@@ -99,13 +99,27 @@ def ctl_plan_for_week(week_num):
     return CTL_PLAN[idx]
 
 
-def fix_enc(s):
-    if not isinstance(s, str):
+def fix_enc(s, max_passes=6):
+    """Reparerer UTF-8-som-Latin-1 mojibake (fx 'Ã¦' -> 'æ', 'Â·' -> '·').
+    Kører iterativt op til max_passes gange, da tekst kan være korrumperet
+    i flere lag (set i praksis: 'all_weeks[N].focus' med op til 4 lag efter
+    gentagne cache-pass-through cyklusser uden reparation).
+    Stopper sikkert når: (a) et pass ikke ændrer noget (stabil/ren tekst),
+    eller (b) encode fejler fordi teksten indeholder ægte Unicode-tegn
+    uden for Latin-1 (fx —, ', ", som Kennets AI-tekster ofte bruger korrekt)
+    -- så ægte specialtegn bliver ALDRIG fejlagtigt ødelagt."""
+    if not isinstance(s, str) or not s:
         return s
-    try:
-        return s.encode('latin-1').decode('utf-8')
-    except (UnicodeEncodeError, UnicodeDecodeError):
-        return s
+    cur = s
+    for _ in range(max_passes):
+        try:
+            nxt = cur.encode('latin-1').decode('utf-8')
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            break
+        if nxt == cur:
+            break
+        cur = nxt
+    return cur
 
 
 def fmt(val, decimals=1):
