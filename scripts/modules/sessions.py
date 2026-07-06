@@ -995,7 +995,7 @@ def generate_week_focus_ai(week_num, sessions, block_type, ctl=None, tsb=None, w
         )
         with _req.urlopen(req, timeout=15) as r:
             result = json.loads(r.read())
-            text = result["content"][0]["text"].strip().split("\n")[0].strip().strip('"').strip("'")[:120]
+            text = fix_enc(result["content"][0]["text"]).strip().split("\n")[0].strip().strip('"').strip("'")[:120]
             print(f"  ✅ weekFocus AI genereret: {text}")
             return text
     except Exception as e:
