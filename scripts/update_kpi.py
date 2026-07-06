@@ -361,6 +361,7 @@ def main():
                     anthropic_key=ANTHROPIC_KEY
                 )
                 data['weekFocusWeek'] = week_num
+            dynamic_focus = fix_enc(dynamic_focus)
             this_week['focus'] = dynamic_focus
             data['weekFocus'] = dynamic_focus
         # Sæt fokus-tekst for alle uger — aktuel uge er allerede sat ovenfor,
@@ -370,14 +371,14 @@ def main():
         for w_num, w_data in planned_weeks.items():
             if w_num == week_num:
                 continue  # Aktuel uge allerede håndteret
-            _cached_focus = _existing_all_weeks.get(str(w_num), {}).get('focus', '')
+            _cached_focus = fix_enc(_existing_all_weeks.get(str(w_num), {}).get('focus', ''))
             if _cached_focus:
                 w_data['focus'] = _cached_focus
             else:
-                w_data['focus'] = generate_week_focus(
+                w_data['focus'] = fix_enc(generate_week_focus(
                     w_num, w_data.get('sessions', []),
                     BLOCK_TYPES.get(w_num, 'BUILD')
-                )
+                ))
         data['all_weeks'] = {str(k): v for k, v in planned_weeks.items()}
 
     # --- Today session(s) ---
@@ -500,7 +501,7 @@ def main():
             line = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', line)
             html_lines.append(f'<p style="margin:0 0 8px;font-family:\'Hanken Grotesk\',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)">{line}</p>')
         from datetime import datetime as _dt
-        data['coachAssessmentHtml']        = ''.join(html_lines)
+        data['coachAssessmentHtml']        = fix_enc(''.join(html_lines))
         data['coachAssessmentTs']          = _dt.now().strftime('%H:%M')
         data['coachAssessmentTsFull']      = datetime.utcnow().isoformat()
         data['coachAssessmentWeightAtGen'] = weight if weight is not None else _weight_at_gen
