@@ -12,7 +12,7 @@ Modulstruktur:
   scripts/modules/coach.py    — coach-tekst og AI-assessment
   scripts/modules/github.py   — læs/skriv data.json via GitHub API
 """
-import os, re, json, base64, sys
+import os, re, json, base64, sys, subprocess
 from datetime import date, datetime, timedelta
 
 # Sørg for at 'modules/' kan findes uanset hvorfra scriptet køres
@@ -40,7 +40,30 @@ from modules.coach    import (get_travel_label, weight_delta_vs_recent,
 from modules.github   import gh_get, gh_put
 
 
+def _sync_repo():
+    """Pull frisk kode fra origin/main før run — sikrer Mac launchd altid bruger
+    seneste version. Skip'es i GitHub Actions hvor checkout allerede er frisk.
+    Fejler blødt: script fortsætter selv hvis pull ikke lykkes."""
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        return
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if not os.path.isdir(os.path.join(repo_root, '.git')):
+        return  # ikke et git-repo (fx sandbox-kørsel)
+    try:
+        r = subprocess.run(
+            ['git', '-C', repo_root, 'pull', '--rebase', '--autostash', '--quiet'],
+            capture_output=True, text=True, timeout=30
+        )
+        if r.returncode == 0:
+            print("  ✅ Git sync: up-to-date")
+        else:
+            print(f"  ⚠️ Git sync fejlede (fortsætter): {(r.stderr or r.stdout)[:150]}")
+    except Exception as e:
+        print(f"  ⚠️ Git sync exception (fortsætter): {e}")
+
+
 def main():
+    _sync_repo()
     today     = date.today()
     weekday   = today.weekday()
     week1     = PLAN_START
