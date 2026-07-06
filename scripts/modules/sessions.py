@@ -750,7 +750,7 @@ def get_planned_weeks():
         'Cyclocross':'bike','Gravel':'bike','GravelRide':'bike',
         'Swim':'swim','OpenWaterSwim':'openwater',
         'WeightTraining':'strength','Workout':'strength','Strength':'strength',
-        'Walk':'free','Hike':'free',
+        'Walk':'walk','Hike':'hike',
     }
     DAY_SHORT = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"]
 
