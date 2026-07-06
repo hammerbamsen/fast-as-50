@@ -549,7 +549,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
             if result.get("stop_reason") == "max_tokens":
                 print("  ⚠️  AI-vurdering trunkeret (max_tokens) — kasseres, beholder forrige")
                 return None
-            text = result["content"][0]["text"]
+            text = fix_enc(result["content"][0]["text"])
             print(f"  ✅ AI-vurdering genereret ({len(text)} tegn)")
             return text
     except Exception as e:
