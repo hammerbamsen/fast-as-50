@@ -673,7 +673,7 @@ def build_week_sessions(done_map, planned_sessions):
             match_idx = None
             for i, act_entry in enumerate(acts):
                 disc = act_entry[0]
-                if i not in used[day_key] and (disc == planned_disc or (disc == "openwater" and planned_disc == "swim") or (disc == "commute" and planned_disc == "bike" and not any(e[0] == "bike" for j,e in enumerate(acts) if j in used[day_key]))):
+                if i not in used[day_key] and (disc == planned_disc or (disc in ("swim", "openwater") and planned_disc in ("swim", "openwater")) or (disc == "commute" and planned_disc == "bike" and not any(e[0] == "bike" for j,e in enumerate(acts) if j in used[day_key]))):
                     match_idx = i
                     break
             if match_idx is not None:
@@ -748,7 +748,7 @@ def get_planned_weeks():
         'Run':'run','TrailRun':'run','VirtualRun':'run','IndoorRun':'run',
         'Ride':'bike','VirtualRide':'bike','MountainBike':'bike',
         'Cyclocross':'bike','Gravel':'bike','GravelRide':'bike',
-        'Swim':'swim',
+        'Swim':'swim','OpenWaterSwim':'openwater',
         'WeightTraining':'strength','Workout':'strength','Strength':'strength',
         'Walk':'free','Hike':'free',
     }
