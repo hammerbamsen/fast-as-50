@@ -87,7 +87,7 @@ jobs:
 
       - name: Upload about-me.md
         run: |
-          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4HMOISMIYAKQBBLUE3OBQAYJVB6:/about-me.md:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/about-me.md)
+          HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4B5FDFZRE5CRZH2XOYEYZNWMRKE:/about-me.md:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/about-me.md)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
           [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 

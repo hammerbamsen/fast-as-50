@@ -1,0 +1,56 @@
+name: OneDrive reorg (fase 0)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ops:
+        description: 'Kommasepareret liste af operationer'
+        required: true
+        default: 'mkdir_arkiv'
+
+permissions:
+  contents: read
+
+jobs:
+  reorg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install requests
+
+      - name: Hent Graph-token
+        id: token
+        env:
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        run: |
+          python3 << 'PYEOF'
+          import os, requests, sys, json, base64
+          r = requests.post(
+              'https://login.microsoftonline.com/' + os.environ['AZURE_TENANT_ID'] + '/oauth2/v2.0/token',
+              data={'grant_type':'client_credentials','client_id':os.environ['AZURE_CLIENT_ID'],
+                    'client_secret':os.environ['AZURE_CLIENT_SECRET'],'scope':'https://graph.microsoft.com/.default'})
+          if r.status_code != 200:
+              print("Token-fejl", r.status_code, file=sys.stderr); sys.exit(1)
+          token = r.json()['access_token']
+          parts = token.split('.')
+          claims = json.loads(base64.b64decode(parts[1] + '='*(4 - len(parts[1]) % 4)).decode('utf-8','replace'))
+          if 'Files.ReadWrite.All' not in claims.get('roles', []):
+              print("Files.ReadWrite.All mangler", file=sys.stderr); sys.exit(1)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f"token={token}\n")
+          PYEOF
+
+      - name: Kør reorg
+        env:
+          GRAPH_TOKEN: ${{ steps.token.outputs.token }}
+          ONEDRIVE_OPS: ${{ github.event.inputs.ops }}
+        run: python3 scripts/onedrive_reorg.py
+
+      - name: Notifikation ved fejl
+        if: failure()
+        run: |
+          curl -s -X POST "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj" \
+            -H "Content-Type: application/json" \
+            -d '{"workflow":"${{ github.workflow }}","status":"FEJL","repo":"${{ github.repository }}","run":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
