@@ -28,7 +28,7 @@ Opdatering juni 2026:
 - delete_existing filtrerer korrekt på category=WORKOUT
 """
 
-import json, sys, time, requests
+import json, os, sys, time, requests
 from datetime import date, timedelta
 
 ATHLETE_ID  = "i599466"
@@ -478,161 +478,58 @@ def bike_sa_calobra():
             "moving_time": 280*60, "description": desc, "workout_doc": doc}
 
 # ── 14-ugers plan ───────────────────────────────────────────────
+PLAN_JSON = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "plan.json")
+
+def load_plan_json():
+    """Sandhedslaget: data/plan.json (v3) — begge atleter, alle dage."""
+    with open(PLAN_JSON, encoding="utf-8") as f:
+        return json.load(f)
+
 def make_plan():
-    p = PLAN_START
-    return [
-    # ── UGE 1: 1-7 jun  BUILD ───────────────────────────────────
-    (p+timedelta(0),  strength_a(3),         "Styrke A + walk"),
-    (p+timedelta(1),  run_z2(55),            "Løb Z2 easy"),
-    (p+timedelta(2),  run_z2(65),            "Løb Z2 medium"),
-    (p+timedelta(3),  strength_a(2),         "Styrke B let + walk"),
-    (p+timedelta(4),  bike_5x3_z4(),         "Cykel 5×3 Z4"),
-    (p+timedelta(5),  run_z2_lang(100),      "Lang løb Z2 100 min"),
-    (p+timedelta(6),  swim_2000(),           "Svøm 2000m + cykel let"),
+    """Kennets plan som (date, workout_dict|None, note)-tupler — læst fra plan.json.
+    Workout-biblioteket ovenfor bruges fremover til at GENERERE nye entries i
+    plan.json, ikke som runtime-kilde."""
+    plan = load_plan_json()
+    out = []
+    for d in plan["athletes"]["kennet"]["days"]:
+        dt = date.fromisoformat(d["date"])
+        for e in d["entries"]:
+            out.append((dt, e.get("workout"), e.get("note", "")))
+    return out
 
-    # ── UGE 2: 8-14 jun  BUILD+ ─────────────────────────────────
-    (p+timedelta(7),  strength_a(3),         "Styrke A Gentofte"),
-    (p+timedelta(8),  run_z2(45),            "Løb Z2 45 min tidlig — workshop dag 1"),
-    (p+timedelta(9),  run_z2(45),            "Løb Z2 45 min tidlig — workshop dag 2"),
-    (p+timedelta(10), bike_z2(60,"Mallorca"),"Aktivering cykel Z2 60 min — ankomst Mallorca"),
-    (p+timedelta(11), bike_bjerg_z4(),       "Cykel bjerg Z4 — VO2 stimulus Mallorca"),
-    (p+timedelta(12), bike_z2(150,"Mallorca"),"Cykel Z2 lang 2.5t Mallorca"),
-    (p+timedelta(13), swim_let(),            "Open water svøm + cykel let Mallorca"),
-
-    # ── UGE 3: 15-21 jun  BUILD+ (justeret v2 — Formentor) ─────
-    # Man: lang løb formiddag (møde kl 13)
-    (p+timedelta(14), run_z2_lang(90),        "Lang løb Z2 90 min Mallorca (formiddag)"),
-    # Tirs: Formentor — ugens store belastning, 149km
-    (p+timedelta(15), bike_formentor(),       "Cykel Formentor 149km"),
-    # Ons: aktiv recovery — kun let svøm (hike udgået)
-    (p+timedelta(16), swim_let(),             "Svøm let 1500m Mallorca"),
-    # Tor: let spin → fly hjem aften
-    (p+timedelta(17), bike_z2(60,"Mallorca"), "Cykel let 60 min → fly hjem aften"),
-    # Fre: styrke morgen (frisk efter rejse)
-    (p+timedelta(18), strength_a(3),          "Styrke A — morgen efter hjemrejse"),
-    # Lør: lang løb når udhvilet
-    (p+timedelta(19), run_z2_lang(60),        "Lang løb Z2 60 min Gentofte"),
-    # Søn: svøm
-    (p+timedelta(20), swim_2000(),            "Svøm 2000m"),
-
-    # ── UGE 4: 22-28 jun  RECOVERY (justeret v2 — DK-hverdag) ────
-    # Man: svøm før hjemmekontor
-    (p+timedelta(21), swim_recovery(30),     "Let svøm 30 min teknik — før hjemmekontor"),
-    # Tirs: god formiddag til løb
-    (p+timedelta(22), run_z2(45),            "Løb Z2 45 min"),
-    # Ons: workshop — kort spin
-    (p+timedelta(23), bike_z2(30),           "Let cykel-spin 30 min — workshop dag"),
-    # Tor: job fylder formiddag, træning eftermiddag (se TIME_OVERRIDES)
-    (p+timedelta(24), bike_z2(45),           "Cykel Z2 45 min — eftermiddag"),
-    # Fre: job-fyldt dag — hvile
-    (p+timedelta(25), None,                  "Hvile — job-fyldt dag"),
-    # Lør: god weekend, lang løb 1,5 time
-    (p+timedelta(26), run_z2_lang(90),       "Lang løb Z2 1,5 time"),
-    # Søn: styrke (byttet med man svøm)
-    (p+timedelta(27), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
-
-    # ── UGE 5: 29 jun–5 jul  BUILD (tir: styrke+løb Z2, tor: styrke A+VO2, fre: svøm 2000m, søn: Hundested) ──
-    (p+timedelta(28), swim_let(),            "Svøm 1500m let teknisk"),
-    (p+timedelta(29), strength_let(),        "Styrke let 2 sæt recovery"),
-    (p+timedelta(29), run_z2(65),            "Løb Z2 65 min"),
-    (p+timedelta(30), bike_z2(75),           "Hometrainer Z2 75 min"),
-    (p+timedelta(31), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
-    (p+timedelta(31), run_vo2_5x3(),         "Løb VO2 5×3 min Z4"),
-    (p+timedelta(32), swim_2000(),           "Svøm 2000m teknisk"),
-    (p+timedelta(33), run_z2_lang(115),      "Lang løb Z2 115 min"),
-    (p+timedelta(34), bike_hundested(),      "Cykel Z2 til Hundested"),
-
-    # ── UGE 6: 6-12 jul  RECOVERY let (Wales ons-søn, tå-hensyn: kun 2 løb) ──
-    (p+timedelta(35), ow_swim(40, "Christiansborg-prep"), "OW-svøm 40 min — Christiansborg-prep"),
-    (p+timedelta(35), strength_let(),        "Styrke let 2 sæt recovery"),
-    (p+timedelta(36), bike_z2(70),           "Cykel Z2 70 min — sidste før Wales"),
-    (p+timedelta(37), None,                  "Fly → Wales (ons 8. jul) — hvile/gang"),
-    (p+timedelta(38), hike_easy(120),        "Vandring Wales 2 timer — lav intensitet"),
-    (p+timedelta(39), run_trail(55, "Trail-løb Z2 Wales"), "Trail-løb Z2 Wales 55 min — TÅ-TEST: stop ved smerte"),
-    (p+timedelta(40), hike_easy(90),         "Vandring Wales let / hvile"),
-    (p+timedelta(41), run_trail(75, "Trail langtur Z2 Wales"), "Trail langtur Z2 Wales 75 min — kun hvis tåen holdt fredag. Hjemrejse aften"),
-
-    # ── UGE 7: 13-19 jul  BUILD (man-ons Gentofte, tor-søn Mallorca) ──
-    (p+timedelta(42), swim_2000(),           "Svøm 2000m — morgen"),
-    (p+timedelta(42), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
-    (p+timedelta(43), run_vo2_5x3(),         "Løb VO2 5×3 Z4 — ugens stimulus"),
-    (p+timedelta(44), bike_z2_z3(80),        "Hometrainer Z2-Z3 80 min"),
-    (p+timedelta(45), bike_z2(60,"Mallorca"),"Aktivering cykel Z2 60 min — ankomst Mallorca (tor 16.)"),
-    (p+timedelta(46), bike_z2(180,"Mallorca"),"Cykel Z2 lang 3t Mallorca"),
-    (p+timedelta(47), bike_z2(240,"Mallorca"),"Cykel Z2 lang 4t Mallorca"),
-    (p+timedelta(48), run_z2(60),            "Løb Z2 60 min Mallorca — morgen"),
-
-    # ── UGE 8: 20-26 jul  BUILD+ (Mallorca man-tir, hjem ons 22.) ──
-    (p+timedelta(49), bike_sa_calobra(),     "Sa Calobra via Puig Major — tidlig afgang, ugens store fjeld-dag"),
-    (p+timedelta(50), bike_z2(210,"Mallorca"),"Cykel Z2 stor dag 3.5t Mallorca"),
-    (p+timedelta(51), run_z2_lang(90),       "Lang løb Z2 90 min — formiddag før aftenflyet hjem (ons 22.)"),
-    (p+timedelta(52), strength_a(2),         "Styrke let 2 sæt"),
-    (p+timedelta(52), bike_z2(45),           "Let Z2-spin 45 min — byttet fra løb (Friel: undgå fortløbende løb)"),
-    (p+timedelta(53), swim_2500(),           "Svøm 2500m"),
-    (p+timedelta(54), run_long_km(26, 140),  "Lang løb 26 km — marathon-ladder start"),
-    (p+timedelta(55), bike_z2(90),           "Cykel Z2 90 min recovery-spin"),
-
-    # ── UGE 9: 27 jul–2 aug  RECOVERY + RETEST ──────────────────
-    (p+timedelta(56), None,                  "Hvile"),
-    (p+timedelta(57), swim_let(),            "Svøm let 1500m"),
-    (p+timedelta(58), bike_ftp_test(),       "FTP-TEST 20 min — opdatér watt-zoner"),
-    (p+timedelta(59), run_threshold_test(),  "THRESHOLD-TEST løb 30 min — opdatér pace-zoner"),
-    (p+timedelta(60), None,                  "Musik i Gentofte — hvile (fre 31. jul)"),
-    (p+timedelta(61), run_z2(60),            "Løb Z2 60 min let — Musik i Gentofte"),
-    (p+timedelta(62), swim_2000(),           "Svøm 2000m — Musik i Gentofte (søn 2. aug)"),
-
-    # ── UGE 10: 3-9 aug  BUILD (fly Mallorca søn 9.) ────────────
-    (p+timedelta(63), strength_a(3),         "Styrke A Functional Strength 3 sæt"),
-    (p+timedelta(64), run_vo2_4x5(),         "Løb VO2 4×5 Z4-Z5 — nye zoner efter retest"),
-    (p+timedelta(65), bike_3x15_z3(90),      "Hometrainer 3×15 Z3"),
-    (p+timedelta(66), ow_swim(45),           "OW-svøm 45 min — Christiansborg-prep starter"),
-    (p+timedelta(67), run_z2(60),            "Løb Z2 60 min"),
-    (p+timedelta(68), run_long_km(29, 155),  "Lang løb 28-30 km — marathon-ladder"),
-    (p+timedelta(69), None,                  "Fly → Mallorca #2 (søn 9. aug)"),
-
-    # ── UGE 11: 10-16 aug  BUILD+ Mallorca camp #2 (hjem søn 16.) ──
-    (p+timedelta(70), bike_z2(180,"Mallorca"),"Cykel base lang 3t Mallorca"),
-    (p+timedelta(71), run_z2(75),            "Løb Z2 75 min Mallorca"),
-    (p+timedelta(72), bike_bjerg_z4(),       "Cykel bjerg Z4 Mallorca — VO2 stimulus"),
-    (p+timedelta(73), run_z2_lang(120),      "Lang løb Z2 120 min Mallorca"),
-    (p+timedelta(74), swim_2000(),           "Svøm 2000m Mallorca (OW hvis muligt)"),
-    (p+timedelta(75), bike_z2(210,"Mallorca"),"Cykel Z2 peak 3.5t Mallorca"),
-    (p+timedelta(76), None,                  "Hjemrejse Mallorca (søn 16. aug)"),
-
-    # ── UGE 12: 17-23 aug  TAPER (Norge lør 22.) ────────────────
-    (p+timedelta(77), ow_swim(45),           "OW-svøm 45 min — Christiansborg-prep"),
-    (p+timedelta(78), run_long_km(32, 170),  "Lang løb 32 km — SIDSTE langtur før Médoc"),
-    (p+timedelta(79), bike_z2(50),           "Hometrainer Z2 50 min let"),
-    (p+timedelta(80), ow_swim(40),           "OW-svøm 40 min — sigtning + startrutine"),
-    (p+timedelta(81), run_shakeout(),        "Shakeout løb + strides"),
-    (p+timedelta(82), None,                  "Norge start (lør 22. aug)"),
-    (p+timedelta(83), run_let(30),           "Let løb Norge (søn 23. aug)"),
-
-    # ── UGE 13: 24-30 aug  TAPER → CHRISTIANSBORG ───────────────
-    (p+timedelta(84), None,                  "Hjem fra Norge (man 24. aug)"),
-    (p+timedelta(85), ow_swim(30, "Kort tilvænning"), "OW-svøm 30 min — race-tilvænning"),
-    (p+timedelta(86), run_shakeout(),        "Løb Z2 + strides"),
-    (p+timedelta(87), None,                  "Hvile"),
-    (p+timedelta(88), swim_recovery(20),     "Svøm 20 min aktivering — dagen før race"),
-    (p+timedelta(89), None,                  "⭐ CHRISTIANSBORG RUNDT (lør 29. aug)"),
-    (p+timedelta(90), None,                  "Recovery walk"),
-
-    # ── UGE 14: 31 aug–6 sep  RACE ──────────────────────────────
-    (p+timedelta(91), run_let(25),           "Løb let 25 min"),
-    (p+timedelta(92), run_shakeout(),        "Let løb + strides"),
-    (p+timedelta(93), None,                  "Hvile total"),
-    (p+timedelta(94), None,                  "Fly → Bordeaux (tor 3. sep)"),
-    (p+timedelta(95), None,                  "Hotel Bordeaux — hvile (fre 4. sep)"),
-    (p+timedelta(96), None,                  "🏆 MARATHON MÉDOC (lør 5. sep)"),
-    (p+timedelta(97), None,                  "Recovery Bordeaux (søn 6. sep)"),
-    ]
+def friel_report():
+    """Kør Friel-validering mod plan.json og print flags. Blokerer ikke i fase 1."""
+    try:
+        from modules import friel
+        plan = load_plan_json()
+        seed = plan.get("fitnessSeed", {}).get("current", {})
+        flags = friel.validate(plan, seed_ctl=seed.get("ctl"),
+                               seed_atl=seed.get("atl"), seed_date=seed.get("date"))
+        if not flags:
+            print("Friel: ingen flags\n")
+            return
+        active = [f for f in flags if not f.get("historic")]
+        hist = [f for f in flags if f.get("historic")]
+        print(f"Friel: {len(active)} aktive flag(s), {len(hist)} historiske (uge 1-{load_plan_json()['athletes']['kennet'].get('actualsThroughWeek', 0)}):")
+        for f in active:
+            print(f"  [{f['level']}] uge {f['week']}: {f['msg']}")
+        for f in hist:
+            print(f"  [historik/{f['level']}] uge {f['week']}: {f['msg']}")
+        print()
+    except Exception as e:
+        print(f"Friel-rapport sprang over: {e}\n")
 
 # ── Upload-hjælpere ─────────────────────────────────────────────
 # Tidspunkt-overrides for dage hvor standardtid (se _start_hour) ikke
 # passer med Kennets skema (job/møder/workshop fylder standard-vinduet).
-TIME_OVERRIDES = {
-    date(2026, 6, 25): (16, 0),   # Tor uge 4 — job fylder formiddag, træning kl 16
-}
+def _load_time_overrides():
+    try:
+        raw = load_plan_json()["athletes"]["kennet"].get("timeOverrides", {})
+        return {date.fromisoformat(k): tuple(v) for k, v in raw.items()}
+    except Exception:
+        return {}
+
+TIME_OVERRIDES = _load_time_overrides()
 
 def _start_hour(wo_type):
     """Starttidspunkt baseret på disciplin."""
@@ -824,6 +721,7 @@ def main():
         print(f"❌ Forbindelsesfejl: {r.status_code}")
         sys.exit(1)
     print(f"✅ Forbundet: {r.json().get('name', ATHLETE_ID)}\n")
+    friel_report()
 
     total_ok = total_skip = total_err = 0
     all_posted = {}  # akkumuleret posted dict på tværs af uger
