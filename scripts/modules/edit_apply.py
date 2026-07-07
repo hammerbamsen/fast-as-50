@@ -34,6 +34,19 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
     Muterer IKKE input-plan. Understøtter både 'kennet' og 'eva'.
     """
     sim = copy.deepcopy(plan)
+
+    # Særtilfælde: restore rammer hele planen, ikke en enkelt entry
+    if action == "restore_from_commit":
+        if not params.get("restored_plan"):
+            raise ValueError("restore_from_commit kræver 'restored_plan' i params")
+        restored = json.loads(params["restored_plan"]) if isinstance(params["restored_plan"], str) else params["restored_plan"]
+        # Bevar programMeta (arkiv, upcoming) og fitnessSeed så de ikke rulles tilbage utilsigtet
+        if "programMeta" in sim:
+            restored["programMeta"] = sim["programMeta"]
+        if "fitnessSeed" in sim:
+            restored["fitnessSeed"] = sim["fitnessSeed"]
+        return restored, "restore", ""
+
     ath = sim["athletes"][athlete]
 
     # Find entry
