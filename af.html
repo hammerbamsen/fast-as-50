@@ -459,12 +459,28 @@ async function syncFromIntervals() {
 }
 
 // ── Init ──────────────────────────────────────────────────────
+async function checkPatExpiry(){
+  try {
+    const r = await fetch(`data/config.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const cfg = await r.json();
+    const daysLeft = Math.floor((new Date(cfg.patExpiry) - new Date())/86400000);
+    if (daysLeft > cfg.warningDays) return;
+    const isUrgent = daysLeft <= cfg.urgentDays;
+    const banner = document.createElement('div');
+    banner.style.cssText = `background:${isUrgent?"#B03A2E":"#B7791F"};color:#fff;padding:10px 16px;font-size:12px;text-align:center;font-family:Space Mono,monospace;letter-spacing:.04em`;
+    banner.innerHTML = `<b>${isUrgent?"⚠ PAT UDLØBER OM " + daysLeft + " DAGE":"PAT-UDLØB OM " + daysLeft + " DAGE"}</b> · <a href="${cfg.renewalUrl}" style="color:#fff">Fornyelse</a>`;
+    document.body.insertBefore(banner, document.body.firstChild);
+  } catch(e) {}
+}
+
 async function init() {
   if(window.location.search.includes('reset')) {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(TOKEN_KEY);
     window.history.replaceState({}, '', window.location.pathname);
   }
+  await checkPatExpiry();
   if(!getToken()) { showSetup(); return; }
 
   document.getElementById('view').innerHTML = '<div style="text-align:center;padding:40px;font-family:Space Mono,monospace;font-size:11px;color:#7A6A58;letter-spacing:.08em">HENTER DATA...</div>';
