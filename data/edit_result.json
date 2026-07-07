@@ -202,5 +202,23 @@
   "athlete": "kennet",
   "request_ts": "2026-07-07T14:44:02+00:00",
   "request_id": "restore-test1-1783435430"
+ },
+ "restore-test2-1783435451": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "restore"
+  ],
+  "plan_commit": "58dadcf9e6586a10cc24cf1200ac968fb20f3796",
+  "sync_errors": [
+   "Outlook restore: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/users/kennet@hammerby.com/calendarView?startDateTime=restoreT00%3A00%3A00&endDateTime=restoreT23%3A59%3A59&%24select=id%2Csubject%2Ccategories&%24top=50"
+  ],
+  "athlete": "kennet",
+  "request_ts": "2026-07-07T14:44:29+00:00",
+  "request_id": "restore-test2-1783435451"
  }
 }
