@@ -43,9 +43,27 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 .section-title { font-size:15px; font-weight:700; margin:26px 2px 0; }
 .done-banner { background:var(--white); border-radius:12px; padding:16px; margin-top:14px; text-align:center; color:var(--teal); font-weight:600; }
 .err { background:#B03A2E14; border:1px solid #B03A2E40; color:#B03A2E; border-radius:10px; padding:12px; font-size:13px; margin-top:14px; }
+.ics-btn { position:fixed; top:14px; right:14px; z-index:60; background:var(--white); border:1px solid var(--cream-d); border-radius:20px; padding:8px 14px; font-size:12px; color:var(--teal); cursor:pointer; font-family:'Hanken Grotesk',sans-serif; text-decoration:none; display:inline-flex; align-items:center; gap:6px; box-shadow:0 1px 2px rgba(18,32,25,.08); }
+.ics-btn:hover { background:var(--cream); }
+.ics-modal-bg { position:fixed; inset:0; background:rgba(18,32,25,.4); z-index:200; display:none; }
+.ics-modal-bg.open { display:block; }
+.ics-modal { position:fixed; left:14px; right:14px; top:60px; background:var(--white); border-radius:14px; padding:20px; z-index:201; max-width:520px; margin:0 auto; box-shadow:0 8px 24px rgba(18,32,25,.2); }
+.ics-modal h3 { font-size:16px; font-weight:700; margin-bottom:6px; color:var(--teal); }
+.ics-modal p { font-size:13px; color:var(--muted); line-height:1.5; margin:8px 0; }
+.ics-modal button { width:100%; padding:12px; border-radius:10px; border:none; font-family:'Hanken Grotesk',sans-serif; font-size:14px; font-weight:600; cursor:pointer; background:var(--teal); color:#fff; margin-top:10px; }
+.ics-modal .secondary { background:var(--cream); color:var(--teal); }
 </style>
 </head>
 <body>
+<button class="ics-btn" onclick="showIcsModal()"><i class="ti ti-calendar-plus" style="font-size:14px"></i> Kalender</button>
+<div class="ics-modal-bg" id="ics-bg" onclick="closeIcs()"></div>
+<div class="ics-modal" id="ics-modal" style="display:none">
+  <h3><i class="ti ti-calendar-plus" style="font-size:16px;vertical-align:-2px"></i> Hent kalender</h3>
+  <p>Tap knappen — hele planen downloades som en <b>.ics</b>-fil. Åbn filen når den er hentet: iPhone spørger om du vil tilføje alle løbe-pas til din kalender. Vælg din Outlook-kalender.</p>
+  <p style="color:var(--teal);font-weight:600">39 træningspas · alle 13 uger frem til Marathon du Médoc</p>
+  <button onclick="downloadIcs()"><i class="ti ti-download" style="font-size:14px;vertical-align:-2px"></i> Hent eva-medoc.ics</button>
+  <button class="secondary" onclick="closeIcs()">Luk</button>
+</div>
 <div class="top">
   <h1><i class="ti ti-run" style="font-size:20px;vertical-align:-2px"></i> Eva · Médoc</h1>
   <div class="sub" id="head-sub">Henter plan …</div>
@@ -122,6 +140,80 @@ async function main(){
   content.innerHTML = html;
 }
 main();
+
+// ═══ ICS CALENDAR EXPORT ═══
+function showIcsModal(){
+  document.getElementById('ics-bg').classList.add('open');
+  document.getElementById('ics-modal').style.display='block';
+}
+function closeIcs(){
+  document.getElementById('ics-bg').classList.remove('open');
+  document.getElementById('ics-modal').style.display='none';
+}
+
+async function downloadIcs(){
+  // Genbrug allerede-loaded plan (main() henter den)
+  const r = await fetch(`data/plan.json?t=${Date.now()}`, {cache:"no-store"});
+  const plan = await r.json();
+  const eva = plan.athletes.eva;
+
+  const pad = n => String(n).padStart(2,'0');
+  const fmtDate = (d, hour=8, min=0) => {
+    const dt = new Date(d+"T00:00:00");
+    dt.setHours(hour, min, 0);
+    return `${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+  };
+  const escapeIcs = s => String(s||"").replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
+
+  const lines = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Fast as Fifty//Eva Medoc//EN",
+    "CALSCALE:GREGORIAN","METHOD:PUBLISH",
+    "X-WR-CALNAME:Eva · Médoc",
+    "X-WR-TIMEZONE:Europe/Copenhagen",
+  ];
+
+  const now = new Date();
+  const dtstamp = `${now.getUTCFullYear()}${pad(now.getUTCMonth()+1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
+
+  for (const d of eva.days){
+    for (const e of (d.entries||[])){
+      const wo = e.workout;
+      if (!wo) continue;
+      const durMin = wo.moving_time ? Math.round(wo.moving_time/60) : 40;
+      // Start kl 8:00 lokal tid — Eva løber typisk om morgenen
+      const startStr = fmtDate(d.date, 8, 0);
+      const endDt = new Date(d.date+"T08:00:00");
+      endDt.setMinutes(endDt.getMinutes()+durMin);
+      const endStr = fmtDate(d.date, endDt.getHours(), endDt.getMinutes());
+      // Stabilt UID pr. entry (bruger entry-id fra plan.json)
+      const uid = `${e.id||d.date}-eva@fast-as-50`;
+
+      lines.push(
+        "BEGIN:VEVENT",
+        `UID:${uid}`,
+        `DTSTAMP:${dtstamp}`,
+        `DTSTART;TZID=Europe/Copenhagen:${startStr}`,
+        `DTEND;TZID=Europe/Copenhagen:${endStr}`,
+        `SUMMARY:${escapeIcs(wo.name)}`,
+        `DESCRIPTION:${escapeIcs((wo.description||'') + (e.note?`\n\n${e.note}`:''))}`,
+        "CATEGORIES:Træning",
+        "END:VEVENT"
+      );
+    }
+  }
+  lines.push("END:VCALENDAR");
+
+  const blob = new Blob([lines.join("\r\n")], {type:"text/calendar;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = "eva-medoc.ics";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
+
+  closeIcs();
+}
 </script>
 </body>
 </html>
