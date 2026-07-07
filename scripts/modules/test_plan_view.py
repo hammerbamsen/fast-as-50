@@ -78,3 +78,13 @@ def test_entry_ids_present_and_unique():
            for d in a["days"] for e in d["entries"]]
     assert ids and len(ids) == len(set(ids))
     assert all(len(i) == 8 for i in ids)
+
+
+def test_hash_includes_readiness():
+    raw = json.dumps(PLAN, ensure_ascii=False)
+    base = plan_view.inputs_hash(raw, 46.8, 57.4, "2026-07-07")
+    none = plan_view.inputs_hash(raw, 46.8, 57.4, "2026-07-07", readiness=None)
+    low  = plan_view.inputs_hash(raw, 46.8, 57.4, "2026-07-07", readiness="LOW")
+    high = plan_view.inputs_hash(raw, 46.8, 57.4, "2026-07-07", readiness="HIGH")
+    assert base == none          # readiness=None -> uændret (bagudkompatibelt)
+    assert low != base and high != base and low != high

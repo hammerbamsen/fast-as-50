@@ -29,8 +29,11 @@ from typing import Optional
 from . import friel
 
 
-def inputs_hash(plan_raw: str, seed_ctl, seed_atl, seed_date: str) -> str:
+def inputs_hash(plan_raw: str, seed_ctl, seed_atl, seed_date: str,
+                readiness=None) -> str:
     key = f"{plan_raw}|{round(float(seed_ctl), 1)}|{round(float(seed_atl), 1)}|{seed_date}"
+    if readiness:
+        key += f"|{readiness}"   # T1: readiness-skift skal trigge omskrivning
     return hashlib.sha256(key.encode("utf-8")).hexdigest()[:16]
 
 
@@ -112,19 +115,9 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None) -
             print("  plan_view: ingen fitness-seed — springer over")
             return False
 
-    new_hash = inputs_hash(plan_raw, seed_ctl, seed_atl, seed_date)
-
-    sha_view, view_raw = gh_get("data/plan_view.json")
-    if view_raw:
-        try:
-            if json.loads(view_raw).get("inputsHash") == new_hash:
-                print("  plan_view: uændret (hash-guard) — springer over")
-                return False
-        except (ValueError, AttributeError):
-            pass
-
     # T1: morgen-readiness ud fra dagens HRV vs 7d-snit + søvn (samme signaler
-    # update_kpi allerede henter). Justerer kun den aktuelle uges TSB-gulv.
+    # update_kpi allerede henter). Beregnes FØR hash-guarden, så et readiness-
+    # skift (fx dårlig søvn -> LOW) selv trigger en omskrivning af plan_view.
     readiness = current_week = None
     if wellness:
         readiness = friel.readiness_band(
@@ -135,6 +128,17 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None) -
             if 1 <= cw <= plan["program"]["totalWeeks"]:
                 current_week = cw
         except (KeyError, ValueError):
+            pass
+
+    new_hash = inputs_hash(plan_raw, seed_ctl, seed_atl, seed_date, readiness)
+
+    sha_view, view_raw = gh_get("data/plan_view.json")
+    if view_raw:
+        try:
+            if json.loads(view_raw).get("inputsHash") == new_hash:
+                print("  plan_view: uændret (hash-guard) — springer over")
+                return False
+        except (ValueError, AttributeError):
             pass
 
     view = compute(plan, seed_ctl, seed_atl, seed_date,
