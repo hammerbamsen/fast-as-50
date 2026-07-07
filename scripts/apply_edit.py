@@ -43,8 +43,10 @@ INTERVALS_AUTH = ("API_KEY", API_KEY)
 
 # -- GitHub Contents API --------------------------------------------------
 
-def gh_get(path):
-    r = requests.get(f"{GH}/{path}", headers=GH_HEADERS, timeout=30)
+def gh_get(path, ref=None):
+    url = f"{GH}/{path}"
+    if ref: url += f"?ref={ref}"
+    r = requests.get(url, headers=GH_HEADERS, timeout=30)
     if r.status_code == 200:
         d = r.json()
         return d["sha"], base64.b64decode(d["content"]).decode("utf-8") if d.get("content") else None
@@ -186,6 +188,20 @@ def main():
     print(f"params: {json.dumps(params, ensure_ascii=False)[:200]}")
 
     _plan_sha, plan_raw = gh_get("data/plan.json")
+
+    # Special: restore_from_commit — hent den gamle plan fra source_commit
+    if action == "restore_from_commit" and params.get("source_commit") and not params.get("restored_plan"):
+        try:
+            _, old_raw = gh_get("data/plan.json", ref=params["source_commit"])
+            params = dict(params, restored_plan=json.loads(old_raw))
+            print(f"Restore: hentede plan fra commit {params['source_commit'][:7]}")
+        except Exception as e:
+            write_result(request_id, {
+                "status": "reject",
+                "gate": {"msg": f"Kunne ikke hente plan fra commit: {e}"},
+                "request_ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            })
+            return
 
     # Special dry-run action: bare returnér alternativer, commit intet
     if action == "suggest_move":
