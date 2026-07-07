@@ -24,9 +24,24 @@ ATL_TC = 7.0
 
 TSB_FLOOR = -30
 TSB_FLOOR_CAMP = -35
+TSB_FLOOR_TAPER = -15      # taper: TSB skal op — dybt minus er fejl-taper
+RACE_TSB_MIN = 5           # Friel: TSB +5..+15 på A-race-dag
+RACE_TSB_MAX = 25          # over +25 = detrænet/overtaper
+TAPER_RAMP_RISE_WARN = 2.0 # CTL må ikke STIGE i taper/race-uger
 RAMP_HARD = 8.0
 RAMP_SOFT = 5.0
 MAX_RUNS_PER_WEEK = 3
+
+
+def _phase(weeks_meta, w):
+    """Normaliseret fase for uge w. Ukendt/manglende blockType -> ''
+    (= hidtidig adfærd, bagudkompatibelt)."""
+    bt = ((weeks_meta.get(w) or {}).get("blockType") or "").upper()
+    if bt.startswith("BUILD"):
+        return "BUILD"
+    if bt in ("RECOVERY", "TAPER", "RACE"):
+        return bt
+    return ""
 
 VO2_MARKERS = ("vo2", "5×3", "4×5", "6×3", "5x3", "4x5", "6x3",
                "bjerg z4", "bjerg-intervaller", "sa calobra")
@@ -178,6 +193,7 @@ def load_flags(plan, seed_ctl, seed_atl, seed_date):
     flags = []
     plan_start = date.fromisoformat(plan["program"]["start"])
     total_weeks = plan["program"]["totalWeeks"]
+    weeks_meta = {w["week"]: w for w in plan["weeks"]}
     camps = _camp_weeks(plan)
     proj = project_fitness(plan, seed_ctl, seed_atl, seed_date)
 
@@ -192,23 +208,53 @@ def load_flags(plan, seed_ctl, seed_atl, seed_date):
         week_end_ctl[w] = v["ctl"]   # sidste dag i ugen vinder
 
     for w, tsb in sorted(worst_tsb.items()):
-        floor = TSB_FLOOR_CAMP if w in camps else TSB_FLOOR
+        phase = _phase(weeks_meta, w)
+        if phase == "RACE":
+            continue  # race-uge: TSB vurderes på selve race-dagen i stedet
+        if phase == "TAPER":
+            floor = TSB_FLOOR_TAPER
+        else:
+            floor = TSB_FLOOR_CAMP if w in camps else TSB_FLOOR
         if tsb < floor:
             flags.append({"week": w, "rule": "tsb_floor", "level": "HARD",
                           "msg": f"TSB {tsb} i uge {w} under gulv {floor}"
-                                 + (" (camp)" if w in camps else "")})
+                                 + (" (camp)" if w in camps else "")
+                                 + (" (taper)" if phase == "TAPER" else "")})
 
     prev = None
     for w in sorted(week_end_ctl):
         if prev is not None:
             ramp = week_end_ctl[w] - prev
-            if ramp > RAMP_HARD:
+            phase = _phase(weeks_meta, w)
+            if phase in ("TAPER", "RACE"):
+                # CTL SKAL falde her — negativ ramp er korrekt, stigning er fejl
+                if ramp > TAPER_RAMP_RISE_WARN:
+                    flags.append({"week": w, "rule": "taper_ctl_rising", "level": "WARN",
+                                  "msg": f"CTL stiger +{ramp:.1f} i {phase.lower()}-uge {w} — belastningen skal ned"})
+            elif ramp > RAMP_HARD:
                 flags.append({"week": w, "rule": "ctl_ramp", "level": "HARD",
                               "msg": f"CTL-ramp +{ramp:.1f} i uge {w} (hårdt loft {RAMP_HARD:.0f})"})
             elif ramp > RAMP_SOFT:
                 flags.append({"week": w, "rule": "ctl_ramp", "level": "WARN",
                               "msg": f"CTL-ramp +{ramp:.1f} i uge {w} (blødt loft {RAMP_SOFT:.0f})"})
         prev = week_end_ctl[w]
+
+    # Race-dags-readiness: TSB på hver race-dag bør ligge i +5..+25.
+    # Håndterer dobbelt-race (Christiansborg 29/8 + Médoc 5/9, 7 dage imellem):
+    # begge datoer checkes individuelt; TSB vedligeholdes imellem, genopbygges ikke.
+    for r in plan.get("races", []):
+        d_iso = r.get("date")
+        v = proj.get(d_iso)
+        if not v:
+            continue
+        w = _week_no(d_iso, plan_start)
+        name = r.get("name", d_iso)
+        if v["tsb"] < RACE_TSB_MIN:
+            flags.append({"week": w, "rule": "race_tsb", "level": "WARN",
+                          "msg": f"TSB {v['tsb']} på race-dag ({name}) — mål +{RACE_TSB_MIN} til +15"})
+        elif v["tsb"] > RACE_TSB_MAX:
+            flags.append({"week": w, "rule": "race_tsb", "level": "WARN",
+                          "msg": f"TSB {v['tsb']} på race-dag ({name}) — over +{RACE_TSB_MAX}, mulig overtaper"})
     return flags
 
 
