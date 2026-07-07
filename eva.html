@@ -127,6 +127,25 @@ const esc = s => String(s??"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">
 const iso = d => d.toISOString().slice(0,10);
 const addDays = (d,n)=>{ const x=new Date(d); x.setDate(x.getDate()+n); return x; };
 
+// ═══ PAT EXPIRY BANNER ═══
+async function checkPatExpiry(){
+  try {
+    const r = await fetch(`data/config.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const cfg = await r.json();
+    const daysLeft = Math.floor((new Date(cfg.patExpiry) - new Date())/86400000);
+    if (daysLeft > cfg.warningDays) return;
+    const existing = document.getElementById('pat-banner');
+    if (existing) existing.remove();
+    const isUrgent = daysLeft <= cfg.urgentDays;
+    const banner = document.createElement('div');
+    banner.id = 'pat-banner';
+    banner.style.cssText = `background:${isUrgent?"#B03A2E":"#B7791F"};color:#fff;padding:10px 16px;font-size:13px;text-align:center;position:sticky;top:0;z-index:100;font-family:'Hanken Grotesk',sans-serif`;
+    banner.innerHTML = `<b>${isUrgent?"⚠ PAT udløber om " + daysLeft + " dage":"PAT-udløb om " + daysLeft + " dage"}</b> · <a href="${cfg.renewalUrl}" style="color:#fff;text-decoration:underline">Fornyelse</a>`;
+    document.body.insertBefore(banner, document.body.firstChild);
+  } catch(e) { /* stille fejl */ }
+}
+
 function weekNo(dateIso, startIso){
   return Math.floor((new Date(dateIso+"T12:00:00") - new Date(startIso+"T12:00:00"))/864e5/7)+1;
 }
@@ -168,6 +187,7 @@ function weekDays(eva, w){
 }
 
 async function main(){
+  await checkPatExpiry();
   const content = document.getElementById("content");
   let plan;
   try {
@@ -186,6 +206,57 @@ async function main(){
 
   const weekMeta = w => eva.weeks.find(x=>x.week===w) || {};
   let html = "";
+
+  // ─── Fremgang-kort ───
+  const allEntries = eva.days.flatMap(d => d.entries.filter(e=>e.workout).map(e=>({date:d.date, entry:e})));
+  const done = allEntries.filter(x => x.entry.done);
+  const total_workouts = allEntries.length;
+  const doneCount = done.length;
+  const completionPct = total_workouts > 0 ? Math.round(doneCount/total_workouts*100) : 0;
+
+  // Ugentlig completion — hvor mange fuldførte pas i hver uge frem til nu
+  const weeklyCompletion = [];
+  for (let w=1; w<=cur; w++){
+    const wDays = weekDays(eva, w);
+    const wEntries = wDays.flatMap(d => d.entries.filter(e=>e.workout));
+    if (!wEntries.length) continue;
+    const wDone = wEntries.filter(e => e.done).length;
+    weeklyCompletion.push({week:w, done:wDone, total:wEntries.length, pct: Math.round(wDone/wEntries.length*100)});
+  }
+  // Streak: fortløbende hele-uger fra denne uge tilbage
+  let streak = 0;
+  for (let i=weeklyCompletion.length-1; i>=0; i--){
+    if (weeklyCompletion[i].pct === 100) streak++;
+    else break;
+  }
+  // Denne uges pas
+  const thisWeek = weeklyCompletion[weeklyCompletion.length-1] || {done:0, total:0};
+
+  html += `<div class="focus" style="background:linear-gradient(135deg,#1A7A5E,#0F5C46);color:#fff">
+    <div class="l" style="color:rgba(255,255,255,.7)">Fremgang</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px">
+      <div>
+        <div style="font-size:22px;font-weight:700">${doneCount}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.4px">Pas gjort</div>
+      </div>
+      <div>
+        <div style="font-size:22px;font-weight:700">${thisWeek.done}/${thisWeek.total||0}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.4px">Denne uge</div>
+      </div>
+      <div>
+        <div style="font-size:22px;font-weight:700">${streak}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.4px">Uge-streak</div>
+      </div>
+      <div>
+        <div style="font-size:22px;font-weight:700">${daysToRace}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.4px">Dage → Médoc</div>
+      </div>
+    </div>
+    ${weeklyCompletion.length >= 2 ? `<div style="display:flex;gap:3px;margin-top:12px;align-items:flex-end;height:32px">
+      ${weeklyCompletion.map(w => `<div title="Uge ${w.week}: ${w.done}/${w.total} pas (${w.pct}%)" style="flex:1;background:rgba(255,255,255,.3);border-radius:2px 2px 0 0;height:${Math.max(w.pct,4)}%;transition:height .3s"></div>`).join("")}
+    </div>` : ""}
+  </div>`;
+
   const curNote = weekMeta(cur).note;
   if(curNote) html += `<div class="focus"><div class="l">Ugens fokus</div><div class="t">${esc(curNote)}</div></div>`;
 
@@ -538,6 +609,18 @@ async function downloadIcs(){
       `SUMMARY:${escapeIcs(wo.name)}`,
       `DESCRIPTION:${escapeIcs((wo.description||'') + (entry.note?`\n\n${entry.note}`:''))}`,
       "CATEGORIES:Træning",
+      // Alarm dagen før kl 20:00 (12 timer før pas kl 8:00)
+      "BEGIN:VALARM",
+      "TRIGGER:-PT12H",
+      "ACTION:DISPLAY",
+      `DESCRIPTION:${escapeIcs("I morgen: " + wo.name)}`,
+      "END:VALARM",
+      // Alarm 30 min før
+      "BEGIN:VALARM",
+      "TRIGGER:-PT30M",
+      "ACTION:DISPLAY",
+      `DESCRIPTION:${escapeIcs("Om 30 min: " + wo.name)}`,
+      "END:VALARM",
       "END:VEVENT"
     );
   }
