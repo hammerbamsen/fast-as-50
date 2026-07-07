@@ -1,0 +1,30 @@
+name: Plan-redigering (fase 3a)
+
+on:
+  repository_dispatch:
+    types: [plan-edit]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests python-docx
+
+      - name: Apply plan-edit
+        env:
+          GITHUB_TOKEN:         ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY:    ${{ github.repository }}
+          INTERVALS_API_KEY:    ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: i599466
+          AZURE_TENANT_ID:      ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:      ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET:  ${{ secrets.AZURE_CLIENT_SECRET }}
+          GH_EVENT_PAYLOAD: ${{ toJSON(github.event) }}
+        run: python scripts/apply_edit.py
