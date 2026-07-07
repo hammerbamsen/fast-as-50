@@ -3,19 +3,232 @@
   "updated": "2026-07-07",
   "note": "Bibliotek af workout-templates. Bruges af 'Skift pas' i plan.html. Vokser når nye pas gemmes via 'Gem som template' i edit-flowet.",
   "templates": [
-    {"id":"styrke-a-3set","name":"Styrke A Functional Strength 3 sæt","type":"WeightTraining","moving_time":3600,"description":"3x\n- Thruster 12.5kg ×10 1m freeride\n- Renegade Row ×8 1m freeride\n- Push-up ×10 1m freeride\n- KB Swing 16kg ×15 1m freeride\n- RDL ×10 1m freeride\n- Bulgarian Split Squat ×8/ben 1m freeride\n- Pause 90 sek 2m freeride","tags":["styrke","hjemme"]},
-    {"id":"styrke-a-2set","name":"Styrke A Functional Strength 2 sæt","type":"WeightTraining","moving_time":2400,"description":"2x\n- Thruster 12.5kg ×10 1m freeride\n- Renegade Row ×8 1m freeride\n- Push-up ×10 1m freeride\n- KB Swing 16kg ×15 1m freeride\n- RDL ×10 1m freeride\n- Bulgarian Split Squat ×8/ben 1m freeride\n- Pause 90 sek 2m freeride","tags":["styrke","hjemme","let"]},
-    {"id":"lob-z2-45","name":"Løb Z2 45 min","type":"Run","moving_time":2700,"description":"- Warm-up 10 min ramp 5:35 → 5:00/km\n- Løb Z2 25 min 4:56-5:34/km\n- Cool-down 10 min ramp 5:00 → 5:30/km","tags":["løb","z2"]},
-    {"id":"lob-z2-60","name":"Løb Z2 60 min","type":"Run","moving_time":3600,"description":"- Warm-up 10 min ramp 5:35 → 5:00/km\n- Løb Z2 40 min 4:56-5:34/km\n- Cool-down 10 min ramp 5:00 → 5:30/km","tags":["løb","z2"]},
-    {"id":"lob-z2-90","name":"Lang løb Z2 90 min","type":"Run","moving_time":5400,"description":"- Warm-up 10 min ramp 5:35 → 5:00/km\n- Løb Z2 70 min 4:56-5:34/km\n- Cool-down 10 min ramp 5:00 → 5:30/km","tags":["løb","z2","lang"]},
-    {"id":"lob-vo2-5x3","name":"Løb VO2 5×3 min","type":"Run","moving_time":3600,"description":"- Warm-up 15 min ramp Z1 → Z2\n- 5x\n  - Løb Z5 3 min 3:53-4:12/km\n  - Jog Z1 2 min\n- Cool-down 10 min Z1","tags":["løb","vo2","intervaller"]},
-    {"id":"cykel-z2-60","name":"Cykel Z2 60 min","type":"Ride","moving_time":3600,"description":"- Warm-up 10 min ramp Z1 → Z2\n- Cykel Z2 40 min 150-205W\n- Cool-down 10 min ramp Z2 → Z1","tags":["cykel","z2"]},
-    {"id":"cykel-z2-90","name":"Cykel Z2 90 min","type":"Ride","moving_time":5400,"description":"- Warm-up 10 min ramp Z1 → Z2\n- Cykel Z2 70 min 150-205W\n- Cool-down 10 min ramp Z2 → Z1","tags":["cykel","z2"]},
-    {"id":"cykel-z2-150","name":"Cykel Z2 150 min","type":"Ride","moving_time":9000,"description":"- Warm-up 10 min ramp Z1 → Z2\n- Cykel Z2 130 min 150-205W\n- Cool-down 10 min ramp Z2 → Z1","tags":["cykel","z2","lang"]},
-    {"id":"cykel-vo2-5x3","name":"Cykel 5×3 min Z4","type":"Ride","moving_time":3600,"description":"- Warm-up 15 min ramp Z1 → Z2\n- 5x\n  - Cykel Z4 3 min 245-285W\n  - Recovery Z1 3 min\n- Cool-down 10 min Z1","tags":["cykel","vo2","intervaller"]},
-    {"id":"svom-1500","name":"Svøm 1500m let teknisk","type":"Swim","moving_time":2100,"description":"- 200m warm-up let\n- 4x50m teknik (drills)\n- 8x100m Z2 med 30s pause\n- 200m cool-down","tags":["svøm","teknik"]},
-    {"id":"svom-2000","name":"Svøm 2000m teknisk","type":"Swim","moving_time":2700,"description":"- 300m warm-up let\n- 6x50m teknik (drills)\n- 10x100m Z2 med 30s pause\n- 200m cool-down","tags":["svøm","teknik"]},
-    {"id":"ow-2000","name":"Åbentvand 2000m","type":"OpenWaterSwim","moving_time":2700,"description":"- 5-10 min opvarmning inde\n- 2000m åbent vand — jævnt Z2 tempo\n- Fokus: sightning hver 6-8 tag","tags":["åbent","race"]},
-    {"id":"hvile","name":"Hviledag","type":null,"moving_time":0,"description":"Hvile — restitution","tags":["hvile"]}
+    {
+      "id": "styrke-a-3set",
+      "name": "Styrke A Functional Strength 3 sæt",
+      "type": "WeightTraining",
+      "moving_time": 3600,
+      "description": "3x\n- Thruster 12.5kg ×10 1m freeride\n- Renegade Row ×8 1m freeride\n- Push-up ×10 1m freeride\n- KB Swing 16kg ×15 1m freeride\n- RDL ×10 1m freeride\n- Bulgarian Split Squat ×8/ben 1m freeride\n- Pause 90 sek 2m freeride",
+      "tags": [
+        "styrke",
+        "hjemme"
+      ]
+    },
+    {
+      "id": "styrke-a-2set",
+      "name": "Styrke A Functional Strength 2 sæt",
+      "type": "WeightTraining",
+      "moving_time": 2400,
+      "description": "2x\n- Thruster 12.5kg ×10 1m freeride\n- Renegade Row ×8 1m freeride\n- Push-up ×10 1m freeride\n- KB Swing 16kg ×15 1m freeride\n- RDL ×10 1m freeride\n- Bulgarian Split Squat ×8/ben 1m freeride\n- Pause 90 sek 2m freeride",
+      "tags": [
+        "styrke",
+        "hjemme",
+        "let"
+      ]
+    },
+    {
+      "id": "lob-z2-45",
+      "name": "Løb Z2 45 min",
+      "type": "Run",
+      "moving_time": 2700,
+      "description": "- Warm-up 10 min ramp 5:35 → 5:00/km\n- Løb Z2 25 min 4:56-5:34/km\n- Cool-down 10 min ramp 5:00 → 5:30/km",
+      "tags": [
+        "løb",
+        "z2"
+      ]
+    },
+    {
+      "id": "lob-z2-60",
+      "name": "Løb Z2 60 min",
+      "type": "Run",
+      "moving_time": 3600,
+      "description": "- Warm-up 10 min ramp 5:35 → 5:00/km\n- Løb Z2 40 min 4:56-5:34/km\n- Cool-down 10 min ramp 5:00 → 5:30/km",
+      "tags": [
+        "løb",
+        "z2"
+      ]
+    },
+    {
+      "id": "lob-z2-90",
+      "name": "Lang løb Z2 90 min",
+      "type": "Run",
+      "moving_time": 5400,
+      "description": "- Warm-up 10 min ramp 5:35 → 5:00/km\n- Løb Z2 70 min 4:56-5:34/km\n- Cool-down 10 min ramp 5:00 → 5:30/km",
+      "tags": [
+        "løb",
+        "z2",
+        "lang"
+      ]
+    },
+    {
+      "id": "lob-vo2-5x3",
+      "name": "Løb VO2 5×3 min",
+      "type": "Run",
+      "moving_time": 3600,
+      "description": "- Warm-up 15 min ramp Z1 → Z2\n- 5x\n  - Løb Z5 3 min 3:53-4:12/km\n  - Jog Z1 2 min\n- Cool-down 10 min Z1",
+      "tags": [
+        "løb",
+        "vo2",
+        "intervaller"
+      ]
+    },
+    {
+      "id": "cykel-z2-60",
+      "name": "Cykel Z2 60 min",
+      "type": "Ride",
+      "moving_time": 3600,
+      "description": "- Warm-up 10 min ramp Z1 → Z2\n- Cykel Z2 40 min 150-205W\n- Cool-down 10 min ramp Z2 → Z1",
+      "tags": [
+        "cykel",
+        "z2"
+      ]
+    },
+    {
+      "id": "cykel-z2-90",
+      "name": "Cykel Z2 90 min",
+      "type": "Ride",
+      "moving_time": 5400,
+      "description": "- Warm-up 10 min ramp Z1 → Z2\n- Cykel Z2 70 min 150-205W\n- Cool-down 10 min ramp Z2 → Z1",
+      "tags": [
+        "cykel",
+        "z2"
+      ]
+    },
+    {
+      "id": "cykel-z2-150",
+      "name": "Cykel Z2 150 min",
+      "type": "Ride",
+      "moving_time": 9000,
+      "description": "- Warm-up 10 min ramp Z1 → Z2\n- Cykel Z2 130 min 150-205W\n- Cool-down 10 min ramp Z2 → Z1",
+      "tags": [
+        "cykel",
+        "z2",
+        "lang"
+      ]
+    },
+    {
+      "id": "cykel-vo2-5x3",
+      "name": "Cykel 5×3 min Z4",
+      "type": "Ride",
+      "moving_time": 3600,
+      "description": "- Warm-up 15 min ramp Z1 → Z2\n- 5x\n  - Cykel Z4 3 min 245-285W\n  - Recovery Z1 3 min\n- Cool-down 10 min Z1",
+      "tags": [
+        "cykel",
+        "vo2",
+        "intervaller"
+      ]
+    },
+    {
+      "id": "svom-1500",
+      "name": "Svøm 1500m let teknisk",
+      "type": "Swim",
+      "moving_time": 2100,
+      "description": "- 200m warm-up let\n- 4x50m teknik (drills)\n- 8x100m Z2 med 30s pause\n- 200m cool-down",
+      "tags": [
+        "svøm",
+        "teknik"
+      ]
+    },
+    {
+      "id": "svom-2000",
+      "name": "Svøm 2000m teknisk",
+      "type": "Swim",
+      "moving_time": 2700,
+      "description": "- 300m warm-up let\n- 6x50m teknik (drills)\n- 10x100m Z2 med 30s pause\n- 200m cool-down",
+      "tags": [
+        "svøm",
+        "teknik"
+      ]
+    },
+    {
+      "id": "ow-2000",
+      "name": "Åbentvand 2000m",
+      "type": "OpenWaterSwim",
+      "moving_time": 2700,
+      "description": "- 5-10 min opvarmning inde\n- 2000m åbent vand — jævnt Z2 tempo\n- Fokus: sightning hver 6-8 tag",
+      "tags": [
+        "åbent",
+        "race"
+      ]
+    },
+    {
+      "id": "hvile",
+      "name": "Hviledag",
+      "type": null,
+      "moving_time": 0,
+      "description": "Hvile — restitution",
+      "tags": [
+        "hvile"
+      ]
+    },
+    {
+      "id": "eva-runwalk-30",
+      "name": "Løbetur — 30 min",
+      "type": "Run",
+      "moving_time": 1800,
+      "description": "Run/walk-ratio efter ugens plan.\n\n- Warm-up 5 min gang\n- Skiftevis løb + gang efter ratio\n- Cool-down 5 min gang",
+      "tags": [
+        "eva",
+        "run-walk"
+      ]
+    },
+    {
+      "id": "eva-runwalk-40",
+      "name": "Løbetur — 40 min",
+      "type": "Run",
+      "moving_time": 2400,
+      "description": "Run/walk-ratio efter ugens plan.\n\n- Warm-up 5 min gang\n- Skiftevis løb + gang efter ratio\n- Cool-down 5 min gang",
+      "tags": [
+        "eva",
+        "run-walk"
+      ]
+    },
+    {
+      "id": "eva-runwalk-50",
+      "name": "Løbetur — 50 min",
+      "type": "Run",
+      "moving_time": 3000,
+      "description": "Run/walk-ratio efter ugens plan.",
+      "tags": [
+        "eva",
+        "run-walk"
+      ]
+    },
+    {
+      "id": "eva-long-60",
+      "name": "Lang tur — 60 min",
+      "type": "Run",
+      "moving_time": 3600,
+      "description": "Roligt run/walk-tempo — bygger udholdenhed frem mod Médoc.",
+      "tags": [
+        "eva",
+        "run-walk",
+        "lang"
+      ]
+    },
+    {
+      "id": "eva-long-90",
+      "name": "Lang tur — 90 min",
+      "type": "Run",
+      "moving_time": 5400,
+      "description": "Roligt run/walk-tempo — bygger udholdenhed frem mod Médoc.",
+      "tags": [
+        "eva",
+        "run-walk",
+        "lang"
+      ]
+    },
+    {
+      "id": "eva-long-120",
+      "name": "Lang tur — 2 timer",
+      "type": "Run",
+      "moving_time": 7200,
+      "description": "Roligt run/walk-tempo — vigtig langtur frem mod Médoc.",
+      "tags": [
+        "eva",
+        "run-walk",
+        "lang"
+      ]
+    }
   ]
 }
