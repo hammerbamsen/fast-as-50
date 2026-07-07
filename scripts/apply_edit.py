@@ -186,6 +186,24 @@ def main():
     print(f"params: {json.dumps(params, ensure_ascii=False)[:200]}")
 
     _plan_sha, plan_raw = gh_get("data/plan.json")
+
+    # Special dry-run action: bare returnér alternativer, commit intet
+    if action == "suggest_move":
+        result = edit_apply.suggest_move_alternatives(
+            plan_raw, entry_id, athlete=athlete,
+            window_days=int(params.get("window_days", 7)))
+        write_result(request_id, {
+            "status": "suggestion",
+            "action": "suggest_move",
+            "athlete": athlete,
+            "src_date": result.get("src_date"),
+            "alternatives": result.get("alternatives", []),
+            "error": result.get("error"),
+            "request_ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        })
+        print(f"Suggest-move: {len(result.get('alternatives', []))} alternativer")
+        return
+
     result = edit_apply.apply_edit(plan_raw, action, entry_id, params,
                                     confirmed_warn=confirmed_warn, athlete=athlete)
 
