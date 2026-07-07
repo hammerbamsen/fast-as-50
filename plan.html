@@ -271,6 +271,40 @@ function ctlChart(plan, view, dash){
   const lo = Math.floor(Math.min(...all,30)/10)*10, hi = Math.ceil(Math.max(...all,70)/10)*10;
   const y = v => PT + (1-(v-lo)/(hi-lo)) * (H-PT-PB);
   const line = (pts,get) => pts.map((p,i)=>`${i?"L":"M"}${x(p.d).toFixed(1)},${y(get(p)).toFixed(1)}`).join(" ");
+
+  // Camps + travel: identificér fra location-feltet
+  const campKeywords = [
+    { match: /mallorca/i, color: "rgba(220,170,60,.10)", label: "Mallorca" },
+    { match: /norge/i,    color: "rgba(90,150,210,.10)", label: "Norge" },
+    { match: /wales/i,    color: "rgba(120,160,110,.10)", label: "Wales" },
+  ];
+  let campBands = "", campLabels = "";
+  const campBlocks = [];  // {start, end, kw}
+  for (const w of plan.weeks) {
+    const loc = (w.location||"").toLowerCase();
+    for (const kw of campKeywords) {
+      if (kw.match.test(loc)) {
+        campBlocks.push({start: w.start, end: iso(addDays(new Date(w.start+"T12:00:00"), 7)), kw});
+      }
+    }
+  }
+  // Merge overlappende bånd
+  campBlocks.sort((a,b) => a.start.localeCompare(b.start));
+  const merged = [];
+  for (const b of campBlocks) {
+    const prev = merged[merged.length-1];
+    if (prev && prev.kw.label === b.kw.label && prev.end >= b.start) {
+      prev.end = b.end > prev.end ? b.end : prev.end;
+    } else {
+      merged.push({...b});
+    }
+  }
+  for (const b of merged) {
+    const x1 = x(b.start), x2 = x(b.end);
+    campBands += `<rect x="${x1}" y="${PT}" width="${x2-x1}" height="${H-PT-PB}" fill="${b.kw.color}"/>`;
+    campLabels += `<text x="${(x1+x2)/2}" y="${PT+10}" font-size="9" fill="var(--muted)" text-anchor="middle" font-style="italic">${b.kw.label}</text>`;
+  }
+
   let grid="";
   for(let v=lo; v<=hi; v+=10)
     grid += `<line x1="${PL}" y1="${y(v)}" x2="${W-PR}" y2="${y(v)}" stroke="var(--cream)" stroke-width="1"/>
@@ -282,20 +316,60 @@ function ctlChart(plan, view, dash){
   const seedPt = seed && proj.length ? `<circle cx="${x(seed.date)}" cy="${y(seed.ctl)}" r="4" fill="var(--gold)"/>` : "";
   const projPath = seed && proj.length
     ? line([{d:seed.date, ctl:seed.ctl}, ...proj], p=>p.ctl) : "";
-  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block" role="img" aria-label="CTL-udvikling">
+
+  // Interaktive hover-punkter — Faktisk CTL (større dot for tap-mål) og projektion
+  let hoverPoints = "";
+  for (const p of actual) {
+    hoverPoints += `<circle cx="${x(p.d)}" cy="${y(p.v)}" r="8" fill="transparent"
+      onmouseover="ctlTip(evt,'${p.d}','Faktisk CTL','${p.v}')" onmouseout="ctlTipHide()"
+      ontouchstart="ctlTip(evt,'${p.d}','Faktisk CTL','${p.v}')"/>`;
+  }
+  for (const p of proj) {
+    hoverPoints += `<circle cx="${x(p.d)}" cy="${y(p.ctl)}" r="6" fill="transparent"
+      onmouseover="ctlTip(evt,'${p.d}','Projektion','${p.ctl.toFixed(1)}'${p.tsb!=null?`,'${p.tsb.toFixed(1)}'`:""})" onmouseout="ctlTipHide()"
+      ontouchstart="ctlTip(evt,'${p.d}','Projektion','${p.ctl.toFixed(1)}'${p.tsb!=null?`,'${p.tsb.toFixed(1)}'`:""})"/>`;
+  }
+
+  return `<div style="position:relative">
+  <svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block" role="img" aria-label="CTL-udvikling" onmouseleave="ctlTipHide()">
+    ${campBands}
     ${grid}${months}
+    ${campLabels}
     <line x1="${todayX}" y1="${PT}" x2="${todayX}" y2="${H-PB}" stroke="var(--cream-d)" stroke-width="1" stroke-dasharray="3,3"/>
     <path d="${line(target,p=>p.v)}" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="5,4"/>
     ${projPath?`<path d="${projPath}" fill="none" stroke="var(--gold)" stroke-width="2.2"/>`:""}
     ${actual.length?`<path d="${line(actual,p=>p.v)}" fill="none" stroke="var(--wine)" stroke-width="2.2"/>`:""}
     ${actual.length?`<circle cx="${x(actual[actual.length-1].d)}" cy="${y(actual[actual.length-1].v)}" r="4" fill="var(--wine)"/>`:""}
     ${seedPt}
+    ${hoverPoints}
   </svg>
+  <div id="ctl-tooltip" style="position:absolute;display:none;background:var(--wine);color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;pointer-events:none;z-index:10;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.15)"></div>
+  </div>
   <div class="legend">
     <span style="--lc:var(--wine)">Faktisk CTL</span>
     <span style="--lc:var(--gold)">Kalibreret projektion</span>
     <span class="dashed" style="--lc:var(--muted)">Pejlemærke</span>
   </div>`;
+}
+
+function ctlTip(evt, date, label, ctl, tsb){
+  const tip = document.getElementById('ctl-tooltip');
+  if (!tip) return;
+  const d = new Date(date+"T12:00:00");
+  const dateStr = `${d.getDate()}. ${MON_DA[d.getMonth()]}`;
+  tip.innerHTML = `<b>${dateStr}</b><br>${label}: ${ctl}${tsb?`<br>TSB: ${tsb}`:""}`;
+  tip.style.display = 'block';
+  const rect = evt.target.closest('svg').getBoundingClientRect();
+  const parentRect = tip.parentElement.getBoundingClientRect();
+  const cx = parseFloat(evt.target.getAttribute('cx'));
+  const cy = parseFloat(evt.target.getAttribute('cy'));
+  const scale = rect.width / 640;
+  tip.style.left = (cx * scale + 8) + 'px';
+  tip.style.top = (cy * scale - 30) + 'px';
+}
+function ctlTipHide(){
+  const tip = document.getElementById('ctl-tooltip');
+  if (tip) tip.style.display = 'none';
 }
 
 async function main(){
@@ -631,12 +705,22 @@ async function submitEdit(){
       const r = results[requestId];
       if (!r) continue;
       if (r.status === "reject") {
+        const suggestBtn = s.action === "move"
+          ? `<button class="primary" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:none;background:var(--wine);color:#fff;cursor:pointer" onclick="suggestMoveAlternatives()"><i class="ti ti-bulb"></i> Foreslå bedre dage</button>`
+          : "";
         msg.innerHTML = `<div class="err-box"><b>Afvist:</b> ${esc(r.gate.msg)}</div>
-          <button class="secondary" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--wine);cursor:pointer" onclick="closeSheet()">OK</button>`;
+          <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="secondary" style="flex:1;padding:8px 14px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--wine);cursor:pointer" onclick="closeSheet()">OK</button>
+          ${suggestBtn?`<div style="flex:1">${suggestBtn}</div>`:""}
+          </div>`;
         return;
       }
       if (r.status === "warn") {
+        const suggestBtn = s.action === "move"
+          ? `<button style="margin-top:8px;padding:8px 14px;border-radius:8px;border:1px solid var(--wine);background:var(--white);color:var(--wine);cursor:pointer;width:100%" onclick="suggestMoveAlternatives()"><i class="ti ti-bulb"></i> Se bedre alternativer</button>`
+          : "";
         msg.innerHTML = `<div class="warn-box"><b>Advarsel:</b> ${esc(r.gate.msg)}</div>
+          ${suggestBtn}
           <div style="display:flex;gap:8px;margin-top:10px">
           <button class="secondary" onclick="closeSheet()" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);cursor:pointer">Fortryd</button>
           <button class="primary" onclick="confirmWarnAndRetry()" style="flex:1;padding:8px;border-radius:8px;border:none;background:var(--wine);color:var(--white);cursor:pointer">Fortsæt alligevel</button></div>`;
@@ -657,6 +741,69 @@ async function submitEdit(){
 
 async function confirmWarnAndRetry(){
   SHEET_STATE.confirmedWarn = true;
+  await submitEdit();
+}
+
+async function suggestMoveAlternatives(){
+  const s = SHEET_STATE;
+  const msg = document.getElementById("sheet-msg");
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader"></i> Analyserer alternativer…</div>`;
+
+  const token = getToken();
+  if (!token) { msg.innerHTML = `<div class="err-box">Ingen token.</div>`; return; }
+
+  const requestId = "suggest-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+    method:"POST", headers:{ "Authorization":`token ${token}`,
+      "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
+    body: JSON.stringify({ event_type: "plan-edit", client_payload: {
+      requestId, action: "suggest_move", entryId: s.entryId,
+      params: { window_days: 7 }, confirmedWarn: false, athlete: "kennet" }})
+  });
+  if (r.status !== 204) { msg.innerHTML = `<div class="err-box">Kunne ikke starte forslags-analyse.</div>`; return; }
+
+  for (let i=0; i<20; i++){
+    await new Promise(r=>setTimeout(r, 3000));
+    try {
+      const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
+      if (!res.ok) continue;
+      const results = await res.json();
+      const r = results[requestId];
+      if (!r || r.status !== "suggestion") continue;
+      // Vis alternativer
+      const ok = (r.alternatives||[]).filter(a=>a.status==="ok").slice(0,6);
+      const warn = (r.alternatives||[]).filter(a=>a.status==="warn").slice(0,3);
+      if (!ok.length && !warn.length) {
+        msg.innerHTML = `<div class="warn-box">Ingen problemfri dage fundet i ±7 dage. Prøv en større flytning eller behold nuværende plan.</div>
+          <button class="secondary" onclick="closeSheet()" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--wine);cursor:pointer;width:100%">Luk</button>`;
+        return;
+      }
+      const fmtBtn = (a, kind) => {
+        const d = new Date(a.date+"T12:00:00");
+        const dow = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"][(d.getDay()+6)%7];
+        const off = a.offset > 0 ? `+${a.offset}d` : `${a.offset}d`;
+        const color = kind === "ok" ? "var(--wine)" : "var(--warn)";
+        return `<button style="padding:10px 12px;border-radius:8px;border:1px solid ${color};background:var(--white);color:${color};cursor:pointer;text-align:left;font-family:'Hanken Grotesk',sans-serif;font-size:13px" onclick="acceptSuggestion('${a.date}')">
+          <b style="display:block">${dow} ${d.getDate()}.${MON_DA[d.getMonth()]}</b>
+          <span style="font-size:11px;color:var(--muted)">${off} · ${kind==="ok"?"Godkendt":"Advarsel"}</span>
+        </button>`;
+      };
+      msg.innerHTML = `<div class="ok-box"><b>Foreslåede dage:</b> Fri klik en dag for at flytte pas'et dertil.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px;margin-top:10px">
+          ${ok.map(a=>fmtBtn(a,"ok")).join("")}
+          ${warn.map(a=>fmtBtn(a,"warn")).join("")}
+        </div>
+        <button class="secondary" onclick="closeSheet()" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--wine);cursor:pointer;width:100%">Luk</button>`;
+      return;
+    } catch(e) { /* keep polling */ }
+  }
+  msg.innerHTML = `<div class="err-box">Timeout på forslags-analyse.</div>`;
+}
+
+async function acceptSuggestion(targetIso){
+  SHEET_STATE.action = "move";
+  SHEET_STATE.moveTarget = targetIso;
+  SHEET_STATE.confirmedWarn = true;  // accepter evt. WARN direkte
   await submitEdit();
 }
 
