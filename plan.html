@@ -1,0 +1,275 @@
+<!DOCTYPE html><!-- plan.html v20260707 — fase 2 læse-visning. Sandhed: data/plan.json. Beregnede lag: data/plan_view.json (genereret af plan_view.py — Friel bor KUN i Python). -->
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fast as Fifty">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="theme-color" content="#59182A">
+<title>Plan — Fast as Fifty</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.31.0/tabler-icons.min.css">
+<style>
+:root {
+  --wine:#59182A; --wine-d:#3E0F1D; --wine-l:#7A2038;
+  --gold:#BE863A; --gold-l:#D4A55A;
+  --cream:#ECE4D7; --cream-d:#DDD3C3;
+  --ink:#1A1008; --muted:#7A6A58; --white:#FDFAF6;
+  --run:#C0392B; --bike:#2874A6; --swim:#1A7A5E; --strength:#7D3C98;
+  --free:#7A6A58; --walk:#2E8B57; --hike:#8B6914; --commute:#1A6B8A; --openwater:#0B5394;
+  --warn:#B7791F; --hard:#B03A2E; --ok:#27AE60;
+  --r:12px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotesk',sans-serif; color:var(--ink); }
+.app { display:flex; min-height:100vh; }
+.sidebar { width:200px; flex-shrink:0; background:var(--wine); display:flex; flex-direction:column; position:fixed; top:0; left:0; height:100vh; z-index:50; }
+.sidebar-brand { padding:22px 16px 14px; color:var(--white); }
+.sidebar-brand .t1 { font-size:16px; font-weight:700; letter-spacing:.5px; }
+.sidebar-brand .t2 { font-size:11px; color:var(--gold-l); margin-top:2px; }
+.sidebar-nav { flex:1; padding:10px; }
+.nav-btn { width:100%; display:flex; align-items:center; gap:10px; padding:10px; border-radius:8px; border:none; background:transparent; border-left:3px solid transparent; color:rgba(255,255,255,.55); font-family:'Hanken Grotesk',sans-serif; font-size:14px; cursor:pointer; text-align:left; text-decoration:none; margin-bottom:2px; }
+.nav-btn:hover { color:rgba(255,255,255,.85); background:rgba(255,255,255,.05); }
+.nav-btn.active { color:var(--gold); background:rgba(190,134,58,.15); border-left-color:var(--gold); font-weight:600; }
+.main { margin-left:200px; flex:1; padding:28px 28px 90px; max-width:860px; }
+.bottom-nav { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--wine); border-top:1px solid var(--wine-l); padding:6px 0 14px; z-index:100; justify-content:space-around; align-items:center; }
+.bottom-btn { display:flex; flex-direction:column; align-items:center; gap:2px; border:none; background:transparent; color:rgba(255,255,255,.4); font-family:'Hanken Grotesk',sans-serif; font-size:10px; cursor:pointer; text-decoration:none; padding:4px 8px; }
+.bottom-btn.active { color:var(--gold); }
+@media (max-width:760px) {
+  .sidebar { display:none; }
+  .main { margin-left:0; padding:18px 14px 96px; }
+  .bottom-nav { display:flex !important; }
+}
+h1 { font-size:22px; font-weight:700; }
+.sub { font-size:13px; color:var(--muted); margin-top:3px; }
+.card { background:var(--white); border-radius:var(--r); padding:16px; margin-top:14px; box-shadow:0 1px 2px rgba(26,16,8,.05); }
+.card h2 { font-size:14px; font-weight:600; letter-spacing:.3px; color:var(--muted); text-transform:uppercase; margin-bottom:10px; }
+.legend { display:flex; gap:14px; flex-wrap:wrap; font-size:11px; color:var(--muted); margin-top:8px; }
+.legend span::before { content:""; display:inline-block; width:14px; height:3px; border-radius:2px; margin-right:5px; vertical-align:middle; background:var(--lc); }
+.badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; padding:2px 8px; border-radius:10px; }
+.badge.hard { background:#B03A2E1A; color:var(--hard); border:1px solid #B03A2E40; }
+.badge.warn { background:#B7791F1A; color:var(--warn); border:1px solid #B7791F40; }
+.badge.ok   { background:#27AE601A; color:var(--ok);   border:1px solid #27AE6040; }
+.badge.hist { opacity:.45; }
+.wk { margin-top:18px; }
+.wk-head { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:0 2px; }
+.wk-head .wn { font-size:15px; font-weight:700; }
+.wk-head .wm { font-size:12px; color:var(--muted); }
+.wk-dev { font-size:11px; color:var(--muted); margin:2px 2px 0; }
+.day { background:var(--white); border-radius:10px; margin-top:8px; overflow:hidden; box-shadow:0 1px 2px rgba(26,16,8,.05); }
+.day.today { outline:2px solid var(--gold); }
+.day-row { display:flex; align-items:center; gap:10px; padding:10px 12px; cursor:pointer; }
+.day-row .dn { width:64px; flex-shrink:0; }
+.day-row .dn b { font-size:13px; display:block; }
+.day-row .dn span { font-size:11px; color:var(--muted); }
+.day-row .wo { flex:1; min-width:0; }
+.day-row .wo .nm { font-size:13.5px; font-weight:500; }
+.day-row .wo .mt { font-size:11.5px; color:var(--muted); margin-top:1px; }
+.dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.chev { color:var(--cream-d); flex-shrink:0; transition:transform .15s; }
+.day.open .chev { transform:rotate(180deg); }
+.day-detail { display:none; border-top:1px solid var(--cream); padding:10px 12px 12px 86px; font-size:12.5px; color:var(--ink); white-space:pre-wrap; line-height:1.55; }
+@media (max-width:760px){ .day-detail { padding-left:12px; } }
+.day.open .day-detail { display:block; }
+.rest { color:var(--muted); font-size:13px; display:flex; align-items:center; gap:8px; }
+.acc-head { display:flex; align-items:center; justify-content:space-between; background:var(--white); border-radius:10px; padding:12px 14px; margin-top:8px; cursor:pointer; }
+.acc-head .l { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.acc-body { display:none; padding:0 0 6px; }
+.acc.open .acc-body { display:block; }
+.acc.open .acc-head .chev { transform:rotate(180deg); }
+.section-title { font-size:16px; font-weight:700; margin-top:28px; }
+.err { background:#B03A2E14; border:1px solid #B03A2E40; color:var(--hard); border-radius:10px; padding:12px; font-size:13px; margin-top:14px; }
+.gen { font-size:11px; color:var(--muted); margin-top:16px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><div class="t1">FAST AS FIFTY</div><div class="t2">Keep moving forward</div></div>
+    <nav class="sidebar-nav" id="side-nav"></nav>
+  </aside>
+  <main class="main">
+    <h1>Plan</h1>
+    <div class="sub" id="head-sub">Henter plan …</div>
+    <div id="content"></div>
+    <div class="gen" id="gen"></div>
+  </main>
+</div>
+<nav class="bottom-nav" id="bottom-nav"></nav>
+
+<script>
+const NAV = [
+  {id:"today", label:"I dag",  ti:"ti-calendar",       href:"index.html"},
+  {id:"plan",  label:"Plan",   ti:"ti-route",          href:"plan.html", active:true},
+  {id:"uge",   label:"Uge",    ti:"ti-calendar-week",  href:"index.html"},
+  {id:"body",  label:"Krop",   ti:"ti-heart",          href:"index.html"},
+];
+document.getElementById("side-nav").innerHTML = NAV.map(n=>`
+  <a class="nav-btn ${n.active?"active":""}" href="${n.href}"><i class="ti ${n.ti}" style="font-size:18px"></i> ${n.label}</a>`).join("");
+document.getElementById("bottom-nav").innerHTML = NAV.map(n=>`
+  <a class="bottom-btn ${n.active?"active":""}" href="${n.href}"><i class="ti ${n.ti}" style="font-size:22px"></i><span>${n.label}</span></a>`).join("");
+
+const DISC = { Run:"run", Ride:"bike", VirtualRide:"bike", Swim:"swim", OpenWaterSwim:"openwater",
+               WeightTraining:"strength", Hike:"hike", Walk:"walk" };
+const DAYS_DA = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
+const MON_DA  = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
+const RULE_DA = { max_runs:"For mange løbedage", consecutive_runs:"Fortløbende løb",
+                  vo2_missing:"VO2 mangler", vo2_excess:"Ekstra VO2",
+                  missing_recovery:"Recovery mangler", tsb_floor:"TSB under gulv", ctl_ramp:"CTL-ramp" };
+
+const esc = s => String(s??"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const iso = d => d.toISOString().slice(0,10);
+const addDays = (d,n)=>{ const x=new Date(d); x.setDate(x.getDate()+n); return x; };
+const fmtDur = s => { if(!s) return ""; const m=Math.round(s/60);
+  return m>=90 && m%30===0 ? `${Math.floor(m/60)}t${m%60?` ${m%60}m`:""}` : `${m} min`; };
+const fmtDate = d => `${d.getDate()}. ${MON_DA[d.getMonth()]}`;
+
+async function getJSON(url, optional=false){
+  try { const r = await fetch(`${url}?t=${Date.now()}`, {cache:"no-store"});
+        if(!r.ok) throw new Error(r.status);
+        return await r.json(); }
+  catch(e){ if(optional) return null; throw new Error(`${url}: ${e.message}`); }
+}
+
+function dayCard(day, todayIso){
+  const d = new Date(day.date+"T12:00:00");
+  const dn = `<div class="dn"><b>${DAYS_DA[(d.getDay()+6)%7]}</b><span>${fmtDate(d)}</span></div>`;
+  const workouts = (day.entries||[]).filter(e=>e.workout);
+  const isToday = day.date===todayIso;
+  if(!workouts.length){
+    const note = (day.entries||[]).map(e=>e.note).filter(Boolean).join(" · ") || "Hviledag";
+    return `<div class="day ${isToday?"today":""}"><div class="day-row" style="cursor:default">${dn}
+      <div class="wo rest"><i class="ti ti-moon" style="font-size:15px"></i> ${esc(note)}</div></div></div>`;
+  }
+  const rows = workouts.map(e=>{
+    const w=e.workout, disc=DISC[w.type]||"free";
+    return `<span style="display:flex;align-items:center;gap:8px;margin-top:2px">
+      <span class="dot" style="background:var(--${disc})"></span>
+      <span><span class="nm">${esc(w.name)}</span>
+      <span class="mt" style="display:block">${fmtDur(w.moving_time)}${e.note?` · ${esc(e.note)}`:""}</span></span></span>`;
+  }).join("");
+  const details = workouts.map(e=>esc(e.workout.description||"")).filter(Boolean).join("\n\n");
+  return `<div class="day ${isToday?"today":""}">
+    <div class="day-row" onclick="this.parentElement.classList.toggle('open')">${dn}
+      <div class="wo">${rows}</div>
+      ${details?`<i class="ti ti-chevron-down chev" style="font-size:16px"></i>`:""}</div>
+    ${details?`<div class="day-detail">${details}</div>`:""}</div>`;
+}
+
+function weekFlagsHtml(vw, currentWeek){
+  if(!vw) return "";
+  const fl = vw.flags||[];
+  if(!fl.length && vw.week<=currentWeek+2 && vw.week>=currentWeek)
+    return `<span class="badge ok"><i class="ti ti-check" style="font-size:12px"></i>Friel OK</span>`;
+  return fl.map(f=>`<span class="badge ${f.level==="HARD"?"hard":"warn"} ${f.historic?"hist":""}" title="${esc(f.msg)}">
+    <i class="ti ${f.level==="HARD"?"ti-alert-triangle":"ti-alert-circle"}" style="font-size:12px"></i>${RULE_DA[f.rule]||f.rule}</span>`).join(" ");
+}
+
+function weekBlock(plan, view, w, todayIso, expandedDays=true){
+  const meta = plan.weeks.find(x=>x.week===w) || {};
+  const vw = view && view.kennet.weeks.find(x=>x.week===w);
+  const start = new Date(meta.start+"T12:00:00");
+  const daysMap = Object.fromEntries(plan.athletes.kennet.days.map(d=>[d.date,d]));
+  let days = "";
+  for(let i=0;i<7;i++){
+    const di = iso(addDays(start,i));
+    days += dayCard(daysMap[di]||{date:di,entries:[]}, todayIso);
+  }
+  const dev = vw && vw.deviation!==null && vw.deviation!==undefined
+    ? `<div class="wk-dev">CTL-projektion ${vw.projEndCtl} — ${Math.abs(vw.deviation).toFixed(1)} ${vw.deviation<0?"under":"over"} pejlemærket ${meta.ctlTarget}</div>` : "";
+  const head = `<div class="wk-head"><span class="wn">Uge ${w}</span>
+      <span class="wm">${esc(meta.blockType||"")} · ${esc(meta.location||"")} · ${meta.tssTarget||"–"} TSS</span>
+      ${weekFlagsHtml(vw, currentWeekOf(plan, todayIso))}</div>${dev}`;
+  if(expandedDays) return `<div class="wk">${head}${days}</div>`;
+  return `<div class="acc"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="l"><span class="wn">Uge ${w}</span><span class="wm">${esc(meta.blockType||"")} · ${esc(meta.location||"")}</span>
+      ${weekFlagsHtml(vw, currentWeekOf(plan, todayIso))}</div>
+      <i class="ti ti-chevron-down chev" style="font-size:16px"></i></div>
+      <div class="acc-body">${dev}${days}</div></div>`;
+}
+
+function currentWeekOf(plan, todayIso){
+  const start = new Date(plan.program.start+"T12:00:00");
+  const t = new Date(todayIso+"T12:00:00");
+  return Math.min(Math.max(Math.floor((t-start)/864e5/7)+1, 1), plan.program.totalWeeks);
+}
+
+function ctlChart(plan, view, dash){
+  const start = new Date(plan.program.start+"T12:00:00");
+  const end = addDays(start, plan.program.totalWeeks*7);
+  const W=640, H=220, PL=34, PR=8, PT=10, PB=24;
+  const x = d => PL + ( (new Date(d+"T12:00:00")-start)/(end-start) ) * (W-PL-PR);
+  const target = plan.weeks.map(w=>({d: iso(addDays(new Date(w.start+"T12:00:00"),6)), v:w.ctlTarget}));
+  const proj = view ? view.kennet.projection : [];
+  const actual = (dash && Array.isArray(dash.ctlCurve) ? dash.ctlCurve : [])
+    .map((v,i)=>({d: iso(addDays(new Date(plan.weeks[i].start+"T12:00:00"),6)), v}));
+  const seed = view ? view.kennet.seed : null;
+  const all = [...target.map(p=>p.v), ...proj.map(p=>p.ctl), ...actual.map(p=>p.v)].filter(v=>v!=null);
+  const lo = Math.floor(Math.min(...all,30)/10)*10, hi = Math.ceil(Math.max(...all,70)/10)*10;
+  const y = v => PT + (1-(v-lo)/(hi-lo)) * (H-PT-PB);
+  const line = (pts,get) => pts.map((p,i)=>`${i?"L":"M"}${x(p.d).toFixed(1)},${y(get(p)).toFixed(1)}`).join(" ");
+  let grid="";
+  for(let v=lo; v<=hi; v+=10)
+    grid += `<line x1="${PL}" y1="${y(v)}" x2="${W-PR}" y2="${y(v)}" stroke="var(--cream)" stroke-width="1"/>
+             <text x="${PL-6}" y="${y(v)+3.5}" font-size="10" fill="var(--muted)" text-anchor="end">${v}</text>`;
+  let months=""; const m0=new Date(start);
+  for(let d=new Date(m0.getFullYear(),m0.getMonth()+1,1); d<end; d.setMonth(d.getMonth()+1))
+    months += `<text x="${x(iso(d))}" y="${H-8}" font-size="10" fill="var(--muted)" text-anchor="middle">${MON_DA[d.getMonth()]}</text>`;
+  const todayX = x(iso(new Date()));
+  const seedPt = seed && proj.length ? `<circle cx="${x(seed.date)}" cy="${y(seed.ctl)}" r="4" fill="var(--gold)"/>` : "";
+  const projPath = seed && proj.length
+    ? line([{d:seed.date, ctl:seed.ctl}, ...proj], p=>p.ctl) : "";
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block" role="img" aria-label="CTL-udvikling">
+    ${grid}${months}
+    <line x1="${todayX}" y1="${PT}" x2="${todayX}" y2="${H-PB}" stroke="var(--cream-d)" stroke-width="1" stroke-dasharray="3,3"/>
+    <path d="${line(target,p=>p.v)}" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="5,4"/>
+    ${projPath?`<path d="${projPath}" fill="none" stroke="var(--gold)" stroke-width="2.2"/>`:""}
+    ${actual.length?`<path d="${line(actual,p=>p.v)}" fill="none" stroke="var(--wine)" stroke-width="2.2"/>`:""}
+    ${actual.length?`<circle cx="${x(actual[actual.length-1].d)}" cy="${y(actual[actual.length-1].v)}" r="4" fill="var(--wine)"/>`:""}
+    ${seedPt}
+  </svg>
+  <div class="legend">
+    <span style="--lc:var(--wine)">Faktisk CTL</span>
+    <span style="--lc:var(--gold)">Kalibreret projektion</span>
+    <span style="--lc:var(--muted)">Pejlemærke</span>
+  </div>`;
+}
+
+async function main(){
+  const content = document.getElementById("content");
+  let plan, view, dash;
+  try { plan = await getJSON("data/plan.json"); }
+  catch(e){ content.innerHTML = `<div class="err">Kunne ikke hente plan.json — prøv igen om lidt. (${esc(e.message)})</div>`; return; }
+  view = await getJSON("data/plan_view.json", true);
+  dash = await getJSON("data.json", true);
+
+  const todayIso = iso(new Date());
+  const cur = currentWeekOf(plan, todayIso);
+  const meta = plan.weeks.find(w=>w.week===cur) || {};
+  const daysTo = r => Math.max(0, Math.round((new Date(r.date+"T12:00:00") - new Date(todayIso+"T12:00:00"))/864e5));
+  document.getElementById("head-sub").textContent =
+    `Uge ${cur} af ${plan.program.totalWeeks} · ${meta.blockType||""} · ${meta.location||""}  —  ` +
+    plan.races.map(r=>`${daysTo(r)} dage til ${r.name}`).join(" · ");
+
+  let html = `<div class="card"><h2>CTL — faktisk, projektion og pejlemærke</h2>${ctlChart(plan, view, dash)}</div>`;
+
+  html += `<div class="section-title">Denne uge + 2 frem</div>`;
+  for(let w=cur; w<=Math.min(cur+2, plan.program.totalWeeks); w++)
+    html += weekBlock(plan, view, w, todayIso, true);
+
+  html += `<div class="section-title">Fuld plan · uge 1–${plan.program.totalWeeks}</div>`;
+  for(let w=1; w<=plan.program.totalWeeks; w++)
+    html += weekBlock(plan, view, w, todayIso, false);
+
+  content.innerHTML = html;
+  if(view) document.getElementById("gen").textContent =
+    `Flags og projektion beregnet ${view.generated.slice(0,16).replace("T"," ")} UTC · seed CTL ${view.kennet.seed.ctl}`;
+}
+main();
+</script>
+</body>
+</html>
