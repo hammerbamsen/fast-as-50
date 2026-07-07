@@ -76,7 +76,7 @@
   {
    "week": 6,
    "start": "2026-07-06",
-   "blockType": "BUILD",
+   "blockType": "RECOVERY",
    "ctlTarget": 50,
    "tssTarget": 300,
    "location": "Gentofte → Wales 8.-12.",
@@ -3492,43 +3492,45 @@
      "entries": [
       {
        "workout": {
-        "name": "Løb Z2 60 min",
-        "type": "Run",
-        "moving_time": 3600,
-        "description": "- Varm-op 10m >5:35/km Pace\n- Base 45m 4:56-5:34/km Pace\n- Cool-down 5m >5:35/km Pace",
+        "name": "Cykel Z2 45 min",
+        "type": "Ride",
+        "moving_time": 2700,
+        "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 30m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
         "workout_doc": {
          "steps": [
           {
-           "text": "Varm-op >5:35/km",
-           "pace": {
-            "start": 65,
-            "end": 78,
-            "units": "%pace"
+           "ramp": true,
+           "power": {
+            "start": 45,
+            "end": 68,
+            "units": "%ftp"
            },
-           "duration": 600
+           "duration": 600,
+           "warmup": true
           },
           {
-           "text": "Base 4:56-5:34/km",
-           "pace": {
-            "start": 78,
-            "end": 88,
-            "units": "%pace"
+           "text": "Aerob base 56-76% FTP",
+           "power": {
+            "start": 56,
+            "end": 76,
+            "units": "%ftp"
            },
-           "duration": 2700
+           "duration": 1800
           },
           {
-           "text": "Cool-down >5:35/km",
-           "pace": {
-            "start": 65,
-            "end": 78,
-            "units": "%pace"
+           "ramp": true,
+           "power": {
+            "start": 68,
+            "end": 45,
+            "units": "%ftp"
            },
-           "duration": 300
+           "duration": 300,
+           "cooldown": true
           }
          ]
         }
        },
-       "note": "Løb Z2 60 min"
+       "note": "Let Z2-spin 45 min — byttet fra løb (Friel: undgå fortløbende løb før 29 km langtur)"
       }
      ]
     },
