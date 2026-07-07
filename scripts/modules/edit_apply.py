@@ -62,6 +62,16 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
         if "note" in params:
             src_entry["note"] = params["note"]
 
+    elif action == "toggle_done":
+        # Marker/aflys 'gennemført' — ingen Friel-implikationer, kun status
+        from datetime import date as _date
+        current = bool(src_entry.get("done"))
+        src_entry["done"] = not current
+        if src_entry["done"]:
+            src_entry["done_at"] = _date.today().isoformat()
+        else:
+            src_entry.pop("done_at", None)
+
     elif action == "swap_template":
         # params: {template_id, note?}
         tpl = _find_template(params["template_id"])
