@@ -119,6 +119,9 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
   <div class="sub" id="head-sub">Henter plan …</div>
 </div>
 <main class="main" id="content"></main>
+<div style="text-align:center;padding:0 0 44px">
+  <button id="tour-restart" onclick="startTour()" style="background:none;border:none;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer;font-family:inherit">Vis rundtur igen</button>
+</div>
 
 <script>
 const DAYS_DA = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"];
@@ -278,7 +281,101 @@ async function main(){
   }
   content.innerHTML = html;
 }
-main();
+main().then(() => { try { maybeStartTour(); } catch(e) { /* tour må aldrig vælte siden */ } });
+
+// ═══ U3: ONBOARDING-TOUR — engangs rundvisning, gemt i localStorage ═══
+const TOUR_KEY = "eva_tour_done_v1";
+const TOUR_STEPS = [
+  { sel: ".focus",         t: "Din fremgang",       d: "Pas gjort, denne uge, streak og dage til Médoc — opdateres automatisk." },
+  { sel: ".day",           t: "Ugens pas",          d: "Hver dag har sit pas med beskrivelse. Dagens pas er fremhævet." },
+  { sel: ".done-check",    t: "Markér gennemført",  d: "Tryk på fluebenet når du har trænet — så tæller det med i din streak." },
+  { sel: ".day-actions",   t: "Justér planen",      d: "Flyt, skift eller aflys et pas — planen og kalenderen følger med." },
+  { sel: ".ics-btn",       t: "Kalender",           d: "Hent hele planen ind i din egen kalender med ét tryk." },
+  { sel: ".section-title", t: "Hele planen",        d: "Alle uger frem til Médoc — tryk på en uge for at folde den ud." },
+];
+let TOUR_I = -1, TOUR_NODES = null;
+
+function maybeStartTour(){
+  if (localStorage.getItem(TOUR_KEY)) return;
+  startTour();
+}
+
+function startTour(){
+  tourTeardown();
+  const hole = document.createElement("div");
+  hole.id = "tour-hole";
+  hole.style.cssText = "position:absolute;z-index:200;border-radius:12px;pointer-events:none;box-shadow:0 0 0 9999px rgba(18,32,25,.55);transition:all .25s ease";
+  const tip = document.createElement("div");
+  tip.id = "tour-tip";
+  tip.style.cssText = "position:absolute;z-index:201;background:var(--white);border-radius:12px;padding:14px 16px;max-width:300px;box-shadow:0 6px 24px rgba(18,32,25,.25);font-family:inherit";
+  document.body.appendChild(hole);
+  document.body.appendChild(tip);
+  TOUR_NODES = { hole, tip };
+  TOUR_I = -1;
+  window.addEventListener("resize", tourReposition, { passive: true });
+  tourNext();
+}
+
+function tourNext(){
+  if (!TOUR_NODES) return;
+  TOUR_I++;
+  // Spring trin over hvis elementet ikke findes (fx ingen pas med done-check endnu)
+  while (TOUR_I < TOUR_STEPS.length && !tourTarget()) TOUR_I++;
+  if (TOUR_I >= TOUR_STEPS.length) { tourEnd(); return; }
+  const el = tourTarget();
+  el.scrollIntoView({ block: "center", behavior: "auto" });
+  requestAnimationFrame(() => requestAnimationFrame(tourReposition));
+}
+
+function tourTarget(){
+  const step = TOUR_STEPS[TOUR_I];
+  if (!step) return null;
+  const els = document.querySelectorAll(step.sel);
+  for (const el of els){
+    const r = el.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) return el;
+  }
+  return null;
+}
+
+function tourReposition(){
+  if (!TOUR_NODES || TOUR_I < 0 || TOUR_I >= TOUR_STEPS.length) return;
+  const el = tourTarget();
+  if (!el) return;
+  const step = TOUR_STEPS[TOUR_I];
+  const r = el.getBoundingClientRect();
+  const pad = 6, sy = window.scrollY, sx = window.scrollX;
+  const { hole, tip } = TOUR_NODES;
+  hole.style.left   = (sx + r.left - pad) + "px";
+  hole.style.top    = (sy + r.top  - pad) + "px";
+  hole.style.width  = (r.width  + pad*2) + "px";
+  hole.style.height = (r.height + pad*2) + "px";
+  tip.innerHTML = `
+    <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px">${TOUR_I+1} af ${TOUR_STEPS.length}</div>
+    <div style="font-size:16px;font-weight:700;margin-top:2px">${esc(step.t)}</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.45">${esc(step.d)}</div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button onclick="tourEnd()" style="flex:1;padding:8px 10px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--muted);cursor:pointer;font-family:inherit;font-size:13px">Spring over</button>
+      <button onclick="tourNext()" style="flex:1;padding:8px 10px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600">${TOUR_I === TOUR_STEPS.length-1 ? "Færdig" : "Næste"}</button>
+    </div>`;
+  // Tip under målet hvis der er plads, ellers over
+  const tipH = 150, below = r.bottom + tipH + 16 < window.innerHeight;
+  const w = Math.min(300, window.innerWidth - 24);
+  tip.style.width = w + "px";
+  tip.style.left  = Math.max(12, Math.min(sx + r.left, sx + window.innerWidth - w - 12)) + "px";
+  tip.style.top   = (below ? sy + r.bottom + 12 : Math.max(sy + 12, sy + r.top - tipH - 12)) + "px";
+}
+
+function tourEnd(){
+  localStorage.setItem(TOUR_KEY, "1");
+  tourTeardown();
+}
+
+function tourTeardown(){
+  window.removeEventListener("resize", tourReposition);
+  if (TOUR_NODES){ TOUR_NODES.hole.remove(); TOUR_NODES.tip.remove(); TOUR_NODES = null; }
+  TOUR_I = -1;
+}
 
 // ═══ EDITING ENGINE — EVA (samme mønster som plan.html, athlete: 'eva') ═══
 const GH_REPO = "hammerbamsen/fast-as-50";
