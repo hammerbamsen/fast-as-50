@@ -22,7 +22,7 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from modules import edit_apply, word_master
+from modules import edit_apply, martin_signals, word_master
 
 
 GH_TOKEN = os.environ["GITHUB_TOKEN"]
@@ -244,6 +244,22 @@ def main():
     new_plan = json.loads(result["new_plan_raw"])
     days_map = {d["date"]: d for d in new_plan["athletes"][athlete]["days"]}
     sync_errors = []
+
+    # Martin-signal (T5): kostrelevante ændringer -> data/martin_signals.md.
+    # Non-fatal — må aldrig stoppe edit-flowet, fejl logges kun til stdout.
+    try:
+        signal = martin_signals.build_signal(
+            json.loads(plan_raw), new_plan, action, dates, athlete=athlete)
+        if signal:
+            ms_sha, ms_raw = gh_get("data/martin_signals.md")
+            gh_put("data/martin_signals.md", ms_sha,
+                   martin_signals.append_signal(ms_raw or "", signal).encode(),
+                   f"martin-signal: {action} ({', '.join(dates)})")
+            print("Martin-signal skrevet til data/martin_signals.md")
+        else:
+            print("Martin-signal: ændring ikke kostrelevant — intet logget")
+    except Exception as ex:
+        print(f"ADVARSEL Martin-signal fejlede (ignoreres): {ex}")
 
     # Intervals+Outlook: KUN for Kennet — Eva bruger .ics-eksport i stedet
     if athlete == "kennet":
