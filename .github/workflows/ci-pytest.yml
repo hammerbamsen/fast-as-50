@@ -1,5 +1,7 @@
-name: CI pytest
+name: CI — pytest
 
+# Kører modultests ved ændringer i Python-koden. Path-filteret sikrer at den
+# hyppige data.json-push (KPI-bot hvert 10. min) IKKE trigger CI.
 on:
   push:
     branches: [main]
@@ -7,18 +9,22 @@ on:
       - 'scripts/**'
       - '.github/workflows/ci-pytest.yml'
   pull_request:
-    branches: [main]
-  workflow_dispatch:
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/ci-pytest.yml'
+
+permissions:
+  contents: read
 
 jobs:
-  pytest:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Install pytest
+          python-version: '3.11'
+      - name: Install test deps
         run: pip install pytest
-      - name: Run tests
+      - name: Run pytest
         run: python3 -m pytest scripts/modules/ -q
