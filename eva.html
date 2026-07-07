@@ -83,6 +83,9 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 .ics-modal p { font-size:13px; color:var(--muted); line-height:1.5; margin:8px 0; }
 .ics-modal button { width:100%; padding:12px; border-radius:10px; border:none; font-family:'Hanken Grotesk',sans-serif; font-size:14px; font-weight:600; cursor:pointer; background:var(--teal); color:#fff; margin-top:10px; }
 .ics-modal .secondary { background:var(--cream); color:var(--teal); }
+.ics-week-btn { background:var(--white); color:var(--teal); border:1px solid var(--cream-d); border-radius:8px; padding:10px 12px; text-align:left; font-family:'Hanken Grotesk',sans-serif; font-size:14px; cursor:pointer; width:100%; margin-top:0; font-weight:400; }
+.ics-week-btn:hover, .ics-week-btn.selected { background:var(--cream); border-color:var(--teal); }
+.ics-week-btn b { font-weight:600; display:inline; }
 </style>
 </head>
 <body>
@@ -93,9 +96,16 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 <div class="ics-modal-bg" id="ics-bg" onclick="closeIcs()"></div>
 <div class="ics-modal" id="ics-modal" style="display:none">
   <h3><i class="ti ti-calendar-plus" style="font-size:16px;vertical-align:-2px"></i> Hent kalender</h3>
-  <p>Tap knappen — hele planen downloades som en <b>.ics</b>-fil. Åbn filen når den er hentet: iPhone spørger om du vil tilføje alle løbe-pas til din kalender. Vælg din Outlook-kalender.</p>
-  <p style="color:var(--teal);font-weight:600">39 træningspas · alle 13 uger frem til Marathon du Médoc</p>
-  <button onclick="downloadIcs()"><i class="ti ti-download" style="font-size:14px;vertical-align:-2px"></i> Hent eva-medoc.ics</button>
+  <p>Vælg hvilke uger du vil have i din Outlook-kalender. Filen downloades — når du åbner den, spørger iPhone hvilken kalender pas skal tilføjes til.</p>
+  <label style="display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:14px 0 8px">Vælg periode</label>
+  <div id="ics-week-choice" style="display:flex;flex-direction:column;gap:6px">
+    <button class="ics-week-btn" data-weeks="1" onclick="pickIcsScope(1)"><b>Denne uge</b></button>
+    <button class="ics-week-btn" data-weeks="2" onclick="pickIcsScope(2)"><b>Denne + næste</b></button>
+    <button class="ics-week-btn" data-weeks="3" onclick="pickIcsScope(3)"><b>3 uger frem</b> — anbefalet</button>
+    <button class="ics-week-btn" data-weeks="0" onclick="pickIcsScope(0)"><b>Hele planen</b> (til Marathon du Médoc)</button>
+  </div>
+  <div id="ics-preview" style="font-size:12px;color:var(--muted);margin-top:10px;min-height:16px"></div>
+  <button id="ics-download-btn" onclick="downloadIcs()" style="display:none;margin-top:10px"><i class="ti ti-download" style="font-size:14px;vertical-align:-2px"></i> <span id="ics-btn-text">Hent</span></button>
   <button class="secondary" onclick="closeIcs()">Luk</button>
 </div>
 <div class="top">
@@ -392,7 +402,17 @@ async function submitEdit(){
 async function confirmWarnAndRetry(){ SHEET_STATE.confirmedWarn = true; await submitEdit(); }
 
 const v = id => document.getElementById(id).value;
+
+// ═══ ICS CALENDAR EXPORT (med uge-scope) ═══
+let ICS_SCOPE = null;
+
 function showIcsModal(){
+  ICS_SCOPE = null;
+  const btn = document.getElementById('ics-download-btn');
+  const preview = document.getElementById('ics-preview');
+  if (btn) btn.style.display = 'none';
+  if (preview) preview.textContent = '';
+  document.querySelectorAll('.ics-week-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById('ics-bg').classList.add('open');
   document.getElementById('ics-modal').style.display='block';
 }
@@ -401,11 +421,53 @@ function closeIcs(){
   document.getElementById('ics-modal').style.display='none';
 }
 
-async function downloadIcs(){
-  // Genbrug allerede-loaded plan (main() henter den)
+async function pickIcsScope(weeks){
+  ICS_SCOPE = weeks;
+  document.querySelectorAll('.ics-week-btn').forEach(b => {
+    b.classList.toggle('selected', parseInt(b.dataset.weeks) === weeks);
+  });
+  const entries = await getIcsEntries(weeks);
+  const preview = document.getElementById('ics-preview');
+  const btn = document.getElementById('ics-download-btn');
+  const btnText = document.getElementById('ics-btn-text');
+  const labelMap = {1:'denne uge', 2:'denne + næste uge', 3:'3 uger frem', 0:'hele planen'};
+  const fileMap = {1:'denne-uge', 2:'to-uger', 3:'tre-uger', 0:'hele'};
+  if (entries.length === 0) {
+    preview.textContent = 'Ingen pas i den valgte periode.';
+    btn.style.display = 'none';
+  } else {
+    preview.textContent = `${entries.length} pas i ${labelMap[weeks]}`;
+    btnText.textContent = `Hent eva-medoc-${fileMap[weeks]}.ics`;
+    btn.style.display = 'block';
+  }
+}
+
+async function getIcsEntries(weeks){
   const r = await fetch(`data/plan.json?t=${Date.now()}`, {cache:"no-store"});
   const plan = await r.json();
   const eva = plan.athletes.eva;
+  const todayIso = iso(new Date());
+  const start = new Date(todayIso+"T12:00:00");
+  const monday = new Date(start);
+  monday.setDate(monday.getDate() - ((start.getDay()+6)%7));
+  const windowEnd = weeks === 0
+    ? new Date(eva.program.raceDay+"T23:59:59")
+    : addDays(monday, weeks*7);
+  const entries = [];
+  for (const d of eva.days){
+    const dDate = new Date(d.date+"T00:00:00");
+    if (dDate < monday || dDate >= windowEnd) continue;
+    for (const e of (d.entries||[])){
+      if (e.workout) entries.push({date:d.date, entry:e});
+    }
+  }
+  return entries;
+}
+
+async function downloadIcs(){
+  const weeks = ICS_SCOPE;
+  if (weeks === null) return;
+  const entries = await getIcsEntries(weeks);
 
   const pad = n => String(n).padStart(2,'0');
   const fmtDate = (d, hour=8, min=0) => {
@@ -425,39 +487,35 @@ async function downloadIcs(){
   const now = new Date();
   const dtstamp = `${now.getUTCFullYear()}${pad(now.getUTCMonth()+1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
 
-  for (const d of eva.days){
-    for (const e of (d.entries||[])){
-      const wo = e.workout;
-      if (!wo) continue;
-      const durMin = wo.moving_time ? Math.round(wo.moving_time/60) : 40;
-      // Start kl 8:00 lokal tid — Eva løber typisk om morgenen
-      const startStr = fmtDate(d.date, 8, 0);
-      const endDt = new Date(d.date+"T08:00:00");
-      endDt.setMinutes(endDt.getMinutes()+durMin);
-      const endStr = fmtDate(d.date, endDt.getHours(), endDt.getMinutes());
-      // Stabilt UID pr. entry (bruger entry-id fra plan.json)
-      const uid = `${e.id||d.date}-eva@fast-as-50`;
+  for (const {date, entry} of entries){
+    const wo = entry.workout;
+    const durMin = wo.moving_time ? Math.round(wo.moving_time/60) : 40;
+    const startStr = fmtDate(date, 8, 0);
+    const endDt = new Date(date+"T08:00:00");
+    endDt.setMinutes(endDt.getMinutes()+durMin);
+    const endStr = fmtDate(date, endDt.getHours(), endDt.getMinutes());
+    const uid = `${entry.id||date}-eva@fast-as-50`;
 
-      lines.push(
-        "BEGIN:VEVENT",
-        `UID:${uid}`,
-        `DTSTAMP:${dtstamp}`,
-        `DTSTART;TZID=Europe/Copenhagen:${startStr}`,
-        `DTEND;TZID=Europe/Copenhagen:${endStr}`,
-        `SUMMARY:${escapeIcs(wo.name)}`,
-        `DESCRIPTION:${escapeIcs((wo.description||'') + (e.note?`\n\n${e.note}`:''))}`,
-        "CATEGORIES:Træning",
-        "END:VEVENT"
-      );
-    }
+    lines.push(
+      "BEGIN:VEVENT",
+      `UID:${uid}`,
+      `DTSTAMP:${dtstamp}`,
+      `DTSTART;TZID=Europe/Copenhagen:${startStr}`,
+      `DTEND;TZID=Europe/Copenhagen:${endStr}`,
+      `SUMMARY:${escapeIcs(wo.name)}`,
+      `DESCRIPTION:${escapeIcs((wo.description||'') + (entry.note?`\n\n${entry.note}`:''))}`,
+      "CATEGORIES:Træning",
+      "END:VEVENT"
+    );
   }
   lines.push("END:VCALENDAR");
 
+  const fileMap = {1:'denne-uge', 2:'to-uger', 3:'tre-uger', 0:'hele'};
   const blob = new Blob([lines.join("\r\n")], {type:"text/calendar;charset=utf-8"});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = "eva-medoc.ics";
+  a.download = `eva-medoc-${fileMap[weeks]}.ics`;
   document.body.appendChild(a);
   a.click();
   setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
