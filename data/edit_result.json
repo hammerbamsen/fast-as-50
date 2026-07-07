@@ -1,20 +1,4 @@
 {
- "e2e-eva-test-1783429547": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "2026-08-18"
-  ],
-  "plan_commit": "b385a6139f28cae1730a9241d52095eefcc4b7ed",
-  "sync_errors": [],
-  "athlete": "eva",
-  "request_ts": "2026-07-07T13:06:00+00:00",
-  "request_id": "e2e-eva-test-1783429547"
- },
  "eva-rollback-1783429585": {
   "status": "ok",
   "gate": {
@@ -300,5 +284,15 @@
   "error": null,
   "request_ts": "2026-07-07T14:47:43+00:00",
   "request_id": "suggest-check-1783435652"
+ },
+ "smoke-t5-1783436736": {
+  "status": "suggestion",
+  "action": "suggest_move",
+  "athlete": "kennet",
+  "src_date": null,
+  "alternatives": [],
+  "error": "Entry  ikke fundet for kennet",
+  "request_ts": "2026-07-07T15:05:50+00:00",
+  "request_id": "smoke-t5-1783436736"
  }
 }
