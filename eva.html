@@ -194,7 +194,7 @@ async function main(){
     const r = await fetch(`data/plan.json?t=${Date.now()}`, {cache:"no-store"});
     if(!r.ok) throw new Error(r.status);
     plan = await r.json();
-  } catch(e){ content.innerHTML = `<div class="err">Kunne ikke hente planen — prøv igen om lidt.</div>`; return; }
+  } catch(e){ content.innerHTML = u4Err("Kunne ikke hente planen: " + esc(e.message||e), {retry:"main()"}); return; }
 
   const eva = plan.athletes.eva;
   const todayIso = iso(new Date());
@@ -287,6 +287,67 @@ const getToken = () => localStorage.getItem(TOKEN_KEY);
 const setToken = t => localStorage.setItem(TOKEN_KEY, t);
 
 let PLAN_CACHE=null, LIB_CACHE=null, SHEET_STATE=null;
+
+// ── U4: Fejl-recovery — Prøv igen / Tjek igen / Rapportér fejl ───────
+let U4_CTX = null;
+function u4Err(message, opts){
+  opts = opts || {};
+  U4_CTX = { ts: new Date().toISOString(), side: location.pathname,
+             besked: String(message).replace(/<[^>]*>/g, ""),
+             action: (typeof SHEET_STATE !== "undefined" && SHEET_STATE) ? SHEET_STATE.action : null,
+             entryId: (typeof SHEET_STATE !== "undefined" && SHEET_STATE) ? SHEET_STATE.entryId : null,
+             requestId: opts.requestId || null,
+             browser: navigator.userAgent };
+  const primary = 'flex:1;padding:8px 12px;border-radius:8px;border:none;background:var(--wine,var(--teal,#444));color:#fff;cursor:pointer;font-family:inherit';
+  const second  = 'flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--cream-d,#ddd);background:var(--white,#fff);color:var(--wine,var(--teal,#444));cursor:pointer;font-family:inherit';
+  const hint = opts.tokenHint
+    ? `<div style="font-size:12px;margin-top:6px;opacity:.75">Ligner udløbet eller ugyldig token — forny via ⚙ Token (guide: docs/PAT_RENEWAL.md i repoet).</div>` : "";
+  let btns = "";
+  if (opts.retry)      btns += `<button style="${primary}" onclick="${opts.retry}">Prøv igen</button>`;
+  if (opts.checkAgain) btns += `<button style="${primary}" onclick="u4CheckAgain('${opts.requestId}','${opts.target || "sheet-msg"}')">Tjek igen</button>`;
+  btns += `<button style="${second}" onclick="u4Report(this)">Rapportér fejl</button>`;
+  return `<div class="err-box">${message}${hint}</div>
+    <div style="display:flex;gap:8px;margin-top:10px">${btns}</div>`;
+}
+async function u4Report(btnEl){
+  const txt = "Fast as Fifty — fejlrapport\n" + JSON.stringify(U4_CTX || {}, null, 2);
+  let ok = false;
+  try { await navigator.clipboard.writeText(txt); ok = true; }
+  catch(e){
+    try { const ta = document.createElement("textarea"); ta.value = txt;
+          ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta); ta.focus(); ta.select();
+          ok = document.execCommand("copy"); ta.remove(); } catch(e2){}
+  }
+  if (btnEl) btnEl.textContent = ok ? "✓ Kopieret — indsæt i Claude" : "Kopiering fejlede";
+}
+async function u4CheckAgain(requestId, targetId){
+  const el = document.getElementById(targetId || "sheet-msg");
+  if (!el || !requestId) return;
+  el.innerHTML = `<div class="ok-box" style="opacity:.8">Tjekker resultat…</div>`;
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const results = await res.json();
+    const r = results[requestId];
+    if (!r) {
+      el.innerHTML = u4Err("Stadig intet resultat. Workflowet kører muligvis endnu — eller fejlede (tjek Actions-fanen på GitHub).",
+                           {requestId: requestId, checkAgain: true, target: targetId});
+      return;
+    }
+    if (r.status === "ok") {
+      el.innerHTML = `<div class="ok-box">Ændringen ER gennemført.</div>`;
+      if (typeof PLAN_CACHE !== "undefined") PLAN_CACHE = null;
+      setTimeout(function(){ if (typeof closeSheet === "function") closeSheet(); if (typeof main === "function") main(); }, 1500);
+      return;
+    }
+    el.innerHTML = u4Err("Resultat: " + r.status + " — " + esc((r.gate && r.gate.msg) || ""), {requestId: requestId});
+  } catch(e){
+    el.innerHTML = u4Err("Kunne ikke hente resultat: " + esc(e.message || e),
+                         {requestId: requestId, checkAgain: true, target: targetId});
+  }
+}
+
 
 async function loadPlan(){
   if (!PLAN_CACHE) {
@@ -444,7 +505,7 @@ async function submitEdit(){
       confirmedWarn: s.confirmedWarn, athlete: "eva" }})
   });
   if (r.status !== 204) {
-    msg.innerHTML = `<div class="err-box">Dispatch fejlede: HTTP ${r.status}. Tjek token.</div>`;
+    msg.innerHTML = u4Err(`Dispatch fejlede: HTTP ${r.status}.`, {retry:"submitEdit()", tokenHint: r.status===401||r.status===403});
     return;
   }
 
@@ -475,7 +536,7 @@ async function submitEdit(){
       return;
     } catch(e) { /* keep polling */ }
   }
-  msg.innerHTML = `<div class="err-box">Timeout — tjek Actions-fanen på GitHub.</div>`;
+  msg.innerHTML = u4Err("Timeout — resultatet er ikke kommet endnu. Ændringen KAN være gennemført alligevel.", {requestId: requestId, checkAgain: true});
 }
 
 async function confirmWarnAndRetry(){ SHEET_STATE.confirmedWarn = true; await submitEdit(); }
