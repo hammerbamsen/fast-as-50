@@ -167,6 +167,55 @@ def gate_check(plan: dict, sim_plan: dict, confirmed_warn: bool = False,
     return {"status": "ok", "flags": [], "msg": "Godkendt"}
 
 
+def suggest_move_alternatives(plan_json_raw: str, entry_id: str,
+                              athlete: str = "kennet",
+                              window_days: int = 7) -> dict:
+    """
+    Prøver at flytte entry til hver dato ±window_days og returnerer OK-alternativer.
+    Ren funktion — muterer ikke.
+    """
+    from datetime import date as _date, timedelta
+    plan = json.loads(plan_json_raw)
+    ath = plan["athletes"][athlete]
+
+    # Find src-dato
+    src_date = None
+    for d in ath["days"]:
+        for e in d["entries"]:
+            if e.get("id") == entry_id:
+                src_date = d["date"]
+                break
+        if src_date: break
+    if not src_date:
+        return {"error": f"Entry {entry_id} ikke fundet for {athlete}"}
+
+    src_dt = _date.fromisoformat(src_date)
+    alternatives = []
+    for offset in range(-window_days, window_days+1):
+        if offset == 0: continue
+        target_dt = src_dt + timedelta(days=offset)
+        target_iso = target_dt.isoformat()
+        try:
+            sim, _, _ = _simulate_mutation(plan, "move", entry_id,
+                                           {"target_date": target_iso, "mode": "swap"},
+                                           athlete=athlete)
+            gate = gate_check(plan, sim, confirmed_warn=False, athlete=athlete)
+            alternatives.append({
+                "date": target_iso,
+                "offset": offset,
+                "status": gate["status"],
+                "msg": gate.get("msg", ""),
+            })
+        except Exception as e:
+            alternatives.append({"date": target_iso, "offset": offset,
+                                 "status": "error", "msg": str(e)})
+
+    # Sortér: OK først (efter afstand fra src), så warn, så reject
+    order = {"ok": 0, "warn": 1, "reject": 2, "error": 3}
+    alternatives.sort(key=lambda a: (order.get(a["status"], 9), abs(a["offset"])))
+    return {"alternatives": alternatives, "src_date": src_date, "entry_id": entry_id}
+
+
 # -- Orkestrering -------------------------------------------------------------
 
 def apply_edit(plan_json_raw: str, action: str, entry_id: str,
