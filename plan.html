@@ -186,9 +186,17 @@ function dayCard(day, todayIso){
   const workouts = (day.entries||[]).filter(e=>e.workout);
   const isToday = day.date===todayIso;
   if(!workouts.length){
+    const restEntry = (day.entries||[])[0];
+    const restId = restEntry?.id;
     const note = (day.entries||[]).map(e=>e.note).filter(Boolean).join(" · ") || "Hviledag";
-    return `<div class="day ${isToday?"today":""}"><div class="day-row" style="cursor:default">${dn}
-      <div class="wo rest"><i class="ti ti-moon" style="font-size:15px"></i> ${esc(note)}</div></div></div>`;
+    return `<div class="day ${isToday?"today":""}">
+      <div class="day-row" onclick="this.parentElement.classList.toggle('open')">${dn}
+        <div class="wo rest"><i class="ti ti-moon" style="font-size:15px"></i> ${esc(note)}</div>
+        ${restId?`<i class="ti ti-chevron-down chev" style="font-size:16px"></i>`:""}</div>
+      ${restId?`<div class="day-actions">
+        <button onclick="event.stopPropagation(); openSheet('swap','${restId}','${day.date}')"><i class="ti ti-plus" style="font-size:14px;vertical-align:-2px"></i> Tilføj pas</button>
+        <button onclick="event.stopPropagation(); openSheet('adjust','${restId}','${day.date}')"><i class="ti ti-note" style="font-size:14px;vertical-align:-2px"></i> Note</button>
+      </div>`:""}</div>`;
   }
   const rows = workouts.map(e=>{
     const w=e.workout, disc=DISC[w.type]||"free";
