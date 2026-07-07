@@ -415,6 +415,7 @@ const ICONS = {
   rules:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3l8 -8"/><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"/></svg>`,
   flag:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1 -7 0a5 5 0 0 0 -7 0v-9z"/><line x1="5" y1="21" x2="5" y2="14"/></svg>`,
   rest:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1 -9 -9z"/></svg>`,
+  plan:`<svg width="SIZE" height="SIZE" viewBox="0 0 24 24" fill="none" stroke="COLOR" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h3.5"/></svg>`,
 };
 
 function icon(name, size=20, color="currentColor") {
@@ -1382,6 +1383,7 @@ function trainingDonut() {
 // ── Navigation ────────────────────────────────────────────────
 const PAGES = [
   {id:"today",    label:"I dag",    icon:"today"},
+  {id:"plan",     label:"Plan",     icon:"plan", href:"plan.html"},
   {id:"week",     label:"Uge",      icon:"week"},
   {id:"overview", label:"Træning",  icon:"overview"},
   {id:"body",     label:"Krop",     icon:"body"},
@@ -1404,6 +1406,8 @@ function renderNav() {
 }
 
 function navigate(pageId) {
+  const pageLink = PAGES.find(p=>p.id===pageId);
+  if (pageLink && pageLink.href) { location.href = pageLink.href; return; }
   activePage = pageId;
   const page = PAGES.find(p=>p.id===pageId);
   document.getElementById("page-title").textContent = page.label;
@@ -1414,7 +1418,7 @@ function navigate(pageId) {
   const liveDate = `${now2.getDate()}. ${dm2[now2.getMonth()]}`;
   document.getElementById("page-sub").textContent = pageId==="today" ? `${liveDayName}, ${liveDate}` : "";
 
-  PAGES.forEach(p=>document.getElementById(`page-${p.id}`).classList.remove("active"));
+  PAGES.forEach(p=>{ const el=document.getElementById(`page-${p.id}`); if(el) el.classList.remove("active"); });
   document.getElementById(`page-${pageId}`).classList.add("active");
 
   // Render den aktive side
