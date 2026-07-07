@@ -331,6 +331,36 @@ function updateLastUpdated() {
 })();
 
 // ── Svar ──────────────────────────────────────────────────────
+// ── U4: Fejl-recovery — Prøv igen / Rapportér fejl ──────────────────
+let U4_CTX = null;
+function u4Err(containerId, message, opts){
+  opts = opts || {};
+  U4_CTX = { ts:new Date().toISOString(), side:location.pathname,
+             besked:String(message).replace(/<[^>]*>/g,""), browser:navigator.userAgent };
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  const primary='padding:8px 14px;border-radius:8px;border:none;background:#7A1F35;color:#fff;cursor:pointer;font:inherit';
+  const second ='padding:8px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#7A1F35;cursor:pointer;font:inherit';
+  const hint = opts.tokenHint
+    ? '<div style="font-size:12px;margin-top:6px;opacity:.8">Ligner udl\u00f8bet/ugyldigt token \u2014 \u00e5bn ?reset og inds\u00e6t et nyt (guide: docs/PAT_RENEWAL.md).</div>' : '';
+  let btns='';
+  if(opts.retry) btns += '<button style="'+primary+'" onclick="'+opts.retry+'">Pr\u00f8v igen</button>';
+  btns += '<button style="'+second+'" onclick="u4Report(this)">Rapport\u00e9r fejl</button>';
+  el.className='status err';
+  el.style.cssText='';
+  el.innerHTML = '<div style="padding:10px;background:#FAEEDA;border-radius:10px;color:#633806">\u26a0 '+message+hint+'</div>'
+    + '<div style="display:flex;gap:8px;margin-top:8px;justify-content:center">'+btns+'</div>';
+}
+async function u4Report(btnEl){
+  const txt = 'Fast as Fifty \u2014 fejlrapport\n' + JSON.stringify(U4_CTX || {}, null, 2);
+  let ok=false;
+  try { await navigator.clipboard.writeText(txt); ok=true; }
+  catch(e){ try { const ta=document.createElement('textarea'); ta.value=txt;
+        ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
+        ta.focus(); ta.select(); ok=document.execCommand('copy'); ta.remove(); } catch(e2){} }
+  if(btnEl) btnEl.textContent = ok ? '\u2713 Kopieret \u2014 inds\u00e6t i Claude' : 'Kopiering fejlede';
+}
+
 async function answer(isAF) {
   const key = queue[qIdx];
   const log = getLog(); log[key] = isAF;  // kun i memory — gemmes først ved succes
@@ -416,14 +446,11 @@ async function answer(isAF) {
 
   } catch(e) {
     console.error('AF push fejl:', e);
-    const statusEl = document.getElementById('status');
     const detail = String(e && e.message ? e.message : e).replace(/[<>]/g,'');
-    const hint = /401|403|Bad credentials/i.test(detail)
-      ? '<br><span style="font-weight:400">Token er ugyldigt \u2014 \u00e5bn af.html?reset og inds\u00e6t det nye token</span>'
-      : '';
-    statusEl.innerHTML = '\u26a0 Ikke gemt \u2014 ' + detail + hint;
-    statusEl.style.cssText='color:#633806;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;justify-content:center;padding:10px;background:#FAEEDA;border-radius:10px;margin-top:8px';
-    await new Promise(r=>setTimeout(r,2500));
+    u4Err('status', 'Ikke gemt \u2014 ' + detail,
+          { retry: 'answer(' + (isAF ? 'true' : 'false') + ')',
+            tokenHint: /401|403|Bad credentials/i.test(detail) });
+    return;   // bliv stående — advance kun ved success, så registreringen ikke tabes
   }
   qIdx++; qIdx<queue.length?showQuestion(queue[qIdx]):showDone();
 }
