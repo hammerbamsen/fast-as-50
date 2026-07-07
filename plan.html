@@ -142,6 +142,7 @@ h1 { font-size:22px; font-weight:700; }
 <div class="sheet-bg" id="sheet-bg" onclick="closeSheet()"></div>
 <div class="sheet" id="sheet"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/msal/3.6.1/msal-browser.min.js"></script>
 <script>
 const NAV = [
   {id:"today",    label:"I dag",   ti:"ti-calendar",       href:"index.html"},
@@ -320,16 +321,88 @@ async function main(){
 }
 main();
 
-// ═══ EDITING ENGINE (fase 3a) ═══
+// ═══ EDITING ENGINE (fase 3a + 3b.1) ═══
 const GH_REPO = "hammerbamsen/fast-as-50";
-const TOKEN_KEY = "af_gh_token";  // genbrug samme nøgle som af.html
+const TOKEN_KEY = "af_gh_token";  // fallback når AUTH_CONFIG.enabled = false
+
+let AUTH_CONFIG = null;
+let msalInstance = null;
+let msalReady = false;
+
+async function loadAuthConfig(){
+  if (AUTH_CONFIG) return AUTH_CONFIG;
+  try {
+    AUTH_CONFIG = await getJSON("data/auth_config.json", true) || { enabled: false };
+  } catch(e) {
+    AUTH_CONFIG = { enabled: false };
+  }
+  return AUTH_CONFIG;
+}
+
+async function initAuth(){
+  const cfg = await loadAuthConfig();
+  if (!cfg.enabled || !cfg.tenantId || !cfg.clientId) return false;
+  if (typeof msal === "undefined") return false;
+
+  msalInstance = new msal.PublicClientApplication({
+    auth: {
+      clientId: cfg.clientId,
+      authority: `https://login.microsoftonline.com/${cfg.tenantId}`,
+      redirectUri: window.location.origin + window.location.pathname,
+      navigateToLoginRequestUrl: false,
+    },
+    cache: { cacheLocation: "localStorage", storeAuthStateInCookie: true },
+  });
+  await msalInstance.initialize();
+  const resp = await msalInstance.handleRedirectPromise();
+  if (resp) msalInstance.setActiveAccount(resp.account);
+  else {
+    const accs = msalInstance.getAllAccounts();
+    if (accs.length > 0) msalInstance.setActiveAccount(accs[0]);
+  }
+  msalReady = true;
+  return true;
+}
+
+async function getAccessToken(){
+  const cfg = AUTH_CONFIG;
+  const request = { scopes: [`api://${cfg.clientId}/plan.access`] };
+  const account = msalInstance.getActiveAccount();
+  if (!account) {
+    await msalInstance.loginRedirect(request);
+    return null;
+  }
+  try {
+    const r = await msalInstance.acquireTokenSilent({ ...request, account });
+    return r.accessToken;
+  } catch(e) {
+    if (e instanceof msal.InteractionRequiredAuthError) {
+      await msalInstance.acquireTokenRedirect(request);
+      return null;
+    }
+    throw e;
+  }
+}
+
+// Legacy token flow (fallback)
 const getToken = () => localStorage.getItem(TOKEN_KEY);
 const setToken = t => localStorage.setItem(TOKEN_KEY, t);
 
-function setupToken(){
+async function setupAuth(){
+  const cfg = await loadAuthConfig();
+  if (cfg.enabled) {
+    // MSAL-flow: log ud
+    if (confirm("Log ud af Microsoft?")) {
+      await msalInstance.logoutRedirect();
+    }
+    return;
+  }
+  // Legacy: GitHub PAT
   const t = prompt("Indsæt GitHub PAT (samme som af.html bruger):", getToken() || "");
   if (t) { setToken(t.trim()); alert("Token gemt."); }
 }
+// Bagudkompatibel alias
+const setupToken = setupAuth;
 
 let PLAN_CACHE=null, LIB_CACHE=null, SHEET_STATE=null;
 
@@ -341,6 +414,21 @@ async function loadLib(){
   if (!LIB_CACHE) LIB_CACHE = await getJSON("data/workout_library.json");
   return LIB_CACHE;
 }
+
+// Init MSAL i baggrunden (påvirker ikke render af planen)
+initAuth().then(ok => {
+  const btn = document.querySelector('.settings-btn');
+  if (btn) {
+    if (ok) {
+      const acc = msalInstance.getActiveAccount();
+      btn.innerHTML = acc
+        ? `<i class="ti ti-user-check" style="font-size:14px;vertical-align:-2px"></i> ${acc.username.split("@")[0]}`
+        : `<i class="ti ti-login" style="font-size:14px;vertical-align:-2px"></i> Log ind`;
+    } else {
+      btn.innerHTML = `<i class="ti ti-settings" style="font-size:14px;vertical-align:-2px"></i> Token`;
+    }
+  }
+});
 
 function openSheet(action, entryId, dateIso){
   SHEET_STATE = { action, entryId, dateIso, confirmedWarn:false };
@@ -424,8 +512,6 @@ function pickTemplate(tplId){
 
 async function submitEdit(){
   const s = SHEET_STATE; if (!s) return;
-  const token = getToken();
-  if (!token) { alert("Ingen GitHub-token gemt. Tap Token øverst."); return; }
 
   let params = {};
   if (s.action === "adjust") {
@@ -441,22 +527,53 @@ async function submitEdit(){
   }
 
   const requestId = "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-  const payload = { event_type: "plan-edit", client_payload: {
+  const payload = {
     requestId, action: s.action, entryId: s.entryId, params, confirmedWarn: s.confirmedWarn
-  }};
+  };
 
   const msg = document.getElementById("sheet-msg");
   msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader" style="font-size:14px"></i> Sender ændring…</div>`;
 
-  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-    method:"POST", headers:{ "Authorization":`token ${token}`,
-      "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
-    body: JSON.stringify(payload)
-  });
-  if (r.status !== 204) {
-    msg.innerHTML = `<div class="err-box">Dispatch fejlede: HTTP ${r.status}. Tjek token via ⚙ Token.</div>`;
-    return;
+  const cfg = await loadAuthConfig();
+  let dispatchOk = false;
+  if (cfg.enabled && msalReady) {
+    // MSAL: kald Function App med access token
+    try {
+      const accessToken = await getAccessToken();
+      if (!accessToken) return; // redirected til login
+      const r = await fetch(`${cfg.functionAppUrl.replace(/\/$/, "")}/api/plan-edit`, {
+        method: "POST",
+        headers: { "Authorization": `Bearer ${accessToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (r.ok) {
+        dispatchOk = true;
+      } else {
+        const errText = await r.text().catch(()=>"");
+        msg.innerHTML = `<div class="err-box">Proxy fejlede: HTTP ${r.status}. ${esc(errText.slice(0,200))}</div>`;
+        return;
+      }
+    } catch(e) {
+      msg.innerHTML = `<div class="err-box">Auth fejlede: ${esc(e.message||e)}</div>`;
+      return;
+    }
+  } else {
+    // Legacy: direkte GitHub dispatch med PAT fra localStorage
+    const token = getToken();
+    if (!token) { msg.innerHTML = `<div class="err-box">Ingen GitHub-token gemt. Tap Token øverst.</div>`; return; }
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+      method:"POST", headers:{ "Authorization":`token ${token}`,
+        "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
+      body: JSON.stringify({ event_type: "plan-edit", client_payload: payload })
+    });
+    if (r.status !== 204) {
+      msg.innerHTML = `<div class="err-box">Dispatch fejlede: HTTP ${r.status}. Tjek token via ⚙ Token.</div>`;
+      return;
+    }
+    dispatchOk = true;
   }
+
+  if (!dispatchOk) return;
 
   // Poll edit_result.json
   msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Behandler… (kan tage 20-40 sek)</div>`;
