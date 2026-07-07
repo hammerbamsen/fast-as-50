@@ -552,6 +552,14 @@ def main():
            json.dumps(data, indent=2, ensure_ascii=False),
            f'KPI auto-opdatering {today}')
 
+    # --- Plan-view (fase 2): Friel-flags + kalibreret CTL-projektion ---
+    # Hash-guard i modulet: skriver kun ved ændret plan.json eller ny fitness.
+    try:
+        from modules.plan_view import update_plan_view
+        update_plan_view(fitness)
+    except Exception as _e:
+        print(f"  ⚠️ plan_view fejlede (ikke-blokerende): {_e}")
+
     # --- Opdater kpis[] i index.html ---
     sha_html, html = gh_get('index.html')
     if html:
