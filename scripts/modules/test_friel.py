@@ -237,3 +237,97 @@ def test_backward_compat_missing_blocktype():
     flags = friel.load_flags(p, seed_ctl=45, seed_atl=52, seed_date="2026-05-31")
     hard = [f for f in flags if f["rule"] == "tsb_floor"]
     assert all("-30" in f["msg"] for f in hard) or hard == []
+
+
+# ── T1: Wellness-readiness-integration ─────────────────────────────
+
+def test_readiness_band_low_on_hrv_drop():
+    # HRV 15% under 7d-snit -> LOW
+    assert friel.readiness_band(51.0, 60.0, 7.5) == "LOW"
+
+
+def test_readiness_band_low_on_short_sleep():
+    assert friel.readiness_band(60.0, 60.0, 5.5) == "LOW"
+
+
+def test_readiness_band_high_when_recovered():
+    # HRV >= snit OG søvn >= 7t -> HIGH
+    assert friel.readiness_band(62.0, 60.0, 7.5) == "HIGH"
+
+
+def test_readiness_band_normal_and_missing_data():
+    assert friel.readiness_band(58.0, 60.0, 7.5) == "NORMAL"   # HRV lidt lav, søvn god
+    assert friel.readiness_band(None, None, None) == "NORMAL"  # intet signal
+
+
+def test_readiness_none_is_backward_compatible():
+    # Uden readiness: nøjagtig samme flags som før (gulv -30)
+    weeks = [{"week": w, "blockType": "BUILD", "tssTarget": 700} for w in (1, 2)]
+    days = [day(f"2026-06-{d:02d}", BIKE) for d in range(1, 15)]
+    p = mk_plan(days, weeks=weeks)
+    base = friel.load_flags(p, seed_ctl=40, seed_atl=40, seed_date="2026-05-31")
+    with_none = friel.load_flags(p, seed_ctl=40, seed_atl=40, seed_date="2026-05-31",
+                                 readiness=None, current_week=1)
+    assert base == with_none
+
+
+def test_readiness_low_tightens_current_week_floor():
+    # TSB lander ml. -25 og -30 -> flager KUN når LOW (gulv -25), ikke ved NORMAL
+    weeks = [{"week": w, "blockType": "BUILD", "tssTarget": 640} for w in (1, 2)]
+    days = [day(f"2026-06-{d:02d}", BIKE) for d in range(1, 15)]
+    p = mk_plan(days, weeks=weeks)
+    kw = dict(seed_ctl=40, seed_atl=40, seed_date="2026-05-31")
+    normal = friel.load_flags(p, **kw)  # gulv -30
+    low = friel.load_flags(p, readiness="LOW", current_week=1, **kw)  # gulv -25
+    # Find worst tsb i uge 1 for at sikre testen rammer vinduet
+    proj = friel.project_fitness(p, 40, 40, "2026-05-31")
+    worst1 = min(v["tsb"] for d, v in proj.items() if friel._week_no(d, __import__("datetime").date(2026, 6, 1)) == 1)
+    assert -30 <= worst1 < -25, f"testforudsætning: worst uge1 TSB={worst1}"
+    assert not any(f["rule"] == "tsb_floor" and f["week"] == 1 for f in normal)
+    assert any(f["rule"] == "tsb_floor" and f["week"] == 1
+               and "readiness low" in f["msg"] for f in low)
+
+
+def test_readiness_low_adds_advisory_warn():
+    weeks = [{"week": w, "blockType": "BUILD", "tssTarget": 300} for w in (1, 2)]
+    days = [day(f"2026-06-{d:02d}", BIKE) for d in range(1, 15)]
+    p = mk_plan(days, weeks=weeks)
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31",
+                             readiness="LOW", current_week=1)
+    assert any(f["rule"] == "low_readiness" and f["week"] == 1
+               and f["level"] == "WARN" for f in flags)
+
+
+def test_readiness_high_loosens_but_not_below_camp():
+    # HIGH sænker normalt gulv til -32, men camp-gulv (-35) er allerede dybere
+    weeks = [{"week": 1, "blockType": "BUILD", "tssTarget": 800},
+             {"week": 2, "blockType": "BUILD", "tssTarget": 800}]
+    days = [day(f"2026-06-{d:02d}", BIKE) for d in range(1, 15)]
+    travel = [{"name": "Mallorca camp", "start": "2026-06-01", "end": "2026-06-14"}]
+    p = mk_plan(days, weeks=weeks, travel=travel)
+    high = friel.load_flags(p, seed_ctl=40, seed_atl=40, seed_date="2026-05-31",
+                            readiness="HIGH", current_week=1)
+    # camp-uge 1 med HIGH: gulvet må IKKE hæves over -35 (stadig -35 i msg hvis flag)
+    for f in high:
+        if f["rule"] == "tsb_floor" and f["week"] == 1:
+            assert "-35" in f["msg"] or "camp" in f["msg"]
+
+
+def test_readiness_does_not_touch_non_current_week():
+    weeks = [{"week": w, "blockType": "BUILD", "tssTarget": 560} for w in (1, 2)]
+    days = [day(f"2026-06-{d:02d}", BIKE) for d in range(1, 15)]
+    p = mk_plan(days, weeks=weeks)
+    # LOW gælder current_week=1; uge 2 skal have uændret gulv (-30)
+    low = friel.load_flags(p, seed_ctl=40, seed_atl=40, seed_date="2026-05-31",
+                           readiness="LOW", current_week=1)
+    for f in low:
+        if f["rule"] == "tsb_floor" and f["week"] == 2:
+            assert "readiness" not in f["msg"]
+
+
+def test_validate_passes_readiness_through():
+    days = [day("2026-06-01", VO2), day("2026-06-03", BIKE)]
+    p = mk_plan(days)
+    flags = friel.validate(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31",
+                           readiness="LOW", current_week=1)
+    assert any(f["rule"] == "low_readiness" for f in flags)

@@ -32,6 +32,47 @@ RAMP_HARD = 8.0
 RAMP_SOFT = 5.0
 MAX_RUNS_PER_WEEK = 3
 
+# T1 — Wellness-integration: morgen-readiness justerer den AKTUELLE uges
+# TSB-gulv dynamisk. LOW strammer (flager tidligere = "reducér"), HIGH giver
+# lidt mere plads. Kun aktuel uge — dagens readiness må ikke ændre uge 12's
+# projektion. Camp-gulvet (-35) beholder sin dybde ved NORMAL/HIGH, men
+# strammes til -25 ved LOW (den farligste kombination: camp + upresset krop).
+READINESS_FLOOR = {"LOW": -25, "NORMAL": -30, "HIGH": -32}
+READINESS_HRV_DROP_PCT = 10.0   # HRV-fald ift. 7d-snit der markerer LOW
+READINESS_SLEEP_LOW = 6.0       # søvn under dette = LOW
+READINESS_SLEEP_HIGH = 7.0      # søvn ved/over dette (+ HRV≥snit) = HIGH
+
+
+def readiness_band(hrv_today, hrv_avg, sleep_last):
+    """Morgen-readiness -> 'LOW' | 'NORMAL' | 'HIGH'.
+
+    LOW  : HRV-fald > 10% ift. 7d-snit, ELLER søvn < 6t.
+    HIGH : HRV >= 7d-snit OG søvn >= 7t (begge signaler skal være til stede).
+    NORMAL: alt andet, inkl. manglende data (intet signal -> ingen justering).
+    """
+    low = False
+    high = True
+    if hrv_today and hrv_avg and hrv_avg > 0:
+        drop = (hrv_avg - hrv_today) / hrv_avg * 100.0
+        if drop > READINESS_HRV_DROP_PCT:
+            low = True
+        if hrv_today < hrv_avg:
+            high = False
+    else:
+        high = False   # uden HRV-signal kan vi ikke bekræfte HIGH
+    if sleep_last is not None:
+        if sleep_last < READINESS_SLEEP_LOW:
+            low = True
+        if sleep_last < READINESS_SLEEP_HIGH:
+            high = False
+    else:
+        high = False   # uden søvn-signal kan vi ikke bekræfte HIGH
+    if low:
+        return "LOW"
+    if high:
+        return "HIGH"
+    return "NORMAL"
+
 
 def _phase(weeks_meta, w):
     """Normaliseret fase for uge w. Ukendt/manglende blockType -> ''
@@ -188,8 +229,13 @@ def project_fitness(plan, seed_ctl, seed_atl, seed_date):
     return out
 
 
-def load_flags(plan, seed_ctl, seed_atl, seed_date):
-    """Belastningsregler: TSB-gulv og CTL-ramp, på projekteret fitness."""
+def load_flags(plan, seed_ctl, seed_atl, seed_date,
+               readiness=None, current_week=None):
+    """Belastningsregler: TSB-gulv og CTL-ramp, på projekteret fitness.
+
+    T1: readiness ('LOW'/'NORMAL'/'HIGH') justerer KUN current_week's TSB-gulv.
+    readiness=None (default) -> hidtidig adfærd, fuldt bagudkompatibelt.
+    """
     flags = []
     plan_start = date.fromisoformat(plan["program"]["start"])
     total_weeks = plan["program"]["totalWeeks"]
@@ -215,11 +261,25 @@ def load_flags(plan, seed_ctl, seed_atl, seed_date):
             floor = TSB_FLOOR_TAPER
         else:
             floor = TSB_FLOOR_CAMP if w in camps else TSB_FLOOR
+        # T1: readiness strammer/løsner KUN den aktuelle uge (ikke taper — den
+        # har sin egen skærpede logik). LOW hæver gulvet (strammer, også camp);
+        # HIGH sænker det, men aldrig dybere end camp-gulvet.
+        readiness_adj = False
+        if (readiness in ("LOW", "HIGH") and w == current_week
+                and phase != "TAPER"):
+            if readiness == "LOW":
+                new_floor = max(floor, READINESS_FLOOR["LOW"])
+            else:  # HIGH
+                new_floor = min(floor, READINESS_FLOOR["HIGH"])
+            readiness_adj = new_floor != floor
+            floor = new_floor
         if tsb < floor:
             flags.append({"week": w, "rule": "tsb_floor", "level": "HARD",
                           "msg": f"TSB {tsb} i uge {w} under gulv {floor}"
                                  + (" (camp)" if w in camps else "")
-                                 + (" (taper)" if phase == "TAPER" else "")})
+                                 + (" (taper)" if phase == "TAPER" else "")
+                                 + (f" (readiness {readiness.lower()})"
+                                    if readiness_adj else "")})
 
     prev = None
     for w in sorted(week_end_ctl):
@@ -255,14 +315,26 @@ def load_flags(plan, seed_ctl, seed_atl, seed_date):
         elif v["tsb"] > RACE_TSB_MAX:
             flags.append({"week": w, "rule": "race_tsb", "level": "WARN",
                           "msg": f"TSB {v['tsb']} på race-dag ({name}) — over +{RACE_TSB_MAX}, mulig overtaper"})
+
+    # T1: rådgivende signal ved lav morgen-readiness i den aktuelle uge.
+    if readiness == "LOW" and current_week and 1 <= current_week <= total_weeks:
+        flags.append({"week": current_week, "rule": "low_readiness", "level": "WARN",
+                      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere "
+                             "dagens/ugens belastning"})
     return flags
 
 
-def validate(plan, seed_ctl=None, seed_atl=None, seed_date=None, athlete="kennet"):
-    """Samlet validering. Uden seed køres kun strukturregler."""
+def validate(plan, seed_ctl=None, seed_atl=None, seed_date=None, athlete="kennet",
+             readiness=None, current_week=None):
+    """Samlet validering. Uden seed køres kun strukturregler.
+
+    T1: readiness/current_week videreføres til load_flags (kun Kennet).
+    Default None -> hidtidig adfærd, bagudkompatibelt.
+    """
     flags = structural_flags(plan, athlete=athlete)
     if seed_ctl is not None and athlete == "kennet":
-        flags += load_flags(plan, seed_ctl, seed_atl, seed_date)
+        flags += load_flags(plan, seed_ctl, seed_atl, seed_date,
+                            readiness=readiness, current_week=current_week)
     actuals = plan["athletes"].get(athlete, {}).get("actualsThroughWeek", 0)
     for f in flags:
         f["historic"] = f["week"] <= actuals

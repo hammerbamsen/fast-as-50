@@ -556,7 +556,7 @@ def main():
     # Hash-guard i modulet: skriver kun ved ændret plan.json eller ny fitness.
     try:
         from modules.plan_view import update_plan_view
-        update_plan_view(fitness)
+        update_plan_view(fitness, wellness)   # T1: wellness -> readiness-gate
     except Exception as _e:
         print(f"  ⚠️ plan_view fejlede (ikke-blokerende): {_e}")
 

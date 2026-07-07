@@ -34,10 +34,16 @@ def inputs_hash(plan_raw: str, seed_ctl, seed_atl, seed_date: str) -> str:
     return hashlib.sha256(key.encode("utf-8")).hexdigest()[:16]
 
 
-def compute(plan: dict, seed_ctl, seed_atl, seed_date: str) -> dict:
-    """Ren beregning — ingen I/O. Testes direkte."""
+def compute(plan: dict, seed_ctl, seed_atl, seed_date: str,
+            readiness=None, current_week=None) -> dict:
+    """Ren beregning — ingen I/O. Testes direkte.
+
+    T1: readiness/current_week videreføres til Friel-validering. Default None
+    -> hidtidig adfærd.
+    """
     flags = friel.validate(plan, seed_ctl=seed_ctl, seed_atl=seed_atl,
-                           seed_date=seed_date)
+                           seed_date=seed_date,
+                           readiness=readiness, current_week=current_week)
     proj = friel.project_fitness(plan, seed_ctl, seed_atl, seed_date)
 
     projection = [{"d": d, "ctl": v["ctl"], "tsb": v["tsb"]}
@@ -79,7 +85,7 @@ def compute(plan: dict, seed_ctl, seed_atl, seed_date: str) -> dict:
     }
 
 
-def update_plan_view(fitness: Optional[dict]) -> bool:
+def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None) -> bool:
     """
     Hentes/skrives via GitHub Contents API (samme mønster som data.json).
     Hash-guard: skriver KUN når plan.json eller fitness-seed er ændret,
@@ -117,8 +123,25 @@ def update_plan_view(fitness: Optional[dict]) -> bool:
         except (ValueError, AttributeError):
             pass
 
-    view = compute(plan, seed_ctl, seed_atl, seed_date)
+    # T1: morgen-readiness ud fra dagens HRV vs 7d-snit + søvn (samme signaler
+    # update_kpi allerede henter). Justerer kun den aktuelle uges TSB-gulv.
+    readiness = current_week = None
+    if wellness:
+        readiness = friel.readiness_band(
+            wellness.get("hrv"), wellness.get("hrv_avg"), wellness.get("sleep_avg"))
+        try:
+            ps = _date.fromisoformat(plan["program"]["start"])
+            cw = (_date.today() - ps).days // 7 + 1
+            if 1 <= cw <= plan["program"]["totalWeeks"]:
+                current_week = cw
+        except (KeyError, ValueError):
+            pass
+
+    view = compute(plan, seed_ctl, seed_atl, seed_date,
+                   readiness=readiness, current_week=current_week)
     view["inputsHash"] = new_hash
+    if readiness:
+        view["kennet"]["readiness"] = readiness
 
     gh_put("data/plan_view.json", sha_view,
            json.dumps(view, ensure_ascii=False, indent=1),
