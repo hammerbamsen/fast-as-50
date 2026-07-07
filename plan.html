@@ -113,6 +113,8 @@ h1 { font-size:22px; font-weight:700; }
 .day-picker button span { color:var(--muted); font-size:11px; }
 .settings-btn { position:fixed; top:14px; right:14px; z-index:60; background:var(--white); border:1px solid var(--cream-d); border-radius:20px; padding:6px 12px; font-size:12px; color:var(--muted); cursor:pointer; }
 @media (min-width:761px){ .settings-btn { top:24px; right:24px; } }
+.history-btn { position:fixed; top:14px; right:100px; z-index:60; background:var(--white); border:1px solid var(--cream-d); border-radius:20px; padding:6px 12px; font-size:12px; color:var(--muted); cursor:pointer; font-family:'Hanken Grotesk',sans-serif; display:inline-flex; align-items:center; gap:4px; }
+@media (min-width:761px){ .history-btn { top:24px; right:110px; } }
 .rest { color:var(--muted); font-size:13px; display:flex; align-items:center; gap:8px; }
 .acc-head { display:flex; align-items:center; justify-content:space-between; background:var(--white); border-radius:10px; padding:12px 14px; margin-top:8px; cursor:pointer; }
 .acc-head .l { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
@@ -139,6 +141,7 @@ h1 { font-size:22px; font-weight:700; }
 </div>
 <nav class="bottom-nav" id="bottom-nav"></nav>
 
+<button class="history-btn" onclick="showHistory()"><i class="ti ti-history" style="font-size:14px"></i> Historik</button>
 <button class="settings-btn" onclick="setupToken()"><i class="ti ti-settings" style="font-size:14px;vertical-align:-2px"></i> Token</button>
 <div class="sheet-bg" id="sheet-bg" onclick="closeSheet()"></div>
 <div class="sheet" id="sheet"></div>
@@ -373,6 +376,7 @@ function ctlTipHide(){
 }
 
 async function main(){
+  await checkPatExpiry();
   const content = document.getElementById("content");
   let plan, view, dash;
   try { plan = await getJSON("data/plan.json"); }
@@ -807,7 +811,131 @@ async function acceptSuggestion(targetIso){
   await submitEdit();
 }
 
+// ═══ HISTORIK + ROLLBACK ═══
+async function showHistory(){
+  SHEET_STATE = { action: "history" };
+  const sheet = document.getElementById("sheet");
+  const bg = document.getElementById("sheet-bg");
+  sheet.innerHTML = `<h3>Historik</h3>
+    <div class="sub">De sidste 20 planændringer. Klik "Gendan" for at rulle tilbage.</div>
+    <div id="history-list" style="max-height:60vh;overflow-y:auto;margin-top:12px">
+      <div style="color:var(--muted);text-align:center;padding:20px"><i class="ti ti-loader"></i> Henter…</div>
+    </div>
+    <div class="btn-row"><button class="secondary" onclick="closeSheet()">Luk</button></div>`;
+  bg.classList.add("open"); sheet.classList.add("open");
+
+  const token = getToken();
+  if (!token) {
+    document.getElementById('history-list').innerHTML = `<div class="err-box">Ingen token — kan ikke hente commit-historik.</div>`;
+    return;
+  }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/commits?path=data/plan.json&per_page=20`, {
+      headers: {"Authorization": `token ${token}`, "Accept": "application/vnd.github+json"}
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const commits = await r.json();
+    const list = commits.map((c, i) => {
+      const dt = new Date(c.commit.author.date);
+      const ago = timeAgo(dt);
+      const msg = c.commit.message.split('\n')[0].slice(0, 80);
+      const isCurrent = i === 0;
+      return `<div style="border-bottom:1px solid var(--cream);padding:12px 0">
+        <div style="font-size:12px;color:var(--muted)">${ago} · ${c.sha.slice(0,7)}</div>
+        <div style="font-size:13.5px;margin:4px 0">${esc(msg)}</div>
+        ${isCurrent
+          ? `<div style="font-size:11px;color:var(--gold);font-weight:600">NUVÆRENDE</div>`
+          : `<button onclick="restoreCommit('${c.sha}')" style="padding:6px 12px;border-radius:6px;border:1px solid var(--wine);background:var(--white);color:var(--wine);cursor:pointer;font-size:12px;font-family:'Hanken Grotesk',sans-serif;margin-top:4px"><i class="ti ti-restore" style="font-size:12px"></i> Gendan</button>`}
+      </div>`;
+    }).join("");
+    document.getElementById('history-list').innerHTML = list;
+  } catch(e) {
+    document.getElementById('history-list').innerHTML = `<div class="err-box">Fejl: ${esc(e.message||e)}</div>`;
+  }
+}
+
+function timeAgo(dt){
+  const s = Math.floor((new Date() - dt)/1000);
+  if (s < 60) return "lige nu";
+  if (s < 3600) return `${Math.floor(s/60)} min siden`;
+  if (s < 86400) return `${Math.floor(s/3600)} timer siden`;
+  const days = Math.floor(s/86400);
+  if (days === 1) return "i går";
+  if (days < 7) return `${days} dage siden`;
+  return dt.toLocaleDateString("da-DK", {day:"numeric", month:"short"});
+}
+
+async function restoreCommit(sha){
+  if (!confirm(`Rul plan.json tilbage til commit ${sha.slice(0,7)}?\n\nprogramMeta (arkiv) og fitnessSeed bevares.`)) return;
+  const token = getToken();
+  document.getElementById('history-list').innerHTML = `<div class="ok-box"><i class="ti ti-loader"></i> Henter historisk version…</div>`;
+
+  try {
+    // Hent gammel plan.json fra commit
+    const r = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/${sha}/data/plan.json`, {cache:"no-store"});
+    if (!r.ok) throw new Error(`Kunne ikke hente plan fra ${sha.slice(0,7)}`);
+    const oldPlan = await r.json();
+
+    // Dispatch restore-action
+    const requestId = "restore-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+    const dr = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+      method:"POST", headers:{ "Authorization":`token ${token}`,
+        "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
+      body: JSON.stringify({ event_type: "plan-edit", client_payload: {
+        requestId, action: "restore_from_commit", entryId: "N/A",
+        params: { restored_plan: oldPlan, source_commit: sha },
+        confirmedWarn: true, athlete: "kennet" }})
+    });
+    if (dr.status !== 204) throw new Error(`Dispatch fejlede: HTTP ${dr.status}`);
+
+    document.getElementById('history-list').innerHTML = `<div class="ok-box"><i class="ti ti-loader"></i> Ruller tilbage… (kan tage 30 sek)</div>`;
+    // Poll for result
+    for (let i=0; i<20; i++){
+      await new Promise(r=>setTimeout(r, 3000));
+      try {
+        const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
+        if (!res.ok) continue;
+        const results = await res.json();
+        const r = results[requestId];
+        if (!r) continue;
+        if (r.status === "ok") {
+          document.getElementById('history-list').innerHTML = `<div class="ok-box"><i class="ti ti-check"></i> Planen er rullet tilbage. Genindlæser om 2 sek…</div>`;
+          PLAN_CACHE = null;
+          setTimeout(()=>{ closeSheet(); main(); }, 2000);
+          return;
+        }
+        if (r.status === "reject" || r.status === "warn") {
+          document.getElementById('history-list').innerHTML = `<div class="err-box">Rollback afvist: ${esc(r.gate?.msg||"")}</div>`;
+          return;
+        }
+      } catch(e) {}
+    }
+    document.getElementById('history-list').innerHTML = `<div class="err-box">Timeout — tjek Actions-fanen.</div>`;
+  } catch(e) {
+    document.getElementById('history-list').innerHTML = `<div class="err-box">Fejl: ${esc(e.message||e)}</div>`;
+  }
+}
+
 const v = id => document.getElementById(id).value;
+
+// ═══ PAT EXPIRY BANNER ═══
+async function checkPatExpiry(){
+  try {
+    const r = await fetch(`data/config.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const cfg = await r.json();
+    const daysLeft = Math.floor((new Date(cfg.patExpiry) - new Date())/86400000);
+    if (daysLeft > cfg.warningDays) return;
+    const existing = document.getElementById('pat-banner');
+    if (existing) existing.remove();
+    const isUrgent = daysLeft <= cfg.urgentDays;
+    const banner = document.createElement('div');
+    banner.id = 'pat-banner';
+    banner.style.cssText = `background:${isUrgent?"var(--hard,#B03A2E)":"var(--warn,#B7791F)"};color:#fff;padding:10px 16px;font-size:13px;text-align:center;position:sticky;top:0;z-index:100;font-family:'Hanken Grotesk',sans-serif`;
+    banner.innerHTML = `<b>${isUrgent?"⚠ PAT udløber om " + daysLeft + " dage":"PAT-udløb om " + daysLeft + " dage"}</b> · <a href="${cfg.renewalUrl}" style="color:#fff;text-decoration:underline">Fornyelse</a>`;
+    document.body.insertBefore(banner, document.body.firstChild);
+  } catch(e) { /* stille fejl */ }
+}
 </script>
 </body>
 </html>
