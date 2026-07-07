@@ -43,6 +43,37 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 .section-title { font-size:15px; font-weight:700; margin:26px 2px 0; }
 .done-banner { background:var(--white); border-radius:12px; padding:16px; margin-top:14px; text-align:center; color:var(--teal); font-weight:600; }
 .err { background:#B03A2E14; border:1px solid #B03A2E40; color:#B03A2E; border-radius:10px; padding:12px; font-size:13px; margin-top:14px; }
+.day-actions { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+.day-actions button { background:var(--white); border:1px solid var(--cream-d); border-radius:8px; padding:6px 10px; font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:var(--teal); cursor:pointer; display:inline-flex; align-items:center; gap:4px; }
+.day-actions button:hover { background:var(--cream); }
+.day-actions button.danger { color:#B03A2E; }
+.day-actions button i { font-size:12px; }
+.sheet-bg { position:fixed; inset:0; background:rgba(18,32,25,.4); z-index:200; display:none; }
+.sheet-bg.open { display:block; }
+.sheet { position:fixed; left:0; right:0; bottom:0; background:var(--white); border-radius:16px 16px 0 0; z-index:201; max-height:85vh; overflow-y:auto; transform:translateY(100%); transition:transform .2s; padding:18px 20px 28px; }
+.sheet.open { transform:translateY(0); }
+.sheet h3 { font-size:16px; font-weight:700; margin-bottom:4px; color:var(--teal); }
+.sheet .sub { font-size:12px; color:var(--muted); margin-bottom:14px; }
+.sheet label { display:block; font-size:12px; color:var(--muted); margin:12px 0 4px; text-transform:uppercase; letter-spacing:.4px; }
+.sheet input, .sheet textarea { width:100%; padding:10px 12px; border:1px solid var(--cream-d); border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:14px; background:var(--cream); }
+.sheet textarea { min-height:60px; resize:vertical; }
+.btn-row { display:flex; gap:10px; margin-top:20px; }
+.btn-row button { flex:1; padding:12px; border-radius:10px; border:none; font-family:'Hanken Grotesk',sans-serif; font-size:14px; font-weight:600; cursor:pointer; }
+.primary { background:var(--teal); color:#fff; }
+.secondary { background:var(--cream); color:var(--teal); }
+.warn-box { background:#B7791F14; border:1px solid #B7791F40; color:#B7791F; border-radius:8px; padding:10px 12px; font-size:13px; margin:10px 0; }
+.err-box { background:#B03A2E14; border:1px solid #B03A2E40; color:#B03A2E; border-radius:8px; padding:10px 12px; font-size:13px; margin:10px 0; }
+.ok-box { background:#1A7A5E14; border:1px solid #1A7A5E40; color:var(--teal); border-radius:8px; padding:10px 12px; font-size:13px; margin:10px 0; }
+.tpl-list { display:flex; flex-direction:column; gap:6px; max-height:50vh; overflow-y:auto; margin:8px 0; }
+.tpl-item { border:1px solid var(--cream-d); border-radius:8px; padding:10px 12px; background:var(--white); cursor:pointer; }
+.tpl-item:hover { background:var(--cream); }
+.tpl-item b { font-size:13.5px; display:block; }
+.tpl-item span { font-size:12px; color:var(--muted); }
+.day-picker { display:grid; grid-template-columns:repeat(auto-fill, minmax(90px,1fr)); gap:6px; }
+.day-picker button { padding:10px 8px; text-align:left; font-size:12px; line-height:1.4; }
+.day-picker button b { display:block; font-size:13px; }
+.day-picker button span { color:var(--muted); font-size:11px; }
+.token-btn { position:fixed; top:14px; right:110px; z-index:60; background:var(--white); border:1px solid var(--cream-d); border-radius:20px; padding:8px 14px; font-size:12px; color:var(--teal); cursor:pointer; font-family:'Hanken Grotesk',sans-serif; display:inline-flex; align-items:center; gap:6px; box-shadow:0 1px 2px rgba(18,32,25,.08); }
 .ics-btn { position:fixed; top:14px; right:14px; z-index:60; background:var(--white); border:1px solid var(--cream-d); border-radius:20px; padding:8px 14px; font-size:12px; color:var(--teal); cursor:pointer; font-family:'Hanken Grotesk',sans-serif; text-decoration:none; display:inline-flex; align-items:center; gap:6px; box-shadow:0 1px 2px rgba(18,32,25,.08); }
 .ics-btn:hover { background:var(--cream); }
 .ics-modal-bg { position:fixed; inset:0; background:rgba(18,32,25,.4); z-index:200; display:none; }
@@ -55,7 +86,10 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 </style>
 </head>
 <body>
+<button class="token-btn" onclick="setupToken()"><i class="ti ti-settings" style="font-size:12px"></i> Token</button>
 <button class="ics-btn" onclick="showIcsModal()"><i class="ti ti-calendar-plus" style="font-size:14px"></i> Kalender</button>
+<div class="sheet-bg" id="sheet-bg" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet"></div>
 <div class="ics-modal-bg" id="ics-bg" onclick="closeIcs()"></div>
 <div class="ics-modal" id="ics-modal" style="display:none">
   <h3><i class="ti ti-calendar-plus" style="font-size:16px;vertical-align:-2px"></i> Hent kalender</h3>
@@ -84,12 +118,28 @@ function weekNo(dateIso, startIso){
 function dayCard(day, todayIso){
   const d = new Date(day.date+"T12:00:00");
   const isToday = day.date===todayIso;
-  return (day.entries||[]).map(e=>{
-    const w = e.workout||{};
+  const entries = day.entries||[];
+  if (!entries.length || entries.every(e=>!e.workout)){
+    // Hviledag
+    const note = entries.map(e=>e.note).filter(Boolean).join(" · ") || "Hviledag";
+    return `<div class="day ${isToday?"today":""}">
+      <div class="d">${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}${isToday?` <span class="today-tag">· i dag</span>`:""}</div>
+      <div class="n" style="color:var(--muted);font-weight:400;font-size:15px"><i class="ti ti-moon" style="font-size:14px;vertical-align:-2px"></i> ${esc(note)}</div>
+      ${entries[0]?.id?`<div class="day-actions"><button onclick="openSheet('swap','${entries[0].id}','${day.date}')"><i class="ti ti-plus"></i> Tilføj pas</button></div>`:""}</div>`;
+  }
+  return entries.filter(e=>e.workout).map(e=>{
+    const w = e.workout;
     return `<div class="day ${isToday?"today":""}">
       <div class="d">${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}${isToday?` <span class="today-tag">· i dag</span>`:""}</div>
       <div class="n">${esc(w.name||"Træning")}</div>
-      ${e.note?`<div class="note">${esc(e.note)}</div>`:""}</div>`;
+      ${e.note?`<div class="note">${esc(e.note)}</div>`:""}
+      <div class="day-actions">
+        <button onclick="openSheet('adjust','${e.id}','${day.date}')"><i class="ti ti-adjustments"></i> Justér</button>
+        <button onclick="openSheet('move','${e.id}','${day.date}')"><i class="ti ti-arrows-move"></i> Flyt</button>
+        <button onclick="openSheet('swap','${e.id}','${day.date}')"><i class="ti ti-refresh"></i> Skift</button>
+        <button class="danger" onclick="openSheet('cancel','${e.id}','${day.date}')"><i class="ti ti-x"></i> Aflys</button>
+      </div>
+    </div>`;
   }).join("");
 }
 
@@ -141,7 +191,207 @@ async function main(){
 }
 main();
 
-// ═══ ICS CALENDAR EXPORT ═══
+// ═══ EDITING ENGINE — EVA (samme mønster som plan.html, athlete: 'eva') ═══
+const GH_REPO = "hammerbamsen/fast-as-50";
+const TOKEN_KEY = "af_gh_token";
+const getToken = () => localStorage.getItem(TOKEN_KEY);
+const setToken = t => localStorage.setItem(TOKEN_KEY, t);
+
+let PLAN_CACHE=null, LIB_CACHE=null, SHEET_STATE=null;
+
+async function loadPlan(){
+  if (!PLAN_CACHE) {
+    const r = await fetch(`data/plan.json?t=${Date.now()}`, {cache:"no-store"});
+    PLAN_CACHE = await r.json();
+  }
+  return PLAN_CACHE;
+}
+async function loadLib(){
+  if (!LIB_CACHE) {
+    const r = await fetch(`data/workout_library.json?t=${Date.now()}`, {cache:"no-store"});
+    LIB_CACHE = await r.json();
+  }
+  return LIB_CACHE;
+}
+
+function setupToken(){
+  const sheet = document.getElementById("sheet");
+  const bg = document.getElementById("sheet-bg");
+  sheet.innerHTML = `<h3>GitHub-token</h3>
+    <div class="sub">Safari tilbyder at gemme tokenet i iCloud Keychain — så mister du det aldrig igen.</div>
+    <form id="token-form" action="javascript:void(0)" autocomplete="on" onsubmit="saveTokenFromForm(event)">
+      <input type="text" name="username" value="eva-medoc" autocomplete="username" style="display:none" readonly>
+      <label>Token</label>
+      <input type="password" name="password" id="token-input"
+             autocomplete="current-password"
+             value="${(getToken()||'').replace(/"/g,'&quot;')}"
+             placeholder="github_pat_..." style="font-family:monospace;font-size:11px" required>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.4">
+        Første gang: tap Gem, sig "Yes" til Safaris tilbud om at gemme adgangskode i iCloud Keychain.
+      </div>
+      <div class="btn-row">
+        <button type="button" class="secondary" onclick="closeSheet()">Fortryd</button>
+        <button type="submit" class="primary">Gem</button>
+      </div>
+    </form>`;
+  bg.classList.add("open"); sheet.classList.add("open");
+  setTimeout(()=>document.getElementById("token-input")?.focus(), 120);
+}
+
+function saveTokenFromForm(e){
+  e.preventDefault();
+  const val = document.getElementById("token-input").value.trim();
+  if (!val) return;
+  setToken(val);
+  document.getElementById("sheet").innerHTML = `<h3>Token gemt</h3>
+    <div class="ok-box"><i class="ti ti-check"></i> Token er gemt lokalt.</div>
+    <p style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5">
+      Hvis Safari lige har spurgt om at gemme adgangskoden — sig <b>Yes</b>. Så synkroniseres til iCloud Keychain.
+    </p>
+    <div class="btn-row"><button class="primary" onclick="closeSheet()">Færdig</button></div>`;
+}
+
+function openSheet(action, entryId, dateIso){
+  SHEET_STATE = { action, entryId, dateIso, confirmedWarn:false };
+  renderSheet();
+  document.getElementById("sheet-bg").classList.add("open");
+  document.getElementById("sheet").classList.add("open");
+}
+function closeSheet(){
+  document.getElementById("sheet-bg").classList.remove("open");
+  document.getElementById("sheet").classList.remove("open");
+  SHEET_STATE = null;
+}
+
+async function renderSheet(){
+  const s = SHEET_STATE; if (!s) return;
+  const plan = await loadPlan();
+  const day = plan.athletes.eva.days.find(d => d.date === s.dateIso);
+  const entry = day && day.entries.find(e => e.id === s.entryId);
+  const wo = entry ? entry.workout : null;
+  const sheet = document.getElementById("sheet");
+  const dateStr = (() => { const d = new Date(s.dateIso+"T12:00:00");
+    return `${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}`; })();
+
+  if (s.action === "adjust"){
+    sheet.innerHTML = `<h3>Justér pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <label>Navn</label><input id="f-name" value="${esc(wo?.name||"")}">
+      <label>Varighed (minutter)</label><input id="f-mins" type="number" value="${wo?.moving_time?Math.round(wo.moving_time/60):40}" min="10" max="240">
+      <label>Beskrivelse</label><textarea id="f-desc">${esc(wo?.description||"")}</textarea>
+      <label>Note</label><input id="f-note" value="${esc(entry?.note||"")}">
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button>
+      <button class="primary" onclick="submitEdit()">Gem</button></div>`;
+  }
+  else if (s.action === "move"){
+    const start = new Date(s.dateIso+"T12:00:00");
+    const opts = [];
+    for (let i=-3;i<=14;i++){
+      if (i===0) continue;
+      const d = addDays(start,i);
+      const iso_ = iso(d);
+      const targetDay = plan.athletes.eva.days.find(x=>x.date===iso_);
+      const wos = targetDay ? targetDay.entries.filter(e=>e.workout).map(e=>e.workout.name).join(", ") : "";
+      opts.push(`<button onclick="pickMoveTarget('${iso_}')"><b>${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}.${MON_DA[d.getMonth()]}</b><span>${esc(wos)||"hvile"}</span></button>`);
+    }
+    sheet.innerHTML = `<h3>Flyt pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <label>Vælg måldag (byt automatisk)</label>
+      <div class="day-picker">${opts.join("")}</div>
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button></div>`;
+  }
+  else if (s.action === "swap"){
+    const lib = await loadLib();
+    // Vis kun eva-relevante templates + hvile
+    const relevant = lib.templates.filter(t => (t.tags||[]).includes("eva") || t.id === "hvile");
+    sheet.innerHTML = `<h3>${wo?"Skift pas":"Tilføj pas"}</h3><div class="sub">${dateStr}${wo?` · ${esc(wo.name)}`:""}</div>
+      <div class="tpl-list">${relevant.map(t=>`
+        <div class="tpl-item" onclick="pickTemplate('${t.id}')"><b>${esc(t.name)}</b>
+        <span>${t.moving_time?`${Math.round(t.moving_time/60)} min`:"hvile"}</span></div>`).join("")}</div>
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button></div>`;
+  }
+  else if (s.action === "cancel"){
+    sheet.innerHTML = `<h3>Aflys pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <p style="font-size:14px;margin:12px 0">Dagen bliver til hviledag. Kan altid ændres tilbage.</p>
+      <label>Note (valgfri)</label><input id="f-note" value="Aflyst — hviledag">
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button>
+      <button class="primary" onclick="submitEdit()">Aflys</button></div>`;
+  }
+}
+
+function pickMoveTarget(targetIso){ SHEET_STATE.moveTarget = targetIso; submitEdit(); }
+function pickTemplate(tplId){ SHEET_STATE.templateId = tplId; submitEdit(); }
+
+async function submitEdit(){
+  const s = SHEET_STATE; if (!s) return;
+
+  let params = {};
+  if (s.action === "adjust") {
+    params = { name: v("f-name"),
+               moving_time: parseInt(v("f-mins"))*60,
+               description: v("f-desc"), note: v("f-note") };
+  } else if (s.action === "move") {
+    params = { target_date: s.moveTarget, mode: "swap" };
+  } else if (s.action === "swap") {
+    params = { template_id: s.templateId };
+  } else if (s.action === "cancel") {
+    params = { note: v("f-note") };
+  }
+
+  const requestId = "eva-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  const msg = document.getElementById("sheet-msg");
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader"></i> Sender ændring…</div>`;
+
+  const token = getToken();
+  if (!token) { msg.innerHTML = `<div class="err-box">Ingen GitHub-token gemt. Tap Token øverst.</div>`; return; }
+
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+    method:"POST", headers:{ "Authorization":`token ${token}`,
+      "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
+    body: JSON.stringify({ event_type: "plan-edit", client_payload: {
+      requestId, action: s.action, entryId: s.entryId, params,
+      confirmedWarn: s.confirmedWarn, athlete: "eva" }})
+  });
+  if (r.status !== 204) {
+    msg.innerHTML = `<div class="err-box">Dispatch fejlede: HTTP ${r.status}. Tjek token.</div>`;
+    return;
+  }
+
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Behandler… (kan tage 20-40 sek)</div>`;
+  for (let i=0; i<25; i++){
+    await new Promise(r=>setTimeout(r, 3000));
+    try {
+      const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
+      if (!res.ok) continue;
+      const results = await res.json();
+      const r = results[requestId];
+      if (!r) continue;
+      if (r.status === "reject") {
+        msg.innerHTML = `<div class="err-box"><b>Afvist:</b> ${esc(r.gate.msg)}</div>
+          <button class="secondary" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--teal);cursor:pointer" onclick="closeSheet()">OK</button>`;
+        return;
+      }
+      if (r.status === "warn") {
+        msg.innerHTML = `<div class="warn-box"><b>Advarsel:</b> ${esc(r.gate.msg)}</div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="secondary" onclick="closeSheet()" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);cursor:pointer">Fortryd</button>
+          <button class="primary" onclick="confirmWarnAndRetry()" style="flex:1;padding:8px;border-radius:8px;border:none;background:var(--teal);color:var(--white);cursor:pointer">Fortsæt alligevel</button></div>`;
+        return;
+      }
+      msg.innerHTML = `<div class="ok-box"><i class="ti ti-check"></i> Planen er opdateret. Word-master synkroniseret til OneDrive.</div>`;
+      PLAN_CACHE = null;
+      setTimeout(()=>{ closeSheet(); main(); }, 2000);
+      return;
+    } catch(e) { /* keep polling */ }
+  }
+  msg.innerHTML = `<div class="err-box">Timeout — tjek Actions-fanen på GitHub.</div>`;
+}
+
+async function confirmWarnAndRetry(){ SHEET_STATE.confirmedWarn = true; await submitEdit(); }
+
+const v = id => document.getElementById(id).value;
 function showIcsModal(){
   document.getElementById('ics-bg').classList.add('open');
   document.getElementById('ics-modal').style.display='block';
