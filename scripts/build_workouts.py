@@ -567,7 +567,7 @@ def make_plan():
     (p+timedelta(50), bike_z2(210,"Mallorca"),"Cykel Z2 stor dag 3.5t Mallorca"),
     (p+timedelta(51), run_z2_lang(90),       "Lang løb Z2 90 min — formiddag før aftenflyet hjem (ons 22.)"),
     (p+timedelta(52), strength_a(2),         "Styrke let 2 sæt"),
-    (p+timedelta(52), run_z2(50),            "Løb Z2 50 min let"),
+    (p+timedelta(52), bike_z2(45),           "Let Z2-spin 45 min — byttet fra løb (Friel: undgå fortløbende løb)"),
     (p+timedelta(53), swim_2500(),           "Svøm 2500m"),
     (p+timedelta(54), run_long_km(26, 140),  "Lang løb 26 km — marathon-ladder start"),
     (p+timedelta(55), bike_z2(90),           "Cykel Z2 90 min recovery-spin"),
