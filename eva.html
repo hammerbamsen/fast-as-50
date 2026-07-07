@@ -48,6 +48,12 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 .day-actions button:hover { background:var(--cream); }
 .day-actions button.danger { color:#B03A2E; }
 .day-actions button i { font-size:12px; }
+.done-check { position:absolute; top:12px; right:12px; width:32px; height:32px; border-radius:50%; border:2px solid var(--cream-d); background:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--cream-d); transition:all .15s; }
+.done-check:hover { border-color:var(--teal); color:var(--teal); }
+.done-check.done { background:var(--teal); border-color:var(--teal); color:#fff; }
+.day { position:relative; }
+.day.done .n { color:var(--muted); text-decoration:line-through; text-decoration-thickness:1px; }
+.day.done .note { color:var(--muted); }
 .sheet-bg { position:fixed; inset:0; background:rgba(18,32,25,.4); z-index:200; display:none; }
 .sheet-bg.open { display:block; }
 .sheet { position:fixed; left:0; right:0; bottom:0; background:var(--white); border-radius:16px 16px 0 0; z-index:201; max-height:85vh; overflow-y:auto; transform:translateY(100%); transition:transform .2s; padding:18px 20px 28px; }
@@ -139,10 +145,12 @@ function dayCard(day, todayIso){
   }
   return entries.filter(e=>e.workout).map(e=>{
     const w = e.workout;
-    return `<div class="day ${isToday?"today":""}">
-      <div class="d">${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}${isToday?` <span class="today-tag">· i dag</span>`:""}</div>
-      <div class="n">${esc(w.name||"Træning")}</div>
-      ${e.note?`<div class="note">${esc(e.note)}</div>`:""}
+    const isDone = !!e.done;
+    return `<div class="day ${isToday?"today":""} ${isDone?"done":""}">
+      <button class="done-check ${isDone?"done":""}" onclick="toggleDone('${e.id}','${day.date}')" title="${isDone?"Fortryd — markér som ikke gennemført":"Markér som gennemført"}"><i class="ti ti-check" style="font-size:16px"></i></button>
+      <div class="d">${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}${isToday?` <span class="today-tag">· i dag</span>`:""}${isDone && e.done_at ? ` <span style="color:var(--teal);font-size:11px">· gennemført ${e.done_at.slice(5).replace("-",".")}</span>`:""}</div>
+      <div class="n" style="padding-right:44px">${esc(w.name||"Træning")}</div>
+      ${e.note?`<div class="note" style="padding-right:44px">${esc(e.note)}</div>`:""}
       <div class="day-actions">
         <button onclick="openSheet('adjust','${e.id}','${day.date}')"><i class="ti ti-adjustments"></i> Justér</button>
         <button onclick="openSheet('move','${e.id}','${day.date}')"><i class="ti ti-arrows-move"></i> Flyt</button>
@@ -402,6 +410,31 @@ async function submitEdit(){
 async function confirmWarnAndRetry(){ SHEET_STATE.confirmedWarn = true; await submitEdit(); }
 
 const v = id => document.getElementById(id).value;
+
+async function toggleDone(entryId, dateIso){
+  const token = getToken();
+  if (!token) { alert("Ingen token gemt. Tap Token øverst."); return; }
+  // Optimistic UI: opdater checkmark øjeblikkeligt
+  const btn = event?.currentTarget;
+  if (btn) { btn.classList.toggle('done'); btn.closest('.day')?.classList.toggle('done'); }
+  const requestId = "eva-done-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+    method:"POST", headers:{ "Authorization":`token ${token}`,
+      "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
+    body: JSON.stringify({ event_type: "plan-edit", client_payload: {
+      requestId, action: "toggle_done", entryId, params: {},
+      confirmedWarn: false, athlete: "eva" }})
+  });
+  if (r.status !== 204) {
+    // Rul optimistic UI tilbage
+    if (btn) { btn.classList.toggle('done'); btn.closest('.day')?.classList.toggle('done'); }
+    alert(`Dispatch fejlede: HTTP ${r.status}`);
+    return;
+  }
+  // Ingen polling — Word-master regenereres i baggrunden, næste refresh viser
+  PLAN_CACHE = null;
+  setTimeout(()=>main(), 25000);  // stille refresh efter 25 sek
+}
 
 // ═══ ICS CALENDAR EXPORT (med uge-scope) ═══
 let ICS_SCOPE = null;
