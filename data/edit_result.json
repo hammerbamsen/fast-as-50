@@ -1,20 +1,4 @@
 {
- "eva-rollback-1783429585": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "2026-08-18"
-  ],
-  "plan_commit": "ec86f83cec564cb53a742d1c9162cf90763fa084",
-  "sync_errors": [],
-  "athlete": "eva",
-  "request_ts": "2026-07-07T13:06:37+00:00",
-  "request_id": "eva-rollback-1783429585"
- },
  "e2e-suggest-1783434405": {
   "status": "suggestion",
   "action": "suggest_move",
@@ -294,5 +278,52 @@
   "error": "Entry  ikke fundet for kennet",
   "request_ts": "2026-07-07T15:05:50+00:00",
   "request_id": "smoke-t5-1783436736"
+ },
+ "smoke-t5-1783436757": {
+  "status": "suggestion",
+  "action": "suggest_move",
+  "athlete": "kennet",
+  "src_date": "2026-07-21",
+  "alternatives": [
+   {
+    "date": "2026-07-20",
+    "offset": -1,
+    "status": "ok",
+    "msg": "Godkendt"
+   },
+   {
+    "date": "2026-07-22",
+    "offset": 1,
+    "status": "ok",
+    "msg": "Godkendt"
+   },
+   {
+    "date": "2026-07-23",
+    "offset": 2,
+    "status": "ok",
+    "msg": "Godkendt"
+   },
+   {
+    "date": "2026-07-18",
+    "offset": -3,
+    "status": "ok",
+    "msg": "Godkendt"
+   },
+   {
+    "date": "2026-07-24",
+    "offset": 3,
+    "status": "ok",
+    "msg": "Godkendt"
+   },
+   {
+    "date": "2026-07-19",
+    "offset": -2,
+    "status": "reject",
+    "msg": "Afvist: Fortløbende løbedage 2026-07-21 + 2026-07-22"
+   }
+  ],
+  "error": null,
+  "request_ts": "2026-07-07T15:06:09+00:00",
+  "request_id": "smoke-t5-1783436757"
  }
 }
