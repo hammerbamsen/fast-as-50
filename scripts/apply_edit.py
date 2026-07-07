@@ -180,19 +180,21 @@ def main():
     entry_id = cp["entryId"]
     params = cp.get("params") or {}
     confirmed_warn = bool(cp.get("confirmedWarn"))
+    athlete = cp.get("athlete", "kennet")  # default kennet for bagudkompatibilitet
 
-    print(f"=== plan-edit request {request_id}: {action} on {entry_id} ===")
+    print(f"=== plan-edit request {request_id}: {action} on {entry_id} (athlete={athlete}) ===")
     print(f"params: {json.dumps(params, ensure_ascii=False)[:200]}")
 
     _plan_sha, plan_raw = gh_get("data/plan.json")
     result = edit_apply.apply_edit(plan_raw, action, entry_id, params,
-                                    confirmed_warn=confirmed_warn)
+                                    confirmed_warn=confirmed_warn, athlete=athlete)
 
     if result["status"] != "ok":
         print(f"Gate returnerede {result['status']}: {result['gate']['msg']}")
         write_result(request_id, {
             "status": result["status"], "gate": result["gate"],
             "dates_changed": result["dates_changed"],
+            "athlete": athlete,
             "request_ts": result["request_ts"],
         })
         return
@@ -201,43 +203,48 @@ def main():
     plan_sha_fresh, _ = gh_get("data/plan.json")  # frisk SHA
     plan_commit = gh_put("data/plan.json", plan_sha_fresh,
                           result["new_plan_raw"].encode(),
-                          f"plan-edit: {action} {entry_id[:8]} ({', '.join(result['dates_changed'])})")
+                          f"plan-edit: {athlete} {action} {entry_id[:8]} ({', '.join(result['dates_changed'])})")
     print(f"plan.json commit: {plan_commit[:7]}")
 
     dates = result["dates_changed"]
     new_plan = json.loads(result["new_plan_raw"])
-    days_map = {d["date"]: d for d in new_plan["athletes"]["kennet"]["days"]}
+    days_map = {d["date"]: d for d in new_plan["athletes"][athlete]["days"]}
     sync_errors = []
 
-    # Intervals — for hver berørt dato: slet+opret
-    for d_iso in dates:
-        try:
-            n = intervals_delete_date(d_iso)
-            print(f"Intervals slettet {d_iso}: {n} events")
-            day = days_map.get(d_iso, {"entries": []})
-            for e in day.get("entries", []):
-                wo = e.get("workout")
-                if wo:
-                    intervals_create(d_iso, wo)
-                    print(f"  Intervals oprettet: {wo['name']}")
-        except Exception as ex:
-            sync_errors.append(f"Intervals {d_iso}: {ex}")
-            print(f"FEJL Intervals {d_iso}: {ex}")
-
-    # Outlook — for hver berørt dato: slet+opret
-    try:
-        tok = outlook_token()
+    # Intervals+Outlook: KUN for Kennet — Eva bruger .ics-eksport i stedet
+    if athlete == "kennet":
+        # Intervals — for hver berørt dato: slet+opret
         for d_iso in dates:
             try:
+                n = intervals_delete_date(d_iso)
+                print(f"Intervals slettet {d_iso}: {n} events")
                 day = days_map.get(d_iso, {"entries": []})
-                outlook_sync_date(d_iso, day.get("entries", []), tok)
-                print(f"Outlook synk: {d_iso}")
+                for e in day.get("entries", []):
+                    wo = e.get("workout")
+                    if wo:
+                        intervals_create(d_iso, wo)
+                        print(f"  Intervals oprettet: {wo['name']}")
             except Exception as ex:
-                sync_errors.append(f"Outlook {d_iso}: {ex}")
-                print(f"FEJL Outlook {d_iso}: {ex}")
-    except Exception as ex:
-        sync_errors.append(f"Outlook token: {ex}")
-        print(f"FEJL Outlook token: {ex}")
+                sync_errors.append(f"Intervals {d_iso}: {ex}")
+                print(f"FEJL Intervals {d_iso}: {ex}")
+    else:
+        print(f"Springer Intervals+Outlook over for {athlete} — hun bruger .ics-eksport")
+
+    # Outlook — kun for Kennet
+    if athlete == "kennet":
+        try:
+            tok = outlook_token()
+            for d_iso in dates:
+                try:
+                    day = days_map.get(d_iso, {"entries": []})
+                    outlook_sync_date(d_iso, day.get("entries", []), tok)
+                    print(f"Outlook synk: {d_iso}")
+                except Exception as ex:
+                    sync_errors.append(f"Outlook {d_iso}: {ex}")
+                    print(f"FEJL Outlook {d_iso}: {ex}")
+        except Exception as ex:
+            sync_errors.append(f"Outlook token: {ex}")
+            print(f"FEJL Outlook token: {ex}")
 
     # Word-masters — genereres altid ved plan-ændring
     try:
@@ -258,6 +265,7 @@ def main():
         "dates_changed": dates,
         "plan_commit": plan_commit,
         "sync_errors": sync_errors,
+        "athlete": athlete,
         "request_ts": result["request_ts"],
     })
     print(f"=== FÆRDIG: {len(sync_errors)} sync-fejl ===")
