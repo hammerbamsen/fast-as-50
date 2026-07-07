@@ -37,8 +37,13 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
 
     # Særtilfælde: restore rammer hele planen, ikke en enkelt entry
     if action == "restore_from_commit":
+        # Klienten sender enten 'source_commit' (foretrukket) eller 'restored_plan'.
+        # I workflow-orkestratoren hentes den fulde plan fra commit'et.
+        if not (params.get("restored_plan") or params.get("source_commit")):
+            raise ValueError("restore_from_commit kræver 'source_commit' eller 'restored_plan'")
         if not params.get("restored_plan"):
-            raise ValueError("restore_from_commit kræver 'restored_plan' i params")
+            # apply_edit.py (orkestrator) skal have hentet planen først
+            raise ValueError("orkestrator skal hente restored_plan fra source_commit før _simulate_mutation")
         restored = json.loads(params["restored_plan"]) if isinstance(params["restored_plan"], str) else params["restored_plan"]
         # Bevar programMeta (arkiv, upcoming) og fitnessSeed så de ikke rulles tilbage utilsigtet
         if "programMeta" in sim:
