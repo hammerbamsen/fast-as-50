@@ -1502,7 +1502,9 @@ async function init() {
   }
   renderNav();
   updateMeta();
-  navigate("today");
+  const initialPage = location.hash.slice(1);
+  const validPages = PAGES.filter(p=>!p.href).map(p=>p.id);
+  navigate(validPages.includes(initialPage) ? initialPage : "today");
 
   // Hent friske data i baggrunden
   try {
