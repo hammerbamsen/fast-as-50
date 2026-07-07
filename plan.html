@@ -75,6 +75,43 @@ h1 { font-size:22px; font-weight:700; }
 .day-detail { display:none; border-top:1px solid var(--cream); padding:10px 12px 12px 86px; font-size:12.5px; color:var(--ink); white-space:pre-wrap; line-height:1.55; }
 @media (max-width:760px){ .day-detail { padding-left:12px; } }
 .day.open .day-detail { display:block; }
+.day-actions { padding:8px 12px 12px 86px; display:none; gap:8px; flex-wrap:wrap; }
+@media (max-width:760px){ .day-actions { padding-left:12px; } }
+.day.open .day-actions { display:flex; }
+.day-actions button { background:var(--white); border:1px solid var(--cream-d); border-radius:8px; padding:8px 14px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:var(--wine); cursor:pointer; }
+.day-actions button:hover { background:var(--cream); }
+.day-actions button.danger { color:var(--hard); }
+
+/* Bottom sheet */
+.sheet-bg { position:fixed; inset:0; background:rgba(26,16,8,.4); z-index:200; display:none; }
+.sheet-bg.open { display:block; }
+.sheet { position:fixed; left:0; right:0; bottom:0; background:var(--white); border-radius:16px 16px 0 0; z-index:201; max-height:85vh; overflow-y:auto; transform:translateY(100%); transition:transform .2s; padding:18px 20px 28px; }
+.sheet.open { transform:translateY(0); }
+.sheet h3 { font-size:16px; font-weight:700; margin-bottom:4px; }
+.sheet .sub { font-size:12px; color:var(--muted); margin-bottom:14px; }
+.sheet label { display:block; font-size:12px; color:var(--muted); margin:12px 0 4px; text-transform:uppercase; letter-spacing:.4px; }
+.sheet input, .sheet select, .sheet textarea { width:100%; padding:10px 12px; border:1px solid var(--cream-d); border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:14px; background:var(--cream); }
+.sheet textarea { min-height:80px; resize:vertical; }
+.sheet .row { display:flex; gap:10px; }
+.sheet .row > * { flex:1; }
+.sheet .btn-row { display:flex; gap:10px; margin-top:20px; }
+.sheet .btn-row button { flex:1; padding:12px; border-radius:10px; border:none; font-family:'Hanken Grotesk',sans-serif; font-size:14px; font-weight:600; cursor:pointer; }
+.sheet .primary { background:var(--wine); color:var(--white); }
+.sheet .secondary { background:var(--cream); color:var(--wine); }
+.sheet .warn-box { background:#B7791F14; border:1px solid #B7791F40; color:var(--warn); border-radius:8px; padding:10px 12px; font-size:13px; margin:10px 0; }
+.sheet .err-box { background:#B03A2E14; border:1px solid #B03A2E40; color:var(--hard); border-radius:8px; padding:10px 12px; font-size:13px; margin:10px 0; }
+.sheet .ok-box { background:#27AE6014; border:1px solid #27AE6040; color:var(--ok); border-radius:8px; padding:10px 12px; font-size:13px; margin:10px 0; }
+.tpl-list { display:flex; flex-direction:column; gap:6px; max-height:50vh; overflow-y:auto; margin:8px 0; }
+.tpl-item { border:1px solid var(--cream-d); border-radius:8px; padding:10px 12px; background:var(--white); cursor:pointer; }
+.tpl-item:hover { background:var(--cream); }
+.tpl-item b { font-size:13.5px; display:block; }
+.tpl-item span { font-size:12px; color:var(--muted); }
+.day-picker { display:grid; grid-template-columns:repeat(auto-fill, minmax(90px,1fr)); gap:6px; }
+.day-picker button { padding:10px 8px; text-align:left; font-size:12px; line-height:1.4; }
+.day-picker button b { display:block; font-size:13px; }
+.day-picker button span { color:var(--muted); font-size:11px; }
+.settings-btn { position:fixed; top:14px; right:14px; z-index:60; background:var(--white); border:1px solid var(--cream-d); border-radius:20px; padding:6px 12px; font-size:12px; color:var(--muted); cursor:pointer; }
+@media (min-width:761px){ .settings-btn { top:24px; right:24px; } }
 .rest { color:var(--muted); font-size:13px; display:flex; align-items:center; gap:8px; }
 .acc-head { display:flex; align-items:center; justify-content:space-between; background:var(--white); border-radius:10px; padding:12px 14px; margin-top:8px; cursor:pointer; }
 .acc-head .l { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
@@ -100,6 +137,10 @@ h1 { font-size:22px; font-weight:700; }
   </main>
 </div>
 <nav class="bottom-nav" id="bottom-nav"></nav>
+
+<button class="settings-btn" onclick="setupToken()"><i class="ti ti-settings" style="font-size:14px;vertical-align:-2px"></i> Token</button>
+<div class="sheet-bg" id="sheet-bg" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet"></div>
 
 <script>
 const NAV = [
@@ -159,7 +200,13 @@ function dayCard(day, todayIso){
     <div class="day-row" onclick="this.parentElement.classList.toggle('open')">${dn}
       <div class="wo">${rows}</div>
       ${details?`<i class="ti ti-chevron-down chev" style="font-size:16px"></i>`:""}</div>
-    ${details?`<div class="day-detail">${details}</div>`:""}</div>`;
+    ${details?`<div class="day-detail">${details}</div>`:""}
+    ${workouts.length?`<div class="day-actions">
+      <button onclick="event.stopPropagation(); openSheet('adjust','${workouts[0].id}','${day.date}')"><i class="ti ti-adjustments" style="font-size:14px;vertical-align:-2px"></i> Justér</button>
+      <button onclick="event.stopPropagation(); openSheet('move','${workouts[0].id}','${day.date}')"><i class="ti ti-arrows-move" style="font-size:14px;vertical-align:-2px"></i> Flyt</button>
+      <button onclick="event.stopPropagation(); openSheet('swap','${workouts[0].id}','${day.date}')"><i class="ti ti-refresh" style="font-size:14px;vertical-align:-2px"></i> Skift pas</button>
+      <button class="danger" onclick="event.stopPropagation(); openSheet('cancel','${workouts[0].id}','${day.date}')"><i class="ti ti-x" style="font-size:14px;vertical-align:-2px"></i> Aflys</button>
+    </div>`:""}</div>`;
 }
 
 function weekFlagsHtml(vw, currentWeek){
@@ -272,6 +319,186 @@ async function main(){
     `Flags og projektion beregnet ${view.generated.slice(0,16).replace("T"," ")} UTC · seed CTL ${view.kennet.seed.ctl}`;
 }
 main();
+
+// ═══ EDITING ENGINE (fase 3a) ═══
+const GH_REPO = "hammerbamsen/fast-as-50";
+const TOKEN_KEY = "af_gh_token";  // genbrug samme nøgle som af.html
+const getToken = () => localStorage.getItem(TOKEN_KEY);
+const setToken = t => localStorage.setItem(TOKEN_KEY, t);
+
+function setupToken(){
+  const t = prompt("Indsæt GitHub PAT (samme som af.html bruger):", getToken() || "");
+  if (t) { setToken(t.trim()); alert("Token gemt."); }
+}
+
+let PLAN_CACHE=null, LIB_CACHE=null, SHEET_STATE=null;
+
+async function loadPlan(){
+  if (!PLAN_CACHE) PLAN_CACHE = await getJSON("data/plan.json");
+  return PLAN_CACHE;
+}
+async function loadLib(){
+  if (!LIB_CACHE) LIB_CACHE = await getJSON("data/workout_library.json");
+  return LIB_CACHE;
+}
+
+function openSheet(action, entryId, dateIso){
+  SHEET_STATE = { action, entryId, dateIso, confirmedWarn:false };
+  renderSheet();
+  document.getElementById("sheet-bg").classList.add("open");
+  document.getElementById("sheet").classList.add("open");
+}
+function closeSheet(){
+  document.getElementById("sheet-bg").classList.remove("open");
+  document.getElementById("sheet").classList.remove("open");
+  SHEET_STATE = null;
+}
+
+async function renderSheet(){
+  const s = SHEET_STATE; if (!s) return;
+  const plan = await loadPlan();
+  const day = plan.athletes.kennet.days.find(d => d.date === s.dateIso);
+  const entry = day && day.entries.find(e => e.id === s.entryId);
+  const wo = entry ? entry.workout : null;
+  const sheet = document.getElementById("sheet");
+  const dateStr = (() => { const d = new Date(s.dateIso+"T12:00:00");
+    return `${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}`; })();
+
+  if (s.action === "adjust"){
+    sheet.innerHTML = `<h3>Justér pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <label>Navn</label><input id="f-name" value="${esc(wo?.name||"")}">
+      <label>Type</label><select id="f-type">
+        ${["Run","Ride","Swim","OpenWaterSwim","WeightTraining","Hike","Walk"].map(t=>`<option ${wo?.type===t?"selected":""}>${t}</option>`).join("")}
+      </select>
+      <label>Varighed (minutter)</label><input id="f-mins" type="number" value="${wo?.moving_time?Math.round(wo.moving_time/60):60}" min="10" max="360">
+      <label>Beskrivelse (intervaller, zoner)</label><textarea id="f-desc">${esc(wo?.description||"")}</textarea>
+      <label>Note</label><input id="f-note" value="${esc(entry?.note||"")}">
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button>
+      <button class="primary" onclick="submitEdit()">Gem</button></div>`;
+  }
+  else if (s.action === "move"){
+    const start = new Date(s.dateIso+"T12:00:00");
+    const opts = [];
+    for (let i=-3;i<=14;i++){
+      if (i===0) continue;
+      const d = addDays(start,i);
+      const iso_ = iso(d);
+      const targetDay = plan.athletes.kennet.days.find(x=>x.date===iso_);
+      const wos = targetDay ? targetDay.entries.filter(e=>e.workout).map(e=>e.workout.name).join(", ") : "";
+      opts.push(`<button onclick="pickMoveTarget('${iso_}')"><b>${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}.${MON_DA[d.getMonth()]}</b><span>${esc(wos)||"hvile"}</span></button>`);
+    }
+    sheet.innerHTML = `<h3>Flyt pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <label>Vælg måldag (byt automatisk)</label>
+      <div class="day-picker">${opts.join("")}</div>
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button></div>`;
+  }
+  else if (s.action === "swap"){
+    const lib = await loadLib();
+    sheet.innerHTML = `<h3>Skift pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <div class="tpl-list">${lib.templates.map(t=>`
+        <div class="tpl-item" onclick="pickTemplate('${t.id}')"><b>${esc(t.name)}</b>
+        <span>${t.type||"hvile"}${t.moving_time?` · ${Math.round(t.moving_time/60)} min`:""}</span></div>`).join("")}</div>
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button></div>`;
+  }
+  else if (s.action === "cancel"){
+    sheet.innerHTML = `<h3>Aflys pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
+      <p style="font-size:14px;margin:12px 0">Dagen bliver til hviledag i Intervals og Outlook. Kan altid ændres tilbage.</p>
+      <label>Note (valgfri)</label><input id="f-note" value="Aflyst — hviledag">
+      <div id="sheet-msg"></div>
+      <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button>
+      <button class="primary danger" onclick="submitEdit()">Aflys</button></div>`;
+  }
+}
+
+function pickMoveTarget(targetIso){
+  SHEET_STATE.moveTarget = targetIso;
+  submitEdit();
+}
+function pickTemplate(tplId){
+  SHEET_STATE.templateId = tplId;
+  submitEdit();
+}
+
+async function submitEdit(){
+  const s = SHEET_STATE; if (!s) return;
+  const token = getToken();
+  if (!token) { alert("Ingen GitHub-token gemt. Tap Token øverst."); return; }
+
+  let params = {};
+  if (s.action === "adjust") {
+    params = { name: v("f-name"), type: v("f-type"),
+               moving_time: parseInt(v("f-mins"))*60,
+               description: v("f-desc"), note: v("f-note") };
+  } else if (s.action === "move") {
+    params = { target_date: s.moveTarget, mode: "swap" };
+  } else if (s.action === "swap") {
+    params = { template_id: s.templateId };
+  } else if (s.action === "cancel") {
+    params = { note: v("f-note") };
+  }
+
+  const requestId = "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+  const payload = { event_type: "plan-edit", client_payload: {
+    requestId, action: s.action, entryId: s.entryId, params, confirmedWarn: s.confirmedWarn
+  }};
+
+  const msg = document.getElementById("sheet-msg");
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader" style="font-size:14px"></i> Sender ændring…</div>`;
+
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
+    method:"POST", headers:{ "Authorization":`token ${token}`,
+      "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
+    body: JSON.stringify(payload)
+  });
+  if (r.status !== 204) {
+    msg.innerHTML = `<div class="err-box">Dispatch fejlede: HTTP ${r.status}. Tjek token via ⚙ Token.</div>`;
+    return;
+  }
+
+  // Poll edit_result.json
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Behandler… (kan tage 20-40 sek)</div>`;
+  for (let i=0; i<25; i++){
+    await new Promise(r=>setTimeout(r, 3000));
+    try {
+      const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
+      if (!res.ok) continue;
+      const results = await res.json();
+      const r = results[requestId];
+      if (!r) continue;
+      if (r.status === "reject") {
+        msg.innerHTML = `<div class="err-box"><b>Afvist:</b> ${esc(r.gate.msg)}</div>
+          <button class="secondary" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--wine);cursor:pointer" onclick="closeSheet()">OK</button>`;
+        return;
+      }
+      if (r.status === "warn") {
+        msg.innerHTML = `<div class="warn-box"><b>Advarsel:</b> ${esc(r.gate.msg)}</div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="secondary" onclick="closeSheet()" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);cursor:pointer">Fortryd</button>
+          <button class="primary" onclick="confirmWarnAndRetry()" style="flex:1;padding:8px;border-radius:8px;border:none;background:var(--wine);color:var(--white);cursor:pointer">Fortsæt alligevel</button></div>`;
+        return;
+      }
+      // status = ok
+      const syncMsg = r.sync_errors && r.sync_errors.length
+        ? `Opdateret. ${r.sync_errors.length} sync-fejl — næste auto-sync retter.`
+        : "Opdateret. Intervals + Outlook + Word synkroniseret.";
+      msg.innerHTML = `<div class="ok-box"><i class="ti ti-check"></i> ${syncMsg}</div>`;
+      PLAN_CACHE = null;  // invalidér cache
+      setTimeout(()=>{ closeSheet(); main(); }, 2000);
+      return;
+    } catch(e) { /* keep polling */ }
+  }
+  msg.innerHTML = `<div class="err-box">Timeout — tjek Actions-fanen på GitHub.</div>`;
+}
+
+async function confirmWarnAndRetry(){
+  SHEET_STATE.confirmedWarn = true;
+  await submitEdit();
+}
+
+const v = id => document.getElementById(id).value;
 </script>
 </body>
 </html>
