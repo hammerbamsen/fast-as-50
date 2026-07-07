@@ -8,7 +8,7 @@ Uge  2: 08-14 jun  BUILD+   Man-Ons Gentofte | Tor-Søn Mallorca #1
 Uge  3: 15-21 jun  BUILD+   Man-Ons Mallorca | Tor hjem | Fre-Søn Gentofte
 Uge  4: 22-28 jun  RECOVERY Gentofte
 Uge  5: 29jun-5jul BUILD    Gentofte
-Uge  6: 06-12 jul  RECOVERY Man-Tir Gentofte | Ons-Søn Skotland
+Uge  6: 06-12 jul  RECOVERY Man-Tir Gentofte | Ons-Søn Wales
 Uge  7: 13-19 jul  RECOVERY Gentofte
 Uge  8: 20-26 jul  BUILD    Gentofte
 Uge  9: 27jul-2aug BUILD    Gentofte | Fre-Søn Musik i Gentofte
@@ -159,6 +159,13 @@ def s_free(dur_min, label):
         "doc":  {"text": label, "duration": dur_min * 60}
     }
 
+def s_bike_ramp(dur_min, start, end, label, kind=None):
+    """Ægte ramp-step til cykel — Intervals markerer ramp:true, watt stiger/falder lineært."""
+    d = {"ramp": True, "power": {"start": start, "end": end, "units": "%ftp"}, "duration": dur_min * 60}
+    if kind:
+        d[kind] = True
+    return {"desc": f"- {label} {dur_min}m ramp {start}-{end}% FTP", "doc": d}
+
 def s_reps(n, steps):
     inner_desc = "\n".join(s["desc"] for s in steps)
     return {
@@ -264,37 +271,37 @@ def run_let(tot_min=35):
 def bike_z2(tot_min, location=""):
     name = f"Cykel Z2 {tot_min} min" + (f" {location}" if location else "")
     desc, doc = build([
-        s_bike(10,          "Z1", "Varm-op"),
+        s_bike_ramp(10, 45, 68, "Varm-op", "warmup"),
         s_bike(tot_min-15,  "Z2", "Aerob base"),
-        s_bike(5,           "Z1", "Cool-down"),
+        s_bike_ramp(5, 68, 45, "Cool-down", "cooldown"),
     ])
     return {"name": name, "type": "Ride",
             "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
 
 def bike_5x3_z4():
     desc, doc = build([
-        s_bike(15, "Z2", "Varm-op"),
+        s_bike_ramp(15, 50, 80, "Varm-op", "warmup"),
         s_reps(5, [s_bike(3, "Z4", "Interval"), s_bike(3, "Z1", "Pause")]),
-        s_bike(15, "Z2", "Cool-down"),
+        s_bike_ramp(15, 80, 50, "Cool-down", "cooldown"),
     ])
     return {"name": "Cykel 5×3 min Z4", "type": "Ride",
             "moving_time": 65*60, "description": desc, "workout_doc": doc}
 
 def bike_bjerg_z4(location="Mallorca"):
     desc, doc = build([
-        s_bike(30, "Z2", "Varm-op til bjerg"),
+        s_bike_ramp(30, 50, 76, "Varm-op til bjerg", "warmup"),
         s_reps(5, [s_bike(7, "Z4", "Z4 opstigning"), s_bike(4, "Z1", "Ned")]),
-        s_bike(25, "Z2", "Cool-down hjem"),
+        s_bike_ramp(25, 76, 50, "Cool-down hjem", "cooldown"),
     ])
     return {"name": f"Cykel bjerg-intervaller Z4 {location}", "type": "Ride",
             "moving_time": 120*60, "description": desc, "workout_doc": doc}
 
 def bike_formentor():
     desc, doc = build([
-        s_bike(30,  "Z2", "Varm-op"),
+        s_bike_ramp(30, 45, 70, "Varm-op", "warmup"),
         s_bike(240, "Z2", "Formentor lang tur"),
         s_bike(60,  "Z3", "Klatre-sektioner Formentor"),
-        s_bike(30,  "Z2", "Cool-down hjem"),
+        s_bike_ramp(30, 70, 45, "Cool-down hjem", "cooldown"),
     ])
     return {"name": "Cykel Formentor 149km", "type": "Ride",
             "moving_time": 360*60, "description": desc, "workout_doc": doc}
@@ -307,18 +314,18 @@ def hike_easy(tot_min=90):
 def bike_z2_z3(tot_min=80):
     main = tot_min - 40
     desc, doc = build([
-        s_bike(20,   "Z2", "Varm-op"),
+        s_bike_ramp(20, 45, 76, "Varm-op", "warmup"),
         s_bike(main, "Z3", "Z3 blok"),
-        s_bike(20,   "Z2", "Cool-down"),
+        s_bike_ramp(20, 76, 45, "Cool-down", "cooldown"),
     ])
     return {"name": f"Hometrainer Z2-Z3 {tot_min} min", "type": "Ride",
             "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
 
 def bike_3x15_z3(tot_min=90):
     desc, doc = build([
-        s_bike(15, "Z2", "Varm-op"),
+        s_bike_ramp(15, 50, 76, "Varm-op", "warmup"),
         s_reps(3, [s_bike(15, "Z3", "Z3 interval"), s_bike(5, "Z2", "Pause")]),
-        s_bike(15, "Z2", "Cool-down"),
+        s_bike_ramp(15, 76, 50, "Cool-down", "cooldown"),
     ])
     return {"name": f"Hometrainer 3×15 min Z3 {tot_min} min", "type": "Ride",
             "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
@@ -422,11 +429,11 @@ def run_trail(tot_min, label="Trail-løb Z2 Wales"):
 def bike_ftp_test():
     """20-min FTP-test — resultatet opdaterer FTP og watt-zoner i Intervals."""
     desc, doc = build([
-        s_bike(20, "Z2", "Varm-op progressiv"),
+        s_bike_ramp(20, 45, 72, "Varm-op progressiv", "warmup"),
         s_bike(5,  "Z4", "Åbner 5 min"),
         s_bike(5,  "Z1", "Let"),
         s_free(20, "20 MIN ALL-OUT TEST — jævn max-indsats"),
-        s_bike(15, "Z1", "Cool-down"),
+        s_bike_ramp(15, 60, 40, "Cool-down", "cooldown"),
     ])
     return {"name": "FTP-TEST 20 min (opdatér zoner efter)", "type": "Ride",
             "moving_time": 65*60,
@@ -455,6 +462,20 @@ def ow_swim(tot_min=45, label="Open water"):
     ])
     return {"name": f"OW-svøm {label} {tot_min} min", "type": "OpenWaterSwim",
             "moving_time": tot_min*60, "description": desc, "workout_doc": doc}
+
+def bike_sa_calobra():
+    """Sa Calobra via Puig Major — tidlig afgang, op ad Puig Major, ned til Sa Calobra,
+    de 26 sving op igen, retur. Stor fjeld-Z2-dag med Z3 på selve stigningerne."""
+    desc, doc = build([
+        s_bike_ramp(20, 45, 68, "Varm-op — tidlig udrulning", "warmup"),
+        s_bike(90, "Z2", "Puig Major opstigning — jævn Z2"),
+        s_bike(35, "Z2", "Nedkørsel til Sa Calobra — kontrolleret, pas på bremser"),
+        s_bike(35, "Z3", "Sa Calobra op — 26 sving, jævn Z3"),
+        s_bike(80, "Z2", "Retur Z2 base hjem"),
+        s_bike_ramp(20, 68, 45, "Cool-down", "cooldown"),
+    ])
+    return {"name": "Cykel Sa Calobra via Puig Major", "type": "Ride",
+            "moving_time": 280*60, "description": desc, "workout_doc": doc}
 
 # ── 14-ugers plan ───────────────────────────────────────────────
 def make_plan():
@@ -521,15 +542,15 @@ def make_plan():
     (p+timedelta(33), run_z2_lang(115),      "Lang løb Z2 115 min"),
     (p+timedelta(34), bike_hundested(),      "Cykel Z2 til Hundested"),
 
-    # ── UGE 6: 6-12 jul  RECOVERY let (Skotland ons-søn, tå-hensyn: kun 2 løb) ──
+    # ── UGE 6: 6-12 jul  RECOVERY let (Wales ons-søn, tå-hensyn: kun 2 løb) ──
     (p+timedelta(35), ow_swim(40, "Christiansborg-prep"), "OW-svøm 40 min — Christiansborg-prep"),
     (p+timedelta(35), strength_let(),        "Styrke let 2 sæt recovery"),
-    (p+timedelta(36), bike_z2(70),           "Cykel Z2 70 min — sidste før Skotland"),
-    (p+timedelta(37), None,                  "Fly → Skotland (ons 8. jul) — hvile/gang"),
-    (p+timedelta(38), hike_easy(120),        "Vandring Skotland 2 timer — lav intensitet"),
-    (p+timedelta(39), run_trail(55, "Trail-løb Z2 Skotland"), "Trail-løb Z2 Skotland 55 min — TÅ-TEST: stop ved smerte"),
-    (p+timedelta(40), hike_easy(90),         "Vandring Skotland let / hvile"),
-    (p+timedelta(41), run_trail(75, "Trail langtur Z2 Skotland"), "Trail langtur Z2 Skotland 75 min — kun hvis tåen holdt fredag. Hjemrejse aften"),
+    (p+timedelta(36), bike_z2(70),           "Cykel Z2 70 min — sidste før Wales"),
+    (p+timedelta(37), None,                  "Fly → Wales (ons 8. jul) — hvile/gang"),
+    (p+timedelta(38), hike_easy(120),        "Vandring Wales 2 timer — lav intensitet"),
+    (p+timedelta(39), run_trail(55, "Trail-løb Z2 Wales"), "Trail-løb Z2 Wales 55 min — TÅ-TEST: stop ved smerte"),
+    (p+timedelta(40), hike_easy(90),         "Vandring Wales let / hvile"),
+    (p+timedelta(41), run_trail(75, "Trail langtur Z2 Wales"), "Trail langtur Z2 Wales 75 min — kun hvis tåen holdt fredag. Hjemrejse aften"),
 
     # ── UGE 7: 13-19 jul  BUILD (man-ons Gentofte, tor-søn Mallorca) ──
     (p+timedelta(42), swim_2000(),           "Svøm 2000m — morgen"),
@@ -542,9 +563,9 @@ def make_plan():
     (p+timedelta(48), run_z2(60),            "Løb Z2 60 min Mallorca — morgen"),
 
     # ── UGE 8: 20-26 jul  BUILD+ (Mallorca man-tir, hjem ons 22.) ──
-    (p+timedelta(49), bike_bjerg_z4(),       "Cykel bjerg Z4 Mallorca — VO2 stimulus"),
+    (p+timedelta(49), bike_sa_calobra(),     "Sa Calobra via Puig Major — tidlig afgang, ugens store fjeld-dag"),
     (p+timedelta(50), bike_z2(210,"Mallorca"),"Cykel Z2 stor dag 3.5t Mallorca"),
-    (p+timedelta(51), None,                  "Hjemrejse Mallorca (ons 22. jul) — hvile"),
+    (p+timedelta(51), run_z2_lang(90),       "Lang løb Z2 90 min — formiddag før aftenflyet hjem (ons 22.)"),
     (p+timedelta(52), strength_a(2),         "Styrke let 2 sæt"),
     (p+timedelta(52), run_z2(50),            "Løb Z2 50 min let"),
     (p+timedelta(53), swim_2500(),           "Svøm 2500m"),
