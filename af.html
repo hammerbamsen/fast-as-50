@@ -186,14 +186,25 @@ function showSetup() {
     <div class="label">Fast as Fifty · Opsætning</div>
     <div class="date" style="font-size:20px;margin-bottom:16px">Første gang</div>
     <p style="font-size:13px;color:#7A6A58;margin-bottom:20px;line-height:1.6">
-      Indsæt dit GitHub token — gemmes kun på din telefon.
+      Safari tilbyder at gemme tokenet i iCloud Keychain — så du aldrig mister det igen.
     </p>
-    <input class="setup-input" id="token-input" type="password" placeholder="github_pat_xxxx eller ghp_xxxx">
-    <button class="btn-setup" onclick="saveSetup()">Gem og fortsæt</button>
+    <form id="setup-form" action="javascript:void(0)" autocomplete="on" onsubmit="saveSetup(event)">
+      <input type="text" name="username" value="fast-as-50" autocomplete="username" style="display:none" readonly>
+      <input class="setup-input" id="token-input" type="password"
+             name="password" autocomplete="current-password"
+             placeholder="github_pat_xxxx eller ghp_xxxx" required>
+      <button class="btn-setup" type="submit">Gem og fortsæt</button>
+    </form>
+    <p style="font-size:11px;color:#7A6A58;margin-top:12px;line-height:1.5">
+      Første gang: sig <b>Yes</b> til Safaris tilbud om at gemme adgangskoden.<br>
+      Har du mistet tokenet? Klik i tekstfeltet → Safari foreslår tokens den har gemt.
+    </p>
   `;
+  setTimeout(()=>document.getElementById('token-input')?.focus(), 120);
 }
 
-function saveSetup() {
+function saveSetup(e) {
+  if (e) e.preventDefault();
   const t = document.getElementById('token-input').value.trim();
   if(!t.startsWith('ghp_') && !t.startsWith('github_pat_')) { alert('Token skal starte med ghp_ eller github_pat_'); return; }
   saveToken(t);
