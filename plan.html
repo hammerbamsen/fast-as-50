@@ -49,7 +49,8 @@ h1 { font-size:22px; font-weight:700; }
 .card { background:var(--white); border-radius:var(--r); padding:16px; margin-top:14px; box-shadow:0 1px 2px rgba(26,16,8,.05); }
 .card h2 { font-size:14px; font-weight:600; letter-spacing:.3px; color:var(--muted); text-transform:uppercase; margin-bottom:10px; }
 .legend { display:flex; gap:14px; flex-wrap:wrap; font-size:11px; color:var(--muted); margin-top:8px; }
-.legend span::before { content:""; display:inline-block; width:14px; height:3px; border-radius:2px; margin-right:5px; vertical-align:middle; background:var(--lc); }
+.legend span::before { content:""; display:inline-block; width:16px; height:3px; border-radius:2px; margin-right:5px; vertical-align:middle; background:var(--lc); }
+.legend span.dashed::before { background:transparent; border-top:2px dashed var(--lc); border-radius:0; height:0; }
 .badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; padding:2px 8px; border-radius:10px; }
 .badge.hard { background:#B03A2E1A; color:var(--hard); border:1px solid #B03A2E40; }
 .badge.warn { background:#B7791F1A; color:var(--warn); border:1px solid #B7791F40; }
@@ -285,7 +286,7 @@ function ctlChart(plan, view, dash){
   <div class="legend">
     <span style="--lc:var(--wine)">Faktisk CTL</span>
     <span style="--lc:var(--gold)">Kalibreret projektion</span>
-    <span style="--lc:var(--muted)">Pejlemærke</span>
+    <span class="dashed" style="--lc:var(--muted)">Pejlemærke</span>
   </div>`;
 }
 
