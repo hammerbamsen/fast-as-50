@@ -136,3 +136,104 @@ def test_historic_flag_marking():
     plan["athletes"]["kennet"]["actualsThroughWeek"] = 1
     flags = friel.validate(plan)
     assert all(f["historic"] for f in flags if f["week"] == 1)
+
+
+# ── T2: Taper-protokol ─────────────────────────────────────────────
+
+def mk_taper_plan(tss_by_week, block_by_week, races=None, total_weeks=3):
+    weeks = [{"week": w, "blockType": block_by_week[w - 1],
+              "tssTarget": tss_by_week[w - 1]} for w in range(1, total_weeks + 1)]
+    days = []
+    from datetime import date, timedelta
+    d0 = date(2026, 6, 1)
+    for i in range(total_weeks * 7):
+        d = (d0 + timedelta(days=i)).isoformat()
+        days.append(day(d, BIKE))  # kun cykel: ingen løbe-flags forstyrrer
+    p = mk_plan(days, weeks=weeks, total_weeks=total_weeks)
+    p["races"] = races or []
+    return p
+
+
+def test_taper_deep_tsb_not_flagged_at_old_floor():
+    # TSB ca. -12 i taper: ville aldrig flage ved -30, må heller ikke ved -15
+    p = mk_taper_plan([400, 250, 150], ["BUILD", "TAPER", "TAPER"])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=52, seed_date="2026-05-31")
+    assert not any(f["rule"] == "tsb_floor" and f["week"] in (2, 3) for f in flags)
+
+
+def test_taper_tsb_floor_minus_15():
+    # Meget høj TSS i taper-uge -> TSB dybt negativ -> HARD ved -15-gulvet
+    p = mk_taper_plan([400, 900, 150], ["BUILD", "TAPER", "TAPER"])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=52, seed_date="2026-05-31")
+    assert any(f["rule"] == "tsb_floor" and f["week"] == 2 and "(taper)" in f["msg"]
+               for f in flags)
+
+
+def test_taper_negative_ramp_no_flag():
+    # Faldende CTL i taper er korrekt — ingen ramp-flags
+    p = mk_taper_plan([400, 200, 100], ["BUILD", "TAPER", "RACE"])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    assert not any(f["rule"] in ("ctl_ramp", "taper_ctl_rising") and f["week"] in (2, 3)
+                   for f in flags)
+
+
+def test_taper_rising_ctl_flagged():
+    # Stigende CTL i taper-uge -> taper_ctl_rising WARN (ikke ctl_ramp)
+    p = mk_taper_plan([300, 700, 100], ["BUILD", "TAPER", "RACE"])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    assert any(f["rule"] == "taper_ctl_rising" and f["week"] == 2 for f in flags)
+    assert not any(f["rule"] == "ctl_ramp" and f["week"] == 2 for f in flags)
+
+
+def test_race_week_tsb_floor_skipped():
+    # Selv absurd TSS i RACE-uge giver ikke tsb_floor (vurderes på race-dag)
+    p = mk_taper_plan([400, 200, 900], ["BUILD", "TAPER", "RACE"])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    assert not any(f["rule"] == "tsb_floor" and f["week"] == 3 for f in flags)
+
+
+def test_race_day_low_tsb_flagged():
+    # Hård belastning helt frem til race -> TSB < +5 på race-dag -> WARN
+    p = mk_taper_plan([400, 400, 400], ["BUILD", "TAPER", "RACE"],
+                      races=[{"name": "Testrace", "date": "2026-06-20"}])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    assert any(f["rule"] == "race_tsb" and "Testrace" in f["msg"] for f in flags)
+
+
+def test_race_day_good_tsb_no_flag():
+    # Korrekt taper -> TSB i +5..+25 på race-dag -> ingen flags
+    p = mk_taper_plan([350, 120, 60], ["BUILD", "TAPER", "RACE"],
+                      races=[{"name": "Testrace", "date": "2026-06-20"}])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    assert not any(f["rule"] == "race_tsb" for f in flags)
+
+
+def test_dual_race_both_checked():
+    # To A-races 7 dage fra hinanden: hård belastning hele vejen ->
+    # BEGGE race-dage skal flages individuelt (ingen dato må slippe forbi)
+    p = mk_taper_plan([400, 400, 400, 400], ["BUILD", "TAPER", "TAPER", "RACE"],
+                      races=[{"name": "Race A", "date": "2026-06-20"},
+                             {"name": "Race B", "date": "2026-06-27"}],
+                      total_weeks=4)
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    msgs = [f["msg"] for f in flags if f["rule"] == "race_tsb"]
+    assert any("Race A" in m for m in msgs)
+    assert any("Race B" in m for m in msgs)
+
+
+def test_dual_race_correct_taper_no_flags():
+    # Korrekt dobbelt-race-taper: TSB vedligeholdes mellem racene -> ingen flags
+    p = mk_taper_plan([350, 120, 60, 60], ["BUILD", "TAPER", "TAPER", "RACE"],
+                      races=[{"name": "Race A", "date": "2026-06-20"},
+                             {"name": "Race B", "date": "2026-06-27"}],
+                      total_weeks=4)
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=45, seed_date="2026-05-31")
+    assert not any(f["rule"] == "race_tsb" for f in flags)
+
+
+def test_backward_compat_missing_blocktype():
+    # Uger uden blockType -> hidtidig adfærd (gulv -30, normale ramp-regler)
+    p = mk_taper_plan([400, 900, 150], [None, None, None])
+    flags = friel.load_flags(p, seed_ctl=45, seed_atl=52, seed_date="2026-05-31")
+    hard = [f for f in flags if f["rule"] == "tsb_floor"]
+    assert all("-30" in f["msg"] for f in hard) or hard == []
