@@ -391,15 +391,51 @@ const setToken = t => localStorage.setItem(TOKEN_KEY, t);
 async function setupAuth(){
   const cfg = await loadAuthConfig();
   if (cfg.enabled) {
-    // MSAL-flow: log ud
     if (confirm("Log ud af Microsoft?")) {
       await msalInstance.logoutRedirect();
     }
     return;
   }
-  // Legacy: GitHub PAT
-  const t = prompt("Indsæt GitHub PAT (samme som af.html bruger):", getToken() || "");
-  if (t) { setToken(t.trim()); alert("Token gemt."); }
+  // Åbn Keychain-venlig form som Safari kan gemme automatisk
+  const sheet = document.getElementById("sheet");
+  const bg = document.getElementById("sheet-bg");
+  sheet.innerHTML = `<h3>GitHub-token</h3>
+    <div class="sub">Safari tilbyder at gemme tokenet i iCloud Keychain — så mister du det aldrig igen.</div>
+    <form id="token-form" action="javascript:void(0)" autocomplete="on" onsubmit="saveTokenFromForm(event)">
+      <input type="text" name="username" value="fast-as-50" autocomplete="username" style="display:none" readonly>
+      <label>Token</label>
+      <input type="password" name="password" id="token-input"
+             autocomplete="current-password"
+             value="${(getToken()||'').replace(/"/g,'&quot;')}"
+             placeholder="github_pat_..." style="font-family:monospace;font-size:11px" required>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.4">
+        Første gang: tap Gem, sig "Yes" til Safaris tilbud om at gemme adgangskode i iCloud Keychain.<br>
+        Har du mistet tokenet? Klik i tekstfeltet → Safari foreslår tokens den har gemt.
+      </div>
+      <div class="btn-row">
+        <button type="button" class="secondary" onclick="closeSheet()">Fortryd</button>
+        <button type="submit" class="primary">Gem</button>
+      </div>
+    </form>`;
+  bg.classList.add("open");
+  sheet.classList.add("open");
+  // Sæt focus så autofill trigges
+  setTimeout(()=>document.getElementById("token-input")?.focus(), 120);
+}
+
+function saveTokenFromForm(e){
+  e.preventDefault();
+  const val = document.getElementById("token-input").value.trim();
+  if (!val) return;
+  setToken(val);
+  // Vis kort bekræftelse så Safari når at tilbyde Save Password
+  const sheet = document.getElementById("sheet");
+  sheet.innerHTML = `<h3>Token gemt</h3>
+    <div class="ok-box"><i class="ti ti-check" style="font-size:14px"></i> Token er gemt lokalt.</div>
+    <p style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5">
+      Hvis Safari lige har spurgt om at gemme adgangskoden — sig <b>Yes</b>. Så synkroniseres tokenet til iCloud Keychain og er tilgængeligt på alle dine enheder.
+    </p>
+    <div class="btn-row"><button class="primary" onclick="closeSheet()">Færdig</button></div>`;
 }
 // Bagudkompatibel alias
 const setupToken = setupAuth;
