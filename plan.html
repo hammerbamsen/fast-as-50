@@ -103,10 +103,12 @@ h1 { font-size:22px; font-weight:700; }
 
 <script>
 const NAV = [
-  {id:"today", label:"I dag",  ti:"ti-calendar",       href:"index.html"},
-  {id:"plan",  label:"Plan",   ti:"ti-route",          href:"plan.html", active:true},
-  {id:"uge",   label:"Uge",    ti:"ti-calendar-week",  href:"index.html"},
-  {id:"body",  label:"Krop",   ti:"ti-heart",          href:"index.html"},
+  {id:"today",    label:"I dag",   ti:"ti-calendar",       href:"index.html"},
+  {id:"plan",     label:"Plan",    ti:"ti-route",          href:"plan.html", active:true},
+  {id:"week",     label:"Uge",     ti:"ti-calendar-week",  href:"index.html#week"},
+  {id:"overview", label:"Træning", ti:"ti-layout-grid",    href:"index.html#overview"},
+  {id:"body",     label:"Krop",    ti:"ti-heart",          href:"index.html#body"},
+  {id:"rules",    label:"Regler",  ti:"ti-checklist",      href:"index.html#rules"},
 ];
 document.getElementById("side-nav").innerHTML = NAV.map(n=>`
   <a class="nav-btn ${n.active?"active":""}" href="${n.href}"><i class="ti ${n.ti}" style="font-size:18px"></i> ${n.label}</a>`).join("");
