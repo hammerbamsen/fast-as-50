@@ -27,17 +27,18 @@ from . import friel
 # -- Friel-gate ---------------------------------------------------------------
 
 def _simulate_mutation(plan: dict, action: str, entry_id: str,
-                       params: Optional[dict]) -> tuple[dict, str, str]:
+                       params: Optional[dict],
+                       athlete: str = "kennet") -> tuple[dict, str, str]:
     """
     Returnerer (simuleret_plan, dato_der_ændres, evt_ekstra_dato).
-    Muterer IKKE input-plan.
+    Muterer IKKE input-plan. Understøtter både 'kennet' og 'eva'.
     """
     sim = copy.deepcopy(plan)
-    kennet = sim["athletes"]["kennet"]
+    ath = sim["athletes"][athlete]
 
     # Find entry
     src_day = src_entry = None
-    for d in kennet["days"]:
+    for d in ath["days"]:
         for e in d["entries"]:
             if e.get("id") == entry_id:
                 src_day, src_entry = d, e
@@ -45,7 +46,7 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
         if src_entry:
             break
     if not src_entry:
-        raise ValueError(f"Entry-id {entry_id!r} ikke fundet")
+        raise ValueError(f"Entry-id {entry_id!r} ikke fundet for atlet {athlete!r}")
 
     extra_date = ""
 
@@ -85,15 +86,15 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
         mode = params.get("mode", "swap")
         # find måldag
         dst_day = None
-        for d in kennet["days"]:
+        for d in ath["days"]:
             if d["date"] == target_date:
                 dst_day = d
                 break
         if not dst_day:
             # ny dag — indsæt struktur
             dst_day = {"date": target_date, "entries": []}
-            kennet["days"].append(dst_day)
-            kennet["days"].sort(key=lambda d: d["date"])
+            ath["days"].append(dst_day)
+            ath["days"].sort(key=lambda d: d["date"])
         if mode == "swap":
             # udveksl entries mellem dagene
             src_day["entries"], dst_day["entries"] = dst_day["entries"], src_day["entries"]
@@ -119,26 +120,28 @@ def _find_template(tid: str) -> dict:
     raise ValueError(f"Template-id {tid!r} findes ikke i workout_library.json")
 
 
-def gate_check(plan: dict, sim_plan: dict, confirmed_warn: bool = False) -> dict:
+def gate_check(plan: dict, sim_plan: dict, confirmed_warn: bool = False,
+               athlete: str = "kennet") -> dict:
     """
     Friel-gate. Kører fuld validate på simuleret plan.
-    Returnerer {status: 'ok'|'warn'|'reject', flags: [...], msg: str}.
-
-    Regel:
-      - Hvis simuleret plan tilføjer HARD-flag der ikke fandtes før: REJECT
-      - Hvis simuleret plan tilføjer WARN-flag der ikke fandtes før: WARN (og OK hvis confirmed)
-      - Ellers: OK
+    For 'eva' bruges kun strukturregler (ingen fitness/CTL — hun er ikke på Intervals).
     """
-    seed = plan.get("fitnessSeed", {}).get("current", {})
-    kwargs = dict(seed_ctl=seed.get("ctl"), seed_atl=seed.get("atl"),
-                  seed_date=seed.get("date"))
-
     def _key(f):
         return (f["week"], f["rule"], f["msg"])
 
-    before = {_key(f) for f in friel.validate(plan, **kwargs)
-              if not f.get("historic")}
-    after_flags = friel.validate(sim_plan, **kwargs)
+    if athlete == "kennet":
+        seed = plan.get("fitnessSeed", {}).get("current", {})
+        kwargs = dict(seed_ctl=seed.get("ctl"), seed_atl=seed.get("atl"),
+                      seed_date=seed.get("date"))
+        before = {_key(f) for f in friel.validate(plan, **kwargs)
+                  if not f.get("historic")}
+        after_flags = friel.validate(sim_plan, **kwargs)
+    else:
+        # Eva: kun strukturregler (structural_flags for eva-atleten)
+        before = {_key(f) for f in friel.validate(plan, athlete=athlete)
+                  if not f.get("historic")}
+        after_flags = friel.validate(sim_plan, athlete=athlete)
+
     new_flags = [f for f in after_flags
                  if _key(f) not in before and not f.get("historic")]
 
@@ -157,26 +160,23 @@ def gate_check(plan: dict, sim_plan: dict, confirmed_warn: bool = False) -> dict
 # -- Orkestrering -------------------------------------------------------------
 
 def apply_edit(plan_json_raw: str, action: str, entry_id: str,
-               params: dict, confirmed_warn: bool = False) -> dict:
+               params: dict, confirmed_warn: bool = False,
+               athlete: str = "kennet") -> dict:
     """
     Ren funktion — muterer ikke I/O. Returnerer:
-      { status: 'ok'|'warn'|'reject',
-        new_plan_raw: str,   # kun hvis ok
-        dates_changed: [iso, ...],
-        gate: {...},
-        request_ts: iso }
-    Kalderen (apply_edit.py) står for I/O.
+      { status, new_plan_raw, dates_changed, gate, request_ts, athlete }
     """
     plan = json.loads(plan_json_raw)
     sim_plan, primary_date, extra_date = _simulate_mutation(
-        plan, action, entry_id, params or {})
-    gate = gate_check(plan, sim_plan, confirmed_warn=confirmed_warn)
+        plan, action, entry_id, params or {}, athlete=athlete)
+    gate = gate_check(plan, sim_plan, confirmed_warn=confirmed_warn, athlete=athlete)
 
     dates = [primary_date] + ([extra_date] if extra_date else [])
     result = {
         "status": gate["status"],
         "gate": gate,
         "dates_changed": dates,
+        "athlete": athlete,
         "request_ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
     if gate["status"] == "ok":
