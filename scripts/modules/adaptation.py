@@ -91,7 +91,7 @@ def detect_missed(plan, activities, today, window_days=WINDOW_DAYS):
     travel = _travel_dates(plan)
 
     planned = []
-    for d in plan["athletes"]["kennet"]["days"]:
+    for d in plan.get("athletes", {}).get("kennet", {}).get("days", []):
         try:
             dd = date.fromisoformat(d["date"])
         except ValueError:
@@ -178,7 +178,7 @@ def suggest(plan, missed, today, readiness=None):
     # Find næste hårde pas i de kommende LOOKAHEAD_DAYS dage
     hi = today + timedelta(days=LOOKAHEAD_DAYS)
     target = None
-    for d in sorted(plan["athletes"]["kennet"]["days"], key=lambda x: x["date"]):
+    for d in sorted(plan.get("athletes", {}).get("kennet", {}).get("days", []), key=lambda x: x["date"]):
         try:
             dd = date.fromisoformat(d["date"])
         except ValueError:

@@ -195,3 +195,28 @@ def test_signature_stable_and_changes():
     assert adaptation.signature(a) == adaptation.signature(b)
     c = adaptation.suggest(plan, _missed_days(3), TODAY)
     assert adaptation.signature(a) != adaptation.signature(c)
+
+
+# ── robusthed: malformed plan må ikke crashe ────────────────────
+
+def test_malformed_plan_does_not_crash():
+    """Tom/delvis plan (fx korrupt eller under samtidig skrivning) degraderer pænt."""
+    for bad in [{}, {"athletes": {}}, {"athletes": {"kennet": {}}},
+                {"athletes": {"kennet": {"days": []}}}]:
+        out = adaptation.compute_adaptation(bad, [], TODAY, readiness="HIGH")
+        assert out["triggered"] is False
+        assert out["suggestion"] is None
+
+
+def test_extreme_all_missed_gives_single_suggestion():
+    """2 ugers total inaktivitet giver ÉT forslag, ikke spam."""
+    plan = _base_plan()
+    hard_iso = (TODAY + timedelta(days=1)).isoformat()
+    _set(plan, hard_iso, {"id": "h1", "workout": _wo("Løb VO2 5×3 min Z4", "Run", 60)})
+    # 10 missede pas
+    missed = [{"date": (TODAY - timedelta(days=d)).isoformat(),
+               "entry_id": f"m{d}", "name": "x", "type": "Run"} for d in range(1, 11)]
+    out = adaptation.suggest(plan, missed, TODAY, readiness="LOW")
+    assert out["triggered"] is True
+    # Præcis ét forslag (eller guard) — aldrig en liste
+    assert out["suggestion"] is None or isinstance(out["suggestion"], dict)
