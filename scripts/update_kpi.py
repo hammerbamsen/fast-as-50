@@ -397,6 +397,19 @@ def main():
             }
             for s in today_sessions_all
         ]
+    else:
+        # Ingen session i dag = hviledag. Sæt eksplicit — ellers bliver
+        # gårsdagens 'today' hængende (bug: appen viste et forkert pas).
+        data['today'] = [
+            {
+                'discipline': 'rest',
+                'title':      'Hviledag',
+                'duration':   '',
+                'zone':       '–',
+                'desc':       'Ingen planlagt træning i dag.',
+                'completed':  False,
+            }
+        ]
 
     # --- Coach speech (genereres dagligt) ---
     block_type = data.get('blockType', 'BUILD')
