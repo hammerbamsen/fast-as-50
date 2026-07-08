@@ -1,20 +1,37 @@
 # -*- coding: utf-8 -*-
-"""Engangs-diagnostik: rapportér indhold af push_subscriptions.json i det private repo."""
+"""Engangs-diagnostik: skriv antal+typer af subscriptions til debug/subs_status.txt i OFFENTLIGT repo."""
 import base64, json, os
 import requests
 
-REPO = os.environ.get("PRIVATE_REPO", "")
-TOKEN = os.environ.get("PRIVATE_REPO_TOKEN", "")
-r = requests.get(f"https://api.github.com/repos/{REPO}/contents/push_subscriptions.json",
-                 headers={"Authorization": f"Bearer {TOKEN}", "Accept": "application/vnd.github+json"}, timeout=30)
+PRIV = os.environ.get("PRIVATE_REPO", "")
+PTOK = os.environ.get("PRIVATE_REPO_TOKEN", "")
+PUB = os.environ.get("GITHUB_REPOSITORY", "hammerbamsen/fast-as-50")
+GTOK = os.environ.get("GITHUB_TOKEN", "")
+
+lines = []
+r = requests.get(f"https://api.github.com/repos/{PRIV}/contents/push_subscriptions.json",
+                 headers={"Authorization": f"Bearer {PTOK}", "Accept": "application/vnd.github+json"}, timeout=30)
 if r.status_code == 404:
-    print("push_subscriptions.json findes ikke (0 subscriptions) — ren.")
+    lines.append("STORE: findes ikke endnu (0 subscriptions) — ren.")
 elif r.status_code == 200:
     subs = json.loads(base64.b64decode(r.json()["content"]).decode()).get("subscriptions", [])
-    print(f"Subscriptions i store: {len(subs)}")
+    lines.append(f"STORE: {len(subs)} subscriptions")
     for s in subs:
-        ep = s.get("endpoint","")
+        ep = s.get("endpoint", "")
         tag = "FAKE-TEST" if "TEST-DIAG" in ep else "ægte"
-        print(f"  [{tag}] {s.get('athlete')} · ...{ep[-24:]}")
+        lines.append(f"  [{tag}] {s.get('athlete')} ...{ep[-30:]}")
 else:
-    print(f"Uventet status: {r.status_code}")
+    lines.append(f"STORE: uventet status {r.status_code}")
+
+out = "\n".join(lines) + "\n"
+print(out)
+
+# Skriv til offentligt repo så det kan læses uden PAT
+path = "debug/subs_status.txt"
+g = requests.get(f"https://api.github.com/repos/{PUB}/contents/{path}",
+                 headers={"Authorization": f"Bearer {GTOK}"}, timeout=30)
+sha = g.json().get("sha") if g.status_code == 200 else None
+body = {"message": "debug: subs-status", "content": base64.b64encode(out.encode()).decode()}
+if sha: body["sha"] = sha
+requests.put(f"https://api.github.com/repos/{PUB}/contents/{path}",
+             headers={"Authorization": f"Bearer {GTOK}"}, json=body, timeout=30)
