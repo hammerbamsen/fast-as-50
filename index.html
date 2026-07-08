@@ -298,6 +298,8 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
   <div id="page-overview" class="page"></div>
   <div id="page-body" class="page"></div>
   <div id="page-rules" class="page"></div>
+
+  <div id="push-toggle-main" style="margin:18px 4px 90px;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)"></div>
 </main>
 
 <!-- BOTTOM NAV -->
@@ -1892,6 +1894,7 @@ async function sendSubscriptionToBackend(subJson){
   return { ok: r.status === 204, status: r.status };
 }
 renderPushToggle("push-toggle");
+renderPushToggle("push-toggle-main");
 </script>
 </body>
 </html>
