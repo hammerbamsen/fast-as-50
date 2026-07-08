@@ -120,6 +120,7 @@ html,body { min-height:100%; background:var(--cream); font-family:'Hanken Grotes
 </div>
 <main class="main" id="content"></main>
 <div style="text-align:center;padding:0 0 44px">
+  <div id="push-toggle" style="margin-bottom:14px"></div>
   <button id="tour-restart" onclick="startTour()" style="background:none;border:none;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer;font-family:inherit">Vis rundtur igen</button>
 </div>
 
@@ -796,6 +797,118 @@ async function downloadIcs(){
 
   closeIcs();
 }
+
+// -- U2: push athlete-id (Eva) + service worker-registrering --------
+const PUSH_ATHLETE_ID = "eva";
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/fast-as-50/sw.js").then(reg => { reg.update(); });
+}
+// -- U2: Web Push opt-in (fælles for index.html + eva.html) --------
+// VAPID public key (offentlig per design — privat nøgle ligger server-side).
+const VAPID_PUBLIC = "BHyYLHHV0bt4MNTG3wI0syiiUJUpaPFtIKfgn1i-SK1Ng64KMR3aGc3I76ZDml50jv5bnQ_kRRNcvuDenVsU49M";
+const PUSH_SUBSCRIBE_KEY = "fast50_push_sub";   // localStorage: sidst kendte subscription
+const PUSH_ATHLETE = (typeof PUSH_ATHLETE_ID !== "undefined") ? PUSH_ATHLETE_ID : "kennet";
+
+function _urlB64ToUint8(base64){
+  const pad = "=".repeat((4 - base64.length % 4) % 4);
+  const b64 = (base64 + pad).replace(/-/g, "+").replace(/_/g, "/");
+  const raw = atob(b64);
+  return Uint8Array.from([...raw].map(c => c.charCodeAt(0)));
+}
+
+// iOS Safari kræver at PWA'en er installeret til hjemmeskærm (display-mode:
+// standalone) FØR Push virker. Vi detekterer det, så vi kan vise den rigtige
+// besked til Eva i stedet for en knap der fejler tavst.
+function _isStandalone(){
+  return window.matchMedia("(display-mode: standalone)").matches
+      || window.navigator.standalone === true;
+}
+function _isIOS(){
+  return /iP(hone|ad|od)/.test(navigator.userAgent)
+      || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+function pushSupported(){
+  return "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+}
+
+// Returnerer: 'unsupported' | 'needs-install' | 'granted' | 'denied' | 'default'
+function pushState(){
+  if (!pushSupported()) return "unsupported";
+  if (_isIOS() && !_isStandalone()) return "needs-install";
+  return Notification.permission;   // 'granted' | 'denied' | 'default'
+}
+
+async function pushSubscribe(){
+  if (!pushSupported()) return { ok:false, reason:"unsupported" };
+  const perm = await Notification.requestPermission();
+  if (perm !== "granted") return { ok:false, reason:perm };
+  const reg = await navigator.serviceWorker.ready;
+  let sub = await reg.pushManager.getSubscription();
+  if (!sub){
+    sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: _urlB64ToUint8(VAPID_PUBLIC),
+    });
+  }
+  const subJson = sub.toJSON();
+  subJson.athlete = PUSH_ATHLETE;
+  localStorage.setItem(PUSH_SUBSCRIBE_KEY, JSON.stringify(subJson));
+  // Send til backend (aktiveres i Spor B — sendSubscription defineres der).
+  if (typeof sendSubscriptionToBackend === "function"){
+    try { await sendSubscriptionToBackend(subJson); }
+    catch(e){ console.warn("push: kunne ikke sende subscription til backend", e); }
+  }
+  return { ok:true, subscription:subJson };
+}
+
+async function pushUnsubscribe(){
+  if (!pushSupported()) return;
+  const reg = await navigator.serviceWorker.ready;
+  const sub = await reg.pushManager.getSubscription();
+  if (sub) await sub.unsubscribe();
+  localStorage.removeItem(PUSH_SUBSCRIBE_KEY);
+}
+
+// Renderer opt-in-knap/-status i et givet container-element.
+async function renderPushToggle(containerId){
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const st = pushState();
+  const wrap = (inner) => `<div style="font-size:13px;line-height:1.5">${inner}</div>`;
+  if (st === "unsupported"){
+    el.innerHTML = wrap("Påmindelser understøttes ikke i denne browser.");
+    return;
+  }
+  if (st === "needs-install"){
+    el.innerHTML = wrap('For at få påmindelser på iPhone: tryk <b>Del</b>-ikonet og vælg <b>Føj til hjemmeskærm</b>. Åbn derefter appen fra hjemmeskærmen.');
+    return;
+  }
+  if (st === "granted"){
+    el.innerHTML = wrap('Påmindelser er slået <b>til</b> · <button id="push-off" style="background:none;border:none;color:var(--muted,#888);text-decoration:underline;cursor:pointer;font:inherit">slå fra</button>');
+    const off = document.getElementById("push-off");
+    if (off) off.onclick = async () => { await pushUnsubscribe(); renderPushToggle(containerId); };
+    return;
+  }
+  if (st === "denied"){
+    el.innerHTML = wrap("Påmindelser er blokeret. Slå dem til i browserens indstillinger for denne side.");
+    return;
+  }
+  // default — tilbyd opt-in
+  el.innerHTML = `<button id="push-on" style="padding:8px 14px;border-radius:8px;border:none;background:var(--teal,var(--wine,#59182A));color:#fff;cursor:pointer;font:inherit;font-size:13px">Slå daglige påmindelser til</button><div id="push-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>`;
+  const on = document.getElementById("push-on");
+  on.onclick = async () => {
+    const msg = document.getElementById("push-msg");
+    if (msg) msg.textContent = "Aktiverer…";
+    const r = await pushSubscribe();
+    if (r.ok) renderPushToggle(containerId);
+    else if (msg) msg.textContent = r.reason === "denied"
+      ? "Du afviste påmindelser. Slå dem til i browserindstillinger."
+      : "Kunne ikke aktivere påmindelser (" + r.reason + ").";
+  };
+}
+
+// Render push-toggle når siden er klar
+renderPushToggle("push-toggle");
 </script>
 </body>
 </html>
