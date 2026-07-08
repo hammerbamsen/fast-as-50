@@ -1824,35 +1824,31 @@ async function renderPushToggle(containerId){
     return;
   }
   if (st === "granted"){
-    // Push tilladt — men subscription når kun serveren hvis der er en token.
-    // I standalone-PWA'en (hjemmeskærm) er localStorage adskilt fra Safari,
-    // så token sat i browseren er IKKE synlig her. Tilbyd at indtaste den.
     const hasToken = !!localStorage.getItem("af_gh_token");
     if (!hasToken){
       el.innerHTML = wrap(
         'Påmindelser er tilladt, men mangler adgang til at nå serveren.'
         + '<div style="margin-top:8px">Indsæt dit GitHub-token (samme som i Plan-fanen):</div>'
-        + '<input id="push-token" type="password" placeholder="github_pat_..." '
+        + '<input class="pt-token" type="password" placeholder="github_pat_..." '
         + 'style="width:100%;margin-top:6px;padding:7px 9px;border-radius:7px;border:1px solid var(--wine-l,#ccc);font-family:monospace;font-size:11px;box-sizing:border-box">'
-        + '<button id="push-token-save" style="margin-top:6px;padding:7px 12px;border-radius:7px;border:none;background:var(--wine,#59182A);color:#fff;cursor:pointer;font:inherit;font-size:12px">Gem og aktivér</button>'
-        + '<div id="push-token-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>');
-      const save = document.getElementById("push-token-save");
-      save.onclick = async () => {
-        const val = document.getElementById("push-token").value.trim();
-        const m = document.getElementById("push-token-msg");
+        + '<button class="pt-token-save" style="margin-top:6px;padding:7px 12px;border-radius:7px;border:none;background:var(--wine,#59182A);color:#fff;cursor:pointer;font:inherit;font-size:12px">Gem og aktivér</button>'
+        + '<div class="pt-token-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>');
+      el.querySelector(".pt-token-save").onclick = async () => {
+        const val = el.querySelector(".pt-token").value.trim();
+        const m = el.querySelector(".pt-token-msg");
         if (!val){ if(m) m.textContent = "Indsæt et token først."; return; }
         localStorage.setItem("af_gh_token", val);
         if (m) m.textContent = "Aktiverer…";
         const sub = JSON.parse(localStorage.getItem("fast50_push_sub") || "null");
         const r = sub ? await sendSubscriptionToBackend(sub) : await pushSubscribe();
-        if (r && r.ok) renderPushToggle(containerId);
+        if (r && r.ok) { renderPushToggle("push-toggle"); renderPushToggle("push-toggle-main"); }
         else if (m) m.textContent = "Kunne ikke aktivere (" + (r && (r.status||r.reason)) + "). Tjek tokenet.";
       };
       return;
     }
-    el.innerHTML = wrap('Påmindelser er slået <b>til</b> · <button id="push-off" style="background:none;border:none;color:var(--muted,#888);text-decoration:underline;cursor:pointer;font:inherit">slå fra</button>');
-    const off = document.getElementById("push-off");
-    if (off) off.onclick = async () => { await pushUnsubscribe(); renderPushToggle(containerId); };
+    el.innerHTML = wrap('Påmindelser er slået <b>til</b> · <button class="pt-off" style="background:none;border:none;color:var(--muted,#888);text-decoration:underline;cursor:pointer;font:inherit">slå fra</button>');
+    const off = el.querySelector(".pt-off");
+    if (off) off.onclick = async () => { await pushUnsubscribe(); renderPushToggle("push-toggle"); renderPushToggle("push-toggle-main"); };
     return;
   }
   if (st === "denied"){
@@ -1860,14 +1856,13 @@ async function renderPushToggle(containerId){
     return;
   }
   // default — tilbyd opt-in
-  el.innerHTML = `<button id="push-on" style="padding:8px 14px;border-radius:8px;border:none;background:var(--teal,var(--wine,#59182A));color:#fff;cursor:pointer;font:inherit;font-size:13px">Slå daglige påmindelser til</button><div id="push-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>`;
-  const on = document.getElementById("push-on");
-  on.onclick = async () => {
-    const msg = document.getElementById("push-msg");
+  el.innerHTML = `<button class="pt-on" style="padding:8px 14px;border-radius:8px;border:none;background:var(--teal,var(--wine,#59182A));color:#fff;cursor:pointer;font:inherit;font-size:13px">Slå daglige påmindelser til</button><div class="pt-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>`;
+  el.querySelector(".pt-on").onclick = async () => {
+    const msg = el.querySelector(".pt-msg");
     if (msg) msg.textContent = "Aktiverer…";
     const r = await pushSubscribe();
-    if (r.ok) { renderPushToggle(containerId); return; }
-    if (r.reason === "no-token") { renderPushToggle(containerId); return; }  // -> token-input
+    if (r.ok) { renderPushToggle("push-toggle"); renderPushToggle("push-toggle-main"); return; }
+    if (r.reason === "no-token") { renderPushToggle("push-toggle"); renderPushToggle("push-toggle-main"); return; }
     if (msg) msg.textContent = r.reason === "denied"
       ? "Du afviste påmindelser. Slå dem til i browserindstillinger."
       : "Kunne ikke aktivere påmindelser (" + r.reason + ").";
