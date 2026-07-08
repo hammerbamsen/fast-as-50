@@ -1468,7 +1468,7 @@ function checkStaleness(updatedStr) {
     : 'Data er ' + hrs + ' timer gamle — opdateres automatisk.';
   const bg = warn ? '#E67E22' : '#EDE6D8';
   const fg = warn ? '#fff' : '#7A6A58';
-  const css = 'position:sticky;top:0;z-index:9999;background:' + bg + ';color:' + fg +
+  const css = 'position:relative;z-index:9999;background:' + bg + ';color:' + fg +
               ';font-family:\u0027Space Mono\u0027,monospace;font-size:11px;padding:8px 14px;text-align:center;line-height:1.4';
 
   if (existing) { existing.innerHTML = html; existing.style.cssText = css; return; }
@@ -1787,12 +1787,16 @@ async function pushSubscribe(){
   const subJson = sub.toJSON();
   subJson.athlete = PUSH_ATHLETE;
   localStorage.setItem(PUSH_SUBSCRIBE_KEY, JSON.stringify(subJson));
-  // Send til backend (aktiveres i Spor B — sendSubscription defineres der).
+  // Send til backend. Rapportér ÆRLIGT om det nåede serveren — ellers tror
+  // brugeren push virker, men subscription ligger kun lokalt (fx uden token).
+  let backend = { ok: true };
   if (typeof sendSubscriptionToBackend === "function"){
-    try { await sendSubscriptionToBackend(subJson); }
-    catch(e){ console.warn("push: kunne ikke sende subscription til backend", e); }
+    try { backend = await sendSubscriptionToBackend(subJson); }
+    catch(e){ backend = { ok:false, reason:"dispatch-error" }; }
   }
-  return { ok:true, subscription:subJson };
+  return { ok: !!backend.ok, subscription:subJson,
+           reason: backend.ok ? undefined : (backend.reason || "backend"),
+           backendStatus: backend.status };
 }
 
 async function pushUnsubscribe(){
@@ -1818,6 +1822,32 @@ async function renderPushToggle(containerId){
     return;
   }
   if (st === "granted"){
+    // Push tilladt — men subscription når kun serveren hvis der er en token.
+    // I standalone-PWA'en (hjemmeskærm) er localStorage adskilt fra Safari,
+    // så token sat i browseren er IKKE synlig her. Tilbyd at indtaste den.
+    const hasToken = !!localStorage.getItem("af_gh_token");
+    if (!hasToken){
+      el.innerHTML = wrap(
+        'Påmindelser er tilladt, men mangler adgang til at nå serveren.'
+        + '<div style="margin-top:8px">Indsæt dit GitHub-token (samme som i Plan-fanen):</div>'
+        + '<input id="push-token" type="password" placeholder="github_pat_..." '
+        + 'style="width:100%;margin-top:6px;padding:7px 9px;border-radius:7px;border:1px solid var(--wine-l,#ccc);font-family:monospace;font-size:11px;box-sizing:border-box">'
+        + '<button id="push-token-save" style="margin-top:6px;padding:7px 12px;border-radius:7px;border:none;background:var(--wine,#59182A);color:#fff;cursor:pointer;font:inherit;font-size:12px">Gem og aktivér</button>'
+        + '<div id="push-token-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>');
+      const save = document.getElementById("push-token-save");
+      save.onclick = async () => {
+        const val = document.getElementById("push-token").value.trim();
+        const m = document.getElementById("push-token-msg");
+        if (!val){ if(m) m.textContent = "Indsæt et token først."; return; }
+        localStorage.setItem("af_gh_token", val);
+        if (m) m.textContent = "Aktiverer…";
+        const sub = JSON.parse(localStorage.getItem("fast50_push_sub") || "null");
+        const r = sub ? await sendSubscriptionToBackend(sub) : await pushSubscribe();
+        if (r && r.ok) renderPushToggle(containerId);
+        else if (m) m.textContent = "Kunne ikke aktivere (" + (r && (r.status||r.reason)) + "). Tjek tokenet.";
+      };
+      return;
+    }
     el.innerHTML = wrap('Påmindelser er slået <b>til</b> · <button id="push-off" style="background:none;border:none;color:var(--muted,#888);text-decoration:underline;cursor:pointer;font:inherit">slå fra</button>');
     const off = document.getElementById("push-off");
     if (off) off.onclick = async () => { await pushUnsubscribe(); renderPushToggle(containerId); };
@@ -1834,8 +1864,9 @@ async function renderPushToggle(containerId){
     const msg = document.getElementById("push-msg");
     if (msg) msg.textContent = "Aktiverer…";
     const r = await pushSubscribe();
-    if (r.ok) renderPushToggle(containerId);
-    else if (msg) msg.textContent = r.reason === "denied"
+    if (r.ok) { renderPushToggle(containerId); return; }
+    if (r.reason === "no-token") { renderPushToggle(containerId); return; }  // -> token-input
+    if (msg) msg.textContent = r.reason === "denied"
       ? "Du afviste påmindelser. Slå dem til i browserindstillinger."
       : "Kunne ikke aktivere påmindelser (" + r.reason + ").";
   };

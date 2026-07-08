@@ -109,7 +109,7 @@ def run_send(plan, subs, today, sender):
             res = sender(s, payload)
             if res is True:
                 sent += 1
-            elif isinstance(res, int) and push_send.is_dead_status(res):
+            elif res == "dead" or (isinstance(res, int) and push_send.is_dead_status(res)):
                 dead.add(s["endpoint"])
                 print(f"  {athlete}: død subscription fjernes ({res}).")
             else:
@@ -120,7 +120,15 @@ def run_send(plan, subs, today, sender):
 
 
 def _webpush_sender(s, payload):
-    """Produktions-sender: pywebpush med VAPID."""
+    """Produktions-sender: pywebpush med VAPID.
+
+    Isolerer ALLE fejl pr. subscription — én dårlig subscription må aldrig
+    vælte hele batchen. Returnerer:
+      True   = sendt
+      int    = HTTP-status (kalder vurderer død via is_dead_status)
+      "dead" = ugyldig subscription (fx korrupt base64-nøgle) => skal fjernes
+      False  = midlertidig/ukendt fejl (beholdes, prøves igen næste gang)
+    """
     try:
         webpush(
             subscription_info={"endpoint": s["endpoint"], "keys": s["keys"]},
@@ -132,6 +140,11 @@ def _webpush_sender(s, payload):
     except WebPushException as e:
         code = getattr(getattr(e, "response", None), "status_code", None)
         return code if code else False
+    except (ValueError, KeyError, TypeError) as e:
+        # Korrupt subscription (ugyldig base64-nøgle, manglende felt osv.).
+        # Kaster FØR afsendelse — behandl som død, så den ryddes.
+        print(f"    ugyldig subscription ({type(e).__name__}) — markeres død")
+        return "dead"
 
 
 def main():
