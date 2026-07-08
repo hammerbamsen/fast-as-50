@@ -908,6 +908,25 @@ async function renderPushToggle(containerId){
 }
 
 // Render push-toggle når siden er klar
+// -- U2: send subscription til backend via repository_dispatch --------
+// Genbruger klientens gemte GitHub-token (samme som plan-edit-flowet).
+// Fejler stille hvis ingen token — subscription er allerede gemt lokalt.
+const PUSH_GH_REPO = "hammerbamsen/fast-as-50";
+async function sendSubscriptionToBackend(subJson){
+  const token = localStorage.getItem("af_gh_token");
+  if (!token){
+    console.warn("push: ingen GitHub-token — subscription gemt lokalt, ikke sendt til server");
+    return { ok:false, reason:"no-token" };
+  }
+  const r = await fetch(`https://api.github.com/repos/${PUSH_GH_REPO}/dispatches`, {
+    method:"POST",
+    headers:{ "Authorization":`token ${token}`,
+              "Accept":"application/vnd.github+json",
+              "Content-Type":"application/json" },
+    body: JSON.stringify({ event_type:"push-subscribe", client_payload:{ subscription:subJson } })
+  });
+  return { ok: r.status === 204, status: r.status };
+}
 renderPushToggle("push-toggle");
 </script>
 </body>

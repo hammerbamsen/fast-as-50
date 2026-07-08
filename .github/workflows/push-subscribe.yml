@@ -1,0 +1,29 @@
+name: Modtag push-subscription
+
+# Trigges af klienten via repository_dispatch (event_type: push-subscribe).
+# Gemmer/opdaterer subscription i det PRIVATE repo (dedup på endpoint).
+on:
+  repository_dispatch:
+    types: [push-subscribe]
+
+permissions:
+  contents: read
+
+jobs:
+  store:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkout (scripts)
+        uses: actions/checkout@v4
+      - name: Install requests
+        run: pip install requests
+      - name: Gem subscription
+        env:
+          PRIVATE_REPO: ${{ secrets.PRIVATE_REPO }}
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          SUB_JSON: ${{ toJSON(github.event.client_payload.subscription) }}
+        run: python scripts/store_subscription.py

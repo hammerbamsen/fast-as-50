@@ -1,0 +1,36 @@
+name: Send daglig push-påmindelse
+
+# Sender én daglig notifikation pr. atlet med dagens pas (hviledage springes over).
+# Aktiveres når VAPID_PRIVATE + PRIVATE_REPO(+TOKEN) secrets er sat.
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 05:00 UTC = 06:00/07:00 CET — morgenpåmindelse
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: send-push
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkout (kun scripts)
+        uses: actions/checkout@v4
+      - name: Install deps
+        run: pip install requests pywebpush
+      - name: Send push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRIVATE_REPO: ${{ secrets.PRIVATE_REPO }}
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+        run: python scripts/send_push.py
