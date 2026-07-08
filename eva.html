@@ -163,7 +163,7 @@ function dayCard(day, todayIso){
     return `<div class="day ${isToday?"today":""}">
       <div class="d">${DAYS_DA[(d.getDay()+6)%7]} ${d.getDate()}. ${MON_DA[d.getMonth()]}${isToday?` <span class="today-tag">· i dag</span>`:""}</div>
       <div class="n" style="color:var(--muted);font-weight:400;font-size:15px"><i class="ti ti-moon" style="font-size:14px;vertical-align:-2px"></i> ${esc(note)}</div>
-      ${entries[0]?.id?`<div class="day-actions"><button onclick="openSheet('swap','${entries[0].id}','${day.date}')"><i class="ti ti-plus"></i> Tilføj pas</button></div>`:""}</div>`;
+      ${entries[0]?.id?`<div class="day-actions"><button onclick="openSheet('swap_template','${entries[0].id}','${day.date}')"><i class="ti ti-plus"></i> Tilføj pas</button></div>`:""}</div>`;
   }
   return entries.filter(e=>e.workout).map(e=>{
     const w = e.workout;
@@ -176,7 +176,7 @@ function dayCard(day, todayIso){
       <div class="day-actions">
         <button onclick="openSheet('adjust','${e.id}','${day.date}')"><i class="ti ti-adjustments"></i> Justér</button>
         <button onclick="openSheet('move','${e.id}','${day.date}')"><i class="ti ti-arrows-move"></i> Flyt</button>
-        <button onclick="openSheet('swap','${e.id}','${day.date}')"><i class="ti ti-refresh"></i> Skift</button>
+        <button onclick="openSheet('swap_template','${e.id}','${day.date}')"><i class="ti ti-refresh"></i> Skift</button>
         <button class="danger" onclick="openSheet('cancel','${e.id}','${day.date}')"><i class="ti ti-x"></i> Aflys</button>
       </div>
     </div>`;
@@ -547,7 +547,7 @@ async function renderSheet(){
       <div id="sheet-msg"></div>
       <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button></div>`;
   }
-  else if (s.action === "swap"){
+  else if (s.action === "swap_template"){
     const lib = await loadLib();
     // Vis kun eva-relevante templates + hvile
     const relevant = lib.templates.filter(t => (t.tags||[]).includes("eva") || t.id === "hvile");
@@ -581,7 +581,7 @@ async function submitEdit(){
                description: v("f-desc"), note: v("f-note") };
   } else if (s.action === "move") {
     params = { target_date: s.moveTarget, mode: "swap" };
-  } else if (s.action === "swap") {
+  } else if (s.action === "swap_template") {
     params = { template_id: s.templateId };
   } else if (s.action === "cancel") {
     params = { note: v("f-note") };

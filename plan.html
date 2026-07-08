@@ -197,7 +197,7 @@ function dayCard(day, todayIso){
         <div class="wo rest"><i class="ti ti-moon" style="font-size:15px"></i> ${esc(note)}</div>
         ${restId?`<i class="ti ti-chevron-down chev" style="font-size:16px"></i>`:""}</div>
       ${restId?`<div class="day-actions">
-        <button onclick="event.stopPropagation(); openSheet('swap','${restId}','${day.date}')"><i class="ti ti-plus" style="font-size:14px;vertical-align:-2px"></i> Tilføj pas</button>
+        <button onclick="event.stopPropagation(); openSheet('swap_template','${restId}','${day.date}')"><i class="ti ti-plus" style="font-size:14px;vertical-align:-2px"></i> Tilføj pas</button>
         <button onclick="event.stopPropagation(); openSheet('adjust','${restId}','${day.date}')"><i class="ti ti-note" style="font-size:14px;vertical-align:-2px"></i> Note</button>
       </div>`:""}</div>`;
   }
@@ -217,7 +217,7 @@ function dayCard(day, todayIso){
     ${workouts.length?`<div class="day-actions">
       <button onclick="event.stopPropagation(); openSheet('adjust','${workouts[0].id}','${day.date}')"><i class="ti ti-adjustments" style="font-size:14px;vertical-align:-2px"></i> Justér</button>
       <button onclick="event.stopPropagation(); openSheet('move','${workouts[0].id}','${day.date}')"><i class="ti ti-arrows-move" style="font-size:14px;vertical-align:-2px"></i> Flyt</button>
-      <button onclick="event.stopPropagation(); openSheet('swap','${workouts[0].id}','${day.date}')"><i class="ti ti-refresh" style="font-size:14px;vertical-align:-2px"></i> Skift pas</button>
+      <button onclick="event.stopPropagation(); openSheet('swap_template','${workouts[0].id}','${day.date}')"><i class="ti ti-refresh" style="font-size:14px;vertical-align:-2px"></i> Skift pas</button>
       <button class="danger" onclick="event.stopPropagation(); openSheet('cancel','${workouts[0].id}','${day.date}')"><i class="ti ti-x" style="font-size:14px;vertical-align:-2px"></i> Aflys</button>
     </div>`:""}</div>`;
 }
@@ -728,7 +728,7 @@ async function renderSheet(){
       <div id="sheet-msg"></div>
       <div class="btn-row"><button class="secondary" onclick="closeSheet()">Fortryd</button></div>`;
   }
-  else if (s.action === "swap"){
+  else if (s.action === "swap_template"){
     const lib = await loadLib();
     sheet.innerHTML = `<h3>Skift pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
       <div class="tpl-list">${lib.templates.map(t=>`
@@ -769,7 +769,7 @@ async function submitEdit(msgTarget){
                description: v("f-desc"), note: v("f-note") };
   } else if (s.action === "move") {
     params = { target_date: s.moveTarget, mode: "swap" };
-  } else if (s.action === "swap") {
+  } else if (s.action === "swap_template") {
     params = { template_id: s.templateId };
   } else if (s.action === "cancel") {
     params = { note: v("f-note") };
