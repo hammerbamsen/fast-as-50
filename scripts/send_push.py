@@ -88,6 +88,52 @@ def _load_subscriptions():
         return sha, []
 
 
+def run_send(plan, subs, today, sender):
+    """
+    Ren send-orkestrering — INGEN netværk/env. `sender(sub, payload)` udfører
+    selve afsendelsen og returnerer:
+      - True  ved succes
+      - int (HTTP-status) ved fejl (404/410 => død subscription fjernes)
+      - False ved anden ikke-blokerende fejl
+    Returnerer (sent, dead_endpoints, pruned_subs_or_None).
+    """
+    dead = set()
+    sent = 0
+    for athlete in ATHLETES:
+        msg = push_send.build_daily_message(plan, athlete, today)
+        if not msg:
+            print(f"  {athlete}: hviledag — ingen push.")
+            continue
+        payload = json.dumps(msg, ensure_ascii=False)
+        for s in push_send.subs_for_athlete(subs, athlete):
+            res = sender(s, payload)
+            if res is True:
+                sent += 1
+            elif isinstance(res, int) and push_send.is_dead_status(res):
+                dead.add(s["endpoint"])
+                print(f"  {athlete}: død subscription fjernes ({res}).")
+            else:
+                print(f"  {athlete}: push-fejl (ikke-blokerende): {res}")
+    pruned = push_send.prune_subscriptions(subs, dead) if dead else None
+    print(f"Sendt: {sent} · døde: {len(dead)}")
+    return sent, dead, pruned
+
+
+def _webpush_sender(s, payload):
+    """Produktions-sender: pywebpush med VAPID."""
+    try:
+        webpush(
+            subscription_info={"endpoint": s["endpoint"], "keys": s["keys"]},
+            data=payload,
+            vapid_private_key=VAPID_PRIVATE,
+            vapid_claims={"sub": VAPID_SUBJECT},
+        )
+        return True
+    except WebPushException as e:
+        code = getattr(getattr(e, "response", None), "status_code", None)
+        return code if code else False
+
+
 def main():
     if webpush is None:
         print("pywebpush ikke installeret — afbryder."); return 1
@@ -104,36 +150,9 @@ def main():
         print("Ingen subscriptions — intet at sende."); return 0
 
     today = str(date.today())
-    dead = set()
-    sent = 0
+    _sent, dead, pruned = run_send(plan, subs, today, _webpush_sender)
 
-    for athlete in ATHLETES:
-        msg = push_send.build_daily_message(plan, athlete, today)
-        if not msg:
-            print(f"  {athlete}: hviledag — ingen push.")
-            continue
-        payload = json.dumps(msg, ensure_ascii=False)
-        for s in push_send.subs_for_athlete(subs, athlete):
-            try:
-                webpush(
-                    subscription_info={"endpoint": s["endpoint"], "keys": s["keys"]},
-                    data=payload,
-                    vapid_private_key=VAPID_PRIVATE,
-                    vapid_claims={"sub": VAPID_SUBJECT},
-                )
-                sent += 1
-            except WebPushException as e:
-                code = getattr(getattr(e, "response", None), "status_code", None)
-                if code and push_send.is_dead_status(code):
-                    dead.add(s["endpoint"])
-                    print(f"  {athlete}: død subscription fjernes ({code}).")
-                else:
-                    print(f"  {athlete}: push-fejl (ikke-blokerende): {e}")
-
-    print(f"Sendt: {sent} · døde: {len(dead)}")
-
-    if dead:
-        pruned = push_send.prune_subscriptions(subs, dead)
+    if dead and pruned is not None:
         _gh_put(PRIVATE_REPO, SUBS_PATH, subs_sha,
                 json.dumps({"subscriptions": pruned}, ensure_ascii=False, indent=2),
                 f"push: fjernet {len(dead)} døde subscriptions {today}",
