@@ -556,7 +556,10 @@ def main():
     # Hash-guard i modulet: skriver kun ved ændret plan.json eller ny fitness.
     try:
         from modules.plan_view import update_plan_view
-        update_plan_view(fitness, wellness)   # T1: wellness -> readiness-gate
+        from modules.sessions import get_activities_since
+        # T1: wellness -> readiness-gate. T3: 10-dages rå aktiviteter -> adaptation.
+        _acts_10d = get_activities_since(10)
+        update_plan_view(fitness, wellness, activities=_acts_10d)
     except Exception as _e:
         print(f"  ⚠️ plan_view fejlede (ikke-blokerende): {_e}")
 

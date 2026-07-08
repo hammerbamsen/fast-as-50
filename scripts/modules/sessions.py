@@ -6,6 +6,25 @@ from .config import (TOTAL_WEEKS, BASE, AUTH, api_get, fix_enc, fmt, color_for, 
 from .af import monday_this_week
 
 
+def get_activities_since(days=10):
+    """Rå Intervals-aktiviteter for de seneste `days` dage (inkl. i dag).
+
+    Bruges af T3-adaptation, som har brug for et længere vindue end
+    'denne uge'. Returnerer en liste (evt. tom) — aldrig None, så
+    kalderen kan skelne 'ingen aktiviteter' fra 'ikke forsøgt'.
+    """
+    newest = date.today()
+    oldest = newest - timedelta(days=days)
+    r = api_get(f'{BASE}/activities', auth=AUTH,
+                params={'oldest': str(oldest), 'newest': str(newest)})
+    if r is not None and r.status_code == 200:
+        try:
+            return r.json()
+        except Exception:
+            return []
+    return []
+
+
 def get_activities_week():
     """TSS, løbe-km og done-sessioner fra mandag denne uge.
     Primær kilde: /activities (importerede Garmin-aktiviteter).

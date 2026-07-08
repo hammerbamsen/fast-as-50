@@ -30,19 +30,23 @@ from . import friel
 
 
 def inputs_hash(plan_raw: str, seed_ctl, seed_atl, seed_date: str,
-                readiness=None) -> str:
+                readiness=None, adapt_sig="") -> str:
     key = f"{plan_raw}|{round(float(seed_ctl), 1)}|{round(float(seed_atl), 1)}|{seed_date}"
     if readiness:
         key += f"|{readiness}"   # T1: readiness-skift skal trigge omskrivning
+    if adapt_sig:
+        key += f"|{adapt_sig}"   # T3: nyt adaptations-forslag trigger omskrivning
     return hashlib.sha256(key.encode("utf-8")).hexdigest()[:16]
 
 
 def compute(plan: dict, seed_ctl, seed_atl, seed_date: str,
-            readiness=None, current_week=None) -> dict:
+            readiness=None, current_week=None, adaptation=None) -> dict:
     """Ren beregning — ingen I/O. Testes direkte.
 
     T1: readiness/current_week videreføres til Friel-validering. Default None
     -> hidtidig adfærd.
+    T3: adaptation-dict (fra modules.adaptation.compute_adaptation) skrives
+    uændret ind under kennet.adaptation når givet.
     """
     flags = friel.validate(plan, seed_ctl=seed_ctl, seed_atl=seed_atl,
                            seed_date=seed_date,
@@ -75,28 +79,35 @@ def compute(plan: dict, seed_ctl, seed_atl, seed_date: str,
             "flags": [f for f in flags if f["week"] == w],
         })
 
+    kennet = {
+        "seed": {"date": seed_date,
+                 "ctl": round(float(seed_ctl), 1),
+                 "atl": round(float(seed_atl), 1)},
+        "projection": projection,
+        "weeks": weeks,
+        "flags": flags,
+    }
+    if adaptation is not None:
+        kennet["adaptation"] = adaptation
+
     return {
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "kennet": {
-            "seed": {"date": seed_date,
-                     "ctl": round(float(seed_ctl), 1),
-                     "atl": round(float(seed_atl), 1)},
-            "projection": projection,
-            "weeks": weeks,
-            "flags": flags,
-        },
+        "kennet": kennet,
     }
 
 
-def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None) -> bool:
+def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None,
+                     activities: Optional[list] = None) -> bool:
     """
     Hentes/skrives via GitHub Contents API (samme mønster som data.json).
-    Hash-guard: skriver KUN når plan.json eller fitness-seed er ændret,
-    så 10-minutters-cron ikke støjer med tomme commits.
+    Hash-guard: skriver KUN når plan.json, fitness-seed, readiness eller
+    adaptations-signaturen er ændret, så 10-minutters-cron ikke støjer med
+    tomme commits.
     Returnerer True hvis der blev skrevet.
     """
     from .github import gh_get, gh_put
     from datetime import date as _date
+    from . import adaptation as _adaptation
 
     _sha_plan, plan_raw = gh_get("data/plan.json")
     if not plan_raw:
@@ -130,7 +141,21 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None) -
         except (KeyError, ValueError):
             pass
 
-    new_hash = inputs_hash(plan_raw, seed_ctl, seed_atl, seed_date, readiness)
+    # T3: detektér missede pas + byg forslag (fase-guardet). Deterministisk
+    # signatur indgår i hash-guarden, så et NYT forslag selv trigger en
+    # omskrivning — men uændret tilstand ikke støjer.
+    adapt = None
+    if activities is not None:
+        try:
+            adapt = _adaptation.compute_adaptation(
+                plan, activities, _date.today(), readiness=readiness)
+        except Exception as e:
+            print(f"  plan_view: adaptation sprang over ({e})")
+            adapt = None
+    adapt_sig = _adaptation.signature(adapt) if adapt else ""
+
+    new_hash = inputs_hash(plan_raw, seed_ctl, seed_atl, seed_date,
+                           readiness, adapt_sig=adapt_sig)
 
     sha_view, view_raw = gh_get("data/plan_view.json")
     if view_raw:
@@ -142,7 +167,8 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None) -
             pass
 
     view = compute(plan, seed_ctl, seed_atl, seed_date,
-                   readiness=readiness, current_week=current_week)
+                   readiness=readiness, current_week=current_week,
+                   adaptation=adapt)
     view["inputsHash"] = new_hash
     if readiness:
         view["kennet"]["readiness"] = readiness

@@ -392,7 +392,8 @@ async function main(){
     `Uge ${cur} af ${plan.program.totalWeeks} · ${meta.blockType||""} · ${meta.location||""}  —  ` +
     plan.races.map(r=>`${daysTo(r)} dage til ${r.name}`).join(" · ");
 
-  let html = `<div class="card"><h2>CTL — faktisk, projektion og pejlemærke</h2>${ctlChart(plan, view, dash)}</div>`;
+  let html = adaptationBanner(view) +
+    `<div class="card"><h2>CTL — faktisk, projektion og pejlemærke</h2>${ctlChart(plan, view, dash)}</div>`;
 
   html += `<div class="section-title">Denne uge + 2 frem</div>`;
   for(let w=cur; w<=Math.min(cur+2, plan.program.totalWeeks); w++)
@@ -407,6 +408,67 @@ async function main(){
     `Flags og projektion beregnet ${view.generated.slice(0,16).replace("T"," ")} UTC · seed CTL ${view.kennet.seed.ctl}`;
 }
 main();
+
+// ═══ T3: ADAPTIV RE-PLANLÆGNING — banner + Anvend ═══
+// Neutral/rådgivende tone (ikke fejl). Læser view.kennet.adaptation skrevet
+// af plan_view.py. Anvend genbruger den normale plan-edit-workflow, så
+// Friel-gate + Historik-rollback gælder uændret.
+let ADAPT_SUG = null;
+
+function adaptationBanner(view){
+  const a = view && view.kennet && view.kennet.adaptation;
+  if (!a || !a.triggered) return "";
+  const missedTxt = `${a.missed7} missede pas de sidste 7 dage`;
+
+  // Triggeret men guardet (recovery/taper el. intet hårdt pas): info-note, ingen knap
+  if (!a.suggestion){
+    const note = a.phase_guard || "Ingen justering foreslås lige nu.";
+    return `<div class="card" style="border-left:4px solid var(--gold);background:#FBF6EC">
+      <div style="font-weight:700;font-size:14px">Tilpasning — til info</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">${esc(missedTxt)}. ${esc(note)}</div>
+    </div>`;
+  }
+
+  ADAPT_SUG = a.suggestion;
+  const s = a.suggestion;
+  const dObj = new Date(s.date+"T12:00:00");
+  const dateStr = `${DAYS_DA[(dObj.getDay()+6)%7]} ${dObj.getDate()}. ${MON_DA[dObj.getMonth()]}`;
+  const vo2 = s.vo2_note ? `<div style="font-size:12px;color:var(--wine);margin-top:6px"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-2px"></i> ${esc(s.vo2_note)}</div>` : "";
+  return `<div class="card" style="border-left:4px solid var(--teal,#1A7A5E);background:#EDF6F1">
+    <div style="font-weight:700;font-size:14px"><i class="ti ti-bulb" style="font-size:15px;vertical-align:-2px"></i> Forslag til tilpasning</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:4px">${esc(s.reason)}. Foreslået: <b>${esc(s.label)}</b> (${dateStr}).</div>
+    ${vo2}
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="primary" onclick="applyAdaptation()" style="flex:0 0 auto">Anvend forslag</button>
+      <button class="secondary" onclick="dismissAdaptation(this)" style="flex:0 0 auto">Behold planen</button>
+    </div>
+    <div id="adapt-msg" style="margin-top:8px"></div>
+  </div>`;
+}
+
+async function applyAdaptation(){
+  const s = ADAPT_SUG; if (!s) return;
+  const msg = document.getElementById("adapt-msg");
+  // Forudfyld SHEET_STATE så submitEdit() sender præcis det foreslåede edit
+  // gennem den samme gate/rollback som manuelle ændringer.
+  SHEET_STATE = {
+    action: s.suggested_action,
+    entryId: s.entry_id,
+    dateIso: s.date,
+    confirmedWarn: false,
+    templateId: s.params && s.params.template_id,
+    _adaptParams: s.params || {},
+    _fromAdaptation: true
+  };
+  if (msg) msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader" style="font-size:13px"></i> Sender tilpasning…</div>`;
+  await submitEdit("adapt-msg");
+}
+
+function dismissAdaptation(btn){
+  const card = btn.closest(".card");
+  if (card) card.remove();
+  ADAPT_SUG = null;
+}
 
 // ═══ EDITING ENGINE (fase 3a + 3b.1) ═══
 const GH_REPO = "hammerbamsen/fast-as-50";
@@ -694,11 +756,14 @@ function pickTemplate(tplId){
   submitEdit();
 }
 
-async function submitEdit(){
+async function submitEdit(msgTarget){
   const s = SHEET_STATE; if (!s) return;
 
   let params = {};
-  if (s.action === "adjust") {
+  if (s._fromAdaptation) {
+    // T3: forslaget bærer allerede server-korrekte action + params.
+    params = s._adaptParams || {};
+  } else if (s.action === "adjust") {
     params = { name: v("f-name"), type: v("f-type"),
                moving_time: parseInt(v("f-mins"))*60,
                description: v("f-desc"), note: v("f-note") };
@@ -715,7 +780,7 @@ async function submitEdit(){
     requestId, action: s.action, entryId: s.entryId, params, confirmedWarn: s.confirmedWarn
   };
 
-  const msg = document.getElementById("sheet-msg");
+  const msg = document.getElementById(msgTarget || "sheet-msg");
   msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader" style="font-size:14px"></i> Sender ændring…</div>`;
 
   const cfg = await loadAuthConfig();
@@ -806,7 +871,7 @@ async function submitEdit(){
 
 async function confirmWarnAndRetry(){
   SHEET_STATE.confirmedWarn = true;
-  await submitEdit();
+  await submitEdit(SHEET_STATE && SHEET_STATE._fromAdaptation ? "adapt-msg" : undefined);
 }
 
 async function suggestMoveAlternatives(){
