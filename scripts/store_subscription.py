@@ -52,8 +52,21 @@ def _put(repo, path, sha, content, message, token):
 
 
 def main():
-    if not (PRIVATE_REPO and PRIVATE_TOKEN and SUB_JSON):
-        print("Manglende env (PRIVATE_REPO/TOKEN/SUB_JSON) — afbryder."); return 1
+    # Tydelig diagnostik — så en fejlende kørsel siger PRÆCIS hvad der mangler
+    missing = [k for k, v in {
+        "PRIVATE_REPO": PRIVATE_REPO,
+        "PRIVATE_REPO_TOKEN": PRIVATE_TOKEN,
+        "SUB_JSON": SUB_JSON,
+    }.items() if not v]
+    if missing:
+        print(f"FEJL: manglende env: {', '.join(missing)}")
+        if "PRIVATE_REPO" in missing:
+            print("  -> Secret PRIVATE_REPO skal være fx 'hammerbamsen/fast-as-50-private'")
+        return 1
+    print(f"  PRIVATE_REPO = {PRIVATE_REPO!r}")
+    if "/" not in PRIVATE_REPO or PRIVATE_REPO.startswith("http"):
+        print("FEJL: PRIVATE_REPO skal være på formen 'owner/repo' (ikke URL).")
+        return 1
     try:
         sub = json.loads(SUB_JSON)
     except ValueError:
@@ -66,6 +79,21 @@ def main():
         print(f"Ukendt athlete {sub.get('athlete')!r} — afbryder."); return 1
 
     sha, raw = _get(PRIVATE_REPO, SUBS_PATH, PRIVATE_TOKEN)
+    if raw is None and sha is None:
+        # Enten findes filen ikke endnu (fint — vi opretter den), eller repoet/
+        # PAT'en er forkert. Skil de to ad med et repo-eksistens-tjek.
+        chk = requests.get(f"https://api.github.com/repos/{PRIVATE_REPO}",
+                           headers={"Authorization": f"Bearer {PRIVATE_TOKEN}",
+                                    "Accept": "application/vnd.github+json"}, timeout=30)
+        if chk.status_code == 404:
+            print(f"FEJL: kan ikke se repo {PRIVATE_REPO!r} (404). "
+                  "Tjek at repoet findes OG at PRIVATE_REPO_TOKEN har adgang til det.")
+            return 1
+        if chk.status_code in (401, 403):
+            print(f"FEJL: PRIVATE_REPO_TOKEN afvist ({chk.status_code}) mod {PRIVATE_REPO!r}. "
+                  "Tjek at PAT'en har Contents: Read and write på repoet.")
+            return 1
+        print(f"  Repo {PRIVATE_REPO} findes — {SUBS_PATH} oprettes nu (første subscription).")
     subs = []
     if raw:
         try:
