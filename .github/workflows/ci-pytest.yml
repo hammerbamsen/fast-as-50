@@ -25,6 +25,6 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install test deps
-        run: pip install pytest
+        run: pip install pytest requests pywebpush
       - name: Run pytest
         run: python3 -m pytest scripts/modules/ -q
