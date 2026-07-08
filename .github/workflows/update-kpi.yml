@@ -4,8 +4,10 @@ on:
   # CRON GENAKTIVERET 2026-07-04: Actions er primær opdater-kilde (kører uden Mac).
   # Tidligere antagelse om at Intervals blokerer Actions-IPs var forkert (bevist 2/7 + 4/7).
   # launchd på Mac beholdes som redundans — concurrency-lås håndterer overlap.
+  # 2026-07-08: */10 blev throttlet hårdt af GitHub (timers-huller) — ændret til */30
+  # for færre oversprungne kørsler. Data ændrer sig sjældnere end det alligevel.
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:

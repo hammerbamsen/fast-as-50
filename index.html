@@ -1448,25 +1448,35 @@ function toggleDone(btn, idx) {
   btn.innerHTML = `${icon("check",15,isDone?"var(--wine)":"var(--gold)")} ${isDone?"Gennemført":"Markér gennemført"}`;
 }
 
-// ── Staleness-banner: advarsel når data.json er >2 timer gammel (launchd-hul) ──
+// ── Staleness-banner: rolig info >6t, advarsel >12t (kilde-neutral) ──
 function checkStaleness(updatedStr) {
   const existing = document.getElementById('stale-banner');
   if (!updatedStr) return;
   const ts = new Date(updatedStr.replace(' ', 'T'));
   if (isNaN(ts.getTime())) return;
   const ageMin = Math.round((Date.now() - ts.getTime()) / 60000);
-  if (ageMin > 180) {
-    const ageTxt = ageMin >= 180 ? Math.round(ageMin/60) + ' timer' : ageMin + ' min';
-    const html = '⚠️ Data er ' + ageTxt + ' gamle (sidst opdateret ' + updatedStr + '). Er Mac\u0027en vågen med åbent låg?';
-    if (existing) { existing.innerHTML = html; return; }
-    const b = document.createElement('div');
-    b.id = 'stale-banner';
-    b.style.cssText = 'position:sticky;top:0;z-index:9999;background:#E67E22;color:#fff;font-family:\u0027Space Mono\u0027,monospace;font-size:11px;padding:8px 14px;text-align:center;line-height:1.4';
-    b.innerHTML = html;
-    document.body.prepend(b);
-  } else if (existing) {
-    existing.remove();
+  const hrs = Math.round(ageMin / 60);
+
+  if (ageMin <= 360) {
+    if (existing) existing.remove();
+    return;
   }
+
+  const warn = ageMin > 720;
+  const html = warn
+    ? '⚠️ Data er ' + hrs + ' timer gamle. Automatisk opdatering ser ud til at hænge.'
+    : 'Data er ' + hrs + ' timer gamle — opdateres automatisk.';
+  const bg = warn ? '#E67E22' : '#EDE6D8';
+  const fg = warn ? '#fff' : '#7A6A58';
+  const css = 'position:sticky;top:0;z-index:9999;background:' + bg + ';color:' + fg +
+              ';font-family:\u0027Space Mono\u0027,monospace;font-size:11px;padding:8px 14px;text-align:center;line-height:1.4';
+
+  if (existing) { existing.innerHTML = html; existing.style.cssText = css; return; }
+  const b = document.createElement('div');
+  b.id = 'stale-banner';
+  b.style.cssText = css;
+  b.innerHTML = html;
+  document.body.prepend(b);
 }
 
 function updateMeta() {
