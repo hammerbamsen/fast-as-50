@@ -1,22 +1,4 @@
 {
- "restore-test2-1783435451": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "restore"
-  ],
-  "plan_commit": "58dadcf9e6586a10cc24cf1200ac968fb20f3796",
-  "sync_errors": [
-   "Outlook restore: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/users/kennet@hammerby.com/calendarView?startDateTime=restoreT00%3A00%3A00&endDateTime=restoreT23%3A59%3A59&%24select=id%2Csubject%2Ccategories&%24top=50"
-  ],
-  "athlete": "kennet",
-  "request_ts": "2026-07-07T14:44:29+00:00",
-  "request_id": "restore-test2-1783435451"
- },
  "cleanup-1783435502": {
   "status": "ok",
   "gate": {
@@ -251,5 +233,24 @@
   "athlete": "kennet",
   "request_ts": "2026-07-09T17:11:53+00:00",
   "request_id": "rmrdrke8b40ij"
+ },
+ "rmrdrka35mb5u": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "2026-07-22",
+   "2026-07-12"
+  ],
+  "plan_commit": "855d7eac09e4c7c7dcdff10c8a86913457be9bee",
+  "sync_errors": [
+   "Word: 409 Client Error: Conflict for url: https://api.github.com/repos/hammerbamsen/fast-as-50/contents/data/Fast_as_Fifty_Masterplan_2026.docx"
+  ],
+  "athlete": "kennet",
+  "request_ts": "2026-07-09T17:11:58+00:00",
+  "request_id": "rmrdrka35mb5u"
  }
 }
