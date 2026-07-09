@@ -14,6 +14,7 @@ import azure.functions as func
 import requests
 
 from ..shared_code import auth
+from ..shared_code import github_app
 
 
 ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "https://hammerbamsen.github.io")
@@ -68,9 +69,21 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         if not body.get(k):
             return _err(f"Manglende felt: {k}", 400)
 
-    # --- Dispatch to GitHub ---
-    if not GH_TOKEN:
-        return _err("GH_TOKEN ikke konfigureret på Function App", 500)
+    # --- Hent GitHub-token: App-token foretrukket, PAT som fallback ---
+    try:
+        if github_app.enabled():
+            gh_token = github_app.get_installation_token()
+            token_src = "app"
+        elif GH_TOKEN:
+            gh_token, token_src = GH_TOKEN, "pat"
+        else:
+            return _err("Hverken GH_APP_PRIVATE_KEY eller GH_TOKEN er konfigureret", 500)
+    except Exception as e:
+        logging.error(f"App-token fejlede: {e}")
+        if GH_TOKEN:
+            gh_token, token_src = GH_TOKEN, "pat-fallback"
+        else:
+            return _err(f"Kunne ikke hente App-token: {e}", 500)
 
     payload = {
         "event_type": "plan-edit",
@@ -88,7 +101,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         r = requests.post(
             f"https://api.github.com/repos/{GH_REPO}/dispatches",
             headers={
-                "Authorization": f"Bearer {GH_TOKEN}",
+                "Authorization": f"Bearer {gh_token}",
                 "Accept": "application/vnd.github+json",
                 "Content-Type": "application/json",
             },
@@ -101,7 +114,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if r.status_code != 204:
         return _err(f"GitHub dispatch fejlede: HTTP {r.status_code} — {r.text[:200]}", 502)
 
-    logging.info(f"Dispatch OK: {upn} → {body['action']} {body['entryId'][:8]}")
+    logging.info(f"Dispatch OK [{token_src}]: {upn} → {body['action']} {body['entryId'][:8]}")
     return _cors(func.HttpResponse(
         json.dumps({"ok": True, "requestId": body["requestId"], "actor": upn}),
         status_code=200, mimetype="application/json"))
