@@ -48,6 +48,15 @@ VAPID_SUBJECT = os.environ.get("VAPID_SUBJECT", "mailto:kennet@hammerby.com")
 SUBS_PATH = "push_subscriptions.json"
 ATHLETES = ("kennet", "eva")
 
+# Aften-påmindelse (PUSH_MODE=evening): fast AF-check-in-nudge, kun til Kennet.
+AF_EVENING_MSG = {
+    "title": "Aften-check-in \U0001F4AA",
+    "body": "Husk dagens AF-check-in",
+    "tag": "fast50-af-evening",   # eget tag => kolliderer ikke med daglig push
+    "url": "af.html",
+    "athlete": "kennet",
+}
+
 
 def _gh_get_raw(repo, path, token):
     """Returnerer (sha, tekst) eller (None, None)."""
@@ -119,6 +128,29 @@ def run_send(plan, subs, today, sender):
     return sent, dead, pruned
 
 
+def run_send_evening(subs, sender):
+    """Aften-gren: fast AF-check-in-påmindelse, kun til Kennet.
+
+    Samme død-håndtering/prune-kontrakt som run_send, men uafhængig af plan.json
+    (beskeden er statisk). Returnerer (sent, dead, pruned_or_None).
+    """
+    dead = set()
+    sent = 0
+    payload = json.dumps(AF_EVENING_MSG, ensure_ascii=False)
+    for s in push_send.subs_for_athlete(subs, "kennet"):
+        res = sender(s, payload)
+        if res is True:
+            sent += 1
+        elif res == "dead" or (isinstance(res, int) and push_send.is_dead_status(res)):
+            dead.add(s["endpoint"])
+            print(f"  kennet: død subscription fjernes ({res}).")
+        else:
+            print(f"  kennet: push-fejl (ikke-blokerende): {res}")
+    pruned = push_send.prune_subscriptions(subs, dead) if dead else None
+    print(f"Aften-reminder sendt: {sent} · døde: {len(dead)}")
+    return sent, dead, pruned
+
+
 def _webpush_sender(s, payload):
     """Produktions-sender: pywebpush med VAPID.
 
@@ -153,17 +185,24 @@ def main():
     if not VAPID_PRIVATE:
         print("VAPID_PRIVATE mangler — afbryder."); return 1
 
-    _psha, plan_raw = _gh_get_raw(REPO, "data/plan.json", GH_TOKEN)
-    if not plan_raw:
-        print("Kunne ikke hente plan.json — afbryder."); return 1
-    plan = json.loads(plan_raw)
+    mode = os.environ.get("PUSH_MODE", "daily").strip().lower()
 
     subs_sha, subs = _load_subscriptions()
     if not subs:
         print("Ingen subscriptions — intet at sende."); return 0
 
     today = str(date.today())
-    _sent, dead, pruned = run_send(plan, subs, today, _webpush_sender)
+
+    if mode == "evening":
+        print("Mode: evening (AF-check-in)")
+        _sent, dead, pruned = run_send_evening(subs, _webpush_sender)
+    else:
+        print("Mode: daily")
+        _psha, plan_raw = _gh_get_raw(REPO, "data/plan.json", GH_TOKEN)
+        if not plan_raw:
+            print("Kunne ikke hente plan.json — afbryder."); return 1
+        plan = json.loads(plan_raw)
+        _sent, dead, pruned = run_send(plan, subs, today, _webpush_sender)
 
     if dead and pruned is not None:
         _gh_put(PRIVATE_REPO, SUBS_PATH, subs_sha,

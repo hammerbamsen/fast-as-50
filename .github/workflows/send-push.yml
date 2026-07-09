@@ -4,8 +4,17 @@ name: Send daglig push-påmindelse
 # Aktiveres når VAPID_PRIVATE + PRIVATE_REPO(+TOKEN) secrets er sat.
 on:
   schedule:
-    - cron: '0 5 * * *'   # 05:00 UTC = 06:00/07:00 CET — morgenpåmindelse
+    - cron: '0 5 * * *'    # 05:00 UTC = 06:00/07:00 CET — morgenpåmindelse
+    - cron: '0 17 * * *'   # 17:00 UTC = 18:00/19:00 CET — aften AF-check-in
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily eller evening (kun ved manuel kørsel)'
+        default: daily
+        type: choice
+        options:
+          - daily
+          - evening
 
 permissions:
   contents: read
@@ -33,4 +42,5 @@ jobs:
           PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
           VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+          PUSH_MODE: ${{ github.event.schedule == '0 17 * * *' && 'evening' || (github.event.inputs.mode || 'daily') }}
         run: python scripts/send_push.py
