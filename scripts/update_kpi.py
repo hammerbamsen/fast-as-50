@@ -115,8 +115,8 @@ def main():
     # --- Hent data.json ---
     sha_data, data_raw = gh_get('data.json')
     if not data_raw:
-        print("❌ Kunne ikke hente data.json")
-        return
+        print("❌ Kunne ikke hente data.json — afbryder med exit 1 så Actions-kørslen bliver RØD")
+        sys.exit(1)
     data = json.loads(data_raw)
     # Opdater history med existing cache nu hvor data er hentet
     if history is not None:
@@ -561,9 +561,11 @@ def main():
         data['commute_pairing_warnings'] = []
 
     # --- Push data.json ---
-    gh_put('data.json', sha_data,
-           json.dumps(data, indent=2, ensure_ascii=False),
-           f'KPI auto-opdatering {today}')
+    if not gh_put('data.json', sha_data,
+                  json.dumps(data, indent=2, ensure_ascii=False),
+                  f'KPI auto-opdatering {today}'):
+        print("❌ gh_put data.json fejlede — afbryder med exit 1 så Actions-kørslen bliver RØD")
+        sys.exit(1)
 
     # --- Plan-view (fase 2): Friel-flags + kalibreret CTL-projektion ---
     # Hash-guard i modulet: skriver kun ved ændret plan.json eller ny fitness.
