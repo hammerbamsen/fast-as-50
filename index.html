@@ -330,19 +330,23 @@ const ZONE_CALC = {
     ];
     const rows = F.map(z=>({label:z.label,name:z.name,color:z.color,
       range:this.fmtPace(t*z.lo)+'\u2013'+this.fmtPace(t*z.hi)}));
+    rows.unshift({label:'Z1',name:'Restitution',color:'#7F8C8D',range:'> '+this.fmtPace(t*334/260+1)});
     rows.push({label:'Z6',name:'Anaerob',color:'#C0392B',range:'< '+this.fmtPace(t*233/260-1)});
     return rows;
   },
   bikeZones(){
     const f = this.ftp();
     const F = [
-      {label:'Z2', name:'Aerob base', lo:150/270, hi:205/270, color:'#2874A6'},
-      {label:'Z3', name:'Tempo',      lo:205/270, hi:245/270, color:'#27AE60'},
-      {label:'Z4', name:'Threshold',  lo:245/270, hi:285/270, color:'#F39C12'},
-      {label:'Z5', name:'VO2max',     lo:285/270, hi:325/270, color:'#E67E22'},
+      {label:'Z1', name:'Restitution', lo:0,       hi:150/270, color:'#7F8C8D', openLo:true},
+      {label:'Z2', name:'Aerob base',  lo:150/270, hi:205/270, color:'#2874A6'},
+      {label:'Z3', name:'Tempo',       lo:205/270, hi:245/270, color:'#27AE60'},
+      {label:'Z4', name:'Threshold',   lo:245/270, hi:285/270, color:'#F39C12'},
+      {label:'Z5', name:'VO2max',      lo:285/270, hi:325/270, color:'#E67E22'},
+      {label:'Z6', name:'Anaerob',     lo:326/270, hi:405/270, color:'#C0392B'},
     ];
     return F.map(z=>({label:z.label,name:z.name,color:z.color,
-      range:Math.round(f*z.lo)+'\u2013'+Math.round(f*z.hi)+' W'}));
+      range:z.openLo ? '< '+Math.round(f*z.hi)+' W'
+                     : Math.round(f*z.lo)+'\u2013'+Math.round(f*z.hi)+' W'}));
   }
 };
 function saveZoneCalc(){
