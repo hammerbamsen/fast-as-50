@@ -37,7 +37,24 @@ jobs:
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/update_kpi.py
+        run: |
+          set -o pipefail
+          python scripts/update_kpi.py 2>&1 | tee /tmp/kpi.log
+      - name: Capture kpi log (diagnostik)
+        if: always()
+        run: |
+          mkdir -p debug
+          tail -c 7000 /tmp/kpi.log > debug/kpi_last_error.txt 2>/dev/null || echo "no log file" > debug/kpi_last_error.txt
+          git config user.name "Fast as Fifty Bot"
+          git config user.email "bot@hammerbamsen.github.io"
+          git add debug/kpi_last_error.txt
+          git commit -m "diagnostik: kpi log (midlertidig)" || exit 0
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && git push origin main && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
       - name: Commit og push data.json
         run: |
           git config user.name "Fast as Fifty Bot"
