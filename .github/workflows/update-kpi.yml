@@ -37,7 +37,22 @@ jobs:
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/update_kpi.py
+        run: |
+          set +e
+          python scripts/update_kpi.py 2>&1 | tee /tmp/kpi.log
+          code=${PIPESTATUS[0]}
+          echo "PYEXIT=$code" | tee -a /tmp/kpi.log
+          exit $code
+      - name: Debug capture on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          tail -c 6000 /tmp/kpi.log > /tmp/tail.txt || echo "no log file" > /tmp/tail.txt
+          CONTENT=$(base64 -w0 /tmp/tail.txt)
+          SHA=$(curl -s -H "Authorization: token $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/contents/debug/kpi_last_error.txt" | python3 -c "import sys,json;print(json.load(sys.stdin).get('sha',''))" 2>/dev/null)
+          if [ -n "$SHA" ]; then EXTRA=",\"sha\":\"$SHA\""; else EXTRA=""; fi
+          curl -s -X PUT -H "Authorization: token $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/contents/debug/kpi_last_error.txt" -d "{\"message\":\"debug capture (midlertidig)\",\"content\":\"$CONTENT\"$EXTRA}" -o /dev/null -w "capture HTTP %{http_code}\n"
       - name: Commit og push data.json
         run: |
           git config user.name "Fast as Fifty Bot"
