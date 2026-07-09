@@ -1,51 +1,4 @@
 {
- "smoke-t5-1783436757": {
-  "status": "suggestion",
-  "action": "suggest_move",
-  "athlete": "kennet",
-  "src_date": "2026-07-21",
-  "alternatives": [
-   {
-    "date": "2026-07-20",
-    "offset": -1,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-07-22",
-    "offset": 1,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-07-23",
-    "offset": 2,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-07-18",
-    "offset": -3,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-07-24",
-    "offset": 3,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-07-19",
-    "offset": -2,
-    "status": "reject",
-    "msg": "Afvist: Fortløbende løbedage 2026-07-21 + 2026-07-22"
-   }
-  ],
-  "error": null,
-  "request_ts": "2026-07-07T15:06:09+00:00",
-  "request_id": "smoke-t5-1783436757"
- },
  "rmrdrk5u28ibb": {
   "status": "ok",
   "gate": {
@@ -200,5 +153,21 @@
   "athlete": "kennet",
   "request_ts": "2026-07-09T20:17:53+00:00",
   "request_id": "rmrdy7q3yd8tu"
+ },
+ "rfix80title1783628618": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "2026-07-11"
+  ],
+  "plan_commit": "d7caf65259e967f48baaf639931b85ccdfde992e",
+  "sync_errors": [],
+  "athlete": "kennet",
+  "request_ts": "2026-07-09T20:23:48+00:00",
+  "request_id": "rfix80title1783628618"
  }
 }
