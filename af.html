@@ -13,17 +13,17 @@
   body { background: #ECE4D7; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; font-family: 'Hanken Grotesk', sans-serif; }
   .card { background: #FDFAF6; border-radius: 16px; padding: 32px 24px; max-width: 360px; width: 100%; text-align: center; border: 1px solid #DDD3C3; }
   .label { font-family: 'Space Mono', monospace; font-size: 10px; color: #7A6A58; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .date { font-family: 'Newsreader', serif; font-size: 28px; color: #59182A; margin-bottom: 4px; }
+  .date { font-family: 'Newsreader', serif; font-size: 28px; color: #1E3A5C; margin-bottom: 4px; }
   .note { font-family: 'Space Mono', monospace; font-size: 10px; color: #BE863A; margin-bottom: 6px; letter-spacing: 0.05em; }
   .question { font-size: 16px; color: #1A1008; margin-bottom: 16px; line-height: 1.5; }
   .streak-box { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
   .streak-item { text-align: center; }
-  .streak-num { font-family: 'Newsreader', serif; font-size: 32px; color: #59182A; line-height: 1; }
+  .streak-num { font-family: 'Newsreader', serif; font-size: 32px; color: #1E3A5C; line-height: 1; }
   .streak-lbl { font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
   .streak-fire { font-size: 18px; }
   .buttons { display: flex; gap: 12px; margin-bottom: 16px; }
   .btn { flex: 1; padding: 18px 12px; border-radius: 10px; border: none; font-family: 'Hanken Grotesk', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
-  .btn-ja  { background: #59182A; color: #ECE4D7; }
+  .btn-ja  { background: #1E3A5C; color: #ECE4D7; }
   .btn-nej { background: #DDD3C3; color: #7A6A58; }
   .week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
   .week-nav-btn { background: none; border: none; font-family: 'Space Mono', monospace; font-size: 16px; color: #7A6A58; cursor: pointer; padding: 4px 8px; }
@@ -31,26 +31,26 @@
   .week-nav-lbl { font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; letter-spacing: 0.08em; text-transform: uppercase; }
   .week-row { display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; }
   .day-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; cursor: default; }
-  .dot-af    { background: #59182A; color: #ECE4D7; }
+  .dot-af    { background: #1E3A5C; color: #ECE4D7; }
   .dot-nej   { background: #DDD3C3; color: #7A6A58; }
   .dot-today { outline: 2px solid #BE863A; outline-offset: 2px; }
-  .dot-active{ outline: 2px solid #59182A; outline-offset: 2px; }
+  .dot-active{ outline: 2px solid #1E3A5C; outline-offset: 2px; }
   .dot-empty { background: #ECE4D7; color: #C8BBA8; border: 1px dashed #DDD3C3; }
   .dot-future{ background: #ECE4D7; color: #DDD3C3; border: 1px solid #ECE4D7; }
   .status { font-size: 13px; color: #7A6A58; min-height: 18px; margin-bottom: 4px; }
   .status.ok  { color: #1A7A5E; font-weight: 600; }
   .status.err { color: #C0392B; }
-  .done-title { font-family: 'Newsreader', serif; font-size: 24px; color: #59182A; margin-bottom: 8px; }
+  .done-title { font-family: 'Newsreader', serif; font-size: 24px; color: #1E3A5C; margin-bottom: 8px; }
   .done-sub   { font-size: 14px; color: #7A6A58; line-height: 1.6; margin-bottom: 4px; }
   .setup-input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #DDD3C3; font-family: 'Space Mono', monospace; font-size: 12px; margin-bottom: 12px; background: #ECE4D7; }
-  .btn-setup { width: 100%; padding: 14px; border-radius: 8px; border: none; background: #59182A; color: #ECE4D7; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .btn-setup { width: 100%; padding: 14px; border-radius: 8px; border: none; background: #1E3A5C; color: #ECE4D7; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
   .footer { margin-top: 18px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; }
   a.dash-link { color: #BE863A; text-decoration: none; font-weight: 700; }
   .refresh-btn { background: none; border: 1px solid #DDD3C3; border-radius: 8px; padding: 7px 16px; font-family: 'Space Mono', monospace; font-size: 9px; color: #7A6A58; letter-spacing: .08em; cursor: pointer; margin-top: 12px; }
   .refresh-btn:active { background: #DDD3C3; }
   .last-updated { font-family: 'Space Mono', monospace; font-size: 8px; color: #7A6A58; margin-top: 4px; min-height: 12px; letter-spacing: .06em; }
-  #ptr-indicator { position:fixed; top:0; left:0; right:0; height:0; background:#59182A; color:#BE863A; display:flex; align-items:center; justify-content:center; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.08em; overflow:hidden; z-index:999; transition:height .15s ease; pointer-events:none; }
-  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #DDD3C3; border-top-color: #59182A; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+  #ptr-indicator { position:fixed; top:0; left:0; right:0; height:0; background:#1E3A5C; color:#BE863A; display:flex; align-items:center; justify-content:center; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.08em; overflow:hidden; z-index:999; transition:height .15s ease; pointer-events:none; }
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #DDD3C3; border-top-color: #1E3A5C; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
@@ -341,8 +341,8 @@ function u4Err(containerId, message, opts){
              besked:String(message).replace(/<[^>]*>/g,""), browser:navigator.userAgent };
   const el = document.getElementById(containerId);
   if(!el) return;
-  const primary='padding:8px 14px;border-radius:8px;border:none;background:#7A1F35;color:#fff;cursor:pointer;font:inherit';
-  const second ='padding:8px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#7A1F35;cursor:pointer;font:inherit';
+  const primary='padding:8px 14px;border-radius:8px;border:none;background:#2A4E78;color:#fff;cursor:pointer;font:inherit';
+  const second ='padding:8px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#2A4E78;cursor:pointer;font:inherit';
   const hint = opts.tokenHint
     ? '<div style="font-size:12px;margin-top:6px;opacity:.8">Ligner udl\u00f8bet/ugyldigt token \u2014 \u00e5bn ?reset og inds\u00e6t et nyt (guide: docs/PAT_RENEWAL.md).</div>' : '';
   let btns='';
