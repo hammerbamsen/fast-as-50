@@ -1,75 +1,4 @@
 {
- "suggest-check-1783435652": {
-  "status": "suggestion",
-  "action": "suggest_move",
-  "athlete": "kennet",
-  "src_date": "2026-08-17",
-  "alternatives": [
-   {
-    "date": "2026-08-16",
-    "offset": -1,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-18",
-    "offset": 1,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-15",
-    "offset": -2,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-19",
-    "offset": 2,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-14",
-    "offset": -3,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-20",
-    "offset": 3,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-22",
-    "offset": 5,
-    "status": "ok",
-    "msg": "Godkendt"
-   },
-   {
-    "date": "2026-08-12",
-    "offset": -5,
-    "status": "warn",
-    "msg": "Advarsel: Ingen VO2-stimulus i build-uge 11"
-   },
-   {
-    "date": "2026-08-13",
-    "offset": -4,
-    "status": "reject",
-    "msg": "Afvist: Fortløbende løbedage 2026-08-17 + 2026-08-18; 4 løbedage i uge 12 (max 3)"
-   },
-   {
-    "date": "2026-08-21",
-    "offset": 4,
-    "status": "reject",
-    "msg": "Afvist: Fortløbende løbedage 2026-08-17 + 2026-08-18"
-   }
-  ],
-  "error": null,
-  "request_ts": "2026-07-07T14:47:43+00:00",
-  "request_id": "suggest-check-1783435652"
- },
  "smoke-t5-1783436736": {
   "status": "suggestion",
   "action": "suggest_move",
@@ -249,5 +178,21 @@
   "athlete": "kennet",
   "request_ts": "2026-07-09T20:15:27+00:00",
   "request_id": "rmrdy4hcxowir"
+ },
+ "rmrdy6otc0nzh": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "2026-07-11"
+  ],
+  "plan_commit": "f1b51f26e7f80ebcf7300368e90eb86021be4f84",
+  "sync_errors": [],
+  "athlete": "kennet",
+  "request_ts": "2026-07-09T20:17:06+00:00",
+  "request_id": "rmrdy6otc0nzh"
  }
 }
