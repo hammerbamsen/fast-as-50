@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest-af.json">
+<link rel="apple-touch-icon" href="af-icon.png">
 <title>AF-dag?</title>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600&family=Hanken+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -379,7 +381,9 @@ async function answer(isAF) {
       if(!ghResp.ok) throw new Error('fetch sha ' + ghResp.status);
       const ghData = await ghResp.json();
       const sha  = ghData.sha;
-      const data = JSON.parse(atob(ghData.content.replace(/\n/g,'')));
+      // atob giver Latin-1-tegn — UTF-8-dekodér bytes korrekt, ellers bliver æøå til Ã¦Ã¸Ã¥ og gemmes double-encoded
+      const _raw = atob(ghData.content.replace(/\n/g,''));
+      const data = JSON.parse(new TextDecoder('utf-8').decode(Uint8Array.from(_raw, c => c.charCodeAt(0))));
 
       // af_log: 0 = AF, 1 = ikke-AF (Intervals konvention)
       data.af_log[key] = isAF ? 0 : 1;
