@@ -281,19 +281,11 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     expected_ctl = ctl_plan_for_week(week_num)  # rigtig plan m. recovery-dyk, ikke lineær tilnærmelse
     goods, focus = [], []
 
-    if ctl is not None:
-        if ctl >= expected_ctl - 1:
-            goods.append(f"CTL {fmt(ctl,1)} følger ramp-kurven mod {CTL_GOAL}.")
-        else:
-            focus.append(f"CTL {fmt(ctl,1)} ligger lidt under kurven, så byg gradvist.")
-
-    if tsb is not None:
-        if tsb < -30:
-            focus.append(f"TSB {fmt(tsb,1)} er under bundgrænsen — prioriter restitution før mere volumen.")
-        elif tsb < -20:
-            goods.append(f"TSB {fmt(tsb,1)} viser hård belastning, så hold øje med trætheden.")
-        else:
-            goods.append(f"TSB {fmt(tsb,1)} er på et sundt niveau med plads til næste belastning.")
+    # Dedup 9/7-2026: CTL- og TSB-tal udeladt af teksten — den røde bar (CTL/FORM),
+    # CTL-målet i baren og TSB/HRV-advarselsbannerne viser dem allerede.
+    # Teksten skal levere vurdering og handling, ikke gentage tal fra UI'et.
+    if tsb is not None and tsb < -30:
+        focus.append("Formen er under bundgrænsen — prioriter restitution før mere volumen.")
 
     # TSS-compliance — kun baseret på faktisk done status
     # Mandag morgen med 0 TSS er NORMALT — der er en fuld uge foran
@@ -420,7 +412,8 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
     parts.append(quote)
 
     guide_line = " ".join(parts)
-    speech = f"{intro} {{HL}} {session_line} {guide_line}"
+    # Dedup 9/7-2026: session_line udeladt — topbanneret viser allerede dagens pas
+    speech = f"{intro} {{HL}} {guide_line}"
 
     return speech.strip(), highlight.strip()
 
