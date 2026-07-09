@@ -9,6 +9,12 @@ on:
         default: '2'
   repository_dispatch:
     types: [workouts-built]
+  workflow_call:
+    inputs:
+      week:
+        description: 'Uge nummer (1-14)'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -29,7 +35,7 @@ jobs:
           AZURE_CLIENT_SECRET:  ${{ secrets.AZURE_CLIENT_SECRET }}
           INTERVALS_API_KEY:    ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
-          WEEK: ${{ github.event.inputs.week || github.event.client_payload.week }}
+          WEEK: ${{ inputs.week || github.event.inputs.week || github.event.client_payload.week }}
         run: |
           set -o pipefail
           if [ -z "$WEEK" ]; then echo "FEJL: week-input mangler — afbryder (ingen default)"; exit 1; fi

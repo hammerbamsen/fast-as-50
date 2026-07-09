@@ -10,9 +10,14 @@ on:
         required: false
         default: '0'
 
+permissions:
+  contents: write
+
 jobs:
   build-workouts:
     runs-on: ubuntu-latest
+    outputs:
+      week: ${{ steps.nextweek.outputs.week }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,7 +30,8 @@ jobs:
           WEEK_ONLY: ${{ github.event.inputs.week_only || '0' }}
         run: python3 scripts/build_workouts.py $WEEK_ONLY
 
-      - name: Trigger Outlook-sync for næste uge
+      - name: Beregn næste uge
+        id: nextweek
         if: success()
         run: |
           WEEK=$(python3 -c "
@@ -36,14 +42,8 @@ jobs:
           next_week = min(current_week + 1, 14)
           print(next_week)
           ")
-          echo "Trigger Outlook-sync for uge $WEEK"
-          curl -s -X POST \
-            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Content-Type: application/json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/create-outlook-events.yml/dispatches" \
-            -d "{\"ref\":\"main\",\"inputs\":{\"week\":\"$WEEK\"}}" \
-            -w "\nOutlook dispatch HTTP: %{http_code}"
+          echo "Næste uge = $WEEK"
+          echo "week=$WEEK" >> "$GITHUB_OUTPUT"
 
       - name: Notifikation ved fejl
         if: failure()
@@ -51,3 +51,11 @@ jobs:
           curl -s -X POST "https://hook.eu1.make.com/rwyuzi27urezk1389gytkv8sda23jbdj" \
             -H "Content-Type: application/json" \
             -d '{"workflow":"${{ github.workflow }}","status":"FEJL","repo":"${{ github.repository }}","run":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
+
+  # Native workflow_call — ingen PAT nødvendig (erstatter tidligere curl-dispatch med GH_TOKEN)
+  outlook-sync:
+    needs: build-workouts
+    uses: ./.github/workflows/create-outlook-events.yml
+    with:
+      week: ${{ needs.build-workouts.outputs.week }}
+    secrets: inherit
