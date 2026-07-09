@@ -312,6 +312,52 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
 const C = {
   run:"#C0392B", bike:"#2874A6", swim:"#1A7A5E", strength:"#7D3C98", free:"#7A6A58", walk:"#2E8B57", hike:"#8B6914", commute:"#1A6B8A", openwater:"#0B5394"
 };
+
+// ── Zoneberegner (9/7-2026): dynamiske zoner fra tærskel + FTP ────────────
+// Faktorer kalibreret så defaults (4:20 min/km, 270 W) reproducerer de
+// oprindelige zoner eksakt. localStorage: fast50_thr_sec / fast50_ftp.
+const ZONE_CALC = {
+  thrSec(){ return parseInt(localStorage.getItem('fast50_thr_sec')) || 260; },
+  ftp(){ return parseInt(localStorage.getItem('fast50_ftp')) || 270; },
+  fmtPace(s){ return Math.floor(s/60) + ':' + String(Math.round(s%60)).padStart(2,'0'); },
+  runZones(){
+    const t = this.thrSec();
+    const F = [ // [labelmin-faktor, labelmax-faktor] af tærskel-sekunder
+      {label:'Z2', name:'Aerob base', lo:296/260, hi:334/260, color:'#2874A6'},
+      {label:'Z3', name:'Tempo',      lo:266/260, hi:295/260, color:'#27AE60'},
+      {label:'Z4', name:'Threshold',  lo:253/260, hi:265/260, color:'#F39C12'},
+      {label:'Z5', name:'VO2max',     lo:233/260, hi:252/260, color:'#E67E22'},
+    ];
+    const rows = F.map(z=>({label:z.label,name:z.name,color:z.color,
+      range:this.fmtPace(t*z.lo)+'\u2013'+this.fmtPace(t*z.hi)}));
+    rows.push({label:'Z6',name:'Anaerob',color:'#C0392B',range:'< '+this.fmtPace(t*233/260-1)});
+    return rows;
+  },
+  bikeZones(){
+    const f = this.ftp();
+    const F = [
+      {label:'Z2', name:'Aerob base', lo:150/270, hi:205/270, color:'#2874A6'},
+      {label:'Z3', name:'Tempo',      lo:205/270, hi:245/270, color:'#27AE60'},
+      {label:'Z4', name:'Threshold',  lo:245/270, hi:285/270, color:'#F39C12'},
+      {label:'Z5', name:'VO2max',     lo:285/270, hi:325/270, color:'#E67E22'},
+    ];
+    return F.map(z=>({label:z.label,name:z.name,color:z.color,
+      range:Math.round(f*z.lo)+'\u2013'+Math.round(f*z.hi)+' W'}));
+  }
+};
+function saveZoneCalc(){
+  const p = (document.getElementById('zc-pace').value||'').trim();
+  const w = parseInt(document.getElementById('zc-ftp').value);
+  const m = p.match(/^(\d{1,2})[:.](\d{2})$/);
+  if(!m){ alert('Tærskeltempo skal skrives som fx 4:20'); return; }
+  const sec = parseInt(m[1])*60 + parseInt(m[2]);
+  if(sec < 150 || sec > 480){ alert('Tempo uden for rimeligt interval (2:30\u20138:00)'); return; }
+  if(!w || w < 100 || w > 500){ alert('FTP skal v\u00e6re 100\u2013500 W'); return; }
+  localStorage.setItem('fast50_thr_sec', sec);
+  localStorage.setItem('fast50_ftp', w);
+  render();
+}
+
 const DISC_LABEL = { run:"LØB", bike:"CYKEL", swim:"SVØM", strength:"STYRKE", free:"FRI", walk:"GÅ", hike:"HIKE", commute:"PENDL", openwater:"OW" };
 
 const STATIC = {
@@ -1026,9 +1072,17 @@ function renderOverview() {
     ${renderFocus(D.weekFocus)}
   </div>
   <div class="card">
+    <div class="label">Zoneberegner</div>
+    <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
+      <div style="flex:1;min-width:110px"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em;margin-bottom:4px">T\u00c6RSKEL (MIN/KM)</div><input id="zc-pace" value="${ZONE_CALC.fmtPace(ZONE_CALC.thrSec())}" inputmode="numeric" style="width:100%;padding:9px 10px;border:1px solid var(--cream-d);border-radius:8px;font-family:'Space Mono',monospace;font-size:14px;background:var(--white)"></div>
+      <div style="flex:1;min-width:110px"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em;margin-bottom:4px">FTP (W)</div><input id="zc-ftp" value="${ZONE_CALC.ftp()}" inputmode="numeric" style="width:100%;padding:9px 10px;border:1px solid var(--cream-d);border-radius:8px;font-family:'Space Mono',monospace;font-size:14px;background:var(--white)"></div>
+      <button onclick="saveZoneCalc()" style="background:var(--wine);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer">Beregn</button>
+    </div>
+  </div>
+  <div class="card">
     <div class="label">Løb — træningszoner</div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">THRESHOLD: 4:20 MIN/KM</div>
-    ${STATIC.zones_run.map(z=>`<div class="zone-row">
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">THRESHOLD: ${ZONE_CALC.fmtPace(ZONE_CALC.thrSec())} MIN/KM</div>
+    ${ZONE_CALC.runZones().map(z=>`<div class="zone-row">
       <span class="zone-lbl" style="color:${z.color}">${z.label}</span>
       <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
       <span class="zone-range">${z.range}</span>
@@ -1036,8 +1090,8 @@ function renderOverview() {
   </div>
   <div class="card">
     <div class="label">Cykel — træningszoner</div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">FTP: 270 W</div>
-    ${STATIC.zones_bike.map(z=>`<div class="zone-row">
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px">FTP: ${ZONE_CALC.ftp()} W</div>
+    ${ZONE_CALC.bikeZones().map(z=>`<div class="zone-row">
       <span class="zone-lbl" style="color:${z.color}">${z.label}</span>
       <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
       <span class="zone-range">${z.range}</span>
