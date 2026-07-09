@@ -42,16 +42,27 @@ def gh_get(path):
     return None, None
 
 
-def gh_put(path, sha, content, message):
-    r = _request('PUT', f'https://api.github.com/repos/{REPO}/contents/{path}',
-                 json={'message': message,
-                       'content': base64.b64encode(content.encode()).decode(),
-                       'sha': sha})
-    ok = r is not None and r.status_code in (200, 201)
-    if ok:
-        print(f"  ✅ {path}: {r.json().get('commit', {}).get('sha', '')[:7]}")
-    else:
-        code = r.status_code if r is not None else 'ingen svar'
-        body = r.text[:100] if r is not None else ''
-        print(f"  ❌ {path}: {code} {body} (efter {_RETRIES} forsøg)")
-    return ok
+def gh_put(path, sha, content, message, _sha_retries=3):
+    body = {'message': message,
+            'content': base64.b64encode(content.encode()).decode(),
+            'sha': sha}
+    r = None
+    for attempt in range(_sha_retries):
+        r = _request('PUT', f'https://api.github.com/repos/{REPO}/contents/{path}', json=body)
+        if r is not None and r.status_code in (200, 201):
+            print(f"  ✅ {path}: {r.json().get('commit', {}).get('sha', '')[:7]}")
+            return True
+        # 409/422 = stale SHA: en anden skriver (fx Mac-launchd) opdaterede
+        # filen mellem gh_get og nu. Hent frisk SHA og gentag PUT (last-write-
+        # wins) — implementerer "hent frisk SHA umiddelbart før PUT"-princippet.
+        if r is not None and r.status_code in (409, 422) and attempt < _sha_retries - 1:
+            fresh_sha, _ = gh_get(path)
+            if fresh_sha and fresh_sha != body['sha']:
+                print(f"  ↻ {path}: SHA stale (HTTP {r.status_code}) — frisk SHA, forsøg {attempt+2}/{_sha_retries}")
+                body['sha'] = fresh_sha
+                continue
+        break
+    code = r.status_code if r is not None else 'ingen svar'
+    body_txt = r.text[:100] if r is not None else ''
+    print(f"  ❌ {path}: {code} {body_txt} (efter {_RETRIES} forsøg)")
+    return False
