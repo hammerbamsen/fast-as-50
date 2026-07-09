@@ -1,20 +1,4 @@
 {
- "e2e-note-1783435301": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "2026-08-17"
-  ],
-  "plan_commit": "5b273a4321a1548bfb214141f4c4cfbd4193732d",
-  "sync_errors": [],
-  "athlete": "kennet",
-  "request_ts": "2026-07-07T14:41:52+00:00",
-  "request_id": "e2e-note-1783435301"
- },
  "restore-test1-1783435430": {
   "status": "ok",
   "gate": {
@@ -247,5 +231,24 @@
   "athlete": "kennet",
   "request_ts": "2026-07-09T17:11:34+00:00",
   "request_id": "rmrdrk5u28ibb"
+ },
+ "rmrdrkfx0cj8d": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "2026-07-12",
+   "2026-07-12"
+  ],
+  "plan_commit": "e79dccc2e1c1e1e839fcc693683dc3919f6a8893",
+  "sync_errors": [
+   "Word: 409 Client Error: Conflict for url: https://api.github.com/repos/hammerbamsen/fast-as-50/contents/data/Eva_Medoc_Traningsplan_2026.docx"
+  ],
+  "athlete": "kennet",
+  "request_ts": "2026-07-09T17:11:47+00:00",
+  "request_id": "rmrdrkfx0cj8d"
  }
 }
