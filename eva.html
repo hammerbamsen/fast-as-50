@@ -388,6 +388,11 @@ let PLAN_CACHE=null, LIB_CACHE=null, SHEET_STATE=null;
 
 // ── U4: Fejl-recovery — Prøv igen / Tjek igen / Rapportér fejl ───────
 let U4_CTX = null;
+function syncTitleDur(){
+  const m=document.getElementById("f-mins"), n=document.getElementById("f-name");
+  if(!m||!n||!m.value) return;
+  n.value = n.value.replace(/(\d+)\s*min$/i, m.value + " min");
+}
 function u4Err(message, opts){
   opts = opts || {};
   U4_CTX = { ts: new Date().toISOString(), side: location.pathname,
@@ -524,7 +529,7 @@ async function renderSheet(){
   if (s.action === "adjust"){
     sheet.innerHTML = `<h3>Justér pas</h3><div class="sub">${dateStr} · ${esc(wo?.name||"")}</div>
       <label>Navn</label><input id="f-name" value="${esc(wo?.name||"")}">
-      <label>Varighed (minutter)</label><input id="f-mins" type="number" value="${wo?.moving_time?Math.round(wo.moving_time/60):40}" min="10" max="240">
+      <label>Varighed (minutter)</label><input id="f-mins" type="number" value="${wo?.moving_time?Math.round(wo.moving_time/60):40}" min="10" max="240" oninput="syncTitleDur()">
       <label>Beskrivelse</label><textarea id="f-desc">${esc(wo?.description||"")}</textarea>
       <label>Note</label><input id="f-note" value="${esc(entry?.note||"")}">
       <div id="sheet-msg"></div>
@@ -607,8 +612,8 @@ async function submitEdit(){
     return;
   }
 
-  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Behandler… (kan tage 20-40 sek)</div>`;
-  for (let i=0; i<25; i++){
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Behandler… (kan tage op til et par minutter)</div>`;
+  for (let i=0; i<60; i++){
     await new Promise(r=>setTimeout(r, 3000));
     try {
       const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
@@ -634,7 +639,11 @@ async function submitEdit(){
       return;
     } catch(e) { /* keep polling */ }
   }
-  msg.innerHTML = u4Err("Timeout — resultatet er ikke kommet endnu. Ændringen KAN være gennemført alligevel.", {requestId: requestId, checkAgain: true});
+  msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Det tager længere tid end normalt (GitHub kan være langsom lige nu). Ændringen er sandsynligvis gennemført — luk og træk ned for at genindlæse.</div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button style="flex:1;padding:8px 12px;border-radius:8px;border:none;background:var(--wine);color:#fff;cursor:pointer;font-family:inherit" onclick="u4CheckAgain('${requestId}','sheet-msg')">Tjek igen</button>
+      <button style="flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--cream-d);background:var(--white);color:var(--wine);cursor:pointer;font-family:inherit" onclick="closeSheet(); main();">Luk &amp; genindlæs</button>
+    </div>`;
 }
 
 async function confirmWarnAndRetry(){ SHEET_STATE.confirmedWarn = true; await submitEdit(); }
