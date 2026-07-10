@@ -63,36 +63,42 @@ jobs:
           PYEOF
 
       - name: Upload Master_Plan.xlsx
+        continue-on-error: true
         run: |
           HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Master_Plan.xlsx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Master_Plan.xlsx)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
           [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload Fast_as_Fifty_Masterplan_2026.docx
+        continue-on-error: true
         run: |
           HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Fast_as_Fifty_Masterplan_2026.docx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Fast_as_Fifty_Masterplan_2026.docx)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
           [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload Eva_Medoc_Traningsplan_2026.docx
+        continue-on-error: true
         run: |
           HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Traningsplan_2026.docx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Eva_Medoc_Traningsplan_2026.docx)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
           [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload Eva_Medoc_Master.xlsx
+        continue-on-error: true
         run: |
           HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/Eva_Medoc_Master.xlsx:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/Eva_Medoc_Master.xlsx)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
           [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload about-me.md
+        continue-on-error: true
         run: |
           HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT             "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4B5FDFZRE5CRZH2XOYEYZNWMRKE:/about-me.md:/content"             -H "Authorization: Bearer ${{ steps.token.outputs.token }}"             -H "Content-Type: application/octet-stream"             --data-binary @data/about-me.md)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
           [ "$HTTP" = "200" ] || [ "$HTTP" = "201" ] || (echo "FEJL HTTP $HTTP"; exit 1)
 
       - name: Upload fundament-review.md
+        continue-on-error: true
         run: |
           HTTP=$(curl -s -o /tmp/r.json -w "%{http_code}" -X PUT "https://graph.microsoft.com/v1.0/drives/b!l3-EhhmboESLtqZs3mskwcfYgAb0uTBJtdZFBL1IqyUao41S6zySS6Rj_0KgtpbJ/items/01Y5SFS4EESRNSDGISBJCJQ5UURGEHA6FS:/fast-as-fifty-fundament-review.md:/content" -H "Authorization: Bearer ${{ steps.token.outputs.token }}" -H "Content-Type: application/octet-stream" --data-binary @docs/fast-as-fifty-fundament-review.md)
           cat /tmp/r.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK:',d.get('name','?'),d.get('size','?'),'bytes')" 2>/dev/null || (echo "FEJL HTTP $HTTP"; cat /tmp/r.json; exit 1)
