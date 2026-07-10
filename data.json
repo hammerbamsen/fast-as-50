@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-10 03:09",
+    "updated": "2026-07-10 07:35",
     "week": 6,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,19 +23,19 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "44,4",
+      "value": "45,5",
       "unit": "",
       "sub": "Uge 6-mål 50 · Slutmål 56 (uge 14)",
-      "color": "#C0392B"
+      "color": "#E67E22"
     },
     "tsb": {
-      "value": "2,9",
+      "value": "-0,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,2",
+      "value": "7,3",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,15 +47,15 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "55,6",
+      "value": "58,0",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "51",
+      "value": "100",
       "unit": "TSS",
-      "sub": "51 af 390 planlagt TSS",
+      "sub": "100 af 381 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -82,8 +82,8 @@
     "target": 5,
     "streak": 1
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 6. {HL} Fokus: 51 af 390 TSS er i hus — 3 sessioner tilbage, heriblandt Trail langtur Z2 Wales 75 min, Hike let 80 min. Cykel Z2 70 min er misset — vinduet er lukket. 3 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
-  "coachHighlight": "Søvn på 7,2 timer er solid",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 6. {HL} Fokus: 100 af 381 TSS er i hus — 3 sessioner tilbage, heriblandt Trail langtur Z2 Wales 75 min, Hike let 80 min. 3 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+  "coachHighlight": "Søvn på 7,3 timer er solid",
   "weekFocus": "Bevar kadencen på rejsen — Wales-terrænet er din aerobe base",
   "today": [
     {
@@ -122,7 +122,13 @@
       "day": "Tir",
       "disc": "bike",
       "label": "Cykel Z2 70 min",
-      "done": false
+      "done": true,
+      "completion": "done",
+      "completion_pct": 100,
+      "actual_tss": 49,
+      "actual_mins": 70,
+      "planned_mins": 70,
+      "intervals_compliance": 102.1
     },
     {
       "day": "Ons",
@@ -175,7 +181,7 @@
     42.5,
     43.5,
     48.8,
-    44.4
+    45.5
   ],
   "weightHistory": [
     null,
@@ -580,8 +586,8 @@
       "real": true
     },
     {
-      "date": "2026-07-09",
-      "v": 38.0,
+      "date": "2026-07-10",
+      "v": 75.0,
       "real": true
     }
   ],
@@ -784,8 +790,8 @@
       "real": true
     },
     {
-      "date": "2026-07-09",
-      "v": 7.0,
+      "date": "2026-07-10",
+      "v": 8.4,
       "real": true
     }
   ],
@@ -974,22 +980,22 @@
     },
     {
       "date": "2026-07-07",
-      "v": -10.7,
+      "v": -16.0,
       "real": true
     },
     {
       "date": "2026-07-08",
-      "v": -5.9,
+      "v": -10.4,
       "real": true
     },
     {
       "date": "2026-07-09",
-      "v": -2.4,
+      "v": -6.2,
       "real": true
     },
     {
       "date": "2026-07-10",
-      "v": 2.9,
+      "v": -0.3,
       "real": true
     }
   ],
@@ -1345,7 +1351,13 @@
           "day": "Tir",
           "disc": "bike",
           "label": "Cykel Z2 70 min",
-          "done": false
+          "done": true,
+          "completion": "done",
+          "completion_pct": 100,
+          "actual_tss": 49,
+          "actual_mins": 70,
+          "planned_mins": 70,
+          "intervals_compliance": 102.1
         },
         {
           "day": "Ons",
@@ -1793,10 +1805,11 @@
   "train_mins": {
     "hike": 112.0,
     "walk": 139.0,
+    "bike": 70.0,
     "strength": 21.0,
     "swim": 40.0,
     "planned": 480.0,
-    "actual_total": 312.0
+    "actual_total": 382.0
   },
   "fatHistory": [
     null,
@@ -2008,14 +2021,8 @@
   "coachAssessmentWeightAtGen": 72.4,
   "coachAssessmentAfAtGen": 3,
   "commute_pairing_warnings": [],
-  "warnings": [
-    {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 38,0 ms — 32% under 7d-snit (55,6 ms). Kroppen er presset."
-    }
-  ],
-  "tsb": 2.9,
+  "warnings": [],
+  "tsb": -0.3,
   "swimHistory": [
     {
       "week": 1,
