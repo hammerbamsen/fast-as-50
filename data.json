@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-10 07:35",
+    "updated": "2026-07-10 09:21",
     "week": 6,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,16 +23,16 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "45,5",
+      "value": "47,7",
       "unit": "",
       "sub": "Uge 6-mål 50 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-0,3",
+      "value": "-10,5",
       "unit": "",
-      "sub": "Form · CTL−ATL, frisk >0",
-      "color": "#27AE60"
+      "sub": "Hård blok · CTL−ATL, frisk >0",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7,3",
@@ -41,10 +41,10 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "0,0",
+      "value": "15,0",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "hrv": {
       "value": "58,0",
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "100",
+      "value": "193",
       "unit": "TSS",
-      "sub": "100 af 381 planlagt TSS",
+      "sub": "193 af 381 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 1
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 6. {HL} Fokus: 100 af 381 TSS er i hus — 3 sessioner tilbage, heriblandt Trail langtur Z2 Wales 75 min, Hike let 80 min. 3 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 6. {HL} Fokus: 193 af 381 TSS er i hus — 2 sessioner tilbage, heriblandt Hike let 80 min, Trail-løb Z2 Wales 55 min. 3 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
   "coachHighlight": "Søvn på 7,3 timer er solid",
   "weekFocus": "Bevar kadencen på rejsen — Wales-terrænet er din aerobe base",
   "today": [
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -159,8 +159,14 @@
       "day": "Fre",
       "disc": "run",
       "label": "Trail langtur Z2 Wales 75 min",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 100,
+      "actual_tss": 93,
+      "actual_mins": 75,
+      "planned_mins": 75,
+      "intervals_compliance": 100.3
     },
     {
       "day": "Lør",
@@ -181,7 +187,7 @@
     42.5,
     43.5,
     48.8,
-    45.5
+    47.7
   ],
   "weightHistory": [
     null,
@@ -995,7 +1001,7 @@
     },
     {
       "date": "2026-07-10",
-      "v": -0.3,
+      "v": -10.5,
       "real": true
     }
   ],
@@ -1388,8 +1394,14 @@
           "day": "Fre",
           "disc": "run",
           "label": "Trail langtur Z2 Wales 75 min",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 100,
+          "actual_tss": 93,
+          "actual_mins": 75,
+          "planned_mins": 75,
+          "intervals_compliance": 100.3
         },
         {
           "day": "Lør",
@@ -1803,13 +1815,14 @@
     }
   ],
   "train_mins": {
+    "run": 75.0,
     "hike": 112.0,
     "walk": 139.0,
     "bike": 70.0,
     "strength": 21.0,
     "swim": 40.0,
     "planned": 480.0,
-    "actual_total": 382.0
+    "actual_total": 457.0
   },
   "fatHistory": [
     null,
@@ -2015,14 +2028,14 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 40 af 98 · Fredag · Uge 6</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 44.4 mod ugens mål på 50 — det er et gap, der kræver opmærksomhed. TSB på 2.9 viser du er frisk og klar til at arbejde. I dag venter Trail langtur Z2 Wales 75 min, og den skal du bruge til at bygge aerob base i det walisiske terræn — hold dig solidt i Z2-pace og lad banerne arbejde for dig. Mandagens svøm landede på 0% HR-Z2, så sørg i dag for at holde intensiteten inde i zonen, selv hvis pulsen bruger tid på at stige i bakket terræn.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling — ingen vurdering herfra i dag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 3 AF-dage ud af 5 dage gået denne uge — det er 3/5, og det er acceptabelt, men det er ikke i mål. Lørdag og søndag er begge alkoholfrie, hvis du vil ramme ugens mål på 5. Hold stregen ren de næste to dage — det er en konkret beslutning, ikke et spørgsmål om overskud.</p>",
-  "coachAssessmentTs": "01:09",
-  "coachAssessmentTsFull": "2026-07-10T01:09:12.919894",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 40 af 98 · Fredag · Uge 6</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 47.7 mod et ugemål på 50 — du er lidt bagud, men TSB på -10.5 er fornuftig og godt inden for grænsen. Dagens trail-langtur blev gennemført på 75 min med god pace-Z2-compliance, men 31.7% af tiden lå du i en hurtigere zone end planlagt, og HR fulgte ikke med. Til næste lignende Z2-trail — f.eks. søndagens løb — skal du holde tempoet lavere fra start, så HR faktisk styrer farten og ikke halser bagefter. Svømmen mandag nåede 0% Z2, hvilket er den åbne post i ugen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægttmåling i dag, så der er ikke noget at vurdere her. Wales-terrænet giver dig de aerobe timers arbejde, der på sigt støtter vægttabet — hold fokus på det.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du har 3 AF-dage ud af 5 dage gået i ugen — det er godkendt, men målet er 5 for hele ugen. Det betyder at lørdag og søndag begge skal være AF-dage for at nå i mål. Streak er på 1 — du er i gang, hold den kørende gennem weekenden.</p>",
+  "coachAssessmentTs": "07:21",
+  "coachAssessmentTsFull": "2026-07-10T07:21:43.221223",
   "coachAssessmentWeightAtGen": 72.4,
   "coachAssessmentAfAtGen": 3,
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -0.3,
+  "tsb": -10.5,
   "swimHistory": [
     {
       "week": 1,
@@ -2062,7 +2075,7 @@
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i164221887",
+  "coachAssessmentLastActId": "i164380891",
   "weekFocusWeek": 6,
   "coachAssessmentPlanAtGen": "Trail langtur Z2 Wales 75 min",
   "weightGoal": 70,
