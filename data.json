@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-11 11:07",
+    "updated": "2026-07-11 12:41",
     "week": 6,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "46,9",
+      "value": "47,2",
       "unit": "",
       "sub": "Uge 6-mål 50 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-5,4",
+      "value": "-6,5",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "209",
+      "value": "220",
       "unit": "TSS",
-      "sub": "209 af 483 planlagt TSS",
+      "sub": "220 af 483 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 2
   },
-  "coachSpeech": "Lørdag — uge 6 af 14. {HL} Fokus: 209 af 483 TSS er i hus — 2 sessioner tilbage, heriblandt Hike let 80 min, Hike - 3 timer. 4 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachSpeech": "Lørdag — uge 6 af 14. {HL} Fokus: 220 af 483 TSS er i hus — Hike - 3 timer står tilbage. 4 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
   "coachHighlight": "Søvn på 7,5 timer er solid",
   "weekFocus": "Bevar kadencen på rejsen — Wales-terrænet er din aerobe base",
   "today": [
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -185,8 +185,14 @@
       "day": "Lør",
       "disc": "hike",
       "label": "Hike let 80 min",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 101,
+      "actual_tss": 11,
+      "actual_mins": 81,
+      "planned_mins": 80,
+      "intervals_compliance": 101.4
     },
     {
       "day": "Søn",
@@ -201,7 +207,7 @@
     42.5,
     43.5,
     48.8,
-    46.9
+    47.2
   ],
   "weightHistory": [
     null,
@@ -1015,7 +1021,7 @@
     },
     {
       "date": "2026-07-11",
-      "v": -5.4,
+      "v": -6.6,
       "real": true
     }
   ],
@@ -1435,8 +1441,14 @@
           "day": "Lør",
           "disc": "hike",
           "label": "Hike let 80 min",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 101,
+          "actual_tss": 11,
+          "actual_mins": 81,
+          "planned_mins": 80,
+          "intervals_compliance": 101.4
         },
         {
           "day": "Søn",
@@ -1844,14 +1856,14 @@
     }
   ],
   "train_mins": {
+    "hike": 193.0,
     "walk": 244.0,
     "run": 75.0,
-    "hike": 112.0,
     "bike": 70.0,
     "strength": 21.0,
     "swim": 40.0,
     "planned": 605.0,
-    "actual_total": 562.0
+    "actual_total": 643.0
   },
   "fatHistory": [
     null,
@@ -2057,14 +2069,14 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 41 af 98 · Lørdag · Uge 6</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 46.9 mod ugemålet på 50 — det er et naturligt underskud i en rejseuge, hvor gåture og vandringer giver lavere TSS end strukturerede pas. TSB på -5.4 er uproblematisk og viser at du er i god balance. Fredagens trail-langtur ramte pace-Z2 præcist, men tempoet var for højt i knap en tredjedel af turen — tag det med til næste Z2-løb og sæt farten ned fra start. Dagens 80 minutters hike er din afslutning på en solid Wales-uge — hold det let og aerob.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling i dag, så ingen tal at arbejde med. Rejsekost kan snige sig — hold øje med portionsstørrelser og alkohol, da det er de to største lækager på rejse.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du har 4 AF-dage ud af 6 dage i ugen — det er en fin rate på 67%. Søndagens 3-timers hike er en god afslutning på ugen og holder dig i bevægelse uden at lægge unødigt stress på kroppen. Holder du dig alkoholfri i dag og i morgen, lander du på 5 AF-dage for ugen og rammer ugsmålet præcist. Det er inden for rækkevidde — hold fast.</p>",
-  "coachAssessmentTs": "07:11",
-  "coachAssessmentTsFull": "2026-07-11T07:11:44.277162",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 41 af 98 · Lørdag · Uge 6</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 47.2 mod et ugemål på 50 — gabet skyldes ugens karakter som en let rejseuge med gåture og vandringer, der giver lav TSS per session. Det er den rigtige prioritering på en Wales-tur. TSB på -6.5 er komfortabelt, og du har stadig søndagens 3-timers hike foran dig, som vil trykke CTL yderligere op. Trail-turen fredag ramte Z2 pænt, men tempo var lidt for højt — næste gang du løber lignende terræn, så sæt et gear ned og lad HR stige roligt ind i zonen frem for at pace dig dertil.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vejning at forholde sig til. Rejseuger er klassisk svære kostmæssigt — mange restaurantmåltider, uregelmæssige tider og let adgang til ekstra kalorier. Hold øje med portionsstørrelser og alkohol, særligt hvis aftenen byder på sociale situationer i Wales.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du har 4 AF-dage ud af 6 dage i ugen — det er en solid kurs. Søndagen er din sidste chance for at nå ugens mål på 5, og det er en hike-dag, så det handler udelukkende om, hvad du vælger at drikke til aftenen. Hold fast.</p>",
+  "coachAssessmentTs": "10:42",
+  "coachAssessmentTsFull": "2026-07-11T10:42:00.275948",
   "coachAssessmentWeightAtGen": 72.4,
   "coachAssessmentAfAtGen": 4,
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -5.4,
+  "tsb": -6.5,
   "swimHistory": [
     {
       "week": 1,
@@ -2104,7 +2116,7 @@
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i164491422",
+  "coachAssessmentLastActId": "i164707103",
   "weekFocusWeek": 6,
   "coachAssessmentPlanAtGen": "Hike let 80 min",
   "weightGoal": 70,
