@@ -448,9 +448,23 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     today_label = today_session.get('label', 'hviledag') if today_session else 'hviledag'
     today_done = today_session.get('done', False) if today_session else False
     today_status = "✅ GENNEMFØRT" if today_done else "⏳ IKKE FORSØGT ENDNU"
-    remaining = ", ".join(
-        f"{s['day']}: {s['label']}" for s in week_sessions if not s.get('done') and not s.get('today')
-    ) or "ingen planlagte"
+
+    # Grounding: byg eksplicitte lister fra week_sessions, så modellen taler ud fra
+    # hvad der FAKTISK er gjort — ikke gætter en årsag til en CTL-afvigelse.
+    # Resten splittes i fremtidige (endnu ikke forfaldne) vs missede (dag passeret,
+    # ikke done) — præcis som generate_coach_speech gør — så et gennemført eller
+    # passeret pas aldrig fejlagtigt lander i "resten af ugen" eller kaldes "manglende".
+    def _sess_is_past(s):
+        d = s.get('day')
+        if d in DAY_SHORT:
+            return DAY_SHORT.index(d) < weekday
+        return False
+    completed = [s for s in week_sessions if s.get('done') and not s.get('today')]
+    completed_str = ", ".join(f"{s['day']}: {s['label']}" for s in completed) or "ingen endnu"
+    future_remaining = [s for s in week_sessions if not s.get('done') and not s.get('today') and not _sess_is_past(s)]
+    missed = [s for s in week_sessions if not s.get('done') and not s.get('today') and _sess_is_past(s)]
+    remaining = ", ".join(f"{s['day']}: {s['label']}" for s in future_remaining) or "ingen planlagte"
+    missed_str = ", ".join(f"{s['day']}: {s['label']}" for s in missed)
     weight_line = f"\n- Vægt: {weight} kg (seneste måling)" if weight else ""
     compliance_line = (
         f"\n\nZone-compliance denne uge (Friel-analyse):\n{compliance_summary}\n"
@@ -498,8 +512,16 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"Friel-regler:\n- TSB ikke under -30\n- CTL-stigning max 5-8/uge\n"
         f"- Recovery-uge efter hård blok\n- Max 3 løbeture/uge\n\n"
         f"Aktuelle data:\n- {kpis_str}\n- {af_note}\n- Ugefokus: {week_focus[:200]}\n"
-        f"- I dag: {today_label} [{today_status}]\n- Resten af ugen: {remaining}{weight_line}{travel_line}{trajectory_line}{compliance_line}\n\n"
+        f"- I dag: {today_label} [{today_status}]\n"
+        f"- GENNEMFØRT denne uge (fuldførte kendsgerninger): {completed_str}\n"
+        + (f"- MISSET denne uge (dag passeret, ikke gennemført): {missed_str}\n" if missed_str else "")
+        + f"- Resten af ugen (KUN fremtidige, endnu ikke forfaldne pas): {remaining}{weight_line}{travel_line}{trajectory_line}{compliance_line}\n\n"
         f"VIGTIGT:\n"
+        f"- GROUNDING (ufravigelig): Pas i 'GENNEMFØRT denne uge' ER fuldført. Omtal dem ALDRIG som "
+        f"manglende, glemt, sprunget over, udestående eller noget der 'skal'/'mangler' at ske. Et pas må "
+        f"KUN kaldes manglende/misset hvis det står eksplicit i 'MISSET denne uge'. Hvis CTL ligger under "
+        f"ugemålet, forklar det ud fra ugens KARAKTER (fx en let rejse-/restitutionsuge hvor gåture og "
+        f"vandringer giver lav TSS) — ALDRIG ved at pege på et pas der står i GENNEMFØRT-listen.\n"
         f"- Hvis dagens session er GENNEMFØRT: Den er en afsluttet kendsgerning. Skriv UDELUKKENDE i DATID om den. "
         f"Skriv ALDRIG sætninger der fremstiller den som noget der 'starter', 'skal' eller 'mangler' at ske — "
         f"fx 'det starter med dagens cykeltur' eller 'hold wattene oppe i dagens tur' er FORBUDT sprog for en "
