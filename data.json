@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-07-13 01:55",
-    "week": 6,
+    "updated": "2026-07-13 04:50",
+    "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 55,
-    "daysToChristiansborg": 48,
-    "dayName": "Søndag",
-    "date": "12. jul"
+    "daysToMedoc": 54,
+    "daysToChristiansborg": 47,
+    "dayName": "Mandag",
+    "date": "13. jul"
   },
   "kpis": {
     "weight": {
       "value": "72,4",
       "unit": "kg",
-      "sub": "Mål <70 kg · snit 72,5 kg",
+      "sub": "Mål <70 kg · snit 72,4 kg",
       "color": "#E67E22"
     },
     "fat": {
@@ -23,13 +23,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "47,2",
+      "value": "46,1",
       "unit": "",
-      "sub": "Uge 6-mål 50 · Slutmål 56 (uge 14)",
+      "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-5,6",
+      "value": "0,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -41,22 +41,22 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "15,0",
+      "value": "0,0",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
-      "color": "#C0392B"
+      "color": "#7A6A58"
     },
     "hrv": {
-      "value": "62,8",
+      "value": "63,7",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "267",
+      "value": "0",
       "unit": "TSS",
-      "sub": "267 af 492 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "0 af 709 planlagt TSS",
+      "color": "#7A6A58"
     },
     "bikeKm": {
       "value": "0,0",
@@ -65,10 +65,10 @@
       "color": "#7A6A58"
     },
     "swimM": {
-      "value": "2000",
+      "value": "0",
       "unit": "m",
       "sub": "Svøm denne uge · mål 2000m (Christiansborg)",
-      "color": "#27AE60"
+      "color": "#7A6A58"
     },
     "afStreak": {
       "value": "4",
@@ -78,130 +78,81 @@
     }
   },
   "af": {
-    "weekDone": 6,
+    "weekDone": 0,
     "target": 5,
     "streak": 4
   },
-  "coachSpeech": "Søndag — afslut uge 6 stærkt. {HL} Godt: Søvn på 7,8 timer er solid. 6/7 AF-dage — ugens mål er ramt. Stærk uge. 7 uger til Christiansborg — hold sporet. 📊 Store billede: CTL 47,2 er 2.8 point BAG ugeplanen (planmål uge 6: 50).  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "54 procent af ugens TSS er i hus",
-  "weekFocus": "Bevar kadencen på rejsen — Wales-terrænet er din aerobe base",
+  "coachSpeech": "Ny uge starter — uge 7 af 14. Build-uge. {HL} Godt: Søvn på 7,8 timer er solid. Ny uge med 4 dages streak i ryggen. Hold den. Alt peger den rigtige vej. Hold ilden ved — ikke sluk den.  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "Fuld uge foran — i dag: Svøm 2000m teknisk",
+  "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
     {
-      "discipline": "hike",
-      "title": "Hike - 3 timer",
+      "discipline": "swim",
+      "title": "Svøm 2000m teknisk",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": true
+      "completed": false
+    },
+    {
+      "discipline": "strength",
+      "title": "Styrke A Functional Strength 3 sæt",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": false
     }
   ],
   "week_sessions": [
     {
       "day": "Man",
-      "disc": "openwater",
-      "label": "OW-svøm Christiansborg-prep 40 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 100,
-      "actual_tss": 9,
-      "actual_mins": 40,
-      "planned_mins": 40
+      "disc": "swim",
+      "label": "Svøm 2000m teknisk",
+      "done": false,
+      "today": true
     },
     {
       "day": "Man",
       "disc": "strength",
-      "label": "Styrke let 2 sæt recovery",
-      "done": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 4,
-      "actual_mins": 21,
-      "planned_mins": null
+      "label": "Styrke A Functional Strength 3 sæt",
+      "done": false,
+      "today": true
     },
     {
       "day": "Tir",
-      "disc": "bike",
-      "label": "Cykel Z2 70 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 100,
-      "actual_tss": 49,
-      "actual_mins": 70,
-      "planned_mins": 70
+      "disc": "run",
+      "label": "Løb VO2 5×3 min Z4",
+      "done": false
     },
     {
       "day": "Ons",
-      "disc": "walk",
-      "label": "Cardiff Gang",
-      "done": true,
-      "extra": true
+      "disc": "bike",
+      "label": "Hometrainer Z2-Z3 80 min",
+      "done": false
     },
     {
       "day": "Tor",
-      "disc": "hike",
-      "label": "Hike let 120 min",
-      "done": true,
-      "completion": "partial",
-      "completion_pct": 54,
-      "actual_tss": 18,
-      "actual_mins": 65,
-      "planned_mins": 120
-    },
-    {
-      "day": "Tor",
-      "disc": "hike",
-      "label": "Swansea Vandring",
-      "done": true,
-      "extra": true
+      "disc": "bike",
+      "label": "Cykel Z2 60 min Mallorca",
+      "done": false
     },
     {
       "day": "Fre",
-      "disc": "run",
-      "label": "Trail langtur Z2 Wales 75 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 100,
-      "actual_tss": 93,
-      "actual_mins": 75,
-      "planned_mins": 75
-    },
-    {
-      "day": "Fre",
-      "disc": "walk",
-      "label": "Swansea Gang",
-      "done": true,
-      "extra": true
-    },
-    {
-      "day": "Fre",
-      "disc": "walk",
-      "label": "Pembrokeshire Gang",
-      "done": true,
-      "extra": true
+      "disc": "bike",
+      "label": "Cykel Z2 180 min Mallorca",
+      "done": false
     },
     {
       "day": "Lør",
-      "disc": "hike",
-      "label": "Hike let 80 min",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 101,
-      "actual_tss": 11,
-      "actual_mins": 81,
-      "planned_mins": 80
+      "disc": "bike",
+      "label": "Cykel Z2 240 min Mallorca",
+      "done": false
     },
     {
       "day": "Søn",
-      "disc": "hike",
-      "label": "Hike - 3 timer",
-      "done": true,
-      "today": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 47,
-      "actual_mins": 121,
-      "planned_mins": null,
-      "intervals_compliance": 67.5
+      "disc": "run",
+      "label": "Løb Z2 60 min",
+      "done": false
     }
   ],
   "ctlCurve": [
@@ -210,7 +161,8 @@
     42.5,
     43.5,
     48.8,
-    47.2
+    47.2,
+    46.1
   ],
   "weightHistory": [
     null,
@@ -376,11 +328,6 @@
       "real": true
     },
     {
-      "date": "2026-07-05",
-      "v": 72.8,
-      "real": true
-    },
-    {
       "date": "2026-07-06",
       "v": 72.5,
       "real": true
@@ -388,6 +335,11 @@
     {
       "date": "2026-07-07",
       "v": 72.3,
+      "real": true
+    },
+    {
+      "date": "2026-07-08",
+      "v": 72.4,
       "real": true
     },
     {
@@ -580,11 +532,6 @@
       "real": true
     },
     {
-      "date": "2026-07-05",
-      "v": 56.0,
-      "real": true
-    },
-    {
       "date": "2026-07-06",
       "v": 67.0,
       "real": true
@@ -612,6 +559,11 @@
     {
       "date": "2026-07-11",
       "v": 76.0,
+      "real": true
+    },
+    {
+      "date": "2026-07-12",
+      "v": 53.0,
       "real": true
     },
     {
@@ -784,11 +736,6 @@
       "real": true
     },
     {
-      "date": "2026-07-05",
-      "v": 7.6,
-      "real": true
-    },
-    {
       "date": "2026-07-06",
       "v": 7.1,
       "real": true
@@ -816,6 +763,11 @@
     {
       "date": "2026-07-11",
       "v": 8.2,
+      "real": true
+    },
+    {
+      "date": "2026-07-12",
+      "v": 8.1,
       "real": true
     },
     {
@@ -988,11 +940,6 @@
       "real": true
     },
     {
-      "date": "2026-07-05",
-      "v": -25.6,
-      "real": true
-    },
-    {
       "date": "2026-07-06",
       "v": -18.3,
       "real": true
@@ -1025,6 +972,11 @@
     {
       "date": "2026-07-12",
       "v": -5.7,
+      "real": true
+    },
+    {
+      "date": "2026-07-13",
+      "v": 0.3,
       "real": true
     }
   ],
@@ -1361,108 +1313,50 @@
           "day": "Man",
           "disc": "openwater",
           "label": "OW-svøm Christiansborg-prep 40 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 100,
-          "actual_tss": 9,
-          "actual_mins": 40,
-          "planned_mins": 40
+          "done": false,
+          "today": false
         },
         {
           "day": "Man",
           "disc": "strength",
           "label": "Styrke let 2 sæt recovery",
-          "done": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 4,
-          "actual_mins": 21,
-          "planned_mins": null
+          "done": false,
+          "today": false
         },
         {
           "day": "Tir",
           "disc": "bike",
           "label": "Cykel Z2 70 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 100,
-          "actual_tss": 49,
-          "actual_mins": 70,
-          "planned_mins": 70
-        },
-        {
-          "day": "Ons",
-          "disc": "walk",
-          "label": "Cardiff Gang",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Tor",
           "disc": "hike",
           "label": "Hike let 120 min",
-          "done": true,
-          "completion": "partial",
-          "completion_pct": 54,
-          "actual_tss": 18,
-          "actual_mins": 65,
-          "planned_mins": 120
-        },
-        {
-          "day": "Tor",
-          "disc": "hike",
-          "label": "Swansea Vandring",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Fre",
           "disc": "run",
           "label": "Trail langtur Z2 Wales 75 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 100,
-          "actual_tss": 93,
-          "actual_mins": 75,
-          "planned_mins": 75
-        },
-        {
-          "day": "Fre",
-          "disc": "walk",
-          "label": "Swansea Gang",
-          "done": true,
-          "extra": true
-        },
-        {
-          "day": "Fre",
-          "disc": "walk",
-          "label": "Pembrokeshire Gang",
-          "done": true,
-          "extra": true
+          "done": false,
+          "today": false
         },
         {
           "day": "Lør",
           "disc": "hike",
           "label": "Hike let 80 min",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 101,
-          "actual_tss": 11,
-          "actual_mins": 81,
-          "planned_mins": 80
+          "done": false,
+          "today": false
         },
         {
           "day": "Søn",
           "disc": "hike",
           "label": "Hike - 3 timer",
-          "done": true,
-          "today": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 47,
-          "actual_mins": 121,
-          "planned_mins": null,
-          "intervals_compliance": 67.5
+          "done": false,
+          "today": false
         }
       ],
       "blockType": "BUILD",
@@ -1475,60 +1369,54 @@
           "disc": "swim",
           "label": "Svøm 2000m teknisk",
           "done": false,
-          "today": false
+          "today": true
         },
         {
           "day": "Man",
           "disc": "strength",
           "label": "Styrke A Functional Strength 3 sæt",
           "done": false,
-          "today": false
+          "today": true
         },
         {
           "day": "Tir",
           "disc": "run",
           "label": "Løb VO2 5×3 min Z4",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Ons",
           "disc": "bike",
           "label": "Hometrainer Z2-Z3 80 min",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 60 min Mallorca",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Fre",
           "disc": "bike",
           "label": "Cykel Z2 180 min Mallorca",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Lør",
           "disc": "bike",
           "label": "Cykel Z2 240 min Mallorca",
-          "done": false,
-          "today": false
+          "done": false
         },
         {
           "day": "Søn",
           "disc": "run",
           "label": "Løb Z2 60 min",
-          "done": false,
-          "today": false
+          "done": false
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Restituitionsuge 7 — 2 løb · 1 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
+      "focus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene"
     },
     "8": {
       "sessions": [
@@ -1861,17 +1749,17 @@
       "done": 6,
       "total": 7,
       "label": "Uge 6"
+    },
+    {
+      "week": 7,
+      "done": 0,
+      "total": 1,
+      "label": "Uge 7"
     }
   ],
   "train_mins": {
-    "hike": 314.0,
-    "walk": 244.0,
-    "run": 75.0,
-    "bike": 70.0,
-    "strength": 21.0,
-    "swim": 40.0,
-    "planned": 605.0,
-    "actual_total": 764.0
+    "planned": 805.0,
+    "actual_total": 0
   },
   "fatHistory": [
     null,
@@ -2037,11 +1925,6 @@
       "real": true
     },
     {
-      "date": "2026-07-05",
-      "v": 22.0,
-      "real": true
-    },
-    {
       "date": "2026-07-06",
       "v": 21.5,
       "real": true
@@ -2075,22 +1958,27 @@
       "date": "2026-07-08",
       "v": 21.8,
       "real": true
+    },
+    {
+      "date": "2026-07-08",
+      "v": 21.8,
+      "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 42 af 98 · Søndag · Uge 6</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL er 47,2 og TSB er -5,6 — kroppen er belastet, men langt fra rød zone. Ugen har været domineret af vandringer og hikes i Wales-terræn, og det er præcis det, der giver lav TSS per aktivitet — ikke noget der mangler. Trail-turen fredag ramte Z2-pace fint (61,7%), men tempoet lå for hurtigt: 31,7% af tiden var du over target-zonen, og HR nåede aldrig at følge med. Næste gang du løber Z2 i bakketerræn, sænk tempoet aktivt ned — zone er zone, uanset hvad bakken lokker dig til.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vejning, så ingen tal herfra. Rejseuger i Wales med masser af gang og vandring er generelt gode for kaloriebalancen — hold fast i det.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du har holdt 6 AF-dage ud af 7 gået i ugen — det er stærkt og klart over ugmålet på 5. Streak er på 4 dage. Ugen er i mål på alkoholfronten — der er ingen grund til at ændre noget.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">📊 <strong>Store billede</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 47,2 er 2,8 point bag ugeplanen (mål: 50) — det er Wales-ugens karakter, ikke et problem. En uge med hikes, vandringer og let terræn giver lavere TSS end strukturerede træningsdage, og det var netop filosofien: bevar aerob base på rejsen. Sporet mod 56 i uge 14 er stadig realistisk — næste blok skal bare levere lidt mere struktureret load.</p>",
-  "coachAssessmentTs": "18:27",
-  "coachAssessmentTsFull": "2026-07-12T18:27:17.573228",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 43 af 98 · Mandag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 46.1 – det er 8 point under ugemålet på 54, men det afspejler karakteren af denne uge: du er på vej til Mallorca med en stor cykelblok forude, og TSB på 0.3 viser at du ankommer frisk og klar. Dagens tekniske svøm på 2000m er endnu ikke forsøgt – det er et oplagt sted at sætte tonen for ugen. Hold fokus på teknikken frem for tempo: skulderrotation, catch og lav bølge.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtstatus i dag. Mallorca-ugen er en oplagt mulighed for at styre kosten kontrolleret – du bestemmer hvad der er på menuen, og de lange Z2-ture skaber et naturligt kalorieunderskud uden at du behøver at sulte.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">0 AF-dage ud af 1 dag gået i ugen – dagen er stadig i gang, så der er fuld mulighed for at lande dag 1. Streaken er på 4 dage, og det er et solidt fundament at bygge videre på. Mallorca-ugen er strukturelt nem at holde alkoholfri: du er i træningsmode, langt fra faste sociale vaner, og kroppen vil takke dig med bedre søvn og bedre tilpasning til de lange ture.</p>",
+  "coachAssessmentTs": "02:50",
+  "coachAssessmentTsFull": "2026-07-13T02:50:52.398926",
   "coachAssessmentWeightAtGen": 72.4,
-  "coachAssessmentAfAtGen": 6,
+  "coachAssessmentAfAtGen": 0,
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 53,0 ms — 16% under 7d-snit (62,8 ms). Kroppen er presset."
+      "message": "HRV 53,0 ms — 17% under 7d-snit (63,7 ms). Kroppen er presset."
     }
   ],
-  "tsb": -5.6,
+  "tsb": 0.3,
   "swimHistory": [
     {
       "week": 1,
@@ -2127,12 +2015,18 @@
       "date": "2026-07-06",
       "meters": 2000.0,
       "cumulative": 11642.0
+    },
+    {
+      "week": 7,
+      "date": "2026-07-13",
+      "meters": 0,
+      "cumulative": 11642.0
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i164965094",
-  "weekFocusWeek": 6,
-  "coachAssessmentPlanAtGen": "Hike - 3 timer",
+  "coachAssessmentLastActId": null,
+  "weekFocusWeek": 7,
+  "coachAssessmentPlanAtGen": "Svøm 2000m teknisk",
   "weightGoal": 70,
   "bodyFatGoal": 20,
   "weightMovingAvg7": [
@@ -2218,14 +2112,14 @@
     74.03,
     73.91,
     73.83,
-    73.63,
-    73.39,
-    73.11,
-    72.86,
-    72.77,
-    72.63,
-    72.46,
-    72.4
+    73.59,
+    73.31,
+    73.06,
+    72.8,
+    72.71,
+    72.57,
+    72.4,
+    72.39
   ],
   "fatMovingAvg7": [
     null,
@@ -2310,14 +2204,14 @@
     22.56,
     22.51,
     22.37,
-    22.27,
-    22.1,
-    21.99,
-    21.86,
-    21.87,
-    21.79,
-    21.8,
-    21.77
+    22.2,
+    22.09,
+    21.96,
+    21.83,
+    21.84,
+    21.76,
+    21.77,
+    21.81
   ],
   "weightToGoal": 2.4,
   "bodyFatToGoal": 1.8,
