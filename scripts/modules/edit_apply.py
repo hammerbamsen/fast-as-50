@@ -123,9 +123,15 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
             dst_day = {"date": target_date, "entries": []}
             ath["days"].append(dst_day)
             ath["days"].sort(key=lambda d: d["date"])
-        if mode == "swap":
-            # udveksl entries mellem dagene
+        if mode == "swap" and len(src_day["entries"]) == 1:
+            # Enkelt-pas-kildedag: byt hele dagenes indhold, som hidtil.
             src_day["entries"], dst_day["entries"] = dst_day["entries"], src_day["entries"]
+        elif mode == "swap":
+            # Flerdages-kildedag: flyt KUN den valgte entry over. Øvrige pas
+            # på kildedagen skal IKKE rives med — dette var buggen 13/7 2026,
+            # hvor hele entries-listen blev byttet og Svøm fulgte med Styrke.
+            src_idx = next(i for i, e in enumerate(src_day["entries"]) if e is src_entry)
+            dst_day["entries"].append(src_day["entries"].pop(src_idx))
         else:  # replace
             dst_day["entries"] = src_day["entries"]
             src_day["entries"] = []
