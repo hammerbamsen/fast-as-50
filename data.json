@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13 08:20",
+    "updated": "2026-07-13 11:54",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "46,1",
+      "value": "47,1",
       "unit": "",
       "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "0,3",
+      "value": "-4,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -53,10 +53,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "42",
       "unit": "TSS",
-      "sub": "0 af 709 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "42 af 709 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0,0",
@@ -65,10 +65,10 @@
       "color": "#7A6A58"
     },
     "swimM": {
-      "value": "0",
+      "value": "2012",
       "unit": "m",
       "sub": "Svøm denne uge · mål 2000m (Christiansborg)",
-      "color": "#7A6A58"
+      "color": "#27AE60"
     },
     "afStreak": {
       "value": "4",
@@ -82,8 +82,8 @@
     "target": 5,
     "streak": 4
   },
-  "coachSpeech": "Ny uge starter — uge 7 af 14. Build-uge. {HL} Godt: Søvn på 7,7 timer er solid. Ny uge med 4 dages streak i ryggen. Hold den. Fokus: Vægt på 72,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du bliver til det, du gør ofte.\"",
-  "coachHighlight": "Fuld uge foran — i dag: Svøm 2000m teknisk",
+  "coachSpeech": "Ny uge starter — uge 7 af 14. Build-uge. {HL} Godt: Ny uge med 4 dages streak i ryggen. Hold den. Fokus: 42 af 709 TSS er i hus — 7 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Løb VO2 5×3 min Z4. Vægt på 72,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "Søvn på 7,7 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
     {
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "strength",
@@ -108,8 +108,14 @@
       "day": "Man",
       "disc": "swim",
       "label": "Svøm 2000m teknisk",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 42,
+      "actual_mins": 45,
+      "planned_mins": null,
+      "intervals_compliance": 75.6
     },
     {
       "day": "Man",
@@ -162,7 +168,7 @@
     43.5,
     48.8,
     47.2,
-    46.1
+    47.1
   ],
   "weightHistory": [
     null,
@@ -976,7 +982,7 @@
     },
     {
       "date": "2026-07-13",
-      "v": 0.3,
+      "v": -4.3,
       "real": true
     }
   ],
@@ -1368,8 +1374,14 @@
           "day": "Man",
           "disc": "swim",
           "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 42,
+          "actual_mins": 45,
+          "planned_mins": null,
+          "intervals_compliance": 75.6
         },
         {
           "day": "Man",
@@ -1758,8 +1770,9 @@
     }
   ],
   "train_mins": {
+    "openwater": 45.0,
     "planned": 805.0,
-    "actual_total": 0
+    "actual_total": 45.0
   },
   "fatHistory": [
     null,
@@ -1965,9 +1978,9 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 43 af 98 · Mandag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 46.1 – det er 8 point under ugemålet på 54, men det afspejler ugens karakter: du er på vej ind i en stor cykelblok på Mallorca, og dagene frem er det der løfter tallene. TSB er næsten neutral (0.3), så du er frisk og klar til at absorbere belastning. Svømningen i dag er ikke gennemført endnu – hold fokus på teknikken og lad det være en rolig, bevidst session inden Mallorca-blokkens tunge dage.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">72.6 kg – du er 2.6 kg fra målet. Mallorca-ugen er en oplagt mulighed: høj energiforbrug fra de lange ture, og du bestemmer selv over kosten uden hverdagsstress. Hold protein højt og styr kulhydraterne uden for træningsvinduerne – det er der gevinsten hentes.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">0 AF-dage ud af 1 dag gået i ugen – du er i gang, så der er ikke noget at hente endnu. Mallorca-uge med sociale middage kan udfordre AF-målsætningen, men 5 AF-dage ud af 7 er realistisk selv her – det kræver bare en klar beslutning fra starten. Sæt dig selv et konkret mål nu: hvilke to aftener er det okej, og hold resten rent.</p>",
-  "coachAssessmentTs": "06:20",
-  "coachAssessmentTsFull": "2026-07-13T06:20:42.028199",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 43 af 98 · Mandag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 47.1 — det er 7 point under ugemålet på 54, men det afspejler ugens karakter: du er på vej ind i en stor cykelblok på Mallorca, og TSS-en hober sig op derfra. Svømmen i dag kørte fint — 76% step-compliance og 46.5% tid i Z2 på HR er on target for et teknisk pas. Hav det i baghovedet til næste tekniske svømpas: jo mere HR stabiliserer sig tidligt i sessionen, jo større del af arbejdet havner i Z2. Mallorca-dagene fredag og lørdag (180 og 240 min) er dem der for alvor begynder at løfte CTL mod målet.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">72.6 kg — du mangler 2.6 kg til målet under 70 kg, og du har syv uger. Det er helt realistisk, men det kræver at du holder kalorierne stramme på de lette træningsdage og ikke kompenserer efter de lange Mallorca-ture. Hold proteinet højt så du bevarer muskelmasse, mens fedtet ryger.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 0/1 på AF-dage i ugen indtil nu — og med 4 dages streak i ryggen er der momentum at bygge videre på. Mallorca-ugen er oplagt: sociale rammer kan friste, men du ved hvad der virker. Mål er 5 AF-dage denne uge — hold den tråd.</p>",
+  "coachAssessmentTs": "09:54",
+  "coachAssessmentTsFull": "2026-07-13T09:54:38.875271",
   "coachAssessmentWeightAtGen": 72.6,
   "coachAssessmentAfAtGen": 0,
   "commute_pairing_warnings": [],
@@ -1978,7 +1991,7 @@
       "message": "HRV 51,0 ms — 18% under 7d-snit (62,1 ms). Kroppen er presset."
     }
   ],
-  "tsb": 0.3,
+  "tsb": -4.3,
   "swimHistory": [
     {
       "week": 1,
@@ -2019,12 +2032,12 @@
     {
       "week": 7,
       "date": "2026-07-13",
-      "meters": 0,
-      "cumulative": 11642.0
+      "meters": 2012.0,
+      "cumulative": 13654.0
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i165202291",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Svøm 2000m teknisk",
   "weightGoal": 70,
