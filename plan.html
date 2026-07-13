@@ -936,7 +936,7 @@ async function suggestMoveAlternatives(){
       return;
     } catch(e) { /* keep polling */ }
   }
-  msg.innerHTML = `<div class="err-box">Timeout på forslags-analyse.</div>`;
+  msg.innerHTML = u4Err("Timeout på forslags-analyse — den kører muligvis stadig. Prøv igen om lidt.", {retry:"suggestMoveAlternatives()"});
 }
 
 async function acceptSuggestion(targetIso){
