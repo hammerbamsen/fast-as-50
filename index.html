@@ -1498,7 +1498,7 @@ function navigate(pageId) {
 }
 
 function toggleDone(btn, idx) {
-  sessionDoneList[idx] = !sessionDoneList[idx];
+  sessionDoneList[idx] = true;
   const todayStr2 = new Date().toISOString().split("T")[0];
   localStorage.setItem("session_done_" + todayStr2, JSON.stringify(sessionDoneList));
   localStorage.setItem("session_done_date", todayStr2);
