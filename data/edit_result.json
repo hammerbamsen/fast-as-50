@@ -1,20 +1,4 @@
 {
- "rmrdy4hcxowir": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "2026-07-11"
-  ],
-  "plan_commit": "6c918e22408e092d9f404e5aac1596900f33d8f0",
-  "sync_errors": [],
-  "athlete": "kennet",
-  "request_ts": "2026-07-09T20:15:27+00:00",
-  "request_id": "rmrdy4hcxowir"
- },
  "rmrdy6otc0nzh": {
   "status": "ok",
   "gate": {
@@ -159,5 +143,23 @@
   "athlete": "kennet",
   "request_ts": "2026-07-13T12:14:53+00:00",
   "request_id": "rmrj6pz581v8w"
+ },
+ "restore-mrj73zjg3sw": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "restore"
+  ],
+  "plan_commit": "252d42bfb4108f5852984f97be16e17b5ba5de9c",
+  "sync_errors": [
+   "Outlook restore: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/users/kennet@hammerby.com/calendarView?startDateTime=restoreT00%3A00%3A00&endDateTime=restoreT23%3A59%3A59&%24select=id%2Csubject%2Ccategories&%24top=50"
+  ],
+  "athlete": "kennet",
+  "request_ts": "2026-07-13T12:25:48+00:00",
+  "request_id": "restore-mrj73zjg3sw"
  }
 }
