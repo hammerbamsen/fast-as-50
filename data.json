@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13 13:49",
+    "updated": "2026-07-13 14:32",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,16 +23,16 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "47,1",
+      "value": "48,4",
       "unit": "",
       "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-4,3",
+      "value": "-10,9",
       "unit": "",
-      "sub": "Form · CTL−ATL, frisk >0",
-      "color": "#27AE60"
+      "sub": "Hård blok · CTL−ATL, frisk >0",
+      "color": "#E67E22"
     },
     "sleep": {
       "value": "7,7",
@@ -55,7 +55,7 @@
     "tssComp": {
       "value": "42",
       "unit": "TSS",
-      "sub": "42 af 709 planlagt TSS",
+      "sub": "42 af 2642 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -82,52 +82,53 @@
     "target": 5,
     "streak": 4
   },
-  "coachSpeech": "Ny uge starter — uge 7 af 14. Build-uge. {HL} Godt: Ny uge med 4 dages streak i ryggen. Hold den. Fokus: 42 af 709 TSS er i hus — 7 sessioner tilbage, heriblandt Styrke A Functional Strength 3 sæt, Løb VO2 5×3 min Z4. Vægt på 72,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du bliver til det, du gør ofte.\"",
+  "coachSpeech": "Ny uge starter — uge 7 af 14. Build-uge. {HL} Godt: Ny uge med 4 dages streak i ryggen. Hold den. Fokus: 42 af 2642 TSS er i hus — 8 sessioner tilbage, heriblandt Løb VO2 5×3 min Z4, Svøm 2000m teknisk. Vægt på 72,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Du bliver til det, du gør ofte.\"",
   "coachHighlight": "Søvn på 7,7 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
     {
-      "discipline": "swim",
-      "title": "Svøm 2000m teknisk",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
-    },
-    {
-      "discipline": "strength",
-      "title": "Styrke A Functional Strength 3 sæt",
+      "discipline": "run",
+      "title": "Løb VO2 5×3 min Z4",
       "duration": "",
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "openwater",
+      "title": "Gentofte Svømning i åbent vand",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
     {
       "day": "Man",
-      "disc": "swim",
-      "label": "Svøm 2000m teknisk",
-      "done": true,
-      "today": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 42,
-      "actual_mins": 45,
-      "planned_mins": null,
-      "intervals_compliance": 75.6
-    },
-    {
-      "day": "Man",
-      "disc": "strength",
-      "label": "Styrke A Functional Strength 3 sæt",
+      "disc": "run",
+      "label": "Løb VO2 5×3 min Z4",
       "done": false,
       "today": true
     },
     {
+      "day": "Man",
+      "disc": "openwater",
+      "label": "Gentofte Svømning i åbent vand",
+      "done": true,
+      "extra": true,
+      "today": true
+    },
+    {
       "day": "Tir",
-      "disc": "run",
-      "label": "Løb VO2 5×3 min Z4",
+      "disc": "swim",
+      "label": "Svøm 2000m teknisk",
+      "done": false
+    },
+    {
+      "day": "Tir",
+      "disc": "strength",
+      "label": "Styrke A Functional Strength 3 sæt",
       "done": false
     },
     {
@@ -168,7 +169,7 @@
     43.5,
     48.8,
     47.2,
-    47.1
+    48.4
   ],
   "weightHistory": [
     null,
@@ -982,7 +983,7 @@
     },
     {
       "date": "2026-07-13",
-      "v": -4.3,
+      "v": -10.8,
       "real": true
     }
   ],
@@ -1372,28 +1373,29 @@
       "sessions": [
         {
           "day": "Man",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": true,
-          "today": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 42,
-          "actual_mins": 45,
-          "planned_mins": null,
-          "intervals_compliance": 75.6
-        },
-        {
-          "day": "Man",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
+          "disc": "run",
+          "label": "Løb VO2 5×3 min Z4",
           "done": false,
           "today": true
         },
         {
+          "day": "Man",
+          "disc": "openwater",
+          "label": "Gentofte Svømning i åbent vand",
+          "done": true,
+          "extra": true,
+          "today": true
+        },
+        {
           "day": "Tir",
-          "disc": "run",
-          "label": "Løb VO2 5×3 min Z4",
+          "disc": "swim",
+          "label": "Svøm 2000m teknisk",
+          "done": false
+        },
+        {
+          "day": "Tir",
+          "disc": "strength",
+          "label": "Styrke A Functional Strength 3 sæt",
           "done": false
         },
         {
@@ -1771,7 +1773,7 @@
   ],
   "train_mins": {
     "openwater": 45.0,
-    "planned": 805.0,
+    "planned": 2928.0,
     "actual_total": 45.0
   },
   "fatHistory": [
@@ -1978,9 +1980,9 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 43 af 98 · Mandag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 47.1 — det er 7 point under ugemålet på 54, men det afspejler ugens karakter: du er på vej ind i en stor cykelblok på Mallorca, og TSS-en hober sig op derfra. Svømmen i dag kørte fint — 76% step-compliance og 46.5% tid i Z2 på HR er on target for et teknisk pas. Hav det i baghovedet til næste tekniske svømpas: jo mere HR stabiliserer sig tidligt i sessionen, jo større del af arbejdet havner i Z2. Mallorca-dagene fredag og lørdag (180 og 240 min) er dem der for alvor begynder at løfte CTL mod målet.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">72.6 kg — du mangler 2.6 kg til målet under 70 kg, og du har syv uger. Det er helt realistisk, men det kræver at du holder kalorierne stramme på de lette træningsdage og ikke kompenserer efter de lange Mallorca-ture. Hold proteinet højt så du bevarer muskelmasse, mens fedtet ryger.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 0/1 på AF-dage i ugen indtil nu — og med 4 dages streak i ryggen er der momentum at bygge videre på. Mallorca-ugen er oplagt: sociale rammer kan friste, men du ved hvad der virker. Mål er 5 AF-dage denne uge — hold den tråd.</p>",
-  "coachAssessmentTs": "09:54",
-  "coachAssessmentTsFull": "2026-07-13T09:54:38.875271",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 43 af 98 · Mandag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 48.4 – det er 5-6 point under ugemålet på 54, men det er forventeligt her i starten af Mallorca-ugen, hvor de store cykelkilometer endnu ikke sidder i kroppen. TSB på -10.9 er fin – du har plads til at trykke på. Dagens VO2-løb med 5×3 min i Z4 er ikke forsøgt endnu: hold intervallerne rene og kontrollerede, og lad HR sætte sig i toppen af hvert interval frem for at starte for hurtigt. Det er første VO2-stimulus i benene denne uge – kvalitet over kvantitet.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">72.6 kg – du er 2.6 kg fra målet. Mallorca-ugen er en oplagt mulighed: høj aktivitet, god mulighed for at styre portioner og undgå restaurantoverskud. Hold proteinindtaget højt så du beskytter muskelmassen, mens vægten falder.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">0 AF-dage ud af 1 dag gået i ugen – det er dag 1, så der er god tid til at lande de 5. Med en streak på 4 dage i ryggen ved du, at det kan lade sig gøre. Mallorca er klassisk fare-terræn for vin til maden – beslut det på forhånd, ikke i situationen.</p>",
+  "coachAssessmentTs": "12:32",
+  "coachAssessmentTsFull": "2026-07-13T12:32:32.755032",
   "coachAssessmentWeightAtGen": 72.6,
   "coachAssessmentAfAtGen": 0,
   "commute_pairing_warnings": [],
@@ -1991,7 +1993,7 @@
       "message": "HRV 51,0 ms — 18% under 7d-snit (62,1 ms). Kroppen er presset."
     }
   ],
-  "tsb": -4.3,
+  "tsb": -10.9,
   "swimHistory": [
     {
       "week": 1,
@@ -2039,7 +2041,7 @@
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
   "coachAssessmentLastActId": "i165202291",
   "weekFocusWeek": 7,
-  "coachAssessmentPlanAtGen": "Svøm 2000m teknisk",
+  "coachAssessmentPlanAtGen": "Løb VO2 5×3 min Z4",
   "weightGoal": 70,
   "bodyFatGoal": 20,
   "weightMovingAvg7": [
