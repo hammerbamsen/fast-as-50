@@ -1,5 +1,5 @@
 {
- "generated": "2026-07-13T09:54:42Z",
+ "generated": "2026-07-13T11:49:21Z",
  "kennet": {
   "seed": {
    "date": "2026-07-13",
@@ -336,7 +336,14 @@
     "week": 5,
     "projEndCtl": null,
     "deviation": null,
-    "flags": []
+    "flags": [
+     {
+      "week": 5,
+      "rule": "plan_actual_mismatch",
+      "level": "WARN",
+      "msg": "Logget hike-aktivitet i uge 5, men ugens plan indeholder ikke hike"
+     }
+    ]
    },
    {
     "week": 6,
@@ -444,8 +451,62 @@
     "level": "HARD",
     "msg": "Fortløbende løbedage 2026-08-31 + 2026-09-01",
     "historic": false
+   },
+   {
+    "week": 5,
+    "rule": "plan_actual_mismatch",
+    "level": "WARN",
+    "msg": "Logget hike-aktivitet i uge 5, men ugens plan indeholder ikke hike"
    }
   ],
+  "fueling": {
+   "medoc": {
+    "race_key": "medoc",
+    "race": "Marathon du Médoc",
+    "duration_h": 4.5,
+    "climate": "hot",
+    "carb_g_per_h": {
+     "low": 60,
+     "high": 90
+    },
+    "fluid_ml_per_h": {
+     "low": 625,
+     "high": 938
+    },
+    "sodium_mg_per_h": {
+     "low": 390,
+     "high": 910
+    },
+    "total_carb_g": {
+     "low": 270,
+     "high": 405
+    },
+    "note": "Standarddefaults — ikke individuelt kalibreret endnu (svedtest/erfaring m. Martin)"
+   },
+   "stelvio": {
+    "race_key": "stelvio",
+    "race": "Stelvio",
+    "duration_h": 7.0,
+    "climate": "variable",
+    "carb_g_per_h": {
+     "low": 60,
+     "high": 90
+    },
+    "fluid_ml_per_h": {
+     "low": 500,
+     "high": 750
+    },
+    "sodium_mg_per_h": {
+     "low": 300,
+     "high": 700
+    },
+    "total_carb_g": {
+     "low": 420,
+     "high": 630
+    },
+    "note": "Standarddefaults — ikke individuelt kalibreret endnu (svedtest/erfaring m. Martin)"
+   }
+  },
   "adaptation": {
    "triggered": false,
    "missed7": 0,
@@ -463,5 +524,5 @@
   },
   "readiness": "LOW"
  },
- "inputsHash": "5e9c67e8c29c81e9"
+ "inputsHash": "e2fd189040121ceb"
 }
