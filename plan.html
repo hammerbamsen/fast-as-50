@@ -167,7 +167,7 @@ const DAYS_DA = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
 const MON_DA  = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const RULE_DA = { max_runs:"For mange løbedage", consecutive_runs:"Fortløbende løb",
                   vo2_missing:"VO2 mangler", vo2_excess:"Ekstra VO2",
-                  missing_recovery:"Recovery mangler", tsb_floor:"TSB under gulv", ctl_ramp:"CTL-ramp", low_readiness:"Lav readiness", race_tsb:"Race-TSB", taper_ctl_rising:"Taper: CTL stiger" };
+                  missing_recovery:"Recovery mangler", tsb_floor:"TSB under gulv", ctl_ramp:"CTL-ramp", low_readiness:"Lav readiness", race_tsb:"Race-TSB", taper_ctl_rising:"Taper: CTL stiger", plan_actual_mismatch:"Plan/faktisk uoverensstemmelse" };
 
 const esc = s => String(s??"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const iso = d => d.toISOString().slice(0,10);
