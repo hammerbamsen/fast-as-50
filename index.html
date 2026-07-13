@@ -1538,7 +1538,7 @@ function checkStaleness(updatedStr) {
   document.body.prepend(b);
 }
 
-function updateMeta() {
+function checkReadiness(readiness) { const existing = document.getElementById('readiness-banner'); if (readiness !== 'LOW') { if (existing) existing.remove(); return; } const html = 'Lav readiness i dag (HRV/søvn) — overvej at tage det roligt.'; const css = 'position:relative;z-index:9999;background:#EDE6D8;color:#7A6A58;font-family:\'Space Mono\',monospace;font-size:11px;padding:8px 14px;text-align:center;line-height:1.4'; if (existing) { existing.innerHTML = html; existing.style.cssText = css; return; } const b = document.createElement('div'); b.id = 'readiness-banner'; b.style.cssText = css; b.innerHTML = html; document.body.prepend(b); } function updateMeta() {
   document.getElementById("sf-week").textContent = `UGE ${D.week}/${D.totalWeeks}`;
   document.getElementById("sf-block").textContent = `${D.blockType} BLOCK`;
   document.getElementById("pm-week").textContent = `UGE ${D.week}/${D.totalWeeks}`;
@@ -1585,7 +1585,7 @@ async function init() {
       if (m.updated)                    D.lastUpdated            = m.updated;
       const luEl = document.getElementById('last-updated');
       if (luEl) luEl.textContent = m.updated || D.lastUpdated || '—';
-      checkStaleness(m.updated);
+      checkStaleness(m.updated); fetch("https://raw.githubusercontent.com/hammerbamsen/fast-as-50/main/data/plan_view.json?t=" + Date.now()).then(rv=>rv.ok?rv.json():null).then(view=>checkReadiness(view&&view.kennet&&view.kennet.readiness)).catch(()=>{});
       if (m.week)                       D.week                   = m.week;
       if (m.totalWeeks)                 D.totalWeeks             = m.totalWeeks;
       if (Array.isArray(remote.ctlPlan) && remote.ctlPlan.length) CTL_PLAN = remote.ctlPlan;
