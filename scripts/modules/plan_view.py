@@ -13,7 +13,7 @@ beregne (Friel-logik bor KUN i Python, jf. PROJECT_KICKOFF.md):
     kennet.weeks    [{week, projEndCtl, deviation, flags:[...]}]
                     deviation = projektion minus ctlTarget (INFO, ikke flag —
                     target er løst styringsmål, jf. Kennets beslutning 7/7)
-    kennet.flags    fuld flagliste fra friel.validate
+    kennet.flags    fuld flagliste fra friel.validate (+ plan_coherence)
 
 Selve planstrukturen (uger, dage, workouts) læser siderne direkte fra
 plan.json — dette modul dublerer den ikke.
@@ -27,30 +27,39 @@ from datetime import datetime, timezone
 from typing import Optional
 
 from . import friel
+from . import plan_coherence
 
 
 def inputs_hash(plan_raw: str, seed_ctl, seed_atl, seed_date: str,
-                readiness=None, adapt_sig="") -> str:
+                readiness=None, adapt_sig="", coherence_sig="") -> str:
     key = f"{plan_raw}|{round(float(seed_ctl), 1)}|{round(float(seed_atl), 1)}|{seed_date}"
     if readiness:
         key += f"|{readiness}"   # T1: readiness-skift skal trigge omskrivning
     if adapt_sig:
         key += f"|{adapt_sig}"   # T3: nyt adaptations-forslag trigger omskrivning
+    if coherence_sig:
+        key += f"|{coherence_sig}"   # T5: nyt kohærens-flag trigger omskrivning
     return hashlib.sha256(key.encode("utf-8")).hexdigest()[:16]
 
 
 def compute(plan: dict, seed_ctl, seed_atl, seed_date: str,
-            readiness=None, current_week=None, adaptation=None) -> dict:
+            readiness=None, current_week=None, adaptation=None, coherence=None) -> dict:
     """Ren beregning — ingen I/O. Testes direkte.
 
     T1: readiness/current_week videreføres til Friel-validering. Default None
     -> hidtidig adfærd.
     T3: adaptation-dict (fra modules.adaptation.compute_adaptation) skrives
     uændret ind under kennet.adaptation når givet.
+    T5: coherence er en pre-beregnet flag-liste fra
+    plan_coherence.coherence_flags (samme {week,rule,level,msg}-format som
+    friel-flags) — flettes ind i den samlede flags-liste når givet. Default
+    None -> hidtidig adfærd, fuldt bagudkompatibelt.
     """
     flags = friel.validate(plan, seed_ctl=seed_ctl, seed_atl=seed_atl,
                            seed_date=seed_date,
                            readiness=readiness, current_week=current_week)
+    if coherence:
+        flags = flags + coherence
     proj = friel.project_fitness(plan, seed_ctl, seed_atl, seed_date)
 
     projection = [{"d": d, "ctl": v["ctl"], "tsb": v["tsb"]}
@@ -100,9 +109,9 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None,
                      activities: Optional[list] = None) -> bool:
     """
     Hentes/skrives via GitHub Contents API (samme mønster som data.json).
-    Hash-guard: skriver KUN når plan.json, fitness-seed, readiness eller
-    adaptations-signaturen er ændret, så 10-minutters-cron ikke støjer med
-    tomme commits.
+    Hash-guard: skriver KUN når plan.json, fitness-seed, readiness, adaptations-
+    signaturen eller kohærens-signaturen er ændret, så 10-minutters-cron ikke
+    støjer med tomme commits.
     Returnerer True hvis der blev skrevet.
     """
     from .github import gh_get, gh_put
@@ -154,8 +163,19 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None,
             adapt = None
     adapt_sig = _adaptation.signature(adapt) if adapt else ""
 
+    # T5 — plan-kohærens: aktivitets-disciplin uden for planen i historiske
+    # uger (jf. Wales-eksempel: "ingen cykel" i plan, men logget cykeltur).
+    coherence = None
+    if activities is not None:
+        try:
+            coherence = plan_coherence.coherence_flags(plan, activities)
+        except Exception as e:
+            print(f"  plan_view: coherence sprang over ({e})")
+            coherence = None
+    coherence_sig = plan_coherence.signature(coherence) if coherence else ""
+
     new_hash = inputs_hash(plan_raw, seed_ctl, seed_atl, seed_date,
-                           readiness, adapt_sig=adapt_sig)
+                           readiness, adapt_sig=adapt_sig, coherence_sig=coherence_sig)
 
     sha_view, view_raw = gh_get("data/plan_view.json")
     if view_raw:
@@ -168,7 +188,7 @@ def update_plan_view(fitness: Optional[dict], wellness: Optional[dict] = None,
 
     view = compute(plan, seed_ctl, seed_atl, seed_date,
                    readiness=readiness, current_week=current_week,
-                   adaptation=adapt)
+                   adaptation=adapt, coherence=coherence)
     view["inputsHash"] = new_hash
     if readiness:
         view["kennet"]["readiness"] = readiness
