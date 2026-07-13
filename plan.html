@@ -214,12 +214,13 @@ function dayCard(day, todayIso){
       <div class="wo">${rows}</div>
       ${details?`<i class="ti ti-chevron-down chev" style="font-size:16px"></i>`:""}</div>
     ${details?`<div class="day-detail">${details}</div>`:""}
-    ${workouts.length?`<div class="day-actions">
-      <button onclick="event.stopPropagation(); openSheet('adjust','${workouts[0].id}','${day.date}')"><i class="ti ti-adjustments" style="font-size:14px;vertical-align:-2px"></i> Justér</button>
-      <button onclick="event.stopPropagation(); openSheet('move','${workouts[0].id}','${day.date}')"><i class="ti ti-arrows-move" style="font-size:14px;vertical-align:-2px"></i> Flyt</button>
-      <button onclick="event.stopPropagation(); openSheet('swap_template','${workouts[0].id}','${day.date}')"><i class="ti ti-refresh" style="font-size:14px;vertical-align:-2px"></i> Skift pas</button>
-      <button class="danger" onclick="event.stopPropagation(); openSheet('cancel','${workouts[0].id}','${day.date}')"><i class="ti ti-x" style="font-size:14px;vertical-align:-2px"></i> Aflys</button>
-    </div>`:""}</div>`;
+    ${workouts.map(w => `<div class="day-actions">
+      ${workouts.length>1?`<div style="font-size:11px;color:var(--muted);margin-bottom:4px">${esc(w.workout.name)}</div>`:""}
+      <button onclick="event.stopPropagation(); openSheet('adjust','${w.id}','${day.date}')"><i class="ti ti-adjustments" style="font-size:14px;vertical-align:-2px"></i> Justér</button>
+      <button onclick="event.stopPropagation(); openSheet('move','${w.id}','${day.date}')"><i class="ti ti-arrows-move" style="font-size:14px;vertical-align:-2px"></i> Flyt</button>
+      <button onclick="event.stopPropagation(); openSheet('swap_template','${w.id}','${day.date}')"><i class="ti ti-refresh" style="font-size:14px;vertical-align:-2px"></i> Skift pas</button>
+      <button class="danger" onclick="event.stopPropagation(); openSheet('cancel','${w.id}','${day.date}')"><i class="ti ti-x" style="font-size:14px;vertical-align:-2px"></i> Aflys</button>
+    </div>`).join("")}</div>`;
 }
 
 function weekFlagsHtml(vw, currentWeek){
