@@ -146,7 +146,6 @@ h1 { font-size:22px; font-weight:700; }
 <div class="sheet-bg" id="sheet-bg" onclick="closeSheet()"></div>
 <div class="sheet" id="sheet"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/msal/3.6.1/msal-browser.min.js"></script>
 <script>
 const NAV = [
   {id:"today",    label:"I dag",   ti:"ti-calendar",       href:"index.html"},
@@ -471,96 +470,63 @@ function dismissAdaptation(btn){
   ADAPT_SUG = null;
 }
 
-// ═══ EDITING ENGINE (fase 3a + 3b.1) ═══
+// ═══ EDITING ENGINE (Cloudflare Worker + delt hemmelighed, fase 3a/3b) ═══
 const GH_REPO = "hammerbamsen/fast-as-50";
-const TOKEN_KEY = "af_gh_token";  // fallback når AUTH_CONFIG.enabled = false
+const SECRET_KEY = "af_plan_secret";  // delt hemmelighed til Worker'ens /plan-edit
 
-let AUTH_CONFIG = null;
-let msalInstance = null;
-let msalReady = false;
+let WORKER_CONFIG = null;
 
-async function loadAuthConfig(){
-  if (AUTH_CONFIG) return AUTH_CONFIG;
+async function loadWorkerConfig(){
+  if (WORKER_CONFIG) return WORKER_CONFIG;
   try {
-    AUTH_CONFIG = await getJSON("data/auth_config.json", true) || { enabled: false };
+    WORKER_CONFIG = await getJSON("data/auth_config.json", true) || { workerUrl: "" };
   } catch(e) {
-    AUTH_CONFIG = { enabled: false };
+    WORKER_CONFIG = { workerUrl: "" };
   }
-  return AUTH_CONFIG;
+  return WORKER_CONFIG;
 }
 
-async function initAuth(){
-  const cfg = await loadAuthConfig();
-  if (!cfg.enabled || !cfg.tenantId || !cfg.clientId) return false;
-  if (typeof msal === "undefined") return false;
+const getSecret = () => localStorage.getItem(SECRET_KEY);
+const setSecret = s => localStorage.setItem(SECRET_KEY, s);
 
-  msalInstance = new msal.PublicClientApplication({
-    auth: {
-      clientId: cfg.clientId,
-      authority: `https://login.microsoftonline.com/${cfg.tenantId}`,
-      redirectUri: window.location.origin + window.location.pathname,
-      navigateToLoginRequestUrl: false,
-    },
-    cache: { cacheLocation: "localStorage", storeAuthStateInCookie: true },
+// Fælles dispatch mod Worker'ens /plan-edit — bruges af submitEdit,
+// suggestMoveAlternatives og restoreCommit. Kaster Error (med .status ved
+// HTTP-fejl) i stedet for at returnere ok/fejl, så kalderen selv styrer UI.
+async function dispatchPlanEdit(clientPayload){
+  const cfg = await loadWorkerConfig();
+  const secret = getSecret();
+  if (!secret) throw new Error("Ingen hemmelighed gemt. Tap Token øverst.");
+  if (!cfg.workerUrl) throw new Error("Worker-URL ikke sat i data/auth_config.json.");
+  const r = await fetch(`${cfg.workerUrl.replace(/\/$/, "")}/plan-edit`, {
+    method: "POST",
+    headers: { "X-Plan-Secret": secret, "Content-Type": "application/json" },
+    body: JSON.stringify(clientPayload)
   });
-  await msalInstance.initialize();
-  const resp = await msalInstance.handleRedirectPromise();
-  if (resp) msalInstance.setActiveAccount(resp.account);
-  else {
-    const accs = msalInstance.getAllAccounts();
-    if (accs.length > 0) msalInstance.setActiveAccount(accs[0]);
+  if (!r.ok) {
+    const errText = await r.text().catch(()=>"");
+    const err = new Error(`HTTP ${r.status}. ${errText.slice(0,200)}`);
+    err.status = r.status;
+    throw err;
   }
-  msalReady = true;
-  return true;
+  return r;
 }
-
-async function getAccessToken(){
-  const cfg = AUTH_CONFIG;
-  const request = { scopes: [`api://${cfg.clientId}/plan.access`] };
-  const account = msalInstance.getActiveAccount();
-  if (!account) {
-    await msalInstance.loginRedirect(request);
-    return null;
-  }
-  try {
-    const r = await msalInstance.acquireTokenSilent({ ...request, account });
-    return r.accessToken;
-  } catch(e) {
-    if (e instanceof msal.InteractionRequiredAuthError) {
-      await msalInstance.acquireTokenRedirect(request);
-      return null;
-    }
-    throw e;
-  }
-}
-
-// Legacy token flow (fallback)
-const getToken = () => localStorage.getItem(TOKEN_KEY);
-const setToken = t => localStorage.setItem(TOKEN_KEY, t);
 
 async function setupAuth(){
-  const cfg = await loadAuthConfig();
-  if (cfg.enabled) {
-    if (confirm("Log ud af Microsoft?")) {
-      await msalInstance.logoutRedirect();
-    }
-    return;
-  }
   // Åbn Keychain-venlig form som Safari kan gemme automatisk
   const sheet = document.getElementById("sheet");
   const bg = document.getElementById("sheet-bg");
-  sheet.innerHTML = `<h3>GitHub-token</h3>
-    <div class="sub">Safari tilbyder at gemme tokenet i iCloud Keychain — så mister du det aldrig igen.</div>
+  sheet.innerHTML = `<h3>Delt hemmelighed</h3>
+    <div class="sub">Safari tilbyder at gemme den i iCloud Keychain — så mister du den aldrig igen.</div>
     <form id="token-form" action="javascript:void(0)" autocomplete="on" onsubmit="saveTokenFromForm(event)">
       <input type="text" name="username" value="fast-as-50" autocomplete="username" style="display:none" readonly>
-      <label>Token</label>
+      <label>Hemmelighed</label>
       <input type="password" name="password" id="token-input"
              autocomplete="current-password"
-             value="${(getToken()||'').replace(/"/g,'&quot;')}"
-             placeholder="github_pat_..." style="font-family:monospace;font-size:11px" required>
+             value="${(getSecret()||'').replace(/"/g,'&quot;')}"
+             placeholder="delt hemmelighed" style="font-family:monospace;font-size:11px" required>
       <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.4">
         Første gang: tap Gem, sig "Yes" til Safaris tilbud om at gemme adgangskode i iCloud Keychain.<br>
-        Har du mistet tokenet? Klik i tekstfeltet → Safari foreslår tokens den har gemt.
+        Har du mistet den? Klik i tekstfeltet → Safari foreslår hemmeligheder den har gemt.
       </div>
       <div class="btn-row">
         <button type="button" class="secondary" onclick="closeSheet()">Fortryd</button>
@@ -577,13 +543,13 @@ function saveTokenFromForm(e){
   e.preventDefault();
   const val = document.getElementById("token-input").value.trim();
   if (!val) return;
-  setToken(val);
+  setSecret(val);
   // Vis kort bekræftelse så Safari når at tilbyde Save Password
   const sheet = document.getElementById("sheet");
-  sheet.innerHTML = `<h3>Token gemt</h3>
-    <div class="ok-box"><i class="ti ti-check" style="font-size:14px"></i> Token er gemt lokalt.</div>
+  sheet.innerHTML = `<h3>Gemt</h3>
+    <div class="ok-box"><i class="ti ti-check" style="font-size:14px"></i> Hemmelighed er gemt lokalt.</div>
     <p style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5">
-      Hvis Safari lige har spurgt om at gemme adgangskoden — sig <b>Yes</b>. Så synkroniseres tokenet til iCloud Keychain og er tilgængeligt på alle dine enheder.
+      Hvis Safari lige har spurgt om at gemme adgangskoden — sig <b>Yes</b>. Så synkroniseres den til iCloud Keychain og er tilgængelig på alle dine enheder.
     </p>
     <div class="btn-row"><button class="primary" onclick="closeSheet()">Færdig</button></div>`;
 }
@@ -667,20 +633,14 @@ async function loadLib(){
   return LIB_CACHE;
 }
 
-// Init MSAL i baggrunden (påvirker ikke render af planen)
-initAuth().then(ok => {
+// Settings-knap: viser om en delt hemmelighed allerede er gemt lokalt
+(() => {
   const btn = document.querySelector('.settings-btn');
-  if (btn) {
-    if (ok) {
-      const acc = msalInstance.getActiveAccount();
-      btn.innerHTML = acc
-        ? `<i class="ti ti-user-check" style="font-size:14px;vertical-align:-2px"></i> ${acc.username.split("@")[0]}`
-        : `<i class="ti ti-login" style="font-size:14px;vertical-align:-2px"></i> Log ind`;
-    } else {
-      btn.innerHTML = `<i class="ti ti-settings" style="font-size:14px;vertical-align:-2px"></i> Token`;
-    }
-  }
-});
+  if (!btn) return;
+  btn.innerHTML = getSecret()
+    ? `<i class="ti ti-lock" style="font-size:14px;vertical-align:-2px"></i> Nøgle`
+    : `<i class="ti ti-settings" style="font-size:14px;vertical-align:-2px"></i> Token`;
+})();
 
 function openSheet(action, entryId, dateIso){
   SHEET_STATE = { action, entryId, dateIso, confirmedWarn:false };
@@ -789,46 +749,12 @@ async function submitEdit(msgTarget){
   const msg = document.getElementById(msgTarget || "sheet-msg");
   msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader" style="font-size:14px"></i> Sender ændring…</div>`;
 
-  const cfg = await loadAuthConfig();
-  let dispatchOk = false;
-  if (cfg.enabled && msalReady) {
-    // MSAL: kald Function App med access token
-    try {
-      const accessToken = await getAccessToken();
-      if (!accessToken) return; // redirected til login
-      const r = await fetch(`${cfg.functionAppUrl.replace(/\/$/, "")}/api/plan-edit`, {
-        method: "POST",
-        headers: { "Authorization": `Bearer ${accessToken}`, "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (r.ok) {
-        dispatchOk = true;
-      } else {
-        const errText = await r.text().catch(()=>"");
-        msg.innerHTML = u4Err(`Proxy fejlede: HTTP ${r.status}. ${esc(errText.slice(0,200))}`, {retry:"submitEdit()", tokenHint: r.status===401||r.status===403});
-        return;
-      }
-    } catch(e) {
-      msg.innerHTML = u4Err("Auth fejlede: " + esc(e.message||e), {retry:"submitEdit()"});
-      return;
-    }
-  } else {
-    // Legacy: direkte GitHub dispatch med PAT fra localStorage
-    const token = getToken();
-    if (!token) { msg.innerHTML = `<div class="err-box">Ingen GitHub-token gemt. Tap Token øverst.</div>`; return; }
-    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-      method:"POST", headers:{ "Authorization":`token ${token}`,
-        "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
-      body: JSON.stringify({ event_type: "plan-edit", client_payload: payload })
-    });
-    if (r.status !== 204) {
-      msg.innerHTML = u4Err(`Dispatch fejlede: HTTP ${r.status}.`, {retry:"submitEdit()", tokenHint: r.status===401||r.status===403});
-      return;
-    }
-    dispatchOk = true;
+  try {
+    await dispatchPlanEdit(payload);
+  } catch(e) {
+    msg.innerHTML = u4Err("Dispatch fejlede: " + esc(e.message||e), {retry:"submitEdit()", tokenHint: e.status===401||e.status===403});
+    return;
   }
-
-  if (!dispatchOk) return;
 
   // Poll edit_result.json
   msg.innerHTML = `<div class="ok-box" style="color:var(--muted)">Behandler… (kan tage op til et par minutter)</div>`;
@@ -889,18 +815,16 @@ async function suggestMoveAlternatives(){
   const msg = document.getElementById("sheet-msg");
   msg.innerHTML = `<div class="ok-box" style="color:var(--muted)"><i class="ti ti-loader"></i> Analyserer alternativer…</div>`;
 
-  const token = getToken();
-  if (!token) { msg.innerHTML = `<div class="err-box">Ingen token.</div>`; return; }
-
   const requestId = "suggest-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
-  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-    method:"POST", headers:{ "Authorization":`token ${token}`,
-      "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
-    body: JSON.stringify({ event_type: "plan-edit", client_payload: {
+  try {
+    await dispatchPlanEdit({
       requestId, action: "suggest_move", entryId: s.entryId,
-      params: { window_days: 7 }, confirmedWarn: false, athlete: "kennet" }})
-  });
-  if (r.status !== 204) { msg.innerHTML = u4Err(`Kunne ikke starte forslags-analyse (HTTP ${r.status}).`, {retry:"suggestMoveAlternatives()", tokenHint: r.status===401||r.status===403}); return; }
+      params: { window_days: 7 }, confirmedWarn: false, athlete: "kennet"
+    });
+  } catch(e) {
+    msg.innerHTML = u4Err("Kunne ikke starte forslags-analyse: " + esc(e.message||e), {retry:"suggestMoveAlternatives()", tokenHint: e.status===401||e.status===403});
+    return;
+  }
 
   for (let i=0; i<20; i++){
     await new Promise(r=>setTimeout(r, 3000));
@@ -960,14 +884,10 @@ async function showHistory(){
     <div class="btn-row"><button class="secondary" onclick="closeSheet()">Luk</button></div>`;
   bg.classList.add("open"); sheet.classList.add("open");
 
-  const token = getToken();
-  if (!token) {
-    document.getElementById('history-list').innerHTML = `<div class="err-box">Ingen token — kan ikke hente commit-historik.</div>`;
-    return;
-  }
   try {
+    // Public repo — ingen token nødvendig for at læse commit-historik
     const r = await fetch(`https://api.github.com/repos/${GH_REPO}/commits?path=data/plan.json&per_page=20`, {
-      headers: {"Authorization": `token ${token}`, "Accept": "application/vnd.github+json"}
+      headers: {"Accept": "application/vnd.github+json"}
     });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const commits = await r.json();
@@ -1003,21 +923,16 @@ function timeAgo(dt){
 
 async function restoreCommit(sha){
   if (!confirm(`Rul plan.json tilbage til commit ${sha.slice(0,7)}?\n\nprogramMeta (arkiv) og fitnessSeed bevares.`)) return;
-  const token = getToken();
   document.getElementById('history-list').innerHTML = `<div class="ok-box"><i class="ti ti-loader"></i> Starter rollback…</div>`;
 
   try {
     // Dispatch restore-action — workflow'et henter selv den gamle plan (payload < 65KB)
     const requestId = "restore-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
-    const dr = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-      method:"POST", headers:{ "Authorization":`token ${token}`,
-        "Accept":"application/vnd.github+json", "Content-Type":"application/json" },
-      body: JSON.stringify({ event_type: "plan-edit", client_payload: {
-        requestId, action: "restore_from_commit", entryId: "N/A",
-        params: { source_commit: sha },
-        confirmedWarn: true, athlete: "kennet" }})
+    await dispatchPlanEdit({
+      requestId, action: "restore_from_commit", entryId: "N/A",
+      params: { source_commit: sha },
+      confirmedWarn: true, athlete: "kennet"
     });
-    if (dr.status !== 204) throw new Error(`Dispatch fejlede: HTTP ${dr.status}`);
 
     document.getElementById('history-list').innerHTML = `<div class="ok-box"><i class="ti ti-loader"></i> Ruller tilbage… (kan tage 30 sek)</div>`;
     // Poll for result

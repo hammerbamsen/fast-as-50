@@ -1,4 +1,8 @@
-# Fase 3b.1 — Azure-opsætning
+# Fase 3b.1 — Azure-opsætning (FORÆLDET — se workers/webhook-dispatch/README.md)
+
+**Forældet 14/7:** MSAL/Entra ID-vejen beskrevet herunder er erstattet af en Cloudflare Worker med en delt hemmelighed (`data/auth_config.json` + `PLAN_EDIT_SECRET`) — ingen App Registration, ingen Function App. Denne fil er kun bevaret for historik.
+
+---
 
 Én-gangs opsætning så du aldrig indtaster GitHub-token igen. Efter dette login'er du automatisk via din Microsoft-konto (samme login som Outlook), og alle plan-ændringer går gennem en sikker Azure Function-proxy hvor dit PAT ligger server-side.
 

@@ -1,7 +1,4 @@
 {
-  "_note": "Sæt enabled=true når Azure Function er live og du har udfyldt de tre felter. plan.html falder tilbage til gammel token-flow når enabled=false. Se docs/AZURE_SETUP.md.",
-  "enabled": false,
-  "tenantId": "",
-  "clientId": "",
-  "functionAppUrl": ""
+  "_note": "Sæt workerUrl til Cloudflare Worker'ens rod-URL (fx https://fast-as-50-webhook.<subdomain>.workers.dev) når den er deployet. Se workers/webhook-dispatch/README.md.",
+  "workerUrl": ""
 }

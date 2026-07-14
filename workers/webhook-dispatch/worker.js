@@ -1,18 +1,24 @@
-// Fast as Fifty — Fase 3 token-fri trigger (Cloudflare Worker)
+// Fast as Fifty — Cloudflare Worker: Intervals-webhook (Fase 3) + plan-edit + health
 //
-// Modtager et webhook-kald fra Intervals.icu (eller en anden aktivitets-
-// kilde) når en ny aktivitet dukker op, og udløser med det samme
-// repository_dispatch (event_type: "intervals-activity") mod GitHub —
-// i stedet for at vente på update-kpi.yml's cron (hver 10.-30. min).
+// Tre ruter i én Worker (samme platform, ét sted at holde styr på):
+//   POST /              — Intervals.icu-webhook. Udløser med det samme
+//                          repository_dispatch (event_type "intervals-activity")
+//                          mod GitHub når en ny aktivitet dukker op, i stedet
+//                          for at vente på update-kpi.yml's cron (hver
+//                          10.-30. min). webhook-receiver.yml (allerede i
+//                          repoet) ignorerer selve payloaden og kører bare
+//                          update_kpi.py på ny.
+//   POST /plan-edit     — erstatter den aldrig-deployede Azure Function
+//                          (azure-function/plan_edit). Ingen MSAL/Entra ID
+//                          nødvendig for én bruger: én delt hemmelighed
+//                          (PLAN_EDIT_SECRET) i en header, tjekket her.
+//   GET  /health        — bekræfter at Worker'en kører og er konfigureret
+//                          (erstatter azure-function/health).
 //
-// webhook-receiver.yml (allerede i repoet) ignorerer selve payloaden og
-// kører bare update_kpi.py på ny — så Worker'en behøver ikke forstå
-// providerens fulde event-format, kun at afgøre OM den skal trigge.
-//
-// Autentificering mod GitHub sker som en GitHub App (ikke en PAT i
-// browseren): Worker'en signerer en kortlivet JWT med App'ens private
-// nøgle, bytter den til et installation-access-token, og bruger DET til
-// selve dispatch-kaldet. Ingen langlivet hemmelighed rører browseren.
+// Autentificering mod GitHub sker i begge dispatch-ruter som en GitHub App
+// (ikke en PAT i browseren): Worker'en signerer en kortlivet JWT med App'ens
+// private nøgle, bytter den til et installation-access-token, og bruger DET
+// til selve dispatch-kaldet. Ingen langlivet hemmelighed rører browseren.
 //
 // ── Cloudflare-konfiguration (sættes i dashboardet, IKKE her) ──────────
 // Vars (kan være almindelige, ikke-hemmelige):
@@ -27,70 +33,156 @@
 //                                -nocrypt -in original.pem -out pkcs8.pem
 //   WEBHOOK_SECRET         = den delte hemmelighed du sætter op sammen med
 //                            David (Intervals.icu) ved webhook-konfiguration
+//   PLAN_EDIT_SECRET       = den delte hemmelighed plan.html sender i
+//                            X-Plan-Secret-headeren ved plan-redigering
 //
 // ── Verifikations-TODO når Intervals.icu-webhooken er klar ─────────────
 // Vi kender endnu ikke Intervals.icu's præcise verifikations-håndtryk
 // (nogle providere bruger en GET med et "challenge"-query-param, andre en
 // header med en delt hemmelighed, andre en HMAC-signatur af body'en).
-// checkAuth() nedenfor tjekker de mest almindelige varianter (Bearer-token,
-// X-Webhook-Secret-header, ?secret=-query) — juster den ud fra hvad David
-// faktisk sender, når svaret kommer.
+// checkWebhookAuth() nedenfor tjekker de mest almindelige varianter (Bearer-
+// token, X-Webhook-Secret-header, ?secret=-query) — juster den ud fra hvad
+// David faktisk sender, når svaret kommer.
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // Nogle webhook-providere verificerer endpointet med et GET-kald der
-    // indeholder en "challenge", som skal ekkoes tilbage uændret.
-    if (request.method === "GET") {
-      const challenge =
-        url.searchParams.get("hub.challenge") || url.searchParams.get("challenge");
-      if (challenge) {
-        return new Response(JSON.stringify({ "hub.challenge": challenge }), {
-          headers: { "content-type": "application/json" },
-        });
-      }
-      return new Response("ok", { status: 200 });
+    if (url.pathname === "/health") {
+      return handleHealth(env);
     }
-
-    if (request.method !== "POST") {
-      return new Response("Method not allowed", { status: 405 });
+    if (url.pathname === "/plan-edit") {
+      return handlePlanEdit(request, env);
     }
-
-    if (!checkAuth(request, url, env)) {
-      return new Response("Unauthorized", { status: 401 });
-    }
-
-    let payload = {};
-    try {
-      payload = await request.json();
-    } catch {
-      // Tom body ved en evt. verifikations-ping — ingen fejl, bare ack.
-      return new Response("ok (no body)", { status: 200 });
-    }
-
-    // Best-effort filter: udløs kun på aktivitets-agtige events. Kan ikke
-    // vi genkende typen, udløser vi alligevel (sikker fallback — receiveren
-    // trækker bare frisk data fra Intervals uanset payload-indhold).
-    const eventType = String(
-      payload.type || payload.event_type || payload.eventType || ""
-    ).toLowerCase();
-    if (eventType && !eventType.includes("activity")) {
-      return new Response(`ignoreret event-type: ${eventType}`, { status: 200 });
-    }
-
-    try {
-      const token = await getInstallationToken(env);
-      await dispatchGitHub(env, token);
-      return new Response("dispatched", { status: 200 });
-    } catch (err) {
-      console.error(err);
-      return new Response(`fejl: ${err.message}`, { status: 500 });
-    }
+    return handleIntervalsWebhook(request, url, env);
   },
 };
 
-function checkAuth(request, url, env) {
+// ── GET /health ──────────────────────────────────────────────────────────
+
+function handleHealth(env) {
+  return new Response(
+    JSON.stringify({
+      ok: true,
+      service: "fast-as-50-worker",
+      now: new Date().toISOString(),
+      webhook_secret_configured: Boolean(env.WEBHOOK_SECRET),
+      plan_edit_secret_configured: Boolean(env.PLAN_EDIT_SECRET),
+      github_app_configured: Boolean(
+        env.GITHUB_APP_ID && env.GITHUB_INSTALLATION_ID && env.GITHUB_APP_PRIVATE_KEY
+      ),
+    }),
+    { headers: { "content-type": "application/json", "Access-Control-Allow-Origin": "*" } }
+  );
+}
+
+// ── POST /plan-edit ────────────────────────────────────────────────────
+
+async function handlePlanEdit(request, env) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Plan-Secret, Content-Type",
+      },
+    });
+  }
+  if (request.method !== "POST") {
+    return jsonError(405, "Method not allowed");
+  }
+  if (!env.PLAN_EDIT_SECRET || request.headers.get("x-plan-secret") !== env.PLAN_EDIT_SECRET) {
+    return jsonError(401, "Unauthorized");
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return jsonError(400, "Body er ikke gyldig JSON");
+  }
+
+  for (const key of ["action", "entryId", "requestId"]) {
+    if (!body[key]) {
+      return jsonError(400, `Manglende felt: ${key}`);
+    }
+  }
+
+  try {
+    const token = await getInstallationToken(env);
+    await dispatchGitHub(env, token, "plan-edit", { ...body, actor: "kennet" });
+    return corsJson(200, { ok: true, requestId: body.requestId });
+  } catch (err) {
+    console.error(err);
+    return corsJson(502, { error: err.message });
+  }
+}
+
+function jsonError(status, message) {
+  return corsJson(status, { error: message });
+}
+
+function corsJson(status, obj) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "content-type": "application/json", "Access-Control-Allow-Origin": "*" },
+  });
+}
+
+// ── POST / (Intervals.icu webhook) ──────────────────────────────────────
+
+async function handleIntervalsWebhook(request, url, env) {
+  // Nogle webhook-providere verificerer endpointet med et GET-kald der
+  // indeholder en "challenge", som skal ekkoes tilbage uændret.
+  if (request.method === "GET") {
+    const challenge =
+      url.searchParams.get("hub.challenge") || url.searchParams.get("challenge");
+    if (challenge) {
+      return new Response(JSON.stringify({ "hub.challenge": challenge }), {
+        headers: { "content-type": "application/json" },
+      });
+    }
+    return new Response("ok", { status: 200 });
+  }
+
+  if (request.method !== "POST") {
+    return new Response("Method not allowed", { status: 405 });
+  }
+
+  if (!checkWebhookAuth(request, url, env)) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  let payload = {};
+  try {
+    payload = await request.json();
+  } catch {
+    // Tom body ved en evt. verifikations-ping — ingen fejl, bare ack.
+    return new Response("ok (no body)", { status: 200 });
+  }
+
+  // Best-effort filter: udløs kun på aktivitets-agtige events. Kan vi ikke
+  // genkende typen, udløser vi alligevel (sikker fallback — receiveren
+  // trækker bare frisk data fra Intervals uanset payload-indhold).
+  const eventType = String(
+    payload.type || payload.event_type || payload.eventType || ""
+  ).toLowerCase();
+  if (eventType && !eventType.includes("activity")) {
+    return new Response(`ignoreret event-type: ${eventType}`, { status: 200 });
+  }
+
+  try {
+    const token = await getInstallationToken(env);
+    await dispatchGitHub(env, token, "intervals-activity");
+    return new Response("dispatched", { status: 200 });
+  } catch (err) {
+    console.error(err);
+    return new Response(`fejl: ${err.message}`, { status: 500 });
+  }
+}
+
+function checkWebhookAuth(request, url, env) {
   if (!env.WEBHOOK_SECRET) return false;
   const authHeader = request.headers.get("authorization") || "";
   const bearer = authHeader.match(/^Bearer\s+(.+)$/i);
@@ -101,6 +193,8 @@ function checkAuth(request, url, env) {
   ].filter(Boolean);
   return candidates.some((c) => c === env.WEBHOOK_SECRET);
 }
+
+// ── GitHub App: installation-token + repository_dispatch (delt af alle ruter) ──
 
 async function getInstallationToken(env) {
   const jwt = await createAppJwt(env.GITHUB_APP_ID, env.GITHUB_APP_PRIVATE_KEY);
@@ -123,7 +217,9 @@ async function getInstallationToken(env) {
   return data.token;
 }
 
-async function dispatchGitHub(env, token) {
+async function dispatchGitHub(env, token, eventType, clientPayload) {
+  const body = { event_type: eventType };
+  if (clientPayload) body.client_payload = clientPayload;
   const resp = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO}/dispatches`, {
     method: "POST",
     headers: {
@@ -133,7 +229,7 @@ async function dispatchGitHub(env, token) {
       "User-Agent": "fast-as-50-worker",
       "content-type": "application/json",
     },
-    body: JSON.stringify({ event_type: "intervals-activity" }),
+    body: JSON.stringify(body),
   });
   if (!resp.ok) {
     throw new Error(`repository_dispatch fejlede: ${resp.status} ${await resp.text()}`);
