@@ -12,5 +12,5 @@ GitHub Personal Access Token'et udløber periodisk. Sådan fornyer du:
 5. Copy tokenet
 6. **Opdater 3 steder:**
    - `data/config.json` → felt `patExpiry` opdateres til ny udløbsdato
-   - plan.html/eva.html/af.html på iPhone → tap Token, indsæt nyt token, Gem (Safari overskriver Keychain-værdi)
+   - eva.html/af.html/checkin.html på iPhone → tap Token, indsæt nyt token, Gem (Safari overskriver Keychain-værdi). plan.html bruger ikke længere denne PAT — se `workers/webhook-dispatch/README.md` for dens delte hemmelighed i stedet.
    - Send til Claude → memory opdateres

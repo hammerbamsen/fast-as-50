@@ -376,7 +376,6 @@ function ctlTipHide(){
 }
 
 function fuelingCard(view){ const f = view && view.kennet && view.kennet.fueling; if (!f) return ""; const row = (r) => `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--cream-d,#ddd)"><div style="font-weight:700;font-size:13px">${esc(r.race)}</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Kulhydrat: ${r.carb_g_per_h.low}–${r.carb_g_per_h.high} g/t · Væske: ${r.fluid_ml_per_h.low}–${r.fluid_ml_per_h.high} ml/t · Natrium: ${r.sodium_mg_per_h.low}–${r.sodium_mg_per_h.high} mg/t</div></div>`; return `<div class="card"><h2>Fueling — Médoc & Stelvio</h2><div style="font-size:11px;color:var(--muted)">Standarddefaults — kalibreres senere med Martin</div>${row(f.medoc)}${row(f.stelvio)}</div>`; } function fuelingCard(view){ const f = view && view.kennet && view.kennet.fueling; if (!f) return ""; const row = (r) => `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--cream-d,#ddd)"><div style="font-weight:700;font-size:13px">${esc(r.race)}</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Kulhydrat: ${r.carb_g_per_h.low}–${r.carb_g_per_h.high} g/t · Væske: ${r.fluid_ml_per_h.low}–${r.fluid_ml_per_h.high} ml/t · Natrium: ${r.sodium_mg_per_h.low}–${r.sodium_mg_per_h.high} mg/t</div></div>`; return `<div class="card"><h2>Fueling — Médoc & Stelvio</h2><div style="font-size:11px;color:var(--muted)">Standarddefaults — kalibreres senere med Martin</div>${row(f.medoc)}${row(f.stelvio)}</div>`; } async function main(){
-  await checkPatExpiry();
   const content = document.getElementById("content");
   let plan, view, dash;
   try { plan = await getJSON("data/plan.json"); }
@@ -576,7 +575,7 @@ function u4Err(message, opts){
   const primary = 'flex:1;padding:8px 12px;border-radius:8px;border:none;background:var(--wine,var(--teal,#444));color:#fff;cursor:pointer;font-family:inherit';
   const second  = 'flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--cream-d,#ddd);background:var(--white,#fff);color:var(--wine,var(--teal,#444));cursor:pointer;font-family:inherit';
   const hint = opts.tokenHint
-    ? `<div style="font-size:12px;margin-top:6px;opacity:.75">Ligner udløbet eller ugyldig token — forny via ⚙ Token (guide: docs/PAT_RENEWAL.md i repoet).</div>` : "";
+    ? `<div style="font-size:12px;margin-top:6px;opacity:.75">Ligner en forkert eller manglende delt hemmelighed — tjek/gem den igen via ⚙ Token.</div>` : "";
   let btns = "";
   if (opts.retry)      btns += `<button style="${primary}" onclick="${opts.retry}">Prøv igen</button>`;
   if (opts.checkAgain) btns += `<button style="${primary}" onclick="u4CheckAgain('${opts.requestId}','${opts.target || "sheet-msg"}')">Tjek igen</button>`;
@@ -963,25 +962,6 @@ async function restoreCommit(sha){
 }
 
 const v = id => document.getElementById(id).value;
-
-// ═══ PAT EXPIRY BANNER ═══
-async function checkPatExpiry(){
-  try {
-    const r = await fetch(`data/config.json?t=${Date.now()}`, {cache:"no-store"});
-    if (!r.ok) return;
-    const cfg = await r.json();
-    const daysLeft = Math.floor((new Date(cfg.patExpiry) - new Date())/86400000);
-    if (daysLeft > cfg.warningDays) return;
-    const existing = document.getElementById('pat-banner');
-    if (existing) existing.remove();
-    const isUrgent = daysLeft <= cfg.urgentDays;
-    const banner = document.createElement('div');
-    banner.id = 'pat-banner';
-    banner.style.cssText = `background:${isUrgent?"var(--hard,#B03A2E)":"var(--warn,#B7791F)"};color:#fff;padding:10px 16px;font-size:13px;text-align:center;position:sticky;top:0;z-index:100;font-family:'Hanken Grotesk',sans-serif`;
-    banner.innerHTML = `<b>${isUrgent?"⚠ PAT udløber om " + daysLeft + " dage":"PAT-udløb om " + daysLeft + " dage"}</b> · <a href="${cfg.renewalUrl}" style="color:#fff;text-decoration:underline">Fornyelse</a>`;
-    document.body.insertBefore(banner, document.body.firstChild);
-  } catch(e) { /* stille fejl */ }
-}
 </script>
 </body>
 </html>
