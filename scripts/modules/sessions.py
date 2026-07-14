@@ -534,21 +534,27 @@ def get_planned_mins_this_week():
         return 0
     events = r.json()
     print(f"  Events denne uge: {len(events)}")
+    # Et enkelt pas > 6t er ikke reelt — det er korrupt event-data (fx en
+    # svømning med moving_time = 132240s ≈ 36t). Sådanne events afvises, så
+    # de ikke oppuster ugens planlagte tid (var årsag til "48t 48m"-fejlen).
+    MAX_SESSION_SECS = 6 * 3600
     total_mins = 0
     for e in events:
-        if e.get('category') not in ('WORKOUT', None):
+        if e.get('category') != 'WORKOUT':
             continue
-        # Prøv alle kendte varighed-felter fra Intervals
+        # Varighed i sekunder — moving_time bærer den planlagte varighed på events.
+        # Intervals leverer disse felter i sekunder; ingen gætte-heuristik på enhed.
         secs = (e.get('moving_time') or
                 e.get('elapsed_time') or
                 e.get('indoor_time') or
                 e.get('planned_duration') or 0)
-        if not secs:
-            # Brug load (TSS) som proxy: 1 TSS ≈ 1 min for Z2
-            load = e.get('load') or 0
-            if load:
-                secs = load * 60  # grov approx
-        mins = secs / 60 if secs > 60 else secs  # håndter hvis allerede i min
+        if not secs or secs <= 0:
+            print(f"    Springer over (ingen varighed): {e.get('name','')}")
+            continue
+        if secs > MAX_SESSION_SECS:
+            print(f"    ⚠️ Urealistisk varighed {secs}s ({secs/3600:.1f}t) — data-fejl, springes over: {e.get('name','')}")
+            continue
+        mins = secs / 60
         total_mins += mins
         print(f"    Event: {e.get('name','')} secs={secs} mins={mins:.0f}")
     result = round(total_mins, 0)
@@ -597,6 +603,9 @@ def planned_tss_this_week():
         secs = (e.get('moving_time') or e.get('elapsed_time') or
                 e.get('indoor_time') or e.get('planned_duration') or 0)
         if not secs:
+            continue
+        if secs > 6 * 3600:   # korrupt varighed (samme guard som planlagt tid) — udelad af TSS-estimat
+            print(f"    ⚠️ Urealistisk varighed på '{name}' ({secs/3600:.1f}t) — udelades af TSS-estimat")
             continue
         hrs = secs / 3600
         nl = name.lower()
