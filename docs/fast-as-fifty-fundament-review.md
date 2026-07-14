@@ -1,4 +1,8 @@
-# Fast as Fifty — Fundament-review & revideret plan
+# Fast as Fifty — Fundament-review & revideret plan (FORÆLDET KOPI — se OneDrive)
+
+**Forældet 14/7:** denne fil er en engangs-kopi fra 11. juli og er ikke holdt i synk siden — den mangler hele 13/7- og 14/7-arbejdet (Azure Function fjernet, Cloudflare Worker skrevet+deployet, alle fem klientsider gjort token-fri, m.m.). Den løbende, ajourførte version af dette review ligger i `Projects/Fast as Fifty/fast-as-fifty-fundament-review.md` i OneDrive-workspacet — brug den, ikke denne. Denne fil er kun bevaret for historik.
+
+---
 
 *Oprettet: 10. juli 2026. Senest opdateret: 11. juli 2026 (coach-grounding fix deployet + staleness-fund).*
 *Til gennemgang: mandag 13. juli, 10:00–11:00 (kalenderblok sat, reminder 30 min før).*
