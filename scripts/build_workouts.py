@@ -572,6 +572,15 @@ def delete_existing(session, dt):
     except Exception as e:
         print(f"    ⚠️  delete fejl {dt}: {e}")
 
+# ── A: fallback-estimat (kun når plan.json ikke angiver load) ──
+_LOAD_IF2 = {"Ride":0.45,"VirtualRide":0.45,"Run":0.55,"Swim":0.50,
+             "OpenWaterSwim":0.50,"WeightTraining":0.40,"Hike":0.38,"Walk":0.30}
+
+def estimate_load(wo):
+    hours = wo.get("moving_time", 3600) / 3600.0
+    if2   = _LOAD_IF2.get(wo.get("type"), 0.45)
+    return max(round(hours * if2 * 100), 1)
+
 def upload(session, wo, dt):
     if wo is None:
         return None
@@ -594,7 +603,14 @@ def upload(session, wo, dt):
     for attempt in range(3):
         r = session.post(f"{BASE}/events", json=payload)
         if r.status_code in (200, 201):
-            eid = r.json().get("id", "?")
+            body = r.json()
+            eid = body.get("id", "?")
+            if not body.get("icu_training_load"):
+                load = wo.get("load")
+                if not isinstance(load, (int, float)) or load <= 0:
+                    load = estimate_load(wo)
+                session.put(f"{BASE}/events/{eid}", json={"icu_training_load": load})
+                print(f"     ↳ load sat: {load}")
             print(f"  ✅ {dt.strftime('%d. %b %a')} — {wo['name']} (id:{eid})")
             start_iso, end_iso = _start_end(wo, dt)
             notify_make("create", event_id=str(eid), payload={
