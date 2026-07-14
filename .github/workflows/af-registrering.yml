@@ -10,6 +10,9 @@ permissions:
 jobs:
   send-to-intervals:
     runs-on: ubuntu-latest
+    concurrency:
+      group: kpi-update
+      cancel-in-progress: false
     steps:
       - name: Send til Intervals.icu
         run: |
@@ -53,3 +56,48 @@ jobs:
             exit 1
           fi
           echo "Gemt: $DATE alkohol=$ALKOHOL"
+
+      # Kun af-registrering opdaterer data.json's af_log/streak med det samme —
+      # dette erstatter den GET+PUT-blok af.html tidligere lavede direkte i
+      # browseren med sin PAT (fjernet i samme omgang som token-fri dispatch).
+      # checkin.html rørte aldrig data.json client-side — af_log for
+      # checkin-events opdateres fortsat kun af den almindelige 30-min-cron.
+      - name: Checkout
+        if: github.event.action == 'af-registrering'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Python setup
+        if: github.event.action == 'af-registrering'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install requests
+        if: github.event.action == 'af-registrering'
+        run: pip install requests
+      - name: Opdater data.json (af_log/streak)
+        if: github.event.action == 'af-registrering'
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_kpi.py
+      - name: Commit og push data.json
+        if: github.event.action == 'af-registrering'
+        run: |
+          git config user.name "Fast as Fifty Bot"
+          git config user.email "bot@hammerbamsen.github.io"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "Ingen ændringer"
+            exit 0
+          fi
+          git commit -m "AF-registrering: data.json opdateret $(date +%Y-%m-%d_%H:%M)"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && git push origin main && echo "Push OK forsøg $i" && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
+          echo "Push fejlede efter 3 forsøg"
+          exit 1

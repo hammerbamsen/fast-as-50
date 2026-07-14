@@ -1,6 +1,6 @@
-# Cloudflare Worker — Intervals-webhook (Fase 3) + plan-edit + health
+# Cloudflare Worker — Intervals-webhook (Fase 3) + token-fri dispatch + health
 
-Én Worker, tre ruter:
+Én Worker, seks ruter — dækker al PAT-fri dispatch for hele Fast as Fifty:
 
 - **`POST /`** — Intervals.icu-webhook. Udløser med det samme
   `repository_dispatch` mod GitHub (`intervals-activity`), i stedet for at
@@ -8,12 +8,18 @@
   findes allerede i repoet og kører bare `update_kpi.py` på ny — Worker'en
   skal derfor kun afgøre OM den skal trigge, ikke forstå hele payloaden.
 - **`POST /plan-edit`** — erstatter den aldrig-deployede Azure Function
-  (`azure-function/plan_edit`, slettet fra repoet). Ingen MSAL/Entra ID for
-  én bruger: én delt hemmelighed (`PLAN_EDIT_SECRET`) sendt i en
-  `X-Plan-Secret`-header, tjekket i Worker'en. Ved godkendt kald: samme
-  `repository_dispatch` (`plan-edit`) som før, til `.github/workflows/plan-edit.yml`.
+  (`azure-function/plan_edit`, slettet fra repoet). Bruges af `plan.html` og
+  `eva.html`.
+- **`POST /af-registrering`** — bruges af `af.html` (AF-check-in).
+- **`POST /checkin`** — bruges af `checkin.html` (dagligt wellness-check-in).
+- **`POST /push-subscribe`** — bruges af `eva.html` og `index.html` (web
+  push-abonnement).
 - **`GET /health`** — bekræfter at Worker'en kører og er konfigureret
   (erstatter `azure-function/health`).
+
+De fem POST-dispatch-ruter kræver alle `X-Plan-Secret`-headeren
+(`PLAN_EDIT_SECRET`) — samme værdi i alle fem klientsider, ingen PAT
+nogen steder længere.
 
 Autentificering mod GitHub sker i begge dispatch-ruter som en GitHub App
 (App ID `4259031`, installation `145518829`) — ingen PAT i browseren, ingen
@@ -102,15 +108,34 @@ curl -X POST "https://fast-as-50-webhook.<dit-subdomain>.workers.dev/plan-edit" 
   -H "X-Plan-Secret: <din PLAN_EDIT_SECRET>" \
   -H "Content-Type: application/json" \
   -d '{"requestId":"test1","action":"adjust","entryId":"<en-rigtig-entryId>","params":{}}'
+
+# AF-registrering
+curl -X POST "https://fast-as-50-webhook.<dit-subdomain>.workers.dev/af-registrering" \
+  -H "X-Plan-Secret: <din PLAN_EDIT_SECRET>" \
+  -H "Content-Type: application/json" \
+  -d '{"date":"2026-07-14","alkohol":0}'
+
+# Checkin
+curl -X POST "https://fast-as-50-webhook.<dit-subdomain>.workers.dev/checkin" \
+  -H "X-Plan-Secret: <din PLAN_EDIT_SECRET>" \
+  -H "Content-Type: application/json" \
+  -d '{"date":"2026-07-14","alkohol":0,"protein":2,"energi":4,"stress":2}'
+
+# Push-subscribe
+curl -X POST "https://fast-as-50-webhook.<dit-subdomain>.workers.dev/push-subscribe" \
+  -H "X-Plan-Secret: <din PLAN_EDIT_SECRET>" \
+  -H "Content-Type: application/json" \
+  -d '{"subscription":{"endpoint":"https://example.test/ep","athlete":"kennet"}}'
 ```
 
 Forventet for Intervals-testen: `dispatched` (200). Tjek derefter
 **Actions**-fanen i repoet — "Intervals Webhook Receiver" skal have en ny
-kørsel. Forventet for plan-edit-testen: `{"ok":true,...}` (200), og
-"Plan-redigering (fase 3a)"-workflowet skal have en ny kørsel.
+kørsel. Forventet for de fire øvrige: `{"ok":true,...}` (200), og
+tilhørende workflow ("Plan-redigering (fase 3a)", "Check-in registrering",
+"Modtag push-subscription") skal have en ny kørsel.
 
 ## Filer
 
-- `worker.js` — selve Worker-koden (alle tre ruter)
+- `worker.js` — selve Worker-koden (alle seks ruter)
 - `wrangler.toml` — Wrangler-konfiguration til `npx wrangler deploy`
 - `README.md` — denne fil

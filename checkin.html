@@ -60,9 +60,9 @@ body { background:#ECE4D7; min-height:100vh; font-family:'Hanken Grotesk',sans-s
       <div class="title">Opsætning</div>
     </div>
     <div class="token-form">
-      <div class="q-label">Indsæt GitHub token én gang:</div>
-      <input type="password" class="token-input" id="token-input" placeholder="ghp_...">
-      <button class="token-btn" onclick="saveToken()">Gem token</button>
+      <div class="q-label">Indsæt den delte hemmelighed én gang:</div>
+      <input type="password" class="token-input" id="token-input" placeholder="delt hemmelighed">
+      <button class="token-btn" onclick="saveSecretFromInput()">Gem</button>
     </div>
   </div>
 
@@ -107,8 +107,7 @@ body { background:#ECE4D7; min-height:100vh; font-family:'Hanken Grotesk',sans-s
 </div>
 
 <script>
-const GH_REPO = "hammerbamsen/fast-as-50";
-const TK = "af_token_v2";
+const SECRET_KEY = "af_plan_secret";  // delt hemmelighed til Worker'ens dispatch-ruter
 const DK_DAYS   = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
 const DK_MONTHS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 
@@ -117,17 +116,45 @@ function todayKey() {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
-function saveToken() {
+function getSecret() { return localStorage.getItem(SECRET_KEY) || ""; }
+function setSecret(s) { localStorage.setItem(SECRET_KEY, s); }
+
+function saveSecretFromInput() {
   const t = document.getElementById("token-input").value.trim();
-  if (t.length > 10) {
-    sessionStorage.setItem(TK, t);
+  if (t) {
+    setSecret(t);
     showMain();
   }
 }
 
-function getToken() {
-  const p = new URLSearchParams(window.location.search);
-  return p.get("t") || localStorage.getItem(TK) || "";
+let WORKER_CONFIG = null;
+async function loadWorkerConfig(){
+  if (WORKER_CONFIG) return WORKER_CONFIG;
+  try {
+    const r = await fetch(`data/auth_config.json?t=${Date.now()}`, {cache:"no-store"});
+    WORKER_CONFIG = r.ok ? await r.json() : { workerUrl: "" };
+  } catch(e) {
+    WORKER_CONFIG = { workerUrl: "" };
+  }
+  return WORKER_CONFIG;
+}
+async function dispatchViaWorker(path, clientPayload){
+  const cfg = await loadWorkerConfig();
+  const secret = getSecret();
+  if (!secret) throw new Error("Ingen hemmelighed gemt.");
+  if (!cfg.workerUrl) throw new Error("Worker-URL ikke sat i data/auth_config.json.");
+  const r = await fetch(`${cfg.workerUrl.replace(/\/$/, "")}${path}`, {
+    method: "POST",
+    headers: { "X-Plan-Secret": secret, "Content-Type": "application/json" },
+    body: JSON.stringify(clientPayload)
+  });
+  if (!r.ok) {
+    const errText = await r.text().catch(()=>"");
+    const err = new Error(`HTTP ${r.status}. ${errText.slice(0,200)}`);
+    err.status = r.status;
+    throw err;
+  }
+  return r;
 }
 
 function showMain() {
@@ -180,7 +207,7 @@ function u4Err(containerId, message, opts){
   const primary='padding:8px 14px;border-radius:8px;border:none;background:#7A1F35;color:#fff;cursor:pointer;font:inherit';
   const second ='padding:8px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#7A1F35;cursor:pointer;font:inherit';
   const hint = opts.tokenHint
-    ? '<div style="font-size:12px;margin-top:6px;opacity:.8">Ligner udl\u00f8bet/ugyldigt token \u2014 \u00e5bn ?reset og inds\u00e6t et nyt (guide: docs/PAT_RENEWAL.md).</div>' : '';
+    ? '<div style="font-size:12px;margin-top:6px;opacity:.8">Ligner en forkert eller manglende delt hemmelighed.</div>' : '';
   let btns='';
   if(opts.retry) btns += '<button style="'+primary+'" onclick="'+opts.retry+'">Pr\u00f8v igen</button>';
   btns += '<button style="'+second+'" onclick="u4Report(this)">Rapport\u00e9r fejl</button>';
@@ -207,25 +234,13 @@ async function doSubmit() {
   const proteinMap = { hoj: 2, ok: 1, lav: 0 };
 
   try {
-    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/dispatches`, {
-      method: "POST",
-      headers: {
-        "Authorization": `token ${getToken()}`,
-        "Content-Type": "application/json",
-        "Accept": "application/vnd.github.v3+json"
-      },
-      body: JSON.stringify({
-        event_type: "checkin",
-        client_payload: {
-          date: key,
-          alkohol: isAF ? 0 : 1,
-          protein: proteinMap[answers.protein],
-          energi: answers.energi,
-          stress: answers.stress
-        }
-      })
+    await dispatchViaWorker("/checkin", {
+      date: key,
+      alkohol: isAF ? 0 : 1,
+      protein: proteinMap[answers.protein],
+      energi: answers.energi,
+      stress: answers.stress
     });
-    if (r.status !== 204) throw new Error(r.status);
   } catch(e) {
     const detail = String(e && e.message ? e.message : e).replace(/[<>]/g,'');
     u4Err('status', 'Ikke gemt \u2014 ' + detail,
@@ -255,7 +270,7 @@ async function doSubmit() {
 buildScale("scale-energi", "energi");
 buildScale("scale-stress", "stress");
 
-if (getToken()) {
+if (getSecret()) {
   showMain();
 } else {
   document.getElementById("token-view").style.display = "block";

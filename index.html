@@ -1802,6 +1802,44 @@ const VAPID_PUBLIC = "BHyYLHHV0bt4MNTG3wI0syiiUJUpaPFtIKfgn1i-SK1Ng64KMR3aGc3I76
 const PUSH_SUBSCRIBE_KEY = "fast50_push_sub";   // localStorage: sidst kendte subscription
 const PUSH_ATHLETE = (typeof PUSH_ATHLETE_ID !== "undefined") ? PUSH_ATHLETE_ID : "kennet";
 
+// ═══ Cloudflare Worker + delt hemmelighed (samme mønster som plan.html/eva.html) ═══
+// Deler localStorage-nøgle (samme origin) — hemmeligheden gemt via plan.html
+// eller eva.html virker automatisk her også.
+const SECRET_KEY = "af_plan_secret";
+const getSecret = () => localStorage.getItem(SECRET_KEY);
+const setSecret = s => localStorage.setItem(SECRET_KEY, s);
+
+let WORKER_CONFIG = null;
+async function loadWorkerConfig(){
+  if (WORKER_CONFIG) return WORKER_CONFIG;
+  try {
+    const r = await fetch(`data/auth_config.json?t=${Date.now()}`, {cache:"no-store"});
+    WORKER_CONFIG = r.ok ? await r.json() : { workerUrl: "" };
+  } catch(e) {
+    WORKER_CONFIG = { workerUrl: "" };
+  }
+  return WORKER_CONFIG;
+}
+
+async function dispatchViaWorker(path, clientPayload){
+  const cfg = await loadWorkerConfig();
+  const secret = getSecret();
+  if (!secret) throw new Error("Ingen hemmelighed gemt.");
+  if (!cfg.workerUrl) throw new Error("Worker-URL ikke sat i data/auth_config.json.");
+  const r = await fetch(`${cfg.workerUrl.replace(/\/$/, "")}${path}`, {
+    method: "POST",
+    headers: { "X-Plan-Secret": secret, "Content-Type": "application/json" },
+    body: JSON.stringify(clientPayload)
+  });
+  if (!r.ok) {
+    const errText = await r.text().catch(()=>"");
+    const err = new Error(`HTTP ${r.status}. ${errText.slice(0,200)}`);
+    err.status = r.status;
+    throw err;
+  }
+  return r;
+}
+
 function _urlB64ToUint8(base64){
   const pad = "=".repeat((4 - base64.length % 4) % 4);
   const b64 = (base64 + pad).replace(/-/g, "+").replace(/_/g, "/");
@@ -1881,25 +1919,24 @@ async function renderPushToggle(containerId){
     return;
   }
   if (st === "granted"){
-    const hasToken = !!localStorage.getItem("af_gh_token");
-    if (!hasToken){
+    if (!getSecret()){
       el.innerHTML = wrap(
         'Påmindelser er tilladt, men mangler adgang til at nå serveren.'
-        + '<div style="margin-top:8px">Indsæt dit GitHub-token (samme som i Plan-fanen):</div>'
-        + '<input class="pt-token" type="password" placeholder="github_pat_..." '
+        + '<div style="margin-top:8px">Indsæt den delte hemmelighed (samme som i Plan-fanen):</div>'
+        + '<input class="pt-token" type="password" placeholder="delt hemmelighed" '
         + 'style="width:100%;margin-top:6px;padding:7px 9px;border-radius:7px;border:1px solid var(--wine-l,#ccc);font-family:monospace;font-size:11px;box-sizing:border-box">'
         + '<button class="pt-token-save" style="margin-top:6px;padding:7px 12px;border-radius:7px;border:none;background:var(--wine,#59182A);color:#fff;cursor:pointer;font:inherit;font-size:12px">Gem og aktivér</button>'
         + '<div class="pt-token-msg" style="font-size:12px;color:var(--muted,#888);margin-top:6px"></div>');
       el.querySelector(".pt-token-save").onclick = async () => {
         const val = el.querySelector(".pt-token").value.trim();
         const m = el.querySelector(".pt-token-msg");
-        if (!val){ if(m) m.textContent = "Indsæt et token først."; return; }
-        localStorage.setItem("af_gh_token", val);
+        if (!val){ if(m) m.textContent = "Indsæt en hemmelighed først."; return; }
+        setSecret(val);
         if (m) m.textContent = "Aktiverer…";
         const sub = JSON.parse(localStorage.getItem("fast50_push_sub") || "null");
         const r = sub ? await sendSubscriptionToBackend(sub) : await pushSubscribe();
         if (r && r.ok) { renderPushToggle("push-toggle"); renderPushToggle("push-toggle-main"); }
-        else if (m) m.textContent = "Kunne ikke aktivere (" + (r && (r.status||r.reason)) + "). Tjek tokenet.";
+        else if (m) m.textContent = "Kunne ikke aktivere (" + (r && (r.status||r.reason)) + "). Tjek hemmeligheden.";
       };
       return;
     }
@@ -1926,24 +1963,20 @@ async function renderPushToggle(containerId){
   };
 }
 
-// -- U2: send subscription til backend via repository_dispatch --------
-// Genbruger klientens gemte GitHub-token (samme som plan-edit-flowet).
-// Fejler stille hvis ingen token — subscription er allerede gemt lokalt.
-const PUSH_GH_REPO = "hammerbamsen/fast-as-50";
+// -- U2: send subscription til backend via Worker'ens /push-subscribe -----
+// Genbruger den delte hemmelighed (samme som plan-edit-flowet).
+// Fejler stille hvis ingen hemmelighed — subscription er allerede gemt lokalt.
 async function sendSubscriptionToBackend(subJson){
-  const token = localStorage.getItem("af_gh_token");
-  if (!token){
-    console.warn("push: ingen GitHub-token — subscription gemt lokalt, ikke sendt til server");
+  if (!getSecret()){
+    console.warn("push: ingen delt hemmelighed — subscription gemt lokalt, ikke sendt til server");
     return { ok:false, reason:"no-token" };
   }
-  const r = await fetch(`https://api.github.com/repos/${PUSH_GH_REPO}/dispatches`, {
-    method:"POST",
-    headers:{ "Authorization":`token ${token}`,
-              "Accept":"application/vnd.github+json",
-              "Content-Type":"application/json" },
-    body: JSON.stringify({ event_type:"push-subscribe", client_payload:{ subscription:subJson } })
-  });
-  return { ok: r.status === 204, status: r.status };
+  try {
+    await dispatchViaWorker("/push-subscribe", { subscription: subJson });
+    return { ok:true, status:200 };
+  } catch(e) {
+    return { ok:false, status: e.status, reason: e.message };
+  }
 }
 renderPushToggle("push-toggle");
 renderPushToggle("push-toggle-main");

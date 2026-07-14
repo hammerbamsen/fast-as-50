@@ -1,6 +1,7 @@
-// Fast as Fifty — Cloudflare Worker: Intervals-webhook (Fase 3) + plan-edit + health
+// Fast as Fifty — Cloudflare Worker: Intervals-webhook (Fase 3) + token-fri
+// dispatch for alle klientsider + health
 //
-// Tre ruter i én Worker (samme platform, ét sted at holde styr på):
+// Ruter i én Worker (samme platform, ét sted at holde styr på):
 //   POST /              — Intervals.icu-webhook. Udløser med det samme
 //                          repository_dispatch (event_type "intervals-activity")
 //                          mod GitHub når en ny aktivitet dukker op, i stedet
@@ -9,13 +10,21 @@
 //                          repoet) ignorerer selve payloaden og kører bare
 //                          update_kpi.py på ny.
 //   POST /plan-edit     — erstatter den aldrig-deployede Azure Function
-//                          (azure-function/plan_edit). Ingen MSAL/Entra ID
-//                          nødvendig for én bruger: én delt hemmelighed
-//                          (PLAN_EDIT_SECRET) i en header, tjekket her.
+//                          (azure-function/plan_edit). Bruges af plan.html
+//                          og eva.html.
+//   POST /af-registrering — bruges af af.html (AF/vægt-check-in).
+//   POST /checkin       — bruges af checkin.html (dagligt wellness-check-in).
+//   POST /push-subscribe — bruges af eva.html og index.html (web push-abonnement).
 //   GET  /health        — bekræfter at Worker'en kører og er konfigureret
 //                          (erstatter azure-function/health).
 //
-// Autentificering mod GitHub sker i begge dispatch-ruter som en GitHub App
+// De fire POST-dispatch-ruter (plan-edit, af-registrering, checkin,
+// push-subscribe) deler samme mønster: tjek PLAN_EDIT_SECRET i
+// X-Plan-Secret-headeren, valider påkrævede felter, dispatch et
+// repository_dispatch-event til GitHub. Ingen PAT i nogen browser —
+// hverken plan.html, eva.html, af.html, checkin.html eller index.html.
+//
+// Autentificering mod GitHub sker i alle dispatch-ruter som en GitHub App
 // (ikke en PAT i browseren): Worker'en signerer en kortlivet JWT med App'ens
 // private nøgle, bytter den til et installation-access-token, og bruger DET
 // til selve dispatch-kaldet. Ingen langlivet hemmelighed rører browseren.
@@ -33,8 +42,9 @@
 //                                -nocrypt -in original.pem -out pkcs8.pem
 //   WEBHOOK_SECRET         = den delte hemmelighed du sætter op sammen med
 //                            David (Intervals.icu) ved webhook-konfiguration
-//   PLAN_EDIT_SECRET       = den delte hemmelighed plan.html sender i
-//                            X-Plan-Secret-headeren ved plan-redigering
+//   PLAN_EDIT_SECRET       = den delte hemmelighed alle fem klientsider
+//                            sender i X-Plan-Secret-headeren (samme værdi
+//                            overalt — én hemmelighed at huske, ikke fem)
 //
 // ── Verifikations-TODO når Intervals.icu-webhooken er klar ─────────────
 // Vi kender endnu ikke Intervals.icu's præcise verifikations-håndtryk
@@ -53,6 +63,33 @@ export default {
     }
     if (url.pathname === "/plan-edit") {
       return handlePlanEdit(request, env);
+    }
+    if (url.pathname === "/af-registrering") {
+      return handleSimpleDispatch(request, env, {
+        eventType: "af-registrering",
+        requiredFields: ["date"],
+        buildPayload: (body) => ({ date: body.date, alkohol: body.alkohol }),
+      });
+    }
+    if (url.pathname === "/checkin") {
+      return handleSimpleDispatch(request, env, {
+        eventType: "checkin",
+        requiredFields: ["date"],
+        buildPayload: (body) => ({
+          date: body.date,
+          alkohol: body.alkohol,
+          protein: body.protein,
+          energi: body.energi,
+          stress: body.stress,
+        }),
+      });
+    }
+    if (url.pathname === "/push-subscribe") {
+      return handleSimpleDispatch(request, env, {
+        eventType: "push-subscribe",
+        requiredFields: ["subscription"],
+        buildPayload: (body) => ({ subscription: body.subscription }),
+      });
     }
     return handleIntervalsWebhook(request, url, env);
   },
@@ -113,6 +150,49 @@ async function handlePlanEdit(request, env) {
     const token = await getInstallationToken(env);
     await dispatchGitHub(env, token, "plan-edit", { ...body, actor: "kennet" });
     return corsJson(200, { ok: true, requestId: body.requestId });
+  } catch (err) {
+    console.error(err);
+    return corsJson(502, { error: err.message });
+  }
+}
+
+// ── POST /af-registrering, /checkin, /push-subscribe (fælles handler) ──
+
+async function handleSimpleDispatch(request, env, { eventType, requiredFields, buildPayload }) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Plan-Secret, Content-Type",
+      },
+    });
+  }
+  if (request.method !== "POST") {
+    return jsonError(405, "Method not allowed");
+  }
+  if (!env.PLAN_EDIT_SECRET || request.headers.get("x-plan-secret") !== env.PLAN_EDIT_SECRET) {
+    return jsonError(401, "Unauthorized");
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return jsonError(400, "Body er ikke gyldig JSON");
+  }
+
+  for (const key of requiredFields) {
+    if (!body[key]) {
+      return jsonError(400, `Manglende felt: ${key}`);
+    }
+  }
+
+  try {
+    const token = await getInstallationToken(env);
+    await dispatchGitHub(env, token, eventType, buildPayload(body));
+    return corsJson(200, { ok: true });
   } catch (err) {
     console.error(err);
     return corsJson(502, { error: err.message });
