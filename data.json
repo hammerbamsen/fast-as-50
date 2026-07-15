@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15 13:58",
+    "updated": "2026-07-15 15:02",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,13 +23,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "49,0",
+      "value": "48,5",
       "unit": "",
       "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-13,1",
+      "value": "-11,0",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -53,16 +53,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "159",
+      "value": "209",
       "unit": "TSS",
-      "sub": "159 af 601 planlagt TSS",
+      "sub": "209 af 601 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "10,4",
+      "value": "53,9",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#C0392B"
+      "color": "#27AE60"
     },
     "swimM": {
       "value": "3357",
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 6
   },
-  "coachSpeech": "Onsdag — uge 7 af 14. {HL} Fokus: 159 af 601 TSS er i hus — 5 sessioner tilbage, heriblandt Hometrainer Z2-Z3 80 min, Cykel Z2 60 min Mallorca. Vægt på 71,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. 2 AF-dage i 3 afsluttede dage — 3 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Kroppen tror, hvad sindet siger.\"",
+  "coachSpeech": "Onsdag — uge 7 af 14. {HL} Fokus: 209 af 601 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 60 min Mallorca, Cykel Z2 180 min Mallorca. Vægt på 71,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. 2 AF-dage i 3 afsluttede dage — 3 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Kroppen tror, hvad sindet siger.\"",
   "coachHighlight": "Søvn på 7,6 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "openwater",
@@ -157,8 +157,14 @@
       "day": "Ons",
       "disc": "bike",
       "label": "Hometrainer Z2-Z3 80 min",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 127,
+      "actual_tss": 50,
+      "actual_mins": 102,
+      "planned_mins": 80,
+      "intervals_compliance": 71.4
     },
     {
       "day": "Ons",
@@ -208,7 +214,7 @@
     43.5,
     48.8,
     47.2,
-    49.0
+    48.5
   ],
   "weightHistory": [
     null,
@@ -1022,7 +1028,7 @@
     },
     {
       "date": "2026-07-15",
-      "v": -13.1,
+      "v": -10.9,
       "real": true
     }
   ],
@@ -1457,8 +1463,14 @@
           "day": "Ons",
           "disc": "bike",
           "label": "Hometrainer Z2-Z3 80 min",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 127,
+          "actual_tss": 50,
+          "actual_mins": 102,
+          "planned_mins": 80,
+          "intervals_compliance": 71.4
         },
         {
           "day": "Ons",
@@ -1844,12 +1856,13 @@
     }
   ],
   "train_mins": {
+    "bike": 102.0,
     "commute": 36.0,
     "openwater": 76.0,
     "run": 51.0,
     "strength": 31.0,
     "planned": 764.0,
-    "actual_total": 194.0
+    "actual_total": 296.0
   },
   "fatHistory": [
     null,
@@ -2068,7 +2081,7 @@
       "message": "HRV 45,0 ms — 21% under 7d-snit (57,0 ms). Kroppen er presset."
     }
   ],
-  "tsb": -13.1,
+  "tsb": -11.0,
   "swimHistory": [
     {
       "week": 1,
@@ -2321,7 +2334,7 @@
     59,
     56
   ],
-  "coachAssessmentError": null,
+  "coachAssessmentError": "ANTHROPIC_API_KEY ikke sat i miljøet",
   "coachAssessmentStale": false,
   "credentials": {
     "intervals": {
@@ -2329,9 +2342,9 @@
       "note": "Nøgle virker"
     },
     "anthropic": {
-      "ok": true,
-      "note": "Nøgle virker"
+      "ok": false,
+      "note": "ANTHROPIC_API_KEY er tom"
     }
   },
-  "credentialsCheckedTs": "2026-07-15T11:58:54.329393"
+  "credentialsCheckedTs": "2026-07-15T13:02:08.741869"
 }
