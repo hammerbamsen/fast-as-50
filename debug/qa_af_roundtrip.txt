@@ -1,0 +1,7 @@
+GET wellness/2026-07-15 -> HTTP 200
+  nuvaerende vaerdier: {'Alkohol': None, 'protein': None, 'motivation': None, 'fatigue': None}
+  (ingen vaerdier sat i dag — tester med Alkohol alene)
+PUT {"Alkohol": 0} -> HTTP 200
+  ✅ FELTNAVNE ACCEPTERET — AF-flowet vil virke
+  efter: {'Alkohol': 0, 'protein': None, 'motivation': None, 'fatigue': None}
+  ⚠️ ÆNDRET! foer={'Alkohol': None, 'protein': None, 'motivation': None, 'fatigue': None}
