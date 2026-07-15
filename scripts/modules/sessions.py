@@ -225,8 +225,15 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
     # Byg lookup: activity_id -> aktivitet
     act_by_id = {a.get('id'): a for a in (activities_this_week or [])}
     # Byg lookup: (dato, disc) -> aktivitet (fallback)
+    # Pendlingsture holdes UDE: de er ikke dagens planlagte pas. Uden det her
+    # bliver en 12-min pendlertur limet på et 80-min hometrainer-pas og vist
+    # som "15% gennemfoert" — passet ser brugt ud foer det er koert.
+    # (Beskyttelsen i paired-grenen nedenfor rammer ikke her, fordi Intervals
+    #  ikke har sat paired_event_id paa en fritstaaende pendlertur.)
     act_by_date_disc = {}
     for a in (activities_this_week or []):
+        if a.get('commute') or (a.get('sub_type') or '').upper() == 'COMMUTE':
+            continue
         dt = a.get('start_date_local', '')[:10]
         disc = TYPE_MAP.get(a.get('type', ''), 'free')
         key = (dt, disc)
@@ -281,13 +288,14 @@ def get_workout_compliance_this_week(events_this_week, activities_this_week):
         paired_id = ev.get('paired_activity_id') or ev.get('activity_id')
         if paired_id and paired_id in act_by_id:
             candidate = act_by_id[paired_id]
-            if candidate.get('commute'):
+            if candidate.get('commute') or (candidate.get('sub_type') or '').upper() == 'COMMUTE':
                 # Paired aktivitet er en pendlingstur — find ikke-commute alternativ samme dag+type
                 non_commute = [
                     a for a in (activities_this_week or [])
                     if a.get('start_date_local', '')[:10] == ev_date
                     and TYPE_MAP.get(a.get('type', ''), 'free') == disc
                     and not a.get('commute')
+                    and (a.get('sub_type') or '').upper() != 'COMMUTE'
                 ]
                 if non_commute:
                     # Vælg den tidsmæssigt tætteste på eventet
