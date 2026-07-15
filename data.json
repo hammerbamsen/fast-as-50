@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15 19:47",
+    "updated": "2026-07-15 20:04",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -71,18 +71,18 @@
       "color": "#27AE60"
     },
     "afStreak": {
-      "value": "6",
+      "value": "7",
       "unit": "",
       "sub": "Dage i træk · mål 5/uge",
       "color": "#59182A"
     }
   },
   "af": {
-    "weekDone": 2,
+    "weekDone": 3,
     "target": 5,
-    "streak": 6
+    "streak": 7
   },
-  "coachSpeech": "Onsdag — uge 7 af 14. {HL} Fokus: 209 af 601 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 60 min Mallorca, Cykel Z2 180 min Mallorca. Vægt på 71,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. 2 AF-dage i 3 afsluttede dage — 3 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Kroppen tror, hvad sindet siger.\"",
+  "coachSpeech": "Onsdag — uge 7 af 14. {HL} Godt: 3 AF-dage i 3 gennemførte dage — på rette spor. 2 mere og ugens mål er i hus. Fokus: 209 af 601 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 60 min Mallorca, Cykel Z2 180 min Mallorca. Vægt på 71,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
   "coachHighlight": "Søvn på 7,6 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
@@ -1076,7 +1076,8 @@
     "2026-07-11": 0,
     "2026-07-12": 0,
     "2026-07-13": 0,
-    "2026-07-14": 0
+    "2026-07-14": 0,
+    "2026-07-15": 0
   },
   "all_weeks": {
     "1": {
@@ -1850,7 +1851,7 @@
     },
     {
       "week": 7,
-      "done": 2,
+      "done": 3,
       "total": 3,
       "label": "Uge 7"
     }
@@ -2331,7 +2332,7 @@
     59,
     56
   ],
-  "coachAssessmentError": null,
+  "coachAssessmentError": "ANTHROPIC_API_KEY ikke sat i miljøet",
   "coachAssessmentStale": false,
   "credentials": {
     "intervals": {
@@ -2339,11 +2340,11 @@
       "note": "Nøgle virker"
     },
     "anthropic": {
-      "ok": true,
-      "note": "Nøgle virker"
+      "ok": false,
+      "note": "ANTHROPIC_API_KEY er tom"
     }
   },
-  "credentialsCheckedTs": "2026-07-15T17:47:34.204120",
+  "credentialsCheckedTs": "2026-07-15T18:04:20.799281",
   "coachAssessmentTsFull": "2026-07-15T13:11:26.592878",
   "coachAssessmentWeightAtGen": 71.7,
   "coachAssessmentAfAtGen": 2
