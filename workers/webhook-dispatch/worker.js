@@ -230,10 +230,6 @@ async function handleIntervalsWebhook(request, url, env) {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  if (!checkWebhookAuth(request, url, env)) {
-    return new Response("Unauthorized", { status: 401 });
-  }
-
   let payload = {};
   try {
     payload = await request.json();
@@ -242,14 +238,26 @@ async function handleIntervalsWebhook(request, url, env) {
     return new Response("ok (no body)", { status: 200 });
   }
 
-  // Best-effort filter: udløs kun på aktivitets-agtige events. Kan vi ikke
-  // genkende typen, udløser vi alligevel (sikker fallback — receiveren
-  // trækker bare frisk data fra Intervals uanset payload-indhold).
-  const eventType = String(
-    payload.type || payload.event_type || payload.eventType || ""
-  ).toLowerCase();
-  if (eventType && !eventType.includes("activity")) {
-    return new Response(`ignoreret event-type: ${eventType}`, { status: 200 });
+  // Intervals.icu sender IKKE secret'et som header/query — det ligger som et
+  // felt i selve JSON-bodyen: { "secret": "...", "events": [...] }
+  // (bekræftet i forum.intervals.icu/t/intervals-icu-oauth-support/2759/51).
+  if (!env.WEBHOOK_SECRET || payload.secret !== env.WEBHOOK_SECRET) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  // Events ligger i payload.events[], hver med sit eget "type"-felt, fx
+  // "ACTIVITY_UPLOADED". Udløs kun på aktivitets-agtige event-typer. Hvis
+  // events mangler helt (fx en fremtidig event-type vi ikke kender), udløs
+  // alligevel som sikker fallback.
+  const events = Array.isArray(payload.events) ? payload.events : null;
+  if (events) {
+    const hasActivityEvent = events.some((e) =>
+      String((e && e.type) || "").toUpperCase().includes("ACTIVITY")
+    );
+    if (!hasActivityEvent) {
+      const types = events.map((e) => e && e.type).join(",");
+      return new Response(`ignoreret event-typer: ${types}`, { status: 200 });
+    }
   }
 
   try {
@@ -260,18 +268,6 @@ async function handleIntervalsWebhook(request, url, env) {
     console.error(err);
     return new Response(`fejl: ${err.message}`, { status: 500 });
   }
-}
-
-function checkWebhookAuth(request, url, env) {
-  if (!env.WEBHOOK_SECRET) return false;
-  const authHeader = request.headers.get("authorization") || "";
-  const bearer = authHeader.match(/^Bearer\s+(.+)$/i);
-  const candidates = [
-    bearer && bearer[1],
-    request.headers.get("x-webhook-secret"),
-    url.searchParams.get("secret"),
-  ].filter(Boolean);
-  return candidates.some((c) => c === env.WEBHOOK_SECRET);
 }
 
 // ── GitHub App: installation-token + repository_dispatch (delt af alle ruter) ──
