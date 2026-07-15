@@ -546,24 +546,6 @@ def main():
     if _stale:
         print(f"  ❌ Coach-vurdering er STALE (genereret {_shown_ts}, i dag er {date.today()})")
 
-    # --- MIDLERTIDIG DIAGNOSTIK: hvilke wellness-felter kender Intervals reelt? ---
-    # Baggrund: af-registrering.yml fejler med 422 "Unrecognized wellness field [Protein]".
-    # UI-navn != API-navn (jf. bodyFat/Kropsfedt). Dumper de FAKTISKE feltnavne, så
-    # rettelsen bliver verificeret i stedet for gættet. Fjernes igen bagefter.
-    try:
-        from modules.config import BASE as _B, AUTH as _A, api_get as _g
-        _r = _g(f'{_B}/wellness', auth=_A,
-                params={'oldest': str(date.today() - timedelta(days=2)), 'newest': str(date.today())})
-        if _r is not None and _r.status_code == 200:
-            _rows = _r.json()
-            _keys = sorted({k for _row in _rows for k in _row.keys()})
-            data['_debug_wellness_fields'] = _keys
-            print(f"  🔎 wellness-felter fra API ({len(_keys)}): {_keys}")
-        else:
-            data['_debug_wellness_fields'] = f"HTTP {getattr(_r,'status_code','ingen svar')}"
-    except Exception as _e:
-        data['_debug_wellness_fields'] = f"fejl: {type(_e).__name__}: {_e}"
-
     # --- Check: er et workout-event fejlagtigt parret med en commute-aktivitet? ---
     try:
         _week_start = today - timedelta(days=today.weekday())  # Mandag denne uge
