@@ -30,7 +30,7 @@ def get_wellness_7d():
         sleeps  = [d.get('sleepSecs') for d in data if d.get('sleepSecs')]
         weights = [d.get('weight')    for d in data if d.get('weight')]
         fats    = [d.get('bodyFat')   for d in data if d.get('bodyFat')]
-        proteins= [d.get('Protein')   for d in data if d.get('Protein')]
+        proteins= [d.get('protein')   for d in data if d.get('protein')]  # lille p — API-navn, ikke UI-navn
         def _round1(v):
             import decimal
             return float(decimal.Decimal(str(v)).quantize(decimal.Decimal('0.1'), rounding=decimal.ROUND_HALF_UP))
