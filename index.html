@@ -630,6 +630,48 @@ function periodTimeline() {
   </div></div>`;
 }
 
+// ── Systemsundhed ────────────────────────────────────────────
+// Baggrund (15/7-26): tre workflows stod røde i dagevis uden at nogen
+// opdagede det — coach-vurderingen serverede gammel tekst, AF-check-ins
+// blev tabt. Fejl skal findes af dashboardet, ikke af Kennet.
+// Læser GitHub Actions' eget API klientside. Public repo => ingen token.
+// Fejler blødt: kan vi ikke hente status, viser vi intet.
+const HEALTH_IGNORE = ['pages build and deployment'];
+
+async function checkSystemHealth() {
+  const box = document.getElementById('system-health');
+  if (!box) return;
+  try {
+    const r = await fetch('https://api.github.com/repos/hammerbamsen/fast-as-50/actions/runs?per_page=100');
+    if (!r.ok) return;
+    const runs = (await r.json()).workflow_runs || [];
+    const latest = new Map();
+    for (const run of runs) {
+      if (run.status !== 'completed') continue;
+      if (HEALTH_IGNORE.includes((run.name || '').toLowerCase())) continue;
+      if (!latest.has(run.name)) latest.set(run.name, run);
+    }
+    const broken = [...latest.values()].filter(x => x.conclusion !== 'success');
+    if (!broken.length) { box.innerHTML = ''; return; }
+    const esc = t => String(t).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+    const items = broken.map(b => {
+      const d = new Date(b.created_at);
+      const days = Math.floor((Date.now() - d.getTime()) / 86400000);
+      const when = days === 0 ? 'i dag' : (days === 1 ? 'i går' : days + ' dage siden');
+      return '<div style="font-family:\'Hanken Grotesk\',sans-serif;font-size:12px;color:var(--ink);margin-top:3px">'
+        + '· <strong>' + esc(b.name) + '</strong> — fejlede ' + when + '</div>';
+    }).join('');
+    box.innerHTML = '<div class="card" style="background:rgba(192,57,43,.10);border-left:3px solid #C0392B;margin-bottom:8px">'
+      + '<div style="font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:.06em;color:#C0392B;font-weight:700">'
+      + '⚠ SYSTEM: ' + broken.length + ' ' + (broken.length === 1 ? 'WORKFLOW FEJLER' : 'WORKFLOWS FEJLER') + '</div>'
+      + items
+      + '<div style="font-family:\'Space Mono\',monospace;font-size:9px;color:var(--muted);margin-top:6px">'
+      + 'Data kan mangle. Se Actions-fanen på GitHub.</div></div>';
+  } catch (e) {
+    /* offline eller rate-limited — vis hellere intet end en falsk alarm */
+  }
+}
+
 function renderToday() {
   // Reset completed-flags hvis det er en ny dag
   const todayStr = new Date().toISOString().split("T")[0];
@@ -654,7 +696,9 @@ function renderToday() {
   });
   if (sessionDoneList.some(Boolean)) localStorage.setItem("session_done_date", todayStr);
   const parts=D.coachSpeech.split("{HL}");
+  setTimeout(checkSystemHealth, 0);
   return `
+  <div id="system-health"></div>
   ${todaySessions.map((s, i) => {
     const isCompleted = sessionDoneList[i];
     return `
