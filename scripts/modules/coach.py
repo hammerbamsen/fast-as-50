@@ -424,6 +424,18 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 LAST_AI_ERROR = None
 
 
+def _redact(msg):
+    """data.json er PUBLIC. Fejltekster kan indeholde selve API-nøglen
+    (urllib's ValueError citerer hele header-værdien) — strip den ALTID."""
+    msg = str(msg)[:300]
+    if ANTHROPIC_KEY:
+        msg = msg.replace(ANTHROPIC_KEY, '<redacted>')
+        msg = msg.replace(ANTHROPIC_KEY.strip(), '<redacted>')
+        msg = msg.replace(repr(ANTHROPIC_KEY.encode()), '<redacted>')
+        msg = msg.replace(repr(ANTHROPIC_KEY.strip().encode()), '<redacted>')
+    return msg
+
+
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
                              trajectory_note=None, days_completed=None, compliance_summary=None, weight_goal=72):
@@ -582,7 +594,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
             _body = e.read().decode("utf-8", "replace")[:400]
         except Exception:
             pass
-        LAST_AI_ERROR = f"{type(e).__name__}: {e}" + (f" | body: {_body}" if _body else "")
+        LAST_AI_ERROR = _redact(f"{type(e).__name__}: {e}" + (f" | body: {_body}" if _body else ""))
         print(f"  ⚠️  AI-vurdering fejlede: {LAST_AI_ERROR}")
         return None
 
