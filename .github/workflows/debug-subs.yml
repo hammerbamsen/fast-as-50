@@ -14,4 +14,5 @@ jobs:
       - env:
           PRIVATE_REPO: ${{ secrets.PRIVATE_REPO }}
           PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/debug_subs.py

@@ -33,5 +33,11 @@ g = requests.get(f"https://api.github.com/repos/{PUB}/contents/{path}",
 sha = g.json().get("sha") if g.status_code == 200 else None
 body = {"message": "debug: subs-status", "content": base64.b64encode(out.encode()).decode()}
 if sha: body["sha"] = sha
-requests.put(f"https://api.github.com/repos/{PUB}/contents/{path}",
-             headers={"Authorization": f"Bearer {GTOK}"}, json=body, timeout=30)
+if not GTOK:
+    raise SystemExit("GITHUB_TOKEN mangler i env — kan ikke skrive rapporten. "
+                     "Tilfoej den til debug-subs.yml.")
+_p = requests.put(f"https://api.github.com/repos/{PUB}/contents/{path}",
+                  headers={"Authorization": f"Bearer {GTOK}"}, json=body, timeout=30)
+if _p.status_code not in (200, 201):
+    raise SystemExit(f"Kunne ikke skrive {path}: HTTP {_p.status_code} {_p.text[:200]}")
+print(f"Rapport skrevet til {path}")
