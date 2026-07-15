@@ -1,4 +1,0 @@
-FOER: {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
-A) PUT helt dokument m. null -> HTTP 200 | {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
-B) POST /wellness m. null -> HTTP 422 | {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
-EFTER: {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
