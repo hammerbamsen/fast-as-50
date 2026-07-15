@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15 11:22",
+    "updated": "2026-07-15 11:36",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -101,6 +101,14 @@
       "zone": "–",
       "desc": "",
       "completed": true
+    },
+    {
+      "discipline": "commute",
+      "title": "Gentofte Cykling",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -150,17 +158,20 @@
       "disc": "bike",
       "label": "Hometrainer Z2-Z3 80 min",
       "done": false,
-      "today": true,
-      "completion": "minimal",
-      "completion_pct": 15,
-      "actual_tss": 3,
-      "actual_mins": 12,
-      "planned_mins": 80
+      "today": true
     },
     {
       "day": "Ons",
       "disc": "openwater",
       "label": "Gentofte Svømning i åbent vand",
+      "done": true,
+      "extra": true,
+      "today": true
+    },
+    {
+      "day": "Ons",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
       "done": true,
       "extra": true,
       "today": true
@@ -1447,17 +1458,20 @@
           "disc": "bike",
           "label": "Hometrainer Z2-Z3 80 min",
           "done": false,
-          "today": true,
-          "completion": "minimal",
-          "completion_pct": 15,
-          "actual_tss": 3,
-          "actual_mins": 12,
-          "planned_mins": 80
+          "today": true
         },
         {
           "day": "Ons",
           "disc": "openwater",
           "label": "Gentofte Svømning i åbent vand",
+          "done": true,
+          "extra": true,
+          "today": true
+        },
+        {
+          "day": "Ons",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
           "done": true,
           "extra": true,
           "today": true
@@ -2319,5 +2333,5 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-15T09:22:32.846504"
+  "credentialsCheckedTs": "2026-07-15T09:36:18.288696"
 }
