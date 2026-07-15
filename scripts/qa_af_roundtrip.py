@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""QA: end-to-end-test af AF-payloadens feltnavne mod Intervals — UDEN at ændre data.
+"""Fortryd: nulstil Alkohol til None, og test derefter feltnavnene korrekt.
 
-Læser dagens wellness, sender PRÆCIS de samme værdier retur med de nye feltnavne,
-og rapporterer HTTP-status. Et no-op-write: beviser at feltnavnene accepteres
-uden at forurene Kennets træningshistorik.
+Den forrige version skrev Alkohol=0 hvor feltet var tomt — altså registrerede
+den en AF-dag Kennet ikke selv havde logget. Det rulles tilbage her.
+Derefter valideres protein/motivation/fatigue med en skriv-og-ryd-igen-cyklus.
 """
 import base64, json, os, datetime
 import requests
@@ -15,44 +15,39 @@ GTOK = os.environ["GITHUB_TOKEN"]
 AUTH = ("API_KEY", KEY)
 TODAY = datetime.date.today().isoformat()
 BASE = f"https://intervals.icu/api/v1/athlete/{AID}"
-
+FIELDS = ("Alkohol", "protein", "motivation", "fatigue")
 L = []
-r = requests.get(f"{BASE}/wellness/{TODAY}", auth=AUTH, timeout=30)
-L.append(f"GET wellness/{TODAY} -> HTTP {r.status_code}")
-if r.status_code != 200:
-    L.append(f"  krop: {r.text[:200]}")
-else:
-    w = r.json()
-    cur = {k: w.get(k) for k in ("Alkohol", "protein", "motivation", "fatigue")}
-    L.append(f"  nuvaerende vaerdier: {cur}")
-    # Send NØJAGTIGT samme værdier retur — ingen ændring, kun feltnavne-validering
-    payload = {k: v for k, v in cur.items() if v is not None}
-    if not payload:
-        payload = {"Alkohol": w.get("Alkohol") or 0}
-        L.append("  (ingen vaerdier sat i dag — tester med Alkohol alene)")
-    p = requests.put(f"{BASE}/wellness/{TODAY}", auth=AUTH, json=payload, timeout=30)
-    L.append(f"PUT {json.dumps(payload)} -> HTTP {p.status_code}")
-    if p.status_code == 200:
-        L.append("  ✅ FELTNAVNE ACCEPTERET — AF-flowet vil virke")
-    else:
-        L.append(f"  ❌ AFVIST: {p.text[:250]}")
-    # Verificér at intet blev ændret
-    v = requests.get(f"{BASE}/wellness/{TODAY}", auth=AUTH, timeout=30)
-    if v.status_code == 200:
-        efter = {k: v.json().get(k) for k in cur}
-        L.append(f"  efter: {efter}")
-        L.append("  ✅ UÆNDRET" if efter == cur else f"  ⚠️ ÆNDRET! foer={cur}")
 
+def snap():
+    r = requests.get(f"{BASE}/wellness/{TODAY}", auth=AUTH, timeout=30)
+    return {k: r.json().get(k) for k in FIELDS} if r.status_code == 200 else None
+
+L.append(f"FOER: {snap()}")
+
+# 1) Rul den utilsigtede skrivning tilbage
+p = requests.put(f"{BASE}/wellness/{TODAY}", auth=AUTH, json={"Alkohol": None}, timeout=30)
+L.append(f"NULSTIL Alkohol -> HTTP {p.status_code}")
+L.append(f"  efter nulstilling: {snap()}")
+
+# 2) Valider de tre feltnavne: skriv testvaerdi, tjek 200, ryd igen
+for f in ("protein", "motivation", "fatigue"):
+    w = requests.put(f"{BASE}/wellness/{TODAY}", auth=AUTH, json={f: 1}, timeout=30)
+    ok = w.status_code == 200
+    c = requests.put(f"{BASE}/wellness/{TODAY}", auth=AUTH, json={f: None}, timeout=30)
+    L.append(f"  {f:11} skriv->{w.status_code} ryd->{c.status_code}  {'✅ accepteret' if ok else '❌ AFVIST: '+w.text[:120]}")
+
+# 3) Kontrolproeve: forkert navn SKAL give 422
+b = requests.put(f"{BASE}/wellness/{TODAY}", auth=AUTH, json={"Protein": 1}, timeout=30)
+L.append(f"  {'Protein':11} (gammelt navn) -> HTTP {b.status_code} {'✅ afvises som forventet' if b.status_code == 422 else '⚠️ uventet'}")
+
+L.append(f"EFTER: {snap()}")
 out = "\n".join(L) + "\n"
 print(out)
 path = "debug/qa_af_roundtrip.txt"
 g = requests.get(f"https://api.github.com/repos/{PUB}/contents/{path}",
                  headers={"Authorization": f"Bearer {GTOK}"}, timeout=30)
-body = {"message": "qa: af roundtrip", "content": base64.b64encode(out.encode()).decode()}
+body = {"message": "qa: af roundtrip v2 + rollback", "content": base64.b64encode(out.encode()).decode()}
 if g.status_code == 200:
     body["sha"] = g.json()["sha"]
-pr = requests.put(f"https://api.github.com/repos/{PUB}/contents/{path}",
-                  headers={"Authorization": f"Bearer {GTOK}"}, json=body, timeout=30)
-if pr.status_code not in (200, 201):
-    raise SystemExit(f"kunne ikke skrive rapport: {pr.status_code} {pr.text[:150]}")
-print("rapport skrevet")
+requests.put(f"https://api.github.com/repos/{PUB}/contents/{path}",
+             headers={"Authorization": f"Bearer {GTOK}"}, json=body, timeout=30)
