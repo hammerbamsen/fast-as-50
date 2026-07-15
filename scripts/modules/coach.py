@@ -419,12 +419,20 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
 
 
+# Sidste fejl fra AI-kaldet — læses af update_kpi.py og skrives til data.json,
+# så en tavs fejl bliver synlig i stedet for at efterlade gammel tekst.
+LAST_AI_ERROR = None
+
+
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
                              trajectory_note=None, days_completed=None, compliance_summary=None, weight_goal=72):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
+    global LAST_AI_ERROR
+    LAST_AI_ERROR = None
     if not ANTHROPIC_KEY:
         print("  ⚠️  ANTHROPIC_API_KEY ikke sat — springer AI-vurdering over")
+        LAST_AI_ERROR = "ANTHROPIC_API_KEY ikke sat i miljøet"
         return None
 
     ctl_target = ctl_plan_for_week(week_num)
@@ -563,11 +571,18 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
             result = json.loads(r.read())
             if result.get("stop_reason") == "max_tokens":
                 print("  ⚠️  AI-vurdering trunkeret (max_tokens) — kasseres, beholder forrige")
+                LAST_AI_ERROR = "trunkeret (stop_reason=max_tokens)"
                 return None
             text = fix_enc(result["content"][0]["text"])
             print(f"  ✅ AI-vurdering genereret ({len(text)} tegn)")
             return text
     except Exception as e:
-        print(f"  ⚠️  AI-vurdering fejlede: {e}")
+        _body = ""
+        try:
+            _body = e.read().decode("utf-8", "replace")[:400]
+        except Exception:
+            pass
+        LAST_AI_ERROR = f"{type(e).__name__}: {e}" + (f" | body: {_body}" if _body else "")
+        print(f"  ⚠️  AI-vurdering fejlede: {LAST_AI_ERROR}")
         return None
 

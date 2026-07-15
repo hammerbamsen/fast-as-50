@@ -34,6 +34,7 @@ from modules.sessions import (get_activities_week, get_workout_compliance_this_w
                                planned_tss_this_week, parse_planned_mins, calc_completion,
                                build_week_sessions, get_planned_weeks, generate_week_focus,
                                generate_week_focus_ai, get_swim_history)
+import modules.coach as _coach_mod
 from modules.coach    import (get_travel_label, weight_delta_vs_recent,
                                build_weight_context_note, build_trajectory_note,
                                qa_coach_speech, generate_coach_speech, generate_ai_assessment)
@@ -521,11 +522,29 @@ def main():
         data['coachAssessmentAfAtGen']     = af_this_week
         data['coachAssessmentLastActId']   = _latest_act_id
         data['coachAssessmentPlanAtGen']   = _today_label
+        data['coachAssessmentError'] = None
     else:
         # Behold eksisterende (cache stadig frisk, eller API fejlede)
         if not data.get('coachAssessmentHtml'):
             data['coachAssessmentHtml'] = ''
             data['coachAssessmentTs']   = ''
+        # Fejlede AI-kaldet (i modsætning til: cachen var bare frisk)? Gør det synligt.
+        _ai_err = getattr(_coach_mod, 'LAST_AI_ERROR', None)
+        data['coachAssessmentError'] = _ai_err
+        if _ai_err:
+            print(f"  ❌ Coach-vurdering IKKE opdateret: {_ai_err}")
+
+    # Er den viste vurdering fra en tidligere dag? Dashboardet skal kunne råbe op.
+    _shown_ts = data.get('coachAssessmentTsFull')
+    _stale = False
+    if _shown_ts:
+        try:
+            _stale = datetime.fromisoformat(_shown_ts).date() != date.today()
+        except Exception:
+            _stale = False
+    data['coachAssessmentStale'] = _stale
+    if _stale:
+        print(f"  ❌ Coach-vurdering er STALE (genereret {_shown_ts}, i dag er {date.today()})")
 
     # --- Check: er et workout-event fejlagtigt parret med en commute-aktivitet? ---
     try:
