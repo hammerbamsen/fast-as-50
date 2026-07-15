@@ -546,6 +546,44 @@ def main():
     if _stale:
         print(f"  ❌ Coach-vurdering er STALE (genereret {_shown_ts}, i dag er {date.today()})")
 
+    # --- Credential-healthcheck ------------------------------------------
+    # De to nedbrud 14.-15. juli skyldtes begge nøgler der døde TAVST:
+    # PRIVATE_REPO_TOKEN udløb, og ANTHROPIC_API_KEY blev overskrevet med
+    # et SSH-fingerprint. Ingen af delene sagde fra — de blev opdaget ved at
+    # noget andet så forkert ud et døgn senere. Her valideres nøglerne ved
+    # HVER kørsel, så dashboardet kan advare FØR noget står stille.
+    _cred = {}
+
+    # Intervals: virkede kaldet der hentede dagens data?
+    _cred['intervals'] = {
+        'ok': ctl is not None,
+        'note': 'Nøgle virker' if ctl is not None else 'Intervals-kald gav intet svar — tjek INTERVALS_API_KEY',
+    }
+
+    # Anthropic: formatcheck + resultatet af det faktiske kald i denne kørsel
+    _ak = (ANTHROPIC_KEY or '').strip()
+    if not _ak:
+        _anth = {'ok': False, 'note': 'ANTHROPIC_API_KEY er tom'}
+    elif not _ak.startswith('sk-ant-'):
+        _anth = {'ok': False, 'note': 'ANTHROPIC_API_KEY har forkert format (skal starte med sk-ant-) — forkert værdi indsat?'}
+    elif ANTHROPIC_KEY != _ak:
+        _anth = {'ok': False, 'note': 'ANTHROPIC_API_KEY har mellemrum/linjeskift omkring sig — vil fejle på header'}
+    elif data.get('coachAssessmentError'):
+        _anth = {'ok': False, 'note': f"Seneste AI-kald fejlede: {data['coachAssessmentError']}"}
+    else:
+        _anth = {'ok': True, 'note': 'Nøgle virker'}
+    _cred['anthropic'] = _anth
+
+    data['credentials'] = _cred
+    data['credentialsCheckedTs'] = datetime.utcnow().isoformat()
+    _bad = [k for k, v in _cred.items() if not v['ok']]
+    if _bad:
+        print(f"  ❌ CREDENTIAL-PROBLEM: {', '.join(_bad)}")
+        for k in _bad:
+            print(f"     {k}: {_cred[k]['note']}")
+    else:
+        print("  ✅ Credentials OK: intervals, anthropic")
+
     # --- Check: er et workout-event fejlagtigt parret med en commute-aktivitet? ---
     try:
         _week_start = today - timedelta(days=today.weekday())  # Mandag denne uge

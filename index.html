@@ -418,6 +418,8 @@ let D = {
   coachAssessmentTs: '',
   coachAssessmentStale: false,
   coachAssessmentError: null,
+  credentials: null,
+  credentialsCheckedTs: null,
   kpis:[
     {label:"VÆGT", value:"71,7", unit:"kg", sub:"Mål <70 kg · snit 72,2 kg", color:"#E67E22"},
     {label:"FEDT%", value:"21,8", unit:"%", sub:"Mål <20%", color:"#E67E22"},
@@ -904,6 +906,22 @@ function renderWeek() {
 
 // Vurderingen kan være gammel uden at noget andet røber det (AI-kaldet fejler
 // tavst og forrige tekst bliver stående). Råb op i stedet for at se rigtig ud.
+// Nøgler dør tavst. Vis det FØR noget står stille i et døgn.
+function credBanner() {
+  const c = D.credentials;
+  if (!c) return '';
+  const bad = Object.keys(c).filter(k => c[k] && !c[k].ok);
+  if (!bad.length) return '';
+  const esc = t => String(t).replace(/[<>&]/g, x => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[x]));
+  const rows = bad.map(k =>
+    '<div style="font-family:\'Hanken Grotesk\',sans-serif;font-size:12px;color:var(--ink);margin-top:3px">'
+    + '<strong>' + esc(k) + '</strong> — ' + esc(c[k].note) + '</div>').join('');
+  return '<div style="background:rgba(192,57,43,.12);border-left:3px solid #C0392B;'
+    + 'border-radius:4px;padding:8px 10px;margin:0 0 10px">'
+    + '<div style="font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:.06em;'
+    + 'color:#C0392B;font-weight:700">⛔ NØGLE-PROBLEM</div>' + rows + '</div>';
+}
+
 function staleBanner() {
   if (!D.coachAssessmentStale && !D.coachAssessmentError) return '';
   const msg = D.coachAssessmentStale
@@ -928,7 +946,7 @@ async function loadCoachAssessment(force) {
 
   // Læs fra data.json (genereret server-side af update_kpi.py — ingen proxy nødvendig)
   if (D.coachAssessmentHtml) {
-    box.innerHTML = staleBanner() + D.coachAssessmentHtml;
+    box.innerHTML = credBanner() + staleBanner() + D.coachAssessmentHtml;
     if (tsEl && D.coachAssessmentTs) tsEl.textContent = 'Opdateret: ' + D.coachAssessmentTs;
     return;
   }
@@ -1694,6 +1712,8 @@ async function init() {
       if (remote.coachAssessmentTs)    D.coachAssessmentTs    = remote.coachAssessmentTs;
       if ('coachAssessmentStale' in remote) D.coachAssessmentStale = remote.coachAssessmentStale;
       if ('coachAssessmentError' in remote) D.coachAssessmentError = remote.coachAssessmentError;
+      if ('credentials' in remote) D.credentials = remote.credentials;
+      if ('credentialsCheckedTs' in remote) D.credentialsCheckedTs = remote.credentialsCheckedTs;
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
       if (remote.week_sessions)  D.week_sessions  = remote.week_sessions;
       if (remote.all_weeks)      D.all_weeks      = remote.all_weeks;
@@ -1747,6 +1767,8 @@ init();
       if (remote.coachAssessmentTs) D.coachAssessmentTs = remote.coachAssessmentTs;
       if ('coachAssessmentStale' in remote) D.coachAssessmentStale = remote.coachAssessmentStale;
       if ('coachAssessmentError' in remote) D.coachAssessmentError = remote.coachAssessmentError;
+      if ('credentials' in remote) D.credentials = remote.credentials;
+      if ('credentialsCheckedTs' in remote) D.credentialsCheckedTs = remote.credentialsCheckedTs;
       if (remote.af_history) D.afHistory = remote.af_history;
       // Re-render aktiv side
       pageCache = {};
