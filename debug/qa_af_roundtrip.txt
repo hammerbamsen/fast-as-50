@@ -1,8 +1,4 @@
-FOER: {'Alkohol': 0, 'protein': None, 'motivation': None, 'fatigue': None}
-NULSTIL Alkohol -> HTTP 200
-  efter nulstilling: {'Alkohol': None, 'protein': None, 'motivation': None, 'fatigue': None}
-  protein     skriv->200 ryd->200  ✅ accepteret
-  motivation  skriv->200 ryd->200  ✅ accepteret
-  fatigue     skriv->200 ryd->200  ✅ accepteret
-  Protein     (gammelt navn) -> HTTP 422 ✅ afvises som forventet
+FOER: {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
+A) PUT helt dokument m. null -> HTTP 200 | {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
+B) POST /wellness m. null -> HTTP 422 | {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
 EFTER: {'Alkohol': None, 'protein': 1.0, 'motivation': 1, 'fatigue': 1}
