@@ -409,6 +409,7 @@ let D = {
   dayName:"", date:"",
   afDays:{ weekDone:0, target:5, streak:0 },
   afHistory: [],
+  af_log: null,
   train_mins: {run:0, bike:0, swim:0, strength:0},
   coachSpeech:"Du starter fra CTL 34 — lavere end din Ironman-baggrund tilsiger, men ærligt. {HL} Uge 1: etabler rytmen. 5 AF-dage, protein ved hvert måltid.",
   coachHighlight:"14 uger konsistens løfter dig til CTL 60.",
@@ -1685,6 +1686,7 @@ async function init() {
         D.afDays.streak   = parseInt(remote.af.streak)   || 0;
       }
       if (remote.af_history)             { D.afHistory = remote.af_history; }
+      if (remote.af_log)                 { D.af_log    = remote.af_log; }
       if (remote.kpis) {
         const km = remote.kpis;
         D.kpis = [
@@ -1773,6 +1775,7 @@ init();
       if ('credentials' in remote) D.credentials = remote.credentials;
       if ('credentialsCheckedTs' in remote) D.credentialsCheckedTs = remote.credentialsCheckedTs;
       if (remote.af_history) D.afHistory = remote.af_history;
+      if (remote.af_log) D.af_log = remote.af_log;
       // Re-render aktiv side
       pageCache = {};
       navigate(activePage);
