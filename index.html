@@ -658,7 +658,10 @@ async function checkSystemHealth() {
     const esc = t => String(t).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
     const items = broken.map(b => {
       const d = new Date(b.created_at);
-      const days = Math.floor((Date.now() - d.getTime()) / 86400000);
+      // Kalenderdøgn, ikke 24-timers-vinduer: en fejl kl. 13:33 i går er "i går"
+      // kl. 09:12 i dag — ikke "i dag". Den gamle beregning gav falsk hastesag.
+      const dayStart = x => { const y = new Date(x); y.setHours(0,0,0,0); return y.getTime(); };
+      const days = Math.round((dayStart(new Date()) - dayStart(d)) / 86400000);
       const when = days === 0 ? 'i dag' : (days === 1 ? 'i går' : days + ' dage siden');
       return '<div style="font-family:\'Hanken Grotesk\',sans-serif;font-size:12px;color:var(--ink);margin-top:3px">'
         + '· <strong>' + esc(b.name) + '</strong> — fejlede ' + when + '</div>';
