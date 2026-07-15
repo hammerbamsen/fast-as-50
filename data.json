@@ -1,2327 +1,2278 @@
 {
-  "meta": {
-    "updated": "2026-07-15 07:07",
-    "week": 7,
-    "totalWeeks": 14,
-    "blockType": "BUILD",
-    "daysToMedoc": 52,
-    "daysToChristiansborg": 45,
-    "dayName": "Onsdag",
-    "date": "15. jul"
+ "meta": {
+  "updated": "2026-07-15 07:07",
+  "week": 7,
+  "totalWeeks": 14,
+  "blockType": "BUILD",
+  "daysToMedoc": 52,
+  "daysToChristiansborg": 45,
+  "dayName": "Onsdag",
+  "date": "15. jul"
+ },
+ "kpis": {
+  "weight": {
+   "value": "71,7",
+   "unit": "kg",
+   "sub": "Mål <70 kg · snit 72,2 kg",
+   "color": "#E67E22"
   },
-  "kpis": {
-    "weight": {
-      "value": "71,7",
-      "unit": "kg",
-      "sub": "Mål <70 kg · snit 72,2 kg",
-      "color": "#E67E22"
-    },
-    "fat": {
-      "value": "21,8",
-      "unit": "%",
-      "sub": "Mål <20%",
-      "color": "#E67E22"
-    },
-    "ctl": {
-      "value": "48,1",
-      "unit": "",
-      "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
-      "color": "#E67E22"
-    },
-    "tsb": {
-      "value": "-13,0",
-      "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
-    },
-    "sleep": {
-      "value": "7,6",
-      "unit": "t",
-      "sub": "Snit 7,5t · mål 7t",
-      "color": "#2874A6"
-    },
-    "runKm": {
-      "value": "10,1",
-      "unit": "km",
-      "sub": "Mål 40+ km uge 10",
-      "color": "#C0392B"
-    },
-    "hrv": {
-      "value": "57,0",
-      "unit": "ms",
-      "sub": "Snit 7d",
-      "color": "#7A6A58"
-    },
-    "tssComp": {
-      "value": "121",
-      "unit": "TSS",
-      "sub": "121 af 601 planlagt TSS",
-      "color": "#C0392B"
-    },
-    "bikeKm": {
-      "value": "7,0",
-      "unit": "km",
-      "sub": "Cykel denne uge",
-      "color": "#C0392B"
-    },
-    "swimM": {
-      "value": "2012",
-      "unit": "m",
-      "sub": "Svøm denne uge · mål 2000m (Christiansborg)",
-      "color": "#27AE60"
-    },
-    "afStreak": {
-      "value": "6",
-      "unit": "",
-      "sub": "Dage i træk · mål 5/uge",
-      "color": "#59182A"
-    }
+  "fat": {
+   "value": "21,8",
+   "unit": "%",
+   "sub": "Mål <20%",
+   "color": "#E67E22"
   },
-  "af": {
-    "weekDone": 2,
-    "target": 5,
-    "streak": 6
+  "ctl": {
+   "value": "48,1",
+   "unit": "",
+   "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
+   "color": "#E67E22"
   },
-  "coachSpeech": "Onsdag — uge 7 af 14. {HL} Fokus: 121 af 601 TSS er i hus — 5 sessioner tilbage, heriblandt Hometrainer Z2-Z3 80 min, Cykel Z2 60 min Mallorca. Vægt på 71,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. 2 AF-dage i 3 afsluttede dage — 3 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "Søvn på 7,6 timer er solid",
-  "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
-  "today": [
-    {
-      "discipline": "bike",
-      "title": "Hometrainer Z2-Z3 80 min",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": false
-    }
-  ],
-  "week_sessions": [
-    {
-      "day": "Man",
-      "disc": "swim",
-      "label": "Svøm 2000m teknisk",
-      "done": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 42,
-      "actual_mins": 45,
-      "planned_mins": null
-    },
-    {
-      "day": "Tir",
-      "disc": "run",
-      "label": "Løb VO2 5×3 min Z4",
-      "done": true,
-      "completion": "done",
-      "completion_pct": 1700,
-      "actual_tss": 62,
-      "actual_mins": 51,
-      "planned_mins": 3,
-      "intervals_compliance": 105.1
-    },
-    {
-      "day": "Tir",
-      "disc": "strength",
-      "label": "Styrke A Functional Strength 3 sæt",
-      "done": true,
-      "completion": "done",
-      "completion_pct": null,
-      "actual_tss": 10,
-      "actual_mins": 31,
-      "planned_mins": null
-    },
-    {
-      "day": "Tir",
-      "disc": "commute",
-      "label": "Gentofte Cykling",
-      "done": true,
-      "extra": true
-    },
-    {
-      "day": "Ons",
-      "disc": "bike",
-      "label": "Hometrainer Z2-Z3 80 min",
-      "done": false,
-      "today": true
-    },
-    {
-      "day": "Tor",
-      "disc": "bike",
-      "label": "Cykel Z2 60 min Mallorca",
-      "done": false
-    },
-    {
-      "day": "Fre",
-      "disc": "bike",
-      "label": "Cykel Z2 180 min Mallorca",
-      "done": false
-    },
-    {
-      "day": "Lør",
-      "disc": "bike",
-      "label": "Cykel Z2 240 min Mallorca",
-      "done": false
-    },
-    {
-      "day": "Søn",
-      "disc": "run",
-      "label": "Løb Z2 60 min",
-      "done": false
-    }
-  ],
-  "ctlCurve": [
-    36.3,
-    40.5,
-    42.5,
-    43.5,
-    48.8,
-    47.2,
-    48.1
-  ],
-  "weightHistory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "date": "2026-06-02",
-      "v": 74.4,
-      "real": false
-    },
-    {
-      "date": "2026-06-03",
-      "v": 74.4,
-      "real": false
-    },
-    {
-      "date": "2026-06-04",
-      "v": 74.5,
-      "real": true
-    },
-    {
-      "date": "2026-06-05",
-      "v": 75,
-      "real": true
-    },
-    {
-      "date": "2026-06-06",
-      "v": 74.9,
-      "real": true
-    },
-    {
-      "date": "2026-06-07",
-      "v": 74.7,
-      "real": true
-    },
-    {
-      "date": "2026-06-08",
-      "v": 74.1,
-      "real": true
-    },
-    {
-      "date": "2026-06-09",
-      "v": 74.7,
-      "real": true
-    },
-    {
-      "date": "2026-06-10",
-      "v": 74.2,
-      "real": true
-    },
-    {
-      "date": "2026-06-11",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-12",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-13",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-14",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-15",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-16",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-17",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-18",
-      "v": 74.2,
-      "real": false
-    },
-    {
-      "date": "2026-06-19",
-      "v": 73,
-      "real": true
-    },
-    {
-      "date": "2026-06-20",
-      "v": 73.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-21",
-      "v": 73.6,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 72.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 72.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 72.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 72.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 72.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-13",
-      "v": 72.6,
-      "real": true
-    },
-    {
-      "date": "2026-07-14",
-      "v": 72.2,
-      "real": true
-    },
-    {
-      "date": "2026-07-15",
-      "v": 71.7,
-      "real": true
-    }
-  ],
-  "hrvHistory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "date": "2026-06-02",
-      "v": 50,
-      "real": true
-    },
-    {
-      "date": "2026-06-03",
-      "v": 50,
-      "real": true
-    },
-    {
-      "date": "2026-06-04",
-      "v": 43,
-      "real": true
-    },
-    {
-      "date": "2026-06-05",
-      "v": 63,
-      "real": true
-    },
-    {
-      "date": "2026-06-06",
-      "v": 59,
-      "real": true
-    },
-    {
-      "date": "2026-06-07",
-      "v": 56,
-      "real": true
-    },
-    {
-      "date": "2026-06-08",
-      "v": 65,
-      "real": true
-    },
-    {
-      "date": "2026-06-09",
-      "v": 59,
-      "real": true
-    },
-    {
-      "date": "2026-06-10",
-      "v": 66,
-      "real": true
-    },
-    {
-      "date": "2026-06-11",
-      "v": 50,
-      "real": true
-    },
-    {
-      "date": "2026-06-12",
-      "v": 60,
-      "real": true
-    },
-    {
-      "date": "2026-06-13",
-      "v": 61,
-      "real": true
-    },
-    {
-      "date": "2026-06-14",
-      "v": 59,
-      "real": true
-    },
-    {
-      "date": "2026-06-15",
-      "v": 71,
-      "real": true
-    },
-    {
-      "date": "2026-06-16",
-      "v": 73,
-      "real": true
-    },
-    {
-      "date": "2026-06-17",
-      "v": 66,
-      "real": true
-    },
-    {
-      "date": "2026-06-18",
-      "v": 82,
-      "real": true
-    },
-    {
-      "date": "2026-06-19",
-      "v": 84,
-      "real": true
-    },
-    {
-      "date": "2026-06-20",
-      "v": 69,
-      "real": true
-    },
-    {
-      "date": "2026-06-21",
-      "v": 60,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 66.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-09",
-      "v": 38.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-10",
-      "v": 75.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-11",
-      "v": 76.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-12",
-      "v": 53.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-13",
-      "v": 51.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-14",
-      "v": 52.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-15",
-      "v": 45.0,
-      "real": true
-    }
-  ],
-  "sleepHistory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "date": "2026-06-02",
-      "v": 6.5,
-      "real": true
-    },
-    {
-      "date": "2026-06-03",
-      "v": 6.3,
-      "real": true
-    },
-    {
-      "date": "2026-06-04",
-      "v": 7.9,
-      "real": true
-    },
-    {
-      "date": "2026-06-05",
-      "v": 8,
-      "real": true
-    },
-    {
-      "date": "2026-06-06",
-      "v": 8,
-      "real": true
-    },
-    {
-      "date": "2026-06-07",
-      "v": 6.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-08",
-      "v": 8.2,
-      "real": true
-    },
-    {
-      "date": "2026-06-09",
-      "v": 7.7,
-      "real": true
-    },
-    {
-      "date": "2026-06-10",
-      "v": 8.6,
-      "real": true
-    },
-    {
-      "date": "2026-06-11",
-      "v": 5,
-      "real": true
-    },
-    {
-      "date": "2026-06-12",
-      "v": 8.6,
-      "real": true
-    },
-    {
-      "date": "2026-06-13",
-      "v": 7.3,
-      "real": true
-    },
-    {
-      "date": "2026-06-14",
-      "v": 7.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-15",
-      "v": 8.9,
-      "real": true
-    },
-    {
-      "date": "2026-06-16",
-      "v": 7.5,
-      "real": true
-    },
-    {
-      "date": "2026-06-17",
-      "v": 9.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-18",
-      "v": 8,
-      "real": true
-    },
-    {
-      "date": "2026-06-19",
-      "v": 6.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-20",
-      "v": 8.8,
-      "real": true
-    },
-    {
-      "date": "2026-06-21",
-      "v": 5.6,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 6.9,
-      "real": true
-    },
-    {
-      "date": "2026-07-09",
-      "v": 7.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-10",
-      "v": 8.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-11",
-      "v": 8.2,
-      "real": true
-    },
-    {
-      "date": "2026-07-12",
-      "v": 8.1,
-      "real": true
-    },
-    {
-      "date": "2026-07-13",
-      "v": 7.2,
-      "real": true
-    },
-    {
-      "date": "2026-07-14",
-      "v": 7.0,
-      "real": true
-    },
-    {
-      "date": "2026-07-15",
-      "v": 8.0,
-      "real": true
-    }
-  ],
-  "tsbHistory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "date": "2026-06-02",
-      "v": -9.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-03",
-      "v": -7.5,
-      "real": true
-    },
-    {
-      "date": "2026-06-04",
-      "v": -4.5,
-      "real": true
-    },
-    {
-      "date": "2026-06-05",
-      "v": -2.2,
-      "real": true
-    },
-    {
-      "date": "2026-06-06",
-      "v": -13.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-07",
-      "v": -11.9,
-      "real": true
-    },
-    {
-      "date": "2026-06-08",
-      "v": -10.3,
-      "real": true
-    },
-    {
-      "date": "2026-06-09",
-      "v": -13.7,
-      "real": true
-    },
-    {
-      "date": "2026-06-10",
-      "v": -15.8,
-      "real": true
-    },
-    {
-      "date": "2026-06-11",
-      "v": -13.9,
-      "real": true
-    },
-    {
-      "date": "2026-06-12",
-      "v": -18.2,
-      "real": true
-    },
-    {
-      "date": "2026-06-13",
-      "v": -23.1,
-      "real": true
-    },
-    {
-      "date": "2026-06-14",
-      "v": -18.2,
-      "real": true
-    },
-    {
-      "date": "2026-06-15",
-      "v": -19.5,
-      "real": true
-    },
-    {
-      "date": "2026-06-16",
-      "v": -26.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-17",
-      "v": -19.9,
-      "real": true
-    },
-    {
-      "date": "2026-06-18",
-      "v": -15.3,
-      "real": true
-    },
-    {
-      "date": "2026-06-19",
-      "v": -9.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-20",
-      "v": -12,
-      "real": true
-    },
-    {
-      "date": "2026-06-21",
-      "v": -12.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": -10.4,
-      "real": true
-    },
-    {
-      "date": "2026-07-09",
-      "v": -6.2,
-      "real": true
-    },
-    {
-      "date": "2026-07-10",
-      "v": -12.3,
-      "real": true
-    },
-    {
-      "date": "2026-07-11",
-      "v": -6.6,
-      "real": true
-    },
-    {
-      "date": "2026-07-12",
-      "v": -5.7,
-      "real": true
-    },
-    {
-      "date": "2026-07-13",
-      "v": -4.3,
-      "real": true
-    },
-    {
-      "date": "2026-07-14",
-      "v": -12.2,
-      "real": true
-    },
-    {
-      "date": "2026-07-15",
-      "v": -13.0,
-      "real": true
-    }
-  ],
-  "af_log": {
-    "2026-06-01": 0,
-    "2026-06-02": 0,
-    "2026-06-03": 0,
-    "2026-06-04": 0,
-    "2026-06-05": 0,
-    "2026-06-06": 0,
-    "2026-06-07": 0,
-    "2026-06-08": 0,
-    "2026-06-09": 0,
-    "2026-06-10": 0,
-    "2026-06-11": 0,
-    "2026-06-12": 0,
-    "2026-06-13": 0,
-    "2026-06-14": 0,
-    "2026-06-15": 0,
-    "2026-06-16": 0,
-    "2026-06-17": 0,
-    "2026-06-18": 0,
-    "2026-06-19": 0,
-    "2026-06-20": 0,
-    "2026-06-21": 0,
-    "2026-06-22": 0,
-    "2026-06-23": 0,
-    "2026-06-24": 0,
-    "2026-06-25": 0,
-    "2026-06-26": 0,
-    "2026-06-27": 0,
-    "2026-06-28": 0,
-    "2026-06-29": 0,
-    "2026-06-30": 0,
-    "2026-07-01": 0,
-    "2026-07-02": 0,
-    "2026-07-03": 1,
-    "2026-07-04": 0,
-    "2026-07-05": 0,
-    "2026-07-06": 0,
-    "2026-07-07": 0,
-    "2026-07-08": 1,
-    "2026-07-09": 0,
-    "2026-07-10": 0,
-    "2026-07-11": 0,
-    "2026-07-12": 0,
-    "2026-07-13": 0,
-    "2026-07-14": 0
+  "tsb": {
+   "value": "-13,0",
+   "unit": "",
+   "sub": "Hård blok · CTL−ATL, frisk >0",
+   "color": "#E67E22"
   },
-  "all_weeks": {
-    "1": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb Z2 55 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "run",
-          "label": "Løb Z2 65 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 2 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "bike",
-          "label": "Cykel 5×3 min Z4",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Lang løb Z2 100 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD",
-      "focus": "Build-uge 1 — 3 løb · 1 cykel · 1 svøm · 2 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "2": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb Z2 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "run",
-          "label": "Løb Z2 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "Cykel Z2 60 min Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "bike",
-          "label": "Cykel bjerg-intervaller Z4 Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "bike",
-          "label": "Cykel Z2 150 min Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD+",
-      "focus": "Intensiv build-uge 2 — 2 løb · 3 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "3": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "run",
-          "label": "Lang løb Z2 90 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "bike",
-          "label": "Cykel Formentor 149km",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "Cykel Z2 60 min Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Lang løb Z2 60 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "bike",
-          "label": "Cykeltur til Helsingør",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD+",
-      "focus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
-    },
-    "4": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "swim",
-          "label": "Svøm let 30 min recovery",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb Z2 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "Cykel Z2 30 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "Cykel Z2 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Lang løb Z2 90 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "RECOVERY",
-      "focus": "Restituitionsuge 4 — 2 løb · 2 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
-    },
-    "5": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "strength",
-          "label": "Styrke let 2 sæt recovery",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb Z2 65 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "Cykel Z2 75 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "run",
-          "label": "Løb VO2 5×3 min Z4",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Lang løb Z2 115 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "bike",
-          "label": "Cykel Z2 til Hundested",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD",
-      "focus": "Build-uge 5 — 3 løb · 2 cykel · 2 svøm · 2 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "6": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "openwater",
-          "label": "OW-svøm Christiansborg-prep 40 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Man",
-          "disc": "strength",
-          "label": "Styrke let 2 sæt recovery",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "bike",
-          "label": "Cykel Z2 70 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "hike",
-          "label": "Hike let 120 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "run",
-          "label": "Trail langtur Z2 Wales 75 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "hike",
-          "label": "Hike let 80 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "hike",
-          "label": "Hike - 3 timer",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD",
-      "focus": "Bevar kadencen på rejsen — Wales-terrænet er din aerobe base"
-    },
-    "7": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 42,
-          "actual_mins": 45,
-          "planned_mins": null
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb VO2 5×3 min Z4",
-          "done": true,
-          "completion": "done",
-          "completion_pct": 1700,
-          "actual_tss": 62,
-          "actual_mins": 51,
-          "planned_mins": 3,
-          "intervals_compliance": 105.1
-        },
-        {
-          "day": "Tir",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": true,
-          "completion": "done",
-          "completion_pct": null,
-          "actual_tss": 10,
-          "actual_mins": 31,
-          "planned_mins": null
-        },
-        {
-          "day": "Tir",
-          "disc": "commute",
-          "label": "Gentofte Cykling",
-          "done": true,
-          "extra": true
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "Hometrainer Z2-Z3 80 min",
-          "done": false,
-          "today": true
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "Cykel Z2 60 min Mallorca",
-          "done": false
-        },
-        {
-          "day": "Fre",
-          "disc": "bike",
-          "label": "Cykel Z2 180 min Mallorca",
-          "done": false
-        },
-        {
-          "day": "Lør",
-          "disc": "bike",
-          "label": "Cykel Z2 240 min Mallorca",
-          "done": false
-        },
-        {
-          "day": "Søn",
-          "disc": "run",
-          "label": "Løb Z2 60 min",
-          "done": false
-        }
-      ],
-      "blockType": "RECOVERY",
-      "focus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene"
-    },
-    "8": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "bike",
-          "label": "Cykel Sa Calobra via Puig Major",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "bike",
-          "label": "Cykel Z2 210 min Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "run",
-          "label": "Lang løb Z2 90 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 2 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "Cykel Z2 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm 2500m",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Lang løb Z2 26 km (140 min)",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "bike",
-          "label": "Cykel Z2 90 min",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD",
-      "focus": "Build-uge 8 — 3 løb · 2 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "9": {
-      "sessions": [
-        {
-          "day": "Tir",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "FTP-TEST 20 min (opdatér zoner efter)",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "run",
-          "label": "THRESHOLD-TEST løb 30 min (opdatér pace-zoner efter)",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Løb Z2 60 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD",
-      "focus": "Build-uge 9 — 3 løb · 1 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "10": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "strength",
-          "label": "Styrke A Functional Strength 3 sæt",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb VO2 4×5 min Z4-Z5",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "Hometrainer 3×15 min Z3 90 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "openwater",
-          "label": "OW-svøm Open water 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "bike",
-          "label": "Cykel Z2 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "run",
-          "label": "Lang løb Z2 29 km (155 min)",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD+",
-      "focus": "Intensiv build-uge 10 — 2 løb · 3 cykel · 1 svøm. Fokus: konsistens over intensitet."
-    },
-    "11": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "bike",
-          "label": "Cykel Z2 180 min Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Løb Z2 75 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "Cykel bjerg-intervaller Z4 Mallorca",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "run",
-          "label": "Lang løb Z2 120 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm 2000m teknisk",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Lør",
-          "disc": "bike",
-          "label": "Cykel Z2 210 min Mallorca",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "BUILD+",
-      "focus": "Intensiv build-uge 11 — 2 løb · 3 cykel · 1 svøm · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "12": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "openwater",
-          "label": "OW-svøm Open water 45 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Lang løb Z2 32 km (170 min)",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "bike",
-          "label": "Cykel Z2 50 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tor",
-          "disc": "openwater",
-          "label": "OW-svøm Open water 40 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "run",
-          "label": "Shakeout løb + strides",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Søn",
-          "disc": "run",
-          "label": "Løb let Z1 30 min",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "TAPER",
-      "focus": "Taper-uge 12 — 3 løb · 1 cykel · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
-    },
-    "13": {
-      "sessions": [
-        {
-          "day": "Tir",
-          "disc": "openwater",
-          "label": "OW-svøm Kort tilvænning 30 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Ons",
-          "disc": "run",
-          "label": "Shakeout løb + strides",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm let 20 min recovery",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "TAPER",
-      "focus": "Taper-uge 13 — 1 løb · 1 cykel. Fokus: konsistens over intensitet."
-    },
-    "14": {
-      "sessions": [
-        {
-          "day": "Man",
-          "disc": "run",
-          "label": "Løb let Z1 25 min",
-          "done": false,
-          "today": false
-        },
-        {
-          "day": "Tir",
-          "disc": "run",
-          "label": "Shakeout løb + strides",
-          "done": false,
-          "today": false
-        }
-      ],
-      "blockType": "RACE",
-      "focus": "Race-uge 14 — 2 løb. Fokus: konsistens over intensitet."
-    }
+  "sleep": {
+   "value": "7,6",
+   "unit": "t",
+   "sub": "Snit 7,5t · mål 7t",
+   "color": "#2874A6"
   },
-  "af_history": [
-    {
-      "week": 1,
-      "done": 7,
-      "total": 7,
-      "label": "Uge 1"
-    },
-    {
-      "week": 2,
-      "done": 7,
-      "total": 7,
-      "label": "Uge 2"
-    },
-    {
-      "week": 3,
-      "done": 7,
-      "total": 7,
-      "label": "Uge 3"
-    },
-    {
-      "week": 4,
-      "done": 7,
-      "total": 7,
-      "label": "Uge 4"
-    },
-    {
-      "week": 5,
-      "done": 6,
-      "total": 7,
-      "label": "Uge 5"
-    },
-    {
-      "week": 6,
-      "done": 6,
-      "total": 7,
-      "label": "Uge 6"
-    },
-    {
-      "week": 7,
-      "done": 2,
-      "total": 3,
-      "label": "Uge 7"
-    }
-  ],
-  "train_mins": {
-    "commute": 24.0,
-    "run": 51.0,
-    "strength": 31.0,
-    "openwater": 45.0,
-    "planned": 764.0,
-    "actual_total": 151.0
+  "runKm": {
+   "value": "10,1",
+   "unit": "km",
+   "sub": "Mål 40+ km uge 10",
+   "color": "#C0392B"
   },
-  "fatHistory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+  "hrv": {
+   "value": "57,0",
+   "unit": "ms",
+   "sub": "Snit 7d",
+   "color": "#7A6A58"
+  },
+  "tssComp": {
+   "value": "121",
+   "unit": "TSS",
+   "sub": "121 af 601 planlagt TSS",
+   "color": "#C0392B"
+  },
+  "bikeKm": {
+   "value": "7,0",
+   "unit": "km",
+   "sub": "Cykel denne uge",
+   "color": "#C0392B"
+  },
+  "swimM": {
+   "value": "2012",
+   "unit": "m",
+   "sub": "Svøm denne uge · mål 2000m (Christiansborg)",
+   "color": "#27AE60"
+  },
+  "afStreak": {
+   "value": "6",
+   "unit": "",
+   "sub": "Dage i træk · mål 5/uge",
+   "color": "#59182A"
+  }
+ },
+ "af": {
+  "weekDone": 2,
+  "target": 5,
+  "streak": 6
+ },
+ "coachSpeech": "Onsdag — uge 7 af 14. {HL} Fokus: 121 af 601 TSS er i hus — 5 sessioner tilbage, heriblandt Hometrainer Z2-Z3 80 min, Cykel Z2 60 min Mallorca. Vægt på 71,7 kg — hold protein højt og undgå lette kulhydrater om aftenen. 2 AF-dage i 3 afsluttede dage — 3 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Kroppen tror, hvad sindet siger.\"",
+ "coachHighlight": "Søvn på 7,6 timer er solid",
+ "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
+ "today": [
+  {
+   "discipline": "bike",
+   "title": "Hometrainer Z2-Z3 80 min",
+   "duration": "",
+   "zone": "–",
+   "desc": "",
+   "completed": false
+  }
+ ],
+ "week_sessions": [
+  {
+   "day": "Man",
+   "disc": "swim",
+   "label": "Svøm 2000m teknisk",
+   "done": true,
+   "completion": "done",
+   "completion_pct": null,
+   "actual_tss": 42,
+   "actual_mins": 45,
+   "planned_mins": null
+  },
+  {
+   "day": "Tir",
+   "disc": "run",
+   "label": "Løb VO2 5×3 min Z4",
+   "done": true,
+   "completion": "done",
+   "completion_pct": 1700,
+   "actual_tss": 62,
+   "actual_mins": 51,
+   "planned_mins": 3,
+   "intervals_compliance": 105.1
+  },
+  {
+   "day": "Tir",
+   "disc": "strength",
+   "label": "Styrke A Functional Strength 3 sæt",
+   "done": true,
+   "completion": "done",
+   "completion_pct": null,
+   "actual_tss": 10,
+   "actual_mins": 31,
+   "planned_mins": null
+  },
+  {
+   "day": "Tir",
+   "disc": "commute",
+   "label": "Gentofte Cykling",
+   "done": true,
+   "extra": true
+  },
+  {
+   "day": "Ons",
+   "disc": "bike",
+   "label": "Hometrainer Z2-Z3 80 min",
+   "done": false,
+   "today": true
+  },
+  {
+   "day": "Tor",
+   "disc": "bike",
+   "label": "Cykel Z2 60 min Mallorca",
+   "done": false
+  },
+  {
+   "day": "Fre",
+   "disc": "bike",
+   "label": "Cykel Z2 180 min Mallorca",
+   "done": false
+  },
+  {
+   "day": "Lør",
+   "disc": "bike",
+   "label": "Cykel Z2 240 min Mallorca",
+   "done": false
+  },
+  {
+   "day": "Søn",
+   "disc": "run",
+   "label": "Løb Z2 60 min",
+   "done": false
+  }
+ ],
+ "ctlCurve": [
+  36.3,
+  40.5,
+  42.5,
+  43.5,
+  48.8,
+  47.2,
+  48.1
+ ],
+ "weightHistory": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "date": "2026-06-02",
+   "v": 74.4,
+   "real": false
+  },
+  {
+   "date": "2026-06-03",
+   "v": 74.4,
+   "real": false
+  },
+  {
+   "date": "2026-06-04",
+   "v": 74.5,
+   "real": true
+  },
+  {
+   "date": "2026-06-05",
+   "v": 75,
+   "real": true
+  },
+  {
+   "date": "2026-06-06",
+   "v": 74.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-07",
+   "v": 74.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-08",
+   "v": 74.1,
+   "real": true
+  },
+  {
+   "date": "2026-06-09",
+   "v": 74.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-10",
+   "v": 74.2,
+   "real": true
+  },
+  {
+   "date": "2026-06-11",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-12",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-13",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-14",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-15",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-16",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-17",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-18",
+   "v": 74.2,
+   "real": false
+  },
+  {
+   "date": "2026-06-19",
+   "v": 73,
+   "real": true
+  },
+  {
+   "date": "2026-06-20",
+   "v": 73.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-21",
+   "v": 73.6,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 72.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 72.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 72.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 72.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 72.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-13",
+   "v": 72.6,
+   "real": true
+  },
+  {
+   "date": "2026-07-14",
+   "v": 72.2,
+   "real": true
+  },
+  {
+   "date": "2026-07-15",
+   "v": 71.7,
+   "real": true
+  }
+ ],
+ "hrvHistory": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "date": "2026-06-02",
+   "v": 50,
+   "real": true
+  },
+  {
+   "date": "2026-06-03",
+   "v": 50,
+   "real": true
+  },
+  {
+   "date": "2026-06-04",
+   "v": 43,
+   "real": true
+  },
+  {
+   "date": "2026-06-05",
+   "v": 63,
+   "real": true
+  },
+  {
+   "date": "2026-06-06",
+   "v": 59,
+   "real": true
+  },
+  {
+   "date": "2026-06-07",
+   "v": 56,
+   "real": true
+  },
+  {
+   "date": "2026-06-08",
+   "v": 65,
+   "real": true
+  },
+  {
+   "date": "2026-06-09",
+   "v": 59,
+   "real": true
+  },
+  {
+   "date": "2026-06-10",
+   "v": 66,
+   "real": true
+  },
+  {
+   "date": "2026-06-11",
+   "v": 50,
+   "real": true
+  },
+  {
+   "date": "2026-06-12",
+   "v": 60,
+   "real": true
+  },
+  {
+   "date": "2026-06-13",
+   "v": 61,
+   "real": true
+  },
+  {
+   "date": "2026-06-14",
+   "v": 59,
+   "real": true
+  },
+  {
+   "date": "2026-06-15",
+   "v": 71,
+   "real": true
+  },
+  {
+   "date": "2026-06-16",
+   "v": 73,
+   "real": true
+  },
+  {
+   "date": "2026-06-17",
+   "v": 66,
+   "real": true
+  },
+  {
+   "date": "2026-06-18",
+   "v": 82,
+   "real": true
+  },
+  {
+   "date": "2026-06-19",
+   "v": 84,
+   "real": true
+  },
+  {
+   "date": "2026-06-20",
+   "v": 69,
+   "real": true
+  },
+  {
+   "date": "2026-06-21",
+   "v": 60,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 66.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-09",
+   "v": 38.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-10",
+   "v": 75.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-11",
+   "v": 76.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-12",
+   "v": 53.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-13",
+   "v": 51.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-14",
+   "v": 52.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-15",
+   "v": 45.0,
+   "real": true
+  }
+ ],
+ "sleepHistory": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "date": "2026-06-02",
+   "v": 6.5,
+   "real": true
+  },
+  {
+   "date": "2026-06-03",
+   "v": 6.3,
+   "real": true
+  },
+  {
+   "date": "2026-06-04",
+   "v": 7.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-05",
+   "v": 8,
+   "real": true
+  },
+  {
+   "date": "2026-06-06",
+   "v": 8,
+   "real": true
+  },
+  {
+   "date": "2026-06-07",
+   "v": 6.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-08",
+   "v": 8.2,
+   "real": true
+  },
+  {
+   "date": "2026-06-09",
+   "v": 7.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-10",
+   "v": 8.6,
+   "real": true
+  },
+  {
+   "date": "2026-06-11",
+   "v": 5,
+   "real": true
+  },
+  {
+   "date": "2026-06-12",
+   "v": 8.6,
+   "real": true
+  },
+  {
+   "date": "2026-06-13",
+   "v": 7.3,
+   "real": true
+  },
+  {
+   "date": "2026-06-14",
+   "v": 7.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-15",
+   "v": 8.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-16",
+   "v": 7.5,
+   "real": true
+  },
+  {
+   "date": "2026-06-17",
+   "v": 9.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-18",
+   "v": 8,
+   "real": true
+  },
+  {
+   "date": "2026-06-19",
+   "v": 6.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-20",
+   "v": 8.8,
+   "real": true
+  },
+  {
+   "date": "2026-06-21",
+   "v": 5.6,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 6.9,
+   "real": true
+  },
+  {
+   "date": "2026-07-09",
+   "v": 7.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-10",
+   "v": 8.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-11",
+   "v": 8.2,
+   "real": true
+  },
+  {
+   "date": "2026-07-12",
+   "v": 8.1,
+   "real": true
+  },
+  {
+   "date": "2026-07-13",
+   "v": 7.2,
+   "real": true
+  },
+  {
+   "date": "2026-07-14",
+   "v": 7.0,
+   "real": true
+  },
+  {
+   "date": "2026-07-15",
+   "v": 8.0,
+   "real": true
+  }
+ ],
+ "tsbHistory": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "date": "2026-06-02",
+   "v": -9.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-03",
+   "v": -7.5,
+   "real": true
+  },
+  {
+   "date": "2026-06-04",
+   "v": -4.5,
+   "real": true
+  },
+  {
+   "date": "2026-06-05",
+   "v": -2.2,
+   "real": true
+  },
+  {
+   "date": "2026-06-06",
+   "v": -13.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-07",
+   "v": -11.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-08",
+   "v": -10.3,
+   "real": true
+  },
+  {
+   "date": "2026-06-09",
+   "v": -13.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-10",
+   "v": -15.8,
+   "real": true
+  },
+  {
+   "date": "2026-06-11",
+   "v": -13.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-12",
+   "v": -18.2,
+   "real": true
+  },
+  {
+   "date": "2026-06-13",
+   "v": -23.1,
+   "real": true
+  },
+  {
+   "date": "2026-06-14",
+   "v": -18.2,
+   "real": true
+  },
+  {
+   "date": "2026-06-15",
+   "v": -19.5,
+   "real": true
+  },
+  {
+   "date": "2026-06-16",
+   "v": -26.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-17",
+   "v": -19.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-18",
+   "v": -15.3,
+   "real": true
+  },
+  {
+   "date": "2026-06-19",
+   "v": -9.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-20",
+   "v": -12,
+   "real": true
+  },
+  {
+   "date": "2026-06-21",
+   "v": -12.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": -10.4,
+   "real": true
+  },
+  {
+   "date": "2026-07-09",
+   "v": -6.2,
+   "real": true
+  },
+  {
+   "date": "2026-07-10",
+   "v": -12.3,
+   "real": true
+  },
+  {
+   "date": "2026-07-11",
+   "v": -6.6,
+   "real": true
+  },
+  {
+   "date": "2026-07-12",
+   "v": -5.7,
+   "real": true
+  },
+  {
+   "date": "2026-07-13",
+   "v": -4.3,
+   "real": true
+  },
+  {
+   "date": "2026-07-14",
+   "v": -12.2,
+   "real": true
+  },
+  {
+   "date": "2026-07-15",
+   "v": -13.0,
+   "real": true
+  }
+ ],
+ "af_log": {
+  "2026-06-01": 0,
+  "2026-06-02": 0,
+  "2026-06-03": 0,
+  "2026-06-04": 0,
+  "2026-06-05": 0,
+  "2026-06-06": 0,
+  "2026-06-07": 0,
+  "2026-06-08": 0,
+  "2026-06-09": 0,
+  "2026-06-10": 0,
+  "2026-06-11": 0,
+  "2026-06-12": 0,
+  "2026-06-13": 0,
+  "2026-06-14": 0,
+  "2026-06-15": 0,
+  "2026-06-16": 0,
+  "2026-06-17": 0,
+  "2026-06-18": 0,
+  "2026-06-19": 0,
+  "2026-06-20": 0,
+  "2026-06-21": 0,
+  "2026-06-22": 0,
+  "2026-06-23": 0,
+  "2026-06-24": 0,
+  "2026-06-25": 0,
+  "2026-06-26": 0,
+  "2026-06-27": 0,
+  "2026-06-28": 0,
+  "2026-06-29": 0,
+  "2026-06-30": 0,
+  "2026-07-01": 0,
+  "2026-07-02": 0,
+  "2026-07-03": 1,
+  "2026-07-04": 0,
+  "2026-07-05": 0,
+  "2026-07-06": 0,
+  "2026-07-07": 0,
+  "2026-07-08": 1,
+  "2026-07-09": 0,
+  "2026-07-10": 0,
+  "2026-07-11": 0,
+  "2026-07-12": 0,
+  "2026-07-13": 0,
+  "2026-07-14": 0
+ },
+ "all_weeks": {
+  "1": {
+   "sessions": [
     {
-      "date": "2026-06-02",
-      "v": 23.3,
-      "real": false
+     "day": "Man",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": false,
+     "today": false
     },
     {
-      "date": "2026-06-03",
-      "v": 23.3,
-      "real": false
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb Z2 55 min",
+     "done": false,
+     "today": false
     },
     {
-      "date": "2026-06-04",
-      "v": 22.9,
-      "real": true
+     "day": "Ons",
+     "disc": "run",
+     "label": "Løb Z2 65 min",
+     "done": false,
+     "today": false
     },
     {
-      "date": "2026-06-05",
-      "v": 22.8,
-      "real": true
+     "day": "Tor",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 2 sæt",
+     "done": false,
+     "today": false
     },
     {
-      "date": "2026-06-06",
-      "v": 22.7,
-      "real": true
+     "day": "Fre",
+     "disc": "bike",
+     "label": "Cykel 5×3 min Z4",
+     "done": false,
+     "today": false
     },
     {
-      "date": "2026-06-07",
-      "v": 22.2,
-      "real": true
+     "day": "Lør",
+     "disc": "run",
+     "label": "Lang løb Z2 100 min",
+     "done": false,
+     "today": false
     },
     {
-      "date": "2026-06-08",
-      "v": 22.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-09",
-      "v": 22.3,
-      "real": true
-    },
-    {
-      "date": "2026-06-10",
-      "v": 22.7,
-      "real": true
-    },
-    {
-      "date": "2026-06-11",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-12",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-13",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-14",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-15",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-16",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-17",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-18",
-      "v": 22.7,
-      "real": false
-    },
-    {
-      "date": "2026-06-19",
-      "v": 21.7,
-      "real": true
-    },
-    {
-      "date": "2026-06-20",
-      "v": 22.4,
-      "real": true
-    },
-    {
-      "date": "2026-06-21",
-      "v": 21.7,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 21.8,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 21.8,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 21.8,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 21.8,
-      "real": true
-    },
-    {
-      "date": "2026-07-08",
-      "v": 21.8,
-      "real": true
-    },
-    {
-      "date": "2026-07-13",
-      "v": 21.2,
-      "real": true
-    },
-    {
-      "date": "2026-07-14",
-      "v": 21.7,
-      "real": true
-    },
-    {
-      "date": "2026-07-15",
-      "v": 21.8,
-      "real": true
+     "day": "Søn",
+     "disc": "swim",
+     "label": "Svøm 2000m teknisk",
+     "done": false,
+     "today": false
     }
-  ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 45 af 98 · Onsdag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 48.1 mod ugemålets 54 — det afspejler at de første dage af Mallorca-ugen stadig er bygget op af kortere pas. Mandag og tirsdag er leveret solidt: svøm teknisk on target og løbe-VO2 med 21% i Z4-zone, hvilket er præcis det stimulus der var meningen. Dagens hometrainer-pas på 80 min Z2-Z3 er ikke forsøgt endnu — hold wattene i Z2-Z3 og undgå at kravle op i Z4 ud fra \"benen har det fint\"-følelsen efter hvile. TSB på -13 er komfortabelt langt fra grænsen på -30, så der er god margin til de lange cykeldage torsdag, fredag og lørdag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">71.7 kg — 1.7 kg fra målet. Mallorca-ugen er en oplagt mulighed: høj træningsvolumen, og hvis du holder kalorieindtaget disciplineret på de lange cykeldage frem for at \"spise dig fri\", rykker vægten sig naturligt. Prioritér protein og grøntsager til aftensmad og pas på de lette kalorier i form af sportsdrikke og energibarer ud over det der reelt er nødvendigt på cykel.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 2 AF-dage ud af 3 dage — en stærk start på ugen. Med 4 dage tilbage og målet på 5 AF-dage i alt, har du god luft. Mallorca-dagene er i sig selv ikke alkohol-udfordrende hvis du behandler dem som det de er: træningslejr. Hold det fokus, og du lander på målet uden drama.</p>",
-  "coachAssessmentTs": "04:51",
-  "coachAssessmentTsFull": "2026-07-15T04:51:18.210285",
-  "coachAssessmentWeightAtGen": 71.7,
-  "coachAssessmentAfAtGen": 2,
-  "commute_pairing_warnings": [],
-  "warnings": [
+   ],
+   "blockType": "BUILD",
+   "focus": "Build-uge 1 — 3 løb · 1 cykel · 1 svøm · 2 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "2": {
+   "sessions": [
     {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 45,0 ms — 21% under 7d-snit (57,0 ms). Kroppen er presset."
+     "day": "Man",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb Z2 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "run",
+     "label": "Løb Z2 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "bike",
+     "label": "Cykel Z2 60 min Mallorca",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "bike",
+     "label": "Cykel bjerg-intervaller Z4 Mallorca",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "bike",
+     "label": "Cykel Z2 150 min Mallorca",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "swim",
+     "label": "Svøm 1500m let teknisk",
+     "done": false,
+     "today": false
     }
-  ],
-  "tsb": -13.0,
-  "swimHistory": [
+   ],
+   "blockType": "BUILD+",
+   "focus": "Intensiv build-uge 2 — 2 løb · 3 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "3": {
+   "sessions": [
     {
-      "week": 1,
-      "date": "2026-06-01",
-      "meters": 2000.0,
-      "cumulative": 2000.0
+     "day": "Man",
+     "disc": "run",
+     "label": "Lang løb Z2 90 min",
+     "done": false,
+     "today": false
     },
     {
-      "week": 2,
-      "date": "2026-06-08",
-      "meters": 1577.0,
-      "cumulative": 3577.0
+     "day": "Tir",
+     "disc": "bike",
+     "label": "Cykel Formentor 149km",
+     "done": false,
+     "today": false
     },
     {
-      "week": 3,
-      "date": "2026-06-15",
-      "meters": 1556.0,
-      "cumulative": 5133.0
+     "day": "Ons",
+     "disc": "swim",
+     "label": "Svøm 1500m let teknisk",
+     "done": false,
+     "today": false
     },
     {
-      "week": 4,
-      "date": "2026-06-22",
-      "meters": 3000.0,
-      "cumulative": 8133.0
+     "day": "Tor",
+     "disc": "bike",
+     "label": "Cykel Z2 60 min Mallorca",
+     "done": false,
+     "today": false
     },
     {
-      "week": 5,
-      "date": "2026-06-29",
-      "meters": 1509.0,
-      "cumulative": 9642.0
+     "day": "Fre",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": false,
+     "today": false
     },
     {
-      "week": 6,
-      "date": "2026-07-06",
-      "meters": 2000.0,
-      "cumulative": 11642.0
+     "day": "Lør",
+     "disc": "run",
+     "label": "Lang løb Z2 60 min",
+     "done": false,
+     "today": false
     },
     {
-      "week": 7,
-      "date": "2026-07-13",
-      "meters": 2012.0,
-      "cumulative": 13654.0
+     "day": "Søn",
+     "disc": "bike",
+     "label": "Cykeltur til Helsingør",
+     "done": false,
+     "today": false
     }
-  ],
-  "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i165740181",
-  "weekFocusWeek": 7,
-  "coachAssessmentPlanAtGen": "Hometrainer Z2-Z3 80 min",
-  "weightGoal": 70,
-  "bodyFatGoal": 20,
-  "weightMovingAvg7": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    74.43,
-    74.58,
-    74.64,
-    74.65,
-    74.57,
-    74.61,
-    74.59,
-    74.54,
-    74.43,
-    74.33,
-    74.26,
-    74.27,
-    74.2,
-    74.2,
-    74.2,
-    74.03,
-    73.91,
-    73.83,
-    73.57,
-    73.31,
-    73.06,
-    72.8,
-    72.71,
-    72.6,
-    72.4,
-    72.3
-  ],
-  "fatMovingAvg7": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    23.17,
-    23.07,
-    23.0,
-    22.87,
-    22.8,
-    22.66,
-    22.57,
-    22.54,
-    22.53,
-    22.53,
-    22.6,
-    22.64,
-    22.7,
-    22.7,
-    22.7,
-    22.56,
-    22.51,
-    22.37,
-    22.24,
-    22.11,
-    21.99,
-    21.86,
-    21.87,
-    21.7,
-    21.7,
-    21.7
-  ],
-  "weightToGoal": 1.7,
-  "bodyFatToGoal": 1.8,
-  "ctlPlan": [
-    34,
-    36,
-    38,
-    41,
-    48,
-    50,
-    54,
-    60,
-    56,
-    61,
-    67,
-    63,
-    59,
-    56
-  ],
-  "coachAssessmentError": null,
-  "coachAssessmentStale": false,
-  "_debug_wellness_fields": [
-    "Alkohol",
-    "abdomen",
-    "atl",
-    "atlLoad",
-    "avgSleepingHR",
-    "baevskySI",
-    "bloodGlucose",
-    "bodyFat",
-    "carbohydrates",
-    "comments",
-    "ctl",
-    "ctlLoad",
-    "diastolic",
-    "fatTotal",
-    "fatigue",
-    "hrv",
-    "hrvSDNN",
-    "hydration",
-    "hydrationVolume",
-    "id",
-    "injury",
-    "kcalConsumed",
-    "lactate",
-    "locked",
-    "menstrualPhase",
-    "menstrualPhasePredicted",
-    "mood",
-    "motivation",
-    "protein",
-    "rampRate",
-    "readiness",
-    "respiration",
-    "restingHR",
-    "sleepQuality",
-    "sleepScore",
-    "sleepSecs",
-    "soreness",
-    "spO2",
-    "sportInfo",
-    "steps",
-    "stress",
-    "systolic",
-    "tempRestingHR",
-    "tempWeight",
-    "updated",
-    "vo2max",
-    "weight"
-  ]
+   ],
+   "blockType": "BUILD+",
+   "focus": "Intensiv build-uge 3 — 2 løb · 3 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
+  },
+  "4": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "swim",
+     "label": "Svøm let 30 min recovery",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb Z2 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "Cykel Z2 30 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "bike",
+     "label": "Cykel Z2 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "run",
+     "label": "Lang løb Z2 90 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "RECOVERY",
+   "focus": "Restituitionsuge 4 — 2 løb · 2 cykel · 1 svøm · 1 styrke. Fokus: konsistens over intensitet."
+  },
+  "5": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "swim",
+     "label": "Svøm 1500m let teknisk",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "strength",
+     "label": "Styrke let 2 sæt recovery",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb Z2 65 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "Cykel Z2 75 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "run",
+     "label": "Løb VO2 5×3 min Z4",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "swim",
+     "label": "Svøm 2000m teknisk",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "run",
+     "label": "Lang løb Z2 115 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "bike",
+     "label": "Cykel Z2 til Hundested",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "BUILD",
+   "focus": "Build-uge 5 — 3 løb · 2 cykel · 2 svøm · 2 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "6": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "openwater",
+     "label": "OW-svøm Christiansborg-prep 40 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Man",
+     "disc": "strength",
+     "label": "Styrke let 2 sæt recovery",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "bike",
+     "label": "Cykel Z2 70 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "hike",
+     "label": "Hike let 120 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "run",
+     "label": "Trail langtur Z2 Wales 75 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "hike",
+     "label": "Hike let 80 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "hike",
+     "label": "Hike - 3 timer",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "BUILD",
+   "focus": "Bevar kadencen på rejsen — Wales-terrænet er din aerobe base"
+  },
+  "7": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "swim",
+     "label": "Svøm 2000m teknisk",
+     "done": true,
+     "completion": "done",
+     "completion_pct": null,
+     "actual_tss": 42,
+     "actual_mins": 45,
+     "planned_mins": null
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb VO2 5×3 min Z4",
+     "done": true,
+     "completion": "done",
+     "completion_pct": 1700,
+     "actual_tss": 62,
+     "actual_mins": 51,
+     "planned_mins": 3,
+     "intervals_compliance": 105.1
+    },
+    {
+     "day": "Tir",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": true,
+     "completion": "done",
+     "completion_pct": null,
+     "actual_tss": 10,
+     "actual_mins": 31,
+     "planned_mins": null
+    },
+    {
+     "day": "Tir",
+     "disc": "commute",
+     "label": "Gentofte Cykling",
+     "done": true,
+     "extra": true
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "Hometrainer Z2-Z3 80 min",
+     "done": false,
+     "today": true
+    },
+    {
+     "day": "Tor",
+     "disc": "bike",
+     "label": "Cykel Z2 60 min Mallorca",
+     "done": false
+    },
+    {
+     "day": "Fre",
+     "disc": "bike",
+     "label": "Cykel Z2 180 min Mallorca",
+     "done": false
+    },
+    {
+     "day": "Lør",
+     "disc": "bike",
+     "label": "Cykel Z2 240 min Mallorca",
+     "done": false
+    },
+    {
+     "day": "Søn",
+     "disc": "run",
+     "label": "Løb Z2 60 min",
+     "done": false
+    }
+   ],
+   "blockType": "RECOVERY",
+   "focus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene"
+  },
+  "8": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "bike",
+     "label": "Cykel Sa Calobra via Puig Major",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "bike",
+     "label": "Cykel Z2 210 min Mallorca",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "run",
+     "label": "Lang løb Z2 90 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 2 sæt",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "bike",
+     "label": "Cykel Z2 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "swim",
+     "label": "Svøm 2500m",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "run",
+     "label": "Lang løb Z2 26 km (140 min)",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "bike",
+     "label": "Cykel Z2 90 min",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "BUILD",
+   "focus": "Build-uge 8 — 3 løb · 2 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "9": {
+   "sessions": [
+    {
+     "day": "Tir",
+     "disc": "swim",
+     "label": "Svøm 1500m let teknisk",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "FTP-TEST 20 min (opdatér zoner efter)",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "run",
+     "label": "THRESHOLD-TEST løb 30 min (opdatér pace-zoner efter)",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "run",
+     "label": "Løb Z2 60 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "swim",
+     "label": "Svøm 2000m teknisk",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "BUILD",
+   "focus": "Build-uge 9 — 3 løb · 1 cykel · 1 svøm · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "10": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "strength",
+     "label": "Styrke A Functional Strength 3 sæt",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb VO2 4×5 min Z4-Z5",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "Hometrainer 3×15 min Z3 90 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "openwater",
+     "label": "OW-svøm Open water 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "bike",
+     "label": "Cykel Z2 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "run",
+     "label": "Lang løb Z2 29 km (155 min)",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "BUILD+",
+   "focus": "Intensiv build-uge 10 — 2 løb · 3 cykel · 1 svøm. Fokus: konsistens over intensitet."
+  },
+  "11": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "bike",
+     "label": "Cykel Z2 180 min Mallorca",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Løb Z2 75 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "Cykel bjerg-intervaller Z4 Mallorca",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "run",
+     "label": "Lang løb Z2 120 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "swim",
+     "label": "Svøm 2000m teknisk",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Lør",
+     "disc": "bike",
+     "label": "Cykel Z2 210 min Mallorca",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "BUILD+",
+   "focus": "Intensiv build-uge 11 — 2 løb · 3 cykel · 1 svøm · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "12": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "openwater",
+     "label": "OW-svøm Open water 45 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Lang løb Z2 32 km (170 min)",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "bike",
+     "label": "Cykel Z2 50 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tor",
+     "disc": "openwater",
+     "label": "OW-svøm Open water 40 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "run",
+     "label": "Shakeout løb + strides",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Søn",
+     "disc": "run",
+     "label": "Løb let Z1 30 min",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "TAPER",
+   "focus": "Taper-uge 12 — 3 løb · 1 cykel · 1 styrke · én VO2-stimulus. Fokus: konsistens over intensitet."
+  },
+  "13": {
+   "sessions": [
+    {
+     "day": "Tir",
+     "disc": "openwater",
+     "label": "OW-svøm Kort tilvænning 30 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Ons",
+     "disc": "run",
+     "label": "Shakeout løb + strides",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Fre",
+     "disc": "swim",
+     "label": "Svøm let 20 min recovery",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "TAPER",
+   "focus": "Taper-uge 13 — 1 løb · 1 cykel. Fokus: konsistens over intensitet."
+  },
+  "14": {
+   "sessions": [
+    {
+     "day": "Man",
+     "disc": "run",
+     "label": "Løb let Z1 25 min",
+     "done": false,
+     "today": false
+    },
+    {
+     "day": "Tir",
+     "disc": "run",
+     "label": "Shakeout løb + strides",
+     "done": false,
+     "today": false
+    }
+   ],
+   "blockType": "RACE",
+   "focus": "Race-uge 14 — 2 løb. Fokus: konsistens over intensitet."
+  }
+ },
+ "af_history": [
+  {
+   "week": 1,
+   "done": 7,
+   "total": 7,
+   "label": "Uge 1"
+  },
+  {
+   "week": 2,
+   "done": 7,
+   "total": 7,
+   "label": "Uge 2"
+  },
+  {
+   "week": 3,
+   "done": 7,
+   "total": 7,
+   "label": "Uge 3"
+  },
+  {
+   "week": 4,
+   "done": 7,
+   "total": 7,
+   "label": "Uge 4"
+  },
+  {
+   "week": 5,
+   "done": 6,
+   "total": 7,
+   "label": "Uge 5"
+  },
+  {
+   "week": 6,
+   "done": 6,
+   "total": 7,
+   "label": "Uge 6"
+  },
+  {
+   "week": 7,
+   "done": 2,
+   "total": 3,
+   "label": "Uge 7"
+  }
+ ],
+ "train_mins": {
+  "commute": 24.0,
+  "run": 51.0,
+  "strength": 31.0,
+  "openwater": 45.0,
+  "planned": 764.0,
+  "actual_total": 151.0
+ },
+ "fatHistory": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "date": "2026-06-02",
+   "v": 23.3,
+   "real": false
+  },
+  {
+   "date": "2026-06-03",
+   "v": 23.3,
+   "real": false
+  },
+  {
+   "date": "2026-06-04",
+   "v": 22.9,
+   "real": true
+  },
+  {
+   "date": "2026-06-05",
+   "v": 22.8,
+   "real": true
+  },
+  {
+   "date": "2026-06-06",
+   "v": 22.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-07",
+   "v": 22.2,
+   "real": true
+  },
+  {
+   "date": "2026-06-08",
+   "v": 22.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-09",
+   "v": 22.3,
+   "real": true
+  },
+  {
+   "date": "2026-06-10",
+   "v": 22.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-11",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-12",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-13",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-14",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-15",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-16",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-17",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-18",
+   "v": 22.7,
+   "real": false
+  },
+  {
+   "date": "2026-06-19",
+   "v": 21.7,
+   "real": true
+  },
+  {
+   "date": "2026-06-20",
+   "v": 22.4,
+   "real": true
+  },
+  {
+   "date": "2026-06-21",
+   "v": 21.7,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 21.8,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 21.8,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 21.8,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 21.8,
+   "real": true
+  },
+  {
+   "date": "2026-07-08",
+   "v": 21.8,
+   "real": true
+  },
+  {
+   "date": "2026-07-13",
+   "v": 21.2,
+   "real": true
+  },
+  {
+   "date": "2026-07-14",
+   "v": 21.7,
+   "real": true
+  },
+  {
+   "date": "2026-07-15",
+   "v": 21.8,
+   "real": true
+  }
+ ],
+ "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 45 af 98 · Onsdag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 48.1 mod ugemålets 54 — det afspejler at de første dage af Mallorca-ugen stadig er bygget op af kortere pas. Mandag og tirsdag er leveret solidt: svøm teknisk on target og løbe-VO2 med 21% i Z4-zone, hvilket er præcis det stimulus der var meningen. Dagens hometrainer-pas på 80 min Z2-Z3 er ikke forsøgt endnu — hold wattene i Z2-Z3 og undgå at kravle op i Z4 ud fra \"benen har det fint\"-følelsen efter hvile. TSB på -13 er komfortabelt langt fra grænsen på -30, så der er god margin til de lange cykeldage torsdag, fredag og lørdag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">71.7 kg — 1.7 kg fra målet. Mallorca-ugen er en oplagt mulighed: høj træningsvolumen, og hvis du holder kalorieindtaget disciplineret på de lange cykeldage frem for at \"spise dig fri\", rykker vægten sig naturligt. Prioritér protein og grøntsager til aftensmad og pas på de lette kalorier i form af sportsdrikke og energibarer ud over det der reelt er nødvendigt på cykel.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 2 AF-dage ud af 3 dage — en stærk start på ugen. Med 4 dage tilbage og målet på 5 AF-dage i alt, har du god luft. Mallorca-dagene er i sig selv ikke alkohol-udfordrende hvis du behandler dem som det de er: træningslejr. Hold det fokus, og du lander på målet uden drama.</p>",
+ "coachAssessmentTs": "04:51",
+ "coachAssessmentTsFull": "2026-07-15T04:51:18.210285",
+ "coachAssessmentWeightAtGen": 71.7,
+ "coachAssessmentAfAtGen": 2,
+ "commute_pairing_warnings": [],
+ "warnings": [
+  {
+   "type": "hrv",
+   "level": "warn",
+   "message": "HRV 45,0 ms — 21% under 7d-snit (57,0 ms). Kroppen er presset."
+  }
+ ],
+ "tsb": -13.0,
+ "swimHistory": [
+  {
+   "week": 1,
+   "date": "2026-06-01",
+   "meters": 2000.0,
+   "cumulative": 2000.0
+  },
+  {
+   "week": 2,
+   "date": "2026-06-08",
+   "meters": 1577.0,
+   "cumulative": 3577.0
+  },
+  {
+   "week": 3,
+   "date": "2026-06-15",
+   "meters": 1556.0,
+   "cumulative": 5133.0
+  },
+  {
+   "week": 4,
+   "date": "2026-06-22",
+   "meters": 3000.0,
+   "cumulative": 8133.0
+  },
+  {
+   "week": 5,
+   "date": "2026-06-29",
+   "meters": 1509.0,
+   "cumulative": 9642.0
+  },
+  {
+   "week": 6,
+   "date": "2026-07-06",
+   "meters": 2000.0,
+   "cumulative": 11642.0
+  },
+  {
+   "week": 7,
+   "date": "2026-07-13",
+   "meters": 2012.0,
+   "cumulative": 13654.0
+  }
+ ],
+ "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
+ "coachAssessmentLastActId": "i165740181",
+ "weekFocusWeek": 7,
+ "coachAssessmentPlanAtGen": "Hometrainer Z2-Z3 80 min",
+ "weightGoal": 70,
+ "bodyFatGoal": 20,
+ "weightMovingAvg7": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  74.43,
+  74.58,
+  74.64,
+  74.65,
+  74.57,
+  74.61,
+  74.59,
+  74.54,
+  74.43,
+  74.33,
+  74.26,
+  74.27,
+  74.2,
+  74.2,
+  74.2,
+  74.03,
+  73.91,
+  73.83,
+  73.57,
+  73.31,
+  73.06,
+  72.8,
+  72.71,
+  72.6,
+  72.4,
+  72.3
+ ],
+ "fatMovingAvg7": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  23.17,
+  23.07,
+  23.0,
+  22.87,
+  22.8,
+  22.66,
+  22.57,
+  22.54,
+  22.53,
+  22.53,
+  22.6,
+  22.64,
+  22.7,
+  22.7,
+  22.7,
+  22.56,
+  22.51,
+  22.37,
+  22.24,
+  22.11,
+  21.99,
+  21.86,
+  21.87,
+  21.7,
+  21.7,
+  21.7
+ ],
+ "weightToGoal": 1.7,
+ "bodyFatToGoal": 1.8,
+ "ctlPlan": [
+  34,
+  36,
+  38,
+  41,
+  48,
+  50,
+  54,
+  60,
+  56,
+  61,
+  67,
+  63,
+  59,
+  56
+ ],
+ "coachAssessmentError": null,
+ "coachAssessmentStale": false
 }
