@@ -1,0 +1,69 @@
+name: Regenerér Word-master fra plan.json
+
+# Lukker to huller (fundet 16/7-2026):
+#  1. plan.json pushet direkte (PAT/menneske) -> docx blev aldrig regenereret
+#  2. sync-onedrive.yml's push-trigger fyrer ikke paa GITHUB_TOKEN-commits
+# Derfor: generér -> commit -> sync til OneDrive INLINE. Ingen trigger-kaede.
+
+on:
+  push:
+    paths:
+      - 'data/plan.json'
+      - 'scripts/modules/word_master.py'
+  schedule:
+    # Soendag 18:00 UTC = 20:00 CET — efter soendags-check-in
+    - cron: '0 18 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regen-docx
+  cancel-in-progress: false
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests python-docx
+
+      - name: Generér Word-masters
+        run: |
+          python - <<'PY'
+          import json, sys, pathlib
+          sys.path.insert(0, "scripts")
+          from modules import word_master
+          plan = json.load(open("data/plan.json"))
+          for path, blob in word_master.generate_both(plan).items():
+              pathlib.Path(path).write_bytes(blob)
+              print("genereret", path, len(blob), "bytes")
+          PY
+
+      - name: Commit hvis ændret
+        id: c
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/*.docx
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Ingen ændring — docx var allerede i synk"
+          else
+            git commit -m "docx: regenereret fra plan.json"
+            git pull --rebase --autostash
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sync til OneDrive
+        if: steps.c.outputs.changed == 'true'
+        env:
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        run: python scripts/sync_to_onedrive.py

@@ -302,12 +302,25 @@ def main():
         for path, blob in docs.items():
             sha, _ = gh_get_bytes(path)
             gh_put(path, sha, blob, f"masterplan opdateret ({action} {entry_id[:8]})")
+            Path(path).write_bytes(blob)  # lokal kopi -> OneDrive-sync nedenfor
             print(f"Word skrevet: {path}")
     except Exception as ex:
         sync_errors.append(f"Word: {ex}")
         print(f"FEJL Word: {ex}")
 
-    # OneDrive syncs automatisk via sync-onedrive.yml (fanger .docx-push)
+    # OneDrive-sync kaldes EKSPLICIT. Push-trigger paa sync-onedrive.yml virker
+    # ikke: gh_put() bruger GITHUB_TOKEN, og GitHub udloeser aldrig workflows fra
+    # GITHUB_TOKEN-commits. Verificeret 16/7-2026 (plan-edit koerte 2x 13/7,
+    # sync-onedrive fyrede aldrig).
+    try:
+        import subprocess
+        root = Path(__file__).resolve().parent.parent
+        subprocess.run([sys.executable, str(root / "scripts" / "sync_to_onedrive.py")],
+                       check=True, cwd=str(root))
+        print("OneDrive sync OK")
+    except Exception as ex:
+        sync_errors.append(f"OneDrive: {ex}")
+        print(f"FEJL OneDrive: {ex}")
 
     write_result(request_id, {
         "status": "ok",

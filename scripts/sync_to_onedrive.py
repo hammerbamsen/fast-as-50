@@ -29,11 +29,10 @@ def main():
         "Content-Type": "application/octet-stream",
     }
 
+    # Excel udgaaet 16/7-2026 — plan.json er eneste kilde, Word er snapshot.
     files = [
-        ("data/Master_Plan.xlsx",                   "Master_Plan.xlsx"),
         ("data/Fast_as_Fifty_Masterplan_2026.docx", "Fast_as_Fifty_Masterplan_2026.docx"),
         ("data/Eva_Medoc_Traningsplan_2026.docx",   "Eva_Medoc_Traningsplan_2026.docx"),
-        ("data/Eva_Medoc_Master.xlsx",              "Eva_Medoc_Master.xlsx"),
     ]
 
     ok = err = 0
