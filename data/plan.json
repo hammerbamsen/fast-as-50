@@ -2593,10 +2593,10 @@
      "entries": [
       {
        "workout": {
-        "name": "Cykel Z2 240 min Mallorca",
+        "name": "Cykel Z2 210 min Mallorca",
         "type": "Ride",
-        "moving_time": 14400,
-        "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 225m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+        "moving_time": 12600,
+        "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 195m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
         "workout_doc": {
          "steps": [
           {
@@ -2616,7 +2616,7 @@
             "end": 76,
             "units": "%ftp"
            },
-           "duration": 13500
+           "duration": 11700
           },
           {
            "ramp": true,
@@ -2630,9 +2630,9 @@
           }
          ]
         },
-        "load": 165
+        "load": 145
        },
-       "note": "Cykel Z2 lang 4t Mallorca",
+       "note": "Cykel Z2 lang 3.5t Mallorca — nordsiden, skygge sidste time, vandstop Sóller",
        "id": "f311903d"
       }
      ]
@@ -2642,45 +2642,46 @@
      "entries": [
       {
        "workout": {
-        "name": "Løb Z2 60 min",
+        "name": "Løb Z1-Z2 30 min let",
         "type": "Run",
-        "moving_time": 3600,
-        "description": "- Varm-op 10m >5:35/km Pace\n- Base 45m 4:56-5:34/km Pace\n- Cool-down 5m >5:35/km Pace",
+        "moving_time": 1800,
+        "description": "- Let løb 30m >5:20/km Pace",
         "workout_doc": {
          "steps": [
           {
-           "text": "Varm-op >5:35/km",
+           "text": "Let løb >5:20/km — frekvens, ikke fitness",
            "pace": {
             "start": 65,
-            "end": 78,
+            "end": 80,
             "units": "%pace"
            },
-           "duration": 600
-          },
-          {
-           "text": "Base 4:56-5:34/km",
-           "pace": {
-            "start": 78,
-            "end": 88,
-            "units": "%pace"
-           },
-           "duration": 2700
-          },
-          {
-           "text": "Cool-down >5:35/km",
-           "pace": {
-            "start": 65,
-            "end": 78,
-            "units": "%pace"
-           },
-           "duration": 300
+           "duration": 1800
           }
          ]
         },
-        "load": 60
+        "load": 30
        },
-       "note": "Løb Z2 60 min Mallorca — morgen",
-       "id": "6e6cd792"
+       "note": "Løb let 30 min — ud 06:30 mens det er køligt. Rigtig let, ikke Z2-jagt.",
+       "id": "a1f30b19"
+      },
+      {
+       "workout": {
+        "name": "Svøm 2000m åbent vand kontinuerligt",
+        "type": "Swim",
+        "moving_time": 2400,
+        "description": "- 2000m kontinuerligt åbent vand 40m freeride",
+        "workout_doc": {
+         "steps": [
+          {
+           "text": "2000m kontinuerligt — Port de Sóller",
+           "duration": 2400
+          }
+         ]
+        },
+        "load": 40
+       },
+       "note": "Svøm 2000m Port de Sóller m/ Eva — generalprøve Christiansborg Rundt. Ét stræk, ingen intervaller.",
+       "id": "b2c40719"
       }
      ]
     },
@@ -2691,8 +2692,8 @@
        "workout": {
         "name": "Cykel Sa Calobra via Puig Major",
         "type": "Ride",
-        "moving_time": 16800,
-        "description": "- Varm-op — tidlig udrulning 20m ramp 45-68% FTP\n- Puig Major opstigning — jævn Z2 90m 56-76% FTP\n- Nedkørsel til Sa Calobra — kontrolleret, pas på bremser 35m 56-76% FTP\n- Sa Calobra op — 26 sving, jævn Z3 35m 76-91% FTP\n- Retur Z2 base hjem 80m 56-76% FTP\n- Cool-down 20m ramp 68-45% FTP",
+        "moving_time": 14400,
+        "description": "- Varm-op — tidlig udrulning 20m ramp 45-68% FTP\n- Puig Major opstigning — jævn Z2 90m 56-76% FTP\n- Nedkørsel til Sa Calobra — kontrolleret, pas på bremser 35m 56-76% FTP\n- Sa Calobra op — 26 sving, jævn Z3 35m 76-91% FTP\n- Retur dalvejen Z2 40m 56-76% FTP\n- Cool-down 20m ramp 68-45% FTP",
         "workout_doc": {
          "steps": [
           {
@@ -2733,13 +2734,13 @@
            "duration": 2100
           },
           {
-           "text": "Retur Z2 base hjem 56-76% FTP",
+           "text": "Retur dalvejen Z2 56-76% FTP",
            "power": {
             "start": 56,
             "end": 76,
             "units": "%ftp"
            },
-           "duration": 4800
+           "duration": 2400
           },
           {
            "ramp": true,
@@ -2753,9 +2754,9 @@
           }
          ]
         },
-        "load": 200
+        "load": 170
        },
-       "note": "Sa Calobra via Puig Major — tidlig afgang, ugens store fjeld-dag",
+       "note": "Sa Calobra via Puig Major — ud 06:30. Retur ad dalvejen, ikke forlænget. Ugens fjeld-dag.",
        "id": "be999112"
       }
      ]
@@ -2765,10 +2766,10 @@
      "entries": [
       {
        "workout": {
-        "name": "Cykel Z2 210 min Mallorca",
+        "name": "Cykel Z2 120 min Mallorca",
         "type": "Ride",
-        "moving_time": 12600,
-        "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 195m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+        "moving_time": 7200,
+        "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
         "workout_doc": {
          "steps": [
           {
@@ -2788,7 +2789,7 @@
             "end": 76,
             "units": "%ftp"
            },
-           "duration": 11700
+           "duration": 6300
           },
           {
            "ramp": true,
@@ -2802,9 +2803,9 @@
           }
          ]
         },
-        "load": 150
+        "load": 90
        },
-       "note": "Cykel Z2 stor dag 3.5t Mallorca",
+       "note": "Cykel Z2 2t — 37°-dagen. VENTIL: skær eller drop hvis HRV <45 eller søvn <6t.",
        "id": "c8898c19"
       }
      ]
