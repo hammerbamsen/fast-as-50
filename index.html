@@ -1810,25 +1810,43 @@ async function triggerRefresh() {
     await dispatchViaWorker('/refresh', {});
     dispatched = true;
   } catch (e) {
-    setStatus('Kun cache — ' + (e.status === 401 ? 'forkert kode' : 'ingen adgang'));
+    // Vær præcis om HVILKEN kode der fejler. 401 her betyder app-koden
+    // (PLAN_EDIT_SECRET) i localStorage — ikke webhook-koden, ikke en PAT.
+    // Appene bruger ikke PAT længere (af_gh_token findes ikke i koden).
+    // Første udgave sagde bare "forkert kode" og sendte fejlsøgningen 16/7
+    // efter et Cloudflare-deploy der var helt i orden.
+    setStatus(e.status === 401 ? 'App-kode afvist — åbn af.html?reset'
+            : e.status        ? 'Worker svarede ' + e.status
+                              : 'Ingen forbindelse til Worker');
   }
 
+  let changed = false;
   if (dispatched) {
     setTxt('↻ KØRER...');
-    for (let i = 0; i < 18; i++) {
-      await new Promise(r => setTimeout(r, 5000));
-      const now = await _dataStamp();
-      if (now && before && now !== before) break;
-      setTxt('↻ KØRER ' + ((i + 1) * 5) + 's');
+    if (!before) {
+      // Kunne ikke læse tidsstempel før kørslen (typisk GitHub-ratelimit på
+      // 60 anonyme kald/t). Så kan vi ikke sammenligne — vent blindt i 45s.
+      await new Promise(r => setTimeout(r, 45000));
+    } else {
+      for (let i = 0; i < 18; i++) {
+        await new Promise(r => setTimeout(r, 5000));
+        const now = await _dataStamp();
+        if (now && now !== before) { changed = true; break; }
+        setTxt('↻ KØRER ' + ((i + 1) * 5) + 's');
+      }
     }
   }
 
   try {
     await init();
     const time = new Date().toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
-    if (btn)  btn.textContent  = '✓ OPDATERET';
-    if (mBtn) mBtn.textContent = '✓ ' + time;
-    if (status && !status.textContent) setStatus(time);
+    // Sig kun "OPDATERET" hvis data faktisk flyttede sig. Kørte vi en runde
+    // uden at data.json ændrede sig, er der intet nyt — det er ikke en fejl,
+    // men det er heller ikke en opdatering.
+    const ok = !dispatched || changed;
+    if (btn)  btn.textContent  = ok ? '✓ OPDATERET' : '✓ INGEN NY DATA';
+    if (mBtn) mBtn.textContent = (ok ? '✓ ' : '– ') + time;
+    if (status && !status.textContent) setStatus(ok ? time : 'Kørt ' + time + ' — intet nyt');
     setTimeout(reset, 2000);
   } catch (e) {
     reset();
