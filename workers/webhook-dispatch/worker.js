@@ -84,6 +84,13 @@ export default {
         }),
       });
     }
+    if (url.pathname === "/refresh") {
+      return handleSimpleDispatch(request, env, {
+        eventType: "intervals-activity",
+        requiredFields: [],
+        buildPayload: () => ({ source: "manual-refresh" }),
+      });
+    }
     if (url.pathname === "/push-subscribe") {
       return handleSimpleDispatch(request, env, {
         eventType: "push-subscribe",

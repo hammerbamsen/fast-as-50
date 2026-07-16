@@ -1784,28 +1784,71 @@ init();
   setInterval(pollData, 10000);
 })();
 
-// ── Refresh-knap: hent ny data.json fra server ─────────────────
+// ── Refresh-knap: bed om en FRISK kørsel, vent, hent så data ──
+// Baggrund (16/7-26): knappen kaldte kun init(), som blot genhenter
+// data.json. Den kunne derfor aldrig vise nyere data end sidste cron-tick
+// — en tur kørt 13:54 var usynlig til næste */30. Nu dispatches samme
+// event som Intervals-webhooken (intervals-activity) via Worker'en, og vi
+// poller til data.json faktisk har flyttet sig. Fejler dispatchen, falder
+// vi ærligt tilbage til ren genhentning i stedet for at lyve "OPDATERET".
 async function triggerRefresh() {
   const btn = document.getElementById('refresh-btn');
   const mBtn = document.getElementById('mobile-refresh-btn');
   const status = document.getElementById('refresh-status');
-  [btn, mBtn].forEach(b => { if(b) { b.disabled = true; b.textContent = '↻ HENTER...'; }});
-  status.textContent = '';
+  const setTxt = t => [btn, mBtn].forEach(b => { if (b) b.textContent = t; });
+  const setStatus = t => { if (status) status.textContent = t; };
+  const reset = () => {
+    if (btn)  { btn.textContent  = '↻ OPDATÉR DATA'; btn.disabled  = false; }
+    if (mBtn) { mBtn.textContent = '↻ OPDATÉR';      mBtn.disabled = false; }
+  };
+  [btn, mBtn].forEach(b => { if (b) b.disabled = true; });
+  setStatus(''); setTxt('↻ HENTER...');
+
+  const before = await _dataStamp();
+  let dispatched = false;
+  try {
+    await dispatchViaWorker('/refresh', {});
+    dispatched = true;
+  } catch (e) {
+    setStatus('Kun cache — ' + (e.status === 401 ? 'forkert kode' : 'ingen adgang'));
+  }
+
+  if (dispatched) {
+    setTxt('↻ KØRER...');
+    for (let i = 0; i < 18; i++) {
+      await new Promise(r => setTimeout(r, 5000));
+      const now = await _dataStamp();
+      if (now && before && now !== before) break;
+      setTxt('↻ KØRER ' + ((i + 1) * 5) + 's');
+    }
+  }
+
   try {
     await init();
-    const time = new Date().toLocaleTimeString('da-DK', {hour:'2-digit',minute:'2-digit'});
-    if(btn)  { btn.textContent = '✓ OPDATERET'; }
-    if(mBtn) { mBtn.textContent = '✓ ' + time; }
-    status.textContent = time;
-    setTimeout(() => {
-      if(btn)  { btn.textContent = '↻ OPDATÉR DATA'; btn.disabled = false; }
-      if(mBtn) { mBtn.textContent = '↻ OPDATÉR'; mBtn.disabled = false; }
-    }, 2000);
-  } catch(e) {
-    if(btn)  { btn.textContent = '↻ OPDATÉR DATA'; btn.disabled = false; }
-    if(mBtn) { mBtn.textContent = '↻ OPDATÉR'; mBtn.disabled = false; }
-    status.textContent = 'Fejl — prøv igen';
+    const time = new Date().toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
+    if (btn)  btn.textContent  = '✓ OPDATERET';
+    if (mBtn) mBtn.textContent = '✓ ' + time;
+    if (status && !status.textContent) setStatus(time);
+    setTimeout(reset, 2000);
+  } catch (e) {
+    reset();
+    setStatus('Fejl — prøv igen');
   }
+}
+
+// Læser data.json's tidsstempel UDEN OM raw.githubusercontent's CDN-cache,
+// som ?t=-parameteren ikke pålideligt slår igennem (læring 14/7). Contents
+// API'et er ucachet. Kaldes kun ved manuelt tryk — langt under de 60
+// anonyme kald/time.
+async function _dataStamp() {
+  try {
+    const r = await fetch(
+      'https://api.github.com/repos/hammerbamsen/fast-as-50/contents/data.json?ref=main',
+      { headers: { Accept: 'application/vnd.github.raw' }, cache: 'no-store' });
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.coachAssessmentTsFull || (d.meta && d.meta.updated) || null;
+  } catch (e) { return null; }
 }
 
 // Pull-to-refresh

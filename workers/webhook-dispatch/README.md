@@ -31,10 +31,11 @@ før den committes her.
 ## Status
 
 - [x] Worker-kode skrevet + testet (`worker.js`) — Intervals-webhook, plan-edit, health
-- [ ] Intervals.icu-webhook oprettet (afventer svar fra David — mailet 13/7)
-- [ ] Deployet til Cloudflare
-- [ ] Webhook-secret + callback-URL sat op hos Intervals.icu
-- [ ] `PLAN_EDIT_SECRET` sat, `plan.html` peger på Worker-URL
+- [x] Intervals.icu-webhook-adgang givet (David, 14/7): https://intervals.icu/oauth/client/580
+- [x] Deployet til Cloudflare (verificeret via `/health` 15/7: alle tre flag `true`)
+- [x] `PLAN_EDIT_SECRET` + `WEBHOOK_SECRET` sat på Worker'en
+- [ ] Callback-URL + secret sat på klient 580 hos Intervals.icu  ← SIDSTE TRIN
+- [x] `/refresh`-rute (16/7): OPDATÉR-knappen dispatcher nu selv `intervals-activity`
 
 ## Deploy — trin for trin
 
