@@ -176,6 +176,70 @@ def _summary_page(doc, program, weeks_meta, note_key, theme_color):
         row[2].text = w.get(note_key, "") or w.get("location", "")
 
 
+def _season_page(doc, season, theme_color):
+    """Faseoversigt for naeste saeson. Ikke ugesider — sessioner planlaegges
+    foerst naar hver fase aabner."""
+    doc.add_page_break()
+    p = doc.add_paragraph()
+    _run(p, f"SÆSON {season['year']}", bold=True, size=18, color=theme_color)
+
+    p = doc.add_paragraph()
+    _run(p, f"A-løb: Tour des Stations Ultrafondo · 28. aug 2027 · 242 km / 8.848 hm",
+         bold=True, size=12)
+    p = doc.add_paragraph()
+    _run(p, f"CTL {season['ctlAtRace']} på startlinjen (peak {season['ctlPeak']}) · "
+            f"FTP {season['ftpStart']} → {season['ftpTarget']} · "
+            f"{season['hoursPerWeekAvg']} t/uge i snit, {season['hoursPerWeekPeak']} i toppen",
+         size=10, color=MUTED)
+
+    tbl = doc.add_table(rows=1, cols=5)
+    tbl.style = "Light Grid Accent 1"
+    hdr = tbl.rows[0].cells
+    for i, h in enumerate(["Fase", "Uger", "Periode", "CTL", "FTP"]):
+        hdr[i].text = h
+        for r in hdr[i].paragraphs[0].runs:
+            r.font.bold = True
+
+    weeks = {w["week"]: w for w in season["weeks"]}
+    for ph in season["phases"]:
+        a, b = ph["weekFrom"], ph["weekTo"]
+        wa, wb = weeks[a], weeks[b]
+        d1 = date.fromisoformat(wa["start"])
+        d2 = date.fromisoformat(wb["start"]) + timedelta(days=6)
+        row = tbl.add_row().cells
+        row[0].text = ph["name"]
+        row[1].text = f"{a}-{b}"
+        row[2].text = (f"{d1.day}. {MON_DA[d1.month-1]} {str(d1.year)[2:]} → "
+                       f"{d2.day}. {MON_DA[d2.month-1]} {str(d2.year)[2:]}")
+        row[3].text = f"{wa['ctlTarget']}→{wb['ctlTarget']}"
+        row[4].text = str(ph["ftpTarget"])
+
+    for key, label in [("CAMP", "Lejre — her bygges CTL"), ("RACE", "Løb")]:
+        hits = [w for w in season["weeks"] if w["blockType"] == key]
+        if not hits:
+            continue
+        p = doc.add_paragraph()
+        _run(p, label, bold=True, size=11, color=theme_color)
+        for w in hits:
+            p = doc.add_paragraph()
+            _run(p, f"Uge {w['week']} · {_fmt_date(w['start'])} "
+                    f"{date.fromisoformat(w['start']).year} · {w['location']} · "
+                    f"CTL {w['ctlTarget']} · {w['tssTarget']} TSS", size=10)
+            if w.get("note"):
+                p = doc.add_paragraph()
+                _run(p, f"    {w['note']}", size=9, color=MUTED)
+
+    wp = season.get("weightPlan")
+    if wp:
+        p = doc.add_paragraph()
+        _run(p, "Vægt", bold=True, size=11, color=theme_color)
+        p = doc.add_paragraph()
+        _run(p, f"{wp['startKg']} → {wp['targetKg']} kg, max {wp['maxLossPerWeekKg']} kg/uge. "
+                f"Mål nået {wp['holdFromMonth']}, derefter vedligehold.", size=10)
+        p = doc.add_paragraph()
+        _run(p, f"    {wp['note']}", size=9, color=MUTED)
+
+
 def generate_kennet(plan: dict) -> bytes:
     doc = Document()
     prog = plan["program"]
@@ -187,6 +251,8 @@ def generate_kennet(plan: dict) -> bytes:
     for wm in plan["weeks"]:
         _week_page(doc, wm, kennet["days"], "note", WINE)
     _summary_page(doc, prog, plan["weeks"], "note", WINE)
+    if plan.get("season2027"):
+        _season_page(doc, plan["season2027"], GOLD)
 
     from io import BytesIO
     buf = BytesIO()
