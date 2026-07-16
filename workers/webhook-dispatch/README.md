@@ -1,10 +1,11 @@
 # Cloudflare Worker — Intervals-webhook (Fase 3) + token-fri dispatch + health
 
-Én Worker, seks ruter — dækker al PAT-fri dispatch for hele Fast as Fifty:
+Én Worker, syv ruter — dækker al PAT-fri dispatch for hele Fast as Fifty:
 
 - **`POST /`** — Intervals.icu-webhook. Udløser med det samme
   `repository_dispatch` mod GitHub (`intervals-activity`), i stedet for at
-  vente på `update-kpi.yml`'s cron (hver 10.–30. min). `webhook-receiver.yml`
+  vente på `update-kpi.yml`'s cron (som i praksis kun kører hver 2–3,5 time —
+  se Læringer nedenfor, `*/30` bliver throttlet af GitHub). `webhook-receiver.yml`
   findes allerede i repoet og kører bare `update_kpi.py` på ny — Worker'en
   skal derfor kun afgøre OM den skal trigge, ikke forstå hele payloaden.
 - **`POST /plan-edit`** — erstatter den aldrig-deployede Azure Function
@@ -12,6 +13,11 @@
   `eva.html`.
 - **`POST /af-registrering`** — bruges af `af.html` (AF-check-in).
 - **`POST /checkin`** — bruges af `checkin.html` (dagligt wellness-check-in).
+- **`POST /refresh`** — manuel trigger fra dashboardets OPDATÉR-knap.
+  Dispatcher samme event som Intervals-webhooken (`intervals-activity`), men
+  bag `X-Plan-Secret` i stedet for `WEBHOOK_SECRET`, så browseren aldrig ser
+  webhook-hemmeligheden. Nødvendig fordi wellness (morgenvægt) og
+  Strava-aktiviteter IKKE udløser aktivitets-webhooks.
 - **`POST /push-subscribe`** — bruges af `eva.html` og `index.html` (web
   push-abonnement).
 - **`GET /health`** — bekræfter at Worker'en kører og er konfigureret
@@ -30,12 +36,57 @@ før den committes her.
 
 ## Status
 
-- [x] Worker-kode skrevet + testet (`worker.js`) — Intervals-webhook, plan-edit, health
-- [x] Intervals.icu-webhook-adgang givet (David, 14/7): https://intervals.icu/oauth/client/580
-- [x] Deployet til Cloudflare (verificeret via `/health` 15/7: alle tre flag `true`)
-- [x] `PLAN_EDIT_SECRET` + `WEBHOOK_SECRET` sat på Worker'en
-- [ ] Callback-URL + secret sat på klient 580 hos Intervals.icu  ← SIDSTE TRIN
-- [x] `/refresh`-rute (16/7): OPDATÉR-knappen dispatcher nu selv `intervals-activity`
+**LIVE siden 16/7-2026.** Hele kaeden verificeret ende-til-ende:
+Intervals -> Worker -> GitHub -> data.json paa **7 sekunder**
+(aktivitet aendret 13:30:36Z, workflow-run startet 13:30:43Z, conclusion success).
+
+- [x] Worker-kode skrevet + testet (`worker.js`)
+- [x] Deployet til Cloudflare (`/health`: alle flag `true`)
+- [x] Webhook-adgang givet af David 14/7: https://intervals.icu/oauth/client/580
+- [x] `WEBHOOK_SECRET` + `PLAN_EDIT_SECRET` sat
+- [x] Webhook-URL sat paa klient 580, `ACTIVITY_UPLOADED` + `ACTIVITY_UPDATED` valgt
+- [x] **Atlet i599466 har OAuth-godkendt app'en** (scope `ACTIVITY:READ`)
+- [x] `ANTHROPIC_API_KEY` tilfoejet til `webhook-receiver.yml`
+- [x] `/refresh`-rute skrevet + mock-testet (6/6)
+- [ ] `/refresh` deployet til Cloudflare  <- ENESTE UDESTAAENDE
+
+## Laeringer der kostede tid (16/7)
+
+**1. Cron'en loeg.** `update-kpi.yml` siger `*/30`, men GitHub throttler
+scheduled Actions haardt. Faktiske koersler 16/7: 01:00, 04:38, 07:22, 09:34,
+11:39 UTC — dvs. **hver 2-3,5 time**, ikke hver 30. min. `*/30` er en
+hensigtserklaering, ikke en aftale. Webhooken er derfor ikke luksus: uden den
+er load-billedet systematisk forkert flere timer dagligt.
+
+**2. "0 athletes are testing it" var den stille blokering.** Webhook-URL,
+secret og event-typer kan vaere 100% korrekte — Intervals sender alligevel
+ingenting, foer en atlet har OAuth-godkendt app'en. Consent-URL:
+`https://intervals.icu/oauth/authorize?client_id=580&redirect_uri=http%3A%2F%2Flocalhost%2F&scope=ACTIVITY%3AREAD&response_type=code`
+Koden fra `localhost/?code=...` veksles paa `POST https://intervals.icu/api/oauth/token`
+(IKKE `/oauth/token` — den giver 405).
+
+**3. Cloudflare-secrets kan ikke laeses tilbage.** Derfor kan man ikke
+verificere at to sider matcher — kun overskrive. Kopiér ALTID fra den side der
+kan laeses (Intervals) til den der ikke kan (Cloudflare). Symptomet paa mismatch
+er et paent `401` fra SEND TEST-WEBHOOK — hvilket samtidig BEVISER at URL'en er
+rigtig og Worker'en koerer.
+
+**4. Worker'en svarer 2xx baade ved dispatch og ved bevidst ignorering.**
+Et groent "OK: 2xx" fra SEND TEST-WEBHOOK beviser derfor IKKE at der skete
+noget. Verificér altid paa GitHub-siden (`webhook-receiver.yml`-runs), ikke paa
+Intervals-siden.
+
+**5. `webhook-receiver.yml` manglede `ANTHROPIC_API_KEY`** (mens `update-kpi.yml`
+havde den). Havde webhooken vaeret taendt uden det fix, ville HVER koersel have
+skrevet data.json med doed coach-tekst. Tjek altid env-paritet mellem workflows
+der koerer samme script.
+
+**6. Intervals API:** aktiviteter opdateres paa `PUT /api/v1/activity/{id}`
+(ikke `/athlete/{id}/activities/{id}` — 405). `{"description": null}` ignoreres
+stille; brug tom streng for at rydde et felt.
+
+**7. Ingen loop-risiko ved `ACTIVITY_UPDATED`:** `update_kpi.py` har nul
+skrivninger til Intervals (kun laesninger), saa den kan ikke trigge sig selv.
 
 ## Deploy — trin for trin
 
