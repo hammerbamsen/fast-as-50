@@ -26,7 +26,7 @@ from modules.config   import (API_KEY, ATHLETE_ID, GH_TOKEN, ANTHROPIC_KEY,
                                CTL_START, CTL_GOAL, AF_GOAL, SLEEP_GOAL_HOURS,
                                SWIM_GOAL_M, RUN_KM_GOAL, RUN_KM_GOAL_WEEK,
                                api_get, ctl_plan_for_week, fix_enc, fmt, color_for)
-from modules.fitness  import get_fitness, get_wellness_7d, get_history_7d, get_ctl_curve
+from modules.fitness  import get_fitness, get_wellness_7d, get_history, get_ctl_curve
 from modules.af       import (get_af_this_week, get_af_history, get_full_af_log,
                                get_af_streak, monday_this_week)
 from modules.sessions import (get_activities_week, get_workout_compliance_this_week,
@@ -98,7 +98,7 @@ def main():
     # ugedag. Forhindrer mismatch som "7 AF-dage ud af 6 afsluttede dage".
     days_completed = weekday + 1  # Alle kalenderdage fra mandag t.o.m. i dag (0=man, 4=fre)
     try:
-        history    = get_history_7d()  # existing tilføjes efter data.json er hentet
+        history    = get_history()  # fuldt 90-dages vindue, bygget efter dato
     except Exception as _e:
         print(f"  HISTORY FEJL: {_e}")
         import traceback; traceback.print_exc()
@@ -119,13 +119,6 @@ def main():
         print("❌ Kunne ikke hente data.json — afbryder med exit 1 så Actions-kørslen bliver RØD")
         sys.exit(1)
     data = json.loads(data_raw)
-    # Opdater history med existing cache nu hvor data er hentet
-    if history is not None:
-        try:
-            history = get_history_7d(existing=data)
-        except Exception as _e2:
-            print(f"  HISTORY v2 FEJL: {_e2}")
-            import traceback; traceback.print_exc()
     data.pop('_debug_activities_tss', None)  # ryd op efter tidligere TSS-diagnose
     data.pop('_debug_full_activity', None)   # ryd op efter denne kørsel (sat igen nedenfor om nødvendigt)
 
