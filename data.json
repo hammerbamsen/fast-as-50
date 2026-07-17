@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-17 08:16",
+    "updated": "2026-07-17 09:55",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -23,16 +23,16 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "50,1",
+      "value": "48,6",
       "unit": "",
       "sub": "Uge 7-mål 54 · Slutmål 56 (uge 14)",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-15,6",
+      "value": "-9,0",
       "unit": "",
-      "sub": "Hård blok · CTL−ATL, frisk >0",
-      "color": "#E67E22"
+      "sub": "Form · CTL−ATL, frisk >0",
+      "color": "#27AE60"
     },
     "sleep": {
       "value": "7,6",
@@ -53,13 +53,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "241",
+      "value": "310",
       "unit": "TSS",
-      "sub": "241 af 591 planlagt TSS",
+      "sub": "310 af 591 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "77,7",
+      "value": "146,5",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 8
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 7. {HL} Fokus: 241 af 591 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 180 min Mallorca, Cykel Z2 210 min Mallorca. 4 AF-dage i 5 afsluttede dage — 1 mangler i 2 dage tilbage. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 7. {HL} Fokus: 310 af 591 TSS er i hus — 3 sessioner tilbage, heriblandt Cykel Z2 210 min Mallorca, Løb Z1-Z2 30 min let. 4 AF-dage i 5 afsluttede dage — 1 mangler i 2 dage tilbage. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
   "coachHighlight": "Søvn på 7,6 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -179,8 +179,14 @@
       "day": "Fre",
       "disc": "bike",
       "label": "Cykel Z2 180 min Mallorca",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 108,
+      "actual_tss": 69,
+      "actual_mins": 194,
+      "planned_mins": 180,
+      "intervals_compliance": 53.1
     },
     {
       "day": "Lør",
@@ -208,7 +214,7 @@
     43.5,
     48.8,
     47.2,
-    50.1
+    48.6
   ],
   "weightHistory": [
     null,
@@ -1022,7 +1028,7 @@
     },
     {
       "date": "2026-07-17",
-      "v": -15.6,
+      "v": -8.9,
       "real": true
     }
   ],
@@ -1497,8 +1503,14 @@
           "day": "Fre",
           "disc": "bike",
           "label": "Cykel Z2 180 min Mallorca",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 108,
+          "actual_tss": 69,
+          "actual_mins": 194,
+          "planned_mins": 180,
+          "intervals_compliance": 53.1
         },
         {
           "day": "Lør",
@@ -1862,13 +1874,13 @@
     }
   ],
   "train_mins": {
-    "bike": 176.0,
+    "bike": 370.0,
     "commute": 36.0,
     "openwater": 76.0,
     "run": 51.0,
     "strength": 31.0,
     "planned": 744.0,
-    "actual_total": 370.0
+    "actual_total": 564.0
   },
   "fatHistory": [
     null,
@@ -2074,8 +2086,8 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 47 af 98 · Fredag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL er 50.1 mod ugemålets 54 — det er et lille underskud, men det afspejler ugens karakter: Mallorca-tur med rejse og lav TSS de første dage, ikke manglende indsats. TSB på -15.6 er håndterbar og godt inden for Friels grænse. Torsdagens 60-min Mallorca-tur landede flot med 94.6% i Z2 på watt — det er præcis det du vil se på en lang cykeldag. Dagens 180-min Z2-tur er endnu ikke forsøgt: hold wattene i din Z2-zone hele vejen, og lad NP være dit styrende tal på kuperet terræn frem for den rå tid-i-zone.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtmåling, så den springer vi over her.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 4 AF-dage ud af 5 dage gået — stærkt og helt i tråd med målet på 5 for ugen. Streaken er oppe på 8 dage. Lørdag og søndag er to rolige træningsdage, så det er et godt udgangspunkt for at lukke ugen af med de resterende AF-dage og holde streaken kørende.</p>",
-  "coachAssessmentTs": "06:16",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 47 af 98 · Fredag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 48.6 mod ugemålets 54 — det afspejler ugens karakter som rejse- og akkumuleringsuge, hvor TSS-bidragene på de første dage var moderate. TSB på -9.0 er sundt og godt inden for rammen. Fredagens lange tur leverede god mængde, men effekten lå for lavt — 64.5% af tiden under Z2. Det er et mønster du også så onsdag. Til næste lange Mallorca-tur: hold wattene aktivt oppe i de flade og rullende sektioner — lad ikke NP falde under 130W bare fordi terrænet giver pausemuligheder.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vejning — ingen kommentar på tal. En stor cykeluge som denne skaber et reelt kalorieunderskud, men sørg for at proteinet er højt nok til at musklerne kan følge med — specielt efter de hårde VO2-pas tirsdag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 4 AF-dage ud af 5 dage gået — det er stærkt og i god takt. Lørdag er endnu en lang tur — hold hovedet koldt socialt om aftenen. Søndag er let: 30 min løb og 2000m åbent vand — begge pas med lav intensitet, og de skal holdes der. Gå ind i uge 8 med en TSB der er på vej op.</p>",
+  "coachAssessmentTs": "07:56",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -2084,7 +2096,7 @@
       "message": "HRV 50,0 ms — 12% under 7d-snit (56,5 ms). Kroppen er presset."
     }
   ],
-  "tsb": -15.6,
+  "tsb": -9.0,
   "swimHistory": [
     {
       "week": 1,
@@ -2130,7 +2142,7 @@
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i166270320",
+  "coachAssessmentLastActId": "i166516141",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Cykel Z2 180 min Mallorca",
   "weightGoal": 70,
@@ -2349,8 +2361,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-17T06:16:56.997522",
-  "coachAssessmentTsFull": "2026-07-17T06:16:56.997506",
+  "credentialsCheckedTs": "2026-07-17T07:56:06.578653",
+  "coachAssessmentTsFull": "2026-07-17T07:56:06.578637",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 4
 }
