@@ -47,70 +47,82 @@ def get_wellness_7d():
     return None
 
 
-def get_history_7d(existing=None):
-    """Inkrementel historik: tilføj dagens wellness til eksisterende cache."""
+def get_history(existing=None):
+    """Fuld historik: hent hele 90-dages vinduet fra Intervals og byg efter DATO.
+
+    Erstatter den tidligere inkrementelle get_history_7d(), som kun hentede 7
+    dage og fletted dem ind i en positionsbaseret cache. Cachen blev aldrig
+    rykket ved dagsskifte, så kun de sidste ~8 pladser blev opdateret; alt
+    ældre frøs fast og mellemliggende dage blev overskrevet og tabt
+    (verificeret hul: 22/6-9/7 2026). Ingen cache => ingen drift.
+
+    `existing` er beholdt for bagudkompatibilitet, men bruges ikke.
+
+    Returnerer None ved API-fejl eller tomt svar -- ALDRIG lister af None.
+    Kaldsstedet i update_kpi.py tjekker truthiness, og en liste af 90 None er
+    truthy: at returnere den ville overskrive god historik med nuller.
+    """
     from datetime import date, timedelta
-    DAYS = 90
-    today_str = str(date.today())
+    DAYS   = 90
+    today  = date.today()
+    oldest = str(today - timedelta(days=DAYS - 1))
+    newest = str(today)
 
-    # Brug 7-dages kald - præcist samme som get_wellness_7d der virker
-    oldest = str(date.today() - timedelta(days=7))
-    newest = str(date.today())
     r = api_get(f'{BASE}/wellness', auth=AUTH, params={'oldest': oldest, 'newest': newest})
+    if not r or r.status_code != 200:
+        print(f"  history: API-fejl ({getattr(r, 'status_code', 'intet svar')}) -- beholder eksisterende historik")
+        return None
 
-    daily = {}  # dato -> {weight, hrv, sleep, fat, tsb}
-    if r and r.status_code == 200:
-        rows = r.json()
-        print(f"  history_7d: {len(rows)} rækker fra API")
-        if rows:
-            print(f"  history_7d sample keys: {list(rows[-1].keys())[:20]}")
-        for row in rows:
-            # Intervals bruger 'id' felt som dato (YYYY-MM-DD), ikke 'date'
-            d = (row.get('id') or row.get('date') or '')[:10]
-            if not d:
-                continue
-            ctl = row.get('ctl')
-            atl = row.get('atl')
-            tsb = row.get('tsb')
-            tsb_val = round(ctl - atl, 1) if (ctl and atl) else (round(tsb, 1) if tsb else None)
-            s = row.get('sleepSecs')
-            daily[d] = {
-                'weight': round(row['weight'], 1) if row.get('weight') is not None else None,
-                'fat':    round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None,
-                'hrv':    round(row['hrv'], 1) if row.get('hrv') is not None else None,
-                'sleep':  round(s / 3600, 1) if s else None,
-                'tsb':    tsb_val,
-            }
-        print(f"  history_7d: {len(daily)} dage med dato")
-    else:
-        print(f"  history_7d: API fejl")
+    rows = r.json()
+    if not rows:
+        print("  history: tomt svar fra API -- beholder eksisterende historik")
+        return None
+    print(f"  history: {len(rows)} raekker fra API ({oldest} -> {newest})")
 
-    dates = [str(date.today() - timedelta(days=i)) for i in range(DAYS - 1, -1, -1)]
-    date_to_idx = {d: i for i, d in enumerate(dates)}
+    daily = {}
+    for row in rows:
+        # Intervals bruger 'id'-feltet som dato (YYYY-MM-DD), ikke 'date'
+        d = (row.get('id') or row.get('date') or '')[:10]
+        if not d:
+            continue
+        ctl = row.get('ctl')
+        atl = row.get('atl')
+        tsb = row.get('tsb')
+        # 'is not None' -- ikke truthiness: CTL/ATL/TSB kan lovligt vaere 0
+        if ctl is not None and atl is not None:
+            tsb_val = round(ctl - atl, 1)
+        elif tsb is not None:
+            tsb_val = round(tsb, 1)
+        else:
+            tsb_val = None
+        s = row.get('sleepSecs')
+        daily[d] = {
+            'weight': round(row['weight'], 1)  if row.get('weight')  is not None else None,
+            'fat':    round(row['bodyFat'], 1) if row.get('bodyFat') is not None else None,
+            'hrv':    round(row['hrv'], 1)     if row.get('hrv')     is not None else None,
+            'sleep':  round(s / 3600, 1)       if s                             else None,
+            'tsb':    tsb_val,
+        }
 
-    def build(field, cache_key):
-        cache = list((existing or {}).get(cache_key, []))
-        if len(cache) < DAYS:
-            cache = [None] * (DAYS - len(cache)) + cache
-        elif len(cache) > DAYS:
-            cache = cache[-DAYS:]
-        # Normalisér eksisterende flade tal → dict (real=False: ukendt oprindelse)
-        for i in range(DAYS):
-            if cache[i] is not None and not isinstance(cache[i], dict):
-                cache[i] = {'date': dates[i], 'v': cache[i], 'real': False}
-        # Overskriv/tilføj dagens faktiske Intervals-målinger (real=True)
-        for d_str, vals in daily.items():
-            if d_str in date_to_idx and vals.get(field) is not None:
-                cache[date_to_idx[d_str]] = {'date': d_str, 'v': vals[field], 'real': True}
-        return cache
+    dates = [str(today - timedelta(days=i)) for i in range(DAYS - 1, -1, -1)]
 
-    return {
-        'weightHistory': build('weight', 'weightHistory'),
-        'fatHistory':    build('fat',    'fatHistory'),
-        'hrvHistory':    build('hrv',    'hrvHistory'),
-        'sleepHistory':  build('sleep',  'sleepHistory'),
-        'tsbHistory':    build('tsb',    'tsbHistory'),
+    def build(field):
+        out = []
+        for d_str in dates:
+            v = daily.get(d_str, {}).get(field)
+            out.append({'date': d_str, 'v': v, 'real': True} if v is not None else None)
+        return out
+
+    result = {
+        'weightHistory': build('weight'),
+        'fatHistory':    build('fat'),
+        'hrvHistory':    build('hrv'),
+        'sleepHistory':  build('sleep'),
+        'tsbHistory':    build('tsb'),
     }
+    for k, v in result.items():
+        print(f"    {k}: {sum(1 for x in v if x)} af {DAYS} dage med maaling")
+    return result
 
 
 def get_ctl_curve():
