@@ -231,6 +231,8 @@ function saveSetup(e) {
   const t = document.getElementById('token-input').value.trim();
   if(!t) { alert('Indsæt en hemmelighed først.'); return; }
   setSecret(t);
+  // Skriv koden ind i sidens adresse, saa 'Foej til hjemmeskaerm' fanger den automatisk.
+  try { history.replaceState({}, '', location.pathname + '#s=' + encodeURIComponent(t)); } catch(_e){}
   init();
 }
 
