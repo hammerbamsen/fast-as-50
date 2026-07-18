@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18 02:55",
+    "updated": "2026-07-18 05:56",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -35,7 +35,7 @@
       "color": "#E67E22"
     },
     "sleep": {
-      "value": "7,5",
+      "value": "7,3",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#C0392B"
     },
     "hrv": {
-      "value": "53,9",
+      "value": "51,5",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -83,7 +83,7 @@
     "streak": 0
   },
   "coachSpeech": "Lørdag — uge 7 af 14. {HL} Fokus: 310 af 591 TSS er i hus — 3 sessioner tilbage, heriblandt Cykel Z2 210 min Mallorca, Løb Z1-Z2 30 min let. 4 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 7,5 timer er solid",
+  "coachHighlight": "Søvn på 7,3 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
     {
@@ -978,7 +978,11 @@
       "v": 50.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-07-18",
+      "v": 35.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1422,7 +1426,11 @@
       "v": 7.7,
       "real": true
     },
-    null
+    {
+      "date": "2026-07-18",
+      "v": 6.2,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3046,7 +3054,13 @@
   "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 48 af 98 · Lørdag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL er 50,9 mod ugemålet på 54 — gabet skyldes at Mallorca-ugen er bygget på lange Z2-pas, der leverer TSS gradvist frem for spikes. TSB på -18,3 er kontrolleret og holder sig godt inden for Friel-grænsen. Dagens 210 min Z2 er endnu ikke forsøgt — det er det pas der lukker ugens store cykel-blok og bringer CTL tæt på målet. På Tors- og Fredagspas var NP henholdsvis 143W og 129W med meget frihjul — det afspejler kuperet terræn snarere end manglende indsats, men på næste lange Z2-tur er det værd at holde wattene lidt mere oppe på de flade og let stigende passager for at holde NP tættere på 150W+.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling — ingen kommentar her.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 4 AF-dage ud af 6 dage — det er stærkt og holder kursen mod ugemålet på 5. Der er to dage tilbage, og én alkoholfri dag er alt hvad der skal til for at lande målet. Fokus nu: gennemfør dagens 210 min, og lad Søndag blive en rolig afslutning med let løb og åbent vand.</p>",
   "coachAssessmentTs": "00:55",
   "commute_pairing_warnings": [],
-  "warnings": [],
+  "warnings": [
+    {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 35,0 ms — 32% under 7d-snit (51,5 ms). Kroppen er presset."
+    }
+  ],
   "tsb": -18.3,
   "swimHistory": [
     {
@@ -3312,7 +3326,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-18T00:55:49.325145",
+  "credentialsCheckedTs": "2026-07-18T03:56:05.999030",
   "coachAssessmentTsFull": "2026-07-18T00:55:49.325127",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 4
