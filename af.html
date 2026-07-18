@@ -458,6 +458,13 @@ async function init() {
     localStorage.removeItem(SECRET_KEY);
     window.history.replaceState({}, '', window.location.pathname);
   }
+  // Seed delt hemmelighed fra URL-hash (#s=...) — lader et hjemmeskaerms-ikon
+  // saa koden ind igen ved HVER aabning, saa den overlever at iOS rydder localStorage.
+  // Hash-delen sendes aldrig til nogen server; koden ligger kun paa enheden.
+  try {
+    var _seed = new URLSearchParams((location.hash||'').replace(/^#/,'')).get('s');
+    if(_seed){ setSecret(_seed); }
+  } catch(_e){}
   if(!getSecret()) { showSetup(); return; }
 
   document.getElementById('view').innerHTML = '<div style="text-align:center;padding:40px;font-family:Space Mono,monospace;font-size:11px;color:#7A6A58;letter-spacing:.08em">HENTER DATA...</div>';
