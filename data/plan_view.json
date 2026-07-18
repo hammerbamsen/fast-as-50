@@ -1,5 +1,5 @@
 {
- "generated": "2026-07-18T00:55:51Z",
+ "generated": "2026-07-18T03:56:08Z",
  "kennet": {
   "seed": {
    "date": "2026-07-18",
@@ -323,7 +323,15 @@
     "week": 7,
     "projEndCtl": 51.2,
     "deviation": -2.8,
-    "flags": []
+    "flags": [
+     {
+      "week": 7,
+      "rule": "low_readiness",
+      "level": "WARN",
+      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+      "historic": false
+     }
+    ]
    },
    {
     "week": 8,
@@ -436,6 +444,13 @@
     "historic": true
    },
    {
+    "week": 7,
+    "rule": "low_readiness",
+    "level": "WARN",
+    "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+    "historic": false
+   },
+   {
     "week": 12,
     "rule": "vo2_missing",
     "level": "WARN",
@@ -534,7 +549,7 @@
    "suggestion": null,
    "phase_guard": null
   },
-  "readiness": "NORMAL"
+  "readiness": "LOW"
  },
- "inputsHash": "afccd00ec5a1dec6"
+ "inputsHash": "390fc4e4a1c5359c"
 }
