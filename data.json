@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-19 09:26",
+    "updated": "2026-07-19 09:39",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -29,7 +29,7 @@
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-13,1",
+      "value": "-12,7",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -41,7 +41,7 @@
       "color": "#2874A6"
     },
     "runKm": {
-      "value": "10,1",
+      "value": "14,8",
       "unit": "km",
       "sub": "Mål 40+ km uge 10",
       "color": "#C0392B"
@@ -53,10 +53,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "402",
+      "value": "429",
       "unit": "TSS",
-      "sub": "402 af 605 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "429 af 605 planlagt TSS",
+      "color": "#E67E22"
     },
     "bikeKm": {
       "value": "222,0",
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 2
   },
-  "coachSpeech": "Søndag — afslut uge 7 stærkt. {HL} Godt: 6/7 AF-dage — ugens mål er ramt. Fokus: 402 af 605 TSS er i hus — 2 sessioner tilbage, heriblandt Løb Z1-Z2 30 min let, Svøm 2000m åbent vand kontinuerligt. Keep moving forward. 📊 Store billede: CTL 50,1 er 3.9 point BAG ugeplanen (planmål uge 7: 54).  \"Sæt målet højt, men sæt i dag realistisk.\"",
+  "coachSpeech": "Søndag — afslut uge 7 stærkt. {HL} Godt: 6/7 AF-dage — ugens mål er ramt. Fokus: 429 af 605 TSS er i hus — Svøm 2000m åbent vand kontinuerligt står tilbage. Keep moving forward. 📊 Store billede: CTL 50,1 er 3.9 point BAG ugeplanen (planmål uge 7: 54).  \"Sæt målet højt, men sæt i dag realistisk.\"",
   "coachHighlight": "Søvn på 7,4 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "swim",
@@ -206,8 +206,14 @@
       "day": "Søn",
       "disc": "run",
       "label": "Løb Z1-Z2 30 min let",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": 100,
+      "actual_tss": 27,
+      "actual_mins": 30,
+      "planned_mins": 30,
+      "intervals_compliance": 90.0
     },
     {
       "day": "Søn",
@@ -1886,7 +1892,7 @@
     },
     {
       "date": "2026-07-19",
-      "v": -13.1,
+      "v": -12.7,
       "real": true
     }
   ],
@@ -2383,8 +2389,14 @@
           "day": "Søn",
           "disc": "run",
           "label": "Løb Z1-Z2 30 min let",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": 100,
+          "actual_tss": 27,
+          "actual_mins": 30,
+          "planned_mins": 30,
+          "intervals_compliance": 90.0
         },
         {
           "day": "Søn",
@@ -2786,13 +2798,13 @@
     }
   ],
   "train_mins": {
+    "run": 81.0,
     "bike": 587.0,
     "commute": 36.0,
     "openwater": 76.0,
-    "run": 51.0,
     "strength": 31.0,
     "planned": 785.0,
-    "actual_total": 781.0
+    "actual_total": 811.0
   },
   "fatHistory": [
     {
@@ -3106,11 +3118,11 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 49 af 98 · Søndag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">En massiv cykeluge på Mallorca er landet — tre lange Z2-ture på 60, 180 og 210 min plus VO2-stimulus i benene tirsdag. CTL er oppe på 50.1 og TSB på -13.1, hvilket er godt kontrolleret efter den mængde arbejde. Lørdays 210-minutters tur ramte zone-målet præcist med 45.8% i Z2+Z3 — de høje frihjuls-procenter på alle tre dage afspejler Mallorcas terræn, og NP-tallene (129–152W) er det reelle mål her. Fredagens tur lå under 40%-målet med kun 34.7% i Z2+Z3 — til næste lange flad-eller-bakketur på fast underlæg handler det om at holde wattene oppe og undgå at glide ned i unødvendig frihjul på de lette passager.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægttmåling i dag, så der er intet at vurdere her. En stor cykeluge giver typisk et lille kalorieoverskud i felten — hold styr på restitutionsmåltidet i dag og hold dig tæt på planen i overgangen hjem.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 6 AF-dage ud af 7 dage — det er stærkt og over ugekravet på 5. Ugens mål er allerede nået med god margin. Hvis du holder dig alkoholfri resten af søndagen, slutter ugen helt rent.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">📊 <strong>Store billede</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 50.1 er 3.9 point bag ugeplanen på 54 — det er et reelt efterslæb. Det er ikke et tegn på dårlig indsats; en rejseuge med transport og terræn-cykling giver naturligt lavere TSS end en struktureret hjemmebaneuge. Næste uge skal prioritere kvalitet og volumen for at lukke gabet inden planens anden halvdel.</p>",
-  "coachAssessmentTs": "06:24",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 49 af 98 · Søndag · Uge 7</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">En massiv cykeluge på Mallorca er landet — tre lange ture på 60, 180 og 210 min plus en VO2-løbesession og styrke. CTL er steget til 50,1 med TSB på -12,7, hvilket er præcis det forventede billede efter en stor belastningsuge. Søndagsløbet lå tæt under Z2-tempoet i pace — næste gang du løber en let Z1-Z2 session, skru lidt op for farten, så du rammer Z2 reelt og ikke bare ruller rundt i Z1. Onsdagens hometrainer og fredagens Mallorca-tur lå under 40%-målet for Z2/Z3 i watt — på kuperet terræn er NP det mere retvisende mål, men ved næste mellemlange Z2-cykeltur på fladt underlag er det en god lejlighed til at holde wattene oppe og undgå for meget passiv freewheel-tid.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtstatus at kommentere på. En stor cykeluge med varme og mange timers arbejde giver typisk både god kalorieforbrænding og en del sult — hold øje med, at du ikke kompenserer for meget i de næste dage, hvor kroppen er i restitution.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 6 AF-dage ud af 7 dage i ugen — det er over ukemålet på 5, og streaken er på 2 dage. Ugen er i mål på det front. Ingen planlagte pas tilbage, så brug resten af dagen på at spise godt, sove tidligt og forberede kroppen på næste blok.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">📊 <strong>Store billede</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL er 50,1 mod ugeplanen på 54 — du er 3,9 point bag. Det afspejler ugens karakter: en rejseuge med stor cykelbelastning, men uden de løbe- og svømmevolumener der normalt løfter CTL hurtigere. Du er stadig godt inden for Friels ramme for sikker CTL-progression, og TSB på -12,7 viser at belastningen har sat sig — restitution næste uge er det rigtige træk nu.</p>",
+  "coachAssessmentTs": "07:39",
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -13.1,
+  "tsb": -12.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3156,7 +3168,7 @@
     }
   ],
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
-  "coachAssessmentLastActId": "i166799231",
+  "coachAssessmentLastActId": "i167049553",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Løb Z1-Z2 30 min let",
   "weightGoal": 70,
@@ -3375,8 +3387,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-19T07:26:54.864304",
-  "coachAssessmentTsFull": "2026-07-19T06:24:16.934288",
+  "credentialsCheckedTs": "2026-07-19T07:39:41.366593",
+  "coachAssessmentTsFull": "2026-07-19T07:39:41.366577",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 6
 }
