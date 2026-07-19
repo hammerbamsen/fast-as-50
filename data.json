@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-19 06:47",
+    "updated": "2026-07-19 08:13",
     "week": 7,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -71,18 +71,18 @@
       "color": "#27AE60"
     },
     "afStreak": {
-      "value": "1",
+      "value": "2",
       "unit": "",
       "sub": "Dage i træk · mål 5/uge",
       "color": "#59182A"
     }
   },
   "af": {
-    "weekDone": 5,
+    "weekDone": 6,
     "target": 5,
-    "streak": 1
+    "streak": 2
   },
-  "coachSpeech": "Søndag — afslut uge 7 stærkt. {HL} Godt: 5/7 AF-dage — ugens mål er ramt. Fokus: 402 af 591 TSS er i hus — 2 sessioner tilbage, heriblandt Løb Z1-Z2 30 min let, Svøm 2000m åbent vand kontinuerligt. Keep moving forward. 📊 Store billede: CTL 50,1 er 3.9 point BAG ugeplanen (planmål uge 7: 54).  \"Sæt målet højt, men sæt i dag realistisk.\"",
+  "coachSpeech": "Søndag — afslut uge 7 stærkt. {HL} Godt: 6/7 AF-dage — ugens mål er ramt. Fokus: 402 af 591 TSS er i hus — 2 sessioner tilbage, heriblandt Løb Z1-Z2 30 min let, Svøm 2000m åbent vand kontinuerligt. Keep moving forward. 📊 Store billede: CTL 50,1 er 3.9 point BAG ugeplanen (planmål uge 7: 54).  \"Sæt målet højt, men sæt i dag realistisk.\"",
   "coachHighlight": "Søvn på 7,4 timer er solid",
   "weekFocus": "Stor cykel-uge på Mallorca med første VO2-stimulus i benene",
   "today": [
@@ -1943,7 +1943,8 @@
     "2026-07-15": 0,
     "2026-07-16": 0,
     "2026-07-17": 1,
-    "2026-07-18": 0
+    "2026-07-18": 0,
+    "2026-07-19": 0
   },
   "all_weeks": {
     "1": {
@@ -2740,7 +2741,7 @@
     },
     {
       "week": 7,
-      "done": 5,
+      "done": 6,
       "total": 7,
       "label": "Uge 7"
     }
@@ -3323,7 +3324,7 @@
     59,
     56
   ],
-  "coachAssessmentError": null,
+  "coachAssessmentError": "ANTHROPIC_API_KEY ikke sat i miljøet",
   "coachAssessmentStale": false,
   "credentials": {
     "intervals": {
@@ -3331,11 +3332,11 @@
       "note": "Nøgle virker"
     },
     "anthropic": {
-      "ok": true,
-      "note": "Nøgle virker"
+      "ok": false,
+      "note": "ANTHROPIC_API_KEY er tom"
     }
   },
-  "credentialsCheckedTs": "2026-07-19T04:47:52.969424",
+  "credentialsCheckedTs": "2026-07-19T06:13:49.401767",
   "coachAssessmentTsFull": "2026-07-19T01:03:01.086429",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 5
