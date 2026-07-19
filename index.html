@@ -425,9 +425,9 @@ let D = {
     {label:"VÆGT", value:"71,9", unit:"kg", sub:"Mål <70 kg · snit 72,1 kg", color:"#E67E22"},
     {label:"FEDT%", value:"22,5", unit:"%", sub:"Mål <20%", color:"#C0392B"},
     {label:"CTL", value:"50,1", unit:"", sub:"Uge 7-mål 54 · Slutmål 56 (uge 14)", color:"#E67E22"},
-    {label:"TSS COMP.", value:"71", unit:"%", sub:"Planlagt 605 TSS", color:"#E67E22"},
+    {label:"TSS COMP.", value:"68", unit:"%", sub:"Planlagt 591 TSS", color:"#E67E22"},
     {label:"HRV", value:"49,9", unit:"ms", sub:"Snit 7d", color:"#7A6A58"},
-    {label:"LØB KM", value:"14,8", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
+    {label:"LØB KM", value:"10,1", unit:"km", sub:"Mål 40+ km uge 10", color:"#C0392B"},
   ],
   // today: (sættes fra data.json)
   week_sessions:[
@@ -999,79 +999,6 @@ function kpiGrid() {
   return html;
 }
 
-function trainMinutesBar() {
-  const tm = D.train_mins || {};
-  // Planlagt træning — indgår i faktisk-total mod planlagt
-  const trainTypes = [
-    {key:'run',       label:'Løb',     color:'var(--run)'},
-    {key:'bike',      label:'Cykel',   color:'var(--bike)'},
-    {key:'swim',      label:'Svøm',    color:'var(--swim)'},
-    {key:'strength',  label:'Styrke',  color:'var(--gold)'},
-    {key:'openwater', label:'OW',      color:'var(--openwater)'},
-  ];
-  // Ekstra aktivitet — vises separat, tæller ikke mod træningsmål
-  const extraTypes = [
-    {key:'commute',   label:'Pendl',   color:'var(--commute)'},
-    {key:'walk',      label:'Gå',      color:'var(--walk)'},
-    {key:'hike',      label:'Hike',    color:'var(--hike)'},
-  ];
-  const planned = tm.planned || 0;
-  // Faktisk total = kun planlagt træning (ikke gå/pendl/hike)
-  const actual = trainTypes.reduce((s,t)=>s+(tm[t.key]||0),0);
-  const extraTotal = extraTypes.reduce((s,t)=>s+(tm[t.key]||0),0);
-  const fmt = m => m >= 60 ? Math.floor(m/60)+'t'+(m%60>0?' '+Math.round(m%60)+'m':'') : Math.round(m)+'m';
-
-  const header = planned > 0
-    ? `<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
-        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">FAKTISK</span>
-        <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink)">${fmt(actual)} <span style="color:var(--muted)">/ ${fmt(planned)} planlagt</span></span>
-      </div>`
-    : '';
-
-  if (actual === 0 && extraTotal === 0) return header + '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);padding:4px 0">Ingen aktiviteter denne uge endnu</div>';
-
-  const barRow = (t) => {
-    const pct = planned > 0 ? Math.min(Math.round((tm[t.key]/planned)*100),100) : Math.round((tm[t.key]/Math.max(actual,1))*100);
-    return `<div style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${t.label.toUpperCase()}</span>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--ink);font-weight:700">${fmt(tm[t.key])}</span>
-      </div>
-      <div style="background:var(--cream-d);border-radius:4px;height:8px">
-        <div style="background:${t.color};border-radius:4px;height:8px;width:${pct}%"></div>
-      </div>
-    </div>`;
-  };
-
-  const trainBars = trainTypes.filter(t=>tm[t.key]>0).map(barRow).join('');
-
-  // Ekstra-bjælker: bredde måles mod ekstra-total (ikke træningsmål)
-  const extraBarRow = (t) => {
-    const pct = extraTotal > 0 ? Math.round((tm[t.key]/extraTotal)*100) : 0;
-    return `<div style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-        <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${t.label.toUpperCase()}</span>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--ink);font-weight:700">${fmt(tm[t.key])}</span>
-      </div>
-      <div style="background:var(--cream-d);border-radius:4px;height:8px">
-        <div style="background:${t.color};border-radius:4px;height:8px;width:${pct}%"></div>
-      </div>
-    </div>`;
-  };
-  const extraBars = extraTypes.filter(t=>tm[t.key]>0).map(extraBarRow).join('');
-  const extraSection = extraTotal > 0
-    ? `<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--cream-d)">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
-          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">EKSTRA AKTIVITET</span>
-          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${fmt(extraTotal)} · Ekstra aktivitet</span>
-        </div>
-        ${extraBars}
-      </div>`
-    : '';
-
-  return header + trainBars + extraSection;
-}
-
 function renderOverview() {
   return `
   <div class="hero-card">
@@ -1088,12 +1015,6 @@ function renderOverview() {
   <div class="card">
     <div class="label" style="margin-bottom:12px">Træningsfordeling — uge ${D.week}</div>
     ${trainingDonut()}
-  </div>
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
-      <div class="label" style="margin-bottom:0">Træningstimer — uge ${D.week}</div>
-    </div>
-    ${trainMinutesBar()}
   </div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
@@ -1487,29 +1408,75 @@ function trainingDonut() {
     if(s.disc2 && s.disc2 in counts) counts[s.disc2]++;
   });
   const rawTotal = Object.values(counts).reduce((a,b)=>a+b,0);
-  const total = rawTotal || 1;
   // Samlet træningstid (kun rigtig træning — samme afgrænsning som donut)
   const tm = D.train_mins || {};
   const trainMin = ['run','bike','swim','strength','openwater'].reduce((s,k)=>s+(tm[k]||0),0);
+  const planned = tm.planned || 0;
   const fmtDur = m => m >= 60 ? Math.floor(m/60)+'t'+(m%60>0?' '+Math.round(m%60)+'m':'') : Math.round(m)+'m';
   const colors = {run:'var(--run)',bike:'var(--bike)',swim:'var(--swim)',strength:'var(--gold)',openwater:'var(--openwater)'};
   const labels = {run:'Løb',bike:'Cykel',swim:'Svøm',strength:'Styrke',openwater:'OW'};
   if (rawTotal === 0) {
     return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);padding:4px 0">Ingen træningssessioner denne uge endnu</div>';
   }
+  // Donut proportional efter TID (falder tilbage til antal sessioner hvis ingen tid er logget endnu)
+  const byTime = trainMin > 0;
+  const arcTotal = byTime ? trainMin : (rawTotal || 1);
   let offset=0, cx=60, cy=60, r=45, stroke=18;
-  const segments = Object.entries(counts).filter(([k,v])=>v>0).map(([k,v])=>{
-    const pct = v/total;
-    const seg = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[k]}" stroke-width="${stroke}"
+  // Liste + segmenter: alle discipliner med enten session-antal eller logget tid
+  const entries = Object.keys(counts).filter(k => counts[k] > 0 || (tm[k]||0) > 0);
+  const segments = entries.map(k => {
+    const val = byTime ? (tm[k]||0) : counts[k];
+    const pct = arcTotal > 0 ? val/arcTotal : 0;
+    const seg = pct > 0 ? `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[k]}" stroke-width="${stroke}"
       stroke-dasharray="${pct*2*Math.PI*r} ${2*Math.PI*r}"
       stroke-dashoffset="${-offset*2*Math.PI*r}"
-      transform="rotate(-90 ${cx} ${cy})"/>`;
+      transform="rotate(-90 ${cx} ${cy})"/>` : '';
     offset+=pct;
-    return {seg, k, v, pct};
+    return {seg, k, v:counts[k]};
   });
+  const arcCount = segments.filter(s=>s.seg).length;
+  // Ekstra aktivitet (pendl/gå/hike) — tæller ikke mod træningstid, vises separat nederst
+  const extraTypes = [
+    {key:'commute', label:'Pendl', color:'var(--commute)'},
+    {key:'walk',    label:'Gå',    color:'var(--walk)'},
+    {key:'hike',    label:'Hike',  color:'var(--hike)'},
+  ];
+  const extraTotal = extraTypes.reduce((s,t)=>s+(tm[t.key]||0),0);
+  const extraSection = extraTotal > 0
+    ? `<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--cream-d)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em">EKSTRA AKTIVITET</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${fmtDur(extraTotal)}</span>
+        </div>
+        ${extraTypes.filter(t=>(tm[t.key]||0)>0).map(t=>{
+          const pct = extraTotal>0?Math.round((tm[t.key]/extraTotal)*100):0;
+          return `<div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+              <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)">${t.label.toUpperCase()}</span>
+              <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--ink);font-weight:700">${fmtDur(tm[t.key])}</span>
+            </div>
+            <div style="background:var(--cream-d);border-radius:4px;height:8px">
+              <div style="background:${t.color};border-radius:4px;height:8px;width:${pct}%"></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`
+    : '';
+  // Bundlinje: planlagt vs. faktisk (erstatter gentaget TRÆNINGSTID-total — det står allerede i donut-midten)
+  const footer = planned > 0
+    ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--cream-d)">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em">FAKTISK</span>
+        <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink)">${fmtDur(trainMin)} <span style="color:var(--muted);font-weight:400">/ ${fmtDur(planned)} planlagt</span></span>
+      </div>`
+    : (trainMin > 0
+      ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--cream-d)">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em">TRÆNINGSTID</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink);font-weight:700">${fmtDur(trainMin)}</span>
+        </div>`
+      : '');
   return `<div style="display:flex;align-items:center;gap:16px">
     <svg viewBox="0 0 120 120" style="width:96px;height:96px;flex-shrink:0">
-      ${total===1?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="${stroke}"/>`:''}
+      ${arcCount===1?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cream-d)" stroke-width="${stroke}"/>`:''}
       ${segments.map(s=>s.seg).join('')}
       <text x="${cx}" y="${cy+2}" text-anchor="middle" font-family="'Newsreader',serif" font-size="${trainMin>=60?'17':'22'}" fill="var(--wine)" font-weight="700">${trainMin>=60?Math.floor(trainMin/60)+'t'+(trainMin%60>0?' '+Math.round(trainMin%60)+'m':''):trainMin+'m'}</text>
       <text x="${cx}" y="${cy+18}" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" letter-spacing="0.5" fill="var(--muted)">TRÆNINGSTID</text>
@@ -1519,12 +1486,9 @@ function trainingDonut() {
         <span style="font-family:'Space Mono',monospace;font-size:10px;color:${colors[s.k]}">${labels[s.k].toUpperCase()}</span>
         <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--ink)">${s.v}× ${tm[s.k]>0?fmtDur(tm[s.k]):''}</span>
       </div>`).join('')}
-      ${trainMin > 0 ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--cream-d)">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em">TRÆNINGSTID</span>
-        <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink);font-weight:700">${fmtDur(trainMin)}</span>
-      </div>` : ''}
+      ${footer}
     </div>
-  </div>`;
+  </div>${extraSection}`;
 }
 
 // ── Navigation ────────────────────────────────────────────────
