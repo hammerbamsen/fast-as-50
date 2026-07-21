@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-07-21 01:01",
+    "updated": "2026-07-21 02:57",
     "week": 8,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 47,
-    "daysToChristiansborg": 40,
-    "dayName": "Mandag",
-    "date": "20. jul"
+    "daysToMedoc": 46,
+    "daysToChristiansborg": 39,
+    "dayName": "Tirsdag",
+    "date": "21. jul"
   },
   "kpis": {
     "weight": {
       "value": "71,9",
       "unit": "kg",
-      "sub": "Mål <70 kg · snit 72,1 kg",
+      "sub": "Mål <70 kg · snit 71,9 kg",
       "color": "#E67E22"
     },
     "fat": {
@@ -23,13 +23,13 @@
       "color": "#C0392B"
     },
     "ctl": {
-      "value": "54,5",
+      "value": "54,2",
       "unit": "",
       "sub": "Uge 8-mål 60 · Slutmål 56 (uge 14)",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "-32,0",
+      "value": "-26,4",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -82,17 +82,17 @@
     "target": 5,
     "streak": 3
   },
-  "coachSpeech": "Ny uge starter — uge 8 af 14. Build-uge. {HL} Godt: 1 AF-dage i 1 gennemførte dage — på rette spor. 4 mere og ugens mål er i hus. Fokus: Formen er under bundgrænsen — prioriter restitution før mere volumen. 83 af 585 TSS er i hus — 7 sessioner tilbage, heriblandt Svøm 2000m åbent vand (Christiansborg-tempo), Løb 16 km Z1–Z2 til fyret. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachSpeech": "Tirsdag — uge 8 af 14. {HL} Fokus: 83 af 585 TSS er i hus — 7 sessioner tilbage, heriblandt Svøm 2000m åbent vand (Christiansborg-tempo), Løb 16 km Z1–Z2 til fyret. 1 AF-dage i 2 afsluttede dage — 4 mangler i 5 dage tilbage. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
   "coachHighlight": "Søvn på 7,2 timer er solid",
   "weekFocus": "Byg videre på Mallorca-formen med kontrolleret intensitet mod uge ni",
   "today": [
     {
-      "discipline": "bike",
-      "title": "Cykel Sa Calobra via Puig Major",
+      "discipline": "swim",
+      "title": "Svøm 2000m åbent vand (Christiansborg-tempo)",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": true
+      "completed": false
     }
   ],
   "week_sessions": [
@@ -101,7 +101,6 @@
       "disc": "bike",
       "label": "Cykel Sa Calobra via Puig Major",
       "done": true,
-      "today": true,
       "completion": "done",
       "completion_pct": null,
       "actual_tss": 83,
@@ -112,7 +111,8 @@
       "day": "Tir",
       "disc": "swim",
       "label": "Svøm 2000m åbent vand (Christiansborg-tempo)",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Ons",
@@ -159,14 +159,9 @@
     48.8,
     47.2,
     49.7,
-    54.5
+    54.2
   ],
   "weightHistory": [
-    {
-      "date": "2026-04-22",
-      "v": 74.7,
-      "real": true
-    },
     {
       "date": "2026-04-23",
       "v": 74.5,
@@ -467,14 +462,10 @@
     null,
     null,
     null,
+    null,
     null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-04-22",
-      "v": 49.0,
-      "real": true
-    },
     {
       "date": "2026-04-23",
       "v": 54.0,
@@ -919,14 +910,10 @@
       "date": "2026-07-20",
       "v": 63.0,
       "real": true
-    }
+    },
+    null
   ],
   "sleepHistory": [
-    {
-      "date": "2026-04-22",
-      "v": 8.5,
-      "real": true
-    },
     {
       "date": "2026-04-23",
       "v": 7.6,
@@ -1367,14 +1354,10 @@
       "date": "2026-07-20",
       "v": 6.7,
       "real": true
-    }
+    },
+    null
   ],
   "tsbHistory": [
-    {
-      "date": "2026-04-22",
-      "v": -4.8,
-      "real": true
-    },
     {
       "date": "2026-04-23",
       "v": -11.9,
@@ -1818,6 +1801,11 @@
     {
       "date": "2026-07-20",
       "v": -32.0,
+      "real": true
+    },
+    {
+      "date": "2026-07-21",
+      "v": -26.4,
       "real": true
     }
   ],
@@ -2287,7 +2275,6 @@
           "disc": "bike",
           "label": "Cykel Sa Calobra via Puig Major",
           "done": true,
-          "today": true,
           "completion": "done",
           "completion_pct": null,
           "actual_tss": 83,
@@ -2298,7 +2285,8 @@
           "day": "Tir",
           "disc": "swim",
           "label": "Svøm 2000m åbent vand (Christiansborg-tempo)",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Ons",
@@ -2668,7 +2656,7 @@
     {
       "week": 8,
       "done": 1,
-      "total": 1,
+      "total": 2,
       "label": "Uge 8"
     }
   ],
@@ -2678,11 +2666,6 @@
     "actual_total": 224.0
   },
   "fatHistory": [
-    {
-      "date": "2026-04-22",
-      "v": 23.9,
-      "real": true
-    },
     {
       "date": "2026-04-23",
       "v": 23.4,
@@ -2983,19 +2966,20 @@
     null,
     null,
     null,
+    null,
     null
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 50 af 98 · Mandag · Uge 8</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL er 54,5 — det er 5,5 point under ugemålet på 60, og TSB er -32, hvilket er lige på grænsen af Friel's absolutte bundgrænse. Sa Calobra via Puig Major gav tydeligvis et ordentligt stød: 224 minutter i bjerget er reelt arbejde, og NP på 132W er et mere retvisende billede af indsatsen end de rå zone-procenter — 24,8% coasting på den slags terræn er forventeligt. Til næste tilsvarende bjergtur er læringen at holde wattene lidt højere på de rideable partier, så den samlede watt-zone-fordeling kommer over 40% i Z2+Z3. Resten af ugen skal køres med omtanke: TSB skal op, ikke ned.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægmåling i dag, så der er ikke noget at kommentere på der. Med Mallorca-basen og en uge der fortsat indeholder to svømpas, løb og cykel, er strukturen der — det er kostdisciplinen i de timer der ikke er træning, der afgør om vægten bevæger sig.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 1/1 på AF-dage i ugen indtil nu — og streaken er oppe på 3 dage, det er solidt. Målet er 5 AF-dage denne uge, og med TSB på -32 er det faktisk en fordel at holde alkohol ude: restitutionen sidder i de timer. Fokus for resten af ugen er at komme kontrolleret igennem tirsdagens åbent-vand-svøm og onsdagens løb uden at grave TSB yderligere ned — det er ikke en uge for heltepræstationer, det er en uge for at ankomme til uge ni med benene under sig.</p>",
-  "coachAssessmentTs": "18:54",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 51 af 98 · Tirsdag · Uge 8</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 54.2 — under ugemålet på 60, men det afspejler at ugen stadig er i gang og ikke er fuldt lastet endnu. TSB på -26.4 er tæt på grænsen — du har råderum, men det er snævert. Sa Calobra-turen leverede tid i sadlen på kuperet terræn, og NP på 132W er det reelle billede på effekten — ikke rå tid-i-zone. Til næste lignende bjergridt: hold wattene oppe på de ridelige strækninger, så du kommer tættere på 40% i Z2+Z3. Dagens svøm på 2000m åbent vand i Christiansborg-tempo er ikke forsøgt endnu — det er dit vigtigste pas i dag, og det er her du henter TSS og racespecifik erfaring.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Ingen aktuel vægtmåling, så det kommenterer jeg ikke på i dag.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er 1/2 på AF-dage i ugen indtil nu — det er fint set i forhold til, hvor langt ugen er nået. Streak på 3 dage er et solidt fundament. TSB er tæt på -30 — prioritér søvn og hold dig fra alkohol resten af ugen, så du ikke sætter restitutionen under pres. Onsdag og lørdag er de tunge pas; jo mere du beskytter nætterne imellem, jo bedre output får du.</p>",
+  "coachAssessmentTs": "00:58",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "tsb",
-      "level": "critical",
-      "message": "TSB -32,0 — høj træthed. Overvej let dag eller hvile."
+      "level": "warn",
+      "message": "TSB -26,4 — hård belastning. Hold øje med trætheden."
     }
   ],
-  "tsb": -32.0,
+  "tsb": -26.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3049,17 +3033,16 @@
   "_debug_wellness_raw": "{'hrv_avg': 67.5, 'hrv': 56.0, 'sleep_avg': 7.3, 'weight': 73.1, 'weight_avg': 73.1, 'fat': 22.7, 'protein': None}",
   "coachAssessmentLastActId": "i167359352",
   "weekFocusWeek": 8,
-  "coachAssessmentPlanAtGen": "Cykel Sa Calobra via Puig Major",
+  "coachAssessmentPlanAtGen": "Svøm 2000m åbent vand (Christiansborg-tempo)",
   "weightGoal": 70,
   "bodyFatGoal": 20,
   "weightMovingAvg7": [
     null,
     null,
-    74.43,
-    74.35,
-    74.48,
-    74.57,
-    74.57,
+    74.23,
+    74.42,
+    74.54,
+    74.54,
     74.54,
     74.55,
     74.7,
@@ -3142,16 +3125,16 @@
     72.1,
     72.1,
     72.1,
-    71.93
+    71.93,
+    null
   ],
   "fatMovingAvg7": [
     null,
     null,
-    23.57,
-    23.57,
-    23.52,
-    23.57,
-    23.57,
+    23.47,
+    23.43,
+    23.5,
+    23.5,
     23.5,
     23.52,
     23.57,
@@ -3234,7 +3217,8 @@
     21.8,
     21.8,
     21.8,
-    22.0
+    22.0,
+    null
   ],
   "weightToGoal": 1.9,
   "bodyFatToGoal": 2.5,
@@ -3266,8 +3250,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-20T23:01:13.705296",
-  "coachAssessmentTsFull": "2026-07-20T18:54:37.841351",
+  "credentialsCheckedTs": "2026-07-21T00:58:05.096713",
+  "coachAssessmentTsFull": "2026-07-21T00:58:05.096672",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 1
 }
