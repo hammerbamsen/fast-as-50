@@ -610,6 +610,26 @@ def main():
         print(f"  ⚠️ Commute-parring check fejlede: {_e}")
         data['commute_pairing_warnings'] = []
 
+    # --- Check: har kommende events overhovedet trin? (gelænder 2026-07-22) ---
+    # 22/7 stod et 16 km løb uden trin på uret kl. 06.35. Intervals bygger
+    # træningen ud fra description — IKKE workout_doc. Prosa i description
+    # giver en tom træning på uret uden nogen fejlmeddelelse nogen steder.
+    try:
+        from modules.event_structure import check_events as _check_struct
+        _r_struct = api_get(f'{BASE}/events', auth=AUTH,
+            params={'oldest': str(today), 'newest': str(today + timedelta(days=14))})
+        _future = _r_struct.json() if _r_struct and _r_struct.status_code == 200 else []
+        _struct_warnings = _check_struct(_future if isinstance(_future, list) else [])
+        data['event_structure_warnings'] = _struct_warnings
+        if _struct_warnings:
+            for _w in _struct_warnings:
+                print(f"  ⚠️ Event-struktur {_w['date']} '{_w['name']}' — {_w['code']}: {_w['text']}")
+        else:
+            print("  ✅ Alle events de næste 14 dage har trin")
+    except Exception as _e:
+        print(f"  ⚠️ Event-struktur-check fejlede: {_e}")
+        data['event_structure_warnings'] = []
+
     # --- Push data.json ---
     if not gh_put('data.json', sha_data,
                   json.dumps(data, indent=2, ensure_ascii=False),
