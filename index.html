@@ -420,6 +420,7 @@ let D = {
   coachAssessmentStale: false,
   coachAssessmentError: null,
   credentials: null,
+  event_structure_warnings: [],
   credentialsCheckedTs: null,
   kpis:[
     {label:"VÆGT", value:"71,9", unit:"kg", sub:"Mål <70 kg · snit 71,8 kg", color:"#E67E22"},
@@ -926,6 +927,22 @@ function credBanner() {
     + 'color:#C0392B;font-weight:700">⛔ NØGLE-PROBLEM</div>' + rows + '</div>';
 }
 
+function structureBanner() {
+  const w = D.event_structure_warnings || [];
+  if (!w.length) return '';
+  const esc = t => String(t).replace(/[<>&]/g, x => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[x]));
+  const err = w.some(x => x.level === 'error');
+  const col = err ? '#C0392B' : '#E67E22';
+  const bg  = err ? 'rgba(192,57,43,.12)' : 'rgba(230,126,34,.12)';
+  const rows = w.map(x =>
+    '<div style="font-family:\'Hanken Grotesk\',sans-serif;font-size:12px;color:var(--ink);margin-top:3px">'
+    + '<strong>' + esc(x.date) + ' \u00b7 ' + esc(x.name) + '</strong> \u2014 ' + esc(x.text) + '</div>').join('');
+  return '<div style="background:' + bg + ';border-left:3px solid ' + col + ';'
+    + 'border-radius:4px;padding:8px 10px;margin:0 0 10px">'
+    + '<div style="font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:.06em;'
+    + 'color:' + col + ';font-weight:700">\u26a0\ufe0f TR\u00c6NING UDEN TRIN</div>' + rows + '</div>';
+}
+
 function staleBanner() {
   if (!D.coachAssessmentStale && !D.coachAssessmentError) return '';
   const msg = D.coachAssessmentStale
@@ -950,7 +967,7 @@ async function loadCoachAssessment(force) {
 
   // Læs fra data.json (genereret server-side af update_kpi.py — ingen proxy nødvendig)
   if (D.coachAssessmentHtml) {
-    box.innerHTML = credBanner() + staleBanner() + D.coachAssessmentHtml;
+    box.innerHTML = credBanner() + structureBanner() + staleBanner() + D.coachAssessmentHtml;
     if (tsEl && D.coachAssessmentTs) tsEl.textContent = 'Opdateret: ' + D.coachAssessmentTs;
     return;
   }
@@ -1683,6 +1700,7 @@ async function init() {
       if ('coachAssessmentError' in remote) D.coachAssessmentError = remote.coachAssessmentError;
       if ('credentials' in remote) D.credentials = remote.credentials;
       if ('credentialsCheckedTs' in remote) D.credentialsCheckedTs = remote.credentialsCheckedTs;
+      if ('event_structure_warnings' in remote) D.event_structure_warnings = remote.event_structure_warnings || [];
       if (remote.weekFocus)      D.weekFocus      = remote.weekFocus;
       if (remote.week_sessions)  D.week_sessions  = remote.week_sessions;
       if (remote.all_weeks)      D.all_weeks      = remote.all_weeks;
@@ -1738,6 +1756,7 @@ init();
       if ('coachAssessmentError' in remote) D.coachAssessmentError = remote.coachAssessmentError;
       if ('credentials' in remote) D.credentials = remote.credentials;
       if ('credentialsCheckedTs' in remote) D.credentialsCheckedTs = remote.credentialsCheckedTs;
+      if ('event_structure_warnings' in remote) D.event_structure_warnings = remote.event_structure_warnings || [];
       if (remote.af_history) D.afHistory = remote.af_history;
       if (remote.af_log) D.af_log = remote.af_log;
       // Re-render aktiv side
