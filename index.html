@@ -78,6 +78,12 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
   transition:all .2s; flex-shrink:0;
 }
 .mobile-refresh-btn:active { background:rgba(212,175,55,.15); }
+/* Statuslinje til mobil. #refresh-status ligger i .sidebar-footer, som er
+   display:none under 768px — dvs. hver fejlbesked fra triggerRefresh blev
+   skrevet ind i et usynligt element (fundet 23/7). Denne er synlig. */
+.mobile-refresh-status { display:none; font-family:'Space Mono',monospace; font-size:9px;
+  color:var(--muted); text-align:center; margin:0 0 10px; min-height:12px; }
+@media(max-width:768px) { .mobile-refresh-status { display:block; } }
 
 /* Sidebar */
 .sidebar-logo { padding:22px 20px 18px; border-bottom:1px solid var(--wine-l); }
@@ -292,6 +298,8 @@ html,body { height:100%; background:var(--cream); font-family:'Hanken Grotesk',s
       </div>
     </div>
   </div>
+
+  <div id="refresh-status-m" class="mobile-refresh-status"></div>
 
   <div id="page-today" class="page active"></div>
   <div id="page-week" class="page"></div>
@@ -1779,7 +1787,8 @@ async function triggerRefresh() {
   const mBtn = document.getElementById('mobile-refresh-btn');
   const status = document.getElementById('refresh-status');
   const setTxt = t => [btn, mBtn].forEach(b => { if (b) b.textContent = t; });
-  const setStatus = t => { if (status) status.textContent = t; };
+  const statusM = document.getElementById('refresh-status-m');
+  const setStatus = t => { [status, statusM].forEach(el => { if (el) el.textContent = t; }); };
   const reset = () => {
     if (btn)  { btn.textContent  = '↻ OPDATÉR DATA'; btn.disabled  = false; }
     if (mBtn) { mBtn.textContent = '↻ OPDATÉR';      mBtn.disabled = false; }
@@ -1826,10 +1835,22 @@ async function triggerRefresh() {
     // Sig kun "OPDATERET" hvis data faktisk flyttede sig. Kørte vi en runde
     // uden at data.json ændrede sig, er der intet nyt — det er ikke en fejl,
     // men det er heller ikke en opdatering.
-    const ok = !dispatched || changed;
-    if (btn)  btn.textContent  = ok ? '✓ OPDATERET' : '✓ INGEN NY DATA';
-    if (mBtn) mBtn.textContent = (ok ? '✓ ' : '– ') + time;
-    if (status && !status.textContent) setStatus(ok ? time : 'Kørt ' + time + ' — intet nyt');
+    // Tre tilstande, ikke to. Den gamle linje var 'ok = !dispatched || changed',
+    // hvilket gjorde en FEJLET dispatch til et grønt '✓ OPDATERET' (fundet 23/7).
+    // Nåede vi aldrig ud til Worker'en, er intet opdateret — sig det.
+    if (!dispatched) {
+      if (btn)  btn.textContent  = '⚠ IKKE OPDATERET';
+      if (mBtn) mBtn.textContent = '⚠ ' + time;
+      if (!(status && status.textContent) && !(statusM && statusM.textContent)) {
+        setStatus('Nåede ikke Worker\'en — prøv af.html?reset');
+      }
+    } else {
+      if (btn)  btn.textContent  = changed ? '✓ OPDATERET' : '✓ INGEN NY DATA';
+      if (mBtn) mBtn.textContent = (changed ? '✓ ' : '– ') + time;
+      if (!(status && status.textContent) && !(statusM && statusM.textContent)) {
+        setStatus(changed ? time : 'Kørt ' + time + ' — intet nyt');
+      }
+    }
     setTimeout(reset, 2000);
   } catch (e) {
     reset();
@@ -1949,6 +1970,25 @@ const PUSH_ATHLETE = (typeof PUSH_ATHLETE_ID !== "undefined") ? PUSH_ATHLETE_ID 
 const SECRET_KEY = "af_plan_secret";
 const getSecret = () => localStorage.getItem(SECRET_KEY);
 const setSecret = s => localStorage.setItem(SECRET_KEY, s);
+
+// Sår app-koden fra URL-fragmentet (#s=KODE), præcis som af.html gør. Uden
+// den stod dashboardet uden kode, hvis iOS havde ryddet localStorage — og så
+// fejlede ↻-knappens dispatch tavst (fundet 23/7). Fragmentet sendes aldrig
+// til en server. Fjernes fra URL'en bagefter, så hash-routingen ikke ser det.
+(function seedSecretFromHash(){
+  try {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!h || h.indexOf('s=') === -1) return;
+    var params = new URLSearchParams(h);
+    var seed = params.get('s');
+    if (seed) {
+      setSecret(seed);
+      params.delete('s');
+      var rest = params.toString();
+      history.replaceState({}, '', location.pathname + location.search + (rest ? '#' + rest : ''));
+    }
+  } catch (_e) {}
+})();
 
 let WORKER_CONFIG = null;
 async function loadWorkerConfig(){
