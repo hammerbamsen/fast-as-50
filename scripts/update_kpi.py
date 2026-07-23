@@ -200,9 +200,35 @@ def main():
         if trajectory_note:
             print(f"  Store billede (søndag): {trajectory_note}")
 
+    # --- Vægt-KPI: behold sidste reelle måling som værdi, men vis DATOEN når
+    # den ikke er fra i dag. Uden det læses en fremskrevet værdi som dagens tal
+    # (fx 17.-22./7 under Mallorca, hvor 71,9 fra 16/7 stod og lignede aktuelt). ---
+    def _last_real_weight_date(rows):
+        for row in reversed(rows or []):
+            if isinstance(row, dict) and row.get('v') is not None:
+                return row.get('date')
+        return None
+
+    def _dk_short(iso):
+        try:
+            _y, _m, _d = str(iso)[:10].split('-')
+            return f"{int(_d)}/{int(_m)}"
+        except Exception:
+            return None
+
+    _w_goal_txt = f"Mål <{data['weightGoal']} kg"
+    _w_avg_txt  = f" · snit {fmt(weight_avg)} kg" if weight_avg else ""
+    if weight_is_today:
+        weight_sub = _w_goal_txt + _w_avg_txt
+    else:
+        _lw_date = _dk_short(_last_real_weight_date((history or {}).get('weightHistory', [])))
+        weight_sub = (f"Sidst målt {_lw_date} · {_w_goal_txt}{_w_avg_txt}"
+                      if _lw_date else _w_goal_txt + _w_avg_txt)
+    print(f"  Vægt-sub: {weight_sub} (måling i dag: {weight_is_today})")
+
     tss_color = color_for(compliance, 85, lower=False) if compliance else '#7A6A58'
     data['kpis'] = {
-        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': f"Mål <{data['weightGoal']} kg · snit {fmt(weight_avg)} kg" if weight_avg else f"Mål <{data['weightGoal']} kg", 'color': color_for(weight, data['weightGoal'], lower=True)  if weight     else '#7A6A58'},
+        'weight':     {'value': fmt(weight),          'unit': 'kg', 'sub': weight_sub, 'color': color_for(weight, data['weightGoal'], lower=True)  if weight     else '#7A6A58'},
         'fat':        {'value': fmt(fat),              'unit': '%',  'sub': f"Mål <{data['bodyFatGoal']}%",                       'color': color_for(fat, data['bodyFatGoal'], lower=True)     if fat        else '#7A6A58'},
         'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f'Uge {week_num}-mål {ctl_plan_for_week(week_num)} · Slutmål {CTL_GOAL} (uge {len(CTL_PLAN)})', 'color': color_for(ctl, CTL_GOAL, lower=False)    if ctl        else '#7A6A58'},
         'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': ('Hård blok · CTL−ATL, frisk >0' if tsb and tsb < -10 else 'Form · CTL−ATL, frisk >0'), 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
