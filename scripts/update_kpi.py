@@ -159,6 +159,17 @@ def main():
     _today_rows = _r_today.json() if _r_today.status_code == 200 else []
     weight_is_today = _weight_today(_today_rows)
 
+    # Fedtprocent: samme "er den fra i DAG?"-logik. API-feltet er 'bodyFat'
+    # (lowercase b) — 'Kropsfedt' er kun UI-navnet og findes ikke i API-svaret.
+    def _field_today(rows, field):
+        today_str = str(date.today())
+        for row in (rows or []):
+            dt = (row.get('id') or row.get('date') or '')[:10]
+            if dt == today_str and row.get(field) is not None:
+                return True
+        return False
+    fat_is_today = _field_today(_today_rows, 'bodyFat')
+
     # --- Rejse-/vægtudsving-kontekst: undgå at coachen bebrejder disciplin når
     # et udsving skyldes rejse (fx hjemkomst fra Mallorca) fremfor fedt — og,
     # lige så vigtigt, undgå at påstå retention hvis vægten faktisk er FALDET ---
@@ -170,6 +181,24 @@ def main():
     context_note = build_weight_context_note(travel_label, w_delta, w_prior_date)
     if context_note:
         print(f"  Kontekst-note (vægt): {context_note}")
+
+    def _fat_trend_note(rows, current):
+        """Retning på fedtprocent siden seneste TIDLIGERE reelle måling."""
+        if current is None:
+            return None
+        today_str = str(date.today())
+        prior = None
+        for row in reversed(rows or []):
+            if isinstance(row, dict) and row.get('v') is not None \
+                    and str(row.get('date'))[:10] != today_str:
+                prior = row
+                break
+        if not prior:
+            return None
+        delta = round(current - prior['v'], 1)
+        if abs(delta) < 0.1:
+            return f"(uændret siden {prior['date']})"
+        return f"({'op' if delta > 0 else 'ned'} {abs(delta)} point siden {prior['date']})"
 
     weight_avg = wellness.get('weight_avg') if wellness else None
     fat        = wellness.get('fat')        if wellness else None
@@ -482,6 +511,14 @@ def main():
         and (_weight_at_gen is None or abs(weight - _weight_at_gen) > 0.05)
     )
 
+    # Ny fedtmåling skal ALTID bryde cachen — ellers kan en frisk måling
+    # ligge i data uden at coachen nogensinde reagerer på den.
+    _fat_at_gen = data.get('coachAssessmentFatAtGen')
+    _fat_changed = (
+        fat is not None
+        and (_fat_at_gen is None or abs(fat - _fat_at_gen) > 0.05)
+    )
+
     _af_at_gen = data.get('coachAssessmentAfAtGen')
     _af_changed = (_af_at_gen is None or af_this_week != _af_at_gen)
 
@@ -498,12 +535,14 @@ def main():
     _plan_at_gen = data.get('coachAssessmentPlanAtGen', '')
     _plan_changed = _today_label != _plan_at_gen
 
-    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _af_changed and not _activity_changed and not _plan_changed:
+    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _fat_changed and not _af_changed and not _activity_changed and not _plan_changed:
         print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
         ai_text = None
     else:
         if _weight_changed:
             print(f"  Ny vejning ({_weight_at_gen} -> {weight}) -- bryder cache tidligt")
+        if _fat_changed:
+            print(f"  Ny fedtmåling ({_fat_at_gen} -> {fat}) -- bryder cache tidligt")
         if _af_changed:
             print(f"  AF-status ændret ({_af_at_gen} -> {af_this_week}) -- bryder cache tidligt")
         if _activity_changed:
@@ -517,7 +556,13 @@ def main():
             today_session, tss_act, planned,
             travel_note=context_note, trajectory_note=trajectory_note, days_completed=days_completed,
             compliance_summary=compliance_summary,
-            weight_goal=data['weightGoal']
+            weight_goal=data['weightGoal'],
+            fat=fat if fat_is_today else None,
+            fat_goal=data['bodyFatGoal'],
+            fat_trend_note=_fat_trend_note(
+                (history or {}).get('fatHistory', []),
+                fat if fat_is_today else None
+            )
         )
         ai_text = fix_enc(ai_text)  # AI-svar kan komme tilbage Latin-1-mis-decoded -- ret ved kilden
     if ai_text:
@@ -538,6 +583,7 @@ def main():
         data['coachAssessmentTs']          = _dt.now().strftime('%H:%M')
         data['coachAssessmentTsFull']      = datetime.utcnow().isoformat()
         data['coachAssessmentWeightAtGen'] = weight if weight is not None else _weight_at_gen
+        data['coachAssessmentFatAtGen']    = fat if fat is not None else _fat_at_gen
         data['coachAssessmentAfAtGen']     = af_this_week
         data['coachAssessmentLastActId']   = _latest_act_id
         data['coachAssessmentPlanAtGen']   = _today_label

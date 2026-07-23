@@ -438,7 +438,8 @@ def _redact(msg):
 
 def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_this_week, af_streak,
                              week_sessions, week_focus, today_session, tss_act, planned, travel_note=None,
-                             trajectory_note=None, days_completed=None, compliance_summary=None, weight_goal=72):
+                             trajectory_note=None, days_completed=None, compliance_summary=None, weight_goal=72,
+                             fat=None, fat_goal=20, fat_trend_note=None):
     """Kalder Anthropic API server-side og returnerer HTML-formateret coach-vurdering."""
     global LAST_AI_ERROR
     LAST_AI_ERROR = None
@@ -448,11 +449,11 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         return None
 
     ctl_target = ctl_plan_for_week(week_num)
-    kpis_str = (
-        f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}, Vægt: {weight} kg"
-        if weight else
-        f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}"
-    )
+    kpis_str = f"CTL: {ctl} (uge {week_num}-mål ifølge planen: {ctl_target}), TSB: {tsb}"
+    if weight:
+        kpis_str += f", Vægt: {weight} kg"
+    if fat:
+        kpis_str += f", Fedtprocent: {fat} %"
     if days_completed is None:
         days_completed = weekday  # fallback hvis ikke angivet -- afsluttede dage FØR i dag
     af_note = (
@@ -486,6 +487,11 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
     remaining = ", ".join(f"{s['day']}: {s['label']}" for s in future_remaining) or "ingen planlagte"
     missed_str = ", ".join(f"{s['day']}: {s['label']}" for s in missed)
     weight_line = f"\n- Vægt: {weight} kg (seneste måling)" if weight else ""
+    fat_line = (
+        (f"\n- Fedtprocent: {fat} % (seneste måling, mål <{fat_goal} %)"
+         + (f" {fat_trend_note}" if fat_trend_note else ""))
+        if fat else ""
+    )
     compliance_line = (
         f"\n\nZone-compliance denne uge (Friel-analyse):\n{compliance_summary}\n"
         f"VIGTIGT: Vurder BÅDE om workouts er gennemført (tid/TSS) OG om de rigtige zoner er ramt. "
@@ -535,7 +541,7 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"- I dag: {today_label} [{today_status}]\n"
         f"- GENNEMFØRT denne uge (fuldførte kendsgerninger): {completed_str}\n"
         + (f"- MISSET denne uge (dag passeret, ikke gennemført): {missed_str}\n" if missed_str else "")
-        + f"- Resten af ugen (KUN fremtidige, endnu ikke forfaldne pas): {remaining}{weight_line}{travel_line}{trajectory_line}{compliance_line}\n\n"
+        + f"- Resten af ugen (KUN fremtidige, endnu ikke forfaldne pas): {remaining}{weight_line}{fat_line}{travel_line}{trajectory_line}{compliance_line}\n\n"
         f"VIGTIGT:\n"
         f"- GROUNDING (ufravigelig): Pas i 'GENNEMFØRT denne uge' ER fuldført. Omtal dem ALDRIG som "
         f"manglende, glemt, sprunget over, udestående eller noget der 'skal'/'mangler' at ske. Et pas må "
@@ -548,14 +554,19 @@ def generate_ai_assessment(week_num, weekday, day_name, ctl, tsb, weight, af_thi
         f"gennemført session. Ethvert forbedringspunkt fra dagens session skal formuleres som læring til NÆSTE "
         f"lignende session (nævn evt. hvilken kommende dag) — aldrig som en handling for 'i dag'.\n"
         f"- Hvis IKKE gennemført: her ER 'i dag'/'dagens'-sprog korrekt — giv konkrete, fremadrettede råd.\n"
-        f"- Nævn KUN vægt hvis aktuel måling.\n\n"
+        f"- Nævn KUN vægt og fedtprocent hvis der er en aktuel måling af dem.\n"
+        f"- KROP & KOST: fedtprocent vægtes MINDST på niveau med vægt. Vægten alene siger lidt — det er "
+        f"kropssammensætningen der afgør om et vægttab er reelt fremskridt. Tolk de to SAMMEN: falder vægten "
+        f"uden at fedtprocenten følger med, er der tabt muskelmasse, og det er et advarselstegn i et "
+        f"capacity-år — ikke en sejr. Falder fedtprocenten mens vægten står stille, er det ægte fremgang. "
+        f"Nævn afstanden til BEGGE mål når begge er målt.\n\n"
         f"SPROG: Skriv klart, naturligt dansk som en rigtig træner ville tale. Hver sætning skal kunne "
         f"forstås i første gennemlæsning. Undgå tvetydige eller kluntede formuleringer — fx aldrig "
         f"'frem for' når du mener 'i løbet af' eller 'de næste'. Brug korte, konkrete sætninger. "
         f"Ingen kancellisprog.\n\n"
         f"Giv en KORT coach-vurdering (max 4 sætninger pr. linje) opdelt i linjer med emoji-header:\n"
         f"1. 💪 Træning & load (CTL={ctl}, TSB={tsb})\n"
-        f"2. ⚖️ Krop & kost\n"
+        f"2. ⚖️ Krop & kost (vægt OG fedtprocent — behandl begge)\n"
         f"3. 🎯 AF-status & fokus for resten af ugen"
         f"{fourth_line_instruction}\n\n"
         f"Skriv direkte til Kennet på dansk. Vær præcis — ingen tom ros.\n"
