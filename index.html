@@ -1050,7 +1050,11 @@ async function refreshCoachAssessment() {
 
   let dispatched = false, errMsg = '';
   try {
-    await dispatchViaWorker('/refresh', {});
+    // force_coach bryder 6-timers-cachen i update_kpi.py (via Worker'ens
+    // client_payload -> COACH_FORCE i webhook-receiver.yml). Den STORE
+    // "OPDATÉR DATA"-knap sender den bevidst IKKE — den skal ikke brænde
+    // et AI-kald hver gang man henter friske tal.
+    await dispatchViaWorker('/refresh', { force_coach: true });
     dispatched = true;
   } catch (e) {
     // Samme fire tilstande som triggerRefresh. NO_SECRET er ikke en netværksfejl
