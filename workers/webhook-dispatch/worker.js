@@ -88,7 +88,18 @@ export default {
       return handleSimpleDispatch(request, env, {
         eventType: "intervals-activity",
         requiredFields: [],
-        buildPayload: () => ({ source: "manual-refresh" }),
+        // force_coach (23/7-26): coach-knappen i dashboardet sender
+        // { force_coach: true } og bryder derved 6-timers-cachen i
+        // update_kpi.py (via COACH_FORCE i webhook-receiver.yml).
+        // buildPayload ignorerede body'en helt, så flaget forsvandt her
+        // — backend'et var klar, men afsenderen nåede aldrig frem.
+        // === true er bevidst strengt: den store "OPDATÉR DATA"-knap og
+        // Intervals-webhooken sender ingenting og skal give false, så vi
+        // ikke brænder et AI-kald på hver eneste aktivitet.
+        buildPayload: (body) => ({
+          source: "manual-refresh",
+          force_coach: body != null && body.force_coach === true,
+        }),
       });
     }
     if (url.pathname === "/push-subscribe") {
