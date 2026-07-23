@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-23 09:33",
+    "updated": "2026-07-23 09:42",
     "week": 8,
     "totalWeeks": 14,
     "blockType": "BUILD",
@@ -29,7 +29,7 @@
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-12,4",
+      "value": "-13,7",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -53,9 +53,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "201",
+      "value": "211",
       "unit": "TSS",
-      "sub": "201 af 618 planlagt TSS",
+      "sub": "211 af 618 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -82,7 +82,7 @@
     "target": 5,
     "streak": 6
   },
-  "coachSpeech": "Torsdag — uge 8 af 14. {HL} Godt: 4 AF-dage i 4 gennemførte dage — på rette spor. 1 mere og ugens mål er i hus. Fokus: 201 af 618 TSS er i hus — 5 sessioner tilbage, heriblandt Styrke A Functional Strength 2 sæt, Cykel Z2 45 min. Vægt på 71,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
+  "coachSpeech": "Torsdag — uge 8 af 14. {HL} Godt: 4 AF-dage i 4 gennemførte dage — på rette spor. 1 mere og ugens mål er i hus. Fokus: 211 af 618 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 45 min, Svøm 2500m. Vægt på 71,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
   "coachHighlight": "Søvn på 7,3 timer er solid",
   "weekFocus": "Byg videre på Mallorca-formen med kontrolleret intensitet mod uge ni",
   "today": [
@@ -92,7 +92,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "bike",
@@ -142,8 +142,13 @@
       "day": "Tor",
       "disc": "strength",
       "label": "Styrke A Functional Strength 2 sæt",
-      "done": false,
-      "today": true
+      "done": true,
+      "today": true,
+      "completion": "done",
+      "completion_pct": null,
+      "actual_tss": 10,
+      "actual_mins": 30,
+      "planned_mins": null
     },
     {
       "day": "Tor",
@@ -1829,7 +1834,7 @@
     },
     {
       "date": "2026-07-23",
-      "v": -12.4,
+      "v": -13.7,
       "real": true
     }
   ],
@@ -2335,8 +2340,13 @@
           "day": "Tor",
           "disc": "strength",
           "label": "Styrke A Functional Strength 2 sæt",
-          "done": false,
-          "today": true
+          "done": true,
+          "today": true,
+          "completion": "done",
+          "completion_pct": null,
+          "actual_tss": 10,
+          "actual_mins": 30,
+          "planned_mins": null
         },
         {
           "day": "Tor",
@@ -2700,11 +2710,12 @@
     }
   ],
   "train_mins": {
+    "strength": 30.0,
     "run": 98.0,
     "openwater": 39.0,
     "bike": 224.0,
     "planned": 743.0,
-    "actual_total": 361.0
+    "actual_total": 391.0
   },
   "fatHistory": [
     {
@@ -3006,11 +3017,11 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 53 af 98 · Torsdag · Uge 8</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL ligger på 50.5 mod ugemålets 60 — det er et tydeligt underskud, men det afspejler ugens karakter: Mallorca-blokkens kombination af lang cykel, åbent vand og 16 km løb er restitutionskrævende, og TSB på -12.4 viser at du er i et reelt akkumuleret træningspres. Zone-compliance fortæller en blandet historie: cyklen på Sa Calobra leverede for lidt tid i Z2/Z3 — NP på 132W er det reelle effektmål her, og næste gang du cykler i kuperet terræn skal du holde wattene oppe i de sekvenser hvor terrænet tillader det. Svømningen manglede Z4-tid, og til fremtidige åbent vand-pas skal du bygge en hårdere blok ind fra start frem for at vente på at tempoet stiger naturligt. Løbet var on target — 55.7% i pace-Z2 over 16 km er præcis det du vil have i en Z1-Z2 session. Dagens styrketræning er endnu ikke forsøgt — få den afklaret nu, 2 sæt Functional Strength koster ikke recovery, men det giver dig en vigtig brik til at holde muskelkvaliteten oppe resten af ugen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">71.6 kg og 20.5% fedt — fedtprocenten er faldet 2.0 procentpoint siden midten af juli, og det er den vigtigste nyhed her. Du er 0.5 procentpoint fra fedtprocent-målet på under 20%, og det er reelt fremgang i kropssammensætning, ikke bare vægtsvingninger. Vægten på 71.6 kg er stadig 1.6 kg over 70 kg-målet, men med en fedtprocent der falder styret, er retningen rigtig. Hold proteinen høj og undgå at skære for hårdt i kalorieindtaget — du er midt i en hård blok, og muskelmasse er din primære aktivitet nu.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4 AF-dage ud af 4 dage i ugen er en perfekt start — streaken på 6 dage holder. Fredag er svøm 2500m, og der skal du aktivt søge de hårdere intervaller for at ramme Z4-tid — det var det der manglede tirsdag. Lørdag er langløb 21 km Z2, og her gælder det om at holde pace-zonen — ikke løbe roligere end nødvendigt. Søndagens cykel Z2 på 90 min afslutter ugen, og der skal wattene struktureres fra start så du ikke ender med for meget Z1-frihjul.</p>",
-  "coachAssessmentTs": "06:25",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 53 af 98 · Torsdag · Uge 8</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL er på 50.5 — solidt fundament, men 9.5 under ugemålet på 60, og det afspejler ugens karakter: Mallorca-pasene er tunge og lange, men terrænet tvinger zonefordelingen i en bestemt retning frem for en klassisk struktureret uge. TSB på -13.7 er håndterbart og godt inden for grænsen. Cykelturen mandag viste for lidt tid i Z2/Z3 effekt — til næste kuperede tur (fx søndag) er nøglen at holde wattene aktivt oppe i de flade sektioner frem for at lade bakken styre alt. Svømningen tirsdag manglede tid over tærskel — næste åbent-vand-pas byder sig til at bygge 2–3 kortere accelerationer ind mod slutningen.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">71.6 kg og 20.5 % fedt — du er 1.6 kg fra vægmålet og 0.5 procentpoint fra fedtprocent-målet. Fedtprocenten er faldet 2.0 point siden juli, og det er den vigtige nyhed: du taber fedt, ikke muskelmasse. Hold den kurs — det er ægte fremgang i et capacity-år.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">4 AF-dage ud af 4 dage — du er på sporet. Fredag byder på 2500m svøm: brug det som en chance for at bygge den tempotid ind over tærskel, som manglede tirsdag. Lørdag er langløbet på 21 km Z2 — hold pacen ærlig og lad ikke benene styre tempo-zonen ned i Z1 igen.</p>",
+  "coachAssessmentTs": "07:43",
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -12.4,
+  "tsb": -13.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3061,7 +3072,7 @@
       "cumulative": 18178.0
     }
   ],
-  "coachAssessmentLastActId": "i167964454",
+  "coachAssessmentLastActId": "i168337378",
   "weekFocusWeek": 8,
   "coachAssessmentPlanAtGen": "Styrke A Functional Strength 2 sæt",
   "weightGoal": 70,
@@ -3280,8 +3291,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-23T07:33:15.385865",
-  "coachAssessmentTsFull": "2026-07-23T06:25:38.120365",
+  "credentialsCheckedTs": "2026-07-23T07:43:10.920962",
+  "coachAssessmentTsFull": "2026-07-23T07:43:10.920947",
   "coachAssessmentWeightAtGen": 71.6,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
