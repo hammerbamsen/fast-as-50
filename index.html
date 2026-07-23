@@ -1807,9 +1807,20 @@ async function triggerRefresh() {
     // Appene bruger ikke PAT længere (af_gh_token findes ikke i koden).
     // Første udgave sagde bare "forkert kode" og sendte fejlsøgningen 16/7
     // efter et Cloudflare-deploy der var helt i orden.
-    setStatus(e.status === 401 ? 'App-kode afvist — åbn af.html?reset'
-            : e.status        ? 'Worker svarede ' + e.status
-                              : 'Ingen forbindelse til Worker');
+    // Fire tilstande, ikke tre. NO_SECRET er ikke en netværksfejl — den kan
+    // rettes her og nu, uden af.html og uden en URL med #s=.
+    // iOS giver hver hjemmeskærms-app sin EGEN localStorage: at AF-appen har
+    // koden betyder ikke at dashboardet har den.
+    if (e.code === 'NO_SECRET') {
+      const val = (window.prompt('App-koden mangler på denne enhed.\n\nIndsæt den samme kode som i AF-appen:') || '').trim();
+      if (val) { setSecret(val); setStatus('Kode gemt — tryk ↻ igen'); }
+      else     { setStatus('App-kode mangler — tryk ↻ og indsæt den'); }
+    } else {
+      setStatus(e.code === 'NO_URL' ? 'Worker-URL mangler i auth_config.json'
+              : e.status === 401    ? 'App-koden blev afvist af Worker\'en'
+              : e.status            ? 'Worker svarede ' + e.status
+                                    : 'Netværksfejl — nåede ikke Worker\'en');
+    }
   }
 
   let changed = false;
@@ -2005,8 +2016,13 @@ async function loadWorkerConfig(){
 async function dispatchViaWorker(path, clientPayload){
   const cfg = await loadWorkerConfig();
   const secret = getSecret();
-  if (!secret) throw new Error("Ingen hemmelighed gemt.");
-  if (!cfg.workerUrl) throw new Error("Worker-URL ikke sat i data/auth_config.json.");
+  // Disse to kaster FØR der laves et fetch. Uden en kode på fejlen blev de
+  // vist som "Ingen forbindelse til Worker" — en besked om en forbindelse der
+  // aldrig blev forsøgt. Det kostede en uges fejlsøgning (23/7): wrangler tail
+  // viste /health fra telefonen, men aldrig et /refresh, fordi requesten
+  // aldrig forlod browseren.
+  if (!secret) { const e = new Error("Ingen app-kode gemt på denne enhed."); e.code = "NO_SECRET"; throw e; }
+  if (!cfg.workerUrl) { const e = new Error("Worker-URL mangler i data/auth_config.json."); e.code = "NO_URL"; throw e; }
   const r = await fetch(`${cfg.workerUrl.replace(/\/$/, "")}${path}`, {
     method: "POST",
     headers: { "X-Plan-Secret": secret, "Content-Type": "application/json" },
