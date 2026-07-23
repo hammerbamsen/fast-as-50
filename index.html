@@ -866,7 +866,7 @@ function renderWeek() {
   <div id="coach-assessment-box" class="card" style="border-left:3px solid var(--wine);padding:16px 18px;margin-bottom:14px;">
     <div class="label" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
       <span>COACH-VURDERING</span>
-      <button onclick="refreshCoachAssessment()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:0 4px;" title="Opdatér">↻</button>
+      <button id="coach-refresh-btn" onclick="refreshCoachAssessment()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:0 4px;min-width:38px;text-align:right;font-family:'Space Mono',monospace;" title="Opdatér">↻</button>
     </div>
     <div id="coach-assessment-content">
       <div style="display:flex;align-items:center;gap:10px;color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;">
@@ -985,9 +985,120 @@ async function loadCoachAssessment(force) {
 
 }
 
-function refreshCoachAssessment() {
-  D.coachAssessment = null;
-  loadCoachAssessment(true);
+// ── Coach-↻: bed om en FRISK vurdering, vent, hent så data ──
+// Baggrund (23/7-26): den gamle knap satte D.coachAssessment = null og kaldte
+// loadCoachAssessment(true). Begge dele var no-ops — feltet læses ingen steder
+// i koden, og loadCoachAssessment ignorerer force og gentegner blot den HTML
+// der allerede ligger i D. Knappen KUNNE altså ikke vise noget nyt, uanset
+// hvad der lå på serveren. Den så bare ud som om den gjorde noget.
+//
+// To fælder mere, som denne version undgår:
+//  1) init() henter data.json fra raw.githubusercontent, som har CDN-lag på
+//     flere minutter. Lige efter en push er den upålidelig — samme læring som
+//     _dataStamp (14/7). Vi bruger Contents API'et, der er ucachet.
+//  2) init() kalder navigate(), som gentegner siden og gør vores DOM-referencer
+//     døde midt i pollingen. Vi rører derfor ikke init() — vi opdaterer kun
+//     coach-felterne på D og gentegner selve kortet.
+async function _coachData() {
+  try {
+    const r = await fetch(
+      'https://api.github.com/repos/hammerbamsen/fast-as-50/contents/data.json?ref=main',
+      { headers: { Accept: 'application/vnd.github.raw' }, cache: 'no-store' });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e) { return null; }
+}
+
+// coachAssessmentTsFull skrives af update_kpi.py som datetime.utcnow().isoformat()
+// — altså UDEN tidszone-suffix. Uden 'Z' tolker browseren den som lokaltid, og
+// cache-alderen bliver 2 timer for lav om sommeren.
+function _coachAgeH(tsFull) {
+  if (!tsFull) return null;
+  const t = Date.parse(/([zZ]|[+-]\d{2}:?\d{2})$/.test(tsFull) ? tsFull : tsFull + 'Z');
+  return isNaN(t) ? null : (Date.now() - t) / 3600000;
+}
+
+function _applyCoach(d) {
+  if (!d) return;
+  if (d.coachAssessmentHtml) D.coachAssessmentHtml = d.coachAssessmentHtml;
+  if (d.coachAssessmentTs)   D.coachAssessmentTs   = d.coachAssessmentTs;
+  if ('coachAssessmentStale' in d) D.coachAssessmentStale = d.coachAssessmentStale;
+  if ('coachAssessmentError' in d) D.coachAssessmentError = d.coachAssessmentError;
+  if ('credentials' in d) D.credentials = d.credentials;
+  if ('event_structure_warnings' in d) D.event_structure_warnings = d.event_structure_warnings || [];
+}
+
+async function refreshCoachAssessment() {
+  const btn = document.getElementById('coach-refresh-btn');
+  if (btn) {
+    if (btn.dataset.busy === '1') return;
+    btn.dataset.busy = '1';
+    btn.disabled = true;
+  }
+  const setBtn = t => { if (btn) btn.textContent = t; };
+  const say = t => {
+    const el = document.getElementById('coach-assessment-ts');
+    if (el) el.textContent = t;
+  };
+  const done = () => {
+    if (btn) { btn.dataset.busy = '0'; btn.disabled = false; btn.textContent = '\u21bb'; }
+  };
+
+  setBtn('\u2026');
+  const first = await _coachData();
+  const before = first && first.coachAssessmentTsFull;
+
+  let dispatched = false, errMsg = '';
+  try {
+    await dispatchViaWorker('/refresh', {});
+    dispatched = true;
+  } catch (e) {
+    // Samme fire tilstande som triggerRefresh. NO_SECRET er ikke en netværksfejl
+    // — den kan rettes her og nu. iOS giver hver hjemmeskærms-app sin EGEN
+    // localStorage: at AF-appen har koden betyder ikke at dashboardet har den.
+    if (e.code === 'NO_SECRET' || e.status === 401) {
+      const val = (window.prompt(e.code === 'NO_SECRET'
+        ? 'App-koden mangler p\u00e5 denne enhed.\n\nInds\u00e6t den samme kode som i AF-appen:'
+        : 'App-koden p\u00e5 denne enhed blev afvist af Worker\'en.\n\nInds\u00e6t den rigtige kode:') || '').trim();
+      if (val) { setSecret(val); errMsg = 'Kode gemt \u2014 tryk \u21bb igen'; }
+      else     { errMsg = 'App-kode mangler \u2014 tryk \u21bb og inds\u00e6t den'; }
+    } else {
+      errMsg = e.code === 'NO_URL' ? 'Worker-URL mangler i auth_config.json'
+             : e.status            ? 'Worker svarede ' + e.status
+                                   : 'Netv\u00e6rksfejl \u2014 n\u00e5ede ikke Worker\'en';
+    }
+  }
+
+  let latest = first, changed = false;
+  if (dispatched) {
+    for (let i = 0; i < 18; i++) {
+      await new Promise(r => setTimeout(r, 5000));
+      const d = await _coachData();
+      if (d) {
+        latest = d;
+        if (d.coachAssessmentTsFull && d.coachAssessmentTsFull !== before) { changed = true; break; }
+      }
+      setBtn(((i + 1) * 5) + 's');
+    }
+  }
+
+  _applyCoach(latest);
+  loadCoachAssessment();
+
+  // loadCoachAssessment sætter selv 'Opdateret: hh:mm'. Vi overskriver kun når
+  // vi har noget mere præcist at sige. Tavshed er præcis det, der gjorde den
+  // gamle knap umulig at fejlsøge.
+  if (!dispatched) {
+    say(errMsg || 'Ikke opdateret');
+  } else if (!changed) {
+    // update_kpi.py cacher vurderingen i 6 t og bryder kun cachen ved ny vægt,
+    // fedtmåling, AF-status, aktivitet eller planændring. Sig hvorfor der ikke
+    // kom noget nyt — knappen er ikke i stykker.
+    const age = _coachAgeH(latest && latest.coachAssessmentTsFull);
+    say(age === null ? 'Ingen ny vurdering'
+                     : 'Cache ' + age.toFixed(1) + ' t \u2014 ingen ny vurdering');
+  }
+  done();
 }
 
 function changeWeekView(delta) {
