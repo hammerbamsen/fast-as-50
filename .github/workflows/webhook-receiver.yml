@@ -31,6 +31,11 @@ jobs:
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Manuelt tryk pa coach-knappen sender force_coach=true i Worker'ens
+          # client_payload og bryder 6-timers-cachen i update_kpi.py.
+          # Intervals-webhooken sender den IKKE -> automatiske korsler bruger
+          # stadig cachen, sa vi ikke braender et AI-kald pa hver aktivitet.
+          COACH_FORCE: ${{ github.event.client_payload.force_coach && '1' || '' }}
         run: python scripts/update_kpi.py
       - name: Commit og push data.json
         run: |

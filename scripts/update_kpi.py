@@ -495,6 +495,16 @@ def main():
 
     # --- AI coach-vurdering (genereres server-side, caches i data.json, maks 1x/6t,
     #     MEN brydes tidligt hvis der kommer en ny vejning der afviger fra cachen) ---
+    #
+    # COACH_FORCE (23/7-26): cachen brydes udelukkende af DATA-ændringer (vægt,
+    # fedt, AF, aktivitet, plan). Der var ingen måde at sige "giv mig en frisk
+    # vurdering NU". Trykkede Kennet på ↻ i dashboardet 2 timer efter sidste
+    # generering, kørte workflowet fint igennem, sprang AI-kaldet over, og
+    # knappen så ødelagt ud. Manuelt tryk sætter nu COACH_FORCE=1 hele vejen
+    # gennem Worker -> client_payload -> workflow-env og tvinger en generering.
+    # Intervals-webhooken sætter den IKKE — automatiske kørsler respekterer
+    # stadig de 6 timer, så vi ikke brænder AI-kald på hver eneste aktivitet.
+    CACHE_FORCE = os.environ.get('COACH_FORCE', '').strip().lower() not in ('', '0', 'false', 'no')
     CACHE_HOURS = 6
     _cache_age_h = None
     _last_ts_full = data.get('coachAssessmentTsFull')
@@ -535,10 +545,13 @@ def main():
     _plan_at_gen = data.get('coachAssessmentPlanAtGen', '')
     _plan_changed = _today_label != _plan_at_gen
 
-    if _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _fat_changed and not _af_changed and not _activity_changed and not _plan_changed:
+    if not CACHE_FORCE and _cache_age_h is not None and _cache_age_h < CACHE_HOURS and not _weight_changed and not _fat_changed and not _af_changed and not _activity_changed and not _plan_changed:
         print(f"  Coach-vurdering cached ({_cache_age_h:.1f}t gammel) -- springer AI-kald over")
         ai_text = None
     else:
+        if CACHE_FORCE:
+            _age_txt = f"{_cache_age_h:.1f}t" if _cache_age_h is not None else "ukendt"
+            print(f"  COACH_FORCE sat (cache {_age_txt} gammel) -- tvinger frisk AI-vurdering")
         if _weight_changed:
             print(f"  Ny vejning ({_weight_at_gen} -> {weight}) -- bryder cache tidligt")
         if _fat_changed:

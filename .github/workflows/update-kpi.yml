@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: '*/30 * * * *'
   workflow_dispatch:
+    inputs:
+      force_coach:
+        description: 'Tving frisk AI-coachvurdering (ignorer 6-timers cache)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -37,6 +42,9 @@ jobs:
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Sat via workflow_dispatch-input. Cron-korsler sender ingen inputs
+          # -> tom streng -> cachen respekteres som hidtil.
+          COACH_FORCE: ${{ inputs.force_coach && '1' || '' }}
         run: python scripts/update_kpi.py
       - name: Commit og push data.json
         run: |
