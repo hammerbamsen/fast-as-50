@@ -1880,7 +1880,11 @@ async function _dataStamp() {
       { headers: { Accept: 'application/vnd.github.raw' }, cache: 'no-store' });
     if (!r.ok) return null;
     const d = await r.json();
-    return d.coachAssessmentTsFull || (d.meta && d.meta.updated) || null;
+    // meta.updated FØRST. coachAssessmentTsFull opdateres kun når coach-teksten
+    // regenereres (cache-gatet), så den stod stille mens ny data blev skrevet —
+    // og knappen sagde "INGEN NY DATA" oven på en vellykket kørsel (fundet 23/7,
+    // verificeret på run #22: meta.updated flyttede sig, coach-stemplet gjorde ikke).
+    return (d.meta && d.meta.updated) || d.coachAssessmentTsFull || null;
   } catch (e) { return null; }
 }
 
