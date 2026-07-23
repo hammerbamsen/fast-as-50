@@ -1811,13 +1811,16 @@ async function triggerRefresh() {
     // rettes her og nu, uden af.html og uden en URL med #s=.
     // iOS giver hver hjemmeskærms-app sin EGEN localStorage: at AF-appen har
     // koden betyder ikke at dashboardet har den.
-    if (e.code === 'NO_SECRET') {
-      const val = (window.prompt('App-koden mangler på denne enhed.\n\nIndsæt den samme kode som i AF-appen:') || '').trim();
+    if (e.code === 'NO_SECRET' || e.status === 401) {
+      const mangler = e.code === 'NO_SECRET';
+      const val = (window.prompt(mangler
+        ? 'App-koden mangler på denne enhed.\n\nIndsæt den samme kode som i AF-appen:'
+        : 'App-koden på denne enhed blev afvist af Worker\'en.\n\nIndsæt den rigtige kode:') || '').trim();
       if (val) { setSecret(val); setStatus('Kode gemt — tryk ↻ igen'); }
-      else     { setStatus('App-kode mangler — tryk ↻ og indsæt den'); }
+      else     { setStatus(mangler ? 'App-kode mangler — tryk ↻ og indsæt den'
+                                   : 'App-koden er forkert — tryk ↻ og indsæt den rigtige'); }
     } else {
       setStatus(e.code === 'NO_URL' ? 'Worker-URL mangler i auth_config.json'
-              : e.status === 401    ? 'App-koden blev afvist af Worker\'en'
               : e.status            ? 'Worker svarede ' + e.status
                                     : 'Netværksfejl — nåede ikke Worker\'en');
     }
