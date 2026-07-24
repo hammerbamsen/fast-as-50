@@ -1,19 +1,19 @@
 {
   "meta": {
-    "updated": "2026-07-24 01:28",
+    "updated": "2026-07-24 02:59",
     "week": 8,
     "totalWeeks": 14,
     "blockType": "BUILD",
-    "daysToMedoc": 44,
-    "daysToChristiansborg": 37,
-    "dayName": "Torsdag",
-    "date": "23. jul"
+    "daysToMedoc": 43,
+    "daysToChristiansborg": 36,
+    "dayName": "Fredag",
+    "date": "24. jul"
   },
   "kpis": {
     "weight": {
       "value": "71,6",
       "unit": "kg",
-      "sub": "Mål <70 kg · snit 71,8 kg",
+      "sub": "Sidst målt 23/7 · Mål <70 kg · snit 71,6 kg",
       "color": "#E67E22"
     },
     "fat": {
@@ -29,13 +29,13 @@
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-15,0",
+      "value": "-12,9",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
     },
     "sleep": {
-      "value": "7,3",
+      "value": "7,5",
       "unit": "t",
       "sub": "Snit 7,5t · mål 7t",
       "color": "#2874A6"
@@ -47,7 +47,7 @@
       "color": "#E67E22"
     },
     "hrv": {
-      "value": "59,1",
+      "value": "60,4",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -82,41 +82,17 @@
     "target": 5,
     "streak": 6
   },
-  "coachSpeech": "Torsdag — uge 8 af 14. {HL} Godt: 4 AF-dage i 4 gennemførte dage — på rette spor. 1 mere og ugens mål er i hus. Fokus: 223 af 618 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 45 min, Svøm 2500m. Vægt på 71,6 kg — hold protein højt og undgå lette kulhydrater om aftenen. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Søvn på 7,3 timer er solid",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 8. {HL} Fokus: 223 af 618 TSS er i hus — 3 sessioner tilbage, heriblandt Svøm 2500m, Langløb 21 km Z2. Cykel Z2 45 min er misset — vinduet er lukket. 4 AF-dage i 5 afsluttede dage — 1 mangler i 2 dage tilbage. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+  "coachHighlight": "Søvn på 7,5 timer er solid",
   "weekFocus": "Byg videre på Mallorca-formen med kontrolleret intensitet mod uge ni",
   "today": [
     {
-      "discipline": "strength",
-      "title": "Styrke A Functional Strength 2 sæt",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
-    },
-    {
-      "discipline": "bike",
-      "title": "Cykel Z2 45 min",
+      "discipline": "swim",
+      "title": "Svøm 2500m",
       "duration": "",
       "zone": "–",
       "desc": "",
       "completed": false
-    },
-    {
-      "discipline": "commute",
-      "title": "Gentofte Cykling",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
-    },
-    {
-      "discipline": "walk",
-      "title": "Gentofte Gang",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
     }
   ],
   "week_sessions": [
@@ -159,7 +135,6 @@
       "disc": "strength",
       "label": "Styrke A Functional Strength 2 sæt",
       "done": true,
-      "today": true,
       "completion": "done",
       "completion_pct": null,
       "actual_tss": 10,
@@ -170,30 +145,28 @@
       "day": "Tor",
       "disc": "bike",
       "label": "Cykel Z2 45 min",
-      "done": false,
-      "today": true
+      "done": false
     },
     {
       "day": "Tor",
       "disc": "commute",
       "label": "Gentofte Cykling",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Tor",
       "disc": "walk",
       "label": "Gentofte Gang",
       "done": true,
-      "extra": true,
-      "today": true
+      "extra": true
     },
     {
       "day": "Fre",
       "disc": "swim",
       "label": "Svøm 2500m",
-      "done": false
+      "done": false,
+      "today": true
     },
     {
       "day": "Lør",
@@ -219,11 +192,6 @@
     50.8
   ],
   "weightHistory": [
-    {
-      "date": "2026-04-25",
-      "v": 74.1,
-      "real": true
-    },
     {
       "date": "2026-04-26",
       "v": 75.0,
@@ -516,14 +484,10 @@
       "date": "2026-07-23",
       "v": 71.6,
       "real": true
-    }
+    },
+    null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-04-25",
-      "v": 39.0,
-      "real": true
-    },
     {
       "date": "2026-04-26",
       "v": 55.0,
@@ -968,14 +932,10 @@
       "date": "2026-07-23",
       "v": 70.0,
       "real": true
-    }
+    },
+    null
   ],
   "sleepHistory": [
-    {
-      "date": "2026-04-25",
-      "v": 8.6,
-      "real": true
-    },
     {
       "date": "2026-04-26",
       "v": 9.1,
@@ -1416,14 +1376,10 @@
       "date": "2026-07-23",
       "v": 7.4,
       "real": true
-    }
+    },
+    null
   ],
   "tsbHistory": [
-    {
-      "date": "2026-04-25",
-      "v": -4.6,
-      "real": true
-    },
     {
       "date": "2026-04-26",
       "v": -20.4,
@@ -1867,6 +1823,11 @@
     {
       "date": "2026-07-23",
       "v": -15.0,
+      "real": true
+    },
+    {
+      "date": "2026-07-24",
+      "v": -12.9,
       "real": true
     }
   ],
@@ -2373,7 +2334,6 @@
           "disc": "strength",
           "label": "Styrke A Functional Strength 2 sæt",
           "done": true,
-          "today": true,
           "completion": "done",
           "completion_pct": null,
           "actual_tss": 10,
@@ -2384,30 +2344,28 @@
           "day": "Tor",
           "disc": "bike",
           "label": "Cykel Z2 45 min",
-          "done": false,
-          "today": true
+          "done": false
         },
         {
           "day": "Tor",
           "disc": "commute",
           "label": "Gentofte Cykling",
           "done": true,
-          "extra": true,
-          "today": true
+          "extra": true
         },
         {
           "day": "Tor",
           "disc": "walk",
           "label": "Gentofte Gang",
           "done": true,
-          "extra": true,
-          "today": true
+          "extra": true
         },
         {
           "day": "Fre",
           "disc": "swim",
           "label": "Svøm 2500m",
-          "done": false
+          "done": false,
+          "today": true
         },
         {
           "day": "Lør",
@@ -2753,7 +2711,7 @@
     {
       "week": 8,
       "done": 4,
-      "total": 4,
+      "total": 5,
       "label": "Uge 8"
     }
   ],
@@ -2768,11 +2726,6 @@
     "actual_total": 463.0
   },
   "fatHistory": [
-    {
-      "date": "2026-04-25",
-      "v": 23.6,
-      "real": true
-    },
     {
       "date": "2026-04-26",
       "v": 23.3,
@@ -3065,13 +3018,14 @@
       "date": "2026-07-23",
       "v": 20.5,
       "real": true
-    }
+    },
+    null
   ],
-  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 53 af 98 · Torsdag · Uge 8</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 50.8 er stærkt bygget op, men ligger under ugens mål på 60 — det afspejler at dette har været en rejseuge med fokus på kvalitet frem for volumen, ikke manglende indsats. TSB på -15.0 er kontrolleret og godt inden for Friels grænse. Styrketræningen i dag er i kassen. Fredag byder på 2500m svøm, lørdag 21 km langløb og søndag 90 min cykel Z2 — hold fokus på zoner her, særligt at svømningen rammer Z4 i perioder, ligesom Tirsdagens 2000m-tur viste 0% Z4 mod et mål på 15%.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Vægten er 71.6 kg — 1.6 kg fra 70 kg-målet. Fedtprocenten er 20.5%, altså 0.5 procentpoint fra <20%-målet, og du er allerede faldet 2.0 point siden juli — det er den vigtigste bevægelse her. Kig på de to tal sammen: vægten er endnu ikke i mål, men fedtprocenten falder kraftigt, og det er ægte fremgang i kropssammensætning, ikke blot vandtab eller muskelmasse der forsvinder. Fortsæt samme kurs — prioritér protein og hold kalorieunderskuddet moderat, så muskelmasssen bevares ind i september.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du har holdt AF alle fire dage der er gået denne uge — 4/4, og streaken er oppe på 6 dage. Fredag, lørdag og søndag er de tre dage der er tilbage — hold linjen, og ugens AF-mål på 5 er inden for rækkevidde uden besvær. Fokus for resten af ugen: kvalitet i zonerne, særligt Z4-tid i svømningen fredag.</p>",
-  "coachAssessmentTs": "22:04",
+  "coachAssessmentHtml": "<p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\"><strong>Dag 54 af 98 · Fredag · Uge 8</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">💪 <strong>Træning & load</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">CTL på 50.8 er under ugemål på 60, men det afspejler ugens karakter: Mallorca-turen var præget af rejse, gåture og vandringer frem for høj-TSS-blokke – ikke en træningsfejl. TSB på -12.9 er helt kontrolleret og godt inden for grænsen. Mandagens Sa Calobra-tur viste for lidt tid i watt-Z2/Z3 – tag den læring med til Søndagens cykeltur og hold wattene oppe der. Dagens svøm på 2500m er endnu ikke gennemført – kom i vandet og brug den som et roligt, teknisk pas der leder dig mod weekendens lange løb.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">⚖️ <strong>Krop & kost</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Der er ingen aktuel vægt- eller fedtprocentmåling at arbejde med i dag – ingen vurdering mulig.</p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">🎯 <strong>AF-status & fokus for resten af ugen</strong></p><p style=\"margin:0 0 8px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.6;color:var(--ink)\">Du er på 4 AF-dage ud af 5 dage gået – det er stærkt. Lørdag og søndag er begge træningsdage, så fokus er enkelt: hold dem alkoholfri, og du afslutter ugen med en fuld målsætning. Prioritér søvn og mad ordentligt i aften – Lørdag's 21 km langløb kræver at du møder frisk op.</p>",
+  "coachAssessmentTs": "00:59",
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -15.0,
+  "tsb": -12.9,
   "swimHistory": [
     {
       "week": 1,
@@ -3124,17 +3078,16 @@
   ],
   "coachAssessmentLastActId": "i168462547",
   "weekFocusWeek": 8,
-  "coachAssessmentPlanAtGen": "Styrke A Functional Strength 2 sæt",
+  "coachAssessmentPlanAtGen": "Svøm 2500m",
   "weightGoal": 70,
   "bodyFatGoal": 20,
   "weightMovingAvg7": [
     null,
     null,
-    74.7,
-    74.7,
-    74.7,
-    74.7,
-    74.7,
+    null,
+    null,
+    null,
+    null,
     75.07,
     75.17,
     75.33,
@@ -3217,16 +3170,16 @@
     71.93,
     null,
     null,
+    null,
     null
   ],
   "fatMovingAvg7": [
     null,
     null,
-    23.57,
-    23.57,
-    23.57,
-    23.57,
-    23.57,
+    null,
+    null,
+    null,
+    null,
     23.17,
     22.77,
     22.47,
@@ -3309,6 +3262,7 @@
     22.0,
     null,
     null,
+    null,
     null
   ],
   "weightToGoal": 1.6,
@@ -3341,8 +3295,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-07-23T23:28:18.435857",
-  "coachAssessmentTsFull": "2026-07-23T22:04:30.608194",
+  "credentialsCheckedTs": "2026-07-24T00:59:44.254926",
+  "coachAssessmentTsFull": "2026-07-24T00:59:44.254911",
   "coachAssessmentWeightAtGen": 71.6,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
