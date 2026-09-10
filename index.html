@@ -390,12 +390,15 @@ details.fold[open] > summary::after { content:"▴"; }
 .sub-q.show { display:grid; }
 .saved { font-family:'Space Mono',monospace; font-size:11px; color:var(--ok); min-height:14px; margin:2px 0 8px; }
 .saved.err { color:var(--act); }
-.dots { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-top:4px; }
+.dots { display:grid; grid-template-columns:38px repeat(7,1fr); gap:6px; margin-top:4px; }
+.dots .rows { cursor:default; text-align:left; padding-left:2px; }
+.dots .rows b { display:block; height:8px; line-height:8px; margin:2px 0; font-family:'Space Mono',monospace; font-weight:400; font-size:8px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
 .dots div { text-align:center; }
 .dots .lab { font-family:'Space Mono',monospace; font-size:9px; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:4px; }
 .dots i { display:block; height:8px; border-radius:4px; margin:2px auto; width:70%; }
 .dots i.af { background:var(--ok); } .dots i.af.v { background:var(--watch); } .dots i.af.x { background:var(--act); }
 .dots i.p2 { background:var(--ok); } .dots i.p1 { background:var(--watch); } .dots i.p0 { background:var(--act); }
+.dots i.e5 { background:var(--ok); } .dots i.e3 { background:var(--watch); } .dots i.e1 { background:var(--act); }
 .dots i.none { background:var(--line); }
 /* 8/9-26: prikkerne kan trykkes → ret en tidligere dag. Valgt dag markeres. */
 .dots div { cursor:pointer; border-radius:8px; padding:3px 0 2px; border:1.5px solid transparent; }
@@ -678,7 +681,7 @@ details.fold[open] > summary::after { content:"▴"; }
 
   <span class="q lab" style="display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 0 6px">Sidste 7 dage</span>
   <div class="dots" id="log-dots"></div>
-  <div class="legend">Tryk på en dag for at se eller rette den. Øverste række: AF-dag (grøn) · valgt (gul) · bare skete / før 4/9 (rød). Nederste: protein 3/3 · 2/3 · ≤1.</div>
+  <div class="legend">Tryk på en dag for at se eller rette den. Grøn · gul · rød: <b>Alk</b> AF-dag · valgt · bare skete (før 4/9: rød) — <b>Prot</b> 3/3 · 2/3 · ≤1 — <b>Energi</b> høj · ok · lav.</div>
   <button class="close" onclick="showLogSheet(false)">Luk</button>
 </div>
 
@@ -3969,9 +3972,12 @@ function renderLogDots(){
     const kind = e._localAlk ? null : (D.af_kind || {})[iso];
     const af = e.alkohol == null ? 'none' : (e.alkohol === 0 ? 'af' : (e.alkohol === 2 || kind === 'drak' || kind === 'autopilot') ? 'af x' : 'af v');
     const pr = e.protein == null ? 'none' : 'p' + e.protein;
-    days.push(`<div class="${iso === sel ? 'sel' : ''}" data-iso="${iso}" role="button" aria-label="${iso}"><span class="lab">${DK_DAY_SHORT[(dt.getDay()+6)%7]}</span><i class="${af}"></i><i class="${pr}"></i></div>`);
+    // Energi 1-5 → tre trin som i arket: ≤2 lav (rød), 3 ok (gul), ≥4 høj (grøn)
+    const en = e.energi == null ? 'none' : (e.energi <= 2 ? 'e1' : e.energi >= 4 ? 'e5' : 'e3');
+    days.push(`<div class="${iso === sel ? 'sel' : ''}" data-iso="${iso}" role="button" aria-label="${iso}"><span class="lab">${DK_DAY_SHORT[(dt.getDay()+6)%7]}</span><i class="${af}"></i><i class="${pr}"></i><i class="${en}"></i></div>`);
   }
-  box.innerHTML = days.join('');
+  // Rækkelabels forrest (10/9): tre kriterier, tre rækker — det skal kunne ses hvad der er hvad.
+  box.innerHTML = '<div class="rows"><span class="lab">&nbsp;</span><b>Alk</b><b>Prot</b><b>Energi</b></div>' + days.join('');
 }
 
 function logSay(txt, err){
