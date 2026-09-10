@@ -92,7 +92,7 @@ def test_needs_alert():
     assert not hr.needs_alert(None)
     assert hr.needs_alert(_run(conclusion="failure"))
     assert hr.needs_alert(_run(conclusion="timed_out"))
-    assert hr.needs_alert(_run(conclusion="cancelled"))
+    assert not hr.needs_alert(_run(conclusion="cancelled"))  # concurrency-kø, ikke fejl
 
 
 def test_alert_text_uses_local_time_and_conclusion():

@@ -1025,7 +1025,10 @@ async function checkSystemHealth() {
       if (HEALTH_IGNORE.includes((run.name || '').toLowerCase())) continue;
       if (!latest.has(run.name)) latest.set(run.name, run);
     }
-    const broken = [...latest.values()].filter(x => x.conclusion !== 'success');
+    // 'cancelled' er som regel GitHubs egen concurrency-kø (health.yml, group: health),
+    // 'skipped' et bevidst job-if. Ingen af dem er fejl — fundet 10/9 som falsk alarm.
+    const HEALTH_OK = ['success', 'skipped', 'cancelled'];
+    const broken = [...latest.values()].filter(x => !HEALTH_OK.includes(x.conclusion));
     if (!broken.length) { box.innerHTML = ''; return; }
     const esc = t => String(t).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
     const items = broken.map(b => {

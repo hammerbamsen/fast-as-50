@@ -84,7 +84,9 @@ def secrets_for(auth_mode):
     }
 
 
-ALERT_CONCLUSIONS_IGNORED = ("success", "skipped")
+# "cancelled" er næsten altid GitHubs concurrency-kø (en nyere kørsel afløser en
+# ventende) eller et bevidst stop — ingen af delene fortjener en push-alarm (10/9).
+ALERT_CONCLUSIONS_IGNORED = ("success", "skipped", "cancelled")
 
 
 # ── Ren logik (testes i scripts/test_health_report.py) ──────────────────────
