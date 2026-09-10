@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-10 12:46",
+    "updated": "2026-09-10 15:19",
     "week": 1,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "49,4",
+      "value": "49,6",
       "unit": "",
       "sub": "Uge 1-mål 47 · RECOVERY",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "3,4",
+      "value": "2,1",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "141",
+      "value": "152",
       "unit": "TSS",
-      "sub": "141 af 255 planlagt TSS",
+      "sub": "152 af 255 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -105,13 +105,21 @@
     "target": 6,
     "streak": 4
   },
-  "coachSpeech": "Torsdag — uge 1 af 51. {HL} Godt: 4 AF-dage i 4 gennemførte dage — på rette spor. 2 mere og ugens mål er i hus. Vægt på 73,7 kg — Vægten er 1.4 kg højere end seneste måling (2026-09-03) — sandsynligvis væske/natrium snarere end fedt, ikke et disciplinproblem. Giv den et par dage før du dømmer tallet. Fokus: Søvn på 6,9 timer er under 7-timers målet — prioriter den. Keep moving forward. ❤️ Aerobt: VIGTIGT: Cykelpasset 10/9 (snitpuls 124) kostede 12,1 % mere puls pr. meter end medianen af de seneste 6 sammenlignelige pas (EF 1,306 mod 1,486). Forbehold, som IKKE er trukket fra tallet: baseline-passene lå på et andet tidspunkt af døgnet. Konkluder ikke overtræning ud fra ét pas — sig hvad passet kostede, og at det enten var varmen eller for højt tempo.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Du er i uge 1 af RECOVERY-blokken (mesouge R) efter Marathon du Médoc. Programmet siger eksplicit: ingen løb før tidligst lørdag 12/9, cykel og svøm bærer basen. CPH Half om 10 dage. {HL} Dagens to pas er gennemført: Cykel Z2 60 min (faktisk 61 min, 34 TSS) og Gentofte Gang 58 min som ekstra.",
+  "coachHighlight": "Svøm 2000m teknisk i morgen fredag — 56 min, let tempo, ingen ERG.",
   "weekFocus": "Restituer komplet — let bevægelse, ingen pres, sov 7-8 timer",
   "today": [
     {
       "discipline": "bike",
       "title": "Cykel Z2 60 min",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "walk",
+      "title": "Gentofte Gang",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -193,6 +201,17 @@
       "intervals_compliance": 75.6
     },
     {
+      "day": "Tor",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 11,
+      "actual_mins": 58,
+      "actual_distance_m": 4941.65,
+      "today": true
+    },
+    {
       "day": "Fre",
       "disc": "swim",
       "label": "Svøm 2000m teknisk",
@@ -230,7 +249,7 @@
     }
   ],
   "ctlCurve": [
-    49.4
+    49.6
   ],
   "weightHistory": [
     null,
@@ -1912,7 +1931,7 @@
     },
     {
       "date": "2026-09-10",
-      "v": 3.4,
+      "v": 2.2,
       "real": true
     }
   ],
@@ -2095,6 +2114,17 @@
           "actual_mins": 61,
           "actual_distance_m": 31761.66,
           "intervals_compliance": 75.6
+        },
+        {
+          "day": "Tor",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 11,
+          "actual_mins": 58,
+          "actual_distance_m": 4941.65,
+          "today": true
         },
         {
           "day": "Fre",
@@ -2603,12 +2633,12 @@
     }
   ],
   "train_mins": {
+    "walk": 421.0,
     "bike": 61.0,
-    "walk": 363.0,
     "run": 39.0,
     "commute": 88.0,
     "planned": 426.0,
-    "actual_total": 551.0
+    "actual_total": 609.0
   },
   "fatHistory": [
     null,
@@ -2938,17 +2968,26 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 4 af 357 · Torsdag · Uge 1</strong></p><p class=\"coach-sec coach-big\">Du er i uge 1 af en RECOVERY-blok (mesouge R) efter Marathon du Médoc — kroppens job er at absorbere, ikke at bygge. CPH Half om 10 dage sætter rammen: lav last, god søvn, ingen hårde pas før lørdag 12/9.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Du har gennemført Cykel Z2 60 min i dag — 61 min, 34 TSS. Det matcher planen perfekt. Ugen tæller 2 planlagte gennemførte pas (mandag og onsdag gang) plus cykel i dag som planlagt, ét misset pas (gang tirsdag 60 min). CTL er 49,4 mod et mål på 47,0 — du er 2,4 over target, hvilket er fint i en RECOVERY-blok; her er lavere last det rigtige. Ramprate er -1,4, TSB er 3,4 — kroppen restituerer planmæssigt. Det aerobe flag fra i dag viser EF -12,1 % under din baseline på en cykeltur; det er en enkelt observation på et let pas, og temperaturen er ikke registreret, så læs det ikke som et problem.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,3 kg og fedt 21,3 %. Begge er stabile — vægtændringen over 28 dage er 0,0 kg og fedtprocenten er faldet 0,3 procentpoint, hvilket er under tærsklen for at kalde en retning. Cut starter om 11 dage (21/9) med et startpunkt på 72,2 kg og mål 68,0 kg — du er lige der. Protein-registrering er ikke slået til denne uge (0 dage med protein-check), og det er et princip der er værd at genoptage inden cut starter.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 AF-dage denne uge mod et mål på 6, ingen autopilot-dage — alle 3 valgte drikkedage er bevidste valg, men der var en klynge 4/9–6/9 der rammer HRV hårdere end spredte dage. HRV ligger på 66 mod et 42-dages snit på 54,9 — du er godt over baseline. Søvnsnittet er 6,9 timer, under grænsen på 7 timer, og energisnittet er 1,9. Energien er lav — søvn er den nemmeste løftestang.</p>",
-  "coachAssessmentTs": "08:41",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 4 af 357 · Torsdag · Uge 1</strong></p><p class=\"coach-sec coach-big\">Du er i uge 1 af RECOVERY-blokken (mesouge R) efter Marathon du Médoc. Programmet siger eksplicit: ingen løb før tidligst lørdag 12/9, cykel og svøm bærer basen. CPH Half om 10 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens to pas er gennemført: Cykel Z2 60 min (faktisk 61 min, 34 TSS) og Gentofte Gang 58 min som ekstra. Ugens aktuelle TSS er 152 mod planlagte 255 — men i en RECOVERY-uge er det præcis rigtigt; kvoten for hårde og moderate pas er 0. CTL på 49,6 er allerede 2,6 over restitutionsmålet på 47,0. Aerobisk flag i dag på cykel: EF lå 12,1 % under baseline — passet var varmt, men notér det. Det misste pas tirsdag (Gang let 60 min) lades ligge — indhent det ikke.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snitvægt er 72,3 kg, og 28-dages ændringen er 0,0 kg — stabil. Fedtprocent på 7-dages snit er 21,3 %, ændring over 28 dage er -0,3 procentpoint, hvilket er under tærsklen for en reel retning — også stabil. Cut starter først 2026-09-21, så der er ingen aktive kosthandlinger nu ud over protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 AF-dage denne uge mod et mål på 6 — der er plads til at nå målet. De 3 alkoholdage i ugen var alle bevidste valg, ingen autopilot-dage. Protein er ikke registreret en eneste dag denne uge trods 7 dages registrering. Søvn snit de seneste 7 dage: 6,9 timer — lige under de 7 timer. Energiniveau snit: 1,9.</p>",
+  "coachAssessmentTs": "15:19",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 4/9–6/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "3 drikkedage i træk 4/9–6/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "readiness",
+      "level": "info",
+      "message": "Søvn snit 6,9 t — under de 7 timers minimumsgrænse. Prioritér sengetid i dag.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": 3.4,
+  "tsb": 2.1,
   "swimHistory": [
     {
       "week": 1,
@@ -2957,7 +2996,7 @@
       "cumulative": 0
     }
   ],
-  "coachAssessmentLastActId": "i185139199",
+  "coachAssessmentLastActId": "i185264564",
   "weekFocusWeek": 1,
   "coachAssessmentPlanAtGen": "Cykel Z2 60 min",
   "weightGoal": 68,
@@ -3211,8 +3250,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-10T10:46:50.687962",
-  "coachAssessmentTsFull": "2026-09-10T06:41:33",
+  "credentialsCheckedTs": "2026-09-10T13:19:59.648310",
+  "coachAssessmentTsFull": "2026-09-10T13:19:59",
   "coachAssessmentWeightAtGen": 73.7,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [
@@ -3309,7 +3348,7 @@
     }
   },
   "weekTssActual": {
-    "1": 141
+    "1": 152
   },
   "racesUpcoming": [
     {
@@ -4450,7 +4489,7 @@
         "mesoWeek": "R",
         "ctlTarget": 47,
         "tssTarget": 150,
-        "tssActual": 141,
+        "tssActual": 152,
         "purpose": "Restitution efter Médoc — gang, svøm og let cykel; første korte løb tidligst lør 12/9.",
         "note": "Restitution efter Marathon du Médoc. Intet løb før tidligst lør 12/9 — 42 km excentrisk belastning kræver 10-14 dage. Cykel bærer den aerobe base.",
         "quota": {
@@ -6765,6 +6804,24 @@
                 "isKey": false,
                 "optional": false,
                 "completion": "partial"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 58,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 58,
+                "actualTss": 11,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -8295,7 +8352,7 @@
           "week": 1,
           "programId": "tds-2027",
           "start": "2026-09-07",
-          "ctl": 49.4
+          "ctl": 49.6
         }
       ],
       "projection": [
@@ -8715,54 +8772,52 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-10T06:41:33Z",
-    "inputsHash": "d74fb83918a6aed819d3e19ac7070da3e5e433b4",
+    "generatedAt": "2026-09-10T13:19:59Z",
+    "inputsHash": "f482c17d965660ce8d413879c29bd17dad2f679e",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Sov mindst 7 timer i nat — sæt alarm 30 min tidligere end sædvanligt så du har buffer.",
-      "why": "Søvnsnittet de seneste 7 dage er 6,9 timer, og du er under de 7 timers grænsen. CPH Half er om 10 dage."
+      "action": "Svøm 2000m teknisk i morgen fredag — 56 min, let tempo, ingen ERG.",
+      "why": "Det er det næste planlagte pas i restitutionsblokken, og CTL ligger allerede 2,6 over målet — hold det let."
     },
     "training": {
-      "text": "Du har gennemført Cykel Z2 60 min i dag — 61 min, 34 TSS. Det matcher planen perfekt. Ugen tæller 2 planlagte gennemførte pas (mandag og onsdag gang) plus cykel i dag som planlagt, ét misset pas (gang tirsdag 60 min). CTL er 49,4 mod et mål på 47,0 — du er 2,4 over target, hvilket er fint i en RECOVERY-blok; her er lavere last det rigtige. Ramprate er -1,4, TSB er 3,4 — kroppen restituerer planmæssigt. Det aerobe flag fra i dag viser EF -12,1 % under din baseline på en cykeltur; det er en enkelt observation på et let pas, og temperaturen er ikke registreret, så læs det ikke som et problem.",
+      "text": "Dagens to pas er gennemført: Cykel Z2 60 min (faktisk 61 min, 34 TSS) og Gentofte Gang 58 min som ekstra. Ugens aktuelle TSS er 152 mod planlagte 255 — men i en RECOVERY-uge er det præcis rigtigt; kvoten for hårde og moderate pas er 0. CTL på 49,6 er allerede 2,6 over restitutionsmålet på 47,0. Aerobisk flag i dag på cykel: EF lå 12,1 % under baseline — passet var varmt, men notér det. Det misste pas tirsdag (Gang let 60 min) lades ligge — indhent det ikke.",
       "refs": [
         61.0,
         34.0,
+        58.0,
+        152.0,
+        255.0,
+        0.0,
+        49.6,
+        2.6,
         47.0,
-        49.4,
-        2.4,
-        -1.4,
-        3.4,
-        -12.1
+        12.1
       ]
     },
     "body": {
-      "text": "7-dages snit er 72,3 kg og fedt 21,3 %. Begge er stabile — vægtændringen over 28 dage er 0,0 kg og fedtprocenten er faldet 0,3 procentpoint, hvilket er under tærsklen for at kalde en retning. Cut starter om 11 dage (21/9) med et startpunkt på 72,2 kg og mål 68,0 kg — du er lige der. Protein-registrering er ikke slået til denne uge (0 dage med protein-check), og det er et princip der er værd at genoptage inden cut starter.",
+      "text": "7-dages snitvægt er 72,3 kg, og 28-dages ændringen er 0,0 kg — stabil. Fedtprocent på 7-dages snit er 21,3 %, ændring over 28 dage er -0,3 procentpoint, hvilket er under tærsklen for en reel retning — også stabil. Cut starter først 2026-09-21, så der er ingen aktive kosthandlinger nu ud over protein ved hvert måltid.",
       "refs": [
         72.3,
-        21.3,
         0.0,
-        0.3,
-        72.2,
-        68.0,
-        11.0,
-        0.0
+        21.3,
+        -0.3
       ]
     },
     "habits": {
-      "text": "4 AF-dage denne uge mod et mål på 6, ingen autopilot-dage — alle 3 valgte drikkedage er bevidste valg, men der var en klynge 4/9–6/9 der rammer HRV hårdere end spredte dage. HRV ligger på 66 mod et 42-dages snit på 54,9 — du er godt over baseline. Søvnsnittet er 6,9 timer, under grænsen på 7 timer, og energisnittet er 1,9. Energien er lav — søvn er den nemmeste løftestang.",
+      "text": "4 AF-dage denne uge mod et mål på 6 — der er plads til at nå målet. De 3 alkoholdage i ugen var alle bevidste valg, ingen autopilot-dage. Protein er ikke registreret en eneste dag denne uge trods 7 dages registrering. Søvn snit de seneste 7 dage: 6,9 timer — lige under de 7 timer. Energiniveau snit: 1,9.",
       "refs": [
         4.0,
         6.0,
         3.0,
-        66.0,
-        54.9,
+        0.0,
+        7.0,
         6.9,
         7.0,
         1.9
       ]
     },
-    "bigPicture": "Du er i uge 1 af en RECOVERY-blok (mesouge R) efter Marathon du Médoc — kroppens job er at absorbere, ikke at bygge. CPH Half om 10 dage sætter rammen: lav last, god søvn, ingen hårde pas før lørdag 12/9.",
+    "bigPicture": "Du er i uge 1 af RECOVERY-blokken (mesouge R) efter Marathon du Médoc. Programmet siger eksplicit: ingen løb før tidligst lørdag 12/9, cykel og svøm bærer basen. CPH Half om 10 dage.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -8774,9 +8829,9 @@
         "source": "rule"
       },
       {
-        "type": "quota",
+        "type": "readiness",
         "level": "info",
-        "message": "Ingen hårde eller moderate pas i denne RECOVERY-uge — det er planen. Første hårde pas er Løb 4×3 min den 15/9.",
+        "message": "Søvn snit 6,9 t — under de 7 timers minimumsgrænse. Prioritér sengetid i dag.",
         "action": null,
         "source": "ai"
       }
@@ -9313,14 +9368,14 @@
     }
   },
   "weekTss": {
-    "actual": 141,
+    "actual": 152,
     "planned": 255
   },
   "martinMail": {
     "week": 1,
     "isoWeek": 37,
     "lines": [
-      "Uge 37: TSS 141 af 255 (55 %) · CTL 49,4 (mål 47) · TSB +3,4",
+      "Uge 37: TSS 152 af 255 (60 %) · CTL 49,6 (mål 47) · TSB +2,1",
       "Vægt 7d 72,3 kg · fedt 14d 21,5 % · cut starter uge 39 (21/9)",
       "HRV 7d 55 (28d 58) · hvilepuls 44 · søvn 7d 6,9 t",
       "AF 4/7 · protein 3/3 0/7 · aftensult —/7",
@@ -9329,7 +9384,7 @@
       "Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: tir 15/9 Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse 45 min, søn 20/9 CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km 90 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-10T10:46:50Z"
+    "generatedAt": "2026-09-10T13:19:35Z"
   },
   "proposals": [],
   "aerobicFlag": {
