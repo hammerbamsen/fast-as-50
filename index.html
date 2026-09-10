@@ -390,7 +390,8 @@ details.fold[open] > summary::after { content:"▴"; }
 .sub-q.show { display:grid; }
 .saved { font-family:'Space Mono',monospace; font-size:11px; color:var(--ok); min-height:14px; margin:2px 0 8px; }
 .saved.err { color:var(--act); }
-.dots { display:grid; grid-template-columns:38px repeat(7,1fr); gap:6px; margin-top:4px; }
+.dots { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-top:4px; }
+#log-dots { grid-template-columns:38px repeat(7,1fr); }  /* kun log-arket har label-kolonnen; protein-kortet (Krop) bruger .dots uden */
 .dots .rows { cursor:default; text-align:left; padding-left:2px; }
 .dots .rows b { display:block; height:8px; line-height:8px; margin:2px 0; font-family:'Space Mono',monospace; font-weight:400; font-size:8px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
 .dots div { text-align:center; }
