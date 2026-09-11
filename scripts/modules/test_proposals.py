@@ -298,7 +298,15 @@ def test_real_proposal_blok11_applied_offline_and_plan_matches():
                     assert e.get("templateId") in ("styrke-fs4-a-2r", "styrke-fs4-b-2r"), d["date"]
                 if e.get("libraryId"):
                     assert e["libraryId"] in bike_library.ids(), d["date"]
+    # Uger som senere forslag har skrevet om (fx uge 40 Mallorca) testes ikke mod skabelonen
+    later = set()
+    for f in (ROOT / "data" / "proposals").glob("*.json"):
+        q = json.loads(f.read_text(encoding="utf-8"))
+        if q.get("createdAt", "") > prop["createdAt"] and q.get("status") in ("accepted", "applied-offline"):
+            later |= {date.fromisoformat(c["date"]).isocalendar()[1] for c in q["changes"]}
     for wk, rows in by_week.items():
+        if wk in later:
+            continue
         assert sum(1 for r in rows if r[1] == "Swim") == 1, ("svøm 1×/uge", wk)
         assert sum(1 for r in rows if r[1] == "WeightTraining") == 2, ("styrke 2×/uge", wk)
         sundays = [r for r in rows if date.fromisoformat(r[0]).weekday() == 6]
