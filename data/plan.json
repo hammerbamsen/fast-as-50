@@ -6999,46 +6999,46 @@
           "entries": [
             {
               "id": "c2e28529",
+              "note": "Mallorca dag 1: Sóller–Deià–Valldemossa og retur. Ren Z2. KØR EFTER Rosello-mødet kl. 09:00–09:45 — start ca. 10:00",
               "workout": {
+                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+                "moving_time": 7200,
                 "name": "Cykel Z2 120 min Mallorca",
                 "type": "Ride",
-                "moving_time": 7200,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
                 "workout_doc": {
                   "steps": [
                     {
-                      "ramp": true,
+                      "duration": 600,
                       "power": {
-                        "start": 45,
                         "end": 68,
+                        "start": 45,
                         "units": "%ftp"
                       },
-                      "duration": 600,
+                      "ramp": true,
                       "warmup": true
                     },
                     {
-                      "text": "Aerob base 56-76% FTP",
+                      "duration": 6300,
                       "power": {
-                        "start": 56,
                         "end": 76,
+                        "start": 56,
                         "units": "%ftp"
                       },
-                      "duration": 6300
+                      "text": "Aerob base 56-76% FTP"
                     },
                     {
-                      "ramp": true,
+                      "cooldown": true,
+                      "duration": 300,
                       "power": {
-                        "start": 68,
                         "end": 45,
+                        "start": 68,
                         "units": "%ftp"
                       },
-                      "duration": 300,
-                      "cooldown": true
+                      "ramp": true
                     }
                   ]
                 }
-              },
-              "note": "Mallorca dag 1: Sóller–Deià–Valldemossa og retur. Ren Z2, ingen jagt på stigningerne"
+              }
             }
           ]
         },
