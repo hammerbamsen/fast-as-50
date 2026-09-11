@@ -2172,7 +2172,7 @@ function ptBgRun(payload, o){
       bg.busy = false; bg.snapshot = null;
       const t = document.getElementById('pt-toast-msg');
       if (t && r.plan_commit && payload.action !== 'restore_from_commit') {
-        t.innerHTML += `<div class="pt-btns"><button class="sec" onclick="ptBgUndo('${esc(r.plan_commit)}')">Fortryd</button><button class="pri" onclick="ptToastShow(false)">OK</button></div>`;
+        t.innerHTML += `<div class="pt-btns"><button class="sec" onclick="ptBgUndo('${esc(r.plan_commit)}','${esc(payload.entryId||'')}')">Fortryd</button><button class="pri" onclick="ptToastShow(false)">OK</button></div>`;
         bg.hide = setTimeout(() => { if (PT.bg === bg) ptToastShow(false); }, 20000);
       } else {
         bg.hide = setTimeout(() => { if (PT.bg === bg) ptToastShow(false); }, 4000);
@@ -2194,7 +2194,7 @@ function ptBgConfirmWarn(){
 // Fortryd efter ok: hent forældre-committen til plan_commit og gendan den
 // gennem gaten (restore_from_commit — hele plan.json, dvs. præcis tilstanden
 // før denne ene ændring, da intet andet er committet imens).
-async function ptBgUndo(sha){
+async function ptBgUndo(sha, entryId){
   const bg = PT.bg; if (bg && bg.hide) clearTimeout(bg.hide);
   const t = document.getElementById('pt-toast-msg');
   if (t) t.innerHTML = `<span style="color:var(--muted)">Finder tilstanden før ændringen…</span>`;
@@ -2205,7 +2205,8 @@ async function ptBgUndo(sha){
   } catch(e) {}
   if (!parent) { if (t) t.innerHTML = `<span style="color:var(--act)">Kunne ikke fortryde automatisk — brug ⟲ Historik på ugen.</span>`; ptBgAddClose(); if (bg) bg.busy = false; return; }
   PT.bg = null;
-  const payload = { requestId: ptReqId(), action: 'restore_from_commit', entryId: null, params: { source_commit: parent }, confirmedWarn: false, athlete: 'kennet' };
+  // Worker'en kræver entryId som streng (400 uden) — gaten ignorerer den ved restore.
+  const payload = { requestId: ptReqId(), action: 'restore_from_commit', entryId: entryId || 'restore', params: { source_commit: parent }, confirmedWarn: false, athlete: 'kennet' };
   ptBgRun(payload, { label: 'Fortryder — gate kører i baggrunden…', apply: null, sheet: null, retry: null });
 }
 
@@ -3201,6 +3202,12 @@ function proteinCard() {
   }).join('') : '';
   const val = k ? `${esc(k.value)}<span style="font-size:14px;color:var(--muted)">${esc(k.unit)}</span>` : '—';
   const en = D.energy7;
+  // Blok 18: energi-række med log-arkets tre trin (≤2 lav rød, 3 ok gul, ≥4 høj grøn)
+  const edots = last7.length ? last7.map(e => {
+    const dt = new Date(e.date + 'T12:00:00');
+    const cls = e.energi == null ? 'none' : (e.energi <= 2 ? 'e1' : e.energi >= 4 ? 'e5' : 'e3');
+    return `<div><span class="lab">${DK_DAY_SHORT[(dt.getDay()+6)%7]}</span><i class="${cls}"></i></div>`;
+  }).join('') : '';
   return `<div class="card">
     <div class="label" style="margin-bottom:10px">Protein — 3 af 3 måltider</div>
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
@@ -3208,9 +3215,11 @@ function proteinCard() {
       <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${k ? esc(k.sub) : 'Ingen registreringer endnu'}</div>
     </div>
     ${dots ? `<div class="dots">${dots}</div>` : '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Registrér i log-arket på I dag-fanen.</div>'}
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px solid var(--line)">
-      <span>Energi-snit 7d</span><span style="font-family:'Space Mono',monospace;color:var(--ink)">${en != null ? fmtDa(en) + ' / 5' : '—'}</span>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)">
+      <div class="label">Energi — høj · ok · lav</div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">snit 7d ${en != null ? fmtDa(en) + ' / 5' : '—'}</div>
     </div>
+    ${edots ? `<div class="dots">${edots}</div>` : ''}
   </div>`;
 }
 
