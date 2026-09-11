@@ -1,22 +1,4 @@
 {
- "restore-mrj73zjg3sw": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "restore"
-  ],
-  "plan_commit": "252d42bfb4108f5852984f97be16e17b5ba5de9c",
-  "sync_errors": [
-   "Outlook restore: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/users/kennet@hammerby.com/calendarView?startDateTime=restoreT00%3A00%3A00&endDateTime=restoreT23%3A59%3A59&%24select=id%2Csubject%2Ccategories&%24top=50"
-  ],
-  "athlete": "kennet",
-  "request_ts": "2026-07-13T12:25:48+00:00",
-  "request_id": "restore-mrj73zjg3sw"
- },
  "rmrj7y64meqfq": {
   "status": "ok",
   "gate": {
@@ -251,5 +233,26 @@
   "athlete": "kennet",
   "request_ts": "2026-08-26T05:53:16+00:00",
   "request_id": "rmt9ogo8qfl30"
+ },
+ "r20260911-chatvej-1": {
+  "status": "ok",
+  "gate": {
+   "status": "ok",
+   "flags": [],
+   "msg": "Godkendt"
+  },
+  "dates_changed": [
+   "2026-09-28"
+  ],
+  "plan_commit": "2f8324467f3a29650117bb452d7b2bf90dda9920",
+  "sync_errors": [
+   "Forslag 2026-09-11-test-chatvej: data/proposals/2026-09-11-test-chatvej.json findes ikke i repoet"
+  ],
+  "athlete": "kennet",
+  "request_ts": "2026-09-11T09:08:36+00:00",
+  "action": "apply_proposal",
+  "proposal_id": "2026-09-11-test-chatvej",
+  "proposal_commit": null,
+  "request_id": "r20260911-chatvej-1"
  }
 }
