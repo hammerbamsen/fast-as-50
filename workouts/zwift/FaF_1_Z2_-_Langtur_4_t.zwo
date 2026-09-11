@@ -1,0 +1,33 @@
+<workout_file>
+    <author>K. Hammerby / Fast as 50</author>
+    <name>FaF 1 Z2 - Langtur 4 t</name>
+    <description>Fire timer ren Z2 — vintersæsonens længste. Aerob udholdenhed bygges her, ikke i intervallerne. De første to timer skal føles meget lette; de sidste to er dem der tæller.  Energiplan som Depottur 2 t: 80-100 g kulhydrat/time fra time 1, drik hvert 15. min. Kadenceblokkene bryder monotonien og holder pedaltrækket rundt. Må køres ude som ren Z2 i samme varighed.</description>
+    <sportType>bike</sportType>
+    <tags><tag name="z2"/><tag name="langtur"/><tag name="nutrition"/></tags>
+    <workout>
+        <Warmup Duration="900" PowerLow="0.4500" PowerHigh="0.6200"/>
+        <SteadyState Duration="2700" Power="0.6400">
+            <textevent timeoffset="0" message="Sæt uret: spis hvert 20. min, drik hvert 15."/>
+            <textevent timeoffset="1500" message="SPIS"/>
+            <textevent timeoffset="2400" message="DRIK"/>
+        </SteadyState>
+        <SteadyState Duration="300" Power="0.6800" Cadence="100"/>
+        <SteadyState Duration="3300" Power="0.6600">
+            <textevent timeoffset="1200" message="SPIS"/>
+            <textevent timeoffset="2400" message="DRIK"/>
+            <textevent timeoffset="3000" message="Halvvejs. Stadig let?"/>
+        </SteadyState>
+        <SteadyState Duration="300" Power="0.6800" Cadence="100"/>
+        <SteadyState Duration="3300" Power="0.6800" Cadence="74">
+            <textevent timeoffset="1200" message="SPIS"/>
+            <textevent timeoffset="2400" message="DRIK"/>
+        </SteadyState>
+        <SteadyState Duration="300" Power="0.7200" Cadence="100"/>
+        <SteadyState Duration="2400" Power="0.7000" Cadence="74">
+            <textevent timeoffset="0" message="Sidste blok. Watt op, ikke ned."/>
+            <textevent timeoffset="1200" message="SPIS — sidste depot"/>
+            <textevent timeoffset="1800" message="DRIK"/>
+        </SteadyState>
+        <Cooldown Duration="900" PowerLow="0.6200" PowerHigh="0.4000"/>
+    </workout>
+</workout_file>

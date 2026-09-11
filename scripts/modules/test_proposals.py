@@ -11,7 +11,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pytest
-from modules import edit_apply, proposals
+from datetime import date
+from modules import bike_library, edit_apply, proposals
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 PLAN = json.loads((ROOT / "data" / "plan.json").read_text(encoding="utf-8"))
@@ -266,28 +267,51 @@ def test_data_proposals_matches_data_schema(tmp_path):
     assert list(jsonschema.Draft202012Validator(sub).iter_errors({"proposals": out}))
 
 
-# -- det rigtige forslag (uge 3-8) ---------------------------------------------
+# -- de rigtige forslag (uge 3-8 fra blok 9; uge 39-53 fra blok 11) ----------
+# Blok 11 (11/9-2026) overskrev uge 3-8 med TMB-rammen: lang tur søndag, svøm
+# 1×/uge, VO2-blok uge 45-51. Forslaget fra blok 9 bevares som historik.
+REAL_PROPOSAL_11 = ROOT / "data" / "proposals" / "2026-09-11-uge39-53.json"
 
-def test_real_proposal_applied_offline_and_plan_matches():
+
+def test_real_proposal_blok9_is_history():
     prop = json.loads(REAL_PROPOSAL.read_text(encoding="utf-8"))
     proposals.validate(prop)
     assert prop["status"] == "applied-offline"
     assert len(prop["changes"]) == 20
-    # planen har intet svøm i uge 3-8 og styrke-fs4-templates man + tor/fre
+
+
+def test_real_proposal_blok11_applied_offline_and_plan_matches():
+    prop = json.loads(REAL_PROPOSAL_11.read_text(encoding="utf-8"))
+    proposals.validate(prop)
+    assert prop["status"] == "applied-offline"
+    assert len(prop["changes"]) == 105                     # 15 uger × 7 dage
+    assert prop["changes"][0]["date"] == "2026-09-21"
+    assert prop["changes"][-1]["date"] == "2027-01-03"
+    by_week = {}
     for d in PLAN["athletes"]["kennet"]["days"]:
-        if "2026-09-21" <= d["date"] <= "2026-11-01":
+        if "2026-09-21" <= d["date"] <= "2027-01-03":
+            wk = date.fromisoformat(d["date"]).isocalendar()[1]
             for e in d["entries"]:
                 wo = e.get("workout") or {}
-                assert wo.get("type") != "Swim", d["date"]
+                by_week.setdefault(wk, []).append((d["date"], wo.get("type"), e.get("libraryId"), e.get("templateId")))
                 if wo.get("type") == "WeightTraining":
                     assert e.get("templateId") in ("styrke-fs4-a-2r", "styrke-fs4-b-2r"), d["date"]
-    # kælderreglen holder i alle seks uger
+                if e.get("libraryId"):
+                    assert e["libraryId"] in bike_library.ids(), d["date"]
+    for wk, rows in by_week.items():
+        assert sum(1 for r in rows if r[1] == "Swim") == 1, ("svøm 1×/uge", wk)
+        assert sum(1 for r in rows if r[1] == "WeightTraining") == 2, ("styrke 2×/uge", wk)
+        sundays = [r for r in rows if date.fromisoformat(r[0]).weekday() == 6]
+        assert sundays and sundays[0][1] == "Ride", ("lang tur søndag", wk)
+    # kælderreglen holder i alle 15 uger
     assert proposals.check_weeks(PLAN, [c["date"] for c in prop["changes"]]) == []
 
 
-def test_real_proposal_quotas():
-    quota = {3: (1, 0), 4: (0, 1), 5: (0, 0), 6: (1, 2), 7: (2, 0), 8: (0, 0)}
-    for w, (h, m) in quota.items():
-        start = f"2026-{'09' if w < 5 else '10'}-{[21, 28, 5, 12, 19, 26][w - 3]:02d}"
+def test_real_proposal_blok11_quotas():
+    quota = {"2026-09-21": (1, 0), "2026-09-28": (0, 0), "2026-10-05": (0, 0), "2026-10-12": (0, 2),
+             "2026-10-19": (2, 0), "2026-10-26": (0, 0), "2026-11-02": (1, 0), "2026-11-09": (1, 2),
+             "2026-11-16": (1, 0), "2026-11-23": (0, 0), "2026-11-30": (2, 0), "2026-12-07": (1, 1),
+             "2026-12-14": (1, 1), "2026-12-21": (0, 0), "2026-12-28": (1, 0)}
+    for start, (h, m) in quota.items():
         c = proposals.week_load_counts(PLAN, "kennet", start)
-        assert (c["haard"], c["moderat"]) == (h, m), (w, c)
+        assert (c["haard"], c["moderat"]) == (h, m), (start, c)

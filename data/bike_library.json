@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "updated": "2026-09-02",
+    "updated": "2026-09-11",
     "target": "Tour des Stations Ultrafondo, august 2027",
     "ftpBasis": "indoor",
     "categories": {
@@ -2110,6 +2110,138 @@
         {
           "type": "ramp",
           "min": 10,
+          "from": 62,
+          "to": 40,
+          "kind": "cooldown",
+          "text": "Cool-down"
+        }
+      ]
+    },
+    {
+      "id": "z2_langtur_4t",
+      "name": "FaF 1 Z2 - Langtur 4 t",
+      "category": "z2",
+      "load": "let",
+      "est_min": 240,
+      "purpose": "Fire timer ren Z2 — vintersæsonens længste. Aerob udholdenhed bygges her, ikke i intervallerne. De første to timer skal føles meget lette; de sidste to er dem der tæller.",
+      "erg": true,
+      "notes": "Energiplan som Depottur 2 t: 80-100 g kulhydrat/time fra time 1, drik hvert 15. min. Kadenceblokkene bryder monotonien og holder pedaltrækket rundt. Må køres ude som ren Z2 i samme varighed.",
+      "tags": [
+        "z2",
+        "langtur",
+        "nutrition"
+      ],
+      "steps": [
+        {
+          "type": "ramp",
+          "min": 15,
+          "from": 45,
+          "to": 62,
+          "kind": "warmup",
+          "text": "Varm-op"
+        },
+        {
+          "type": "steady",
+          "min": 45,
+          "pct": 64,
+          "text": "Z2 time 1",
+          "msgs": [
+            [
+              0,
+              "Sæt uret: spis hvert 20. min, drik hvert 15."
+            ],
+            [
+              1500,
+              "SPIS"
+            ],
+            [
+              2400,
+              "DRIK"
+            ]
+          ]
+        },
+        {
+          "type": "steady",
+          "min": 5,
+          "pct": 68,
+          "text": "Kadence 100",
+          "cad": 100
+        },
+        {
+          "type": "steady",
+          "min": 55,
+          "pct": 66,
+          "text": "Z2 time 2",
+          "msgs": [
+            [
+              1200,
+              "SPIS"
+            ],
+            [
+              2400,
+              "DRIK"
+            ],
+            [
+              3000,
+              "Halvvejs. Stadig let?"
+            ]
+          ]
+        },
+        {
+          "type": "steady",
+          "min": 5,
+          "pct": 68,
+          "text": "Kadence 100",
+          "cad": 100
+        },
+        {
+          "type": "steady",
+          "min": 55,
+          "pct": 68,
+          "text": "Z2 time 3",
+          "cad": 74,
+          "msgs": [
+            [
+              1200,
+              "SPIS"
+            ],
+            [
+              2400,
+              "DRIK"
+            ]
+          ]
+        },
+        {
+          "type": "steady",
+          "min": 5,
+          "pct": 72,
+          "text": "Kadence 100",
+          "cad": 100
+        },
+        {
+          "type": "steady",
+          "min": 40,
+          "pct": 70,
+          "text": "Z2 time 4 — hold formen",
+          "cad": 74,
+          "msgs": [
+            [
+              0,
+              "Sidste blok. Watt op, ikke ned."
+            ],
+            [
+              1200,
+              "SPIS — sidste depot"
+            ],
+            [
+              1800,
+              "DRIK"
+            ]
+          ]
+        },
+        {
+          "type": "ramp",
+          "min": 15,
           "from": 62,
           "to": 40,
           "kind": "cooldown",
