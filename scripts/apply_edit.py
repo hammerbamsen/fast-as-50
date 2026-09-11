@@ -155,15 +155,21 @@ def outlook_sync_date(day_iso: str, entries: list, token: str, overrides: dict =
 
 # -- Forslag (blok 9) -----------------------------------------------------
 
-def proposal_decide(pid: str, status: str, result: dict) -> str:
+def proposal_decide(pid: str, status: str, result: dict, inline: dict = None) -> str:
     """Sæt status/decidedAt/result i data/proposals/<pid>.json på GitHub.
     Læser den friske fil (ikke checkout'et) så en samtidig ændring ikke
-    overskrives. Returnerer commit-sha."""
+    overskrives. Findes filen ikke, men forslaget kom inline i payload'en
+    (Cowork-vejen 11/9-2026: Claude sender hele forslaget via Worker'en),
+    oprettes filen nu — så historikken i data/proposals er komplet."""
     rel = f"data/proposals/{pid}.json"
     sha, raw = gh_get(rel)
     if raw is None:
-        raise ValueError(f"{rel} findes ikke i repoet")
-    prop = proposals.decide(json.loads(raw), status, result)
+        if not inline:
+            raise ValueError(f"{rel} findes ikke i repoet")
+        sha, prop_src = None, inline
+    else:
+        prop_src = json.loads(raw)
+    prop = proposals.decide(prop_src, status, result)
     return gh_put(rel, sha, proposals.dumps(prop).encode(),
                   f"forslag {pid}: {status}")
 
@@ -288,7 +294,8 @@ def main():
         try:
             proposal_commit = proposal_decide(
                 proposal_id, "accepted",
-                {"dates_changed": result["dates_changed"], "commit": plan_commit})
+                {"dates_changed": result["dates_changed"], "commit": plan_commit},
+                inline=params.get("proposal"))
             print(f"forslag {proposal_id} accepteret: {proposal_commit[:7]}")
         except Exception as ex:
             _proposal_error = f"Forslag {proposal_id}: {ex}"

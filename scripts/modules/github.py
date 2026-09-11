@@ -44,8 +44,9 @@ def gh_get(path):
 
 def gh_put(path, sha, content, message, _sha_retries=3):
     body = {'message': message,
-            'content': base64.b64encode(content.encode()).decode(),
-            'sha': sha}
+            'content': base64.b64encode(content.encode()).decode()}
+    if sha:                       # None = opret ny fil (11/9-2026: inline forslag)
+        body['sha'] = sha
     r = None
     for attempt in range(_sha_retries):
         r = _request('PUT', f'https://api.github.com/repos/{REPO}/contents/{path}', json=body)
