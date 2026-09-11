@@ -28,3 +28,6 @@
 
 ### Planændring 26/08 07:53
 - **onsdag 2026-08-26** (uge 13, cancel): Svøm 2.000 m i træk (48 min) → hviledag
+
+### Planændring 11/09 12:41
+- **fredag 2026-09-11** (uge 1, cancel): Svøm 2000m teknisk (56 min) → hviledag
