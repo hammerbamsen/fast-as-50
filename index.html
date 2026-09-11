@@ -520,6 +520,13 @@ details.fold[open] > summary::after { content:"▴"; }
 .pt-btns .pri.danger { background:var(--act); }
 .pt-btns .sec { background:var(--bg-2); color:var(--ink); }
 .pt-btns button:disabled { opacity:.5; cursor:default; }
+/* Baggrunds-synk (blok 17): arket lukker straks, status vises i en toast over bundmenuen. */
+.pt-toast { display:none; position:fixed; left:50%; bottom:calc(72px + env(safe-area-inset-bottom)); transform:translateX(-50%); width:calc(100% - 24px); max-width:406px; background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:12px; padding:10px 12px; box-shadow:0 6px 24px rgba(0,0,0,.25); z-index:150; font-size:13px; line-height:1.5; }
+.pt-toast.show { display:block; }
+.pt-toast .pt-msg { margin:0; }
+.pt-toast .pt-btns { margin-top:8px; }
+.pt-toast .pt-btns button { padding:9px; font-size:13px; }
+@media (min-width:900px) { .pt-toast { bottom:20px; } }
 .sheet textarea.pt-note { width:100%; min-height:80px; border:1.5px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); padding:10px 12px; font:14px 'Hanken Grotesk',sans-serif; resize:vertical; }
 
 /* ── Blok 8 (8/9-26): styrke-kort (nu Plan, blok 10), check-in-kort (I dag, blok 10), Martin-mail (Mere) ── */
@@ -653,6 +660,7 @@ details.fold[open] > summary::after { content:"▴"; }
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav" id="bottom-nav"></nav>
+<div class="pt-toast" id="pt-toast" role="status" aria-live="polite"><div class="pt-msg" id="pt-toast-msg"></div></div>
 
 </div>
 
@@ -776,9 +784,7 @@ async function saveZonesToPlan(sec, w){
   for (let i = 0; i < 40; i++){
     await new Promise(r => setTimeout(r, 3000));
     try {
-      const r = await fetch('https://raw.githubusercontent.com/hammerbamsen/fast-as-50/main/data/edit_result.json?t=' + Date.now());
-      if (!r.ok) continue;
-      const res = (await r.json())[requestId];
+      const res = await ptFetchEditResult(requestId);
       if (!res) continue;
       if (res.status === 'ok') {
         D.zones = Object.assign({}, D.zones, { thresholdSec: sec, ftpW: w });
@@ -1509,7 +1515,24 @@ function coachFoldedCard() {
 // Mangler planTab (pipelinen har ikke kørt endnu) vises den gamle ugevisning.
 const PT = { sel: null, sheet: null, bikeLib: null, woLib: null, prop: {}, history: null };
 const PT_GH_REPO = 'hammerbamsen/fast-as-50';
-let PT_POLL_MS = 3000, PT_POLL_MAX = 60;   // overskrives i Playwright-testen
+let PT_POLL_MS = 5000, PT_POLL_MAX = 48;   // overskrives i Playwright-testen
+// Blok 17: raw.githubusercontent.com CDN-cacher op til 5 min (?t= hjælper
+// ikke), så gate-svaret lå ofte klar længe før appen så det. Contents-API'et
+// serveres fra git uden CDN-cache (anonymt: 60 kald/t — derfor 5 s-interval).
+// Ved rate-limit (403/429) eller netværksfejl falder vi tilbage til raw.
+async function ptFetchEditResult(requestId){
+  try {
+    const res = await fetch(`https://api.github.com/repos/${PT_GH_REPO}/contents/data/edit_result.json?ref=main&t=${Date.now()}`,
+      { headers: { Accept: 'application/vnd.github.raw+json' } });
+    if (res.ok) return (await res.json())[requestId] || null;
+    if (res.status !== 403 && res.status !== 429) return null;
+  } catch(e) { /* fald tilbage til raw */ }
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/${PT_GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
+    if (!res.ok) return null;
+    return (await res.json())[requestId] || null;
+  } catch(e) { return null; }
+}
 function ptReqId(){ return "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 const PT_RULE_DA = { max_runs:"For mange løbedage", consecutive_runs:"Fortløbende løb", vo2_missing:"VO2 mangler",
   vo2_excess:"Ekstra VO2", missing_recovery:"Recovery mangler", tsb_floor:"TSB under gulv", ctl_ramp:"CTL-ramp",
@@ -2055,14 +2078,13 @@ async function ptRunEdit(payload, ui){
     if (ui.onFail) ui.onFail(err);
     return;
   }
+  if (ui.onSent) ui.onSent();   // blok 17: baggrunds-synk lukker arket her
   say(`<span style="color:var(--muted)">${esc(ui.label || 'Friel-gate kører… (op til et par minutter)')}</span>`);
   for (let i = 0; i < PT_POLL_MAX; i++) {
     await new Promise(r => setTimeout(r, PT_POLL_MS));
     if (ui.alive && !ui.alive()) return;   // arket er lukket / kortet nulstillet imens
     try {
-      const res = await fetch(`https://raw.githubusercontent.com/${PT_GH_REPO}/main/data/edit_result.json?t=${Date.now()}`);
-      if (!res.ok) continue;
-      const r = (await res.json())[payload.requestId];
+      const r = await ptFetchEditResult(payload.requestId);
       if (!r) continue;
       if (r.status === 'reject') {
         say(`${ptGateFlags(r.gate)}<span style="color:var(--act)"><b>Afvist:</b> ${esc(r.gate && r.gate.msg || r.error || '')}</span>`);
@@ -2096,17 +2118,95 @@ async function ptSubmit(){
   const s = PT.sheet; if (!s || !s.action) return;
   const payload = { requestId: ptReqId(), action: s.action, entryId: s.entryId, params: s.params || {}, confirmedWarn: !!s.confirmedWarn };
   if (s.action === 'restore_from_commit') payload.athlete = 'kennet';   // som plan.html's restoreCommit
-  await ptRunEdit(payload, {
-    get msg(){ return document.getElementById('pt-msg'); }, get go(){ return document.getElementById('pt-go'); },
-    alive: () => PT.sheet === s,
+  // Blok 17: optimistisk UI. Så snart Worker'en har taget imod, opdateres
+  // skærmen lokalt, arket lukker, og gaten kører i baggrunden med status i
+  // en toast. Afvist/fejl → planen rulles tilbage til snapshottet. Warn →
+  // rulles tilbage og Fortsæt alligevel/Fortryd vises i toasten. Ok →
+  // "✓ Synket" + Fortryd (restore_from_commit til forældre-committen).
+  ptBgRun(payload, {
+    label: s.action === 'restore_from_commit' ? 'Ruller tilbage — gate kører i baggrunden…' : `${PT_ACTION_DA[s.action] || 'Ændring'} · synker i baggrunden…`,
+    apply: () => ptApplyLocal(s.action, s.entryId, s.params),
+    sheet: s,
     retry: ptSubmit,
-    label: s.action === 'restore_from_commit' ? 'Ruller tilbage — gate kører… (op til et par minutter)' : 'Friel-gate kører… (op til et par minutter)',
-    warnBtns: `<button class="sec" onclick="ptCloseSheet()">Fortryd</button><button class="pri" onclick="PT.sheet.confirmedWarn=true; ptSubmit()">Fortsæt alligevel</button>`,
-    onOk: () => {
-      ptApplyLocal(s.action, s.entryId, s.params);
-      setTimeout(() => { ptCloseSheet(); if (typeof forceDataRefresh === 'function') forceDataRefresh(); }, 1500);
+  });
+}
+const PT_ACTION_DA = { cancel:'Aflyst', move:'Flyttet', adjust:'Justeret', toggle_optional:'Valgfri ændret', swap_template:'Pas skiftet', restore_from_commit:'Gendannet' };
+
+// ── Baggrunds-synk (blok 17) ─────────────────────────────────
+// Én kørsel ad gangen (PT.bg). Snapshot af planTab tages FØR den lokale
+// opdatering, så afvisning/fejl kan rulles tilbage uden at hente data.json.
+function ptToastEl(){ return document.getElementById('pt-toast'); }
+function ptToastShow(on){ const t = ptToastEl(); if (t) t.classList.toggle('show', !!on); if (!on) PT.bg = null; }
+function ptRerenderPlan(){ if (activePage === 'plan') { const det = document.getElementById('pt-detail'); if (det) det.innerHTML = ptWeekDetail(ptSelIdx()); } }
+function ptBgRevert(){
+  const bg = PT.bg; if (!bg || !bg.snapshot || !D.planTab) return;
+  D.planTab.sessions = JSON.parse(bg.snapshot); bg.snapshot = null;
+  ptRerenderPlan();
+}
+function ptBgRun(payload, o){
+  if (PT.bg && PT.bg.busy) {
+    const m = document.getElementById('pt-msg'); if (m) m.innerHTML = `<span style="color:var(--act)">Vent — en anden ændring synker stadig.</span>`;
+    return;
+  }
+  const bg = PT.bg = { id: payload.requestId, busy: true, snapshot: null, hide: null };
+  const sheetMsg = () => document.getElementById('pt-msg');
+  ptRunEdit(payload, {
+    // Før Worker'en har svaret vises status i arket; derefter i toasten.
+    get msg(){ return (PT.sheet === o.sheet && sheetMsg()) || document.getElementById('pt-toast-msg'); },
+    get go(){ return PT.sheet === o.sheet ? document.getElementById('pt-go') : null; },
+    alive: () => PT.bg === bg,
+    retry: o.retry,
+    label: o.label,
+    onSent: () => {
+      if (D.planTab) bg.snapshot = JSON.stringify(D.planTab.sessions);
+      if (o.apply) o.apply();
+      if (PT.sheet === o.sheet) ptCloseSheet();
+      ptToastShow(true);
+    },
+    warnBtns: `<button class="sec" onclick="ptToastShow(false)">Fortryd</button><button class="pri" onclick="ptBgConfirmWarn()">Fortsæt alligevel</button>`,
+    onWarn: () => { bg.busy = false; bg.warnPayload = payload; bg.warnOpts = o; ptBgRevert(); },
+    onReject: () => { bg.busy = false; ptBgRevert(); ptBgAddClose(); },
+    onFail: () => { ptToastShow(false); },
+    onTimeout: () => { bg.busy = false; ptBgAddClose(); if (typeof forceDataRefresh === 'function') forceDataRefresh(); },
+    onOk: r => {
+      bg.busy = false; bg.snapshot = null;
+      const t = document.getElementById('pt-toast-msg');
+      if (t && r.plan_commit && payload.action !== 'restore_from_commit') {
+        t.innerHTML += `<div class="pt-btns"><button class="sec" onclick="ptBgUndo('${esc(r.plan_commit)}')">Fortryd</button><button class="pri" onclick="ptToastShow(false)">OK</button></div>`;
+        bg.hide = setTimeout(() => { if (PT.bg === bg) ptToastShow(false); }, 20000);
+      } else {
+        bg.hide = setTimeout(() => { if (PT.bg === bg) ptToastShow(false); }, 4000);
+      }
+      if (typeof forceDataRefresh === 'function') forceDataRefresh();
     },
   });
+}
+function ptBgAddClose(){
+  const t = document.getElementById('pt-toast-msg');
+  if (t) t.innerHTML += `<div class="pt-btns"><button class="sec" onclick="ptToastShow(false)">Luk</button></div>`;
+}
+function ptBgConfirmWarn(){
+  const bg = PT.bg; if (!bg || !bg.warnPayload) return;
+  const p = Object.assign({}, bg.warnPayload, { requestId: ptReqId(), confirmedWarn: true });
+  const o = bg.warnOpts; PT.bg = null;
+  ptBgRun(p, Object.assign({}, o, { sheet: null, apply: () => ptApplyLocal(p.action, p.entryId, p.params), retry: null }));
+}
+// Fortryd efter ok: hent forældre-committen til plan_commit og gendan den
+// gennem gaten (restore_from_commit — hele plan.json, dvs. præcis tilstanden
+// før denne ene ændring, da intet andet er committet imens).
+async function ptBgUndo(sha){
+  const bg = PT.bg; if (bg && bg.hide) clearTimeout(bg.hide);
+  const t = document.getElementById('pt-toast-msg');
+  if (t) t.innerHTML = `<span style="color:var(--muted)">Finder tilstanden før ændringen…</span>`;
+  let parent = null;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${PT_GH_REPO}/commits/${sha}`);
+    if (res.ok) parent = ((await res.json()).parents || [])[0]; parent = parent && parent.sha;
+  } catch(e) {}
+  if (!parent) { if (t) t.innerHTML = `<span style="color:var(--act)">Kunne ikke fortryde automatisk — brug ⟲ Historik på ugen.</span>`; ptBgAddClose(); if (bg) bg.busy = false; return; }
+  PT.bg = null;
+  const payload = { requestId: ptReqId(), action: 'restore_from_commit', entryId: null, params: { source_commit: parent }, confirmedWarn: false, athlete: 'kennet' };
+  ptBgRun(payload, { label: 'Fortryder — gate kører i baggrunden…', apply: null, sheet: null, retry: null });
 }
 
 // Lokal opdatering af planTab efter succes, så skærmen svarer til planen
@@ -2890,7 +2990,7 @@ function todayStrengthHtml(){
 // params:{legs 0/1, upper 0/1}} + polling af edit_result.json (som ptRunEdit).
 // Efter "Gemt ✓" skjules kortet lokalt (faf-checkin-<date>) indtil data.json følger med.
 const CK_KEY_PREFIX = 'faf-checkin-';
-let CK_POLL_MS = 3000, CK_POLL_MAX = 60;
+let CK_POLL_MS = 5000, CK_POLL_MAX = 48;
 const CK = { date: null, legs: null, upper: null, busy: false };
 function ckHiddenLocal(date){ try { return !!localStorage.getItem(CK_KEY_PREFIX + date); } catch(e) { return false; } }
 function ckCardHtml(){
@@ -2945,9 +3045,7 @@ async function ckSave(){
     await new Promise(r => setTimeout(r, CK_POLL_MS));
     if (CK.date !== forDate) return;
     try {
-      const res = await fetch(`https://raw.githubusercontent.com/hammerbamsen/fast-as-50/main/data/edit_result.json?t=${Date.now()}`);
-      if (!res.ok) continue;
-      const r = (await res.json())[requestId];
+      const r = await ptFetchEditResult(requestId);
       if (!r) continue;
       if (r.status === 'reject' || r.status === 'error') {
         msg.innerHTML = `<span style="color:var(--act)"><b>Ikke gemt:</b> ${esc(r.gate && r.gate.msg || r.error || r.msg || 'afvist')}</span>`;
