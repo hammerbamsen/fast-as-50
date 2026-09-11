@@ -1,0 +1,69 @@
+{
+  "id": "2026-09-11-indbakke-2",
+  "createdAt": "2026-09-11T12:00:00Z",
+  "createdBy": "claude",
+  "title": "Fre 2/10: note — kør om morgenen (Hoka + Norseman om eftermiddagen)",
+  "note": "Anden test af Outlook-indbakken efter vindues-rettelsen. Kun noten ændres.",
+  "summary": [
+    "2/10: afrulning om morgenen; eftermiddag optaget"
+  ],
+  "status": "accepted",
+  "decidedAt": "2026-09-11T09:29:00+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-10-02"
+    ],
+    "commit": "2af67edd797bca3b6742a50c4ead7e6205e10f70"
+  },
+  "changes": [
+    {
+      "date": "2026-10-02",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Cykel Z2 90 min Mallorca",
+            "type": "Ride",
+            "moving_time": 5400,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 75m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true
+                },
+                {
+                  "text": "Aerob base 56-76% FTP",
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 4500
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Mallorca dag 5: let afrulning, kaffe i Sóller. Kør om morgenen — Hoka udsalg kl. 14 og Norseman-tilmelding kl. 16:45 (Outlook)",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}
