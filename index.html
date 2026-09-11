@@ -2703,6 +2703,7 @@ function renderBody() {
     ${glidepathGraph(g)}
   </div>
   ${bodyTiles(b)}
+  ${ftpCard(D.ftp)}
   ${cutCheckCard(b)}
   <div class="card">
     <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
@@ -2770,6 +2771,37 @@ function bodyHero(g) {
 }
 
 // ── Krop: tre tal-tiles (fedt 14d · fedtfri masse · styrke) ──
+// ── FTP-kort (blok 13): aktuel FTP mod fasemål, W/kg, næste test, historik ──
+function ftpCard(f) {
+  if (!f || f.ftpW == null) {
+    return `<div class="card"><div class="label">FTP</div>
+      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted);margin-top:6px">Kommer med næste pipeline-kørsel.</div></div>`;
+  }
+  const col = f.color || 'var(--num)';
+  const word = { ok:'På mål', warn:'Tæt på', bagud:'Bagud', none:'' }[f.status] || '';
+  const wkg = f.wkg != null ? `${fmtDa(f.wkg, 2)} W/kg` : '— W/kg';
+  const tgt = f.phaseTarget ? `fasemål ${f.phaseTarget} W · ${f.phase || ''}` : 'intet fasemål';
+  const rows = (f.history || []).slice(-6).reverse().map(h =>
+    `<div style="display:flex;justify-content:space-between;font-family:Space Mono,monospace;font-size:11px;padding:3px 0;border-top:1px solid var(--cream-d)">
+       <span style="color:var(--muted)">${_dkShort(h.date)}${h.date ? '-' + String(h.date).slice(2,4) : ''}</span>
+       <span><b>${h.ftpW}</b> W</span>
+       <span style="color:var(--muted);max-width:55%;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(h.source || '')}</span>
+     </div>`).join('');
+  const phases = (f.phases || []).map(p =>
+    `<span style="display:inline-block;margin:2px 6px 2px 0;font-family:Space Mono,monospace;font-size:10px;color:${p.name === f.phase ? col : 'var(--muted)'}">${p.name} ${p.ftpTarget}</span>`).join('');
+  return `<div class="card">
+    <div class="label" style="margin-bottom:8px">FTP — mod ${f.seasonTarget || '?'} W til TdS</div>
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div class="kpi4-v" style="color:${col};font-size:28px">${f.ftpW}<span style="font-size:13px;color:var(--muted)"> W</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">${wkg}${f.weightAvg7 != null ? ` (7d ${fmtDa(f.weightAvg7)} kg)` : ''}</div>
+      ${word ? `<div style="margin-left:auto;font-family:Space Mono,monospace;font-size:10px;letter-spacing:.08em;color:${col}">${word.toUpperCase()}</div>` : ''}
+    </div>
+    <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted);margin-top:4px">${esc(tgt)}${f.nextTest ? ` · næste test ${_dkShort(f.nextTest)}` : ''}</div>
+    <div style="margin-top:8px">${phases}</div>
+    ${rows ? `<div style="margin-top:10px"><div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:4px">HISTORIK</div>${rows}</div>` : ''}
+  </div>`;
+}
+
 function bodyTiles(b) {
   const f = (b && b.fat) || {}, m = (b && b.ffm) || {}, sw = (b && b.strengthWeek) || null;
   const g = (b && b.glidepath) || {};
@@ -4196,6 +4228,7 @@ function applyRemote(remote) {
           {cat:"Træning", label:"LØB KM",     value:km.runKm?.value  ||"—", unit:"km",  sub:km.runKm?.sub  ||"Løb denne uge",      color:km.runKm?.color  ||"#6B7A88"},
           {cat:"Træning", label:"CYKEL KM",   value:km.bikeKm?.value ||"—", unit:"km",  sub:km.bikeKm?.sub ||"Cykel denne uge",    color:km.bikeKm?.color ||"var(--bike)"},
           {cat:"Træning", label:"TSS UGE",    value:km.tssComp?.value||"0", unit:km.tssComp?.unit||"TSS", sub:km.tssComp?.sub||"Mål denne uge", color:km.tssComp?.color||"#6B7A88"},
+          {cat:"Træning", label:"FTP",        value:km.ftp?.value    ||"—", unit:"W",   sub:km.ftp?.sub    ||"Fasemål",             color:km.ftp?.color    ||"#6B7A88"},
           // Krop
           {cat:"Krop",    label:"VÆGT",       value:km.weight?.value ||"—", unit:"kg",  sub:km.weight?.sub ||"Mål",                color:km.weight?.color ||"#6B7A88"},
           {cat:"Krop",    label:"FEDT%",      value:km.fat?.value    ||"—", unit:"%",   sub:km.fat?.sub    ||"Mål",                color:km.fat?.color    ||"#6B7A88"},
@@ -4208,6 +4241,7 @@ function applyRemote(remote) {
       if (remote.weightGoal  !== undefined) D.weightGoal  = remote.weightGoal;
       if (remote.bodyFatGoal !== undefined) D.bodyFatGoal = remote.bodyFatGoal;
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
+      D.ftp = (remote.ftp && typeof remote.ftp === 'object') ? remote.ftp : null;   // blok 13
       if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
       if (Array.isArray(remote.weightMovingAvg7)) D.weightMovingAvg7 = remote.weightMovingAvg7;
       if (Array.isArray(remote.fatMovingAvg7))    D.fatMovingAvg7    = remote.fatMovingAvg7;

@@ -68,6 +68,11 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
             threshold_sec=params.get("thresholdSec"),
             ftp_w=params.get("ftpW"),
         )
+        # FTP-historik (blok 13): ny FTP -> post i ftpHistory, så Krop-fanen
+        # kan vise progression mod fasemålet. Uændret FTP skriver intet.
+        if params.get("ftpW"):
+            from . import ftp_track
+            ftp_track.record(sim, int(params["ftpW"]), date.today(), "set_zones", athlete)
         return sim, "zones", ""
 
     # Særtilfælde (blok 8): styrke-log efter pas. Hører til atleten, ikke til

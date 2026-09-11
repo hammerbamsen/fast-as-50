@@ -31,6 +31,7 @@ from modules.aerobic  import get_ef_history
 from modules import decoupling
 from modules import checkin as _checkin
 from modules import body as _body
+from modules import ftp_track as _ftp
 from modules.af       import (get_af_this_week, get_af_history, get_full_af_log,
                                get_af_streak, monday_this_week,
                                detect_alcohol_cluster)
@@ -475,6 +476,10 @@ def main():
     af_history = get_af_history()
     _af_sub, _af_color = af_kpi(af_days, af_streak, af_history, AF_GOAL)
 
+    # FTP mod fasemål (blok 13): W/kg på 7-dages vægt fra body.glidepath.
+    _w7 = ((body or {}).get('glidepath') or {}).get('avg7') if body else None
+    data['ftp'] = _ftp.build(PLAN, today, weight_avg7=_w7, week_num=week_num)
+
     data['kpis'] = {
         # Vægt/fedt: 7d-/14d-snit, sub + farve fra glidepath-status (body.py) —
         # ikke color_for mod slutmålet (det var rødt i fire måneder uanset retning).
@@ -494,6 +499,7 @@ def main():
         'bikeKm':     {'value': fmt(bike_km, 1),       'unit': 'km', 'sub': 'Cykel denne uge',                  'color': color_for(bike_km, 50, lower=False) if bike_km else '#7A6A58'},
         'swimM':      {'value': fmt(swim_m, 0) if swim_m else '0',    'unit': 'm',  'sub': _swim_sub,                                  'color': _swim_color},
         'afStreak':   {'value': str(af_days),          'unit': '',   'sub': _af_sub,                                    'color': _af_color},
+        'ftp':        _ftp.kpi(data['ftp']),
     }
 
     # --- TSB / HRV advarsler (sendes til dashboard for visning) ---
