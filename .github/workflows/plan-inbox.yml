@@ -1,0 +1,39 @@
+name: Plan-indbakke (Outlook → plan.json)
+
+# Blok 16 (11/9-2026): Claude lægger forslag som kalender-events 1/1-2030
+# ('FAF-INBOX <id>', payload som base64-JSON i body). Dette workflow henter
+# dem og kører hver gennem scripts/apply_edit.py — samme gate, commit og
+# Intervals/Outlook-synk som Plan-fanen. Cron */20 betyder i praksis 1-3 t
+# (GitHub throttler); kør manuelt når det skal gå hurtigt.
+on:
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plan-inbox
+  cancel-in-progress: false
+
+jobs:
+  inbox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests python-docx
+
+      - name: Hent og anvend forslag fra Outlook-indbakken
+        env:
+          GITHUB_TOKEN:         ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY:    ${{ github.repository }}
+          INTERVALS_API_KEY:    ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: i599466
+          AZURE_TENANT_ID:      ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:      ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET:  ${{ secrets.AZURE_CLIENT_SECRET }}
+        run: python scripts/plan_inbox.py
