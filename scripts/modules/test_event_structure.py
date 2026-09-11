@@ -89,3 +89,14 @@ def test_check_events_sorterer_fejl_foerst():
     assert ud[0]['date'] == '2026-07-22'
     assert ud[0]['level'] == 'error'
     assert all(w['event_id'] == 123721447 for w in ud)
+
+
+def test_styrke_uden_trin_er_ok():
+    """11/9-2026: Intervals bygger ikke trin for WeightTraining — INGEN_TRIN gælder ikke der."""
+    from modules import event_structure as es
+    ev = {"category": "WORKOUT", "type": "WeightTraining", "name": "Styrke A",
+          "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride",
+          "workout_doc": {"steps": []}}
+    assert es.check_event(ev) == []
+    ev["type"] = "Ride"
+    assert [p["code"] for p in es.check_event(ev)] == ["INGEN_TRIN"]

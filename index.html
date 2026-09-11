@@ -2883,7 +2883,7 @@ function todayStrengthHtml(){
     ${stateLine ? `<div class="st-state">${stateLine}</div>` : ''}${_stExRows(exs)}</div>`;
 }
 
-// ── 14-dages styrke-check-in (blok 10) — kort i I dag ─────────────────
+// ── Styrke-check-in hver 4. uge (blok 10; 14 → 28 dage 11/9-2026) — kort i I dag ─────────────────
 // data.strength.checkin = {due, date (søndagen), next, question, recoveryNext,
 // last, state, stateSummary}. Kortet vises når due er sandt og bliver stående
 // til det er gemt. Gem → /plan-edit {action:'strength_checkin', entryId:'chk:<date>',
@@ -2900,7 +2900,7 @@ function ckCardHtml(){
   const q = esc(ck.question || 'Alle runder × reps med RPE ≤ 7 på de sidste 2 pas?');
   const opts = (k, v) => `<div class="opts c2" id="ck-${k}">
       <button class="opt${v === 1 ? ' on' : ''}" onclick="ckPick('${k}',1)">Ja<small>alle runder · RPE ≤ 7</small></button>
-      <button class="opt bad${v === 0 ? ' on' : ''}" onclick="ckPick('${k}',0)">Nej<small>uændret næste 14 dage</small></button></div>`;
+      <button class="opt bad${v === 0 ? ' on' : ''}" onclick="ckPick('${k}',0)">Nej<small>uændret næste 4 uger</small></button></div>`;
   return `<div class="card ck-card" id="ck-card">
     <div class="label" style="margin-bottom:4px">Styrke check-in · ${_stDate(ck.date)}</div>
     <div class="ck-q">${q}</div>

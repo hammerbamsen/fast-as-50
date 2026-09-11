@@ -75,13 +75,13 @@ def test_build_checkin_due_and_answered():
     ck = sp.build_checkin({}, None, date(2026, 10, 3))
     assert ck["due"] is False and ck["date"] is None and ck["next"] == "2026-10-04"
     ck = sp.build_checkin({}, None, date(2026, 10, 4))
-    assert ck["due"] is True and ck["date"] == "2026-10-04" and ck["next"] == "2026-10-18"
+    assert ck["due"] is True and ck["date"] == "2026-10-04" and ck["next"] == "2026-11-01"
     ck = sp.build_checkin({}, None, date(2026, 10, 9))                          # ubesvaret bliver stående
     assert ck["due"] is True and ck["date"] == "2026-10-04"
     ck = sp.build_checkin({"2026-10-04": {"legs": 1, "upper": 1}}, None, date(2026, 10, 9))
     assert ck["due"] is False and ck["last"]["legs"] == 1
-    ck = sp.build_checkin({"2026-10-04": {"legs": 1, "upper": 1}}, None, date(2026, 10, 18))
-    assert ck["due"] is True and ck["date"] == "2026-10-18"
+    ck = sp.build_checkin({"2026-10-04": {"legs": 1, "upper": 1}}, None, date(2026, 11, 1))
+    assert ck["due"] is True and ck["date"] == "2026-11-01"
     assert ck["question"].startswith("Alle runder")
 
 
@@ -99,11 +99,11 @@ def test_edit_apply_strength_checkin_writes_both_blocks():
     assert ath["strengthProgression"]["current"] == {"ben": {"step": 1}, "overkrop": {"step": 0, "extraReps": 2}}
     assert ath["strengthProgression"]["effectiveFrom"] == "2026-10-12"
     # andet check-in bygger videre
-    res2 = edit_apply.apply_edit(res["new_plan_raw"], "strength_checkin", "chk:2026-10-18",
+    res2 = edit_apply.apply_edit(res["new_plan_raw"], "strength_checkin", "chk:2026-11-01",
                                  {"legs": 0, "upper": 1}, athlete="kennet")
     p2 = json.loads(res2["new_plan_raw"])["athletes"]["kennet"]["strengthProgression"]
     assert p2["current"] == {"ben": {"step": 1}, "overkrop": {"step": 0, "extraReps": 4}}
-    assert p2["previous"]["overkrop"]["extraReps"] == 2 and p2["effectiveFrom"] == "2026-10-19"
+    assert p2["previous"]["overkrop"]["extraReps"] == 2 and p2["effectiveFrom"] == "2026-11-02"
 
 
 def test_edit_apply_strength_checkin_validation():
@@ -133,4 +133,4 @@ def test_build_strength_next_has_progressed_exercises_and_checkin():
     assert nx2["date"] == "2026-10-15" and nx2["recovery"] is False
     assert nx2["exercises"][0]["load"] == "2×7 kg DB" and nx2["exercises"][4]["reps"] == 12
     assert nx2["stateSummary"] == "Ben trin 1 · Overkrop grundvægt +2 reps"
-    assert s2["checkin"]["due"] is False and s2["checkin"]["next"] == "2026-10-18"
+    assert s2["checkin"]["due"] is False and s2["checkin"]["next"] == "2026-11-01"

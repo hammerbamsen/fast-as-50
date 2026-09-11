@@ -1,4 +1,4 @@
-"""Styrke-progression styret af et 14-dages check-in (blok 10, 9/9-2026).
+"""Styrke-progression styret af et check-in hver 4. uge (blok 10, 9/9-2026; 14 → 28 dage 11/9-2026).
 
 Erstatter RPE-loggen pr. pas. Hver anden søndag (fra CHECKIN_START) svarer
 Kennet på to ja/nej i I dag:
@@ -31,7 +31,7 @@ import re
 from datetime import date, datetime, timedelta, timezone
 
 CHECKIN_START = date(2026, 10, 4)      # første søndag; 14 dage efter cut-start 21/9
-CHECKIN_INTERVAL_DAYS = 14
+CHECKIN_INTERVAL_DAYS = 28   # 11/9-2026: månedligt — 14 dage var for tæt
 DB_LADDER = [5.0, 7.0, 10.0, 12.5, 15.0]
 KB_LADDER = [12.5, 16.0, 20.0]
 MAX_EXTRA_REPS = 4

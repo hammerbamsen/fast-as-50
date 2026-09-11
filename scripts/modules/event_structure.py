@@ -20,6 +20,9 @@ import re
 # step-navn bliver læst som power_zone 1-2.
 _NO_POWER_TYPES = {'Run', 'VirtualRun', 'TrailRun', 'Swim', 'OpenWaterSwim'}
 
+# Sportsgrene hvor Intervals ikke bygger trin, og hvor uret ikke skal have dem.
+_NO_STEP_TYPES = {'WeightTraining'}
+
 # En struktureret description har mindst én linje der starter med "- ".
 # Gentagelsesblokke skrives som "5x" på egen linje.
 _STEP_LINE = re.compile(r'^\s*-\s+\S', re.MULTILINE)
@@ -67,7 +70,9 @@ def check_event(ev):
         })
 
     # Regel 2 — uanset årsag: ingen trin at sende til uret.
-    if not steps:
+    # Undtagelse (11/9-2026): styrke. Intervals bygger ikke trin for
+    # WeightTraining, og passet køres efter beskrivelsen — ikke fra uret.
+    if not steps and ev_type not in _NO_STEP_TYPES:
         problems.append({
             'level': 'error',
             'code': 'INGEN_TRIN',
