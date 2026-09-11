@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       week:
-        description: 'Uge nummer i programmet (1..totalWeeks)'
+        description: "Programuge: '3', et interval '3-17' eller 'all' (alle uger i programmet)"
         required: true
         default: '2'
       program:
@@ -20,7 +20,7 @@ on:
   workflow_call:
     inputs:
       week:
-        description: 'Uge nummer i programmet (1..totalWeeks)'
+        description: "Programuge: '3', '3-17' eller 'all'"
         required: true
         type: string
       program:

@@ -115,3 +115,16 @@ def test_sync_outlook_script_imports_same_source():
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", ".github", "workflows", "scripts"))
     import sync_outlook
     assert sync_outlook.schedule_day is so.schedule_day and sync_outlook.event_body is so.event_body
+
+
+def test_sync_outlook_parse_weeks():
+    """Rækkesynk (11/9-2026): '3', '3-17' og 'all' — og ugyldige uger fanges."""
+    import pytest
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", ".github", "workflows", "scripts"))
+    import sync_outlook
+    assert sync_outlook.parse_weeks("3", 51) == [3]
+    assert sync_outlook.parse_weeks("3-5", 51) == [3, 4, 5]
+    assert sync_outlook.parse_weeks("all", 4) == [1, 2, 3, 4]
+    for bad in ("0", "52", "5-3", "x"):
+        with pytest.raises((AssertionError, ValueError)):
+            sync_outlook.parse_weeks(bad, 51)
