@@ -7,7 +7,7 @@ Formål: Claude skal kunne ændre planen fra chatten uden Mac, push eller
 Worker. Cowork-sessionen kan ikke nå GitHub eller Worker'en (proxy), men den
 kan skrive i Kennets Outlook-kalender via Microsoft 365-connectoren. Så:
 
-  Claude opretter et kalender-event den 1/1-2030 (parkeringsdato, showAs
+  Claude opretter et kalender-event den 1/1-2030 kl. 12:00 (parkeringsdato, showAs
   free) med subject 'FAF-INBOX <forslag-id>' og hele plan-edit-payload'en
   som base64-JSON i body'en. Dette script (cron + manuelt) henter events
   på parkeringsdatoen, kører hver payload gennem scripts/apply_edit.py —
@@ -57,7 +57,12 @@ def graph_token():
 
 def list_inbox(hdrs):
     url = f'{GRAPH}/calendarView'
-    params = {'startDateTime': f'{PARK_DAY}T00:00:00', 'endDateTime': f'{PARK_DAY}T23:59:59',
+    # calendarView tolker start/end som UTC; parkeringsdatoen er lokal tid
+    # (første kørsel 11/9 fandt 0 events fordi 00:00 CET = 23:00Z dagen før).
+    # Derfor ±1 dag — det er alligevel kun FAF-INBOX-subjects der tælles.
+    from datetime import date as _d, timedelta as _td
+    pd = _d.fromisoformat(PARK_DAY)
+    params = {'startDateTime': f'{pd - _td(days=1)}T00:00:00', 'endDateTime': f'{pd + _td(days=1)}T23:59:59',
               '$select': 'id,subject,body,createdDateTime', '$top': '50'}
     out = []
     while url:
