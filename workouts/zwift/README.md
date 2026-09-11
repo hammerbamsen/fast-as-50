@@ -13,7 +13,7 @@ efter kategori fordi navnene starter med `FaF 0`-`FaF 6`.
 
 ## Kategorier
 - **0 Test**: 1 pas
-- **1 Zone 2**: 3 pas
+- **1 Zone 2**: 4 pas
 - **2 Durability**: 4 pas
 - **3 Sweet spot**: 1 pas
 - **4 Tærskel**: 4 pas
@@ -48,3 +48,4 @@ efter kategori fordi navnene starter med `FaF 0`-`FaF 6`.
 - `FaF_6_Bjerg_-_TdS_2_x_45_traening.zwo` — FaF 6 Bjerg - TdS 2 x 45 træning · 134 min · moderat
 - `FaF_6_Bjerg_-_TdS_racepace_3_x_50.zwo` — FaF 6 Bjerg - TdS racepace 3 x 50 · 185 min · let
 - `FaF_1_Z2_-_Aabnere_60.zwo` — FaF 1 Z2 - Åbnere 60 · 60 min · let
+- `FaF_1_Z2_-_Langtur_4_t.zwo` — FaF 1 Z2 - Langtur 4 t · 240 min · let

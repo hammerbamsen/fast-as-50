@@ -56,10 +56,11 @@ def test_hviledag_og_pas_uaendret(monkeypatch):
     assert out[1][1]["name"] == "Løb Z2 45 min (valgfri)"
 
 
-def test_rigtig_plan_har_de_ryddede_fredage():
-    """Mod den faktiske plan.json: fredagene som forslaget ryddede skal være
-    med i listen, så byg-scriptet rydder dem i Intervals."""
+def test_rigtig_plan_har_de_ryddede_dage():
+    """Mod den faktiske plan.json: ryddede dage skal være med i listen, så
+    byg-scriptet rydder dem i Intervals. Blok 11 (11/9-2026): planen løber til
+    3/1-2027; juleaftensdag har kun styrke og 1. juledag (fre 25/12) er ryddet."""
     out = {dt: wo for dt, wo, _ in bw.make_plan()}
-    for iso in ("2026-10-02", "2026-10-09", "2026-10-23", "2026-10-30"):
-        d = date.fromisoformat(iso)
-        assert d in out and out[d] is None, f"{iso} mangler i make_plan()"
+    d = date(2026, 12, 25)
+    assert d in out and out[d] is None, "25/12 mangler i make_plan()"
+    assert date(2027, 1, 3) in out, "planen skal løbe til søn 3/1-2027"
