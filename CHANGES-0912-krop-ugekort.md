@@ -19,3 +19,9 @@ Krop-fanen viste AF-dage, protein og energi i tre forskellige sprog:
 - `node --check` grøn på alle tre inline scripts.
 - `habitsWeekCard()` kørt i node mod live data.json (12/9): 21 piller, 5 grøn AF, 5 gul protein, 1 rød + 4 gul energi, 2×grå (i dag), 3×stiplet (søndag). Tal: AF 5/6 · 5 i træk, protein 0/7 · 4 uger 0,0, energi 0/7 · snit 2,6/5.
 - Ikke verificeret med Playwright-screenshot (Chromium kunne ikke hentes i sandkassen) — tjek 390 px i mørk/lys efter push.
+
+## Samme dag: check-in "Energi: Høj" fejlede altid (422)
+- **Symptom:** af-registrering.yml → "Intervals svar (422): Invalid motivation: 5". Alle registreringer med Høj er tabt siden log-arket kom — max energi i checkinLog var 3.
+- **Årsag:** Intervals' `motivation`-felt er 1–4, ikke 1–5. Knappen Høj sendte 5.
+- **Rettelse:** Høj = 4 (knap + logCurrent/logPick-mapping). Snit vises som "/4". checkin.py-docstring og test rettet (energi-snit-test: 4/3 → 3,5).
+- **Handling for Kennet:** vælg Høj igen for 12/9 (og evt. tidligere Høj-dage) — de er aldrig nået Intervals.

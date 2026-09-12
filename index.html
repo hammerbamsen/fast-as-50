@@ -698,7 +698,7 @@ details.fold[open] > summary::after { content:"▴"; }
     <div class="opts c3"><button class="opt" data-q="pro" data-v="2">3 af 3<small>≈ 150 g</small></button><button class="opt" data-q="pro" data-v="1">2 af 3</button><button class="opt bad" data-q="pro" data-v="0">≤ 1</button></div>
   </div>
   <div class="q"><span class="lab">Energi?</span>
-    <div class="opts c3"><button class="opt" data-q="en" data-v="5">Høj</button><button class="opt" data-q="en" data-v="3">Ok</button><button class="opt bad" data-q="en" data-v="1">Lav</button></div>
+    <div class="opts c3"><button class="opt" data-q="en" data-v="4">Høj</button><button class="opt" data-q="en" data-v="3">Ok</button><button class="opt bad" data-q="en" data-v="1">Lav</button></div>
   </div>
 
   <span class="q lab" style="display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 0 6px">Sidste 7 dage</span>
@@ -3243,7 +3243,7 @@ function habitsWeekCard() {
       ${hdr}
       ${row('AF-dage', 'ingen alkohol', afCls, afDone, afTarget, streak > 0 ? streak + ' i træk' : '&nbsp;')}
       ${row('Protein', '3 af 3 måltider', prCls, prDone, 7, prAvg ? '4 uger ' + prAvg[1] : '&nbsp;')}
-      ${row('Energi', 'høj (4–5 af 5)', enCls, enDone, 7, enAvg != null ? 'snit ' + fmtDa(Math.round(enAvg*10)/10) + '/5' : (en7 != null ? 'snit ' + fmtDa(en7) + '/5' : '&nbsp;'))}
+      ${row('Energi', 'høj (4 af 4)', enCls, enDone, 7, enAvg != null ? 'snit ' + fmtDa(Math.round(enAvg*10)/10) + '/4' : (en7 != null ? 'snit ' + fmtDa(en7) + '/4' : '&nbsp;'))}
     </div>
     <div class="hab-legend">
       <span><i style="background:var(--ok)"></i>ok</span>
@@ -3285,7 +3285,7 @@ function proteinCard() {
     ${dots ? `<div class="dots">${dots}</div>` : '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted)">Registrér i log-arket på I dag-fanen.</div>'}
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)">
       <div class="label">Energi — høj · ok · lav</div>
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">snit 7d ${en != null ? fmtDa(en) + ' / 5' : '—'}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">snit 7d ${en != null ? fmtDa(en) + ' / 4' : '—'}</div>
     </div>
     ${edots ? `<div class="dots">${edots}</div>` : ''}
   </div>`;
@@ -4159,7 +4159,7 @@ function renderLogSheet(){
     af:   e.alkohol == null ? null : (e.alkohol === 0 ? 'nej' : 'ja'),
     afv:  e.alkohol == null || e.alkohol === 0 ? null : (e.alkohol === 2 ? 'skete' : 'valgt'),
     pro:  e.protein == null ? null : String(e.protein),
-    en:   e.energi == null ? null : String(e.energi <= 2 ? 1 : e.energi >= 4 ? 5 : 3),
+    en:   e.energi == null ? null : String(e.energi <= 2 ? 1 : e.energi >= 4 ? 4 : 3),
     sult: e.sult == null ? null : String(e.sult),
   };
   document.querySelectorAll('#log-sheet .opt').forEach(o => o.classList.toggle('on', sel[o.dataset.q] === o.dataset.v));
@@ -4180,7 +4180,7 @@ function renderLogDots(){
     const kind = e._localAlk ? null : (D.af_kind || {})[iso];
     const af = e.alkohol == null ? 'none' : (e.alkohol === 0 ? 'af' : (e.alkohol === 2 || kind === 'drak' || kind === 'autopilot') ? 'af x' : 'af v');
     const pr = e.protein == null ? 'none' : 'p' + e.protein;
-    // Energi 1-5 → tre trin som i arket: ≤2 lav (rød), 3 ok (gul), ≥4 høj (grøn)
+    // Energi 1-4 (Intervals' motivation-skala) → tre trin som i arket: ≤2 lav (rød), 3 ok (gul), 4 høj (grøn)
     const en = e.energi == null ? 'none' : (e.energi <= 2 ? 'e1' : e.energi >= 4 ? 'e5' : 'e3');
     days.push(`<div class="${iso === sel ? 'sel' : ''}" data-iso="${iso}" role="button" aria-label="${iso}"><span class="lab">${DK_DAY_SHORT[(dt.getDay()+6)%7]}</span><i class="${af}"></i><i class="${pr}"></i><i class="${en}"></i></div>`);
   }
@@ -4210,7 +4210,7 @@ function logPick(q, v){
   } else if (q === 'pro') {
     local.protein = same(cur.protein, v) ? null : parseInt(v, 10);
   } else if (q === 'en') {
-    const cv = cur.energi == null ? null : (cur.energi <= 2 ? 1 : cur.energi >= 4 ? 5 : 3);
+    const cv = cur.energi == null ? null : (cur.energi <= 2 ? 1 : cur.energi >= 4 ? 4 : 3);
     local.energi = same(cv, v) ? null : parseInt(v, 10);
   } else if (q === 'sult') {
     local.sult = same(cur.sult, v) ? null : parseInt(v, 10);

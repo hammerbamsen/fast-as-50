@@ -53,8 +53,8 @@ def test_protein_kpi_farve_og_sub():
 
 
 def test_energi_snit_ignorerer_uregistrerede():
-    log = build_checkin_log(_rows({0: {'motivation': 5}, 1: {'motivation': 3}, 9: {'motivation': 1}}), today=TODAY)
-    assert energy_avg(log, 7) == 4.0
+    log = build_checkin_log(_rows({0: {'motivation': 4}, 1: {'motivation': 3}, 9: {'motivation': 1}}), today=TODAY)
+    assert energy_avg(log, 7) == 3.5
     assert energy_avg(build_checkin_log([], today=TODAY)) is None
 
 

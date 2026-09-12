@@ -3,7 +3,7 @@
 Kilde er de samme wellness-rækker som AF-loggen (af.py). Feltnavne i Intervals:
   Alkohol    (custom)  0 = AF-dag, 1 = drak (bevidst valgt), 2 = drak (bare skete)
   protein    (custom)  2 = protein i 3 af 3 hovedmåltider, 1 = 2 af 3, 0 = ≤1
-  motivation (standard 1-5) — bruges som energi: 1 lav, 3 ok, 5 høj
+  motivation (Intervals-skala 1-4; 5 afvises med 422) — bruges som energi: 1 lav, 3 ok, 4 høj
   Aftensult  (custom)  0 = nej, 1 = lidt, 2 = ja
 
 Alt her er rene funktioner over en liste af wellness-rækker, så det kan testes
@@ -99,7 +99,7 @@ def protein_kpi(log):
 
 
 def energy_avg(log, n=7):
-    """Snit af energi (1-5) over de sidste n dage med registrering, 1 decimal."""
+    """Snit af energi (1-4) over de sidste n dage med registrering, 1 decimal."""
     vals = [e['energi'] for e in _last(log, n) if e.get('energi') is not None]
     if not vals:
         return None
