@@ -581,7 +581,7 @@ def main():
     # Samme wellness-kilde som af_log. Bruges af I dag-fanens log-ark (7 prikker),
     # Krop-fanens protein-kort og én linje i coach-prompten. af_log holder sig til
     # 0/1 (index.html læser det); hvordan drikkedagen blev registreret
-    # (valgt/autopilot) ligger i checkinLog.alkohol (1/2) og i af_kind.
+    # (1-2 / 3+ genstande) ligger i checkinLog.alkohol (1/2) og i af_kind.
     checkin_log = _checkin.get_checkin_log()
     data['checkinLog'] = checkin_log
     data['kpis']['protein'] = _checkin.protein_kpi(checkin_log)

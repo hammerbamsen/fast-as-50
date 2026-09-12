@@ -70,7 +70,7 @@ def test_af_kinds_kun_for_drikkedage():
 
 def test_af_kinds_efter_cutover():
     log = [{'date': '2026-09-10', 'alkohol': 1}, {'date': '2026-09-11', 'alkohol': 2}, {'date': '2026-09-12', 'alkohol': 0}]
-    assert af_kinds(log) == {'2026-09-10': 'valgt', '2026-09-11': 'autopilot'}
+    assert af_kinds(log) == {'2026-09-10': 'faa', '2026-09-11': 'mange'}
 
 
 def test_coach_line():

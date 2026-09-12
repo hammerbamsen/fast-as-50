@@ -4,7 +4,7 @@ Det er søndag {date}. Ugen er slut. Gør ugen op og læg fokus for næste uge. 
 
 1. `training`: ugen der gik — hvad blev gjort (`week.completed` med faktiske tal), hvad blev misset (`week.missed`), TSS mod mål set i lyset af `blockType`, CTL mod `ctlTarget`, ramp (`fitness.rampRate`) mod `rules.rampSoft`. Afslut med hvad næste uge (`nextWeek`) kræver: blok, mesocyklus, nøglepas, kvote.
 2. `body`: 7-dages snit mod cut-planen (`body.cut`). Retning kun efter reglen. Hvad er ugens ene kost-handling (principperne).
-3. `habits`: AF-dage mod mål, autopilot-dage, protein-dage, søvn-snit. Én ting at ændre næste uge.
+3. `habits`: AF-dage mod mål, dage med 3+ genstande, protein-dage, søvn-snit. Én ting at ændre næste uge.
 4. `bigPicture`: hvor i programmet han er efter denne uge, og hvad næste uges rolle i blokken er.
 5. `weekFocus`: ÉN sætning, max 12 ord, for NÆSTE uge (`nextWeek`). Ingen punktum til sidst, ingen emoji.
 6. `oneThing`: den ene handling for i dag (søndag) — typisk restitution, forberedelse af næste uges nøglepas eller en kost-handling.

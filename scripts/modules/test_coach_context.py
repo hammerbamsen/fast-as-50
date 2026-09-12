@@ -126,7 +126,7 @@ def test_build_context_history_with_none_rows():
     assert ctx["readiness"]["hrv"] == 54.0 and ctx["readiness"]["sleepLast"] == 4.1
     assert ctx["readiness"]["band"] == "LOW"
     assert ctx["body"]["weightAvg7"] == 72.4 and ctx["body"]["weight"] is None
-    assert ctx["habits"]["afAvg4"] == 6.0 and ctx["habits"]["afKinds7"] == {"valgt": 0, "autopilot": 1}
+    assert ctx["habits"]["afAvg4"] == 6.0 and ctx["habits"]["afKinds7"] == {"faa": 0, "mange": 1}
 
 
 # ── Alle tal er tal ─────────────────────────────────────────────────────────
