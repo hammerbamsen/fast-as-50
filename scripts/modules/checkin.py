@@ -1,7 +1,8 @@
 """Check-in-historik (alkohol/protein/energi/aftensult) fra Intervals wellness.
 
 Kilde er de samme wellness-rækker som AF-loggen (af.py). Feltnavne i Intervals:
-  Alkohol    (custom)  0 = AF-dag, 1 = drak (bevidst valgt), 2 = drak (bare skete)
+  Alkohol    (custom)  0 = AF-dag, 1 = 1-2 genstande, 2 = 3+ genstande
+                       (12/9-2026: mængde. 4/9-11/9 betød 1/2 valgt/bare skete — samme farver)
   protein    (custom)  2 = protein i 3 af 3 hovedmåltider, 1 = 2 af 3, 0 = ≤1
   motivation (Intervals-skala 1-4; 5 afvises med 422) — bruges som energi: 1 lav, 3 ok, 4 høj
   Aftensult  (custom)  0 = nej, 1 = lidt, 2 = ja
@@ -20,7 +21,7 @@ FIELD_ENERGI  = 'motivation'
 FIELD_SULT    = 'Aftensult'
 
 # Alkohol-værdi 1/2 -> hvordan drikkedagen blev registreret (0 = AF-dag).
-ALKOHOL_KIND = {1: 'valgt', 2: 'autopilot'}
+ALKOHOL_KIND = {1: 'faa', 2: 'mange'}
 
 
 def _int_or_none(v):
@@ -111,13 +112,13 @@ def hunger_days(log, n=7):
     return sum(1 for e in _last(log, n) if e.get('sult') == 2)
 
 
-# Før 4/9-2026 betød Alkohol=1 blot "drak" (den gamle af.html, slettet blok 9). Valgt/autopilot-skelnen
-# findes først fra log-arket i v2.0 — ældre 1'ere må ikke vises som "valgt".
+# Før 4/9-2026 betød Alkohol=1 blot "drak" (den gamle af.html, slettet blok 9). Skelnen 1/2
+# findes først fra log-arket i v2.0 — ældre 1'ere må ikke vises som gule.
 KIND_CUTOVER = '2026-09-04'
 
 
 def af_kinds(log):
-    """{dato: 'valgt'|'autopilot'|'drak'} for drikkedage (1/2). Før KIND_CUTOVER: 'drak'."""
+    """{dato: 'faa'|'mange'|'drak'} for drikkedage (1 = 1-2 genstande, 2 = 3+). Før KIND_CUTOVER: 'drak'."""
     out = {}
     for e in (log or []):
         a = e.get('alkohol')

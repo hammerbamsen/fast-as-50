@@ -692,7 +692,7 @@ details.fold[open] > summary::after { content:"▴"; }
 
   <div class="q"><span class="lab" id="log-af-lab">Alkohol i dag?</span>
     <div class="opts c2"><button class="opt" data-q="af" data-v="nej">Nej<small>AF-dag</small></button><button class="opt bad" data-q="af" data-v="ja">Ja</button></div>
-    <div class="opts c2 sub-q" id="log-af-sub"><button class="opt" data-q="afv" data-v="valgt">Valgt<small>bevidst — tæller ikke som fejl</small></button><button class="opt bad" data-q="afv" data-v="skete">Bare skete<small>autopilot</small></button></div>
+    <div class="opts c2 sub-q" id="log-af-sub"><button class="opt" data-q="afv" data-v="faa">1–2 genstande<small>tæller gult</small></button><button class="opt bad" data-q="afv" data-v="mange">3+ genstande<small>tæller rødt</small></button></div>
   </div>
   <div class="q"><span class="lab">Protein i hovedmåltiderne?</span>
     <div class="opts c3"><button class="opt" data-q="pro" data-v="2">3 af 3<small>≈ 150 g</small></button><button class="opt" data-q="pro" data-v="1">2 af 3</button><button class="opt bad" data-q="pro" data-v="0">≤ 1</button></div>
@@ -703,7 +703,7 @@ details.fold[open] > summary::after { content:"▴"; }
 
   <span class="q lab" style="display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 0 6px">Sidste 7 dage</span>
   <div class="dots" id="log-dots"></div>
-  <div class="legend">Tryk på en dag for at se eller rette den. Grøn · gul · rød: <b>Alk</b> AF-dag · valgt · bare skete (før 4/9: rød) — <b>Prot</b> 3/3 · 2/3 · ≤1 — <b>Energi</b> høj · ok · lav.</div>
+  <div class="legend">Tryk på en dag for at se eller rette den. Grøn · gul · rød: <b>Alk</b> AF-dag · 1–2 genstande · 3+ (før 4/9: rød) — <b>Prot</b> 3/3 · 2/3 · ≤1 — <b>Energi</b> høj · ok · lav.</div>
   <button class="close" onclick="showLogSheet(false)">Luk</button>
 </div>
 
@@ -3212,7 +3212,7 @@ function habitsWeekCard() {
   }
   // Tre-trins-klasse pr. kriterium. null = ikke registreret.
   const afCls = d => d.future ? 'f' : d.e.alkohol == null ? '' :
-    (d.e.alkohol === 0 ? 'g' : (d.e.alkohol === 2 || d.kind === 'drak' || d.kind === 'autopilot') ? 'r' : 'y');
+    (d.e.alkohol === 0 ? 'g' : (d.e.alkohol === 2 || d.kind === 'drak' || d.kind === 'mange') ? 'r' : 'y');
   const prCls = d => d.future ? 'f' : d.e.protein == null ? '' : (d.e.protein === 2 ? 'g' : d.e.protein === 1 ? 'y' : 'r');
   const enCls = d => d.future ? 'f' : d.e.energi == null ? '' : (d.e.energi >= 4 ? 'g' : d.e.energi === 3 ? 'y' : 'r');
   const count = fn => days.filter(d => fn(d) === 'g').length;
@@ -4077,8 +4077,8 @@ function trainingDonut() {
 
 // ── Log-ark: Registrér i dag (4/9-26) ─────────────────────────
 // Fire spørgsmål, gemmer ved hvert tryk til Worker'ens /checkin (samme
-// endpoint som det gamle checkin.html brugte — slettet blok 9). Felter: date, alkohol (0 nej / 1 ja valgt /
-// 2 ja bare skete), protein (2 = 3 af 3, 1 = 2 af 3, 0 = ≤1), energi
+// endpoint som det gamle checkin.html brugte — slettet blok 9). Felter: date, alkohol (0 nej / 1 ja 1-2 genstande /
+// 2 ja 3+ genstande; 12/9-26: mængde, før: valgt/bare skete), protein (2 = 3 af 3, 1 = 2 af 3, 0 = ≤1), energi
 // (1 lav / 3 ok / 5 høj), sult (0 nej / 1 lidt / 2 ja). Optimistisk UI:
 // dagens valg gemmes i localStorage og lægges oven på data.checkinLog, så
 // arket viser det rigtige før data.json har kørt.
@@ -4157,7 +4157,7 @@ function renderLogSheet(){
   const e = logCurrent();
   const sel = {
     af:   e.alkohol == null ? null : (e.alkohol === 0 ? 'nej' : 'ja'),
-    afv:  e.alkohol == null || e.alkohol === 0 ? null : (e.alkohol === 2 ? 'skete' : 'valgt'),
+    afv:  e.alkohol == null || e.alkohol === 0 ? null : (e.alkohol === 2 ? 'mange' : 'faa'),
     pro:  e.protein == null ? null : String(e.protein),
     en:   e.energi == null ? null : String(e.energi <= 2 ? 1 : e.energi >= 4 ? 4 : 3),
     sult: e.sult == null ? null : String(e.sult),
@@ -4178,7 +4178,7 @@ function renderLogDots(){
     const e = logCurrent(iso);   // lokale rettelser oven på data.json — også bagud
     // af_kind (pipelinen) gælder kun hvis dagen ikke er rettet lokalt siden.
     const kind = e._localAlk ? null : (D.af_kind || {})[iso];
-    const af = e.alkohol == null ? 'none' : (e.alkohol === 0 ? 'af' : (e.alkohol === 2 || kind === 'drak' || kind === 'autopilot') ? 'af x' : 'af v');
+    const af = e.alkohol == null ? 'none' : (e.alkohol === 0 ? 'af' : (e.alkohol === 2 || kind === 'drak' || kind === 'mange') ? 'af x' : 'af v');
     const pr = e.protein == null ? 'none' : 'p' + e.protein;
     // Energi 1-4 (Intervals' motivation-skala) → tre trin som i arket: ≤2 lav (rød), 3 ok (gul), 4 høj (grøn)
     const en = e.energi == null ? 'none' : (e.energi <= 2 ? 'e1' : e.energi >= 4 ? 'e5' : 'e3');
@@ -4204,9 +4204,9 @@ function logPick(q, v){
     // sendtes uden alkohol, og Intervals beholdt den gamle værdi (0 = AF) —
     // så en drikkedag blev vist som AF. Nej/Ja sætter nu altid værdien.
     if (v === 'nej') local.alkohol = 0;
-    else             local.alkohol = (cur.alkohol === 1 || cur.alkohol === 2) ? cur.alkohol : 1;   // Ja = valgt indtil andet vælges
+    else             local.alkohol = (cur.alkohol === 1 || cur.alkohol === 2) ? cur.alkohol : 1;   // Ja = 1-2 genstande indtil andet vælges
   } else if (q === 'afv') {
-    local.alkohol = v === 'skete' ? 2 : 1;
+    local.alkohol = v === 'mange' ? 2 : 1;
   } else if (q === 'pro') {
     local.protein = same(cur.protein, v) ? null : parseInt(v, 10);
   } else if (q === 'en') {

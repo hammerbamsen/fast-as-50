@@ -390,13 +390,13 @@ def _habits_ctx(data, af_streak, goals):
     af_avg4 = round(sum(w['done'] for w in last4) / len(last4), 1) if last4 else None
     log = data.get('checkinLog') or []
     last7 = log[-7:]
-    kinds = {'valgt': 0, 'autopilot': 0, 'drak': 0}
+    kinds = {'faa': 0, 'mange': 0, 'drak': 0}
     for e in last7:
         a = e.get('alkohol')
         if a == 1:
-            kinds['valgt'] += 1
+            kinds['faa'] += 1
         elif a == 2:
-            kinds['autopilot'] += 1
+            kinds['mange'] += 1
     protein_days = sum(1 for e in last7 if e.get('protein') == 2)
     protein_reg = sum(1 for e in last7 if e.get('protein') is not None)
     energies = [e['energi'] for e in last7 if e.get('energi') is not None]
@@ -405,7 +405,7 @@ def _habits_ctx(data, af_streak, goals):
         'afWeek': _int(af.get('weekDone')), 'afTarget': _int(goals.get('afDaysPerWeek', af.get('target'))),
         'afStreak': _int(af_streak if af_streak is not None else af.get('streak')),
         'afAvg4': af_avg4,
-        'afKinds7': {'valgt': kinds['valgt'], 'autopilot': kinds['autopilot']},
+        'afKinds7': {'faa': kinds['faa'], 'mange': kinds['mange']},
         'proteinDays7': protein_days, 'proteinRegistered7': protein_reg,
         'energyAvg7': _avg(energies), 'hungerDays7': hunger,
     }
