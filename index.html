@@ -401,6 +401,19 @@ details.fold[open] > summary::after { content:"▴"; }
 .dots i.p2 { background:var(--ok); } .dots i.p1 { background:var(--watch); } .dots i.p0 { background:var(--act); }
 .dots i.e5 { background:var(--ok); } .dots i.e3 { background:var(--watch); } .dots i.e1 { background:var(--act); }
 .dots i.none { background:var(--line); }
+/* Krop: samlet ugekort (12/9) — tre rækker AF · Protein · Energi, man–søn, samme farvelogik */
+.hab { display:grid; grid-template-columns:58px repeat(7,1fr) 44px; gap:6px 4px; align-items:center; }
+.hab .hd { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); text-align:center; }
+.hab .hd.today { color:var(--ink); font-weight:700; }
+.hab .rl { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+.hab .rl small { display:block; font-size:8px; letter-spacing:.02em; text-transform:none; color:var(--muted); margin-top:1px; }
+.hab i { display:block; height:10px; border-radius:5px; margin:0 auto; width:78%; background:var(--line); }
+.hab i.g { background:var(--ok); } .hab i.y { background:var(--watch); } .hab i.r { background:var(--act); }
+.hab i.f { background:transparent; border:1px dashed var(--line); }
+.hab .rv { font-family:'Space Mono',monospace; font-size:12px; font-weight:700; text-align:right; }
+.hab .rv small { display:block; font-size:8px; font-weight:400; color:var(--muted); }
+.hab-legend { display:flex; gap:12px; margin-top:10px; font-family:'Space Mono',monospace; font-size:8px; color:var(--muted); letter-spacing:.04em; }
+.hab-legend i { display:inline-block; width:14px; height:7px; border-radius:4px; vertical-align:middle; margin-right:4px; }
 /* 8/9-26: prikkerne kan trykkes → ret en tidligere dag. Valgt dag markeres. */
 .dots div { cursor:pointer; border-radius:8px; padding:3px 0 2px; border:1.5px solid transparent; }
 .dots div.sel { border-color:var(--ink); }
@@ -2824,15 +2837,7 @@ function renderBody() {
     ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', null, null, true)}
   </div>
 
-  <div class="card">
-    <div class="label" style="margin-bottom:12px">AF-dage — uge ${isoWeekOf(new Date())}</div>
-    ${afStreakViz(D.afDays.weekDone, D.afDays.target, D.afDays.streak)}
-    <div style="border-top:1px solid var(--cream-d);margin-top:14px;padding-top:12px">
-      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">HISTORIK</div>
-      ${afHistoryViz(D.afHistory || [])}
-    </div>
-  </div>
-  ${proteinCard()}
+  ${habitsWeekCard()}
 `;
 }
 
@@ -3188,6 +3193,69 @@ function buildGlidepathSVG(chartId, W) {
     if (exp.length) xl += labelAt(exp[0].d, `uge ${isoWeekOf(g.cutStartsFrom)}`, 'end', true);
   }
   return `<svg data-spk="${chartId}" viewBox="0 0 ${W} ${H}" style="width:${W}px;height:${H}px;overflow:visible;display:block">${ax}${out}${xl}</svg>`;
+}
+
+// Samlet ugekort på Krop (12/9): AF · Protein · Energi i én man–søn-stribe med samme
+// farvelogik (grøn = ok, gul = delvist, rød = nej, grå = ikke registreret, stiplet = fremtid)
+// og samme "x/7"-tal. Erstatter det gamle AF-kort (✓-cirkler) + proteinCard (søn–lør-slice).
+// Datakilde pr. dag: logCurrent(iso) — lokale rettelser oven på data.json, som i log-arket.
+function habitsWeekCard() {
+  const mon = _afMondayOf(new Date());
+  const today = todayIso();
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const dt = new Date(mon); dt.setDate(mon.getDate() + i);
+    const iso = isoOf(dt);
+    const e = logCurrent(iso);
+    const kind = e._localAlk ? null : (D.af_kind || {})[iso];
+    days.push({ iso, e, kind, future: iso > today, isToday: iso === today });
+  }
+  // Tre-trins-klasse pr. kriterium. null = ikke registreret.
+  const afCls = d => d.future ? 'f' : d.e.alkohol == null ? '' :
+    (d.e.alkohol === 0 ? 'g' : (d.e.alkohol === 2 || d.kind === 'drak' || d.kind === 'autopilot') ? 'r' : 'y');
+  const prCls = d => d.future ? 'f' : d.e.protein == null ? '' : (d.e.protein === 2 ? 'g' : d.e.protein === 1 ? 'y' : 'r');
+  const enCls = d => d.future ? 'f' : d.e.energi == null ? '' : (d.e.energi >= 4 ? 'g' : d.e.energi === 3 ? 'y' : 'r');
+  const count = fn => days.filter(d => fn(d) === 'g').length;
+
+  const afTarget = (D.afDays && parseInt(D.afDays.target)) || 6;
+  const afDone   = count(afCls);
+  const prDone   = count(prCls);
+  const enDone   = count(enCls);
+  const streak   = (D.afDays && D.afDays.streak) || 0;
+  const k        = D.kpiProtein || null;
+  const prAvg    = k && /4 uger ([\d,]+)/.exec(k.sub || '');
+  const en7      = D.energy7;
+  const enVals   = days.map(d => d.e.energi).filter(v => v != null);
+  const enAvg    = enVals.length ? enVals.reduce((a,b)=>a+b,0)/enVals.length : null;
+
+  const valColor = (done, target) => done >= target ? 'var(--ok)' : done >= target - 2 ? 'var(--watch)' : 'var(--act)';
+  const row = (label, sub, cls, done, target, valSub) =>
+    `<div class="rl">${label}<small>${sub}</small></div>` +
+    days.map(d => `<i class="${cls(d)}" title="${d.iso}"></i>`).join('') +
+    `<div class="rv" style="color:${valColor(done, target)}">${done}/${target}<small>${valSub}</small></div>`;
+
+  const hdr = `<div></div>` + days.map(d =>
+    `<div class="hd${d.isToday ? ' today' : ''}">${['M','T','O','T','F','L','S'][(new Date(d.iso+'T12:00:00').getDay()+6)%7]}</div>`).join('') + `<div></div>`;
+
+  return `<div class="card">
+    <div class="label" style="margin-bottom:12px">Levevaner — uge ${isoWeekOf(new Date())}</div>
+    <div class="hab">
+      ${hdr}
+      ${row('AF-dage', 'ingen alkohol', afCls, afDone, afTarget, streak > 0 ? streak + ' i træk' : '&nbsp;')}
+      ${row('Protein', '3 af 3 måltider', prCls, prDone, 7, prAvg ? '4 uger ' + prAvg[1] : '&nbsp;')}
+      ${row('Energi', 'høj (4–5 af 5)', enCls, enDone, 7, enAvg != null ? 'snit ' + fmtDa(Math.round(enAvg*10)/10) + '/5' : (en7 != null ? 'snit ' + fmtDa(en7) + '/5' : '&nbsp;'))}
+    </div>
+    <div class="hab-legend">
+      <span><i style="background:var(--ok)"></i>ok</span>
+      <span><i style="background:var(--watch)"></i>delvist</span>
+      <span><i style="background:var(--act)"></i>nej</span>
+      <span><i style="background:var(--line)"></i>ikke registreret</span>
+    </div>
+    <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px">
+      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px">AF-HISTORIK</div>
+      ${afHistoryViz(D.afHistory || [])}
+    </div>
+  </div>`;
 }
 
 // Protein-kort (fra data.checkinLog + kpis.protein): 7 prikker + tekstlinje + energi-snit.
