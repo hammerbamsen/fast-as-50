@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-12 05:27",
+    "updated": "2026-09-12 08:32",
     "week": 1,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -22,7 +22,7 @@
   },
   "kpis": {
     "weight": {
-      "value": "72,3",
+      "value": "72,8",
       "unit": "kg",
       "sub": "cut starter uge 39",
       "color": "#7A6A58"
@@ -40,15 +40,15 @@
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "5,2",
+      "value": "5,8",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,2",
+      "value": "9,5",
       "unit": "t",
-      "sub": "Snit 7d 7,1t · mål 7t",
+      "sub": "Snit 7d 7,9t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,22 +58,22 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "54,8",
+      "value": "55,1",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "45",
+      "value": "44",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "165",
+      "value": "177",
       "unit": "TSS",
-      "sub": "165 af 208 planlagt TSS",
-      "color": "#E67E22"
+      "sub": "177 af 208 planlagt TSS",
+      "color": "#27AE60"
     },
     "bikeKm": {
       "value": "69,3",
@@ -96,7 +96,7 @@
     "ftp": {
       "value": "278",
       "unit": "W",
-      "sub": "3,85 W/kg · mål 278 (TRANSITION) · test 24/9",
+      "sub": "3,82 W/kg · mål 278 (TRANSITION) · test 24/9",
       "color": "#27AE60"
     },
     "protein": {
@@ -111,7 +111,7 @@
     "target": 6,
     "streak": 5
   },
-  "coachSpeech": "Lørdag — uge 1 af 51. {HL} Godt: Søvn på 7,6 timer er solid. Fokus: Vægt på 72,5 kg (målt 11/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 5 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward. ❤️ Aerobt: VIGTIGT: Cykelpasset 10/9 (snitpuls 124) kostede 12,1 % mere puls pr. meter end medianen af de seneste 6 sammenlignelige pas (EF 1,306 mod 1,486). Forbehold, som IKKE er trukket fra tallet: baseline-passene lå på et andet tidspunkt af døgnet. Konkluder ikke overtræning ud fra ét pas — sig hvad passet kostede, og at det enten var varmen eller for højt tempo.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachSpeech": "Lørdag — uge 1 af 51. {HL} Godt: Søvn på 7,9 timer er solid. Fokus: Vægt på 72,3 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 5 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward. ❤️ Aerobt: VIGTIGT: Cykelpasset 10/9 (snitpuls 124) kostede 12,1 % mere puls pr. meter end medianen af de seneste 6 sammenlignelige pas (EF 1,306 mod 1,486). Forbehold, som IKKE er trukket fra tallet: baseline-passene lå på et andet tidspunkt af døgnet. Konkluder ikke overtræning ud fra ét pas — sig hvad passet kostede, og at det enten var varmen eller for højt tempo.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
   "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "Restituer komplet — let bevægelse, ingen pres, sov 7-8 timer",
   "today": [
@@ -129,7 +129,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -238,11 +238,17 @@
       "day": "Lør",
       "disc": "strength",
       "label": "Styrke 25 min overkrop + core",
-      "done": false,
+      "done": true,
       "planned_tss": 17,
       "planned_mins": 25,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 108,
+      "actual_tss": 12,
+      "actual_mins": 27,
+      "actual_distance_m": null,
+      "intervals_compliance": 70.6
     },
     {
       "day": "Søn",
@@ -587,7 +593,11 @@
       "v": 72.5,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-12",
+      "v": 72.3,
+      "real": true
+    }
   ],
   "hrvHistory": [
     {
@@ -1035,7 +1045,11 @@
       "v": 59.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-12",
+      "v": 57.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1483,7 +1497,11 @@
       "v": 8.2,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-12",
+      "v": 9.5,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1933,7 +1951,7 @@
     },
     {
       "date": "2026-09-12",
-      "v": 5.1,
+      "v": 5.8,
       "real": true
     }
   ],
@@ -2150,11 +2168,17 @@
           "day": "Lør",
           "disc": "strength",
           "label": "Styrke 25 min overkrop + core",
-          "done": false,
+          "done": true,
           "planned_tss": 17,
           "planned_mins": 25,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 108,
+          "actual_tss": 12,
+          "actual_mins": 27,
+          "actual_distance_m": null,
+          "intervals_compliance": 70.6
         },
         {
           "day": "Søn",
@@ -2696,12 +2720,13 @@
     }
   ],
   "train_mins": {
+    "strength": 27.0,
     "commute": 139.0,
     "walk": 421.0,
     "bike": 61.0,
     "run": 39.0,
     "planned": 370.0,
-    "actual_total": 660.0
+    "actual_total": 687.0
   },
   "fatHistory": [
     null,
@@ -3033,13 +3058,17 @@
       "v": 21.4,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-12",
+      "v": 21.9,
+      "real": true
+    }
   ],
   "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 5 af 357 · Fredag · Uge 1</strong></p><p class=\"coach-sec coach-big\">Du er i uge 1 af RECOVERY-blokken i Tour des Stations 2027-programmet, direkte efter Marathon du Médoc. Cykel og gang bærer den aerobe base denne uge, og første løb må tidligst ske lørdag 12/9 — det er præcis det planlagte Løb let Z1 30 min i morgen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Gentofte-pendlingen (51 min, TSS 13) er i hus som dagens eneste session. Ugen har 3 gennemførte planpas — gang mandag og onsdag samt cykel Z2 torsdag — plus tirsdag-gangpas misset. I morgen venter Løb let Z1 30 min og Styrke 25 min overkrop + core. CTL er 48.8 mod et mål på 47.0, altså 1.8 over target — præcis hvad RECOVERY-blokken skal holde fast i, ikke bygge på. TSS-ugen er på 165 mod planlagte 208, men i en restitutionsuge er lavere TSS et fortegn på succes, ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72.3 kg og 21.3% fedt. Vægten er stabil over 28 dage (0.0 kg ændring), og fedtprocenten er faldet 0.3 procentpoint — under grænsen på 0.5 for at kalde det en retning, så status er stabil. Cut starter først 21/9 med et mål-startvægt på 72.2 kg — du er tæt på.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 AF-dage ud af et mål på 6 denne uge, og ingen autopilot-drikkedage de seneste 7 dage — de 2 valgte dage var bevidste valg. Protein er registreret alle 7 dage, men ingen dage er godkendt som protein-dage, så tjek at du rammer protein FØRST ved hvert måltid. Søvn er 8.2 timer i nat og 7.1 i snit — begge over kravet på 7.0. Energi-snit på 2.1 er lavt; det hænger sandsynligvis sammen med rejsen og restitutionen.</p>",
   "coachAssessmentTs": "16:05",
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": 5.2,
+  "tsb": 5.8,
   "swimHistory": [
     {
       "week": 1,
@@ -3143,7 +3172,7 @@
     null,
     null,
     null,
-    null
+    72.83
   ],
   "fatMovingAvg7": [
     null,
@@ -3235,7 +3264,7 @@
     null,
     null,
     null,
-    null
+    21.4
   ],
   "ctlPlan": [
     47,
@@ -3302,7 +3331,7 @@
       "note": "Seneste AI-kald fejlede: validering: body.text: tal ikke i konteksten: 28"
     }
   },
-  "credentialsCheckedTs": "2026-09-12T03:28:18.061067",
+  "credentialsCheckedTs": "2026-09-12T06:33:15.721109",
   "coachAssessmentTsFull": "2026-09-11T14:05:48",
   "coachAssessmentWeightAtGen": 72.6,
   "coachAssessmentAfAtGen": 5,
@@ -3390,7 +3419,7 @@
     }
   },
   "weekTssActual": {
-    "1": 165
+    "1": 177
   },
   "racesUpcoming": [
     {
@@ -4102,7 +4131,7 @@
     },
     {
       "date": "2026-09-12",
-      "v": 47,
+      "v": 45,
       "real": true
     }
   ],
@@ -4529,7 +4558,7 @@
         "mesoWeek": "R",
         "ctlTarget": 47,
         "tssTarget": 150,
-        "tssActual": 165,
+        "tssActual": 177,
         "purpose": "Restitution efter Médoc — gang, svøm og let cykel; første korte løb tidligst lør 12/9.",
         "note": "Restitution efter Marathon du Médoc. Intet løb før tidligst lør 12/9 — 42 km excentrisk belastning kræver 10-14 dage. Cykel bærer den aerobe base.",
         "quota": {
@@ -6955,12 +6984,13 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 27,
+                "actualTss": 12,
                 "note": "Styrke overkrop + core — ben resumerer 21/9",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -10460,24 +10490,20 @@
       ],
       "projection": [
         {
-          "d": "2026-09-12",
-          "ctl": 48.2
-        },
-        {
           "d": "2026-09-13",
           "ctl": 47.7
         },
         {
           "d": "2026-09-14",
-          "ctl": 47.4
+          "ctl": 47.5
         },
         {
           "d": "2026-09-15",
-          "ctl": 47.1
+          "ctl": 47.2
         },
         {
           "d": "2026-09-16",
-          "ctl": 46.8
+          "ctl": 46.9
         },
         {
           "d": "2026-09-17",
@@ -10485,7 +10511,7 @@
         },
         {
           "d": "2026-09-18",
-          "ctl": 46.3
+          "ctl": 46.4
         },
         {
           "d": "2026-09-19",
@@ -10493,23 +10519,23 @@
         },
         {
           "d": "2026-09-20",
-          "ctl": 45.8
+          "ctl": 45.9
         },
         {
           "d": "2026-09-21",
-          "ctl": 46.0
+          "ctl": 46.1
         },
         {
           "d": "2026-09-22",
-          "ctl": 46.2
+          "ctl": 46.3
         },
         {
           "d": "2026-09-23",
-          "ctl": 46.4
+          "ctl": 46.5
         },
         {
           "d": "2026-09-24",
-          "ctl": 46.6
+          "ctl": 46.7
         },
         {
           "d": "2026-09-25",
@@ -10521,7 +10547,7 @@
         },
         {
           "d": "2026-09-27",
-          "ctl": 45.8
+          "ctl": 45.9
         },
         {
           "d": "2026-09-28",
@@ -10533,7 +10559,7 @@
         },
         {
           "d": "2026-09-30",
-          "ctl": 48.2
+          "ctl": 48.3
         },
         {
           "d": "2026-10-01",
@@ -10541,7 +10567,7 @@
         },
         {
           "d": "2026-10-02",
-          "ctl": 47.8
+          "ctl": 47.9
         },
         {
           "d": "2026-10-03",
@@ -10557,7 +10583,7 @@
         },
         {
           "d": "2026-10-06",
-          "ctl": 46.9
+          "ctl": 47.0
         },
         {
           "d": "2026-10-07",
@@ -10569,7 +10595,7 @@
         },
         {
           "d": "2026-10-09",
-          "ctl": 46.1
+          "ctl": 46.2
         },
         {
           "d": "2026-10-10",
@@ -10577,7 +10603,7 @@
         },
         {
           "d": "2026-10-11",
-          "ctl": 45.6
+          "ctl": 45.7
         },
         {
           "d": "2026-10-12",
@@ -10585,11 +10611,11 @@
         },
         {
           "d": "2026-10-13",
-          "ctl": 46.3
+          "ctl": 46.4
         },
         {
           "d": "2026-10-14",
-          "ctl": 46.6
+          "ctl": 46.7
         },
         {
           "d": "2026-10-15",
@@ -10609,7 +10635,7 @@
         },
         {
           "d": "2026-10-19",
-          "ctl": 48.2
+          "ctl": 48.3
         },
         {
           "d": "2026-10-20",
@@ -10657,7 +10683,7 @@
         },
         {
           "d": "2026-10-31",
-          "ctl": 48.4
+          "ctl": 48.5
         },
         {
           "d": "2026-11-01",
@@ -11106,6 +11132,15 @@
         "rpe": null,
         "complete": null,
         "template": null
+      },
+      {
+        "date": "2026-09-12",
+        "name": "Styrketræning",
+        "source": "activity",
+        "note": "",
+        "rpe": null,
+        "complete": null,
+        "template": null
       }
     ]
   },
@@ -11123,13 +11158,13 @@
       "targetKg": 68.0,
       "expectedKg": null,
       "corridorKg": 0.5,
-      "avg7": 72.3,
-      "avg7Date": "2026-09-11",
+      "avg7": 72.8,
+      "avg7Date": "2026-09-12",
       "delta": null,
       "status": null,
       "note": "cut starter uge 39 (21/9)",
       "ratePerWeek": -0.22,
-      "actualRate4w": -0.03,
+      "actualRate4w": 0.11,
       "series": [
         {
           "date": "2026-09-21",
@@ -11224,7 +11259,7 @@
     },
     "ffm": {
       "now": 57.0,
-      "change28d": 0.4,
+      "change28d": 0.3,
       "target": 57.1,
       "status": "ok",
       "baseline": 57.0,
@@ -11233,7 +11268,7 @@
       "holdKg": -0.5
     },
     "strengthWeek": {
-      "done": 0,
+      "done": 1,
       "target": 2
     },
     "strengthWeeks": {
@@ -11500,6 +11535,14 @@
     },
     "last4": [
       {
+        "date": "2026-09-12",
+        "name": "Styrketræning",
+        "ab": null,
+        "rpe": null,
+        "complete": null,
+        "note": ""
+      },
+      {
         "date": "2026-09-01",
         "name": "Styrketræning",
         "ab": null,
@@ -11517,14 +11560,6 @@
       },
       {
         "date": "2026-08-30",
-        "name": "Styrketræning",
-        "ab": null,
-        "rpe": null,
-        "complete": null,
-        "note": ""
-      },
-      {
-        "date": "2026-08-28",
         "name": "Styrketræning",
         "ab": null,
         "rpe": null,
@@ -11553,23 +11588,23 @@
     }
   },
   "weekTss": {
-    "actual": 165,
+    "actual": 177,
     "planned": 208
   },
   "martinMail": {
     "week": 1,
     "isoWeek": 37,
     "lines": [
-      "Uge 37: TSS 165 af 208 (79 %) · CTL 48,3 (mål 47) · TSB +5,2",
-      "Vægt 7d 72,3 kg · fedt 14d 21,6 % · cut starter uge 39 (21/9)",
-      "HRV 7d 55 (28d 59) · hvilepuls 45 · søvn 7d 7,6 t",
+      "Uge 37: TSS 177 af 208 (85 %) · CTL 48,3 (mål 47) · TSB +5,8",
+      "Vægt 7d 72,8 kg · fedt 14d 21,6 % · cut starter uge 39 (21/9)",
+      "HRV 7d 55 (28d 59) · hvilepuls 44 · søvn 7d 7,9 t",
       "AF 5/7 · protein 3/3 0/7 · aftensult —/7",
-      "Styrke 0/2 · check-in —",
+      "Styrke 1/2 · check-in —",
       "Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)",
       "Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: tir 15/9 Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse 45 min, søn 20/9 CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km 90 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-12T03:27:53Z"
+    "generatedAt": "2026-09-12T06:32:54Z"
   },
   "proposals": [],
   "aerobicFlag": {
@@ -11592,8 +11627,8 @@
   },
   "ftp": {
     "ftpW": 278,
-    "wkg": 3.85,
-    "weightAvg7": 72.3,
+    "wkg": 3.82,
+    "weightAvg7": 72.8,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
