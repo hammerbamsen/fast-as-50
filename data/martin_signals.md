@@ -41,3 +41,7 @@
 - Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)
 - Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: tir 15/9 Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse 45 min, søn 20/9 CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km 90 min
 - Planændringer siden sidst: 2 — se martin_signals.md
+
+### Planændring 13/09 07:51
+- **tirsdag 2026-09-15** (uge 2, apply_proposal): Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse (45 min) [hårdt] → Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner) (45 min)
+- **søndag 2026-09-20** (uge 2, apply_proposal): CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km (90 min) [langt] → CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km (90 min) [langt]
