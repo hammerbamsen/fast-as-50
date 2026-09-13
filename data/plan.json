@@ -6280,60 +6280,60 @@
           "date": "2026-09-15",
           "entries": [
             {
+              "id": "bc309585",
+              "note": "Sub 1:30-åbner: 4×3 min på 4:12-4:18. Stop efter 3 reps hvis benene ikke er der efter Médoc",
               "workout": {
-                "name": "Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse",
-                "type": "Run",
+                "description": "- Varm-op 15m >5:39/km Pace\n\n4x\n- Racepace 3m 4:12-4:18/km Pace\n- Jog 2m >5:39/km Pace\n\n- Cool-down 10m >5:39/km Pace\n\nMålpace til sub 1:30 = 4:15/km. Kun 4 reps — 10 dage efter maraton. Kør jævnt, ikke hårdere end 4:12. Føles det tungt, så stop efter rep 3.",
                 "moving_time": 2700,
-                "description": "- Varm-op 15m >5:39/km Pace\n\n4x\n- Halvmaraton-tempo 3m 4:35-4:45/km Pace\n- Pause 2m >5:39/km Pace\n\n- Cool-down 10m >5:39/km Pace\n\nHalvmaraton-tempo 4:35-4:45/km (B-løb, 1:37-1:40). Kør efter fornemmelse — kontrolleret, ikke hårdt. 4 reps, ikke 5 — 10 dage efter maraton. 2 min gang imellem.",
+                "name": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
+                "type": "Run",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
+                      "duration": 900,
                       "pace": {
-                        "start": 65,
                         "end": 78,
+                        "start": 65,
                         "units": "%pace"
                       },
-                      "duration": 900
+                      "text": "Varm-op >5:39/km"
                     },
                     {
                       "reps": 4,
-                      "text": "4x",
                       "steps": [
                         {
-                          "text": "Halvmaraton-tempo 4:35-4:45/km",
+                          "duration": 180,
                           "pace": {
-                            "start": 101,
                             "end": 105,
+                            "start": 102,
                             "units": "%pace"
                           },
-                          "duration": 180
+                          "text": "Racepace 4:12-4:18/km"
                         },
                         {
-                          "text": "Gang/jog >5:39/km",
+                          "duration": 120,
                           "pace": {
-                            "start": 65,
                             "end": 78,
+                            "start": 65,
                             "units": "%pace"
                           },
-                          "duration": 120
+                          "text": "Jog >5:39/km"
                         }
-                      ]
+                      ],
+                      "text": "4x"
                     },
                     {
-                      "text": "Cool-down >5:39/km",
+                      "duration": 600,
                       "pace": {
-                        "start": 65,
                         "end": 78,
+                        "start": 65,
                         "units": "%pace"
                       },
-                      "duration": 600
+                      "text": "Cool-down >5:39/km"
                     }
                   ]
                 }
-              },
-              "note": "Halvmaraton-tempo efter fornemmelse. 4 reps, ikke 5 — 10 dage efter maraton",
-              "id": "86a116af"
+              }
             }
           ]
         },
@@ -6389,50 +6389,68 @@
           "date": "2026-09-17",
           "entries": [
             {
+              "id": "ee6a751b",
+              "note": "Følingstest: 8 min på 4:15 skal føles kontrolleret. Ellers justér målet søndag",
               "workout": {
-                "name": "Løb let 40 min + 6 strides",
-                "type": "Run",
+                "description": "- Let løb 15m >5:39/km Pace\n- Racepace 8m 4:12-4:18/km Pace\n- Let løb 8m >5:39/km Pace\n\n4x\n- Stride 20 sek (racesko) 1m freeride\n- Jog 40 sek 1m freeride\n\n- Cool-down 5m >5:39/km Pace\n\nSidste pas i racesko. 8 min på 4:15 er en følingstest, ikke træning — det skal føles kontrolleret. Gør det ikke, så er 4:15 for hurtigt søndag.",
                 "moving_time": 2400,
-                "description": "- Let løb 24m >5:39/km Pace\n\n6x\n- Stride 20 sek (racesko) 1m freeride\n- Jog 40 sek 1m freeride\n\n- Cool-down 4m >5:39/km Pace\n\nSidste pas i racesko før løbet. Strides er aktivering, ikke træning.",
+                "name": "Løb let 40 min + 8 min racepace + 4 strides",
+                "type": "Run",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Let løb >5:39/km",
+                      "duration": 900,
                       "pace": {
-                        "start": 65,
                         "end": 78,
+                        "start": 65,
                         "units": "%pace"
                       },
-                      "duration": 1440
+                      "text": "Let løb >5:39/km"
                     },
                     {
-                      "reps": 6,
-                      "text": "6x",
+                      "duration": 480,
+                      "pace": {
+                        "end": 105,
+                        "start": 102,
+                        "units": "%pace"
+                      },
+                      "text": "Racepace 4:12-4:18/km"
+                    },
+                    {
+                      "duration": 480,
+                      "pace": {
+                        "end": 78,
+                        "start": 65,
+                        "units": "%pace"
+                      },
+                      "text": "Let løb >5:39/km"
+                    },
+                    {
+                      "reps": 4,
                       "steps": [
                         {
-                          "text": "Stride 20 sek (racesko)",
-                          "duration": 60
+                          "duration": 60,
+                          "text": "Stride 20 sek (racesko)"
                         },
                         {
-                          "text": "Jog 40 sek",
-                          "duration": 60
+                          "duration": 60,
+                          "text": "Jog 40 sek"
                         }
-                      ]
+                      ],
+                      "text": "4x"
                     },
                     {
-                      "text": "Cool-down >5:39/km",
+                      "duration": 300,
                       "pace": {
-                        "start": 65,
                         "end": 78,
+                        "start": 65,
                         "units": "%pace"
                       },
-                      "duration": 240
+                      "text": "Cool-down >5:39/km"
                     }
                   ]
                 }
-              },
-              "note": "Sidste løb før CPH Half — racesko, strides er aktivering",
-              "id": "bf4bc1fa"
+              }
             }
           ]
         },
@@ -6440,50 +6458,50 @@
           "date": "2026-09-18",
           "entries": [
             {
+              "id": "89a57a6e",
+              "note": "Kort og let. Benene sparet",
               "workout": {
-                "name": "Svøm 2000m let",
+                "description": "- 300m varm-op Z1 7m freeride\n\n4x\n- 100m teknik Z2 2m freeride\n\n\n6x\n- 100m let Z2 2m freeride\n- 30s pause 1m freeride\n\n- 200m cool Z1 5m freeride\n\n1500m, alt let. Kortere end planlagt — ingen træthed to dage før et A-forsøg.",
+                "moving_time": 2400,
+                "name": "Svøm 1500m let",
                 "type": "Swim",
-                "moving_time": 3360,
-                "description": "- 400m varm-op Z1 10m freeride\n\n6x\n- 100m teknik Z2 2m freeride\n\n\n8x\n- 100m let Z2 2m freeride\n- 30s pause 1m freeride\n\n- 400m cool Z1 10m freeride\n\n2000m i alt, alt i let tempo — ingen benbelastning to dage før racet.",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 600
+                      "duration": 420,
+                      "text": "300m varm-op Z1"
+                    },
+                    {
+                      "reps": 4,
+                      "steps": [
+                        {
+                          "duration": 120,
+                          "text": "100m teknik Z2"
+                        }
+                      ],
+                      "text": "4x"
                     },
                     {
                       "reps": 6,
-                      "text": "6x",
                       "steps": [
                         {
-                          "text": "100m teknik Z2",
-                          "duration": 120
-                        }
-                      ]
-                    },
-                    {
-                      "reps": 8,
-                      "text": "8x",
-                      "steps": [
-                        {
-                          "text": "100m let Z2",
-                          "duration": 120
+                          "duration": 120,
+                          "text": "100m let Z2"
                         },
                         {
-                          "text": "30s pause",
-                          "duration": 60
+                          "duration": 60,
+                          "text": "30s pause"
                         }
-                      ]
+                      ],
+                      "text": "6x"
                     },
                     {
-                      "text": "400m cool Z1",
-                      "duration": 600
+                      "duration": 300,
+                      "text": "200m cool Z1"
                     }
                   ]
                 }
-              },
-              "note": "Svøm let — ingen benbelastning to dage før racet",
-              "id": "3fb4af82"
+              }
             }
           ]
         },
@@ -6514,30 +6532,30 @@
           "date": "2026-09-20",
           "entries": [
             {
+              "id": "4fa02ff7",
+              "note": "Sub 1:30-forsøg, 4:15/km. Bail-out ved 10 km: senere end 42:45 → 4:30/km. Gel 7 + 14 km",
               "workout": {
-                "name": "CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km",
-                "type": "Run",
+                "description": "- 0-5 km: 4:17-4:20/km 22m 4:17-4:20/km Pace\n- 5-15 km: 4:13-4:16/km 42m 4:13-4:16/km Pace\n- 15-21,1 km: 4:10-4:15 efter benene 26m 4:10-4:15/km Pace\n\nMÅL: sub 1:30 (4:15/km snit, 1:29:30). Tærskel er 4:24 — du løber over tærskel i 90 min, 15 dage efter Médoc. Det er et bevidst risikoløb.\nBAIL-OUT: passér 10 km senere end 42:45 eller RPE 8+ ved 10 km → skift til 4:30/km og red dagen (~1:33). Ingen hero-split de sidste 5 km medmindre benene siger ja ved 15 km.\nRacesko. Gel ved 7 km og 14 km. Opvarmning 12 min let + 4 strides. Cut starter først mandag 21/9.",
                 "moving_time": 5400,
-                "description": "- 0-5 km: bevidst langsomst 23m 4:40-4:50/km Pace\n- 5-15 km: 4:35-4:45/km 47m 4:35-4:45/km Pace\n- 15-21,1 km: efter benene 28m 4:30-4:45/km Pace\n\nMÅL: 1:37-1:40, kontrolleret (B-løb, 15 dage efter Médoc). Beslutning på dagen efter benene — aldrig over tærskel (4:24/km).\nRacesko. Gel ved 8 km og 15 km. Opvarmning 10 min let + 3 strides. Cut starter først mandag 21/9.",
+                "name": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
+                "type": "Run",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "0-5 km bevidst langsomst 4:40-4:50/km",
-                      "duration": 1380
+                      "duration": 1320,
+                      "text": "0-5 km 4:17-4:20/km"
                     },
                     {
-                      "text": "5-15 km 4:35-4:45/km",
-                      "duration": 2820
+                      "duration": 2520,
+                      "text": "5-15 km 4:13-4:16/km"
                     },
                     {
-                      "text": "15-21,1 km efter benene",
-                      "duration": 1680
+                      "duration": 1560,
+                      "text": "15-21,1 km 4:10-4:15 efter benene"
                     }
                   ]
                 }
-              },
-              "note": "B-løb 1:37-1:40, 4:35-4:45/km. Første 5 km langsomst. Beslutning på dagen efter benene.",
-              "id": "2d868f45"
+              }
             }
           ]
         },
