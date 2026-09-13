@@ -31,3 +31,13 @@
 
 ### Planændring 11/09 12:41
 - **fredag 2026-09-11** (uge 1, cancel): Svøm 2000m teknisk (56 min) → hviledag
+
+### Signaler uge 37
+- Uge 37: TSS 221 af 208 (106 %) · CTL 49,8 (mål 47) · TSB −1,2
+- Vægt 7d 72,8 kg · fedt 14d 21,5 % · cut starter uge 39 (21/9)
+- HRV 7d 58 (28d 59) · hvilepuls 45 · søvn 7d 7,9 t
+- AF 6/7 · protein 3/3 0/7 · aftensult —/7
+- Styrke 1/2 · check-in —
+- Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)
+- Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: tir 15/9 Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse 45 min, søn 20/9 CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km 90 min
+- Planændringer siden sidst: 2 — se martin_signals.md
