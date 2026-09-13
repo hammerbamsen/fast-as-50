@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-13 07:42",
+    "updated": "2026-09-13 07:53",
     "week": 1,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "49,8",
+      "value": "49,1",
       "unit": "",
       "sub": "Uge 1-mål 47 · RECOVERY",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "-1,2",
+      "value": "1,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -111,7 +111,7 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Søndag — afslut uge 1 stærkt. {HL} Godt: Søvn på 8,1 timer er solid. Fokus: Vægt på 71,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 5 AF-dage i 7 afsluttede dage — 1 mangler i 0 dage tilbage. Keep moving forward. 📊 Store billede: CTL 49,8 er 2.8 point FORAN ugeplanen (planmål uge 1: 47). Vægten har tabt 1.1 kg over de seneste 86 dage (73,0 → 71,9 kg).  \"Kroppen tror, hvad sindet siger.\"",
+  "coachSpeech": "Søndag — afslut uge 1 stærkt. {HL} Godt: Søvn på 8,1 timer er solid. Fokus: Vægt på 71,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 5 AF-dage i 7 afsluttede dage — 1 mangler i 0 dage tilbage. Keep moving forward. 📊 Store billede: CTL 49,1 er 2.1 point FORAN ugeplanen (planmål uge 1: 47). Vægten har tabt 1.1 kg over de seneste 86 dage (73,0 → 71,9 kg).  \"Kroppen tror, hvad sindet siger.\"",
   "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "Restituer komplet — let bevægelse, ingen pres, sov 7-8 timer",
   "today": [
@@ -257,7 +257,7 @@
     }
   ],
   "ctlCurve": [
-    49.8
+    49.1
   ],
   "weightHistory": [
     null,
@@ -1946,12 +1946,12 @@
     },
     {
       "date": "2026-09-12",
-      "v": 1.0,
+      "v": 4.0,
       "real": true
     },
     {
       "date": "2026-09-13",
-      "v": -1.2,
+      "v": 1.4,
       "real": true
     }
   ],
@@ -2223,10 +2223,10 @@
         {
           "day": "Tir",
           "disc": "run",
-          "label": "Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse",
+          "label": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
           "done": false,
           "today": false,
-          "planned_tss": 41,
+          "planned_tss": 54,
           "planned_mins": 45,
           "planned_distance_m": null
         },
@@ -2243,22 +2243,22 @@
         {
           "day": "Tor",
           "disc": "run",
-          "label": "Løb let 40 min + 6 strides",
+          "label": "Løb let 40 min + 8 min racepace + 4 strides",
           "done": false,
           "today": false,
-          "planned_tss": 37,
-          "planned_mins": 40,
+          "planned_tss": 42,
+          "planned_mins": 44,
           "planned_distance_m": null
         },
         {
           "day": "Fre",
           "disc": "swim",
-          "label": "Svøm 2000m let",
+          "label": "Svøm 1500m let",
           "done": false,
           "today": false,
-          "planned_tss": 47,
-          "planned_mins": 56,
-          "planned_distance_m": 2000
+          "planned_tss": null,
+          "planned_mins": 1503,
+          "planned_distance_m": 1500
         },
         {
           "day": "Lør",
@@ -2273,10 +2273,10 @@
         {
           "day": "Søn",
           "disc": "run",
-          "label": "CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km",
+          "label": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
           "done": false,
           "today": false,
-          "planned_tss": 82,
+          "planned_tss": 161,
           "planned_mins": 90,
           "planned_distance_m": 21100
         }
@@ -3083,7 +3083,7 @@
       "message": "HRV 45,0 ms — 20% under 7d-snit (56,6 ms). Kroppen er presset."
     }
   ],
-  "tsb": -1.2,
+  "tsb": 1.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3346,11 +3346,21 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-13T05:42:22.387718",
+  "credentialsCheckedTs": "2026-09-13T05:54:01.404387",
   "coachAssessmentTsFull": "2026-09-13T05:27:57",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 5,
-  "event_structure_warnings": [],
+  "event_structure_warnings": [
+    {
+      "date": "2026-09-18",
+      "name": "Svøm 1500m let",
+      "type": "Swim",
+      "event_id": 135747064,
+      "level": "warn",
+      "code": "SPOEGELSES_POWER",
+      "text": "4 trin har effekt-maal paa Swim. Skyldes typisk \"Z1-Z2\" i et step-navn — omdoeb trinnet."
+    }
+  ],
   "coachAssessmentFatAtGen": 22.0,
   "zones": {
     "runThreshold": "4:24/km",
@@ -4630,8 +4640,8 @@
           "moderat": 0
         },
         "keySessions": [
-          "Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse",
-          "CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km"
+          "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
+          "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km"
         ],
         "flags": [],
         "races": [
@@ -7113,8 +7123,8 @@
             "weekday": "Tir",
             "entries": [
               {
-                "id": "86a116af",
-                "name": "Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse",
+                "id": "bc309585",
+                "name": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
                 "type": "Run",
                 "disc": "run",
                 "mins": 45,
@@ -7126,7 +7136,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Halvmaraton-tempo efter fornemmelse. 4 reps, ikke 5 — 10 dage efter maraton",
+                "note": "Sub 1:30-åbner: 4×3 min på 4:12-4:18. Stop efter 3 reps hvis benene ikke er der efter Médoc",
                 "isKey": true,
                 "optional": false
               }
@@ -7167,8 +7177,8 @@
             "weekday": "Tor",
             "entries": [
               {
-                "id": "bf4bc1fa",
-                "name": "Løb let 40 min + 6 strides",
+                "id": "ee6a751b",
+                "name": "Løb let 40 min + 8 min racepace + 4 strides",
                 "type": "Run",
                 "disc": "run",
                 "mins": 40,
@@ -7180,7 +7190,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Sidste løb før CPH Half — racesko, strides er aktivering",
+                "note": "Følingstest: 8 min på 4:15 skal føles kontrolleret. Ellers justér målet søndag",
                 "isKey": false,
                 "optional": false
               }
@@ -7194,11 +7204,11 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "3fb4af82",
-                "name": "Svøm 2000m let",
+                "id": "89a57a6e",
+                "name": "Svøm 1500m let",
                 "type": "Swim",
                 "disc": "swim",
-                "mins": 56,
+                "mins": 40,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -7207,7 +7217,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm let — ingen benbelastning to dage før racet",
+                "note": "Kort og let. Benene sparet",
                 "isKey": false,
                 "optional": false
               }
@@ -7248,8 +7258,8 @@
             "weekday": "Søn",
             "entries": [
               {
-                "id": "2d868f45",
-                "name": "CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km",
+                "id": "4fa02ff7",
+                "name": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
                 "type": "Run",
                 "disc": "run",
                 "mins": 90,
@@ -7261,7 +7271,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "B-løb 1:37-1:40, 4:35-4:45/km. Første 5 km langsomst. Beslutning på dagen efter benene.",
+                "note": "Sub 1:30-forsøg, 4:15/km. Bail-out ved 10 km: senere end 42:45 → 4:30/km. Gel 7 + 14 km",
                 "isKey": true,
                 "optional": false
               }
@@ -10517,7 +10527,7 @@
           "week": 1,
           "programId": "tds-2027",
           "start": "2026-09-07",
-          "ctl": 49.8
+          "ctl": 49.1
         }
       ],
       "projection": [
@@ -10855,28 +10865,28 @@
         "fromName": "OW-svøm Race-simulation 2000 m",
         "fromDate": "2026-08-21",
         "fromDisc": "openwater",
-        "toId": "86a116af",
-        "toName": "Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse",
+        "toId": "bc309585",
+        "toName": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
         "toDate": "2026-09-15",
         "toDisc": "run",
         "hours": 600,
         "ok": true
       },
       {
-        "fromId": "86a116af",
-        "fromName": "Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse",
+        "fromId": "bc309585",
+        "fromName": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
         "fromDate": "2026-09-15",
         "fromDisc": "run",
-        "toId": "2d868f45",
-        "toName": "CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km",
+        "toId": "4fa02ff7",
+        "toName": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
         "toDate": "2026-09-20",
         "toDisc": "run",
         "hours": 120,
         "ok": true
       },
       {
-        "fromId": "2d868f45",
-        "fromName": "CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km",
+        "fromId": "4fa02ff7",
+        "fromName": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
         "fromDate": "2026-09-20",
         "fromDisc": "run",
         "toId": "0d3d7bb7",
@@ -11090,7 +11100,7 @@
     "error": null,
     "validationError": null,
     "notes": null,
-    "stale": false
+    "stale": true
   },
   "weekFocusNext": {
     "week": 2,
@@ -11635,16 +11645,16 @@
     "week": 1,
     "isoWeek": 37,
     "lines": [
-      "Uge 37: TSS 221 af 208 (106 %) · CTL 49,8 (mål 47) · TSB −1,2",
+      "Uge 37: TSS 221 af 208 (106 %) · CTL 49,1 (mål 47) · TSB +1,4",
       "Vægt 7d 72,6 kg · fedt 14d 21,6 % · cut starter uge 39 (21/9)",
       "HRV 7d 57 (28d 58) · hvilepuls 44 · søvn 7d 8,1 t",
       "AF 5/7 · protein 3/3 0/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)",
-      "Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: tir 15/9 Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse 45 min, søn 20/9 CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km 90 min",
-      "Planændringer siden sidst: 0 — se martin_signals.md"
+      "Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: tir 15/9 Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner) 45 min, søn 20/9 CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km 90 min",
+      "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-13T05:42:22Z"
+    "generatedAt": "2026-09-13T05:54:01Z"
   },
   "proposals": [],
   "aerobicFlag": {
