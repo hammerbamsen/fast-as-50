@@ -3825,10 +3825,13 @@ function _afWeek1Monday() {
   if (!keys.length) return null;
   return _afMondayOf(new Date(keys[0] + 'T12:00:00'));
 }
-function _afValFor(weekNum, dayIdx) {
-  const m = _afWeek1Monday();
-  if (!m || !D.af_log) return undefined;
-  const dt = new Date(m); dt.setDate(m.getDate() + (weekNum - 1) * 7 + dayIdx);
+function _afValFor(weekNum, dayIdx, monday) {
+  if (!D.af_log) return undefined;
+  // 14/9-2026: historikken bærer nu `monday`; ugetælleren er program-relativ
+  // og passede ikke med af_log's første dato (viste en juni-uge som "Uge 37").
+  let m = monday ? new Date(monday + 'T12:00:00') : _afWeek1Monday();
+  if (!m) return undefined;
+  const dt = new Date(m); dt.setDate(m.getDate() + (monday ? 0 : (weekNum - 1) * 7) + dayIdx);
   return D.af_log[_afKey(dt)];
 }
 function _afDotHtml(val, label, labelGap) {
@@ -3880,7 +3883,7 @@ function _afWeekRow(w, target, showLabel) {
         '</div>';
     }
     // Per-dag opslag i af_log; fallback til gammel tælle-logik hvis log mangler
-    let val = _afValFor(w.week, i);
+    let val = _afValFor(w.week, i, w.monday);
     if (val === undefined && !D.af_log) val = (i < w.done) ? 0 : undefined;
     return _afDotHtml(val, label, 2);
   }).join('');
@@ -3901,7 +3904,8 @@ function afHistoryViz(history) {
   const target = (D.afDays && parseInt(D.afDays.target)) || 6;
 
   // Indeværende uge vises allerede øverst i kortet — den udelades her (var en dublet).
-  const past = history.filter(function(w){ return w.week !== D.week; });
+  const nowMonKey = _afKey(_afMondayOf(new Date()));
+  const past = history.filter(function(w){ return w.monday ? w.monday !== nowMonKey : w.week !== D.week; });
   if (!past.length) return '<div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);text-align:center;padding:8px">Ingen afsluttede uger endnu</div>';
 
   // ── Nøgletal over hele historikken ──
@@ -3924,11 +3928,12 @@ function afHistoryViz(history) {
   const H    = 46;                                   // px, fuld højde = 7 dage
   const step = n <= 8 ? 1 : n <= 16 ? 2 : 5;         // hvor ofte ugenr. vises
   const bars = past.map(function(w, i) {
-    AF_BAR_DETAIL[w.week] = _afWeekRow(w, target, true);
+    const key      = w.monday || String(w.week);
+    AF_BAR_DETAIL[key] = _afWeekRow(w, target, true);
     const h        = Math.max(3, Math.round((w.done / 7) * H));
     const showLbl  = (i % step === 0) || i === n - 1;
-    return '<div onclick="afToggleBar(' + w.week + ')" style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer">' +
-      '<div class="af-bar-col" data-week="' + w.week + '" style="width:100%;height:' + h + 'px;background:' + _afColorFor(w.done, target) + ';border-radius:2px 2px 0 0"></div>' +
+    return '<div onclick="afToggleBar(\'' + key + '\')" style="flex:1;min-width:0;max-width:40px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer">' +
+      '<div class="af-bar-col" data-week="' + key + '" style="width:100%;height:' + h + 'px;background:' + _afColorFor(w.done, target) + ';border-radius:2px 2px 0 0"></div>' +
       '<span style="font-family:Space Mono,monospace;font-size:7px;color:var(--muted);height:8px">' + (showLbl ? (w.iso ?? w.week) : '') + '</span>' +
       '</div>';
   }).join('');

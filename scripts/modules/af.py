@@ -51,57 +51,52 @@ def get_af_this_week():
     return None, {}
 
 
-def get_af_history():
-    """Henter AF-historik uge for uge siden det aktive programs uge 1.
-    Returnerer liste af dicts: [{week: 1, done: 7, total: 7, label: 'Uge 1'}, ...]
+AF_HISTORY_WEEKS = 12
+
+
+def get_af_history(weeks=AF_HISTORY_WEEKS):
+    """AF-historik uge for uge, de seneste `weeks` uger (inkl. indeværende).
+    14/9-2026: gik før kun tilbage til det aktive programs uge 1 — ved
+    programskift 7/9 forsvandt 12 ugers historik. Hver uge bærer nu `monday`
+    (ISO-dato), som frontend bruger til dag-opslag i af_log; `week` er
+    program-relativ (kan være <= 0) og bruges kun til filtrering af
+    indeværende uge.
+    Returnerer [{week, iso, monday, done, total, label}, ...] ældst først.
     """
-    project_start = PLAN_START  # Mandag uge 1 i det aktive program
     today = date.today()
-    
-    # Hent al wellness siden projektstart
+    this_monday = today - timedelta(days=today.weekday())
+    first_monday = this_monday - timedelta(weeks=weeks - 1)
+    first_monday = max(first_monday, PROJECT_START - timedelta(days=PROJECT_START.weekday()))
+
     r = api_get(f"{BASE}/wellness", auth=AUTH,
-                     params={"oldest": str(project_start), "newest": str(today)})
+                params={"oldest": str(first_monday), "newest": str(today)})
     if r.status_code != 200:
         return []
-    
-    wellness_data = r.json()
-    wellness_by_date = {(d.get("id") or d.get("date") or "")[:10]: d for d in wellness_data}
-    
+
+    wellness_by_date = {(d.get("id") or d.get("date") or "")[:10]: d for d in r.json()}
+
     history = []
-    week_start = project_start
-    week_num = 1
-    
+    week_start = first_monday
     while week_start <= today:
         week_end = week_start + timedelta(days=6)
-        count = 0
-        days_passed = 0
-        
+        count = days_passed = 0
         current = week_start
         while current <= min(week_end, today):
-            key = str(current)
-            alkohol = wellness_by_date.get(key, {}).get("Alkohol")
-            if alkohol == 0:
+            if wellness_by_date.get(str(current), {}).get("Alkohol") == 0:
                 count += 1
             days_passed += 1
             current += timedelta(days=1)
-        
-        # 5/9-26: label og iso = rigtigt ISO-ugenummer (uge 36 osv.), ikke
-        # programtælleren. `week` (1..N) beholdes — frontend bruger den til
-        # datoberegning i _afValFor og som nøgle i AF_BAR_DETAIL.
         iso_week = week_start.isocalendar()[1]
         history.append({
-            "week": week_num,
+            "week": (week_start - PLAN_START).days // 7 + 1,
             "iso": iso_week,
+            "monday": str(week_start),
             "done": count,
             "total": days_passed,
-            "label": f"Uge {iso_week}"
+            "label": f"Uge {iso_week}",
         })
-        
         week_start += timedelta(days=7)
-        week_num += 1
-        if week_num > TOTAL_WEEKS:
-            break
-    
+
     print(f"  AF historik: {history}")
     return history
 

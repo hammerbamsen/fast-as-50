@@ -83,3 +83,20 @@ def test_vindue_kan_udvides():
 
 def test_af_dage_alene_giver_none():
     assert detect_alcohol_cluster(_log([0] * 7), today=TODAY) is None
+
+
+def test_af_history_12_weeks_with_monday(monkeypatch):
+    """14/9-2026: historik går 12 uger tilbage uanset programstart og bærer
+    `monday`, som frontend bruger til dag-opslag i af_log."""
+    from . import af
+    class R:
+        status_code = 200
+        def json(self):
+            return []
+    monkeypatch.setattr(af, 'api_get', lambda *a, **k: R())
+    h = af.get_af_history()
+    assert len(h) <= 12 and h[-1]['total'] >= 1
+    assert all('monday' in w and w['monday'].endswith(('1','2','3','4','5','6','7','8','9','0')) for w in h)
+    from datetime import date
+    assert all(date.fromisoformat(w['monday']).weekday() == 0 for w in h)
+    assert [w['monday'] for w in h] == sorted(w['monday'] for w in h)
