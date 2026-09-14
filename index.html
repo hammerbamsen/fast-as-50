@@ -1294,19 +1294,22 @@ function kpiStripV2() {
   const g = (D.body && D.body.glidepath) || null;
   const fb = (D.body && D.body.fat) || null;
   const stCol = st => (st==='plan'||st==='foran') ? 'var(--ok)' : (st==='bagud' ? '#E67E22' : 'var(--muted)');
-  let wSub = `7d-snit · mål ${D.weightGoal??68} kg`, wCol = wt.color, wVal = w7!=null ? _fmt1(w7) : (wt.value||'—');
-  let fSub = `7d-snit · mål ${D.bodyFatGoal??16} %`, fCol = ft.color, fVal = f7!=null ? _fmt1(f7)+' %' : (ft.value? ft.value+' %':'—');
+  const wLast = _last(D.weightHistory), fLast = _last(D.fatHistory);
+  const wDay = wLast != null ? ` · dag ${_fmt1(wLast)}` : '', fDay = fLast != null ? ` · dag ${_fmt1(fLast)}` : '';
+  let wSub = `7d-snit${wDay}`, wCol = wt.color, wVal = w7!=null ? _fmt1(w7) : (wt.value||'—');
+  let fSub = `14d-snit${fDay}`, fCol = ft.color, fVal = f7!=null ? _fmt1(f7)+' %' : (ft.value? ft.value+' %':'—');
   if (g) {
     if (g.avg7 != null) wVal = _fmt1(g.avg7);
-    if (g.phase === 'pre')       { wSub = `cut starter uge ${g.cutStartIsoWeek}`; wCol = 'var(--muted)'; }
-    else if (g.phase === 'cut')  { wSub = g.expectedKg != null ? `forventet ${_fmt1(g.expectedKg)}` : '7d-snit'; wCol = stCol(g.status); }
-    else if (g.phase === 'hold') { wSub = `vedligehold ${_fmt1(g.targetKg)} ±${_fmt1(g.corridorKg)}`; wCol = stCol(g.status); }
+    // 14/9-2026: vinduet og dagstallet skal være synligt — "7d-snit · dag 71,1".
+    if (g.phase === 'pre')       { wSub = `7d-snit${wDay}`; wCol = 'var(--muted)'; }
+    else if (g.phase === 'cut')  { wSub = g.expectedKg != null ? `7d-snit · forventet ${_fmt1(g.expectedKg)}` : `7d-snit${wDay}`; wCol = stCol(g.status); }
+    else if (g.phase === 'hold') { wSub = `7d-snit · hold ${_fmt1(g.targetKg)} ±${_fmt1(g.corridorKg)}`; wCol = stCol(g.status); }
   }
   if (fb) {
     if (fb.avg14 != null) fVal = _fmt1(fb.avg14)+' %';
-    if (g && g.phase === 'pre')  { fSub = `cut starter uge ${g.cutStartIsoWeek}`; fCol = 'var(--muted)'; }
-    else if (fb.expected != null) { fSub = `forventet ${_fmt1(fb.expected)}`; fCol = stCol(fb.status); }
-    else fSub = '14d-snit';
+    if (g && g.phase === 'pre')  { fSub = `14d-snit${fDay}`; fCol = 'var(--muted)'; }
+    else if (fb.expected != null) { fSub = `14d-snit · forventet ${_fmt1(fb.expected)}`; fCol = stCol(fb.status); }
+    else fSub = `14d-snit${fDay}`;
   }
   const tiles = [
     { l:'CTL',     v: ctl.value || '—',                  s: ctl.sub || '',                              c: ctl.color },
@@ -2912,8 +2915,8 @@ function bodyTiles(b) {
   const f = (b && b.fat) || {}, m = (b && b.ffm) || {}, sw = (b && b.strengthWeek) || null;
   const g = (b && b.glidepath) || {};
   const stCol = st => (st==='plan'||st==='foran'||st==='ok') ? 'var(--ok)' : (st==='bagud'||st==='warn' ? '#E67E22' : 'var(--num)');
-  const fatSub = g.phase === 'pre' ? 'cut starter uge ' + g.cutStartIsoWeek
-               : (f.expected != null ? `forventet ${fmtDa(f.expected)}` : '14d-snit ±0,5');
+  const fatSub = g.phase === 'pre' ? '14d-snit · cut starter uge ' + g.cutStartIsoWeek
+               : (f.expected != null ? `14d-snit · forventet ${fmtDa(f.expected)}` : '14d-snit ±0,5');
   // Fedtfri masse er et HOLD-mål (blok 8, §5): gulv = baseline − 0,5 ved cut-start.
   // Før cuttet: neutral, "start {now} · hold −0,5". Mangler baseline/floor (ældre
   // pipeline): den gamle Δ28d/mål-linje.
