@@ -200,3 +200,29 @@ def test_rules_ctx_carries_prompt_thresholds():
     assert r['directionMinKg'] == 0.3 and r['directionMinPp'] == 0.5
     nums = coach_validate.context_numbers({'rules': r})
     assert all(coach_validate.number_allowed(v, nums) for v in (28, 0.3, 0.5))
+
+
+def test_avg_at_tolerates_gaps():
+    """14/9-2026: 28 dage tilbage lå i et vejningshul -> None. Nærmeste
+    værdi inden for ±3 pladser skal bruges; uden for tolerance stadig None."""
+    from . import coach_context as cc
+    s = [70.0] + [None] * 4 + [71.0, None, None, 72.0, None, 73.0]
+    assert cc._avg_at(s, 2) == 72.0          # præcis
+    assert cc._avg_at(s, 3) == 72.0          # index 7 er None -> +1
+    assert cc._avg_at(s, 4) == 71.0          # index 6 None -> 5 (−1)
+    assert cc._avg_at(s, 9) == 70.0          # index 1 None -> 0 er −1 (nærmest)
+    assert cc._avg_at([None] * 3 + [70.0], 3) is None   # ud af serien
+    assert cc._avg_at(s, 30) is None
+    # Aldrig sit eget seneste punkt som "forrige"
+    assert cc._avg_at([None, None, 73.0], 1) is None
+
+
+def test_body_ctx_has_84d_change():
+    """90 dages serie giver både 28d- og 84d-ændring."""
+    from . import coach_context as cc
+    n = 91
+    w = [70.0 + i * 0.01 for i in range(n)]
+    data = {'weightMovingAvg7': w, 'fatMovingAvg7': w, 'weightHistory': [], 'fatHistory': []}
+    b = cc._body_ctx(data, {}, '2026-09-14', 70.9, 20.0, None, None, {})
+    assert abs(b['weightAvg7Change28d'] - 0.3) < 1e-6   # _num afrunder til 1 decimal
+    assert abs(b['weightAvg7Change84d'] - 0.8) < 1e-6   # _num afrunder

@@ -96,15 +96,25 @@ def _last_avg(series):
     return None
 
 
-def _avg_at(series, back):
-    """Værdi i en glidende-snit-serie `back` pladser før den seneste værdi."""
+AVG_AT_TOLERANCE = 3
+LONG_WINDOW_DAYS = 84  # 12 uger — data.json bærer 90 dage, så 90 falder ud af serien
+
+
+def _avg_at(series, back, tolerance=AVG_AT_TOLERANCE):
+    """Værdi i en glidende-snit-serie `back` pladser før den seneste værdi.
+    14/9-2026: huller i vejningen (fx 11.–16. aug) gav None præcis 28 dage
+    tilbage; tag nærmeste ikke-tomme værdi inden for ±tolerance pladser."""
     idx = [i for i, v in enumerate(series or []) if v is not None]
     if not idx:
         return None
     i = idx[-1] - back
-    if i < 0 or (series[i] is None):
+    if i < 0:
         return None
-    return float(series[i])
+    for off in range(0, tolerance + 1):
+        for j in (i - off, i + off):
+            if 0 <= j < len(series) and j != idx[-1] and series[j] is not None:
+                return float(series[j])
+    return None
 
 
 # ── Delkontekster ───────────────────────────────────────────────────────────
@@ -350,6 +360,8 @@ def _body_ctx(data, program, today, weight, fat, weight_date, fat_date, goals):
         fat = _last_val(data.get('fatHistory'))
     w7_prev = _avg_at(w_avg_series, 28)
     f7_prev = _avg_at(f_avg_series, 28)
+    w7_prev90 = _avg_at(w_avg_series, LONG_WINDOW_DAYS)
+    f7_prev90 = _avg_at(f_avg_series, LONG_WINDOW_DAYS)
     wp = (program or {}).get('weightPlan') or {}
     cut = cut_status(wp, today, w7)
     # Blok 6: data.body (modules/body.py) bærer glidepath-status, korridor,
@@ -376,6 +388,8 @@ def _body_ctx(data, program, today, weight, fat, weight_date, fat_date, goals):
         'weightAvg7Change28d': _num(w7 - w7_prev) if (w7 is not None and w7_prev is not None) else None,
         'fat': _num(fat), 'fatDate': fat_date, 'fatAvg7': _num(f7),
         'fatAvg7Change28d': _num(f7 - f7_prev) if (f7 is not None and f7_prev is not None) else None,
+        'weightAvg7Change84d': _num(w7 - w7_prev90) if (w7 is not None and w7_prev90 is not None) else None,
+        'fatAvg7Change84d': _num(f7 - f7_prev90) if (f7 is not None and f7_prev90 is not None) else None,
         'weightGoal': _num(goals.get('weightKg')), 'fatGoal': _num(goals.get('bodyFatPct')),
         'weightToGoal': _num(w7 - float(goals['weightKg'])) if (w7 is not None and goals.get('weightKg') is not None) else None,
         'cut': cut,
@@ -447,7 +461,7 @@ def _rules_ctx(lib, program, goals):
         'strengthPerWeek': _int(goals.get('strengthPerWeek')),
         # Tal som prompten beder modellen ræsonnere med skal findes i konteksten,
         # ellers kasserer coach_validate svaret (14/9-2026: "28 dage" -> fejl).
-        'avgWindowDays': 7, 'changeWindowDays': 28,
+        'avgWindowDays': 7, 'changeWindowDays': 28, 'longWindowDays': LONG_WINDOW_DAYS,
         'directionMinKg': 0.3, 'directionMinPp': 0.5,
     })
 
