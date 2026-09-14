@@ -542,6 +542,10 @@ def main():
         print(f"  ⚠️  Advarsler: {[w['message'] for w in warnings]}")
 
     data['tsb'] = tsb  # direkte TSB-tal til brug i frontend advarsler
+    # 14/9-2026: live seed til Friel-gaten (edit_apply.gate_check foretrækker den
+    # frem for plan.json.fitnessSeed fra 7/7, som ellers giver falske ramp-flags).
+    if ctl is not None and atl is not None:
+        data['fitnessLive'] = {'date': str(today), 'ctl': round(float(ctl), 1), 'atl': round(float(atl), 1)}
     data['weekTss'] = {'actual': tss_act, 'planned': planned}   # ugens TSS som tal (Martin-mail, blok 8)
     # --- AF-dage (man–søn denne uge) ---
     data['af'] = {
@@ -766,6 +770,25 @@ def main():
                        f"martin: signaler uge {_iso}")
     except Exception as _e:
         print(f"  Martin-mail fejlede (ikke-blokerende): {_e}")
+
+    # --- CTL-rekalibrering ved porte (14/9-2026): forslag, aldrig automatisk.
+    # Skrives til data/proposals/ctl-recalib-<dato>.json (repo + lokalt, så
+    # build_data_proposals nedenfor ser det i samme kørsel). CTL_RECALIB=1 tvinger.
+    try:
+        from modules import ctl_recalib as _cr
+        _rc = _cr.maybe_propose(PLAN, ctl, today)
+        if _rc and _rc.get("warning"):
+            print(f"  CTL-rekalibrering: {_rc['warning']}")
+            warnings.append({'type': 'ctl_recalib', 'level': 'info', 'message': _rc['warning']})
+            data['warnings'] = warnings
+        elif _rc:
+            from modules import proposals as _props
+            _pth = _props.save(_rc)
+            _rel = str(_pth.relative_to(_props.ROOT))
+            gh_put(_rel, None, _props.dumps(_rc), f"forslag: {_rc['id']} ({_rc['title']})")
+            print(f"  CTL-rekalibrering: forslag {_rc['id']} skrevet — {'; '.join(_rc['summary'][:3])} …")
+    except Exception as _e:
+        print(f"  CTL-rekalibrering fejlede (ikke-blokerende): {_e}")
 
     # --- Forslag (blok 9): data/proposals/*.json med status pending -> data.proposals
     # (before = nuværende plan, after = forslaget, pr. ISO-uge). Tomt array når ingen.

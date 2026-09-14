@@ -1777,8 +1777,15 @@ function ptProposalHtml(p){
     const end = w.start ? isoOf(new Date(new Date(w.start+"T12:00:00").getTime() + 6*864e5)) : null;
     return `<details class="fold pt-prop-wk"${i===0 && st.open ? ' open' : ''}><summary><span><b>Uge ${esc(w.isoWeek ?? (w.start ? isoWeekOf(w.start) : '–'))}</b>${w.start && end ? ` <span class="rng">${esc(ptRange(w.start, end))}</span>` : ''}</span><span class="cnt">${changed} ${changed===1?'dag':'dage'} ændres</span></summary>${days.map(ptPropDayRow).join('')}</details>`;
   }).join('');
+  // 14/9-2026: set_week_targets (CTL-rekalibrering) — før/efter pr. uge, ingen dage.
+  const tg = Array.isArray(p.targets) ? p.targets : [];
+  const targets = tg.length ? `<details class="fold pt-prop-wk" open><summary><span><b>Ugemål</b></span><span class="cnt">${tg.length} uger justeres</span></summary>${tg.map(t => {
+    const ctl = t.ctlBefore !== t.ctlAfter ? `CTL ${esc(String(t.ctlBefore ?? '–'))} → <b>${esc(String(t.ctlAfter ?? '–'))}</b>` : '';
+    const tss = t.tssBefore !== t.tssAfter ? `TSS ${esc(String(t.tssBefore ?? '–'))} → <b>${esc(String(t.tssAfter ?? '–'))}</b>` : '';
+    return `<div class="pt-prop-day"><span class="dn">Uge ${esc(String(t.isoWeek ?? t.week))}${t.blockType ? ` <span class="rng">${esc(t.blockType)}</span>` : ''}</span><span class="a">${[ctl, tss].filter(Boolean).join(' · ')}</span></div>`;
+  }).join('')}</details>` : '';
   let foot;
-  if (st.status === 'accepted') foot = `<div class="pt-cons ok">Accepteret ✓ — synkes til Intervals/Outlook. Kortet forsvinder når data.json er opdateret.</div>`;
+  if (st.status === 'accepted') foot = `<div class="pt-cons ok">Accepteret ✓ — ${tg.length && !(p.weeks||[]).length ? 'planens mål er opdateret' : 'synkes til Intervals/Outlook'}. Kortet forsvinder når data.json er opdateret.</div>`;
   else if (st.status === 'rejected') foot = `<div class="pt-cons">Afvist — planen er uændret.</div>`;
   else foot = `<div class="pt-msg" id="prop-msg-${esc(p.id)}">${st.msg||''}</div>
     <div class="pt-btns"><button class="sec" id="prop-no-${esc(p.id)}" onclick="ptProposalSubmit('${esc(p.id)}','reject_proposal')"${st.status==='sending'?' disabled':''}>Afvis</button><button class="pri" id="prop-go-${esc(p.id)}" onclick="ptProposalSubmit('${esc(p.id)}','apply_proposal')"${st.status==='sending'?' disabled':''}>Acceptér</button></div>`;
@@ -1786,7 +1793,7 @@ function ptProposalHtml(p){
     <div class="label label-gold">FORSLAG · ${esc(p.title||p.id)}</div>
     ${p.note ? `<p class="note">${esc(p.note)}</p>` : ''}
     ${Array.isArray(p.summary) && p.summary.length ? `<ul class="sum">${p.summary.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>` : ''}
-    ${weeks}
+    ${targets}${weeks}
     ${p.createdAt ? `<div class="meta">${esc(relTime(p.createdAt) || '')} · ${esc(p.createdBy || 'claude')}</div>` : ''}
     ${foot}
   </div>`;

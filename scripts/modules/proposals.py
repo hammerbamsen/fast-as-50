@@ -106,9 +106,24 @@ def validate(prop: dict) -> None:
     if not isinstance(prop["changes"], list):
         raise ValueError("changes skal være en liste")
     seen = set()
+    seen_tgt = set()
     for ch in prop["changes"]:
+        if ch.get("action") == "set_week_targets":
+            # 14/9-2026: CTL-rekalibrering — ændrer ctlTarget/tssTarget på en programuge.
+            pid_, wk = ch.get("programId"), ch.get("week")
+            if not isinstance(pid_, str) or not pid_:
+                raise ValueError("set_week_targets: programId mangler")
+            if not isinstance(wk, int) or isinstance(wk, bool) or wk < 1:
+                raise ValueError(f"set_week_targets: ugyldig week {wk!r}")
+            if (pid_, wk) in seen_tgt:
+                raise ValueError(f"set_week_targets: uge {wk} i {pid_} optræder to gange")
+            seen_tgt.add((pid_, wk))
+            if not any(isinstance(ch.get(k), (int, float)) and not isinstance(ch.get(k), bool)
+                       for k in ("ctlTarget", "tssTarget")):
+                raise ValueError(f"set_week_targets uge {wk}: ctlTarget eller tssTarget skal angives")
+            continue
         if ch.get("action") != "set_day":
-            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day understøttes")
+            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day og set_week_targets understøttes")
         try:
             d_iso = date.fromisoformat(str(ch.get("date"))).isoformat()
         except (TypeError, ValueError):
@@ -168,6 +183,9 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
     existing_ids = all_entry_ids(sim)
     dates = []
     for ch in changes:
+        if ch.get("action") == "set_week_targets":
+            _apply_week_targets(sim, ch)
+            continue                     # ingen dage berørt -> intet at synke
         d_iso = date.fromisoformat(str(ch["date"])).isoformat()
         day = days.get(d_iso)
         if day is None:
@@ -193,6 +211,42 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
         dates.append(d_iso)
     ath["days"].sort(key=lambda d: d["date"])
     return sim, dates
+
+
+def _apply_week_targets(sim: dict, ch: dict) -> dict:
+    """Muterer sim['programs'][programId]['weeks'][week] med ctlTarget/tssTarget."""
+    progs = sim.get("programs")
+    prog = progs.get(ch["programId"]) if isinstance(progs, dict) else None
+    if not isinstance(prog, dict):
+        raise ValueError(f"set_week_targets: program {ch['programId']!r} findes ikke i plan.programs")
+    wk = next((w for w in (prog.get("weeks") or []) if w.get("week") == ch["week"]), None)
+    if wk is None:
+        raise ValueError(f"set_week_targets: uge {ch['week']} findes ikke i {ch['programId']}")
+    for k in ("ctlTarget", "tssTarget"):
+        v = ch.get(k)
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            wk[k] = int(round(v))
+    return wk
+
+
+def target_changes_for_data(plan: dict, changes: list) -> list:
+    """[{programId, week, isoWeek, start, ctlBefore, ctlAfter, tssBefore, tssAfter}]
+    for hver set_week_targets — til forslagskortet."""
+    out = []
+    for ch in changes:
+        if ch.get("action") != "set_week_targets":
+            continue
+        prog = (plan.get("programs") or {}).get(ch["programId"]) or {}
+        wk = next((w for w in (prog.get("weeks") or []) if w.get("week") == ch["week"]), {})
+        start = wk.get("start")
+        out.append({
+            "programId": ch["programId"], "week": ch["week"],
+            "isoWeek": date.fromisoformat(start).isocalendar()[1] if start else None,
+            "start": start, "blockType": wk.get("blockType"),
+            "ctlBefore": wk.get("ctlTarget"), "ctlAfter": ch.get("ctlTarget", wk.get("ctlTarget")),
+            "tssBefore": wk.get("tssTarget"), "tssAfter": ch.get("tssTarget", wk.get("tssTarget")),
+        })
+    return out
 
 
 # -- kælderkvoter pr. berørt uge ----------------------------------------------
@@ -280,6 +334,7 @@ def summarize_for_data(plan: dict, prop: dict, athlete: str = "kennet") -> dict:
         "summary": list(prop.get("summary") or []),
         "note": prop.get("note") or "",
         "weeks": [weeks[k] for k in sorted(weeks)],
+        "targets": target_changes_for_data(plan, prop["changes"]),
     }
 
 

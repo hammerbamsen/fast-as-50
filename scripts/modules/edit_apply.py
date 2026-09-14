@@ -307,6 +307,22 @@ def _find_template(tid: str) -> dict:
     return {"id": tid, "libraryId": tid, **wo}
 
 
+def _live_seed(seed: dict) -> dict:
+    """14/9-2026: data.json.fitnessLive (skrevet af update_kpi dagligt) vinder over
+    plan.json.fitnessSeed når den er nyere — ellers projicerer gaten fra 7/7 og
+    giver ramp-flags der ikke findes."""
+    try:
+        import json as _json
+        from pathlib import Path as _P
+        live = _json.loads((_P(__file__).resolve().parent.parent.parent / "data.json").read_text(encoding="utf-8")).get("fitnessLive") or {}
+        if live.get("ctl") is not None and live.get("atl") is not None and live.get("date") \
+                and str(live["date"]) > str((seed or {}).get("date") or ""):
+            return {"ctl": live["ctl"], "atl": live["atl"], "date": str(live["date"])}
+    except Exception:
+        pass
+    return seed or {}
+
+
 def gate_check(plan: dict, sim_plan: dict, confirmed_warn: bool = False,
                athlete: str = "kennet") -> dict:
     """
@@ -317,7 +333,7 @@ def gate_check(plan: dict, sim_plan: dict, confirmed_warn: bool = False,
         return (f["week"], f["rule"], f["msg"])
 
     if athlete == "kennet":
-        seed = plan.get("fitnessSeed", {}).get("current", {})
+        seed = _live_seed(plan.get("fitnessSeed", {}).get("current", {}))
         kwargs = dict(seed_ctl=seed.get("ctl"), seed_atl=seed.get("atl"),
                       seed_date=seed.get("date"))
         before = {_key(f) for f in friel.validate(plan, **kwargs)
