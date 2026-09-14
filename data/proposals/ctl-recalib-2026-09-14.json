@@ -1,0 +1,75 @@
+{
+  "id": "ctl-recalib-2026-09-14",
+  "title": "CTL-rekalibrering +5",
+  "status": "pending",
+  "createdAt": "2026-09-14T05:00:13+00:00",
+  "createdBy": "ctl-recalib",
+  "note": "Port: mandag efter recovery-uge (uge 1). CTL i dag 50,3 mod ugens mål 45 (+5,3). De næste 8 uger løftes aftagende, så kurven glider tilbage på sæsonens linje. Peak og race-CTL røres ikke. TSS-mål følger med (7 TSS pr. CTL-point).",
+  "summary": [
+    "uge 38: CTL 45 → 50",
+    "uge 39: CTL 48 → 53",
+    "uge 40: CTL 51 → 55",
+    "uge 41: CTL 50 → 53",
+    "uge 42: CTL 53 → 56",
+    "uge 43: CTL 56 → 58",
+    "uge 44: CTL 55 → 56",
+    "uge 45: CTL 57 → 58"
+  ],
+  "changes": [
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 2,
+      "ctlTarget": 50
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 3,
+      "ctlTarget": 53,
+      "tssTarget": 415
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 4,
+      "ctlTarget": 55,
+      "tssTarget": 508
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 5,
+      "ctlTarget": 53,
+      "tssTarget": 271
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 6,
+      "ctlTarget": 56,
+      "tssTarget": 441
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 7,
+      "ctlTarget": 58,
+      "tssTarget": 454
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 8,
+      "ctlTarget": 56,
+      "tssTarget": 267
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 9,
+      "ctlTarget": 58,
+      "tssTarget": 447
+    }
+  ]
+}
