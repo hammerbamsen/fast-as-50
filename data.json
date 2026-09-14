@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-14 06:53",
+    "updated": "2026-09-14 07:00",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -3418,7 +3418,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-14T04:53:24.277638",
+  "credentialsCheckedTs": "2026-09-14T05:00:14.111853",
   "coachAssessmentTsFull": "2026-09-14T04:47:14",
   "coachAssessmentWeightAtGen": 71.1,
   "coachAssessmentAfAtGen": 0,
@@ -11410,9 +11410,118 @@
       "Næste uge (39, BASE): TSS-mål 380 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-14T04:53:24Z"
+    "generatedAt": "2026-09-14T05:00:13Z"
   },
-  "proposals": [],
+  "proposals": [
+    {
+      "id": "ctl-recalib-2026-09-14",
+      "title": "CTL-rekalibrering +5",
+      "createdAt": "2026-09-14T05:00:13+00:00",
+      "status": "pending",
+      "summary": [
+        "uge 38: CTL 45 → 50",
+        "uge 39: CTL 48 → 53",
+        "uge 40: CTL 51 → 55",
+        "uge 41: CTL 50 → 53",
+        "uge 42: CTL 53 → 56",
+        "uge 43: CTL 56 → 58",
+        "uge 44: CTL 55 → 56",
+        "uge 45: CTL 57 → 58"
+      ],
+      "note": "Port: mandag efter recovery-uge (uge 1). CTL i dag 50,3 mod ugens mål 45 (+5,3). De næste 8 uger løftes aftagende, så kurven glider tilbage på sæsonens linje. Peak og race-CTL røres ikke. TSS-mål følger med (7 TSS pr. CTL-point).",
+      "weeks": [],
+      "targets": [
+        {
+          "programId": "tds-2027",
+          "week": 2,
+          "isoWeek": 38,
+          "start": "2026-09-14",
+          "blockType": "RACE",
+          "ctlBefore": 45,
+          "ctlAfter": 50,
+          "tssBefore": 250,
+          "tssAfter": 250
+        },
+        {
+          "programId": "tds-2027",
+          "week": 3,
+          "isoWeek": 39,
+          "start": "2026-09-21",
+          "blockType": "BASE",
+          "ctlBefore": 48,
+          "ctlAfter": 53,
+          "tssBefore": 380,
+          "tssAfter": 415
+        },
+        {
+          "programId": "tds-2027",
+          "week": 4,
+          "isoWeek": 40,
+          "start": "2026-09-28",
+          "blockType": "BASE",
+          "ctlBefore": 51,
+          "ctlAfter": 55,
+          "tssBefore": 480,
+          "tssAfter": 508
+        },
+        {
+          "programId": "tds-2027",
+          "week": 5,
+          "isoWeek": 41,
+          "start": "2026-10-05",
+          "blockType": "RECOVERY",
+          "ctlBefore": 50,
+          "ctlAfter": 53,
+          "tssBefore": 250,
+          "tssAfter": 271
+        },
+        {
+          "programId": "tds-2027",
+          "week": 6,
+          "isoWeek": 42,
+          "start": "2026-10-12",
+          "blockType": "BASE",
+          "ctlBefore": 53,
+          "ctlAfter": 56,
+          "tssBefore": 420,
+          "tssAfter": 441
+        },
+        {
+          "programId": "tds-2027",
+          "week": 7,
+          "isoWeek": 43,
+          "start": "2026-10-19",
+          "blockType": "BASE",
+          "ctlBefore": 56,
+          "ctlAfter": 58,
+          "tssBefore": 440,
+          "tssAfter": 454
+        },
+        {
+          "programId": "tds-2027",
+          "week": 8,
+          "isoWeek": 44,
+          "start": "2026-10-26",
+          "blockType": "RECOVERY",
+          "ctlBefore": 55,
+          "ctlAfter": 56,
+          "tssBefore": 260,
+          "tssAfter": 267
+        },
+        {
+          "programId": "tds-2027",
+          "week": 9,
+          "isoWeek": 45,
+          "start": "2026-11-02",
+          "blockType": "BASE",
+          "ctlBefore": 57,
+          "ctlAfter": 58,
+          "tssBefore": 440,
+          "tssAfter": 447
+        }
+      ]
+    }
+  ],
   "aerobicFlag": {
     "date": "2026-09-13",
     "discipline": "bike",
@@ -11488,5 +11597,10 @@
         "ftpTarget": 320
       }
     ]
+  },
+  "fitnessLive": {
+    "date": "2026-09-14",
+    "ctl": 50.3,
+    "atl": 56.0
   }
 }
