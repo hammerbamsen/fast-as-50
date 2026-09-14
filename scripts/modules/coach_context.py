@@ -445,6 +445,10 @@ def _rules_ctx(lib, program, goals):
         'afTarget': _int(goals.get('afDaysPerWeek')),
         'sleepH': _num(goals.get('sleepHours')), 'sleepHMax': SLEEP_H_MAX,
         'strengthPerWeek': _int(goals.get('strengthPerWeek')),
+        # Tal som prompten beder modellen ræsonnere med skal findes i konteksten,
+        # ellers kasserer coach_validate svaret (14/9-2026: "28 dage" -> fejl).
+        'avgWindowDays': 7, 'changeWindowDays': 28,
+        'directionMinKg': 0.3, 'directionMinPp': 0.5,
     })
 
 

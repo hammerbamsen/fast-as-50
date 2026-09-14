@@ -188,3 +188,15 @@ def test_plan_tab_from_other_program_is_ignored():
     pt = plan_tab.build_plan_tab(plan, None, [], {}, date(2026, 9, 3))   # medoc-2026
     ctx = cc.build_context(plan, {"planTab": pt}, today)
     assert ctx["week"]["upcoming"] == [] and ctx["today"]["sessions"] == []
+
+
+def test_rules_ctx_carries_prompt_thresholds():
+    """14/9-2026: prompten refererer 28d-vinduet og 0,3/0,5-tærsklerne;
+    de skal findes som værdier i konteksten, ellers kasserer validatoren
+    et svar der nævner "28 dage"."""
+    from . import coach_context, coach_validate
+    r = coach_context._rules_ctx(None, {}, {})
+    assert r['changeWindowDays'] == 28 and r['avgWindowDays'] == 7
+    assert r['directionMinKg'] == 0.3 and r['directionMinPp'] == 0.5
+    nums = coach_validate.context_numbers({'rules': r})
+    assert all(coach_validate.number_allowed(v, nums) for v in (28, 0.3, 0.5))
