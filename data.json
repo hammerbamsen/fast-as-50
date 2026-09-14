@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-14 06:40",
+    "updated": "2026-09-14 06:41",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -3324,7 +3324,7 @@
     85,
     82
   ],
-  "coachAssessmentError": null,
+  "coachAssessmentError": "validering: body.text: tal ikke i konteksten: 12; habits.text: tal ikke i konteksten: 12; warnings[0].message: tal ikke i konteksten: 12",
   "coachAssessmentStale": false,
   "credentials": {
     "intervals": {
@@ -3332,11 +3332,11 @@
       "note": "Nøgle virker"
     },
     "anthropic": {
-      "ok": true,
-      "note": "Nøgle virker"
+      "ok": false,
+      "note": "Seneste AI-kald fejlede: validering: body.text: tal ikke i konteksten: 12; habits.text: tal ikke i konteksten: 12; warnings[0].message: tal ikke i konteksten: 12"
     }
   },
-  "credentialsCheckedTs": "2026-09-14T04:40:39.022341",
+  "credentialsCheckedTs": "2026-09-14T04:41:56.883109",
   "coachAssessmentTsFull": "2026-09-14T04:35:49",
   "coachAssessmentWeightAtGen": 71.1,
   "coachAssessmentAfAtGen": 0,
@@ -10767,8 +10767,8 @@
         "source": "ai"
       }
     ],
-    "error": null,
-    "validationError": null,
+    "error": "validering: body.text: tal ikke i konteksten: 12; habits.text: tal ikke i konteksten: 12; warnings[0].message: tal ikke i konteksten: 12",
+    "validationError": "body.text: tal ikke i konteksten: 12; habits.text: tal ikke i konteksten: 12; warnings[0].message: tal ikke i konteksten: 12",
     "notes": null,
     "stale": true
   },
@@ -11325,7 +11325,7 @@
       "Næste uge (39, BASE): TSS-mål 380 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-14T04:40:39Z"
+    "generatedAt": "2026-09-14T04:41:33Z"
   },
   "proposals": [],
   "aerobicFlag": {
