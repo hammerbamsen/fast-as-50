@@ -461,7 +461,7 @@ def _rules_ctx(lib, program, goals):
         'strengthPerWeek': _int(goals.get('strengthPerWeek')),
         # Tal som prompten beder modellen ræsonnere med skal findes i konteksten,
         # ellers kasserer coach_validate svaret (14/9-2026: "28 dage" -> fejl).
-        'avgWindowDays': 7, 'changeWindowDays': 28, 'longWindowDays': LONG_WINDOW_DAYS,
+        'avgWindowDays': 7, 'changeWindowDays': 28, 'longWindowDays': LONG_WINDOW_DAYS, 'longWindowWeeks': LONG_WINDOW_DAYS // 7,
         'directionMinKg': 0.3, 'directionMinPp': 0.5,
     })
 
