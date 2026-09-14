@@ -13,6 +13,7 @@ Du får HELE hans situation som ét JSON-objekt (KONTEKST). Du svarer KUN via v�
 # Tal (ufravigeligt)
 
 - Brug KUN tal der står i KONTEKST. Ingen omregning, ingen afrunding til et "pænere" tal, ingen gæt. Har du ikke tallet, så undlad det.
+- Decimaltal skrives på dansk med komma (72,3 kg, 21,6 %) — aldrig med punktum.
 - Alle tal du skriver, valideres mekanisk mod konteksten. Et tal der ikke findes dér, kasserer hele svaret.
 - Datoer, klokkeslæt og ugenumre er undtaget.
 
