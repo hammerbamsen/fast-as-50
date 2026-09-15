@@ -338,8 +338,9 @@ body.sw-update .main { padding-top:62px !important; }
 .day.today .lab { color:var(--ink); font-weight:700; }
 .day.sel { background:var(--bg-2); }
 .chips { display:flex; gap:3px; justify-content:center; flex-wrap:wrap; padding:0 4px; }
-.chip { width:10px; height:10px; border-radius:3px; border:1.5px solid var(--c); background:transparent; }
-.chip.done { background:var(--c); }
+/* 15/9-26: disciplin-ikon (samme SVG som Plan-fanen) i stedet for farvefirkant — man kunne ikke se hvad der var hvad. Dæmpet = planlagt, fuld = udført. */
+.chip { display:inline-flex; align-items:center; line-height:0; opacity:.38; }
+.chip.done { opacity:1; }
 .chip.race { width:auto; height:auto; border:0; font-size:12px; line-height:1; }
 .dayinfo { background:var(--card); border-radius:10px; padding:10px 14px; font-size:14px; display:none; border:1px solid var(--line); margin-bottom:12px; }
 .dayinfo.show { display:block; }
@@ -1150,7 +1151,7 @@ function weekStripV2(){
   return `<div class="week" id="week-strip">${weekDaysModel().map((day,i)=>`
     <div class="day${day.today?' today':''}" role="button" tabindex="0" onclick="toggleDayInfo(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDayInfo(${i});}">
       <span class="lab">${day.d}</span>
-      <div class="chips">${day.race ? '<span class="chip race" title="'+esc(day.race.name)+'">🏆</span>' : ''}${day.s.map(x=>`<span class="chip${x.done?' done':''}" style="--c:var(--${x.c||'free'})"></span>`).join('')}${(!day.race && !day.s.length) ? '<span class="chip" style="--c:var(--line)"></span>' : ''}</div>
+      <div class="chips">${day.race ? '<span class="chip race" title="'+esc(day.race.name)+'">🏆</span>' : ''}${day.s.map(x=>`<span class="chip${x.done?' done':''}" title="${esc(x.l)}">${icon(x.c||'free',13,C[x.c]||C.free)}${x.c2?icon(x.c2,13,C[x.c2]||C.free):''}</span>`).join('')}${(!day.race && !day.s.length) ? `<span class="chip" title="Fri">${icon('rest',13,'var(--muted)')}</span>` : ''}</div>
     </div>`).join('')}</div>
   <div class="dayinfo" id="dayinfo" data-i=""></div>`;
 }
