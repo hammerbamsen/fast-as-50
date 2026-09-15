@@ -55,10 +55,15 @@ def extra_checks(rel, doc):
     if rel.startswith("data/proposals/"):
         if doc.get("id") != Path(rel).stem:
             errs.append(f"id {doc.get('id')!r} matcher ikke filnavnet {Path(rel).stem!r}")
-        dates = [c.get("date") for c in doc.get("changes", [])]
+        dates = [c.get("date") for c in doc.get("changes", []) if c.get("date")]
         d = _dupes(dates)
         if d:
             errs.append(f"datoer optræder to gange i changes: {d}")
+        wks = [(c.get("programId"), c.get("week")) for c in doc.get("changes", [])
+               if c.get("action") == "set_week_targets"]
+        d = _dupes(wks)
+        if d:
+            errs.append(f"programuger optræder to gange i changes: {d}")
     return errs
 
 

@@ -303,7 +303,8 @@ def test_real_proposal_blok11_applied_offline_and_plan_matches():
     for f in (ROOT / "data" / "proposals").glob("*.json"):
         q = json.loads(f.read_text(encoding="utf-8"))
         if q.get("createdAt", "") > prop["createdAt"] and q.get("status") in ("accepted", "applied-offline"):
-            later |= {date.fromisoformat(c["date"]).isocalendar()[1] for c in q["changes"]}
+            # set_week_targets (ctl-recalib) har ingen dato — kun dag-ændringer tæller
+            later |= {date.fromisoformat(c["date"]).isocalendar()[1] for c in q["changes"] if c.get("date")}
     for wk, rows in by_week.items():
         if wk in later:
             continue

@@ -89,11 +89,17 @@ def test_tds_weeks_1_2_match_legacy_15_16():
     tds = P.list_programs(PLAN)["tds-2027"]
     w1, w2 = P.week_meta(tds, 1), P.week_meta(tds, 2)
     assert (w1["blockType"], w1["ctlTarget"], w1["tssTarget"]) == ("RECOVERY", 47, 150)
-    assert (w2["blockType"], w2["ctlTarget"], w2["tssTarget"]) == ("RACE", 45, 250)
-    # legacy uge 15-16 og season2027 uge 1-8 skal følge med (samme tal)
+    # ctlTarget for uge 2+ kan være løftet af et accepteret ctl-recalib-forslag
+    # (første gang 14/9-2026: 45 → 50) — test kun bloktype, TSS og at målet
+    # ikke er under det oprindelige.
+    assert (w2["blockType"], w2["tssTarget"]) == ("RACE", 250)
+    assert w2["ctlTarget"] >= 45
+    # legacy uge 15-16 (plan.json.weeks) er frosset på de oprindelige tal
     legacy = {w["week"]: w for w in PLAN["weeks"]}
     assert legacy[15]["ctlTarget"] == 47 and legacy[16]["ctlTarget"] == 45
-    assert PLAN["season2027"]["weeks"][:8] == tds["weeks"][:8]
+    # season2027.weeks er en frosset kopi; ctl/tss-mål i programmet kan være rekalibreret
+    strip = lambda ws: [{k: v for k, v in w.items() if k not in ("ctlTarget", "tssTarget")} for w in ws]
+    assert strip(PLAN["season2027"]["weeks"][:8]) == strip(tds["weeks"][:8])
     for w in tds["weeks"][:8]:
         assert "purpose" in w and set(w["quota"]) == {"haard", "moderat"}
     assert w1["phase"] == "TRANSITION" and w1["ftpTarget"] == 278
