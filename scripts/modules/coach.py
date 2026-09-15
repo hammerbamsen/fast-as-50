@@ -632,6 +632,7 @@ PROMPTS_DIR = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__fi
 COACH_MODEL = "claude-sonnet-4-6"
 COACH_MAX_TOKENS = 1600
 COACH_RETRIES = 2          # antal forsøg i alt ved netværks-/5xx-fejl
+VALIDATION_RETRIES = 1     # ekstra kald med fejlen retur til modellen ved valideringsfejl
 COACH_TIMEOUT = 45
 
 COACH_TOOL = {
@@ -777,6 +778,27 @@ def parse_tool_result(result):
     raise ValueError("intet tool_use-svar fra modellen")
 
 
+def _validation_feedback(errors):
+    """Tekst der hæftes på brugerbeskeden ved gen-kald efter valideringsfejl."""
+    return ("\n\nDIT FORRIGE SVAR BLEV AFVIST AF VALIDERINGEN:\n- " + "\n- ".join(errors)
+            + "\nSkriv svaret igen. Brug KUN tal der står ordret i KONTEKST — ingen procent, "
+              "omregning eller optælling du selv har lavet. Har du ikke tallet, så udelad det.")
+
+
+def _rejected_excerpt(raw, errors):
+    """Kort uddrag af de afviste felter til data.coach.validationRejected."""
+    out = {"errors": errors[:5]}
+    for e in errors:
+        path = e.split(":")[0].strip()
+        key = path.split(".")[0].split("[")[0]
+        val = raw.get(key)
+        if isinstance(val, dict):
+            val = val.get("text") or val.get("action")
+        if isinstance(val, str):
+            out[path] = val[:200]
+    return out
+
+
 def generate_coach_v2(ctx, api_key=None, mode=None, prompts_dir=None):
     """Kald modellen med konteksten og returnér det VALIDEREDE svar (dict) —
     eller None. Fejl (netværk, trunkering, validering) lander i LAST_AI_ERROR
@@ -796,41 +818,64 @@ def generate_coach_v2(ctx, api_key=None, mode=None, prompts_dir=None):
     weekday = (ctx.get('today') or {}).get('weekday', 0)
     system, user = build_messages(ctx, mode, prompts_dir)
 
-    raw, last_err = None, None
-    for attempt in range(1, COACH_RETRIES + 1):
-        try:
-            raw = parse_tool_result(_call_anthropic(system, user, api_key))
-            break
-        except Exception as e:  # netværk/5xx/429/format — prøv igen én gang
-            body = ""
+    def _fetch(user_msg):
+        """Ét modelkald med netværks-retry. Returnerer (raw, err)."""
+        raw, last_err = None, None
+        for attempt in range(1, COACH_RETRIES + 1):
             try:
-                body = e.read().decode("utf-8", "replace")[:300]
-            except Exception:
-                pass
-            last_err = _redact(f"{type(e).__name__}: {e}" + (f" | body: {body}" if body else ""))
-            code = getattr(e, 'code', None)
-            retry = attempt < COACH_RETRIES and (code is None or code >= 500 or code == 429)
-            print(f"  ⚠️  coach v2 forsøg {attempt} fejlede: {last_err}" + (" — prøver igen" if retry else ""))
-            if not retry:
+                raw = parse_tool_result(_call_anthropic(system, user_msg, api_key))
                 break
-    if raw is None:
-        LAST_AI_ERROR = last_err or "ukendt fejl"
-        return None, info
+            except Exception as e:  # netværk/5xx/429/format — prøv igen én gang
+                body = ""
+                try:
+                    body = e.read().decode("utf-8", "replace")[:300]
+                except Exception:
+                    pass
+                last_err = _redact(f"{type(e).__name__}: {e}" + (f" | body: {body}" if body else ""))
+                code = getattr(e, 'code', None)
+                retry = attempt < COACH_RETRIES and (code is None or code >= 500 or code == 429)
+                print(f"  ⚠️  coach v2 forsøg {attempt} fejlede: {last_err}" + (" — prøver igen" if retry else ""))
+                if not retry:
+                    break
+        return raw, last_err
 
-    for k in ('oneThing', 'training', 'body', 'habits'):
-        if isinstance(raw.get(k), dict):
-            for kk, vv in list(raw[k].items()):
-                if isinstance(vv, str):
-                    raw[k][kk] = fix_enc(vv)
-    for k in ('bigPicture', 'weekFocus'):
-        if isinstance(raw.get(k), str):
-            raw[k] = fix_enc(raw[k])
-    ok, errors, cleaned = _val.validate(raw, ctx, require_week_focus=week_focus_required(weekday))
+    def _fix(raw):
+        for k in ('oneThing', 'training', 'body', 'habits'):
+            if isinstance(raw.get(k), dict):
+                for kk, vv in list(raw[k].items()):
+                    if isinstance(vv, str):
+                        raw[k][kk] = fix_enc(vv)
+        for k in ('bigPicture', 'weekFocus'):
+            if isinstance(raw.get(k), str):
+                raw[k] = fix_enc(raw[k])
+        return raw
+
+    # Valideringsfejl (fx et afledt tal som "42 %") kasserede før hele svaret.
+    # Nu får modellen fejlen retur og ét gen-kald (VALIDATION_RETRIES) før vi
+    # giver op og beholder forrige vurdering.
+    user_msg, ok, errors, cleaned = user, False, [], None
+    for v_attempt in range(1, VALIDATION_RETRIES + 2):
+        raw, last_err = _fetch(user_msg)
+        if raw is None:
+            LAST_AI_ERROR = last_err or "ukendt fejl"
+            return None, info
+        raw = _fix(raw)
+        ok, errors, cleaned = _val.validate(raw, ctx, require_week_focus=week_focus_required(weekday))
+        if ok:
+            break
+        err_txt = "; ".join(errors)[:400]
+        info['validationError'] = err_txt
+        info.setdefault('validationRejected', []).append(_rejected_excerpt(raw, errors))
+        if v_attempt <= VALIDATION_RETRIES:
+            print(f"  ⚠️  coach v2 afvist af validering ({err_txt}) — beder modellen rette")
+            user_msg = user + _validation_feedback(errors)
     if not ok:
-        info['validationError'] = "; ".join(errors)[:400]
         LAST_AI_ERROR = "validering: " + info['validationError']
         print(f"  ⚠️  coach v2 kasseret af validering: {info['validationError']}")
         return None, info
+    if info.get('validationRejected'):
+        print("  ✅ coach v2 rettede sig efter valideringsfeedback")
+        info['validationError'] = None
     info['notes'] = cleaned.pop('validationNotes', None)
     print(f"  ✅ coach v2 genereret (oneThing: {cleaned['oneThing']['action'][:60]!r})")
     return cleaned, info

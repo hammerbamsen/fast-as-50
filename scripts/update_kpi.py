@@ -984,6 +984,7 @@ def main():
             'warnings': _merged,
             'error': None,
             'validationError': None,
+            'validationRejected': ai_info.get('validationRejected'),  # None medmindre gen-kaldet reddede svaret
             'notes': ai_info.get('notes'),
             'stale': False,
         }
@@ -1030,12 +1031,14 @@ def main():
             data['coach'] = dict(_coach_prev)
             data['coach']['error'] = _ai_err
             data['coach']['validationError'] = ai_info.get('validationError')
+            data['coach']['validationRejected'] = ai_info.get('validationRejected')
             data['coach']['stale'] = bool(_ctx_hash and _coach_prev.get('inputsHash') != _ctx_hash)
         else:
             data['coach'] = {'generatedAt': None, 'inputsHash': None, 'model': None, 'oneThing': None,
                              'training': None, 'body': None, 'habits': None, 'bigPicture': None,
                              'weekFocus': None, 'warnings': _coach_val.merge_warnings(warnings, None),
-                             'error': _ai_err, 'validationError': ai_info.get('validationError'), 'stale': True}
+                             'error': _ai_err, 'validationError': ai_info.get('validationError'),
+                             'validationRejected': ai_info.get('validationRejected'), 'stale': True}
         if _ai_err:
             print(f"  ❌ Coach-vurdering IKKE opdateret: {_ai_err}")
 

@@ -203,12 +203,26 @@ def test_generate_coach_v2_valid_answer(monkeypatch):
     assert "træner + diætist" in calls[0]["system"].lower() and '"ctl":50.4' in calls[0]["user"]
 
 
-def test_generate_coach_v2_rejects_invented_number(monkeypatch):
-    _mock_api(monkeypatch, [_answer(body={"text": "Vægten er 69,9 kg.", "refs": [69.9]})])
+def test_generate_coach_v2_rejects_invented_number_after_feedback(monkeypatch):
+    bad = _answer(body={"text": "Vægten er 69,9 kg.", "refs": [69.9]})
+    calls = _mock_api(monkeypatch, [bad, bad])
     ans, info = coach.generate_coach_v2(_ctx(), api_key="sk-ant-test")
-    assert ans is None
+    assert ans is None and len(calls) == 2
     assert "69,9" in info["validationError"]
     assert coach.LAST_AI_ERROR.startswith("validering:")
+    assert "AFVIST AF VALIDERINGEN" in calls[1]["user"] and "69,9" in calls[1]["user"]
+    assert calls[0]["user"] == calls[1]["user"].split("\n\nDIT FORRIGE")[0]
+    assert info["validationRejected"][0]["body.text"].startswith("Vægten er 69,9")
+
+
+def test_generate_coach_v2_feedback_rescues_answer(monkeypatch):
+    bad = _answer(habits={"text": "AF-dage 43 % af ugen.", "refs": [43]})
+    calls = _mock_api(monkeypatch, [bad, _answer()])
+    ans, info = coach.generate_coach_v2(_ctx(), api_key="sk-ant-test")
+    assert ans is not None and len(calls) == 2
+    assert info["validationError"] is None and coach.LAST_AI_ERROR is None
+    assert "43" in calls[1]["user"]
+    assert info["validationRejected"] and "43" in info["validationRejected"][0]["errors"][0]
 
 
 def test_generate_coach_v2_retries_once_on_error(monkeypatch):
