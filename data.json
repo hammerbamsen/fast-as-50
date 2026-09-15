@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-15 06:48",
+    "updated": "2026-09-15 07:54",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -22,7 +22,7 @@
   },
   "kpis": {
     "weight": {
-      "value": "72,1",
+      "value": "72,2",
       "unit": "kg",
       "sub": "cut starter uge 39",
       "color": "#7A6A58"
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "48,8",
+      "value": "49,1",
       "unit": "",
       "sub": "Uge 2-mål 50 · RACE",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "0,9",
+      "value": "-0,9",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -52,7 +52,7 @@
       "color": "#27AE60"
     },
     "runKm": {
-      "value": "0,0",
+      "value": "8,9",
       "unit": "km",
       "sub": "Løb denne uge",
       "color": "#7A6A58"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "57",
+      "value": "114",
       "unit": "TSS",
-      "sub": "57 af 283 planlagt TSS",
+      "sub": "114 af 283 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -96,7 +96,7 @@
     "ftp": {
       "value": "278",
       "unit": "W",
-      "sub": "3,86 W/kg · mål 278 (TRANSITION) · test 24/9",
+      "sub": "3,85 W/kg · mål 278 (TRANSITION) · test 24/9",
       "color": "#27AE60"
     },
     "protein": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 2
   },
-  "coachSpeech": "Race-uge, uge 2 af 51 i Tour des Stations-programmet. CPH Half køres søndag som B-løb i kontrolleret tempo — hele ugen er designet til at holde benene friske, ikke bygge fitness. {HL} I dag er ugens eneste hårde pas: 45 min løb med 4×3 min ved 4:12-4:18/km. Mandag er i hus med cykel Z2 (46 min, 33 TSS) og styrke overkrop + core (27 min, 15 TSS). Det er RACE-uge — lavt TSS er meningen.",
-  "coachHighlight": "Løb 4×3 min racepace 4:12-4:18/km i dag — 45 min. Ikke ERG. Hold dig i båndet, ingen ambitioner om hurtigere.",
+  "coachSpeech": "Race-uge 2 i TRANSITION-blokken med CPH Half om 5 dage som B-løb. Ugen er designet til at holde CTL stabil og lade TSB stige — hårde pas er kvoten brugt ud, resten er let vedligehold frem til søndag. {HL} Dagens nøglepas er gjort: 4×3 min racepace på 44 min og 57 TSS mod planlagte 45 min. God timing — 5 dage til CPH Half. Ugen har 2 gennemførte pas og 5 tilbage; alle resterende er lette eller selve løbet søndag.",
+  "coachHighlight": "Hold onsdag som planlagt: Cykel Z1 40 min — let, ingen intervaller, ingen ekstra tempo.",
   "weekFocus": "Frisk til start søndag — én åbner, alt andet let",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -169,11 +169,17 @@
       "day": "Tir",
       "disc": "run",
       "label": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
-      "done": false,
+      "done": true,
       "planned_tss": 41,
       "planned_mins": 45,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 139,
+      "actual_tss": 57,
+      "actual_mins": 44,
+      "actual_distance_m": 8900.1,
+      "intervals_compliance": 139.0
     },
     {
       "day": "Ons",
@@ -223,7 +229,7 @@
   ],
   "ctlCurve": [
     49.1,
-    48.8
+    49.1
   ],
   "weightHistory": [
     null,
@@ -569,7 +575,7 @@
     },
     {
       "date": "2026-09-15",
-      "v": 71.6,
+      "v": 71.7,
       "real": true
     }
   ],
@@ -1925,7 +1931,7 @@
     },
     {
       "date": "2026-09-15",
-      "v": 0.9,
+      "v": -0.9,
       "real": true
     }
   ],
@@ -2161,11 +2167,17 @@
           "day": "Tir",
           "disc": "run",
           "label": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
-          "done": false,
+          "done": true,
           "planned_tss": 41,
           "planned_mins": 45,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 139,
+          "actual_tss": 57,
+          "actual_mins": 44,
+          "actual_distance_m": 8900.1,
+          "intervals_compliance": 139.0
         },
         {
           "day": "Ons",
@@ -2832,11 +2844,12 @@
     }
   ],
   "train_mins": {
+    "run": 44.0,
     "commute": 26.0,
     "bike": 46.0,
     "strength": 27.0,
     "planned": 355.0,
-    "actual_total": 99.0
+    "actual_total": 143.0
   },
   "fatHistory": [
     null,
@@ -3182,12 +3195,12 @@
     },
     {
       "date": "2026-09-15",
-      "v": 21.1,
+      "v": 21.6,
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 9 af 357 · Tirsdag · Uge 2</strong></p><p class=\"coach-sec coach-big\">Race-uge, uge 2 af 51 i Tour des Stations-programmet. CPH Half køres søndag som B-løb i kontrolleret tempo — hele ugen er designet til at holde benene friske, ikke bygge fitness.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>I dag er ugens eneste hårde pas: 45 min løb med 4×3 min ved 4:12-4:18/km. Mandag er i hus med cykel Z2 (46 min, 33 TSS) og styrke overkrop + core (27 min, 15 TSS). Det er RACE-uge — lavt TSS er meningen. CTL er 48,8 mod mål på 50,0, men i RACE-blok er det irrelevant at jagte det tal. Ingen aerobt flag sat.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snitvægt er 72,1 kg, og ændringen den seneste måned er -0,8 kg — det er en klar nedadgående retning. Fedt på 7-dages snit er 21,4 %, ændringen den seneste måned er -0,3 procentpoint, det er under tærsklen og regnes som stabilt. Cut starter ikke før mandag 21/9 — ingen kost-ændringer denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-dage: 2 af 6 i ugen — ingen dage med 3+ genstande, men 2 dage i træk (12/9-13/9) er en klynge der rammer HRV. Protein registreret 7 dage, men ramt målet 3 af 7 — hold protein først ved hvert måltid resten af ugen. Søvn seneste nat 7,1 timer, 7-dages snit 8,1 — fint. Energi 2,9 i snit.</p>",
-  "coachAssessmentTs": "06:48",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 9 af 357 · Tirsdag · Uge 2</strong></p><p class=\"coach-sec coach-big\">Race-uge 2 i TRANSITION-blokken med CPH Half om 5 dage som B-løb. Ugen er designet til at holde CTL stabil og lade TSB stige — hårde pas er kvoten brugt ud, resten er let vedligehold frem til søndag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens nøglepas er gjort: 4×3 min racepace på 44 min og 57 TSS mod planlagte 45 min. God timing — 5 dage til CPH Half. Ugen har 2 gennemførte pas og 5 tilbage; alle resterende er lette eller selve løbet søndag. CTL er 49,1 mod målet 50,0 — i en race-uge med let taper er det præcis, hvor du skal være.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt er 72,2 kg, fedt 21,5 %. Vægten er faldet 0,8 kg den seneste måned — det er en klar nedadgående retning. Cut starter ikke før mandag 21/9, så der er ingen restriktioner denne uge. Protein ved hvert måltid er det eneste kost-fokus nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 alkoholdage i træk fredag-lørdag (12/9–13/9) trykker HRV — du er nu på 2 AF-dage ud af målet på 6 for ugen, og HRV ligger 4 % under dit 7-dages snit. Protein er registreret 3 ud af 7 dage — det kan gøres bedre. Søvn sidst var 7,1 timer, snittet de seneste 7 dage er 8,1 — helt fint.</p>",
+  "coachAssessmentTs": "07:54",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3198,7 +3211,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 0.9,
+  "tsb": -0.9,
   "swimHistory": [
     {
       "week": 1,
@@ -3213,7 +3226,7 @@
       "cumulative": 0
     }
   ],
-  "coachAssessmentLastActId": "i186716820",
+  "coachAssessmentLastActId": "i186820527",
   "weekFocusWeek": 2,
   "coachAssessmentPlanAtGen": "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
   "weightGoal": 68,
@@ -3308,7 +3321,7 @@
     72.83,
     72.58,
     72.24,
-    72.13
+    72.15
   ],
   "fatMovingAvg7": [
     null,
@@ -3400,7 +3413,7 @@
     21.4,
     21.65,
     21.5,
-    21.43
+    21.52
   ],
   "ctlPlan": [
     47,
@@ -3467,12 +3480,12 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-15T04:48:44.248140",
-  "coachAssessmentTsFull": "2026-09-15T04:48:44",
-  "coachAssessmentWeightAtGen": 71.6,
+  "credentialsCheckedTs": "2026-09-15T05:54:48.283476",
+  "coachAssessmentTsFull": "2026-09-15T05:54:48",
+  "coachAssessmentWeightAtGen": 71.7,
   "coachAssessmentAfAtGen": 2,
   "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 21.1,
+  "coachAssessmentFatAtGen": 21.6,
   "zones": {
     "runThreshold": "4:24/km",
     "bikeFtpW": 278,
@@ -3556,7 +3569,7 @@
   },
   "weekTssActual": {
     "1": 289,
-    "2": 57
+    "2": 114
   },
   "racesUpcoming": [
     {
@@ -4711,7 +4724,7 @@
         "mesoWeek": "1/1",
         "ctlTarget": 50,
         "tssTarget": 250,
-        "tssActual": 57,
+        "tssActual": 114,
         "purpose": "Race-uge: én målpace-åbner, let cykel/svøm, CPH Half som B-løb.",
         "note": "CPH Half søn 20/9 — B-løb. B-løb kontrolleret 1:37-1:40 (4:35-4:45/km). Cut starter IKKE før mandag 21/9.",
         "quota": {
@@ -6963,12 +6976,13 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 44,
+                "actualTss": 57,
                 "note": "Sub 1:30-åbner: 4×3 min på 4:12-4:18. Stop efter 3 reps hvis benene ikke er der efter Médoc",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -10357,7 +10371,7 @@
           "week": 2,
           "programId": "tds-2027",
           "start": "2026-09-14",
-          "ctl": 48.8
+          "ctl": 49.1
         }
       ],
       "projection": [
@@ -10857,48 +10871,47 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-15T04:48:44Z",
-    "inputsHash": "38c0cb0720d70c83ce5fef6267f84b6dc02d7ff6",
+    "generatedAt": "2026-09-15T05:54:48Z",
+    "inputsHash": "1e4dc2c0008332fc64044cbdb72bc288665a8896",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Løb 4×3 min racepace 4:12-4:18/km i dag — 45 min. Ikke ERG. Hold dig i båndet, ingen ambitioner om hurtigere.",
-      "why": "Åbneren sætter benene til CPH Half om 5 dage — pace skal sidde, ikke presses."
+      "action": "Hold onsdag som planlagt: Cykel Z1 40 min — let, ingen intervaller, ingen ekstra tempo.",
+      "why": "Dagens hårde åbner er i hus. Nu skal benene bare rulle let, så TSB er positiv til søndag."
     },
     "training": {
-      "text": "I dag er ugens eneste hårde pas: 45 min løb med 4×3 min ved 4:12-4:18/km. Mandag er i hus med cykel Z2 (46 min, 33 TSS) og styrke overkrop + core (27 min, 15 TSS). Det er RACE-uge — lavt TSS er meningen. CTL er 48,8 mod mål på 50,0, men i RACE-blok er det irrelevant at jagte det tal. Ingen aerobt flag sat.",
+      "text": "Dagens nøglepas er gjort: 4×3 min racepace på 44 min og 57 TSS mod planlagte 45 min. God timing — 5 dage til CPH Half. Ugen har 2 gennemførte pas og 5 tilbage; alle resterende er lette eller selve løbet søndag. CTL er 49,1 mod målet 50,0 — i en race-uge med let taper er det præcis, hvor du skal være.",
       "refs": [
-        46.0,
-        33.0,
-        27.0,
-        15.0,
-        48.8,
-        50.0,
-        4.0
+        44.0,
+        57.0,
+        45.0,
+        2.0,
+        5.0,
+        49.1,
+        50.0
       ]
     },
     "body": {
-      "text": "7-dages snitvægt er 72,1 kg, og ændringen den seneste måned er -0,8 kg — det er en klar nedadgående retning. Fedt på 7-dages snit er 21,4 %, ændringen den seneste måned er -0,3 procentpoint, det er under tærsklen og regnes som stabilt. Cut starter ikke før mandag 21/9 — ingen kost-ændringer denne uge.",
+      "text": "7-dages snit på vægt er 72,2 kg, fedt 21,5 %. Vægten er faldet 0,8 kg den seneste måned — det er en klar nedadgående retning. Cut starter ikke før mandag 21/9, så der er ingen restriktioner denne uge. Protein ved hvert måltid er det eneste kost-fokus nu.",
       "refs": [
-        72.1,
-        0.8,
-        21.4,
-        0.3
+        72.2,
+        21.5,
+        0.8
       ]
     },
     "habits": {
-      "text": "AF-dage: 2 af 6 i ugen — ingen dage med 3+ genstande, men 2 dage i træk (12/9-13/9) er en klynge der rammer HRV. Protein registreret 7 dage, men ramt målet 3 af 7 — hold protein først ved hvert måltid resten af ugen. Søvn seneste nat 7,1 timer, 7-dages snit 8,1 — fint. Energi 2,9 i snit.",
+      "text": "2 alkoholdage i træk fredag-lørdag (12/9–13/9) trykker HRV — du er nu på 2 AF-dage ud af målet på 6 for ugen, og HRV ligger 4 % under dit 7-dages snit. Protein er registreret 3 ud af 7 dage — det kan gøres bedre. Søvn sidst var 7,1 timer, snittet de seneste 7 dage er 8,1 — helt fint.",
       "refs": [
         2.0,
         6.0,
+        4.0,
         3.0,
         7.0,
         7.1,
-        8.1,
-        2.9
+        8.1
       ]
     },
-    "bigPicture": "Race-uge, uge 2 af 51 i Tour des Stations-programmet. CPH Half køres søndag som B-løb i kontrolleret tempo — hele ugen er designet til at holde benene friske, ikke bygge fitness.",
+    "bigPicture": "Race-uge 2 i TRANSITION-blokken med CPH Half om 5 dage som B-løb. Ugen er designet til at holde CTL stabil og lade TSB stige — hårde pas er kvoten brugt ud, resten er let vedligehold frem til søndag.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11022,13 +11035,13 @@
       "targetKg": 68.0,
       "expectedKg": null,
       "corridorKg": 0.5,
-      "avg7": 72.1,
+      "avg7": 72.2,
       "avg7Date": "2026-09-15",
       "delta": null,
       "status": null,
       "note": "cut starter uge 39 (21/9)",
       "ratePerWeek": -0.22,
-      "actualRate4w": -0.07,
+      "actualRate4w": -0.06,
       "series": [
         {
           "date": "2026-09-21",
@@ -11122,13 +11135,13 @@
       "note": "±0,5 pp er måleusikkerhed"
     },
     "ffm": {
-      "now": 56.7,
+      "now": 56.6,
       "change28d": 0.0,
       "target": 57.1,
       "status": "ok",
-      "baseline": 56.7,
+      "baseline": 56.6,
       "baselineDate": "2026-09-15",
-      "floor": 56.2,
+      "floor": 56.1,
       "holdKg": -0.5
     },
     "strengthWeek": {
@@ -11452,15 +11465,15 @@
     }
   },
   "weekTss": {
-    "actual": 57,
+    "actual": 114,
     "planned": 283
   },
   "martinMail": {
     "week": 2,
     "isoWeek": 38,
     "lines": [
-      "Uge 38: TSS 57 af 283 (20 %) · CTL 48,8 (mål 50) · TSB +0,9",
-      "Vægt 7d 72,1 kg · fedt 14d 21,5 % · cut starter uge 39 (21/9)",
+      "Uge 38: TSS 114 af 283 (40 %) · CTL 49,1 (mål 50) · TSB −0,9",
+      "Vægt 7d 72,2 kg · fedt 14d 21,5 % · cut starter uge 39 (21/9)",
       "HRV 7d 56 (28d 57) · hvilepuls 44 · søvn 7d 8,1 t",
       "AF 5/7 · protein 3/3 3/7 · aftensult —/7",
       "Styrke 2/2 · check-in —",
@@ -11468,7 +11481,7 @@
       "Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-15T04:48:23Z"
+    "generatedAt": "2026-09-15T05:54:27Z"
   },
   "proposals": [],
   "aerobicFlag": {
@@ -11491,8 +11504,8 @@
   },
   "ftp": {
     "ftpW": 278,
-    "wkg": 3.86,
-    "weightAvg7": 72.1,
+    "wkg": 3.85,
+    "weightAvg7": 72.2,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
@@ -11549,7 +11562,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-15",
-    "ctl": 48.8,
-    "atl": 47.9
+    "ctl": 49.1,
+    "atl": 50.0
   }
 }
