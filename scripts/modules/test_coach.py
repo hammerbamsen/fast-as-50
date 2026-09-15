@@ -211,3 +211,14 @@ def test_coach_speech_keeps_tss_share_in_build():
     combined = speech + " " + highlight
     assert "100 af 250 TSS er i hus" in combined
     assert "Lavere belastning er meningen" not in combined
+
+
+def test_coach_is_stale_only_when_regeneration_was_due():
+    # ren tal-drift inden for cachen (HRV/søvn/CTL) -> ikke stale
+    assert coach.coach_is_stale("a", "b", cache_fresh=True) is False
+    # samme kontekst -> aldrig stale
+    assert coach.coach_is_stale("a", "a", cache_fresh=False) is False
+    # cache brudt (alder eller ny aktivitet/vejning/AF/plan) men ingen ny vurdering -> stale
+    assert coach.coach_is_stale("a", "b", cache_fresh=False) is True
+    # ingen hash (kontekst fejlede) -> ikke stale
+    assert coach.coach_is_stale("a", None, cache_fresh=False) is False

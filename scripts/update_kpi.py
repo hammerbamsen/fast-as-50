@@ -1032,7 +1032,7 @@ def main():
             data['coach']['error'] = _ai_err
             data['coach']['validationError'] = ai_info.get('validationError')
             data['coach']['validationRejected'] = ai_info.get('validationRejected')
-            data['coach']['stale'] = bool(_ctx_hash and _coach_prev.get('inputsHash') != _ctx_hash)
+            data['coach']['stale'] = _coach_mod.coach_is_stale(_coach_prev.get('inputsHash'), _ctx_hash, _cache_fresh)
         else:
             data['coach'] = {'generatedAt': None, 'inputsHash': None, 'model': None, 'oneThing': None,
                              'training': None, 'body': None, 'habits': None, 'bigPicture': None,

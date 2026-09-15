@@ -920,3 +920,15 @@ def legacy_fields(answer):
     action = (answer.get('oneThing') or {}).get('action') or ''
     speech = f"{big} {{HL}} {train}".strip()
     return speech, action
+
+
+def coach_is_stale(prev_hash, ctx_hash, cache_fresh):
+    """15/9-2026: 'stale' betyder at en NY vurdering var påkrævet men ikke blev
+    lavet — ikke at tallene har rykket sig lidt. Hashen dækker hele konteksten
+    (HRV, søvn, CTL-decimaler), så den afviger ved næsten hver kørsel; når
+    cachen bevidst holdes (under CACHE_HOURS, ingen ny aktivitet/vejning/AF/
+    plan), er den ikke stale. Kun hash-afvigelse + brudt cache (alder eller
+    materiel ændring) uden ny vurdering = stale."""
+    if not ctx_hash or prev_hash == ctx_hash:
+        return False
+    return not cache_fresh
