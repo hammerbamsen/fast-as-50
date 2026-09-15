@@ -1192,7 +1192,10 @@ function oneThing(r){
     }
   }
   const stale = c && c.stale ? `<p class="small" style="color:var(--muted);font-size:11px">Coachen er ikke opdateret med de nyeste data.</p>` : '';
-  return `<div class="action"><span class="lab">Én ting i dag</span><p>${esc(main)}</p>${why.length?`<p>${esc(why.slice(0,2).join(' '))}</p>`:''}${stale}</div>`;
+  // 15/9-26: når alle dagens planlagte pas er udført, handler "én ting" om i morgen — sig det.
+  const todaySess = (D.week_sessions||[]).filter(s => s && s.today && !s.extra);
+  const lab = (c && todaySess.length && todaySess.every(s => s.done)) ? 'Én ting til i morgen' : 'Én ting i dag';
+  return `<div class="action"><span class="lab">${lab}</span><p>${esc(main)}</p>${why.length?`<p>${esc(why.slice(0,2).join(' '))}</p>`:''}${stale}</div>`;
 }
 
 // Coach-advarsel med handling -> åbn Plan-fanens ⋯-ark med handlingen forudvalgt.
