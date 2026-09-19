@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-19 17:56",
+    "updated": "2026-09-19 18:16",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Du er i uge 2 af Tour des Stations 2027, race-uge med CPH Half som B-løb i morgen. Ugen har kørt præcis efter planen: let åbner, racepace-pas tirsdag, nedtrapning onsdag-fredag. Nu handler det om at komme frisk til start. {HL} Styrketræningen på 28 min er klaret i dag. Eneste tilbageværende pas i ugen er CPH Half i morgen — 90 min, 82 TSS. Ugens aktuelle TSS er 218 af planlagte 283. Du er i RACE-uge: lavere TSS end planen er præcis rigtigt.",
-  "coachHighlight": "Gå 30 min let — hold det roligt, ingen ekstra indsats. Styrken er klaret.",
+  "coachSpeech": "Lørdag — uge 2 af 51. {HL} Godt: Søvn på 8,2 timer er solid. Fokus: Vægt på 72,5 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 6 afsluttede dage — 2 mangler i 1 dage tilbage. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
+  "coachHighlight": "Lavere belastning er meningen i en race-uge — der er ingen ugeprocent at jagte",
   "weekFocus": "Frisk til start søndag — én åbner, alt andet let",
   "today": [
     {
@@ -3304,23 +3304,12 @@
     {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 31,0 ms — 41% under 7d-snit (52,6 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
+      "message": "HRV 31,0 ms — 41% under 7d-snit (52,6 ms). Kroppen er presset."
     },
     {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "readiness",
-      "level": "warn",
-      "message": "HRV 31,0 ms — 41% under 7-dages snit (52,6 ms). Hold al aktivitet i dag absolut let. Ingen ekstra indsats.",
-      "action": null,
-      "source": "ai"
+      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 7.1,
@@ -3592,7 +3581,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-19T15:56:31.276665",
+  "credentialsCheckedTs": "2026-09-19T16:16:25.664290",
   "coachAssessmentTsFull": "2026-09-19T15:56:31",
   "coachAssessmentWeightAtGen": 72.5,
   "coachAssessmentAfAtGen": 4,
@@ -4678,12 +4667,12 @@
     {
       "date": "2026-09-19",
       "alkohol": 1,
-      "protein": null,
-      "energi": null,
+      "protein": 0,
+      "energi": 1,
       "sult": null
     }
   ],
-  "energy7": 3.5,
+  "energy7": 3.1,
   "af_kind": {
     "2026-08-29": "drak",
     "2026-09-02": "drak",
@@ -11650,7 +11639,7 @@
       "Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-19T15:56:09Z"
+    "generatedAt": "2026-09-19T16:16:25Z"
   },
   "proposals": [],
   "ftp": {
