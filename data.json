@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-20 08:43",
+    "updated": "2026-09-20 11:24",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 2 af 51 i TdS 2027-programmet er slut — en RACE-uge med CPH Half som B-løb. Fra mandag starter uge 3: BASE, meso 1/2, TRANSITION-fase, og cut begynder. Næste uges rolle er at lægge fundamentet: FTP-test torsdag sætter nulpunktet for al intensitetsstyring resten af blokken. {HL} Ugen leverede 218 TSS mod planlagte 283 — 77 % af målet. Det er præcis rigtigt for en RACE-uge med TSS-mål på 250: du ramte tæt og landede med TSB på 2,3.",
-  "coachHighlight": "Spis et ordentligt proteinmåltid inden for 60 min efter CPH Half — minimum ved hvert af dagens resterende måltider.",
+  "coachSpeech": "Søndag — afslut uge 2 stærkt. {HL} Godt: Søvn på 7,8 timer er solid. Vægt på 73,3 kg — Vægten er 0.8 kg højere end seneste måling (2026-09-19) — sandsynligvis væske/natrium snarere end fedt, ikke et disciplinproblem. Giv den et par dage før du dømmer tallet. Fokus: 4 AF-dage i 7 afsluttede dage — 2 mangler i 0 dage tilbage. Keep moving forward. 📊 Store billede: CTL 47,8 er 2.2 point BAG ugeplanen (planmål uge 2: 50).  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+  "coachHighlight": "Lavere belastning er meningen i en race-uge — der er ingen ugeprocent at jagte",
   "weekFocus": "Frisk til start søndag — én åbner, alt andet let",
   "today": [
     {
@@ -3294,23 +3294,7 @@
     {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "readiness",
-      "level": "info",
-      "message": "HRV i dag er 49,0 — 8 % under 7-dages snit (53,1) og klart under 42-dages snit (56,6). Readiness er NORMAL, men kroppen er belastet efter halvmaraton og to tæt-liggende alkoholdage. Hold restitutionen",
-      "action": null,
-      "source": "ai"
-    },
-    {
-      "type": "spacing",
-      "level": "info",
-      "message": "CPH Half (søn 20/9) → FTP-test (tor 24/9): 96 timer mellem de to hårde pas — inden for 72 t-reglen og markeret ok. Men FTP-testen kræver friske ben: mandag og onsdag holdes lette.",
-      "action": null,
-      "source": "ai"
+      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 2.3,
@@ -3582,7 +3566,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-20T06:43:45.120462",
+  "credentialsCheckedTs": "2026-09-20T09:25:01.847064",
   "coachAssessmentTsFull": "2026-09-20T06:43:45",
   "coachAssessmentWeightAtGen": 73.3,
   "coachAssessmentAfAtGen": 4,
@@ -4852,14 +4836,7 @@
           "Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner)",
           "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km"
         ],
-        "flags": [
-          {
-            "level": "WARN",
-            "rule": "low_readiness",
-            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-            "historic": false
-          }
-        ],
+        "flags": [],
         "races": [
           {
             "name": "CPH Half",
@@ -11657,7 +11634,7 @@
       "Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-20T06:43:09Z"
+    "generatedAt": "2026-09-20T09:25:01Z"
   },
   "proposals": [],
   "ftp": {
