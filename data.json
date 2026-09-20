@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-20 11:31",
+    "updated": "2026-09-20 11:36",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "51,4",
+      "value": "51,6",
       "unit": "",
       "sub": "Uge 2-mål 50 · RACE",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "-14,5",
+      "value": "-15,7",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "379",
+      "value": "390",
       "unit": "TSS",
-      "sub": "379 af 283 planlagt TSS",
+      "sub": "390 af 283 planlagt TSS",
       "color": "#27AE60"
     },
     "bikeKm": {
-      "value": "52,0",
+      "value": "57,4",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -111,13 +111,21 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Program TdS 2027 er nu ude af race-ugen (uge 2, blok RACE) og træder ind i BASE uge 3. Næste uge er den første uge i cuttet og sætter nulpunktet med FTP-testen torsdag — alt fremtidigt biblioteksarbejde skalerer efter den. {HL} Ugen endte som race-uge med 379 TSS mod et planlagt loft på 283 — 134 % af planen, men bloktypen er RACE, og CPH Half alene trak tungt.",
-  "coachHighlight": "Spis et proteinholdigt måltid nu og læg tøj frem til morgens styrketræning — cut starter i morgen.",
+  "coachSpeech": "Søndag — afslut uge 2 stærkt. {HL} Godt: Søvn på 7,8 timer er solid. Vægt på 73,3 kg — Vægten er 0.8 kg højere end seneste måling (2026-09-19) — sandsynligvis væske/natrium snarere end fedt, ikke et disciplinproblem. Giv den et par dage før du dømmer tallet. Fokus: 4 AF-dage i 7 afsluttede dage — 2 mangler i 0 dage tilbage. Keep moving forward. 📊 Store billede: CTL 51,6 er 1.6 point FORAN ugeplanen (planmål uge 2: 50).  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+  "coachHighlight": "Lavere belastning er meningen i en race-uge — der er ingen ugeprocent at jagte",
   "weekFocus": "Frisk til start søndag — én åbner, alt andet let",
   "today": [
     {
       "discipline": "run",
       "title": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "commute",
+      "title": "Gentofte Cykling",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -262,11 +270,22 @@
       "actual_tss": 161,
       "actual_mins": 90,
       "actual_distance_m": 21309.07
+    },
+    {
+      "day": "Søn",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
+      "done": true,
+      "extra": true,
+      "actual_tss": 11,
+      "actual_mins": 18,
+      "actual_distance_m": 5377.0,
+      "today": true
     }
   ],
   "ctlCurve": [
     49.1,
-    51.4
+    51.6
   ],
   "weightHistory": [
     {
@@ -1972,7 +1991,7 @@
     },
     {
       "date": "2026-09-20",
-      "v": -14.5,
+      "v": -15.7,
       "real": true
     }
   ],
@@ -2305,6 +2324,17 @@
           "actual_tss": 161,
           "actual_mins": 90,
           "actual_distance_m": 21309.07
+        },
+        {
+          "day": "Søn",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
+          "done": true,
+          "extra": true,
+          "actual_tss": 11,
+          "actual_mins": 18,
+          "actual_distance_m": 5377.0,
+          "today": true
         }
       ],
       "blockType": "RACE",
@@ -2927,13 +2957,13 @@
   ],
   "train_mins": {
     "run": 175.0,
+    "commute": 44.0,
     "strength": 55.0,
     "swim": 30.0,
     "walk": 54.0,
     "bike": 94.0,
-    "commute": 26.0,
     "planned": 355.0,
-    "actual_total": 434.0
+    "actual_total": 452.0
   },
   "fatHistory": [
     {
@@ -3294,26 +3324,10 @@
     {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "tsb",
-      "level": "info",
-      "message": "TSB er -14,5 efter CPH Half. Det er inden for gulvet på -30, men FTP-testen torsdag 24/9 kræver at benene er friske. Mandag og tirsdag er lette — hold dem lette.",
-      "action": null,
-      "source": "ai"
-    },
-    {
-      "type": "spacing",
-      "level": "info",
-      "message": "CPH Half (i dag) → FTP-test torsdag 24/9: 96 timers mellemrum. Det er præcis over 72 t-grænsen og markeret ok — men kun hvis mandag og tirsdag holdes på plan-intensiteten.",
-      "action": null,
-      "source": "ai"
+      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
-  "tsb": -14.5,
+  "tsb": -15.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3582,7 +3596,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-20T09:32:26.248313",
+  "credentialsCheckedTs": "2026-09-20T09:36:13.553491",
   "coachAssessmentTsFull": "2026-09-20T09:32:26",
   "coachAssessmentWeightAtGen": 73.3,
   "coachAssessmentAfAtGen": 4,
@@ -3671,7 +3685,7 @@
   },
   "weekTssActual": {
     "1": 289,
-    "2": 379
+    "2": 390
   },
   "racesUpcoming": [
     {
@@ -4837,7 +4851,7 @@
         "mesoWeek": "1/1",
         "ctlTarget": 50,
         "tssTarget": 250,
-        "tssActual": 379,
+        "tssActual": 390,
         "purpose": "Race-uge: én målpace-åbner, let cykel/svøm, CPH Half som B-løb.",
         "note": "CPH Half søn 20/9 — B-løb. B-løb kontrolleret 1:37-1:40 (4:35-4:45/km). Cut starter IKKE før mandag 21/9.",
         "quota": {
@@ -7271,6 +7285,24 @@
                 "isKey": true,
                 "optional": false,
                 "completion": "done"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Cykling",
+                "type": null,
+                "disc": "commute",
+                "mins": 18,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 18,
+                "actualTss": 11,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10524,205 +10556,205 @@
           "week": 2,
           "programId": "tds-2027",
           "start": "2026-09-14",
-          "ctl": 51.4
+          "ctl": 51.6
         }
       ],
       "projection": [
         {
           "d": "2026-09-21",
-          "ctl": 48.1
+          "ctl": 51.6
         },
         {
           "d": "2026-09-22",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-09-23",
-          "ctl": 48.6
-        },
-        {
-          "d": "2026-09-24",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-09-25",
-          "ctl": 49.1
-        },
-        {
-          "d": "2026-09-26",
-          "ctl": 49.3
-        },
-        {
-          "d": "2026-09-27",
-          "ctl": 48.2
-        },
-        {
-          "d": "2026-09-28",
-          "ctl": 49.0
-        },
-        {
-          "d": "2026-09-29",
-          "ctl": 49.9
-        },
-        {
-          "d": "2026-09-30",
-          "ctl": 50.7
-        },
-        {
-          "d": "2026-10-01",
-          "ctl": 51.5
-        },
-        {
-          "d": "2026-10-02",
-          "ctl": 50.3
-        },
-        {
-          "d": "2026-10-03",
-          "ctl": 49.1
-        },
-        {
-          "d": "2026-10-04",
-          "ctl": 49.9
-        },
-        {
-          "d": "2026-10-05",
-          "ctl": 49.7
-        },
-        {
-          "d": "2026-10-06",
-          "ctl": 49.4
-        },
-        {
-          "d": "2026-10-07",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-10-08",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-10-09",
-          "ctl": 48.7
-        },
-        {
-          "d": "2026-10-10",
-          "ctl": 48.4
-        },
-        {
-          "d": "2026-10-11",
-          "ctl": 48.2
-        },
-        {
-          "d": "2026-10-12",
-          "ctl": 48.6
-        },
-        {
-          "d": "2026-10-13",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-10-14",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-10-15",
-          "ctl": 49.6
-        },
-        {
-          "d": "2026-10-16",
-          "ctl": 49.9
-        },
-        {
-          "d": "2026-10-17",
-          "ctl": 50.2
-        },
-        {
-          "d": "2026-10-18",
-          "ctl": 50.5
-        },
-        {
-          "d": "2026-10-19",
-          "ctl": 50.8
-        },
-        {
-          "d": "2026-10-20",
-          "ctl": 51.2
-        },
-        {
-          "d": "2026-10-21",
-          "ctl": 51.5
-        },
-        {
-          "d": "2026-10-22",
           "ctl": 51.8
         },
         {
-          "d": "2026-10-23",
+          "d": "2026-09-23",
+          "ctl": 51.9
+        },
+        {
+          "d": "2026-09-24",
           "ctl": 52.1
         },
         {
-          "d": "2026-10-24",
-          "ctl": 52.4
-        },
-        {
-          "d": "2026-10-25",
-          "ctl": 52.7
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 52.4
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 52.0
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 51.7
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 51.4
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 51.1
-        },
-        {
-          "d": "2026-10-31",
-          "ctl": 50.8
-        },
-        {
-          "d": "2026-11-01",
-          "ctl": 50.5
-        },
-        {
-          "d": "2026-11-02",
-          "ctl": 50.8
-        },
-        {
-          "d": "2026-11-03",
-          "ctl": 51.1
-        },
-        {
-          "d": "2026-11-04",
-          "ctl": 51.4
-        },
-        {
-          "d": "2026-11-05",
-          "ctl": 51.7
-        },
-        {
-          "d": "2026-11-06",
-          "ctl": 52.0
-        },
-        {
-          "d": "2026-11-07",
+          "d": "2026-09-25",
           "ctl": 52.3
         },
         {
-          "d": "2026-11-08",
+          "d": "2026-09-26",
           "ctl": 52.5
+        },
+        {
+          "d": "2026-09-27",
+          "ctl": 51.2
+        },
+        {
+          "d": "2026-09-28",
+          "ctl": 52.0
+        },
+        {
+          "d": "2026-09-29",
+          "ctl": 52.8
+        },
+        {
+          "d": "2026-09-30",
+          "ctl": 53.5
+        },
+        {
+          "d": "2026-10-01",
+          "ctl": 54.3
+        },
+        {
+          "d": "2026-10-02",
+          "ctl": 53.0
+        },
+        {
+          "d": "2026-10-03",
+          "ctl": 51.7
+        },
+        {
+          "d": "2026-10-04",
+          "ctl": 52.5
+        },
+        {
+          "d": "2026-10-05",
+          "ctl": 52.2
+        },
+        {
+          "d": "2026-10-06",
+          "ctl": 51.9
+        },
+        {
+          "d": "2026-10-07",
+          "ctl": 51.6
+        },
+        {
+          "d": "2026-10-08",
+          "ctl": 51.2
+        },
+        {
+          "d": "2026-10-09",
+          "ctl": 50.9
+        },
+        {
+          "d": "2026-10-10",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-10-11",
+          "ctl": 50.4
+        },
+        {
+          "d": "2026-10-12",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-10-13",
+          "ctl": 51.0
+        },
+        {
+          "d": "2026-10-14",
+          "ctl": 51.3
+        },
+        {
+          "d": "2026-10-15",
+          "ctl": 51.5
+        },
+        {
+          "d": "2026-10-16",
+          "ctl": 51.8
+        },
+        {
+          "d": "2026-10-17",
+          "ctl": 52.1
+        },
+        {
+          "d": "2026-10-18",
+          "ctl": 52.3
+        },
+        {
+          "d": "2026-10-19",
+          "ctl": 52.6
+        },
+        {
+          "d": "2026-10-20",
+          "ctl": 52.9
+        },
+        {
+          "d": "2026-10-21",
+          "ctl": 53.2
+        },
+        {
+          "d": "2026-10-22",
+          "ctl": 53.5
+        },
+        {
+          "d": "2026-10-23",
+          "ctl": 53.8
+        },
+        {
+          "d": "2026-10-24",
+          "ctl": 54.0
+        },
+        {
+          "d": "2026-10-25",
+          "ctl": 54.3
+        },
+        {
+          "d": "2026-10-26",
+          "ctl": 53.9
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 53.5
+        },
+        {
+          "d": "2026-10-28",
+          "ctl": 53.2
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 52.8
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 52.4
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 52.1
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 51.8
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 52.1
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 52.3
+        },
+        {
+          "d": "2026-11-04",
+          "ctl": 52.6
+        },
+        {
+          "d": "2026-11-05",
+          "ctl": 52.9
+        },
+        {
+          "d": "2026-11-06",
+          "ctl": 53.1
+        },
+        {
+          "d": "2026-11-07",
+          "ctl": 53.4
+        },
+        {
+          "d": "2026-11-08",
+          "ctl": 53.6
         }
       ],
       "targets": [
@@ -11627,14 +11659,14 @@
     }
   },
   "weekTss": {
-    "actual": 379,
+    "actual": 390,
     "planned": 283
   },
   "martinMail": {
     "week": 2,
     "isoWeek": 38,
     "lines": [
-      "Uge 38: TSS 379 af 283 (134 %) · CTL 51,4 (mål 50) · TSB −14,5",
+      "Uge 38: TSS 390 af 283 (138 %) · CTL 51,6 (mål 50) · TSB −15,7",
       "Vægt 7d 71,9 kg · fedt 14d 21,5 % · cut starter uge 39 (21/9)",
       "HRV 7d 53 (28d 56) · hvilepuls 43 · søvn 7d 7,9 t",
       "AF 4/7 · protein 3/3 5/7 · aftensult —/7",
@@ -11643,7 +11675,7 @@
       "Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-20T09:31:53Z"
+    "generatedAt": "2026-09-20T09:36:13Z"
   },
   "proposals": [],
   "ftp": {
@@ -11706,7 +11738,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-20",
-    "ctl": 51.4,
-    "atl": 65.9
+    "ctl": 51.6,
+    "atl": 67.3
   }
 }
