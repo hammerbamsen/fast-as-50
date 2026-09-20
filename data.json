@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-20 16:38",
+    "updated": "2026-09-20 16:42",
     "week": 2,
     "totalWeeks": 51,
     "blockType": "RACE",
@@ -2125,7 +2125,8 @@
     "2026-09-16": 0,
     "2026-09-17": 0,
     "2026-09-18": 1,
-    "2026-09-19": 1
+    "2026-09-19": 1,
+    "2026-09-20": 1
   },
   "all_weeks": {
     "1": {
@@ -3353,8 +3354,8 @@
   "warnings": [
     {
       "type": "alcohol_cluster",
-      "level": "warn",
-      "message": "2 drikkedage i træk 18/9–19/9 — klynger rammer HRV hårdere end spredte dage."
+      "level": "critical",
+      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": -16.5,
@@ -3626,7 +3627,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-20T14:38:14.840071",
+  "credentialsCheckedTs": "2026-09-20T14:42:13.784992",
   "coachAssessmentTsFull": "2026-09-20T10:45:18",
   "coachAssessmentWeightAtGen": 73.3,
   "coachAssessmentAfAtGen": 4,
@@ -4711,13 +4712,13 @@
     },
     {
       "date": "2026-09-20",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 1,
+      "protein": 0,
+      "energi": 3,
       "sult": null
     }
   ],
-  "energy7": 3.5,
+  "energy7": 3.4,
   "af_kind": {
     "2026-08-29": "drak",
     "2026-09-02": "drak",
@@ -4727,7 +4728,8 @@
     "2026-09-12": "faa",
     "2026-09-13": "faa",
     "2026-09-18": "faa",
-    "2026-09-19": "faa"
+    "2026-09-19": "faa",
+    "2026-09-20": "faa"
   },
   "planTab": {
     "today": "2026-09-20",
@@ -11716,7 +11718,7 @@
       "Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-20T14:38:14Z"
+    "generatedAt": "2026-09-20T14:42:13Z"
   },
   "proposals": [],
   "ftp": {
