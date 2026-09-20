@@ -45,3 +45,13 @@
 ### Planændring 13/09 07:51
 - **tirsdag 2026-09-15** (uge 2, apply_proposal): Løb 4×3 min halvmaraton-tempo (4:35-4:45) efter fornemmelse (45 min) [hårdt] → Løb 4×3 min racepace 4:12-4:18/km (sub 1:30-åbner) (45 min)
 - **søndag 2026-09-20** (uge 2, apply_proposal): CPH HALF — 21,1 km, B-løb kontrolleret 4:35-4:45/km (90 min) [langt] → CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km (90 min) [langt]
+
+### Signaler uge 38
+- Uge 38: TSS 218 af 283 (77 %) · CTL 47,8 (mål 50) · TSB +2,3
+- Vægt 7d 71,7 kg · fedt 14d 21,5 % · cut starter uge 39 (21/9)
+- HRV 7d 54 (28d 57) · hvilepuls 44 · søvn 7d 8,0 t
+- AF 4/7 · protein 3/3 5/7 · aftensult —/7
+- Styrke 2/2 · check-in —
+- Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)
+- Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min
+- Planændringer siden sidst: 1 — se martin_signals.md
