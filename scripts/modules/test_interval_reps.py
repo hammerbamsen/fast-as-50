@@ -13,11 +13,38 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import pytest
+from modules import sessions as _sessions_mod
 from modules.sessions import (get_interval_reps, summarize_reps, count_planned_reps,
                               bike_zone_watts, planned_target_from_event,
                               _half_drift, _pace_str)
 
 FIXTURE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures_vo2_run.json')
+
+# Disse tests (inkl. den rigtige VO2-fixture fra 6/8-26) er skrevet mod
+# løbetærsklen som den var dengang: 264 sek/km (4:24/km). thresholdSec
+# ændrer sig i produktion (fx efter en tempo-/FTP-test), og hele pointen
+# med sessions.py er at zonerne ALTID følger plan.json live. Så pin
+# tærsklen/zonetabellen her i testene -- ellers brækker CI hver gang
+# thresholdSec opdateres i produktion, uden at koden faktisk fejler.
+_FIXED_THRESHOLD_SEC = 264
+_FIXED_RUN_ZONES = {
+    'Z1': (339, 99999),
+    'Z2': (300, 338),
+    'Z3': (270, 299),
+    'Z4': (257, 269),
+    'Z5': (236, 256),
+    'Z6': (0, 235),
+}
+
+
+@pytest.fixture(autouse=True)
+def _pinned_run_threshold(monkeypatch):
+    plan = _sessions_mod._PLAN or {}
+    zones = dict(((plan.get('athletes', {}) or {}).get('kennet', {}) or {}).get('zones') or {})
+    zones['thresholdSec'] = _FIXED_THRESHOLD_SEC
+    monkeypatch.setattr(_sessions_mod, '_PLAN', {'athletes': {'kennet': {'zones': zones}}})
+    monkeypatch.setattr(_sessions_mod, 'RUN_PACE_ZONES_SEC_PER_KM', _FIXED_RUN_ZONES)
 
 
 def load_fixture():
