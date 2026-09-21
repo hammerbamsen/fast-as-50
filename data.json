@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-21 08:48",
+    "updated": "2026-09-21 12:09",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Du er i uge 3 af 51 i Tour des Stations 2027, meso 1/2, BASE/TRANSITION. Cut starter i dag officielt, og ugen er bygget let op mod FTP-testen torsdag — styrke mandag, Z2 tirsdag/onsdag, test torsdag. {HL} Ugen starter med nul gennemførte pas — det er okay, det er mandag. Dagens plan er Styrke A · Functional 4 · 2 runder, 25 min.",
-  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 2 runder (25 min) — men hold det præcis på 2 runder, ingen ekstra sæt.",
+  "coachSpeech": "Ny uge starter — uge 3 af 51. Træningsuge. {HL} Godt: Søvn på 7,9 timer er solid. Ny uge med 0 dages streak i ryggen. Hold den. Fokus: Vægt på 73,2 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
+  "coachHighlight": "Fuld uge foran — i dag: Styrke A · Functional 4 · 2 runder",
   "weekFocus": "Hold kroppen frisk til FTP-test torsdag",
   "today": [
     {
@@ -3244,25 +3244,19 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 45,0 ms — 12% under 7d-snit (51,3 ms). Kroppen er presset."
+    },
+    {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −0,6 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: Fedtfri masse −0,6 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag"
     },
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 45,0 ms — 12% under 7d-snit (51,3 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
+      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": -10.8,
@@ -3540,7 +3534,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-21T06:49:18.107091",
+  "credentialsCheckedTs": "2026-09-21T10:09:38.050596",
   "coachAssessmentTsFull": "2026-09-21T06:49:18",
   "coachAssessmentWeightAtGen": 73.2,
   "coachAssessmentAfAtGen": 0,
@@ -4807,7 +4801,14 @@
         "keySessions": [
           "FaF 0 Test - FTP 20 min"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "low_readiness",
+            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+            "historic": false
+          }
+        ],
         "races": [],
         "travel": "Mallorca 27/9-3/10 (Kennet alene)",
         "isCurrent": true,
@@ -11352,7 +11353,7 @@
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-21T06:48:52Z"
+    "generatedAt": "2026-09-21T10:09:38Z"
   },
   "proposals": [],
   "ftp": {
