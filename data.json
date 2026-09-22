@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-22 14:24",
+    "updated": "2026-09-22 15:27",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "48,0",
+      "value": "48,3",
       "unit": "",
       "sub": "Uge 3-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "2,3",
+      "value": "1,2",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "22",
+      "value": "33",
       "unit": "TSS",
-      "sub": "22 af 254 planlagt TSS",
+      "sub": "33 af 254 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Tirsdag — uge 3 af 51. {HL} Fokus: 22 af 254 TSS er i hus — 6 sessioner tilbage, heriblandt Gåtur 45 min, FaF 1 Z2 - Grundtur 80. Styrke A · Functional 4 · 2 runder er misset — vinduet er lukket. Vægt på 73,1 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 1 AF-dage i 2 afsluttede dage — 5 mangler i 5 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 8,0 timer er solid",
+  "coachSpeech": "Du er i uge 3 af BASE-blokken i programmet mod Tour des Stations 2027, mesocyklus 1 af 2. Denne uge er bygget op mod FTP-testen lørdag 26/9, så belastningen holdes lav nu og peaker der. {HL} I dag er gåturen på 45 min gennemført — faktisk varede den 100 min med 11 TSS. Zwift-opsætningen (6 min) tæller som ekstra. Styrke A på 25 min og 17 planlagt TSS er misset fra mandag.",
+  "coachHighlight": "Drop styrketræningen i dag — sæt den i stedet til onsdag morgen inden Z2-turen, eller lad den ligge til torsdag.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "bike",
@@ -156,11 +156,16 @@
       "day": "Tir",
       "disc": "walk",
       "label": "Gåtur 45 min",
-      "done": false,
+      "done": true,
       "planned_tss": null,
       "planned_mins": 45,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 222,
+      "actual_tss": 11,
+      "actual_mins": 100,
+      "actual_distance_m": 8486.83
     },
     {
       "day": "Tir",
@@ -222,7 +227,7 @@
   "ctlCurve": [
     49.1,
     49.9,
-    48.0
+    48.3
   ],
   "weightHistory": [
     {
@@ -1928,7 +1933,7 @@
     },
     {
       "date": "2026-09-22",
-      "v": 2.4,
+      "v": 1.2,
       "real": true
     }
   ],
@@ -2235,11 +2240,16 @@
           "day": "Tir",
           "disc": "walk",
           "label": "Gåtur 45 min",
-          "done": false,
+          "done": true,
           "planned_tss": null,
           "planned_mins": 45,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 222,
+          "actual_tss": 11,
+          "actual_mins": 100,
+          "actual_distance_m": 8486.83
         },
         {
           "day": "Tir",
@@ -2917,10 +2927,10 @@
     }
   ],
   "train_mins": {
+    "walk": 162.0,
     "bike": 6.0,
-    "walk": 62.0,
     "planned": 323.0,
-    "actual_total": 68.0
+    "actual_total": 168.0
   },
   "fatHistory": [
     {
@@ -3274,22 +3284,26 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 16 af 357 · Tirsdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Han er i uge 3 af programmet Tour des Stations 2027, mesocykel 1 af 2 i BASE/TRANSITION-fasen. Cut startede 21. september, og ugen er designet til aerobe prober og en FTP-test torsdag — lav belastning nu er planlagt, ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen planlagte træningspas er gennemført denne uge endnu — styrke A (25 min, 17 TSS) fra mandag er misset. I dag er planen en gåtur på 45 min. Zwift-testen på 6 min og 1 TSS er logget som ekstra. Ugens akkumulerede TSS er 22 af de planlagte 254 — men det er uge 1 af 2 i BASE-mesoen, og FTP-testen lørdag er ugens nøglepas. CTL er 48,0 mod et mål på 53,0 — en difference på 5,0, hvilket er forventeligt tidligt i en base-blok med aktiv cut.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er 72,5 kg mod forventet 72,2 kg — du er 0,3 kg over planlinjen, hvilket er inden for korridoren på 0,5 kg. Fedtprocenten på 7-dages snit er 21,5 mod forventet 21,8, altså under plan — det er positivt. Vægten på 28 dage er ændret med -0,1 kg og fedtprocenten med +0,3 procentpoint — begge under tærsklerne for en retning, så begge er stabile. Hold protein ved hvert måltid og alkohol-fri resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>1 AF-dag ud af et mål på 6 denne uge. De seneste 7 dage er der 3 dage med 1-2 genstande — ingen dage med 3 eller flere. Protein er registreret 4 ud af 6 dage med loggede måltider. Søvn er 8,0 timer i 7-dages snit — over minimumsmålet på 7,0 timer. Energi scorer 2,8 i snit de seneste 7 dage.</p>",
-  "coachAssessmentTs": "08:35",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 16 af 357 · Tirsdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Du er i uge 3 af BASE-blokken i programmet mod Tour des Stations 2027, mesocyklus 1 af 2. Denne uge er bygget op mod FTP-testen lørdag 26/9, så belastningen holdes lav nu og peaker der.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>I dag er gåturen på 45 min gennemført — faktisk varede den 100 min med 11 TSS. Zwift-opsætningen (6 min) tæller som ekstra. Styrke A på 25 min og 17 planlagt TSS er misset fra mandag. Ugens akkumulerede TSS er 33 af 254 planlagt — du er i uge 3 af BASE, og det er tidligt i ugen. CTL er 48,3 mod et mål på 53,0 — der er 4,7 point at hente, og resten af ugen med Z2-cykel, løb, svøm og FTP-test lørdag bygger den rute.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,5 kg mod forventet 72,2 kg — du er 0,3 kg over planlinjen. Fedtprocent på 7-dages snit er 21,5 mod forventet 21,8 — fedtet ligger altså under plan, det er godt. Vægtsnittet det seneste år er stabilt nedad på det lange sigte. Hold protein ved hvert måltid og lad alkoholen ligge resten af ugen, så holder du sporet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-uge: 1 af 6 dage. Du har 3 drikkedage på de seneste 7 dage — ingen dage med 3+ genstande, men 3 dage i træk fra 18/9 til 20/9 presser HRV ned. Protein er registreret 6 af 7 dage og ramt 4 af 7 — fortsæt. Søvn er 7,7 timer i nat og 8,0 på 7-dages snit, det er solidt. Energi ligger på 2,8 ud af 7 — det er lavt, og det afspejler formentlig alkohol-clusteret.</p>",
+  "coachAssessmentTs": "15:27",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 2.3,
+  "tsb": 1.2,
   "swimHistory": [
     {
       "week": 1,
@@ -3310,7 +3324,7 @@
       "cumulative": 1500.0
     }
   ],
-  "coachAssessmentLastActId": "i189077348",
+  "coachAssessmentLastActId": "i189199474",
   "weekFocusWeek": 3,
   "coachAssessmentPlanAtGen": "Gåtur 45 min",
   "weightGoal": 68,
@@ -3564,8 +3578,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-22T12:24:11.129632",
-  "coachAssessmentTsFull": "2026-09-22T06:35:43",
+  "credentialsCheckedTs": "2026-09-22T13:28:52.413784",
+  "coachAssessmentTsFull": "2026-09-22T13:28:52",
   "coachAssessmentWeightAtGen": 73.1,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3654,7 +3668,7 @@
   "weekTssActual": {
     "1": 289,
     "2": 397,
-    "3": 22
+    "3": 33
   },
   "racesUpcoming": [
     {
@@ -4818,7 +4832,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 415,
-        "tssActual": 22,
+        "tssActual": 33,
         "purpose": "Base: cut + kælder starter. Aerobe prober tir/ons, FTP-test tor 24/9, svøm fre. Søndag 2 t.",
         "note": "Cut starter. FTP-test tor 24/9. Styrke Functional 4 A/B 2×/uge. Svøm 1×/uge (ons/fre) genindført 11/9 — må ikke koste cykeltid.",
         "quota": {
@@ -7030,12 +7044,13 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 100,
+                "actualTss": 11,
                 "note": "Stive ben efter CPH Half — gåtur i stedet for cykel",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "completion": "done"
               },
               {
                 "id": null,
@@ -10228,7 +10243,7 @@
           "week": 3,
           "programId": "tds-2027",
           "start": "2026-09-21",
-          "ctl": 48.0
+          "ctl": 48.3
         }
       ],
       "projection": [
@@ -10711,56 +10726,56 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-22T06:35:43Z",
-    "inputsHash": "aa3c134ab3fcb84872c27e8deaafaed84af2f6fa",
+    "generatedAt": "2026-09-22T13:28:52Z",
+    "inputsHash": "fb1e3f8a63c5372e51df1dfe09300e7ddd192f34",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gå de 45 min i dag — roligt tempo, ingen puls-ambitioner.",
-      "why": "Readiness er HIGH, men styrke-passet fra mandag er misset — bevar energien til FTP-testen torsdag."
+      "action": "Drop styrketræningen i dag — sæt den i stedet til onsdag morgen inden Z2-turen, eller lad den ligge til torsdag.",
+      "why": "Styrke A blev misset mandag. Indhent den ikke på bekostning af Z2-turen onsdag, som er ugens vigtigste aerobe pas."
     },
     "training": {
-      "text": "Ingen planlagte træningspas er gennemført denne uge endnu — styrke A (25 min, 17 TSS) fra mandag er misset. I dag er planen en gåtur på 45 min. Zwift-testen på 6 min og 1 TSS er logget som ekstra. Ugens akkumulerede TSS er 22 af de planlagte 254 — men det er uge 1 af 2 i BASE-mesoen, og FTP-testen lørdag er ugens nøglepas. CTL er 48,0 mod et mål på 53,0 — en difference på 5,0, hvilket er forventeligt tidligt i en base-blok med aktiv cut.",
+      "text": "I dag er gåturen på 45 min gennemført — faktisk varede den 100 min med 11 TSS. Zwift-opsætningen (6 min) tæller som ekstra. Styrke A på 25 min og 17 planlagt TSS er misset fra mandag. Ugens akkumulerede TSS er 33 af 254 planlagt — du er i uge 3 af BASE, og det er tidligt i ugen. CTL er 48,3 mod et mål på 53,0 — der er 4,7 point at hente, og resten af ugen med Z2-cykel, løb, svøm og FTP-test lørdag bygger den rute.",
       "refs": [
+        100.0,
+        11.0,
         6.0,
-        1.0,
-        45.0,
+        25.0,
         17.0,
-        22.0,
+        33.0,
         254.0,
-        48.0,
+        48.3,
         53.0,
-        5.0,
-        25.0
+        4.7
       ]
     },
     "body": {
-      "text": "7-dages snittet er 72,5 kg mod forventet 72,2 kg — du er 0,3 kg over planlinjen, hvilket er inden for korridoren på 0,5 kg. Fedtprocenten på 7-dages snit er 21,5 mod forventet 21,8, altså under plan — det er positivt. Vægten på 28 dage er ændret med -0,1 kg og fedtprocenten med +0,3 procentpoint — begge under tærsklerne for en retning, så begge er stabile. Hold protein ved hvert måltid og alkohol-fri resten af ugen.",
+      "text": "7-dages snit for vægt er 72,5 kg mod forventet 72,2 kg — du er 0,3 kg over planlinjen. Fedtprocent på 7-dages snit er 21,5 mod forventet 21,8 — fedtet ligger altså under plan, det er godt. Vægtsnittet det seneste år er stabilt nedad på det lange sigte. Hold protein ved hvert måltid og lad alkoholen ligge resten af ugen, så holder du sporet.",
       "refs": [
         72.5,
         72.2,
         0.3,
-        0.5,
         21.5,
-        21.8,
-        0.1,
-        0.3
+        21.8
       ]
     },
     "habits": {
-      "text": "1 AF-dag ud af et mål på 6 denne uge. De seneste 7 dage er der 3 dage med 1-2 genstande — ingen dage med 3 eller flere. Protein er registreret 4 ud af 6 dage med loggede måltider. Søvn er 8,0 timer i 7-dages snit — over minimumsmålet på 7,0 timer. Energi scorer 2,8 i snit de seneste 7 dage.",
+      "text": "AF-uge: 1 af 6 dage. Du har 3 drikkedage på de seneste 7 dage — ingen dage med 3+ genstande, men 3 dage i træk fra 18/9 til 20/9 presser HRV ned. Protein er registreret 6 af 7 dage og ramt 4 af 7 — fortsæt. Søvn er 7,7 timer i nat og 8,0 på 7-dages snit, det er solidt. Energi ligger på 2,8 ud af 7 — det er lavt, og det afspejler formentlig alkohol-clusteret.",
       "refs": [
         1.0,
         6.0,
         3.0,
-        4.0,
-        6.0,
-        8.0,
         7.0,
+        6.0,
+        7.0,
+        4.0,
+        7.0,
+        7.7,
+        8.0,
         2.8
       ]
     },
-    "bigPicture": "Han er i uge 3 af programmet Tour des Stations 2027, mesocykel 1 af 2 i BASE/TRANSITION-fasen. Cut startede 21. september, og ugen er designet til aerobe prober og en FTP-test torsdag — lav belastning nu er planlagt, ikke et efterslæb.",
+    "bigPicture": "Du er i uge 3 af BASE-blokken i programmet mod Tour des Stations 2027, mesocyklus 1 af 2. Denne uge er bygget op mod FTP-testen lørdag 26/9, så belastningen holdes lav nu og peaker der.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10777,18 +10792,17 @@
         "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
-      },
-      {
-        "type": "spacing",
-        "level": "info",
-        "message": "Styrke A fra mandag er misset. Planen har kun 1 styrkepas mere denne uge — det er ikke muligt at nå 2×/ugen uden at tilføje et ekstra pas.",
-        "action": null,
-        "source": "ai"
       }
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": null,
+    "validationRejected": [
+      {
+        "errors": [
+          "warnings[1].message: tal ikke i konteksten: 42"
+        ]
+      }
+    ],
     "notes": null,
     "stale": false
   },
@@ -11369,14 +11383,14 @@
     }
   },
   "weekTss": {
-    "actual": 22,
+    "actual": 33,
     "planned": 254
   },
   "martinMail": {
     "week": 3,
     "isoWeek": 39,
     "lines": [
-      "Uge 39: TSS 22 af 254 (9 %) · CTL 48,0 (mål 53) · TSB +2,3",
+      "Uge 39: TSS 33 af 254 (13 %) · CTL 48,3 (mål 53) · TSB +1,2",
       "Vægt 7d 72,5 kg · fedt 14d 21,5 % · på plan mod glidepath (72,2)",
       "HRV 7d 51 (28d 55) · hvilepuls 44 · søvn 7d 8,0 t",
       "AF 3/7 · protein 3/3 4/7 · aftensult —/7",
@@ -11385,7 +11399,7 @@
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-22T12:24:11Z"
+    "generatedAt": "2026-09-22T13:27:53Z"
   },
   "proposals": [],
   "ftp": {
@@ -11448,7 +11462,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-22",
-    "ctl": 48.0,
-    "atl": 45.7
+    "ctl": 48.3,
+    "atl": 47.1
   }
 }
