@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-22 03:27",
+    "updated": "2026-09-22 08:35",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -22,33 +22,33 @@
   },
   "kpis": {
     "weight": {
-      "value": "72,4",
+      "value": "72,5",
       "unit": "kg",
       "sub": "forventet 72,2 · på plan",
       "color": "#27AE60"
     },
     "fat": {
-      "value": "21,6",
+      "value": "21,5",
       "unit": "%",
       "sub": "14d-snit · forventet 21,8",
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "49,4",
+      "value": "48,0",
       "unit": "",
       "sub": "Uge 3-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-6,1",
+      "value": "2,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,6",
+      "value": "7,7",
       "unit": "t",
-      "sub": "Snit 7d 7,9t · mål 7t",
+      "sub": "Snit 7d 8,0t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "50,8",
+      "value": "50,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "21",
+      "value": "22",
       "unit": "TSS",
-      "sub": "21 af 301 planlagt TSS",
+      "sub": "22 af 254 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "2,8",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "swimM": {
       "value": "0",
@@ -96,7 +96,7 @@
     "ftp": {
       "value": "278",
       "unit": "W",
-      "sub": "3,84 W/kg · mål 278 (TRANSITION) · test 24/9",
+      "sub": "3,83 W/kg · mål 278 (TRANSITION) · test 26/9",
       "color": "#27AE60"
     },
     "protein": {
@@ -111,17 +111,25 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "{\"text\": \"Du er i uge 3 af programmet Tour des Stations 2027, mesocykel 1/2, BASE/TRANSITION. Cuttet startede 21/9, og ugen er bygget op om FTP-testen torsdag — alle dage frem til da skal holde kroppen frisk, ikke presse den.\"} {HL} I dag er planen FaF 1 Z2 - Grundtur 80 på cykel med ERG — 80 minutter, let load. Readiness er LOW og HRV ligger på 45,0 ms, 11% under 7-dages snittet på 50,8 ms, så kør 60 minutter i stedet for 80.",
-  "coachHighlight": "Kør FaF 1 Z2 - Grundtur 80 i dag med ERG slået til — men skru ned til 60 minutter og hold dig strengt i zone 2.",
+  "coachSpeech": "Han er i uge 3 af programmet Tour des Stations 2027, mesocykel 1 af 2 i BASE/TRANSITION-fasen. Cut startede 21. september, og ugen er designet til aerobe prober og en FTP-test torsdag — lav belastning nu er planlagt, ikke et efterslæb. {HL} Ingen planlagte træningspas er gennemført denne uge endnu — styrke A (25 min, 17 TSS) fra mandag er misset. I dag er planen en gåtur på 45 min. Zwift-testen på 6 min og 1 TSS er logget som ekstra.",
+  "coachHighlight": "Gå de 45 min i dag — roligt tempo, ingen puls-ambitioner.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
-      "discipline": "bike",
-      "title": "FaF 1 Z2 - Grundtur 80",
+      "discipline": "walk",
+      "title": "Gåtur 45 min",
       "duration": "",
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "bike",
+      "title": "Test - setting up Zwift Ride",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -146,39 +154,41 @@
     },
     {
       "day": "Tir",
-      "disc": "bike",
-      "label": "FaF 1 Z2 - Grundtur 80",
+      "disc": "walk",
+      "label": "Gåtur 45 min",
       "done": false,
-      "planned_tss": 60,
-      "planned_mins": 80,
+      "planned_tss": null,
+      "planned_mins": 45,
       "planned_distance_m": null,
       "today": true
     },
     {
+      "day": "Tir",
+      "disc": "bike",
+      "label": "Test - setting up Zwift Ride",
+      "done": true,
+      "extra": true,
+      "actual_tss": 1,
+      "actual_mins": 6,
+      "actual_distance_m": 2782.11,
+      "today": true
+    },
+    {
       "day": "Ons",
+      "disc": "bike",
+      "label": "FaF 1 Z2 - Grundtur 80",
+      "done": false,
+      "planned_tss": 55,
+      "planned_mins": 80,
+      "planned_distance_m": null
+    },
+    {
+      "day": "Tor",
       "disc": "run",
       "label": "AEROB PROBE + Løb Z2 45 min",
       "done": false,
-      "planned_tss": 41,
+      "planned_tss": 50,
       "planned_mins": 45,
-      "planned_distance_m": null
-    },
-    {
-      "day": "Tor",
-      "disc": "bike",
-      "label": "FaF 0 Test - FTP 20 min",
-      "done": false,
-      "planned_tss": 40,
-      "planned_mins": 53,
-      "planned_distance_m": null
-    },
-    {
-      "day": "Tor",
-      "disc": "strength",
-      "label": "Styrke B · Functional 4 · 2 runder",
-      "done": false,
-      "planned_tss": 17,
-      "planned_mins": 25,
       "planned_distance_m": null
     },
     {
@@ -193,10 +203,10 @@
     {
       "day": "Lør",
       "disc": "bike",
-      "label": "FaF 1 Z2 - Grundtur 80",
+      "label": "FaF 0 Test - FTP 20 min",
       "done": false,
-      "planned_tss": 60,
-      "planned_mins": 80,
+      "planned_tss": 29,
+      "planned_mins": 53,
       "planned_distance_m": null
     },
     {
@@ -212,7 +222,7 @@
   "ctlCurve": [
     49.1,
     49.9,
-    49.4
+    48.0
   ],
   "weightHistory": [
     {
@@ -560,7 +570,11 @@
       "v": 73.2,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-22",
+      "v": 73.1,
+      "real": true
+    }
   ],
   "hrvHistory": [
     {
@@ -1008,7 +1022,11 @@
       "v": 45.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-22",
+      "v": 51.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1456,7 +1474,11 @@
       "v": 8.6,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-22",
+      "v": 7.7,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1901,12 +1923,12 @@
     },
     {
       "date": "2026-09-21",
-      "v": -5.6,
+      "v": -3.3,
       "real": true
     },
     {
       "date": "2026-09-22",
-      "v": -6.0,
+      "v": 2.4,
       "real": true
     }
   ],
@@ -2211,39 +2233,41 @@
         },
         {
           "day": "Tir",
-          "disc": "bike",
-          "label": "FaF 1 Z2 - Grundtur 80",
+          "disc": "walk",
+          "label": "Gåtur 45 min",
           "done": false,
-          "planned_tss": 60,
-          "planned_mins": 80,
+          "planned_tss": null,
+          "planned_mins": 45,
           "planned_distance_m": null,
           "today": true
         },
         {
+          "day": "Tir",
+          "disc": "bike",
+          "label": "Test - setting up Zwift Ride",
+          "done": true,
+          "extra": true,
+          "actual_tss": 1,
+          "actual_mins": 6,
+          "actual_distance_m": 2782.11,
+          "today": true
+        },
+        {
           "day": "Ons",
+          "disc": "bike",
+          "label": "FaF 1 Z2 - Grundtur 80",
+          "done": false,
+          "planned_tss": 55,
+          "planned_mins": 80,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Tor",
           "disc": "run",
           "label": "AEROB PROBE + Løb Z2 45 min",
           "done": false,
-          "planned_tss": 41,
+          "planned_tss": 50,
           "planned_mins": 45,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "FaF 0 Test - FTP 20 min",
-          "done": false,
-          "planned_tss": 40,
-          "planned_mins": 53,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke B · Functional 4 · 2 runder",
-          "done": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
           "planned_distance_m": null
         },
         {
@@ -2258,10 +2282,10 @@
         {
           "day": "Lør",
           "disc": "bike",
-          "label": "FaF 1 Z2 - Grundtur 80",
+          "label": "FaF 0 Test - FTP 20 min",
           "done": false,
-          "planned_tss": 60,
-          "planned_mins": 80,
+          "planned_tss": 29,
+          "planned_mins": 53,
           "planned_distance_m": null
         },
         {
@@ -2893,9 +2917,10 @@
     }
   ],
   "train_mins": {
+    "bike": 6.0,
     "walk": 62.0,
-    "planned": 383.0,
-    "actual_total": 62.0
+    "planned": 323.0,
+    "actual_total": 68.0
   },
   "fatHistory": [
     {
@@ -3243,10 +3268,14 @@
       "v": 22.2,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-22",
+      "v": 20.9,
+      "real": true
+    }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 16 af 357 · Tirsdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">{\"text\": \"Du er i uge 3 af programmet Tour des Stations 2027, mesocykel 1/2, BASE/TRANSITION. Cuttet startede 21/9, og ugen er bygget op om FTP-testen torsdag — alle dage frem til da skal holde kroppen frisk, ikke presse den.\"}</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>I dag er planen FaF 1 Z2 - Grundtur 80 på cykel med ERG — 80 minutter, let load. Readiness er LOW og HRV ligger på 45,0 ms, 11% under 7-dages snittet på 50,8 ms, så kør 60 minutter i stedet for 80. Ugen er lige startet: mandag manglede Styrke A (25 min), og den eneste aktivitet udover det er en gåtur på 62 minutter. CTL er 49,4 mod et mål på 53,0 — du er 3,6 point under — men bloktype er BASE i transition, og torsdagens FTP-test kræver friske ben, ikke ekstra belastning nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,4 kg mod forventet 72,2 kg — du er 0,2 kg over plan. Fedtprocenten på 7-dages snit er 21,6, og ændringen den seneste måned er 0,4 procentpoint — under grænsen på 0,5 pp, så retning er stabil. Cut-raten er 0,22 kg/uge mod et mål på 0,25 kg/uge; du er tæt på, men 3 drikkedage i træk den seneste uge trækker i den forkerte retning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>1 AF-dag ud af et mål på 6 denne uge, og du har haft 3 dage med 3+ genstande de seneste 7 dage — det skader muskelproteinsyntesen og presser HRV. Protein er registreret 4 af 6 registrerede dage, der er plads til at stramme op. Søvn ser fin ud med et 7-dages snit på 7,9 timer, og energi ligger på 2,8 af 7.</p>",
-  "coachAssessmentTs": "03:27",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 16 af 357 · Tirsdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Han er i uge 3 af programmet Tour des Stations 2027, mesocykel 1 af 2 i BASE/TRANSITION-fasen. Cut startede 21. september, og ugen er designet til aerobe prober og en FTP-test torsdag — lav belastning nu er planlagt, ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen planlagte træningspas er gennemført denne uge endnu — styrke A (25 min, 17 TSS) fra mandag er misset. I dag er planen en gåtur på 45 min. Zwift-testen på 6 min og 1 TSS er logget som ekstra. Ugens akkumulerede TSS er 22 af de planlagte 254 — men det er uge 1 af 2 i BASE-mesoen, og FTP-testen lørdag er ugens nøglepas. CTL er 48,0 mod et mål på 53,0 — en difference på 5,0, hvilket er forventeligt tidligt i en base-blok med aktiv cut.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er 72,5 kg mod forventet 72,2 kg — du er 0,3 kg over planlinjen, hvilket er inden for korridoren på 0,5 kg. Fedtprocenten på 7-dages snit er 21,5 mod forventet 21,8, altså under plan — det er positivt. Vægten på 28 dage er ændret med -0,1 kg og fedtprocenten med +0,3 procentpoint — begge under tærsklerne for en retning, så begge er stabile. Hold protein ved hvert måltid og alkohol-fri resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>1 AF-dag ud af et mål på 6 denne uge. De seneste 7 dage er der 3 dage med 1-2 genstande — ingen dage med 3 eller flere. Protein er registreret 4 ud af 6 dage med loggede måltider. Søvn er 8,0 timer i 7-dages snit — over minimumsmålet på 7,0 timer. Energi scorer 2,8 i snit de seneste 7 dage.</p>",
+  "coachAssessmentTs": "08:35",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3257,21 +3286,21 @@
       "source": "rule"
     },
     {
-      "type": "readiness",
-      "level": "critical",
-      "message": "Readiness er LOW og HRV er 45,0 ms — 11% under 7-dages snit på 50,8 ms. Reducer dagens cykeltur fra 80 til 60 minutter.",
-      "action": null,
-      "source": "ai"
-    },
-    {
-      "type": "hrv",
+      "type": "cut",
       "level": "warn",
-      "message": "HRV 45,0 ms — 11% under 7d-snit (50,8 ms). Kroppen er presset.",
+      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "action": null,
       "source": "rule"
+    },
+    {
+      "type": "spacing",
+      "level": "info",
+      "message": "Styrke A fra mandag er misset. Planen har kun 1 styrkepas mere denne uge — det er ikke muligt at nå 2×/ugen uden at tilføje et ekstra pas.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": -6.1,
+  "tsb": 2.3,
   "swimHistory": [
     {
       "week": 1,
@@ -3292,9 +3321,9 @@
       "cumulative": 1500.0
     }
   ],
-  "coachAssessmentLastActId": "i188802630",
+  "coachAssessmentLastActId": "i189077348",
   "weekFocusWeek": 3,
-  "coachAssessmentPlanAtGen": "FaF 1 Z2 - Grundtur 80",
+  "coachAssessmentPlanAtGen": "Gåtur 45 min",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
@@ -3387,7 +3416,7 @@
     71.73,
     71.94,
     72.27,
-    72.37
+    72.47
   ],
   "fatMovingAvg7": [
     null,
@@ -3479,7 +3508,7 @@
     21.49,
     21.46,
     21.64,
-    21.65
+    21.54
   ],
   "ctlPlan": [
     47,
@@ -3546,12 +3575,12 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-22T01:28:24.168424",
-  "coachAssessmentTsFull": "2026-09-22T01:28:24",
-  "coachAssessmentWeightAtGen": 73.2,
+  "credentialsCheckedTs": "2026-09-22T06:35:43.836503",
+  "coachAssessmentTsFull": "2026-09-22T06:35:43",
+  "coachAssessmentWeightAtGen": 73.1,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 22.2,
+  "coachAssessmentFatAtGen": 20.9,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 278,
@@ -3636,7 +3665,7 @@
   "weekTssActual": {
     "1": 289,
     "2": 397,
-    "3": 21
+    "3": 22
   },
   "racesUpcoming": [
     {
@@ -4366,7 +4395,7 @@
     },
     {
       "date": "2026-09-22",
-      "v": 48,
+      "v": 44,
       "real": true
     }
   ],
@@ -4800,7 +4829,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 415,
-        "tssActual": 21,
+        "tssActual": 22,
         "purpose": "Base: cut + kælder starter. Aerobe prober tir/ons, FTP-test tor 24/9, svøm fre. Søndag 2 t.",
         "note": "Cut starter. FTP-test tor 24/9. Styrke Functional 4 A/B 2×/uge. Svøm 1×/uge (ons/fre) genindført 11/9 — må ikke koste cykeltid.",
         "quota": {
@@ -7009,7 +7038,52 @@
             "weekday": "Tir",
             "entries": [
               {
-                "id": "af9ed202",
+                "id": "6173d4d9",
+                "name": "Gåtur 45 min",
+                "type": "Walk",
+                "disc": "walk",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "Stive ben efter CPH Half — gåtur i stedet for cykel",
+                "isKey": false,
+                "optional": false
+              },
+              {
+                "id": null,
+                "name": "Test - setting up Zwift Ride",
+                "type": null,
+                "disc": "bike",
+                "mins": 6,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 6,
+                "actualTss": 1,
+                "note": null,
+                "isKey": false,
+                "extra": true
+              }
+            ],
+            "restNote": null,
+            "restId": null,
+            "isToday": true
+          },
+          {
+            "date": "2026-09-23",
+            "weekday": "Ons",
+            "entries": [
+              {
+                "id": "7841224d",
                 "name": "FaF 1 Z2 - Grundtur 80",
                 "type": "Ride",
                 "disc": "bike",
@@ -7022,34 +7096,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "AEROB PROBE — EF-baseline for cuttet. Kan køres ude som ren Z2 samme varighed",
-                "isKey": false,
-                "optional": false
-              }
-            ],
-            "restNote": null,
-            "restId": null,
-            "isToday": true
-          },
-          {
-            "date": "2026-09-23",
-            "weekday": "Ons",
-            "entries": [
-              {
-                "id": "437c99b0",
-                "name": "AEROB PROBE + Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
-                "mins": 45,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls",
+                "note": "Flyttet fra lør 26/9. Let Z2 — stop hvis benene protesterer",
                 "isKey": false,
                 "optional": false
               }
@@ -7063,29 +7110,11 @@
             "weekday": "Tor",
             "entries": [
               {
-                "id": "0d3d7bb7",
-                "name": "FaF 0 Test - FTP 20 min",
-                "type": "Ride",
-                "disc": "bike",
-                "mins": 53,
-                "libraryId": "test_ftp20",
-                "load": "haard",
-                "erg": false,
-                "purpose": "Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.",
-                "zwiftName": "FaF 0 Test - FTP 20 min",
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "FTP-TEST — indendørs, samme opsætning hver gang. IKKE ERG. Zoner sættes efter resultatet (set-zones.yml)",
-                "isKey": true,
-                "optional": false
-              },
-              {
-                "id": "b792f3e1",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
+                "id": "3aacd4a8",
+                "name": "AEROB PROBE + Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -7094,7 +7123,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls · Flyttet fra ons 23/9 (stive ben)",
                 "isKey": false,
                 "optional": false
               }
@@ -7135,21 +7164,21 @@
             "weekday": "Lør",
             "entries": [
               {
-                "id": "49dbc85c",
-                "name": "FaF 1 Z2 - Grundtur 80",
+                "id": "651f66c2",
+                "name": "FaF 0 Test - FTP 20 min",
                 "type": "Ride",
                 "disc": "bike",
-                "mins": 80,
-                "libraryId": "z2_grundtur_80",
-                "load": "let",
-                "erg": true,
-                "purpose": "Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
-                "zwiftName": "FaF 1 Z2 - Grundtur 80",
+                "mins": 53,
+                "libraryId": "test_ftp20",
+                "load": "haard",
+                "erg": false,
+                "purpose": "Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.",
+                "zwiftName": "FaF 0 Test - FTP 20 min",
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
-                "isKey": false,
+                "note": "FTP-TEST — indendørs, samme opsætning hver gang. IKKE ERG. Zoner sættes efter resultatet (set-zones.yml) · Flyttet fra tor 24/9. Tunge ben i opvarmningen → kør Grundtur i stedet og test i uge 41",
+                "isKey": true,
                 "optional": false
               }
             ],
@@ -10217,17 +10246,13 @@
           "week": 3,
           "programId": "tds-2027",
           "start": "2026-09-21",
-          "ctl": 49.4
+          "ctl": 48.0
         }
       ],
       "projection": [
         {
-          "d": "2026-09-22",
-          "ctl": 49.4
-        },
-        {
           "d": "2026-09-23",
-          "ctl": 49.7
+          "ctl": 49.6
         },
         {
           "d": "2026-09-24",
@@ -10263,7 +10288,7 @@
         },
         {
           "d": "2026-10-02",
-          "ctl": 51.2
+          "ctl": 51.1
         },
         {
           "d": "2026-10-03",
@@ -10271,7 +10296,7 @@
         },
         {
           "d": "2026-10-04",
-          "ctl": 50.8
+          "ctl": 50.7
         },
         {
           "d": "2026-10-05",
@@ -10287,7 +10312,7 @@
         },
         {
           "d": "2026-10-08",
-          "ctl": 49.7
+          "ctl": 49.6
         },
         {
           "d": "2026-10-09",
@@ -10307,7 +10332,7 @@
         },
         {
           "d": "2026-10-13",
-          "ctl": 49.6
+          "ctl": 49.5
         },
         {
           "d": "2026-10-14",
@@ -10343,11 +10368,11 @@
         },
         {
           "d": "2026-10-22",
-          "ctl": 52.4
+          "ctl": 52.3
         },
         {
           "d": "2026-10-23",
-          "ctl": 52.7
+          "ctl": 52.6
         },
         {
           "d": "2026-10-24",
@@ -10359,7 +10384,7 @@
         },
         {
           "d": "2026-10-26",
-          "ctl": 52.9
+          "ctl": 52.8
         },
         {
           "d": "2026-10-27",
@@ -10403,7 +10428,7 @@
         },
         {
           "d": "2026-11-06",
-          "ctl": 52.4
+          "ctl": 52.3
         },
         {
           "d": "2026-11-07",
@@ -10431,7 +10456,7 @@
         },
         {
           "d": "2026-11-13",
-          "ctl": 54.4
+          "ctl": 54.3
         },
         {
           "d": "2026-11-14",
@@ -10574,23 +10599,23 @@
         "fromName": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
         "fromDate": "2026-09-20",
         "fromDisc": "run",
-        "toId": "0d3d7bb7",
+        "toId": "651f66c2",
         "toName": "FaF 0 Test - FTP 20 min",
-        "toDate": "2026-09-24",
+        "toDate": "2026-09-26",
         "toDisc": "bike",
-        "hours": 96,
+        "hours": 144,
         "ok": true
       },
       {
-        "fromId": "0d3d7bb7",
+        "fromId": "651f66c2",
         "fromName": "FaF 0 Test - FTP 20 min",
-        "fromDate": "2026-09-24",
+        "fromDate": "2026-09-26",
         "fromDisc": "bike",
         "toId": "2b20bee2",
         "toName": "FaF 4 Tær - 3 x 12",
         "toDate": "2026-10-20",
         "toDisc": "bike",
-        "hours": 624,
+        "hours": 576,
         "ok": true
       },
       {
@@ -10704,57 +10729,56 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-22T01:28:24Z",
-    "inputsHash": "91e19819a758d906cbd48e0f2a99aa92d10f8bca",
+    "generatedAt": "2026-09-22T06:35:43Z",
+    "inputsHash": "aa3c134ab3fcb84872c27e8deaafaed84af2f6fa",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør FaF 1 Z2 - Grundtur 80 i dag med ERG slået til — men skru ned til 60 minutter og hold dig strengt i zone 2.",
-      "why": "Readiness er LOW, HRV er 11% under 7-dages snit: fuld varighed presser kroppen yderligere og risikerer at undergrave torsdagens FTP-test."
+      "action": "Gå de 45 min i dag — roligt tempo, ingen puls-ambitioner.",
+      "why": "Readiness er HIGH, men styrke-passet fra mandag er misset — bevar energien til FTP-testen torsdag."
     },
     "training": {
-      "text": "I dag er planen FaF 1 Z2 - Grundtur 80 på cykel med ERG — 80 minutter, let load. Readiness er LOW og HRV ligger på 45,0 ms, 11% under 7-dages snittet på 50,8 ms, så kør 60 minutter i stedet for 80. Ugen er lige startet: mandag manglede Styrke A (25 min), og den eneste aktivitet udover det er en gåtur på 62 minutter. CTL er 49,4 mod et mål på 53,0 — du er 3,6 point under — men bloktype er BASE i transition, og torsdagens FTP-test kræver friske ben, ikke ekstra belastning nu.",
+      "text": "Ingen planlagte træningspas er gennemført denne uge endnu — styrke A (25 min, 17 TSS) fra mandag er misset. I dag er planen en gåtur på 45 min. Zwift-testen på 6 min og 1 TSS er logget som ekstra. Ugens akkumulerede TSS er 22 af de planlagte 254 — men det er uge 1 af 2 i BASE-mesoen, og FTP-testen lørdag er ugens nøglepas. CTL er 48,0 mod et mål på 53,0 — en difference på 5,0, hvilket er forventeligt tidligt i en base-blok med aktiv cut.",
       "refs": [
-        80.0,
+        6.0,
+        1.0,
         45.0,
-        50.8,
-        11.0,
-        60.0,
-        25.0,
-        62.0,
-        49.4,
+        17.0,
+        22.0,
+        254.0,
+        48.0,
         53.0,
-        3.6
+        5.0,
+        25.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 72,4 kg mod forventet 72,2 kg — du er 0,2 kg over plan. Fedtprocenten på 7-dages snit er 21,6, og ændringen den seneste måned er 0,4 procentpoint — under grænsen på 0,5 pp, så retning er stabil. Cut-raten er 0,22 kg/uge mod et mål på 0,25 kg/uge; du er tæt på, men 3 drikkedage i træk den seneste uge trækker i den forkerte retning.",
+      "text": "7-dages snittet er 72,5 kg mod forventet 72,2 kg — du er 0,3 kg over planlinjen, hvilket er inden for korridoren på 0,5 kg. Fedtprocenten på 7-dages snit er 21,5 mod forventet 21,8, altså under plan — det er positivt. Vægten på 28 dage er ændret med -0,1 kg og fedtprocenten med +0,3 procentpoint — begge under tærsklerne for en retning, så begge er stabile. Hold protein ved hvert måltid og alkohol-fri resten af ugen.",
       "refs": [
-        72.4,
+        72.5,
         72.2,
-        0.2,
-        21.6,
-        0.4,
+        0.3,
         0.5,
-        0.22,
-        0.25,
-        3.0
+        21.5,
+        21.8,
+        0.1,
+        0.3
       ]
     },
     "habits": {
-      "text": "1 AF-dag ud af et mål på 6 denne uge, og du har haft 3 dage med 3+ genstande de seneste 7 dage — det skader muskelproteinsyntesen og presser HRV. Protein er registreret 4 af 6 registrerede dage, der er plads til at stramme op. Søvn ser fin ud med et 7-dages snit på 7,9 timer, og energi ligger på 2,8 af 7.",
+      "text": "1 AF-dag ud af et mål på 6 denne uge. De seneste 7 dage er der 3 dage med 1-2 genstande — ingen dage med 3 eller flere. Protein er registreret 4 ud af 6 dage med loggede måltider. Søvn er 8,0 timer i 7-dages snit — over minimumsmålet på 7,0 timer. Energi scorer 2,8 i snit de seneste 7 dage.",
       "refs": [
         1.0,
         6.0,
         3.0,
-        3.0,
         4.0,
         6.0,
-        7.9,
+        8.0,
+        7.0,
         2.8
       ]
     },
-    "bigPicture": "{\"text\": \"Du er i uge 3 af programmet Tour des Stations 2027, mesocykel 1/2, BASE/TRANSITION. Cuttet startede 21/9, og ugen er bygget op om FTP-testen torsdag — alle dage frem til da skal holde kroppen frisk, ikke presse den.\"}",
+    "bigPicture": "Han er i uge 3 af programmet Tour des Stations 2027, mesocykel 1 af 2 i BASE/TRANSITION-fasen. Cut startede 21. september, og ugen er designet til aerobe prober og en FTP-test torsdag — lav belastning nu er planlagt, ikke et efterslæb.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10766,18 +10790,18 @@
         "source": "rule"
       },
       {
-        "type": "readiness",
-        "level": "act",
-        "message": "Readiness er LOW og HRV er 45,0 ms — 11% under 7-dages snit på 50,8 ms. Reducer dagens cykeltur fra 80 til 60 minutter.",
-        "action": null,
-        "source": "ai"
-      },
-      {
-        "type": "hrv",
+        "type": "cut",
         "level": "warn",
-        "message": "HRV 45,0 ms — 11% under 7d-snit (50,8 ms). Kroppen er presset.",
+        "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
+      },
+      {
+        "type": "spacing",
+        "level": "info",
+        "message": "Styrke A fra mandag er misset. Planen har kun 1 styrkepas mere denne uge — det er ikke muligt at nå 2×/ugen uden at tilføje et ekstra pas.",
+        "action": null,
+        "source": "ai"
       }
     ],
     "error": null,
@@ -10883,13 +10907,13 @@
       "targetKg": 68.0,
       "expectedKg": 72.2,
       "corridorKg": 0.5,
-      "avg7": 72.4,
-      "avg7Date": "2026-09-21",
-      "delta": 0.2,
+      "avg7": 72.5,
+      "avg7Date": "2026-09-22",
+      "delta": 0.3,
       "status": "plan",
       "note": null,
       "ratePerWeek": -0.22,
-      "actualRate4w": -0.05,
+      "actualRate4w": -0.02,
       "series": [
         {
           "date": "2026-09-21",
@@ -10984,7 +11008,7 @@
       ]
     },
     "fat": {
-      "avg14": 21.6,
+      "avg14": 21.5,
       "avg14Change28d": 0.2,
       "expected": 21.8,
       "target": 16.0,
@@ -10993,8 +11017,8 @@
       "note": "±0,5 pp er måleusikkerhed"
     },
     "ffm": {
-      "now": 56.7,
-      "change28d": -0.5,
+      "now": 56.8,
+      "change28d": -0.4,
       "target": 57.1,
       "status": "ok",
       "baseline": 56.7,
@@ -11018,13 +11042,13 @@
       "signals": {
         "rate": {
           "level": null,
-          "value": 0.05,
-          "text": "0,05 kg/uge (2 uger)"
+          "value": 0.1,
+          "text": "0,10 kg/uge (2 uger)"
         },
         "ffm": {
           "level": null,
-          "value": -0.5,
-          "text": "−0,5 kg på 4 uger"
+          "value": -0.4,
+          "text": "−0,4 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -11037,15 +11061,15 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 0.6,
-            "hrvPct": -6.0
+            "rhr": 0.4,
+            "hrvPct": -6.4
           },
-          "text": "hvilepuls +1 · HRV −6 % (14 dage)"
+          "text": "hvilepuls 0 · HRV −6 % (14 dage)"
         },
         "plateau": {
-          "level": "info",
-          "value": 0.1,
-          "text": "+0,1 kg over 3 uger"
+          "level": null,
+          "value": 0.2,
+          "text": "+0,2 kg over 3 uger"
         },
         "alcohol": {
           "level": "warn",
@@ -11238,62 +11262,62 @@
       }
     ],
     "next": {
-      "ab": "b",
-      "templateId": "styrke-fs4-b-2r",
-      "name": "Styrke B · Functional 4 · 2 runder",
+      "ab": "a",
+      "templateId": "styrke-fs4-a-2r",
+      "name": "Styrke A · Functional 4 · 2 runder",
       "rounds": 2,
-      "date": "2026-09-24",
-      "reasoning": "Planlagt 24/9: Styrke B · Functional 4 · 2 runder",
+      "date": "2026-09-30",
+      "reasoning": "Planlagt 30/9: Styrke A · Functional 4 · 2 runder",
       "recovery": false,
       "exercises": [
         {
-          "name": "RDL",
-          "load": "12,5 kg KB",
-          "reps": 12,
+          "name": "Thruster",
+          "load": "2×5 kg DB",
+          "reps": 10,
           "unit": "reps",
           "group": "ben",
-          "baseLoad": "12,5 kg KB",
-          "baseReps": 12,
+          "baseLoad": "2×5 kg DB",
+          "baseReps": 10,
           "capped": false
         },
         {
-          "name": "Split squat",
-          "load": "12,5 kg KB goblet",
+          "name": "Renegade row",
+          "load": "10 kg DB",
           "reps": 8,
-          "unit": "reps/ben",
-          "group": "ben",
-          "baseLoad": "12,5 kg KB goblet",
+          "unit": "reps/side",
+          "group": "core",
+          "baseLoad": "10 kg DB",
           "baseReps": 8,
           "capped": false
         },
         {
-          "name": "Pullover",
-          "load": "7 kg DB",
-          "reps": 12,
+          "name": "KB swing",
+          "load": "12,5 kg KB",
+          "reps": 15,
           "unit": "reps",
-          "group": "overkrop",
-          "baseLoad": "7 kg DB",
-          "baseReps": 12,
+          "group": "ben",
+          "baseLoad": "12,5 kg KB",
+          "baseReps": 15,
           "capped": false
         },
         {
-          "name": "Bænkpres",
-          "load": "2×7 kg DB",
-          "reps": 12,
-          "unit": "reps",
+          "name": "KB row",
+          "load": "10 kg DB",
+          "reps": 10,
+          "unit": "reps/side",
           "group": "overkrop",
-          "baseLoad": "2×7 kg DB",
-          "baseReps": 12,
+          "baseLoad": "10 kg DB",
+          "baseReps": 10,
           "capped": false
         },
         {
-          "name": "Farmers walk",
-          "load": "2×10 kg DB",
-          "reps": 40,
-          "unit": "m",
-          "group": "core",
-          "baseLoad": "2×10 kg DB",
-          "baseReps": 40,
+          "name": "Press",
+          "load": "2×5 kg DB",
+          "reps": 10,
+          "unit": "reps",
+          "group": "overkrop",
+          "baseLoad": "2×5 kg DB",
+          "baseReps": 10,
           "capped": false
         }
       ],
@@ -11363,29 +11387,29 @@
     }
   },
   "weekTss": {
-    "actual": 21,
-    "planned": 301
+    "actual": 22,
+    "planned": 254
   },
   "martinMail": {
     "week": 3,
     "isoWeek": 39,
     "lines": [
-      "Uge 39: TSS 21 af 301 (7 %) · CTL 49,4 (mål 53) · TSB −6,1",
-      "Vægt 7d 72,4 kg · fedt 14d 21,6 % · på plan mod glidepath (72,2)",
-      "HRV 7d 51 (28d 55) · hvilepuls 44 · søvn 7d 8,1 t",
+      "Uge 39: TSS 22 af 254 (9 %) · CTL 48,0 (mål 53) · TSB +2,3",
+      "Vægt 7d 72,5 kg · fedt 14d 21,5 % · på plan mod glidepath (72,2)",
+      "HRV 7d 51 (28d 55) · hvilepuls 44 · søvn 7d 8,0 t",
       "AF 3/7 · protein 3/3 4/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: warn — 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-22T01:27:57Z"
+    "generatedAt": "2026-09-22T06:35:18Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 278,
-    "wkg": 3.84,
-    "weightAvg7": 72.4,
+    "wkg": 3.83,
+    "weightAvg7": 72.5,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
@@ -11393,7 +11417,7 @@
     "seasonStart": 278,
     "status": "ok",
     "color": "#27AE60",
-    "nextTest": "2026-09-24",
+    "nextTest": "2026-09-26",
     "history": [
       {
         "date": "2026-07-28",
@@ -11442,7 +11466,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-22",
-    "ctl": 49.4,
-    "atl": 55.5
+    "ctl": 48.0,
+    "atl": 45.7
   }
 }
