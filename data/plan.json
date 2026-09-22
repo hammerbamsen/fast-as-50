@@ -6587,87 +6587,14 @@
           "date": "2026-09-22",
           "entries": [
             {
-              "id": "af9ed202",
+              "id": "6173d4d9",
+              "note": "Stive ben efter CPH Half — gåtur i stedet for cykel",
               "workout": {
-                "name": "FaF 1 Z2 - Grundtur 80",
-                "type": "Ride",
-                "moving_time": 4800,
-                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1500,
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 70% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1500,
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 70% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 62,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "libraryId": "z2_grundtur_80",
-              "note": "AEROB PROBE — EF-baseline for cuttet. Kan køres ude som ren Z2 samme varighed"
+                "description": "- Gåtur 45m\n\nFORMÅL: Aktiv restitution. Roligt tempo, løs i benene.",
+                "moving_time": 2700,
+                "name": "Gåtur 45 min",
+                "type": "Walk"
+              }
             }
           ]
         },
@@ -6675,54 +6602,87 @@
           "date": "2026-09-23",
           "entries": [
             {
-              "id": "437c99b0",
+              "id": "7841224d",
+              "libraryId": "z2_grundtur_80",
+              "note": "Flyttet fra lør 26/9. Let Z2 — stop hvis benene protesterer",
               "workout": {
-                "name": "AEROB PROBE + Løb Z2 45 min",
-                "type": "Run",
-                "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- PROBE 5 km @ 5:15/km FAST — samme rute hver gang 26m 5:15/km Pace\n- Base 4m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace\n\nPROBEN ER MÅLINGEN. Samme flade rute, samme 5:15/km, samme tid på dagen. Notér gennemsnitspuls for de 5 km.\nLavere puls end sidste måned = bedre form. Højere = træthed eller for stort underskud.\nBlæst og over 22 grader ugyldiggør målingen — flyt den.",
+                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
+                "moving_time": 4800,
+                "name": "FaF 1 Z2 - Grundtur 80",
+                "type": "Ride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
+                      "duration": 600,
+                      "power": {
+                        "end": 62,
+                        "start": 45,
+                        "units": "%ftp"
                       },
-                      "duration": 600
+                      "ramp": true,
+                      "text": "Varm-op",
+                      "warmup": true
                     },
                     {
-                      "text": "PROBE 5 km @ 5:15/km FAST — notér snit-puls",
-                      "pace": {
-                        "start": 84,
-                        "end": 84,
-                        "units": "%pace"
+                      "duration": 1500,
+                      "power": {
+                        "end": 66,
+                        "start": 66,
+                        "units": "%ftp"
                       },
-                      "duration": 1560
+                      "text": "Zone 2 66% FTP"
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
+                      "cadence": {
+                        "end": 100,
+                        "start": 100,
+                        "units": "rpm"
                       },
-                      "duration": 240
+                      "duration": 300,
+                      "power": {
+                        "end": 70,
+                        "start": 70,
+                        "units": "%ftp"
+                      },
+                      "text": "Kadence 100 70% FTP"
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
+                      "duration": 1500,
+                      "power": {
+                        "end": 66,
+                        "start": 66,
+                        "units": "%ftp"
                       },
-                      "duration": 300
+                      "text": "Zone 2 66% FTP"
+                    },
+                    {
+                      "cadence": {
+                        "end": 100,
+                        "start": 100,
+                        "units": "rpm"
+                      },
+                      "duration": 300,
+                      "power": {
+                        "end": 70,
+                        "start": 70,
+                        "units": "%ftp"
+                      },
+                      "text": "Kadence 100 70% FTP"
+                    },
+                    {
+                      "cooldown": true,
+                      "duration": 600,
+                      "power": {
+                        "end": 40,
+                        "start": 62,
+                        "units": "%ftp"
+                      },
+                      "ramp": true,
+                      "text": "Cool-down"
                     }
                   ]
                 }
-              },
-              "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls"
+              }
             }
           ]
         },
@@ -6730,98 +6690,54 @@
           "date": "2026-09-24",
           "entries": [
             {
-              "id": "0d3d7bb7",
+              "id": "3aacd4a8",
+              "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls · Flyttet fra ons 23/9 (stive ben)",
               "workout": {
-                "name": "FaF 0 Test - FTP 20 min",
-                "type": "Ride",
-                "moving_time": 3180,
-                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Åbner 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 55% FTP\n- Sidste rolige minutter 5m 65% FTP\n- 20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let. 20m freeride\n- Cool-down 7m ramp 60-40% FTP\n\nFORMÅL: Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nIKKE ERG — du skal selv styre effekten. Nyt FTP = 95% af 20-min snit. Begge blæsere på. Du undervurderer dig selv: læg ud 5 W over det du tror.",
+                "description": "- Varm-op 10m >5:39/km Pace\n- PROBE 5 km @ 5:15/km FAST — samme rute hver gang 26m 5:15/km Pace\n- Base 4m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace\n\nPROBEN ER MÅLINGEN. Samme flade rute, samme 5:15/km, samme tid på dagen. Notér gennemsnitspuls for de 5 km.\nLavere puls end sidste måned = bedre form. Højere = træthed eller for stort underskud.\nBlæst og over 22 grader ugyldiggør målingen — flyt den.",
+                "moving_time": 2700,
+                "name": "AEROB PROBE + Løb Z2 45 min",
+                "type": "Run",
                 "workout_doc": {
                   "steps": [
                     {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
                       "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "reps": 3,
-                      "text": "3x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 100,
-                            "end": 100,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Åbner 100% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 55,
-                            "end": 55,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Pause 55% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Let 55% FTP"
-                    },
-                    {
-                      "power": {
+                      "pace": {
+                        "end": 78,
                         "start": 65,
-                        "end": 65,
-                        "units": "%ftp"
+                        "units": "%pace"
                       },
+                      "text": "Varm-op >5:39/km"
+                    },
+                    {
+                      "duration": 1560,
+                      "pace": {
+                        "end": 84,
+                        "start": 84,
+                        "units": "%pace"
+                      },
+                      "text": "PROBE 5 km @ 5:15/km FAST — notér snit-puls"
+                    },
+                    {
+                      "duration": 240,
+                      "pace": {
+                        "end": 88,
+                        "start": 78,
+                        "units": "%pace"
+                      },
+                      "text": "Base 5:00-5:38/km"
+                    },
+                    {
                       "duration": 300,
-                      "text": "Sidste rolige minutter 65% FTP"
-                    },
-                    {
-                      "text": "20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let.",
-                      "duration": 1200
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 60,
-                        "end": 40,
-                        "units": "%ftp"
+                      "pace": {
+                        "end": 78,
+                        "start": 65,
+                        "units": "%pace"
                       },
-                      "duration": 420,
-                      "cooldown": true,
-                      "text": "Cool-down"
+                      "text": "Cool-down >5:39/km"
                     }
                   ]
                 }
-              },
-              "libraryId": "test_ftp20",
-              "note": "FTP-TEST — indendørs, samme opsætning hver gang. IKKE ERG. Zoner sættes efter resultatet (set-zones.yml)"
-            },
-            {
-              "id": "b792f3e1",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
+              }
             }
           ]
         },
@@ -6866,87 +6782,87 @@
           "date": "2026-09-26",
           "entries": [
             {
-              "id": "49dbc85c",
+              "id": "651f66c2",
+              "libraryId": "test_ftp20",
+              "note": "FTP-TEST — indendørs, samme opsætning hver gang. IKKE ERG. Zoner sættes efter resultatet (set-zones.yml) · Flyttet fra tor 24/9. Tunge ben i opvarmningen → kør Grundtur i stedet og test i uge 41",
               "workout": {
-                "name": "FaF 1 Z2 - Grundtur 80",
+                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Åbner 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 55% FTP\n- Sidste rolige minutter 5m 65% FTP\n- 20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let. 20m freeride\n- Cool-down 7m ramp 60-40% FTP\n\nFORMÅL: Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nIKKE ERG — du skal selv styre effekten. Nyt FTP = 95% af 20-min snit. Begge blæsere på. Du undervurderer dig selv: læg ud 5 W over det du tror.",
+                "moving_time": 3180,
+                "name": "FaF 0 Test - FTP 20 min",
                 "type": "Ride",
-                "moving_time": 4800,
-                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
                 "workout_doc": {
                   "steps": [
                     {
-                      "ramp": true,
+                      "duration": 600,
                       "power": {
+                        "end": 70,
                         "start": 45,
-                        "end": 62,
                         "units": "%ftp"
                       },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1500,
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 70% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1500,
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 70% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
                       "ramp": true,
+                      "text": "Varm-op",
+                      "warmup": true
+                    },
+                    {
+                      "reps": 3,
+                      "steps": [
+                        {
+                          "duration": 60,
+                          "power": {
+                            "end": 100,
+                            "start": 100,
+                            "units": "%ftp"
+                          },
+                          "text": "Åbner 100% FTP"
+                        },
+                        {
+                          "duration": 60,
+                          "power": {
+                            "end": 55,
+                            "start": 55,
+                            "units": "%ftp"
+                          },
+                          "text": "Pause 55% FTP"
+                        }
+                      ],
+                      "text": "3x"
+                    },
+                    {
+                      "duration": 300,
                       "power": {
-                        "start": 62,
-                        "end": 40,
+                        "end": 55,
+                        "start": 55,
                         "units": "%ftp"
                       },
-                      "duration": 600,
+                      "text": "Let 55% FTP"
+                    },
+                    {
+                      "duration": 300,
+                      "power": {
+                        "end": 65,
+                        "start": 65,
+                        "units": "%ftp"
+                      },
+                      "text": "Sidste rolige minutter 65% FTP"
+                    },
+                    {
+                      "duration": 1200,
+                      "text": "20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let."
+                    },
+                    {
                       "cooldown": true,
+                      "duration": 420,
+                      "power": {
+                        "end": 40,
+                        "start": 60,
+                        "units": "%ftp"
+                      },
+                      "ramp": true,
                       "text": "Cool-down"
                     }
                   ]
                 }
-              },
-              "libraryId": "z2_grundtur_80",
-              "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+              }
             }
           ]
         },
