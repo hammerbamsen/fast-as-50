@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-24 05:30",
+    "updated": "2026-09-24 07:29",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -22,43 +22,43 @@
   },
   "kpis": {
     "weight": {
-      "value": "72,8",
+      "value": "72,6",
       "unit": "kg",
       "sub": "forventet 72,2 · på plan",
       "color": "#27AE60"
     },
     "fat": {
-      "value": "21,5",
+      "value": "21,6",
       "unit": "%",
       "sub": "14d-snit · forventet 21,8",
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "48,7",
+      "value": "46,6",
       "unit": "",
       "sub": "Uge 3-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-0,6",
+      "value": "8,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,1",
+      "value": "9,1",
       "unit": "t",
-      "sub": "Snit 7d 8,0t · mål 7t",
+      "sub": "Snit 7d 8,1t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
-      "value": "0,0",
+      "value": "3,2",
       "unit": "km",
       "sub": "Løb denne uge",
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "48,8",
+      "value": "49,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "41",
+      "value": "56",
       "unit": "TSS",
-      "sub": "41 af 254 planlagt TSS",
+      "sub": "56 af 216 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -96,7 +96,7 @@
     "ftp": {
       "value": "278",
       "unit": "W",
-      "sub": "3,82 W/kg · mål 278 (TRANSITION) · test 26/9",
+      "sub": "3,83 W/kg · mål 278 (TRANSITION) · test 8/10",
       "color": "#27AE60"
     },
     "protein": {
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Torsdag — uge 3 af 51. {HL} Fokus: 41 af 254 TSS er i hus — 4 sessioner tilbage, heriblandt AEROB PROBE + Løb Z2 45 min, Svøm 1500m let teknisk. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,2 kg (målt 23/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Søvn på 7,9 timer er solid",
+  "coachSpeech": "Du er i uge 3 af programmet Tour des Stations 2027, meso-uge 1 af 2, TRANSITION/BASE-blok. Det er en bevidst træt uge — proben og FTP-testen er skubbet, og volumen er lav mens cut starter. {HL} Dagens løb er gennemført: 24 minutter og 15 TSS — planens lette tur i stedet for proben, som flyttes til uge 43. Ugen har 1 gennemført pas, 2 missede (styrke mandag og Z2-cykel onsdag) og 2 resterende.",
+  "coachHighlight": "Drop styrkepas mandag — det er misset og skal ikke indhentes. Hold fredag og lørdag AF.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
       "discipline": "run",
-      "title": "AEROB PROBE + Løb Z2 45 min",
+      "title": "Løb let 20 min",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -185,29 +185,26 @@
     {
       "day": "Tor",
       "disc": "run",
-      "label": "AEROB PROBE + Løb Z2 45 min",
-      "done": false,
-      "planned_tss": 50,
-      "planned_mins": 45,
+      "label": "Løb let 20 min",
+      "done": true,
+      "planned_tss": null,
+      "planned_mins": 20,
       "planned_distance_m": null,
-      "today": true
-    },
-    {
-      "day": "Fre",
-      "disc": "swim",
-      "label": "Svøm 1500m let teknisk",
-      "done": false,
-      "planned_tss": 38,
-      "planned_mins": 45,
-      "planned_distance_m": 1500
+      "today": true,
+      "completion": "done",
+      "completion_pct": 120,
+      "actual_tss": 15,
+      "actual_mins": 24,
+      "actual_distance_m": 3222.81,
+      "intervals_compliance": 120.5
     },
     {
       "day": "Lør",
       "disc": "bike",
-      "label": "FaF 0 Test - FTP 20 min",
+      "label": "Gravel Z2 90 min ude",
       "done": false,
-      "planned_tss": 29,
-      "planned_mins": 53,
+      "planned_tss": 63,
+      "planned_mins": 90,
       "planned_distance_m": null
     },
     {
@@ -223,7 +220,7 @@
   "ctlCurve": [
     49.1,
     49.9,
-    48.7
+    46.6
   ],
   "weightHistory": [
     {
@@ -571,7 +568,11 @@
       "v": 72.2,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-24",
+      "v": 71.9,
+      "real": true
+    }
   ],
   "hrvHistory": [
     {
@@ -1019,7 +1020,11 @@
       "v": 58.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-24",
+      "v": 56.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1467,7 +1472,11 @@
       "v": 8.1,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-24",
+      "v": 9.1,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1912,12 +1921,12 @@
     },
     {
       "date": "2026-09-23",
-      "v": -0.6,
+      "v": 5.4,
       "real": true
     },
     {
       "date": "2026-09-24",
-      "v": -0.7,
+      "v": 8.3,
       "real": true
     }
   ],
@@ -2263,29 +2272,26 @@
         {
           "day": "Tor",
           "disc": "run",
-          "label": "AEROB PROBE + Løb Z2 45 min",
-          "done": false,
-          "planned_tss": 50,
-          "planned_mins": 45,
+          "label": "Løb let 20 min",
+          "done": true,
+          "planned_tss": null,
+          "planned_mins": 20,
           "planned_distance_m": null,
-          "today": true
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "planned_tss": 38,
-          "planned_mins": 45,
-          "planned_distance_m": 1500
+          "today": true,
+          "completion": "done",
+          "completion_pct": 120,
+          "actual_tss": 15,
+          "actual_mins": 24,
+          "actual_distance_m": 3222.81,
+          "intervals_compliance": 120.5
         },
         {
           "day": "Lør",
           "disc": "bike",
-          "label": "FaF 0 Test - FTP 20 min",
+          "label": "Gravel Z2 90 min ude",
           "done": false,
-          "planned_tss": 29,
-          "planned_mins": 53,
+          "planned_tss": 63,
+          "planned_mins": 90,
           "planned_distance_m": null
         },
         {
@@ -2411,43 +2417,33 @@
         },
         {
           "day": "Ons",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false,
-          "planned_tss": 38,
-          "planned_mins": 45,
-          "planned_distance_m": 1500
-        },
-        {
-          "day": "Tor",
-          "disc": "bike",
-          "label": "FaF 1 Z2 - Grundtur 80",
-          "done": false,
-          "today": false,
-          "planned_tss": 60,
-          "planned_mins": 80,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke B · Functional 4 · 2 runder",
-          "done": false,
-          "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Fre",
           "disc": "run",
           "label": "Løb Z2 40 min",
           "done": false,
           "today": false,
-          "planned_tss": 37,
+          "planned_tss": 44,
           "planned_mins": 40,
           "planned_distance_m": null
+        },
+        {
+          "day": "Tor",
+          "disc": "bike",
+          "label": "FaF 0 Test - FTP 20 min",
+          "done": false,
+          "today": false,
+          "planned_tss": 29,
+          "planned_mins": 53,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Fre",
+          "disc": "swim",
+          "label": "Svøm 1500m let teknisk",
+          "done": false,
+          "today": false,
+          "planned_tss": null,
+          "planned_mins": 1200,
+          "planned_distance_m": 1500
         },
         {
           "day": "Lør",
@@ -2455,8 +2451,18 @@
           "label": "Gang let 60 min",
           "done": false,
           "today": false,
-          "planned_tss": 18,
+          "planned_tss": null,
           "planned_mins": 60,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "strength",
+          "label": "Styrke B · Functional 4 · 2 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": null,
+          "planned_mins": 14,
           "planned_distance_m": null
         },
         {
@@ -2478,11 +2484,11 @@
         {
           "day": "Man",
           "disc": "strength",
-          "label": "Styrke A · Functional 4 · 2 runder",
+          "label": "Styrke A · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
+          "planned_tss": null,
+          "planned_mins": 31,
           "planned_distance_m": null
         },
         {
@@ -2497,13 +2503,13 @@
         },
         {
           "day": "Ons",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
+          "disc": "run",
+          "label": "Løb Z2 45 min",
           "done": false,
           "today": false,
-          "planned_tss": 38,
+          "planned_tss": 50,
           "planned_mins": 45,
-          "planned_distance_m": 1500
+          "planned_distance_m": null
         },
         {
           "day": "Tor",
@@ -2511,29 +2517,19 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 60,
+          "planned_tss": 55,
           "planned_mins": 80,
           "planned_distance_m": null
         },
         {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke B · Functional 4 · 2 runder",
-          "done": false,
-          "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
-          "planned_distance_m": null
-        },
-        {
           "day": "Fre",
-          "disc": "run",
-          "label": "Løb Z2 45 min",
+          "disc": "swim",
+          "label": "Svøm 1500m let teknisk",
           "done": false,
           "today": false,
-          "planned_tss": 41,
-          "planned_mins": 45,
-          "planned_distance_m": null
+          "planned_tss": null,
+          "planned_mins": 1200,
+          "planned_distance_m": 1500
         },
         {
           "day": "Lør",
@@ -2541,8 +2537,18 @@
           "label": "FaF 1 Z2 - Depottur 2 t",
           "done": false,
           "today": false,
-          "planned_tss": 98,
+          "planned_tss": 96,
           "planned_mins": 130,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "strength",
+          "label": "Styrke B · Functional 4 · 3 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": null,
+          "planned_mins": 31,
           "planned_distance_m": null
         },
         {
@@ -2564,11 +2570,11 @@
         {
           "day": "Man",
           "disc": "strength",
-          "label": "Styrke A · Functional 4 · 2 runder",
+          "label": "Styrke A · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
+          "planned_tss": null,
+          "planned_mins": 31,
           "planned_distance_m": null
         },
         {
@@ -2597,18 +2603,8 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 60,
+          "planned_tss": 55,
           "planned_mins": 80,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke B · Functional 4 · 2 runder",
-          "done": false,
-          "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
           "planned_distance_m": null
         },
         {
@@ -2627,8 +2623,18 @@
           "label": "FaF 1 Z2 - Depottur 2 t",
           "done": false,
           "today": false,
-          "planned_tss": 98,
+          "planned_tss": 96,
           "planned_mins": 130,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "strength",
+          "label": "Styrke B · Functional 4 · 3 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": null,
+          "planned_mins": 31,
           "planned_distance_m": null
         },
         {
@@ -2669,13 +2675,13 @@
         },
         {
           "day": "Ons",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
+          "disc": "run",
+          "label": "Løb Z2 40 min",
           "done": false,
           "today": false,
-          "planned_tss": 38,
-          "planned_mins": 45,
-          "planned_distance_m": 1500
+          "planned_tss": 44,
+          "planned_mins": 40,
+          "planned_distance_m": null
         },
         {
           "day": "Tor",
@@ -2683,29 +2689,19 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 60,
+          "planned_tss": 55,
           "planned_mins": 80,
           "planned_distance_m": null
         },
         {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke B · Functional 4 · 2 runder",
-          "done": false,
-          "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
-          "planned_distance_m": null
-        },
-        {
           "day": "Fre",
-          "disc": "run",
-          "label": "Løb Z2 40 min",
+          "disc": "swim",
+          "label": "Svøm 1500m let teknisk",
           "done": false,
           "today": false,
-          "planned_tss": 37,
-          "planned_mins": 40,
-          "planned_distance_m": null
+          "planned_tss": null,
+          "planned_mins": 1200,
+          "planned_distance_m": 1500
         },
         {
           "day": "Lør",
@@ -2713,8 +2709,18 @@
           "label": "Gang let 60 min",
           "done": false,
           "today": false,
-          "planned_tss": 18,
+          "planned_tss": null,
           "planned_mins": 60,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "strength",
+          "label": "Styrke B · Functional 4 · 2 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": null,
+          "planned_mins": 14,
           "planned_distance_m": null
         },
         {
@@ -2736,11 +2742,11 @@
         {
           "day": "Man",
           "disc": "strength",
-          "label": "Styrke A · Functional 4 · 2 runder",
+          "label": "Styrke A · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
+          "planned_tss": null,
+          "planned_mins": 31,
           "planned_distance_m": null
         },
         {
@@ -2755,13 +2761,13 @@
         },
         {
           "day": "Ons",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
+          "disc": "run",
+          "label": "Løb Z2 45 min",
           "done": false,
           "today": false,
-          "planned_tss": 38,
+          "planned_tss": 50,
           "planned_mins": 45,
-          "planned_distance_m": 1500
+          "planned_distance_m": null
         },
         {
           "day": "Tor",
@@ -2769,29 +2775,19 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 60,
+          "planned_tss": 55,
           "planned_mins": 80,
           "planned_distance_m": null
         },
         {
-          "day": "Tor",
-          "disc": "strength",
-          "label": "Styrke B · Functional 4 · 2 runder",
-          "done": false,
-          "today": false,
-          "planned_tss": 17,
-          "planned_mins": 25,
-          "planned_distance_m": null
-        },
-        {
           "day": "Fre",
-          "disc": "run",
-          "label": "Løb Z2 45 min",
+          "disc": "swim",
+          "label": "Svøm 1500m let teknisk",
           "done": false,
           "today": false,
-          "planned_tss": 41,
-          "planned_mins": 45,
-          "planned_distance_m": null
+          "planned_tss": null,
+          "planned_mins": 1200,
+          "planned_distance_m": 1500
         },
         {
           "day": "Lør",
@@ -2799,8 +2795,18 @@
           "label": "FaF 1 Z2 - Depottur 2 t",
           "done": false,
           "today": false,
-          "planned_tss": 98,
+          "planned_tss": 96,
           "planned_mins": 130,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "strength",
+          "label": "Styrke B · Functional 4 · 3 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": null,
+          "planned_mins": 31,
           "planned_distance_m": null
         },
         {
@@ -2917,10 +2923,11 @@
     }
   ],
   "train_mins": {
+    "run": 24.0,
     "bike": 23.0,
     "walk": 162.0,
-    "planned": 323.0,
-    "actual_total": 185.0
+    "planned": 290.0,
+    "actual_total": 209.0
   },
   "fatHistory": [
     {
@@ -3268,24 +3275,32 @@
       "v": 21.1,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-24",
+      "v": 21.8,
+      "real": true
+    }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 18 af 357 · Torsdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Du er i uge 3 af 51 i Tour des Stations 2027-programmet, BASE-blok, mesouge 1/2. Cut startede 21/9 og løber til januar — ugen er designet til at lægge et aerobt grundlag og tage FTP-test lørdag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>I dag: AEROB PROBE + Løb Z2 45 min — kør samme rute som sidst, 5:15/km, notér snit-puls. Passet er flyttet fra onsdag pga. stive ben. Ugen har 1 gennemført, 2 misset (styrke mandag og cykel onsdag) og 3 tilbage. CTL er 48,7 mod et mål på 53,0 — et minus på 4,3 point, men du er i uge 3 af BASE-blokken, og det indhentes hen over blokken.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,8 kg mod forventet 72,2 kg — du er 0,7 kg over planen. 7-dages snit for fedt er 21,5 %. Ændringen den seneste måned er 0,7 kg op og 0,1 procentpoint op i fedt — begge under tærsklen for en klar retning, så fedt er stabilt. Alkohol er den mest konkrete håndtag: hold AF resten af ugen, så cut-raten kan komme på sporet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage ud af et mål på 6 — ingen dage med 3+ genstande denne uge. Protein registreret 4 af 6 mulige dage. Søvn 7-dages snit er 8,0 timer — godt. Energi snit er 2,2 — hold øje med det.</p>",
-  "coachAssessmentTs": "04:05",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 18 af 357 · Torsdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Du er i uge 3 af programmet Tour des Stations 2027, meso-uge 1 af 2, TRANSITION/BASE-blok. Det er en bevidst træt uge — proben og FTP-testen er skubbet, og volumen er lav mens cut starter.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens løb er gennemført: 24 minutter og 15 TSS — planens lette tur i stedet for proben, som flyttes til uge 43. Ugen har 1 gennemført pas, 2 missede (styrke mandag og Z2-cykel onsdag) og 2 resterende. CTL er 46,6 mod et mål på 53,0 — men det er en bevidst træt overgangsuge, så det er ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,6 kg mod forventet 72,2 kg — det er 0,5 kg over planen. Retningen de seneste fire uger er op med 0,6 kg, hvilket er over tærsklen på 0,3 kg, så retningen er opadgående. Fedtprocenten på 7-dages snit er 21,5 — ændringen de seneste fire uger er 0,1 procentpoint, altså stabil. Alcohol-klyngen de seneste dage modvirker cut-raten på 0,22 kg pr. uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage ud af et mål på 6 — og 3 drikkedage i træk netop under cuttet. Ingen dage med 3 eller flere genstande, men klyngen i sig selv koster HRV og muskelproteinsyntese. Protein er registreret 4 ud af 6 mulige dage. Søvn er stærk: 9,1 timers nat og 8,1 i snit over 7 dage.</p>",
+  "coachAssessmentTs": "07:29",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": -0.6,
+  "tsb": 8.3,
   "swimHistory": [
     {
       "week": 1,
@@ -3306,9 +3321,9 @@
       "cumulative": 1500.0
     }
   ],
-  "coachAssessmentLastActId": "i189601588",
+  "coachAssessmentLastActId": "i189787066",
   "weekFocusWeek": 3,
-  "coachAssessmentPlanAtGen": "AEROB PROBE + Løb Z2 45 min",
+  "coachAssessmentPlanAtGen": "Løb let 20 min",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
@@ -3401,7 +3416,7 @@
     72.27,
     72.47,
     72.59,
-    72.77
+    72.64
   ],
   "fatMovingAvg7": [
     null,
@@ -3493,7 +3508,7 @@
     21.64,
     21.54,
     21.49,
-    21.47
+    21.51
   ],
   "ctlPlan": [
     47,
@@ -3560,12 +3575,22 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-24T03:30:08.461677",
-  "coachAssessmentTsFull": "2026-09-24T02:05:53",
-  "coachAssessmentWeightAtGen": 72.2,
+  "credentialsCheckedTs": "2026-09-24T05:30:12.748290",
+  "coachAssessmentTsFull": "2026-09-24T05:30:12",
+  "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 3,
-  "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 21.1,
+  "event_structure_warnings": [
+    {
+      "date": "2026-09-24",
+      "name": "Løb let 20 min",
+      "type": "Run",
+      "event_id": 138425854,
+      "level": "warn",
+      "code": "SPOEGELSES_POWER",
+      "text": "1 trin har effekt-maal paa Run. Skyldes typisk \"Z1-Z2\" i et step-navn — omdoeb trinnet."
+    }
+  ],
+  "coachAssessmentFatAtGen": 21.8,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 278,
@@ -3650,7 +3675,7 @@
   "weekTssActual": {
     "1": 289,
     "2": 397,
-    "3": 41
+    "3": 56
   },
   "racesUpcoming": [
     {
@@ -4380,7 +4405,7 @@
     },
     {
       "date": "2026-09-24",
-      "v": 46,
+      "v": 44,
       "real": true
     }
   ],
@@ -4814,20 +4839,18 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 415,
-        "tssActual": 41,
-        "purpose": "Base: cut + kælder starter. Aerobe prober tir/ons, FTP-test tor 24/9, svøm fre. Søndag 2 t.",
-        "note": "Cut starter. FTP-test tor 24/9. Styrke Functional 4 A/B 2×/uge. Svøm 1×/uge (ons/fre) genindført 11/9 — må ikke koste cykeltid.",
+        "tssActual": 56,
+        "purpose": "Base: cut starter. Træt uge — let løb tor, gravel Z2 90 min ude lør. FTP-test flyttet til tor 8/10 (uge 41).",
+        "note": "Cut starter. FTP-test flyttet 24/9 til tor 8/10 (træt uge). Fra uge 41: styrke man+lør 45 min, svøm fre (ons alternativ).",
         "quota": {
-          "haard": 1,
+          "haard": 0,
           "moderat": 0
         },
         "quotaUsed": {
-          "haard": 1,
+          "haard": 0,
           "moderat": 0
         },
-        "keySessions": [
-          "FaF 0 Test - FTP 20 min"
-        ],
+        "keySessions": [],
         "flags": [],
         "races": [],
         "travel": "Mallorca 27/9-3/10 (Kennet alene)",
@@ -4878,17 +4901,18 @@
         "ctlTarget": 53,
         "tssTarget": 271,
         "tssActual": null,
-        "purpose": "Recovery: åbnere tir, Z2 80 tor, 2 t søndag. Styrke 2 runder uden progression.",
-        "note": "Recovery. Ingen test.",
+        "purpose": "Recovery + FTP-test tor 8/10 (ikke ERG, zoner opdateres samme dag). Åbnere tir, løb ons, svøm fre, styrke man+lør 2 runder, 2 t søndag.",
+        "note": "Recovery. FTP-test tor 8/10 efter Mallorca.",
         "quota": {
-          "haard": 0,
+          "haard": 1,
           "moderat": 0
         },
         "quotaUsed": {
-          "haard": 0,
+          "haard": 1,
           "moderat": 0
         },
         "keySessions": [
+          "FaF 0 Test - FTP 20 min",
           "FaF 1 Z2 - Depottur 2 t"
         ],
         "flags": [],
@@ -4909,7 +4933,7 @@
         "ctlTarget": 56,
         "tssTarget": 441,
         "tssActual": null,
-        "purpose": "Base: sweet spot 3×15 tir, bjergtur 3 t søn (besluttet 7/9). Løb fre.",
+        "purpose": "Base: sweet spot 3×15 tir, bjergtur 3 t søn (besluttet 7/9). Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 0,
@@ -5004,7 +5028,7 @@
         "ctlTarget": 58,
         "tssTarget": 447,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn TdS racepace 3 t. Svøm ons, løb fre, styrke man+tor.",
+        "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn TdS racepace 3 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 1,
@@ -5036,7 +5060,7 @@
         "ctlTarget": 59,
         "tssTarget": 460,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn bjergtur 3 t. Svøm ons, løb fre, styrke man+tor.",
+        "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn bjergtur 3 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 1,
@@ -5068,7 +5092,7 @@
         "ctlTarget": 62,
         "tssTarget": 490,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 Rønnestad 30-15 tir, lør 2 t Z2, søn Langtur 4 t — første 4-timers. Svøm ons, løb fre, styrke man+tor.",
+        "purpose": "Base/VO2-blok: VO2 Rønnestad 30-15 tir, lør 2 t Z2, søn Langtur 4 t — første 4-timers. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 1,
@@ -5131,7 +5155,7 @@
         "ctlTarget": 62,
         "tssTarget": 460,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn kvalitet sent i turen. Svøm ons, løb fre, styrke man+tor.",
+        "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn kvalitet sent i turen. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 2,
@@ -5163,7 +5187,7 @@
         "ctlTarget": 64,
         "tssTarget": 480,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn Langtur 4 t. Svøm ons, løb fre, styrke man+tor.",
+        "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn Langtur 4 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 1,
@@ -5195,7 +5219,7 @@
         "ctlTarget": 66,
         "tssTarget": 500,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 10×1 tir, lør 2 t Z2, søn Bjerg 2×45 + forlængelse til 3,5 t. Svøm ons, løb fre, styrke man+tor.",
+        "purpose": "Base/VO2-blok: VO2 10×1 tir, lør 2 t Z2, søn Bjerg 2×45 + forlængelse til 3,5 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
           "haard": 1,
@@ -7090,22 +7114,23 @@
             "weekday": "Tor",
             "entries": [
               {
-                "id": "3aacd4a8",
-                "name": "AEROB PROBE + Løb Z2 45 min",
+                "id": "c413d99b",
+                "name": "Løb let 20 min",
                 "type": "Run",
                 "disc": "run",
-                "mins": 45,
+                "mins": 20,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls · Flyttet fra ons 23/9 (stive ben)",
+                "done": true,
+                "actualMins": 24,
+                "actualTss": 15,
+                "note": "Træt uge — kort let tur i stedet for proben. Proben tages igen uge 43.",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -7115,26 +7140,7 @@
           {
             "date": "2026-09-25",
             "weekday": "Fre",
-            "entries": [
-              {
-                "id": "44c5b0f5",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
-                "mins": 45,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge",
-                "isKey": false,
-                "optional": false
-              }
-            ],
+            "entries": [],
             "restNote": null,
             "restId": null,
             "isToday": false
@@ -7144,21 +7150,21 @@
             "weekday": "Lør",
             "entries": [
               {
-                "id": "651f66c2",
-                "name": "FaF 0 Test - FTP 20 min",
+                "id": "453a4ee5",
+                "name": "Gravel Z2 90 min ude",
                 "type": "Ride",
                 "disc": "bike",
-                "mins": 53,
-                "libraryId": "test_ftp20",
-                "load": "haard",
-                "erg": false,
-                "purpose": "Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.",
-                "zwiftName": "FaF 0 Test - FTP 20 min",
+                "mins": 90,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "FTP-TEST — indendørs, samme opsætning hver gang. IKKE ERG. Zoner sættes efter resultatet (set-zones.yml) · Flyttet fra tor 24/9. Tunge ben i opvarmningen → kør Grundtur i stedet og test i uge 41",
-                "isKey": true,
+                "note": "Gravel ude, ren Z2. FTP-testen er flyttet til tor 8/10.",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -7472,79 +7478,7 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "fe960992",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
-                "mins": 45,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge",
-                "isKey": false,
-                "optional": false
-              }
-            ],
-            "restNote": null,
-            "restId": null,
-            "isToday": false
-          },
-          {
-            "date": "2026-10-08",
-            "weekday": "Tor",
-            "entries": [
-              {
-                "id": "17f17c6c",
-                "name": "FaF 1 Z2 - Grundtur 80",
-                "type": "Ride",
-                "disc": "bike",
-                "mins": 80,
-                "libraryId": "z2_grundtur_80",
-                "load": "let",
-                "erg": true,
-                "purpose": "Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
-                "zwiftName": "FaF 1 Z2 - Grundtur 80",
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
-                "isKey": false,
-                "optional": false
-              },
-              {
-                "id": "ce7e8bcf",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "recovery: 2 runder, ingen progression",
-                "isKey": false,
-                "optional": false
-              }
-            ],
-            "restNote": null,
-            "restId": null,
-            "isToday": false
-          },
-          {
-            "date": "2026-10-09",
-            "weekday": "Fre",
-            "entries": [
-              {
-                "id": "6683fd59",
+                "id": "be6d94ce",
                 "name": "Løb Z2 40 min",
                 "type": "Run",
                 "disc": "run",
@@ -7558,6 +7492,60 @@
                 "actualMins": null,
                 "actualTss": null,
                 "note": "Løb Z2 let — recovery",
+                "isKey": false,
+                "optional": false
+              }
+            ],
+            "restNote": null,
+            "restId": null,
+            "isToday": false
+          },
+          {
+            "date": "2026-10-08",
+            "weekday": "Tor",
+            "entries": [
+              {
+                "id": "dd07d4e0",
+                "name": "FaF 0 Test - FTP 20 min",
+                "type": "Ride",
+                "disc": "bike",
+                "mins": 53,
+                "libraryId": "test_ftp20",
+                "load": "haard",
+                "erg": false,
+                "purpose": "Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.",
+                "zwiftName": "FaF 0 Test - FTP 20 min",
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "FTP-TEST efter Mallorca + recovery-uge. Indendørs, samme opsætning, IKKE ERG. Zoner sættes efter resultatet (set-zones.yml).",
+                "isKey": true,
+                "optional": false
+              }
+            ],
+            "restNote": null,
+            "restId": null,
+            "isToday": false
+          },
+          {
+            "date": "2026-10-09",
+            "weekday": "Fre",
+            "entries": [
+              {
+                "id": "a61fb509",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
                 "optional": false
               }
@@ -7585,6 +7573,24 @@
                 "actualMins": null,
                 "actualTss": null,
                 "note": "Gang let — Uge 41 · recovery",
+                "isKey": false,
+                "optional": false
+              },
+              {
+                "id": "b5ceeb7b",
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 25,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
                 "optional": false
               }
@@ -7632,11 +7638,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "427a348e",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "4abc13c1",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -7645,7 +7651,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 42 · sweet spot + bjergtur (besluttet 7/9)",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 42 · sweet spot + bjergtur (besluttet 7/9)",
                 "isKey": false,
                 "optional": false
               }
@@ -7686,10 +7692,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "8cb43584",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "68a68894",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -7699,7 +7705,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -7729,24 +7735,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "a4177060",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -7758,10 +7746,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "dfc1c055",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "ea268049",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -7771,7 +7759,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -7800,6 +7788,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "7a0bbf50",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -7846,11 +7852,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "06faed5a",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "b116be73",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -7859,7 +7865,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 43 · tærskel + kvalitet sent i turen",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 43 · tærskel + kvalitet sent i turen",
                 "isKey": false,
                 "optional": false
               }
@@ -7943,24 +7949,6 @@
                 "note": "AEROB PROBE (cykel) — 25 min @ 190 W i Z2-delen, notér snit-puls sidste 15 min — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "51a6d528",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -8014,6 +8002,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "6c02900e",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -8114,11 +8120,11 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "4f4bcf2e",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
-                "mins": 45,
+                "id": "c3ad98f1",
+                "name": "Løb Z2 40 min",
+                "type": "Run",
+                "disc": "run",
+                "mins": 40,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -8127,7 +8133,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge",
+                "note": "Løb Z2 let — recovery",
                 "isKey": false,
                 "optional": false
               }
@@ -8157,24 +8163,6 @@
                 "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "d808c4b2",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "recovery: 2 runder, ingen progression",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -8186,11 +8174,11 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "fbf0b487",
-                "name": "Løb Z2 40 min",
-                "type": "Run",
-                "disc": "run",
-                "mins": 40,
+                "id": "54d6c356",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -8199,7 +8187,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 let — recovery",
+                "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
                 "optional": false
               }
@@ -8227,6 +8215,24 @@
                 "actualMins": null,
                 "actualTss": null,
                 "note": "Gang let — Uge 44 · recovery. Stelvio couples-tilmelding senest tor 29/10",
+                "isKey": false,
+                "optional": false
+              },
+              {
+                "id": "90c39698",
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 25,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
                 "optional": false
               }
@@ -8274,11 +8280,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "43c1b964",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "720fea8c",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -8287,7 +8293,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 45 · VO2-blok 1/6",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 45 · VO2-blok 1/6",
                 "isKey": false,
                 "optional": false
               }
@@ -8328,10 +8334,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "09becba6",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "331770b0",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -8341,7 +8347,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -8371,24 +8377,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "2ca4a890",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -8400,10 +8388,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "1cdd0098",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "44d347b4",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -8413,7 +8401,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -8442,6 +8430,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "81117463",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -8488,11 +8494,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "f1383d44",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "fd999606",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -8501,7 +8507,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 46 · VO2-blok 2/6",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 46 · VO2-blok 2/6",
                 "isKey": false,
                 "optional": false
               }
@@ -8542,10 +8548,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "10536678",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "92cc0770",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -8555,7 +8561,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -8585,24 +8591,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "31a5e920",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -8614,10 +8602,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "e42769c4",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "9c7f75cf",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -8627,7 +8615,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -8656,6 +8644,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "1478b736",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -8702,11 +8708,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "8350d73f",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "3bf1ccdd",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -8715,7 +8721,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 47 · VO2-blok 3/6 — første 4-timers",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 47 · VO2-blok 3/6 — første 4-timers",
                 "isKey": false,
                 "optional": false
               }
@@ -8756,10 +8762,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "ea8131d5",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "dde67a37",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -8769,7 +8775,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -8799,24 +8805,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "0274fe71",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -8828,10 +8816,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "08a93916",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "07fef2c9",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -8841,7 +8829,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -8870,6 +8858,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "dff25d34",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -8970,11 +8976,11 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "fed5a3a3",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
-                "mins": 45,
+                "id": "73025ac7",
+                "name": "Løb Z2 40 min",
+                "type": "Run",
+                "disc": "run",
+                "mins": 40,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -8983,7 +8989,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge",
+                "note": "Løb Z2 let — recovery",
                 "isKey": false,
                 "optional": false
               }
@@ -9013,24 +9019,6 @@
                 "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "4e7076b5",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "recovery: 2 runder, ingen progression",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -9042,11 +9030,11 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "e2b43a23",
-                "name": "Løb Z2 40 min",
-                "type": "Run",
-                "disc": "run",
-                "mins": 40,
+                "id": "46b1a30b",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -9055,7 +9043,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 let — recovery",
+                "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
                 "optional": false
               }
@@ -9083,6 +9071,24 @@
                 "actualMins": null,
                 "actualTss": null,
                 "note": "Gang let — Uge 48 · recovery",
+                "isKey": false,
+                "optional": false
+              },
+              {
+                "id": "86e8d476",
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 25,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
                 "optional": false
               }
@@ -9130,11 +9136,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "d6bf8e62",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "ef8b591c",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -9143,7 +9149,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 49 · VO2-blok 4/6",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 49 · VO2-blok 4/6",
                 "isKey": false,
                 "optional": false
               }
@@ -9184,10 +9190,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "07996000",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "5b03f2b2",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -9197,7 +9203,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -9227,24 +9233,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "6a524790",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -9256,10 +9244,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "de0afa45",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "82e56fb8",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -9269,7 +9257,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -9298,6 +9286,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "424a12fd",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -9344,11 +9350,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "874c66a6",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "5f208afe",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -9357,7 +9363,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 50 · VO2-blok 5/6",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 50 · VO2-blok 5/6",
                 "isKey": false,
                 "optional": false
               }
@@ -9398,10 +9404,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "832a3728",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "d117a1fd",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -9411,7 +9417,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -9441,24 +9447,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "386436d1",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -9470,10 +9458,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "1c528a16",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "64eddaaa",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -9483,7 +9471,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -9512,6 +9500,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "304a935f",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -9558,11 +9564,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "0b92bf8e",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "0fb1e7e6",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -9571,7 +9577,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 51 · VO2-blok 6/6",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 51 · VO2-blok 6/6",
                 "isKey": false,
                 "optional": false
               }
@@ -9612,10 +9618,10 @@
             "weekday": "Ons",
             "entries": [
               {
-                "id": "b153ce3b",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
+                "id": "ae456349",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
+                "disc": "run",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -9625,7 +9631,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
+                "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
                 "optional": false
               }
@@ -9655,24 +9661,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "ab08da60",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -9684,10 +9672,10 @@
             "weekday": "Fre",
             "entries": [
               {
-                "id": "1c765c6e",
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "disc": "run",
+                "id": "2d1b5e40",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "disc": "swim",
                 "mins": 45,
                 "libraryId": null,
                 "load": "let",
@@ -9697,7 +9685,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Løb Z2 — ugens løb, let",
+                "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
                 "optional": false
               }
@@ -9726,6 +9714,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "1aa6ead9",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -9851,26 +9857,7 @@
           {
             "date": "2026-12-24",
             "weekday": "Tor",
-            "entries": [
-              {
-                "id": "d668fe13",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "recovery: 2 runder, ingen progression",
-                "isKey": false,
-                "optional": false
-              }
-            ],
+            "entries": [],
             "restNote": null,
             "restId": null,
             "isToday": false
@@ -9902,6 +9889,24 @@
                 "actualMins": null,
                 "actualTss": null,
                 "note": "Løb Z2 let — 2. juledag",
+                "isKey": false,
+                "optional": false
+              },
+              {
+                "id": "585bb52f",
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 25,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
                 "optional": false
               }
@@ -9949,11 +9954,11 @@
             "weekday": "Man",
             "entries": [
               {
-                "id": "c3c04be2",
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "id": "5723910b",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
                 "disc": "strength",
-                "mins": 25,
+                "mins": 45,
                 "libraryId": null,
                 "load": "let",
                 "erg": null,
@@ -9962,7 +9967,7 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. Uge 53 · bro til lange intervaller fra uge 1",
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 53 · bro til lange intervaller fra uge 1",
                 "isKey": false,
                 "optional": false
               }
@@ -10046,24 +10051,6 @@
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false
-              },
-              {
-                "id": "bc9ab61c",
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
-                "isKey": false,
-                "optional": false
               }
             ],
             "restNote": null,
@@ -10117,6 +10104,24 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
+                "optional": false
+              },
+              {
+                "id": "9a434ec1",
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "disc": "strength",
+                "mins": 45,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
+                "isKey": false,
                 "optional": false
               }
             ],
@@ -10226,7 +10231,7 @@
           "week": 3,
           "programId": "tds-2027",
           "start": "2026-09-21",
-          "ctl": 48.7
+          "ctl": 46.6
         }
       ],
       "projection": [
@@ -10571,23 +10576,23 @@
         "fromName": "CPH HALF — 21,1 km, sub 1:30-forsøg 4:15/km",
         "fromDate": "2026-09-20",
         "fromDisc": "run",
-        "toId": "651f66c2",
+        "toId": "dd07d4e0",
         "toName": "FaF 0 Test - FTP 20 min",
-        "toDate": "2026-09-26",
+        "toDate": "2026-10-08",
         "toDisc": "bike",
-        "hours": 144,
+        "hours": 432,
         "ok": true
       },
       {
-        "fromId": "651f66c2",
+        "fromId": "dd07d4e0",
         "fromName": "FaF 0 Test - FTP 20 min",
-        "fromDate": "2026-09-26",
+        "fromDate": "2026-10-08",
         "fromDisc": "bike",
         "toId": "2b20bee2",
         "toName": "FaF 4 Tær - 3 x 12",
         "toDate": "2026-10-20",
         "toDisc": "bike",
-        "hours": 576,
+        "hours": 288,
         "ok": true
       },
       {
@@ -10701,50 +10706,52 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-24T02:05:53Z",
-    "inputsHash": "59103bf95a8804ff9c45757ea07a334dabdffdc6",
+    "generatedAt": "2026-09-24T05:30:12Z",
+    "inputsHash": "d5b48e42d3097e9ac101c441cad6a441d3e3f37e",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Løb AEROB PROBE 45 min: samme rute, 5:15/km, notér snit-puls.",
-      "why": "Proben giver et sammenligneligt aerobt signal — hold præcis fart og notér pulsen."
+      "action": "Drop styrkepas mandag — det er misset og skal ikke indhentes. Hold fredag og lørdag AF.",
+      "why": "3 drikkedage i træk under cuttet presser HRV og muskelproteinsyntese — resten af ugen skal være ren."
     },
     "training": {
-      "text": "I dag: AEROB PROBE + Løb Z2 45 min — kør samme rute som sidst, 5:15/km, notér snit-puls. Passet er flyttet fra onsdag pga. stive ben. Ugen har 1 gennemført, 2 misset (styrke mandag og cykel onsdag) og 3 tilbage. CTL er 48,7 mod et mål på 53,0 — et minus på 4,3 point, men du er i uge 3 af BASE-blokken, og det indhentes hen over blokken.",
+      "text": "Dagens løb er gennemført: 24 minutter og 15 TSS — planens lette tur i stedet for proben, som flyttes til uge 43. Ugen har 1 gennemført pas, 2 missede (styrke mandag og Z2-cykel onsdag) og 2 resterende. CTL er 46,6 mod et mål på 53,0 — men det er en bevidst træt overgangsuge, så det er ikke et efterslæb.",
       "refs": [
-        45.0,
+        24.0,
+        15.0,
         1.0,
         2.0,
-        3.0,
-        48.7,
-        53.0,
-        4.3,
-        3.0
+        2.0,
+        46.6,
+        53.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 72,8 kg mod forventet 72,2 kg — du er 0,7 kg over planen. 7-dages snit for fedt er 21,5 %. Ændringen den seneste måned er 0,7 kg op og 0,1 procentpoint op i fedt — begge under tærsklen for en klar retning, så fedt er stabilt. Alkohol er den mest konkrete håndtag: hold AF resten af ugen, så cut-raten kan komme på sporet.",
+      "text": "7-dages snit for vægt er 72,6 kg mod forventet 72,2 kg — det er 0,5 kg over planen. Retningen de seneste fire uger er op med 0,6 kg, hvilket er over tærsklen på 0,3 kg, så retningen er opadgående. Fedtprocenten på 7-dages snit er 21,5 — ændringen de seneste fire uger er 0,1 procentpoint, altså stabil. Alcohol-klyngen de seneste dage modvirker cut-raten på 0,22 kg pr. uge.",
       "refs": [
-        72.8,
+        72.6,
         72.2,
-        0.7,
+        0.5,
+        0.6,
+        0.3,
         21.5,
-        0.7,
-        0.1
+        0.1,
+        0.22
       ]
     },
     "habits": {
-      "text": "3 AF-dage ud af et mål på 6 — ingen dage med 3+ genstande denne uge. Protein registreret 4 af 6 mulige dage. Søvn 7-dages snit er 8,0 timer — godt. Energi snit er 2,2 — hold øje med det.",
+      "text": "3 AF-dage ud af et mål på 6 — og 3 drikkedage i træk netop under cuttet. Ingen dage med 3 eller flere genstande, men klyngen i sig selv koster HRV og muskelproteinsyntese. Protein er registreret 4 ud af 6 mulige dage. Søvn er stærk: 9,1 timers nat og 8,1 i snit over 7 dage.",
       "refs": [
         3.0,
         6.0,
+        3.0,
         4.0,
         6.0,
-        8.0,
-        2.2
+        9.1,
+        8.1
       ]
     },
-    "bigPicture": "Du er i uge 3 af 51 i Tour des Stations 2027-programmet, BASE-blok, mesouge 1/2. Cut startede 21/9 og løber til januar — ugen er designet til at lægge et aerobt grundlag og tage FTP-test lørdag.",
+    "bigPicture": "Du er i uge 3 af programmet Tour des Stations 2027, meso-uge 1 af 2, TRANSITION/BASE-blok. Det er en bevidst træt uge — proben og FTP-testen er skubbet, og volumen er lav mens cut starter.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10761,18 +10768,17 @@
         "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
-      },
-      {
-        "type": "spacing",
-        "level": "info",
-        "message": "FTP-testen lørdag 26/9 ligger 144 timer efter CPH Half 20/9 — spacing er OK.",
-        "action": null,
-        "source": "ai"
       }
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": null,
+    "validationRejected": [
+      {
+        "errors": [
+          "warnings[1].message: tal ikke i konteksten: 42"
+        ]
+      }
+    ],
     "notes": null,
     "stale": false
   },
@@ -10864,13 +10870,13 @@
       "targetKg": 68.0,
       "expectedKg": 72.2,
       "corridorKg": 0.5,
-      "avg7": 72.8,
-      "avg7Date": "2026-09-23",
-      "delta": 0.6,
+      "avg7": 72.6,
+      "avg7Date": "2026-09-24",
+      "delta": 0.4,
       "status": "plan",
-      "note": "over korridoren — tæller som bagud efter to mandage",
+      "note": null,
       "ratePerWeek": -0.22,
-      "actualRate4w": 0.17,
+      "actualRate4w": 0.14,
       "series": [
         {
           "date": "2026-09-21",
@@ -10965,7 +10971,7 @@
       ]
     },
     "fat": {
-      "avg14": 21.5,
+      "avg14": 21.6,
       "avg14Change28d": 0.1,
       "expected": 21.8,
       "target": 16.0,
@@ -10975,7 +10981,7 @@
     },
     "ffm": {
       "now": 56.6,
-      "change28d": -0.2,
+      "change28d": -0.3,
       "target": 57.1,
       "status": "ok",
       "baseline": 56.7,
@@ -10999,13 +11005,13 @@
       "signals": {
         "rate": {
           "level": null,
-          "value": 0.25,
-          "text": "0,25 kg/uge (2 uger)"
+          "value": 0.19,
+          "text": "0,19 kg/uge (2 uger)"
         },
         "ffm": {
           "level": null,
-          "value": -0.2,
-          "text": "−0,2 kg på 4 uger"
+          "value": -0.3,
+          "text": "−0,3 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -11018,15 +11024,15 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 0.3,
-            "hrvPct": -8.5
+            "rhr": 0.1,
+            "hrvPct": -8.2
           },
-          "text": "hvilepuls 0 · HRV −9 % (14 dage)"
+          "text": "hvilepuls 0 · HRV −8 % (14 dage)"
         },
         "plateau": {
-          "level": null,
-          "value": 0.2,
-          "text": "+0,2 kg over 3 uger"
+          "level": "info",
+          "value": 0.1,
+          "text": "+0,1 kg over 3 uger"
         },
         "alcohol": {
           "level": "warn",
@@ -11344,29 +11350,29 @@
     }
   },
   "weekTss": {
-    "actual": 41,
-    "planned": 254
+    "actual": 56,
+    "planned": 216
   },
   "martinMail": {
     "week": 3,
     "isoWeek": 39,
     "lines": [
-      "Uge 39: TSS 41 af 254 (16 %) · CTL 48,7 (mål 53) · TSB −0,6",
-      "Vægt 7d 72,8 kg · fedt 14d 21,5 % · på plan mod glidepath (72,2)",
-      "HRV 7d 49 (28d 55) · hvilepuls 44 · søvn 7d 8,0 t",
+      "Uge 39: TSS 56 af 216 (26 %) · CTL 46,6 (mål 53) · TSB +8,3",
+      "Vægt 7d 72,6 kg · fedt 14d 21,6 % · på plan mod glidepath (72,2)",
+      "HRV 7d 50 (28d 55) · hvilepuls 44 · søvn 7d 8,1 t",
       "AF 3/7 · protein 3/3 4/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: warn — 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
-      "Planændringer siden sidst: 0 — se martin_signals.md"
+      "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-24T03:30:08Z"
+    "generatedAt": "2026-09-24T05:29:25Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 278,
-    "wkg": 3.82,
-    "weightAvg7": 72.8,
+    "wkg": 3.83,
+    "weightAvg7": 72.6,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
@@ -11374,7 +11380,7 @@
     "seasonStart": 278,
     "status": "ok",
     "color": "#27AE60",
-    "nextTest": "2026-09-26",
+    "nextTest": "2026-10-08",
     "history": [
       {
         "date": "2026-07-28",
@@ -11423,7 +11429,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-24",
-    "ctl": 48.7,
-    "atl": 49.3
+    "ctl": 46.6,
+    "atl": 38.3
   }
 }
