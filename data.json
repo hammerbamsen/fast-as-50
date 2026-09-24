@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-24 18:56",
+    "updated": "2026-09-24 18:57",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -100,10 +100,10 @@
       "color": "#27AE60"
     },
     "protein": {
-      "value": "4",
+      "value": "5",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 2,2",
-      "color": "#E67E22"
+      "sub": "3/3-dage · 4 uger 2,5",
+      "color": "#27AE60"
     }
   },
   "af": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 3 af 51 i Tour des Stations 2027-programmet, mesocykel 1/2. Det er en bevidst træt overgangsuge — FTP-testen er rykket til 8. oktober, og ugen er designet til at lade kroppen absorbere CPH Half fra 20. september. {HL} Dagens lette løb på 20 min er gennemført — 24 min og 15 TSS i stedet for de planlagte 20 min. Proben er rykket til uge 43, som planlagt.",
-  "coachHighlight": "Drop styrkepasset fra mandag — lad det ligge og ryd hovedet til lørdag på grusvejen.",
+  "coachSpeech": "Torsdag — uge 3 af 51. {HL} Fokus: 56 af 216 TSS er i hus — 2 sessioner tilbage, heriblandt Gravel Z2 90 min ude, Løb let Z1 30 min (valgfri). 2 sessioner er misset — vinduerne er lukket. Vægt på 71,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Den bedste træning er den, du faktisk gennemfører.\"",
+  "coachHighlight": "Søvn på 8,1 timer er solid",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
@@ -3287,18 +3287,14 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "alcohol_cluster",
-      "level": "critical",
-      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
+    },
+    {
+      "type": "alcohol_cluster",
+      "level": "critical",
+      "message": "3 drikkedage i træk 18/9–20/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 8.3,
@@ -3576,7 +3572,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-24T16:57:07.997164",
+  "credentialsCheckedTs": "2026-09-24T16:57:28.507371",
   "coachAssessmentTsFull": "2026-09-24T16:57:07",
   "coachAssessmentWeightAtGen": 71.9,
   "coachAssessmentAfAtGen": 3,
@@ -4664,12 +4660,12 @@
     {
       "date": "2026-09-24",
       "alkohol": 1,
-      "protein": null,
-      "energi": null,
+      "protein": 2,
+      "energi": 1,
       "sult": null
     }
   ],
-  "energy7": 2.2,
+  "energy7": 2.0,
   "af_kind": {
     "2026-08-29": "drak",
     "2026-09-02": "drak",
@@ -10770,13 +10766,7 @@
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": [
-      {
-        "errors": [
-          "warnings[1].message: tal ikke i konteksten: 42"
-        ]
-      }
-    ],
+    "validationRejected": null,
     "notes": null,
     "stale": false
   },
@@ -11358,13 +11348,13 @@
       "Uge 39: TSS 56 af 216 (26 %) · CTL 46,6 (mål 53) · TSB +8,3",
       "Vægt 7d 72,6 kg · fedt 14d 21,6 % · på plan mod glidepath (72,2)",
       "HRV 7d 50 (28d 55) · hvilepuls 44 · søvn 7d 8,1 t",
-      "AF 3/7 · protein 3/3 4/7 · aftensult —/7",
+      "AF 3/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: warn — 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-24T16:56:17Z"
+    "generatedAt": "2026-09-24T16:57:28Z"
   },
   "proposals": [],
   "ftp": {
