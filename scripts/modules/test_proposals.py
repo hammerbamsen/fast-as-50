@@ -295,7 +295,9 @@ def test_real_proposal_blok11_applied_offline_and_plan_matches():
                 wo = e.get("workout") or {}
                 by_week.setdefault(wk, []).append((d["date"], wo.get("type"), e.get("libraryId"), e.get("templateId")))
                 if wo.get("type") == "WeightTraining":
-                    assert e.get("templateId") in ("styrke-fs4-a-2r", "styrke-fs4-b-2r"), d["date"]
+                    # 3 runder (45 min) i build-uger fra uge 42 — forslag 2026-09-24
+                    assert e.get("templateId") in ("styrke-fs4-a-2r", "styrke-fs4-b-2r",
+                                                   "styrke-fs4-a-3r", "styrke-fs4-b-3r"), d["date"]
                 if e.get("libraryId"):
                     assert e["libraryId"] in bike_library.ids(), d["date"]
     # Uger som senere forslag har skrevet om (fx uge 40 Mallorca) testes ikke mod skabelonen
@@ -317,7 +319,7 @@ def test_real_proposal_blok11_applied_offline_and_plan_matches():
 
 
 def test_real_proposal_blok11_quotas():
-    quota = {"2026-09-21": (1, 0), "2026-09-28": (0, 0), "2026-10-05": (0, 0), "2026-10-12": (0, 2),
+    quota = {"2026-09-21": (0, 0), "2026-09-28": (0, 0), "2026-10-05": (1, 0),   # FTP-test flyttet 24/9 -> 8/10 "2026-10-12": (0, 2),
              "2026-10-19": (2, 0), "2026-10-26": (0, 0), "2026-11-02": (1, 0), "2026-11-09": (1, 2),
              "2026-11-16": (1, 0), "2026-11-23": (0, 0), "2026-11-30": (2, 0), "2026-12-07": (1, 1),
              "2026-12-14": (1, 1), "2026-12-21": (0, 0), "2026-12-28": (1, 0)}
