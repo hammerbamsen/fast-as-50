@@ -6690,50 +6690,23 @@
           "date": "2026-09-24",
           "entries": [
             {
-              "id": "3aacd4a8",
-              "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls · Flyttet fra ons 23/9 (stive ben)",
+              "id": "c413d99b",
+              "note": "Træt uge — kort let tur i stedet for proben. Proben tages igen uge 43.",
               "workout": {
-                "description": "- Varm-op 10m >5:39/km Pace\n- PROBE 5 km @ 5:15/km FAST — samme rute hver gang 26m 5:15/km Pace\n- Base 4m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace\n\nPROBEN ER MÅLINGEN. Samme flade rute, samme 5:15/km, samme tid på dagen. Notér gennemsnitspuls for de 5 km.\nLavere puls end sidste måned = bedre form. Højere = træthed eller for stort underskud.\nBlæst og over 22 grader ugyldiggør målingen — flyt den.",
-                "moving_time": 2700,
-                "name": "AEROB PROBE + Løb Z2 45 min",
+                "name": "Løb let 20 min",
                 "type": "Run",
+                "moving_time": 1200,
+                "description": "- Løb let Z1 20m >5:39/km Pace\n\nFORMÅL: Bevægelse, ikke træning. Stop hvis benene er tunge.",
                 "workout_doc": {
                   "steps": [
                     {
-                      "duration": 600,
+                      "text": "Let Z1 >5:39/km",
                       "pace": {
-                        "end": 78,
                         "start": 65,
-                        "units": "%pace"
-                      },
-                      "text": "Varm-op >5:39/km"
-                    },
-                    {
-                      "duration": 1560,
-                      "pace": {
-                        "end": 84,
-                        "start": 84,
-                        "units": "%pace"
-                      },
-                      "text": "PROBE 5 km @ 5:15/km FAST — notér snit-puls"
-                    },
-                    {
-                      "duration": 240,
-                      "pace": {
-                        "end": 88,
-                        "start": 78,
-                        "units": "%pace"
-                      },
-                      "text": "Base 5:00-5:38/km"
-                    },
-                    {
-                      "duration": 300,
-                      "pace": {
                         "end": 78,
-                        "start": 65,
                         "units": "%pace"
                       },
-                      "text": "Cool-down >5:39/km"
+                      "duration": 1200
                     }
                   ]
                 }
@@ -6743,122 +6716,29 @@
         },
         {
           "date": "2026-09-25",
-          "entries": [
-            {
-              "id": "44c5b0f5",
-              "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
-                    },
-                    {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
-                    },
-                    {
-                      "text": "300m cool",
-                      "duration": 360
-                    }
-                  ]
-                }
-              },
-              "note": "Svøm teknik — én cue pr. uge"
-            }
-          ]
+          "entries": []
         },
         {
           "date": "2026-09-26",
           "entries": [
             {
-              "id": "651f66c2",
-              "libraryId": "test_ftp20",
-              "note": "FTP-TEST — indendørs, samme opsætning hver gang. IKKE ERG. Zoner sættes efter resultatet (set-zones.yml) · Flyttet fra tor 24/9. Tunge ben i opvarmningen → kør Grundtur i stedet og test i uge 41",
+              "id": "453a4ee5",
+              "note": "Gravel ude, ren Z2. FTP-testen er flyttet til tor 8/10.",
               "workout": {
-                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Åbner 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 55% FTP\n- Sidste rolige minutter 5m 65% FTP\n- 20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let. 20m freeride\n- Cool-down 7m ramp 60-40% FTP\n\nFORMÅL: Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nIKKE ERG — du skal selv styre effekten. Nyt FTP = 95% af 20-min snit. Begge blæsere på. Du undervurderer dig selv: læg ud 5 W over det du tror.",
-                "moving_time": 3180,
-                "name": "FaF 0 Test - FTP 20 min",
+                "name": "Gravel Z2 90 min ude",
                 "type": "Ride",
+                "moving_time": 5400,
+                "description": "- Gravel Z2 90m 60-70% FTP\n\nFORMÅL: Let volumen før Mallorca. Snak-tempo hele vejen. Ingen bakke-tryk.",
                 "workout_doc": {
                   "steps": [
                     {
-                      "duration": 600,
+                      "text": "Z2 ude",
                       "power": {
-                        "end": 70,
-                        "start": 45,
-                        "units": "%ftp"
-                      },
-                      "ramp": true,
-                      "text": "Varm-op",
-                      "warmup": true
-                    },
-                    {
-                      "reps": 3,
-                      "steps": [
-                        {
-                          "duration": 60,
-                          "power": {
-                            "end": 100,
-                            "start": 100,
-                            "units": "%ftp"
-                          },
-                          "text": "Åbner 100% FTP"
-                        },
-                        {
-                          "duration": 60,
-                          "power": {
-                            "end": 55,
-                            "start": 55,
-                            "units": "%ftp"
-                          },
-                          "text": "Pause 55% FTP"
-                        }
-                      ],
-                      "text": "3x"
-                    },
-                    {
-                      "duration": 300,
-                      "power": {
-                        "end": 55,
-                        "start": 55,
-                        "units": "%ftp"
-                      },
-                      "text": "Let 55% FTP"
-                    },
-                    {
-                      "duration": 300,
-                      "power": {
-                        "end": 65,
-                        "start": 65,
-                        "units": "%ftp"
-                      },
-                      "text": "Sidste rolige minutter 65% FTP"
-                    },
-                    {
-                      "duration": 1200,
-                      "text": "20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let."
-                    },
-                    {
-                      "cooldown": true,
-                      "duration": 420,
-                      "power": {
-                        "end": 40,
                         "start": 60,
+                        "end": 70,
                         "units": "%ftp"
                       },
-                      "ramp": true,
-                      "text": "Cool-down"
+                      "duration": 5400
                     }
                   ]
                 }
@@ -7362,143 +7242,7 @@
           "date": "2026-10-07",
           "entries": [
             {
-              "id": "fe960992",
-              "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
-                    },
-                    {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
-                    },
-                    {
-                      "text": "300m cool",
-                      "duration": 360
-                    }
-                  ]
-                }
-              },
-              "note": "Svøm teknik — én cue pr. uge"
-            }
-          ]
-        },
-        {
-          "date": "2026-10-08",
-          "entries": [
-            {
-              "id": "17f17c6c",
-              "workout": {
-                "name": "FaF 1 Z2 - Grundtur 80",
-                "type": "Ride",
-                "moving_time": 4800,
-                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1500,
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 70% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1500,
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 70% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 62,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "libraryId": "z2_grundtur_80",
-              "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "ce7e8bcf",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "recovery: 2 runder, ingen progression"
-            }
-          ]
-        },
-        {
-          "date": "2026-10-09",
-          "entries": [
-            {
-              "id": "6683fd59",
+              "id": "be6d94ce",
               "workout": {
                 "name": "Løb Z2 40 min",
                 "type": "Run",
@@ -7541,6 +7285,131 @@
           ]
         },
         {
+          "date": "2026-10-08",
+          "entries": [
+            {
+              "id": "dd07d4e0",
+              "libraryId": "test_ftp20",
+              "note": "FTP-TEST efter Mallorca + recovery-uge. Indendørs, samme opsætning, IKKE ERG. Zoner sættes efter resultatet (set-zones.yml).",
+              "workout": {
+                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Åbner 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 55% FTP\n- Sidste rolige minutter 5m 65% FTP\n- 20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let. 20m freeride\n- Cool-down 7m ramp 60-40% FTP\n\nFORMÅL: Nulpunkt. Alt i biblioteket skalerer efter den. Køres indendørs, altid — samme trainer, samme blæseropsætning, samme tid på dagen.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nIKKE ERG — du skal selv styre effekten. Nyt FTP = 95% af 20-min snit. Begge blæsere på. Du undervurderer dig selv: læg ud 5 W over det du tror.",
+                "moving_time": 3180,
+                "name": "FaF 0 Test - FTP 20 min",
+                "type": "Ride",
+                "workout_doc": {
+                  "steps": [
+                    {
+                      "duration": 600,
+                      "power": {
+                        "end": 70,
+                        "start": 45,
+                        "units": "%ftp"
+                      },
+                      "ramp": true,
+                      "text": "Varm-op",
+                      "warmup": true
+                    },
+                    {
+                      "reps": 3,
+                      "steps": [
+                        {
+                          "duration": 60,
+                          "power": {
+                            "end": 100,
+                            "start": 100,
+                            "units": "%ftp"
+                          },
+                          "text": "Åbner 100% FTP"
+                        },
+                        {
+                          "duration": 60,
+                          "power": {
+                            "end": 55,
+                            "start": 55,
+                            "units": "%ftp"
+                          },
+                          "text": "Pause 55% FTP"
+                        }
+                      ],
+                      "text": "3x"
+                    },
+                    {
+                      "duration": 300,
+                      "power": {
+                        "end": 55,
+                        "start": 55,
+                        "units": "%ftp"
+                      },
+                      "text": "Let 55% FTP"
+                    },
+                    {
+                      "duration": 300,
+                      "power": {
+                        "end": 65,
+                        "start": 65,
+                        "units": "%ftp"
+                      },
+                      "text": "Sidste rolige minutter 65% FTP"
+                    },
+                    {
+                      "duration": 1200,
+                      "text": "20 MIN TEST — jævn maksindsats. Første 5 min skal føles for let."
+                    },
+                    {
+                      "cooldown": true,
+                      "duration": 420,
+                      "power": {
+                        "end": 40,
+                        "start": 60,
+                        "units": "%ftp"
+                      },
+                      "ramp": true,
+                      "text": "Cool-down"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-10-09",
+          "entries": [
+            {
+              "id": "a61fb509",
+              "workout": {
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "moving_time": 2700,
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "workout_doc": {
+                  "steps": [
+                    {
+                      "text": "400m varm-op Z1",
+                      "duration": 480
+                    },
+                    {
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
+                    },
+                    {
+                      "text": "300m cool",
+                      "duration": 360
+                    }
+                  ]
+                }
+              },
+              "note": "Svøm teknik — én cue pr. uge"
+            }
+          ]
+        },
+        {
           "date": "2026-10-10",
           "entries": [
             {
@@ -7560,6 +7429,17 @@
                 }
               },
               "note": "Gang let — Uge 41 · recovery"
+            },
+            {
+              "id": "b5ceeb7b",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "moving_time": 1500,
+                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-2r",
+              "note": "recovery: 2 runder, ingen progression"
             }
           ]
         },
@@ -7663,15 +7543,15 @@
           "date": "2026-10-12",
           "entries": [
             {
-              "id": "427a348e",
+              "id": "4abc13c1",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 42 · sweet spot + bjergtur (besluttet 7/9)"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 42 · sweet spot + bjergtur (besluttet 7/9)"
             }
           ]
         },
@@ -7799,36 +7679,45 @@
           "date": "2026-10-14",
           "entries": [
             {
-              "id": "8cb43584",
+              "id": "68a68894",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -7917,17 +7806,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "a4177060",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -7935,45 +7813,36 @@
           "date": "2026-10-16",
           "entries": [
             {
-              "id": "dfc1c055",
+              "id": "ea268049",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -8070,6 +7939,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "7a0bbf50",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -8226,15 +8106,15 @@
           "date": "2026-10-19",
           "entries": [
             {
-              "id": "06faed5a",
+              "id": "b116be73",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 43 · tærskel + kvalitet sent i turen"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 43 · tærskel + kvalitet sent i turen"
             }
           ]
         },
@@ -8498,17 +8378,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "AEROB PROBE (cykel) — 25 min @ 190 W i Z2-delen, notér snit-puls sidste 15 min — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "51a6d528",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -8642,6 +8511,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "6c02900e",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -8838,36 +8718,45 @@
           "date": "2026-10-28",
           "entries": [
             {
-              "id": "4f4bcf2e",
+              "id": "c3ad98f1",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "name": "Løb Z2 40 min",
+                "type": "Run",
+                "moving_time": 2400,
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 25m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1500
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge"
+              "note": "Løb Z2 let — recovery"
             }
           ]
         },
@@ -8956,17 +8845,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "d808c4b2",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "recovery: 2 runder, ingen progression"
             }
           ]
         },
@@ -8974,45 +8852,36 @@
           "date": "2026-10-30",
           "entries": [
             {
-              "id": "fbf0b487",
+              "id": "54d6c356",
               "workout": {
-                "name": "Løb Z2 40 min",
-                "type": "Run",
-                "moving_time": 2400,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 25m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "moving_time": 2700,
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1500
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 let — recovery"
+              "note": "Svøm teknik — én cue pr. uge"
             }
           ]
         },
@@ -9036,6 +8905,17 @@
                 }
               },
               "note": "Gang let — Uge 44 · recovery. Stelvio couples-tilmelding senest tor 29/10"
+            },
+            {
+              "id": "90c39698",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "moving_time": 1500,
+                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-2r",
+              "note": "recovery: 2 runder, ingen progression"
             }
           ]
         },
@@ -9139,15 +9019,15 @@
           "date": "2026-11-02",
           "entries": [
             {
-              "id": "43c1b964",
+              "id": "720fea8c",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 45 · VO2-blok 1/6"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 45 · VO2-blok 1/6"
             }
           ]
         },
@@ -9296,36 +9176,45 @@
           "date": "2026-11-04",
           "entries": [
             {
-              "id": "09becba6",
+              "id": "331770b0",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -9414,17 +9303,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "2ca4a890",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -9432,45 +9310,36 @@
           "date": "2026-11-06",
           "entries": [
             {
-              "id": "1cdd0098",
+              "id": "44d347b4",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -9567,6 +9436,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "81117463",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -9676,15 +9556,15 @@
           "date": "2026-11-09",
           "entries": [
             {
-              "id": "f1383d44",
+              "id": "fd999606",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 46 · VO2-blok 2/6"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 46 · VO2-blok 2/6"
             }
           ]
         },
@@ -9791,36 +9671,45 @@
           "date": "2026-11-11",
           "entries": [
             {
-              "id": "10536678",
+              "id": "92cc0770",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -9909,17 +9798,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "31a5e920",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -9927,45 +9805,36 @@
           "date": "2026-11-13",
           "entries": [
             {
-              "id": "e42769c4",
+              "id": "9c7f75cf",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -10044,6 +9913,17 @@
               },
               "libraryId": "dur_negativ_split",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "1478b736",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -10200,15 +10080,15 @@
           "date": "2026-11-16",
           "entries": [
             {
-              "id": "8350d73f",
+              "id": "3bf1ccdd",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 47 · VO2-blok 3/6 — første 4-timers"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 47 · VO2-blok 3/6 — første 4-timers"
             }
           ]
         },
@@ -10381,36 +10261,45 @@
           "date": "2026-11-18",
           "entries": [
             {
-              "id": "ea8131d5",
+              "id": "dde67a37",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -10499,17 +10388,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "0274fe71",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -10517,45 +10395,36 @@
           "date": "2026-11-20",
           "entries": [
             {
-              "id": "08a93916",
+              "id": "07fef2c9",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -10652,6 +10521,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "dff25d34",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -10885,36 +10765,45 @@
           "date": "2026-11-25",
           "entries": [
             {
-              "id": "fed5a3a3",
+              "id": "73025ac7",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "name": "Løb Z2 40 min",
+                "type": "Run",
+                "moving_time": 2400,
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 25m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1500
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge"
+              "note": "Løb Z2 let — recovery"
             }
           ]
         },
@@ -11003,17 +10892,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "4e7076b5",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "recovery: 2 runder, ingen progression"
             }
           ]
         },
@@ -11021,45 +10899,36 @@
           "date": "2026-11-27",
           "entries": [
             {
-              "id": "e2b43a23",
+              "id": "46b1a30b",
               "workout": {
-                "name": "Løb Z2 40 min",
-                "type": "Run",
-                "moving_time": 2400,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 25m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
+                "moving_time": 2700,
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1500
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 let — recovery"
+              "note": "Svøm teknik — én cue pr. uge"
             }
           ]
         },
@@ -11083,6 +10952,17 @@
                 }
               },
               "note": "Gang let — Uge 48 · recovery"
+            },
+            {
+              "id": "86e8d476",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "moving_time": 1500,
+                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-2r",
+              "note": "recovery: 2 runder, ingen progression"
             }
           ]
         },
@@ -11186,15 +11066,15 @@
           "date": "2026-11-30",
           "entries": [
             {
-              "id": "d6bf8e62",
+              "id": "ef8b591c",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 49 · VO2-blok 4/6"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 49 · VO2-blok 4/6"
             }
           ]
         },
@@ -11343,36 +11223,45 @@
           "date": "2026-12-02",
           "entries": [
             {
-              "id": "07996000",
+              "id": "5b03f2b2",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -11461,17 +11350,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "6a524790",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -11479,45 +11357,36 @@
           "date": "2026-12-04",
           "entries": [
             {
-              "id": "de0afa45",
+              "id": "82e56fb8",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -11614,6 +11483,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "424a12fd",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -11714,15 +11594,15 @@
           "date": "2026-12-07",
           "entries": [
             {
-              "id": "874c66a6",
+              "id": "5f208afe",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 50 · VO2-blok 5/6"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 50 · VO2-blok 5/6"
             }
           ]
         },
@@ -11829,36 +11709,45 @@
           "date": "2026-12-09",
           "entries": [
             {
-              "id": "832a3728",
+              "id": "d117a1fd",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -11947,17 +11836,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "386436d1",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -11965,45 +11843,36 @@
           "date": "2026-12-11",
           "entries": [
             {
-              "id": "1c528a16",
+              "id": "64eddaaa",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -12082,6 +11951,17 @@
               },
               "libraryId": "dur_negativ_split",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "304a935f",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -12219,15 +12099,15 @@
           "date": "2026-12-14",
           "entries": [
             {
-              "id": "0b92bf8e",
+              "id": "0fb1e7e6",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 51 · VO2-blok 6/6"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 51 · VO2-blok 6/6"
             }
           ]
         },
@@ -12343,36 +12223,45 @@
           "date": "2026-12-16",
           "entries": [
             {
-              "id": "b153ce3b",
+              "id": "ae456349",
               "workout": {
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
+                "name": "Løb Z2 45 min",
+                "type": "Run",
                 "moving_time": 2700,
-                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "400m varm-op Z1",
-                      "duration": 480
+                      "text": "Varm-op >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 600
                     },
                     {
-                      "reps": 5,
-                      "text": "5x",
-                      "steps": [
-                        {
-                          "text": "100m teknik Z1-Z2",
-                          "duration": 120
-                        }
-                      ]
+                      "text": "Base 5:00-5:38/km",
+                      "pace": {
+                        "start": 78,
+                        "end": 88,
+                        "units": "%pace"
+                      },
+                      "duration": 1800
                     },
                     {
-                      "text": "300m cool",
-                      "duration": 360
+                      "text": "Cool-down >5:39/km",
+                      "pace": {
+                        "start": 65,
+                        "end": 78,
+                        "units": "%pace"
+                      },
+                      "duration": 300
                     }
                   ]
                 }
               },
-              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+              "note": "Løb Z2 — ugens løb, let"
             }
           ]
         },
@@ -12461,17 +12350,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "ab08da60",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -12479,45 +12357,36 @@
           "date": "2026-12-18",
           "entries": [
             {
-              "id": "1c765c6e",
+              "id": "2d1b5e40",
               "workout": {
-                "name": "Løb Z2 45 min",
-                "type": "Run",
+                "name": "Svøm 1500m let teknisk",
+                "type": "Swim",
                 "moving_time": 2700,
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+                "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "text": "Varm-op >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 600
+                      "text": "400m varm-op Z1",
+                      "duration": 480
                     },
                     {
-                      "text": "Base 5:00-5:38/km",
-                      "pace": {
-                        "start": 78,
-                        "end": 88,
-                        "units": "%pace"
-                      },
-                      "duration": 1800
+                      "reps": 5,
+                      "text": "5x",
+                      "steps": [
+                        {
+                          "text": "100m teknik Z1-Z2",
+                          "duration": 120
+                        }
+                      ]
                     },
                     {
-                      "text": "Cool-down >5:39/km",
-                      "pace": {
-                        "start": 65,
-                        "end": 78,
-                        "units": "%pace"
-                      },
-                      "duration": 300
+                      "text": "300m cool",
+                      "duration": 360
                     }
                   ]
                 }
               },
-              "note": "Løb Z2 — ugens løb, let"
+              "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
             }
           ]
         },
@@ -12614,6 +12483,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "1aa6ead9",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -12869,19 +12749,7 @@
         },
         {
           "date": "2026-12-24",
-          "entries": [
-            {
-              "id": "d668fe13",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "recovery: 2 runder, ingen progression"
-            }
-          ]
+          "entries": []
         },
         {
           "date": "2026-12-25",
@@ -12930,6 +12798,17 @@
                 }
               },
               "note": "Løb Z2 let — 2. juledag"
+            },
+            {
+              "id": "585bb52f",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 2 runder",
+                "type": "WeightTraining",
+                "moving_time": 1500,
+                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-2r",
+              "note": "recovery: 2 runder, ingen progression"
             }
           ]
         },
@@ -13033,15 +12912,15 @@
           "date": "2026-12-28",
           "entries": [
             {
-              "id": "c3c04be2",
+              "id": "5723910b",
               "workout": {
-                "name": "Styrke A · Functional 4 · 2 runder",
+                "name": "Styrke A · Functional 4 · 3 runder",
                 "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
-              "templateId": "styrke-fs4-a-2r",
-              "note": "Functional 4 — progression efter check-in. Uge 53 · bro til lange intervaller fra uge 1"
+              "templateId": "styrke-fs4-a-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 53 · bro til lange intervaller fra uge 1"
             }
           ]
         },
@@ -13287,17 +13166,6 @@
               },
               "libraryId": "z2_grundtur_80",
               "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
-            },
-            {
-              "id": "bc9ab61c",
-              "workout": {
-                "name": "Styrke B · Functional 4 · 2 runder",
-                "type": "WeightTraining",
-                "moving_time": 1500,
-                "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
-              },
-              "templateId": "styrke-fs4-b-2r",
-              "note": "Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
@@ -13440,6 +13308,17 @@
               },
               "libraryId": "z2_depottur_2t",
               "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader"
+            },
+            {
+              "id": "9a434ec1",
+              "workout": {
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining",
+                "moving_time": 2700,
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride"
+              },
+              "templateId": "styrke-fs4-b-3r",
+              "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen"
             }
           ]
         },
