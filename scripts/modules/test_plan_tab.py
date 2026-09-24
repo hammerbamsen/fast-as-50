@@ -141,13 +141,16 @@ def test_build_plan_tab_window_spans_program_switch():
     assert t["ctl"]["window"]["to"] == "2026-10-25"
     cur = [w for w in t["weeks"] if w["isCurrent"]]
     assert len(cur) == 1 and cur[0]["week"] == 14
+    # FTP-testen ligger i uge 5 (tor 8/10) efter forslag 2026-09-24; uge 3 er let
     w3 = next(w for w in t["weeks"] if w["programId"] == "tds-2027" and w["week"] == 3)
-    assert w3["mesoWeek"] == "1/2" and w3["quota"] == {"haard": 1, "moderat": 0}
-    assert w3["quotaUsed"] == {"haard": 1, "moderat": 0}
-    assert "FaF 0 Test - FTP 20 min" in w3["keySessions"]
+    assert w3["mesoWeek"] == "1/2" and w3["quota"] == {"haard": 0, "moderat": 0}
+    assert w3["quotaUsed"] == {"haard": 0, "moderat": 0}
+    w5 = next(w for w in t["weeks"] if w["programId"] == "tds-2027" and w["week"] == 5)
+    assert w5["quota"] == {"haard": 1, "moderat": 0} and w5["quotaUsed"] == {"haard": 1, "moderat": 0}
+    assert "FaF 0 Test - FTP 20 min" in w5["keySessions"]
     # Kælderpas bærer bibliotekets navn, ERG og formål
-    s3 = next(s for s in t["sessions"] if s["programId"] == "tds-2027" and s["week"] == 3)
-    ftp = next(e for d in s3["days"] for e in d["entries"] if e["libraryId"] == "test_ftp20")
+    s5 = next(s for s in t["sessions"] if s["programId"] == "tds-2027" and s["week"] == 5)
+    ftp = next(e for d in s5["days"] for e in d["entries"] if e["libraryId"] == "test_ftp20")
     assert ftp["erg"] is False and ftp["load"] == "haard" and ftp["isKey"] and ftp["zwiftName"] == "FaF 0 Test - FTP 20 min"
     # CPH Half som race -> haard/nøglepas, og ugen bærer løbet
     w2 = next(w for w in t["weeks"] if w["programId"] == "tds-2027" and w["week"] == 2)
