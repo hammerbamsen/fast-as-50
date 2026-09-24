@@ -143,11 +143,15 @@ def _program_ctx(plan, program, today, athlete, lib):
     }
 
 
+NOTE_MAX = 200  # pasnoten sendes med, så modellen ikke gætter indhold ud fra navnet
+
+
 def _entry_from_plan_tab(e):
     return _compact({
         'id': e.get('id'), 'name': e.get('zwiftName') or e.get('name'), 'disc': e.get('disc'),
         'mins': _int(e.get('mins')), 'load': e.get('load'), 'erg': e.get('erg'),
         'libraryId': e.get('libraryId'), 'purpose': e.get('purpose'), 'isKey': bool(e.get('isKey')),
+        'note': (str(e.get('note'))[:NOTE_MAX] if e.get('note') else None),
         'done': bool(e.get('done')), 'actualMins': _int(e.get('actualMins')),
         'actualTss': _int(e.get('actualTss')), 'extra': bool(e.get('extra')),
     })

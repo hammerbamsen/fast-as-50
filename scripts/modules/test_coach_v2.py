@@ -252,3 +252,36 @@ def test_legacy_fields_and_html():
     assert 'class="coach-head"' in html and html.count('class="coach-sec"') == 3
     assert "style=" not in html
     assert "Træning &amp; load" in html and "Krop &amp; kost" in html and "Vaner" in html
+
+
+# ── ERG kun ved cykelpas (fix 24/9-2026: "ingen ERG" om et løb) ──────────────
+
+def _ctx_with_today(sessions):
+    ctx = _ctx()
+    ctx["today"] = dict(ctx["today"], sessions=sessions)
+    return ctx
+
+
+def test_validate_rejects_erg_on_run_day():
+    ctx = _ctx_with_today([{"id": "x", "name": "AEROB PROBE + Løb Z2 45 min", "disc": "run", "mins": 45}])
+    a = _answer(oneThing={"action": "Løb i dag — ingen ERG, roligt tempo.", "why": "Readiness er fin."})
+    ok, errors, _ = cv.validate(a, ctx)
+    assert not ok and any("ERG" in e for e in errors)
+
+
+def test_validate_allows_erg_on_bike_day():
+    ctx = _ctx_with_today([{"id": "y", "name": "FaF 0 Test - FTP 20 min", "disc": "bike", "mins": 53, "erg": False}])
+    a = _answer(oneThing={"action": "FTP-test i dag — ikke ERG, du styrer selv effekten.", "why": "Readiness er fin."})
+    ok, errors, _ = cv.validate(a, ctx)
+    assert ok, errors
+
+
+def test_context_passes_session_note():
+    e = cc._entry_from_plan_tab({"id": "z", "name": "Løb", "disc": "run", "note": "PROBE 5:15/km " + "x" * 400})
+    assert e["note"].startswith("PROBE 5:15/km") and len(e["note"]) == cc.NOTE_MAX
+
+
+def test_daily_prompt_limits_erg_to_bike():
+    with open(os.path.join(_ROOT, "prompts", "coach_daily.md"), encoding="utf-8") as fh:
+        txt = fh.read()
+    assert "KUN når `disc` er `bike`" in txt

@@ -10,6 +10,7 @@ Reglerne er kode, ikke prosa:
   2. oneThing.action må ikke være et TSS-status-resumé ("x procent af ugens TSS").
   3. warnings[].action.edit må kun pege på entry-id'er der findes i konteksten
      (og templateId på kataloget) — ellers fjernes advarslen (blød fejl).
+  2b. oneThing.action må kun nævne ERG når dagens pas er på cykel.
   4. Længder klippes (oneThing.action 140, why 160); levels normaliseres.
 
 validate(answer, ctx) -> (ok, errors, cleaned). ok=False => svaret kasseres og
@@ -23,6 +24,17 @@ WHY_MAX = 160
 MAX_WARNINGS = 3
 LEVELS = ('info', 'warn', 'act')
 EDIT_ACTIONS = ('move', 'cancel', 'swap_template')
+
+ERG_RE = re.compile(r"\berg\b", re.I)
+
+
+def _today_has_bike(ctx):
+    """True hvis mindst ét af dagens pas er på cykel (eller disc er ukendt)."""
+    sess = ((ctx or {}).get("today") or {}).get("sessions") or []
+    if not sess:
+        return True  # ingen viden -> ingen afvisning
+    return any((x.get("disc") or "bike") == "bike" for x in sess)
+
 
 TSS_STATUS_RE = re.compile(r"procent af ugens tss|% af ugens tss|af ugens tss er i hus", re.I)
 
@@ -146,6 +158,8 @@ def validate(answer, ctx, *, require_week_focus=False):
         errors.append("oneThing.action mangler")
     elif TSS_STATUS_RE.search(action):
         errors.append("oneThing.action er et TSS-status-resumé, ikke en handling")
+    if ERG_RE.search(action) and not _today_has_bike(ctx):
+        errors.append("oneThing.action nævner ERG, men dagens pas er ikke på cykel — ERG gælder kun trainer-pas")
     a["oneThing"] = {"action": action[:ACTION_MAX], "why": (ot.get("why") or "").strip()[:WHY_MAX] or None}
 
     # 3. Sektioner

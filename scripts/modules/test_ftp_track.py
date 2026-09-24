@@ -72,10 +72,12 @@ def test_kpi_text():
 
 
 def test_real_plan_has_history_and_test():
-    """plan.json: ftpHistory er seedet og der er en FTP-test tor 24/9."""
+    """plan.json: ftpHistory er seedet og der ligger en FTP-test i uge 39.
+    Datoen låses ikke — testen kan flyttes inden for ugen (24/9 -> 26/9)."""
     assert F.history(PLAN), "ftpHistory mangler i plan.json"
     assert F.history(PLAN)[-1]["ftpW"] == PLAN["athletes"]["kennet"]["zones"]["ftpW"]
-    assert F.next_test(PLAN, date(2026, 9, 21)) == "2026-09-24"
+    nt = F.next_test(PLAN, date(2026, 9, 21))
+    assert nt and "2026-09-21" <= nt <= "2026-09-27", nt
     f = F.build(PLAN, date(2026, 9, 21), weight_avg7=72.0, week_num=3)
     assert f["phaseTarget"] == 278 and f["seasonTarget"] == 320 and len(f["phases"]) == 6
 
