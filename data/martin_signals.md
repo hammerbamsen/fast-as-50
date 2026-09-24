@@ -55,3 +55,17 @@
 - Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)
 - Næste uge (39, BASE): TSS-mål 415 · hårde/lange dage: tor 24/9 test_ftp20 53 min
 - Planændringer siden sidst: 1 — se martin_signals.md
+
+### Planændring 24/09 06:31
+- **fredag 2026-09-25** (uge 3, apply_proposal): Svøm 1500m let teknisk (45 min) → hviledag
+- **lørdag 2026-09-26** (uge 3, apply_proposal): FaF 0 Test - FTP 20 min (53 min) → Gravel Z2 90 min ude (90 min) [langt]
+- **torsdag 2026-10-08** (uge 5, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min); Styrke B · Functional 4 · 2 runder (25 min) → FaF 0 Test - FTP 20 min (53 min)
+- **lørdag 2026-10-17** (uge 6, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-10-24** (uge 7, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-11-07** (uge 9, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-11-14** (uge 10, apply_proposal): FaF 2 Dur - Negativ split 2 t (130 min) [langt] → FaF 2 Dur - Negativ split 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-11-21** (uge 11, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-12-05** (uge 13, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-12-12** (uge 14, apply_proposal): FaF 2 Dur - Negativ split 2 t (130 min) [langt] → FaF 2 Dur - Negativ split 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-12-19** (uge 15, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2027-01-02** (uge 17, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
