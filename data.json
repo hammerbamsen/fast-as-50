@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-25 17:53",
+    "updated": "2026-09-25 21:52",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -100,10 +100,10 @@
       "color": "#27AE60"
     },
     "protein": {
-      "value": "4",
+      "value": "5",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 2,5",
-      "color": "#E67E22"
+      "sub": "3/3-dage · 4 uger 2,8",
+      "color": "#27AE60"
     }
   },
   "af": {
@@ -2075,7 +2075,8 @@
     "2026-09-21": 0,
     "2026-09-22": 0,
     "2026-09-23": 0,
-    "2026-09-24": 1
+    "2026-09-24": 1,
+    "2026-09-25": 1
   },
   "all_weeks": {
     "1": {
@@ -3340,12 +3341,12 @@
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere"
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere"
     },
     {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 19/9–20/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "2 drikkedage i træk 24/9–25/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 8.8,
@@ -3623,7 +3624,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-25T15:53:19.053415",
+  "credentialsCheckedTs": "2026-09-25T19:52:09.635470",
   "coachAssessmentTsFull": "2026-09-25T14:30:12",
   "coachAssessmentWeightAtGen": 71.8,
   "coachAssessmentAfAtGen": 3,
@@ -4710,13 +4711,13 @@
     },
     {
       "date": "2026-09-25",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 1,
+      "protein": 2,
+      "energi": 3,
       "sult": null
     }
   ],
-  "energy7": 1.7,
+  "energy7": 1.9,
   "af_kind": {
     "2026-08-29": "drak",
     "2026-09-02": "drak",
@@ -4728,7 +4729,8 @@
     "2026-09-18": "faa",
     "2026-09-19": "faa",
     "2026-09-20": "faa",
-    "2026-09-24": "faa"
+    "2026-09-24": "faa",
+    "2026-09-25": "faa"
   },
   "planTab": {
     "today": "2026-09-25",
@@ -11081,7 +11083,7 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "4 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
@@ -11117,10 +11119,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 3,
+            "days7": 4,
             "run": 2
           },
-          "text": "3 drikkedage på 7 dage · 2 i træk"
+          "text": "4 drikkedage på 7 dage · 2 i træk"
         }
       }
     }
@@ -11440,13 +11442,13 @@
       "Uge 39: TSS 87 af 216 (40 %) · CTL 46,2 (mål 53) · TSB +8,8",
       "Vægt 7d 72,6 kg · fedt 14d 21,6 % · på plan mod glidepath (72,2)",
       "HRV 7d 49 (28d 55) · hvilepuls 44 · søvn 7d 8,1 t",
-      "AF 3/7 · protein 3/3 4/7 · aftensult —/7",
+      "AF 3/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
-      "Cut-tjek: warn — 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 4 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-25T15:53:19Z"
+    "generatedAt": "2026-09-25T19:52:09Z"
   },
   "proposals": [],
   "ftp": {
