@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-25 07:54",
+    "updated": "2026-09-25 08:26",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "45,5",
+      "value": "46,0",
       "unit": "",
       "sub": "Uge 3-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "12,3",
+      "value": "9,7",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "56",
+      "value": "79",
       "unit": "TSS",
-      "sub": "56 af 216 planlagt TSS",
+      "sub": "79 af 216 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -82,7 +82,7 @@
       "color": "#C0392B"
     },
     "swimM": {
-      "value": "0",
+      "value": "2000",
       "unit": "m",
       "sub": "Svøm denne uge",
       "color": "#7A6A58"
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Du er i uge 3 af TRANSITION-blokken i Tour des Stations 2027-programmet — en bevidst træt uge efter CPH Half, med nul-kvote på hårde og moderate pas og FTP-test rykket til 8. oktober. Weekendens pas er lette og aerobe, og det er meningen. {HL} Ingen pas er planlagt i dag — fri dag. Ugen har 2 gennemførte pas (gåtur og let løb) og 2 missede (styrke mandag og Z2-cykel onsdag). TSS er på 56 af 216 planlagt — det er 26 %.",
-  "coachHighlight": "Hold dig alkoholfri i dag og resten af weekenden — ingen undtagelser.",
+  "coachSpeech": "Du er i BASE-blokken uge 1 af 2 i Tour des Stations 2027-programmet, og ugen er bevidst let — FTP-testen er rykket til 8. oktober, og kroppen skal ned i gear efter CPH Half. Cuttet starter denne uge, og alkohol er det primære justeringspunkt lige nu. {HL} Dagens svøm på 41 minutter er i hus — 23 TSS som ekstra pas. Ugen har 79 TSS ud af 216 planlagte, svarende til 37 %. To pas er misset: Styrke A mandag og Grundtur 80 min onsdag — begge slippes, intet indhentes.",
+  "coachHighlight": "Hold dig alkoholfri i dag og resten af weekenden — ingen genstande fredag, lørdag, søndag.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
-      "discipline": "rest",
-      "title": "Hviledag",
+      "discipline": "swim",
+      "title": "Svøm i pool",
       "duration": "",
       "zone": "–",
-      "desc": "Ingen planlagt træning i dag.",
-      "completed": false
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -198,6 +198,17 @@
       "intervals_compliance": 120.5
     },
     {
+      "day": "Fre",
+      "disc": "swim",
+      "label": "Svøm i pool",
+      "done": true,
+      "extra": true,
+      "actual_tss": 23,
+      "actual_mins": 41,
+      "actual_distance_m": 2000.0,
+      "today": true
+    },
+    {
       "day": "Lør",
       "disc": "bike",
       "label": "Gravel Z2 90 min ude",
@@ -219,7 +230,7 @@
   "ctlCurve": [
     49.1,
     49.9,
-    45.5
+    46.0
   ],
   "weightHistory": [
     {
@@ -1925,7 +1936,7 @@
     },
     {
       "date": "2026-09-25",
-      "v": 12.3,
+      "v": 9.8,
       "real": true
     }
   ],
@@ -2283,6 +2294,17 @@
           "actual_mins": 24,
           "actual_distance_m": 3222.81,
           "intervals_compliance": 120.5
+        },
+        {
+          "day": "Fre",
+          "disc": "swim",
+          "label": "Svøm i pool",
+          "done": true,
+          "extra": true,
+          "actual_tss": 23,
+          "actual_mins": 41,
+          "actual_distance_m": 2000.0,
+          "today": true
         },
         {
           "day": "Lør",
@@ -2922,11 +2944,12 @@
     }
   ],
   "train_mins": {
+    "swim": 41.0,
     "run": 24.0,
     "bike": 23.0,
     "walk": 162.0,
     "planned": 290.0,
-    "actual_total": 209.0
+    "actual_total": 250.0
   },
   "fatHistory": [
     {
@@ -3280,8 +3303,8 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 19 af 357 · Fredag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Du er i uge 3 af TRANSITION-blokken i Tour des Stations 2027-programmet — en bevidst træt uge efter CPH Half, med nul-kvote på hårde og moderate pas og FTP-test rykket til 8. oktober. Weekendens pas er lette og aerobe, og det er meningen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas er planlagt i dag — fri dag. Ugen har 2 gennemførte pas (gåtur og let løb) og 2 missede (styrke mandag og Z2-cykel onsdag). TSS er på 56 af 216 planlagt — det er 26 %. Det lyder lavt, men du er i TRANSITION uge 3 i en træt uge, og kvoten for hårde og moderate pas er 0 — så det der er gjort er rigtigt. I morgen venter Gravel Z2 90 min ude.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittene er 72,6 kg og 21,7 % fedt. Planen forventede 72,2 kg, så du ligger 0,5 kg over plan — cut-status er 'plan' men i den tunge ende. 7-dages snittet for vægt er steget 0,8 kg den seneste måned, og fedtprocenten er steget 0,3 procentpoint — begge over tærsklerne, så retningen er opadgående. Protein ved hvert måltid og AF resten af ugen er de to håndtag du har.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Du har 3 AF-dage ud af et mål på 6 denne uge — 3 dage med 1-2 genstande, ingen dage med 3+. Protein er registreret 4 ud af 6 registrerede dage. Søvn er stærk: 7-dages snit på 8,1 timer, og du fik 7,8 timer i nat. Energiniveau i snit 1,7 — hold øje med det i weekendens pas.</p>",
-  "coachAssessmentTs": "07:54",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 19 af 357 · Fredag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Du er i BASE-blokken uge 1 af 2 i Tour des Stations 2027-programmet, og ugen er bevidst let — FTP-testen er rykket til 8. oktober, og kroppen skal ned i gear efter CPH Half. Cuttet starter denne uge, og alkohol er det primære justeringspunkt lige nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens svøm på 41 minutter er i hus — 23 TSS som ekstra pas. Ugen har 79 TSS ud af 216 planlagte, svarende til 37 %. To pas er misset: Styrke A mandag og Grundtur 80 min onsdag — begge slippes, intet indhentes. Tilbage er Gravel Z2 90 min lørdag og det valgfrie løb søndag. CTL er 46,0 mod et mål på 53,0 — men blokken er BASE uge 1 af 2 i en tung uge efter CPH Half, og TSB på 9,7 er sund. Ramprate på -3,9 afspejler den planlagte nedtrapning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,6 kg mod forventet 72,2 kg — det er 0,5 kg over plan. Fedtprocenten på 7-dages snit er 21,7 %. Vægten er steget 0,8 kg den seneste måned, så retningen er opad — cut-rate på 0,19 kg/uge er under de planlagte 0,22 kg/uge. Protein ved hvert måltid og alkoholfrie dage resten af ugen er de to håndtag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-dage denne uge: 3 af 6 mål. Der er 3 drikkedage på 7 dage — ingen dage med 3+ genstande, men 2 dage i træk rammer HRV hårdere end spredte dage. Protein er registreret 4 ud af 6 registrerede dage. Søvn på 7-dages snit er 8,1 timer — over minimumsgrænsen på 7,0 timer. Energi-snit er 1,7.</p>",
+  "coachAssessmentTs": "08:26",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3299,7 +3322,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 12.3,
+  "tsb": 9.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3316,13 +3339,13 @@
     {
       "week": 3,
       "date": "2026-09-21",
-      "meters": 0,
-      "cumulative": 1500.0
+      "meters": 2000.0,
+      "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i189787066",
+  "coachAssessmentLastActId": "i190143555",
   "weekFocusWeek": 3,
-  "coachAssessmentPlanAtGen": "",
+  "coachAssessmentPlanAtGen": "Svøm i pool",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
@@ -3574,8 +3597,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-25T05:54:35.899983",
-  "coachAssessmentTsFull": "2026-09-25T05:54:35",
+  "credentialsCheckedTs": "2026-09-25T06:27:41.067060",
+  "coachAssessmentTsFull": "2026-09-25T06:27:41",
   "coachAssessmentWeightAtGen": 71.8,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [
@@ -3674,7 +3697,7 @@
   "weekTssActual": {
     "1": 289,
     "2": 397,
-    "3": 56
+    "3": 79
   },
   "racesUpcoming": [
     {
@@ -4839,7 +4862,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 415,
-        "tssActual": 56,
+        "tssActual": 79,
         "purpose": "Base: cut starter. Træt uge — let løb tor, gravel Z2 90 min ude lør. FTP-test flyttet til tor 8/10 (uge 41).",
         "note": "Cut starter. FTP-test flyttet 24/9 til tor 8/10 (træt uge). Fra uge 41: styrke man+lør 45 min, svøm fre (ons alternativ).",
         "quota": {
@@ -7140,7 +7163,26 @@
           {
             "date": "2026-09-25",
             "weekday": "Fre",
-            "entries": [],
+            "entries": [
+              {
+                "id": null,
+                "name": "Svøm i pool",
+                "type": null,
+                "disc": "swim",
+                "mins": 41,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 41,
+                "actualTss": 23,
+                "note": null,
+                "isKey": false,
+                "extra": true
+              }
+            ],
             "restNote": null,
             "restId": null,
             "isToday": true
@@ -10231,7 +10273,7 @@
           "week": 3,
           "programId": "tds-2027",
           "start": "2026-09-21",
-          "ctl": 45.5
+          "ctl": 46.0
         }
       ],
       "projection": [
@@ -10702,38 +10744,43 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-25T05:54:35Z",
-    "inputsHash": "3fef1eec5c03b3fef72bcc8588beb070faf6d10b",
+    "generatedAt": "2026-09-25T06:27:41Z",
+    "inputsHash": "330341b2ebbcfb66661c23ef039baf405f3cb8d7",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Hold dig alkoholfri i dag og resten af weekenden — ingen undtagelser.",
-      "why": "Du har 3 drikkedage på 7 dage og 2 i træk under cuttet; AF resten af ugen er betingelsen for at holde cut-sporet."
+      "action": "Hold dig alkoholfri i dag og resten af weekenden — ingen genstande fredag, lørdag, søndag.",
+      "why": "Du har 3 drikkedage på 7 dage og 2 i træk under cuttet. AF resten af ugen er betingelsen for at holde cut-raten."
     },
     "training": {
-      "text": "Ingen pas er planlagt i dag — fri dag. Ugen har 2 gennemførte pas (gåtur og let løb) og 2 missede (styrke mandag og Z2-cykel onsdag). TSS er på 56 af 216 planlagt — det er 26 %. Det lyder lavt, men du er i TRANSITION uge 3 i en træt uge, og kvoten for hårde og moderate pas er 0 — så det der er gjort er rigtigt. I morgen venter Gravel Z2 90 min ude.",
+      "text": "Dagens svøm på 41 minutter er i hus — 23 TSS som ekstra pas. Ugen har 79 TSS ud af 216 planlagte, svarende til 37 %. To pas er misset: Styrke A mandag og Grundtur 80 min onsdag — begge slippes, intet indhentes. Tilbage er Gravel Z2 90 min lørdag og det valgfrie løb søndag. CTL er 46,0 mod et mål på 53,0 — men blokken er BASE uge 1 af 2 i en tung uge efter CPH Half, og TSB på 9,7 er sund. Ramprate på -3,9 afspejler den planlagte nedtrapning.",
       "refs": [
-        2.0,
-        56.0,
+        41.0,
+        23.0,
+        79.0,
         216.0,
-        26.0,
-        90.0,
-        0.0
+        37.0,
+        46.0,
+        53.0,
+        9.7,
+        -3.9,
+        90.0
       ]
     },
     "body": {
-      "text": "7-dages snittene er 72,6 kg og 21,7 % fedt. Planen forventede 72,2 kg, så du ligger 0,5 kg over plan — cut-status er 'plan' men i den tunge ende. 7-dages snittet for vægt er steget 0,8 kg den seneste måned, og fedtprocenten er steget 0,3 procentpoint — begge over tærsklerne, så retningen er opadgående. Protein ved hvert måltid og AF resten af ugen er de to håndtag du har.",
+      "text": "7-dages snit for vægt er 72,6 kg mod forventet 72,2 kg — det er 0,5 kg over plan. Fedtprocenten på 7-dages snit er 21,7 %. Vægten er steget 0,8 kg den seneste måned, så retningen er opad — cut-rate på 0,19 kg/uge er under de planlagte 0,22 kg/uge. Protein ved hvert måltid og alkoholfrie dage resten af ugen er de to håndtag.",
       "refs": [
         72.6,
-        21.7,
         72.2,
         0.5,
+        21.7,
         0.8,
-        0.3
+        0.19,
+        0.22
       ]
     },
     "habits": {
-      "text": "Du har 3 AF-dage ud af et mål på 6 denne uge — 3 dage med 1-2 genstande, ingen dage med 3+. Protein er registreret 4 ud af 6 registrerede dage. Søvn er stærk: 7-dages snit på 8,1 timer, og du fik 7,8 timer i nat. Energiniveau i snit 1,7 — hold øje med det i weekendens pas.",
+      "text": "AF-dage denne uge: 3 af 6 mål. Der er 3 drikkedage på 7 dage — ingen dage med 3+ genstande, men 2 dage i træk rammer HRV hårdere end spredte dage. Protein er registreret 4 ud af 6 registrerede dage. Søvn på 7-dages snit er 8,1 timer — over minimumsgrænsen på 7,0 timer. Energi-snit er 1,7.",
       "refs": [
         3.0,
         6.0,
@@ -10741,11 +10788,11 @@
         4.0,
         6.0,
         8.1,
-        7.8,
+        7.0,
         1.7
       ]
     },
-    "bigPicture": "Du er i uge 3 af TRANSITION-blokken i Tour des Stations 2027-programmet — en bevidst træt uge efter CPH Half, med nul-kvote på hårde og moderate pas og FTP-test rykket til 8. oktober. Weekendens pas er lette og aerobe, og det er meningen.",
+    "bigPicture": "Du er i BASE-blokken uge 1 af 2 i Tour des Stations 2027-programmet, og ugen er bevidst let — FTP-testen er rykket til 8. oktober, og kroppen skal ned i gear efter CPH Half. Cuttet starter denne uge, og alkohol er det primære justeringspunkt lige nu.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10766,7 +10813,14 @@
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": null,
+    "validationRejected": [
+      {
+        "errors": [
+          "habits.text: tal ikke i konteksten: 42"
+        ],
+        "habits.text": "3 AF-dage ud af mål på 6 denne uge — ingen dage med 3+ genstande, men 3 drikkedage på 7 dage med 2 i træk. Protein er registreret 4 af 6 dage. Søvn 7-dages snit 8,1 t er over de anbefalede 7 t, og HRV"
+      }
+    ],
     "notes": null,
     "stale": false
   },
@@ -11338,14 +11392,14 @@
     }
   },
   "weekTss": {
-    "actual": 56,
+    "actual": 79,
     "planned": 216
   },
   "martinMail": {
     "week": 3,
     "isoWeek": 39,
     "lines": [
-      "Uge 39: TSS 56 af 216 (26 %) · CTL 45,5 (mål 53) · TSB +12,3",
+      "Uge 39: TSS 79 af 216 (37 %) · CTL 46,0 (mål 53) · TSB +9,7",
       "Vægt 7d 72,6 kg · fedt 14d 21,6 % · på plan mod glidepath (72,2)",
       "HRV 7d 49 (28d 55) · hvilepuls 44 · søvn 7d 8,1 t",
       "AF 3/7 · protein 3/3 4/7 · aftensult —/7",
@@ -11354,7 +11408,7 @@
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-25T05:54:12Z"
+    "generatedAt": "2026-09-25T06:26:54Z"
   },
   "proposals": [],
   "ftp": {
@@ -11417,7 +11471,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-25",
-    "ctl": 45.5,
-    "atl": 33.2
+    "ctl": 46.0,
+    "atl": 36.3
   }
 }
