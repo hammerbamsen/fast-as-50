@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-26 18:35",
+    "updated": "2026-09-26 21:32",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Lørdag — uge 39. {HL} Fokus: 151 af 216 TSS er i hus — Løb let Z1 30 min (valgfri) står tilbage. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,1 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 6 afsluttede dage — 3 mangler i 1 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Du bliver til det, du gør ofte.\"",
-  "coachHighlight": "Søvn på 8,1 timer er solid",
+  "coachSpeech": "Uge 39, BASE-transition: træt uge bag dig — gravel Z2 er i hus, og nu handler det om at komme til søndagens pas frisk. {HL} Gravel Z2 på 100 min og 64 TSS er gennemført — lidt over de planlagte 90 min, men på lavt load. Ugen ender på 151 af 216 planlagt TSS; mandag styrke og onsdag Z2-cykel er misset og droppes — ingen indhentning.",
+  "coachHighlight": "Drop alkohol resten af weekenden — du har 3 drikkedage i træk og HRV 18 % under dit 7-dages snit.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
@@ -3337,24 +3337,30 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 20 af 357 · Lørdag · Uge 3</strong></p><p class=\"coach-sec coach-big\">Kennet er i uge 3 af TRANSITION-fasen i Tour des Stations 2027-programmet, mesocyklus 1/2 — en bevidst let uge der bygger bro efter CPH Half og frem mod FTP-testen 8. oktober. Cuttet er startet, og alkohol-klyngen i denne uge er den vigtigste variabel at styre nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Lørdagens graveltur er gennemført: 100 min og 64 TSS mod planlagte 90 min — ren Z2 ude, præcis som skrevet. Ugen har 2 gennemførte pas og 2 missede (styrke mandag og Z2-cykel onsdag). Ugens samlede TSS er 151 af 216 planlagte (70%). CTL ligger på 46,6 mod et mål på 53,0 — men vi er i TRANSITION/BASE uge 3, og ugen har bevidst været let efter CPH Half. Ingen aerobe flag i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt er 72,5 kg mod forventet 72,1 kg under cuttet — du er 0,5 kg over plan. Det er første uge af cuttet (startet 21/9), så signalet er tidligt, men retningen peger opad: 7-dages snit er steget 0,7 kg de seneste 28 dage, hvilket er over grænsen for en klar retning. Fedtsnit på 7 dage er 21,8 procentpoint — næsten uændret (ændring på 0,4 pp de seneste 28 dage, under grænsen på 0,5 pp, altså stabil). Protein ved hvert måltid er det ene greb du styrer fuldt ud her.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage af 6 i mål denne uge — og 2 drikkedage i træk (24/9–25/9) under cuttet presser HRV og hæmmer muskelproteinsyntese. Ingen dage med 3+ genstande. Protein ramt 5 af 6 registrerede dage — solidt. Søvn gennemsnit 8,1 timer (over 7-timers grænsen), og nattens søvn var 7,9 timer. Energi ligger på 2,0 i snit — lav.</p>",
-  "coachAssessmentTs": "14:44",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 20 af 357 · Lørdag · Uge 39</strong></p><p class=\"coach-sec coach-big\">Uge 39, BASE-transition: træt uge bag dig — gravel Z2 er i hus, og nu handler det om at komme til søndagens pas frisk.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Gravel Z2 på 100 min og 64 TSS er gennemført — lidt over de planlagte 90 min, men på lavt load. Ugen ender på 151 af 216 planlagt TSS; mandag styrke og onsdag Z2-cykel er misset og droppes — ingen indhentning. Søndagens lette løb Z1 30 min er valgfrit og kan tages roligt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på 72,5 kg ligger 0,5 kg over cutplanen på 72,1 kg — retningen er opadgående. Fedtprocent på 7-dages snit er stabil. Prioritér protein ved hvert måltid og hold alkohol ude.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 drikkedage på 7 dage med 3 i træk (24/9–26/9) presser HRV og cut-raten. Protein er på plads 6 ud af 7 dage — fortsæt det.</p>",
+  "coachAssessmentTs": "21:32",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "alcohol_cluster",
+      "level": "critical",
+      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 42,0 ms — 18% under 7d-snit (51,0 ms). Kroppen er presset."
+      "message": "HRV 42,0 ms — 18% under 7d-snit (51,0 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
     },
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
-      "type": "alcohol_cluster",
-      "level": "critical",
-      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": 5.7,
@@ -3632,8 +3638,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-26T16:35:04.739834",
-  "coachAssessmentTsFull": "2026-09-26T12:44:40",
+  "credentialsCheckedTs": "2026-09-26T19:33:02.493415",
+  "coachAssessmentTsFull": "2026-09-26T19:33:02",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [
@@ -10462,59 +10468,53 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-26T12:44:40Z",
-    "inputsHash": "f18d2f255382f52ce22aa3922420df841bd68dd5",
+    "generatedAt": "2026-09-26T19:33:02Z",
+    "inputsHash": "83dc5ed0a2cfea6f14bea91b59814f5319d7297c",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør Gravel Z2 ude — du har allerede gennemført turen (100 min, 64 TSS). Hold dig i Z2 og kør ikke over. Ingen ERG.",
-      "why": "Readiness er LOW og HRV 18% under 7-dages snit — turen er gjort, men hold kroppen i ro resten af dagen."
+      "action": "Drop alkohol resten af weekenden — du har 3 drikkedage i træk og HRV 18 % under dit 7-dages snit.",
+      "why": "Klynger af drikkedage rammer HRV hårdere end spredte dage og sænker muskelproteinsyntesen under cuttet."
     },
     "training": {
-      "text": "Lørdagens graveltur er gennemført: 100 min og 64 TSS mod planlagte 90 min — ren Z2 ude, præcis som skrevet. Ugen har 2 gennemførte pas og 2 missede (styrke mandag og Z2-cykel onsdag). Ugens samlede TSS er 151 af 216 planlagte (70%). CTL ligger på 46,6 mod et mål på 53,0 — men vi er i TRANSITION/BASE uge 3, og ugen har bevidst været let efter CPH Half. Ingen aerobe flag i dag.",
+      "text": "Gravel Z2 på 100 min og 64 TSS er gennemført — lidt over de planlagte 90 min, men på lavt load. Ugen ender på 151 af 216 planlagt TSS; mandag styrke og onsdag Z2-cykel er misset og droppes — ingen indhentning. Søndagens lette løb Z1 30 min er valgfrit og kan tages roligt.",
       "refs": [
         100.0,
         64.0,
         90.0,
-        2.0,
-        2.0,
         151.0,
         216.0,
-        70.0,
-        46.6,
-        53.0,
-        3.0
+        30.0
       ]
     },
     "body": {
-      "text": "7-dages snit på vægt er 72,5 kg mod forventet 72,1 kg under cuttet — du er 0,5 kg over plan. Det er første uge af cuttet (startet 21/9), så signalet er tidligt, men retningen peger opad: 7-dages snit er steget 0,7 kg de seneste 28 dage, hvilket er over grænsen for en klar retning. Fedtsnit på 7 dage er 21,8 procentpoint — næsten uændret (ændring på 0,4 pp de seneste 28 dage, under grænsen på 0,5 pp, altså stabil). Protein ved hvert måltid er det ene greb du styrer fuldt ud her.",
+      "text": "7-dages snit på 72,5 kg ligger 0,5 kg over cutplanen på 72,1 kg — retningen er opadgående. Fedtprocent på 7-dages snit er stabil. Prioritér protein ved hvert måltid og hold alkohol ude.",
       "refs": [
         72.5,
         72.1,
-        0.5,
-        0.7,
-        21.8,
-        0.4,
         0.5
       ]
     },
     "habits": {
-      "text": "3 AF-dage af 6 i mål denne uge — og 2 drikkedage i træk (24/9–25/9) under cuttet presser HRV og hæmmer muskelproteinsyntese. Ingen dage med 3+ genstande. Protein ramt 5 af 6 registrerede dage — solidt. Søvn gennemsnit 8,1 timer (over 7-timers grænsen), og nattens søvn var 7,9 timer. Energi ligger på 2,0 i snit — lav.",
+      "text": "4 drikkedage på 7 dage med 3 i træk (24/9–26/9) presser HRV og cut-raten. Protein er på plads 6 ud af 7 dage — fortsæt det.",
       "refs": [
+        4.0,
         3.0,
         6.0,
-        2.0,
-        5.0,
-        6.0,
-        8.1,
-        7.9,
-        2.0
+        7.0
       ]
     },
-    "bigPicture": "Kennet er i uge 3 af TRANSITION-fasen i Tour des Stations 2027-programmet, mesocyklus 1/2 — en bevidst let uge der bygger bro efter CPH Half og frem mod FTP-testen 8. oktober. Cuttet er startet, og alkohol-klyngen i denne uge er den vigtigste variabel at styre nu.",
+    "bigPicture": "Uge 39, BASE-transition: træt uge bag dig — gravel Z2 er i hus, og nu handler det om at komme til søndagens pas frisk.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
+      {
+        "type": "alcohol_cluster",
+        "level": "act",
+        "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
+        "action": null,
+        "source": "rule"
+      },
       {
         "type": "hrv",
         "level": "warn",
@@ -10525,14 +10525,7 @@
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut-tjek: 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
-        "action": null,
-        "source": "rule"
-      },
-      {
-        "type": "alcohol_cluster",
-        "level": "warn",
-        "message": "2 drikkedage i træk 24/9–25/9 — klynger rammer HRV hårdere end spredte dage.",
+        "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
       }
@@ -11118,7 +11111,7 @@
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, ons 30/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-26T16:35:04Z"
+    "generatedAt": "2026-09-26T19:32:42Z"
   },
   "proposals": [],
   "ftp": {
