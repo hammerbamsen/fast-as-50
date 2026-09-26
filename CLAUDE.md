@@ -3,8 +3,9 @@
 Fast as Fifty: Kennets trænings-dashboard (PWA) + pipeline i GitHub Actions. Alt på dansk — tekster, kommentarer, commit-beskeder, ændringslogs.
 
 ## Arbejdsform
-- Arbejd på en branch `claude/<dato>-<emne>` oven på `origin/main`. Commit ikke og push aldrig fra sessionen — ejeren committer. Lever ændringer som patch + apply-script, og skriv en `CHANGES-<dato>-<blok>.md` i repo-roden (ændringer pr. fil, testresultat, hvad der ikke kunne verificeres).
-- Kør tests før aflevering; alt der var grønt skal forblive grønt. Rør ikke filer der er tildelt en anden agent i samme blok.
+- Claude må committe og pushe direkte til `main` (besluttet af Kennet 26/9-2026), når alle fire CI-trin nedenfor er grønne lokalt. Hent `origin/main` og rebase lige før push. Skriv en `CHANGES-<dato>-<emne>.md` i repo-roden (ændringer pr. fil, testresultat, hvad der ikke kunne verificeres) i samme commit.
+- Undtagelser — brug en branch `claude/<dato>-<emne>` + PR i stedet: flere agenter arbejder i samme blok, ændringen rører `.github/workflows/` eller `workers/`, eller en test er rød og ikke kan rettes.
+- Ret aldrig `data.json` og `health.json` i hånden, og ændr ikke `data/plan.json` via commit — planændringer går via `edit_apply`/forslag. Alt der var grønt skal forblive grønt. Rør ikke filer der er tildelt en anden agent i samme blok.
 - Læs `docs/PIPELINE.md` før enhver ændring under `.github/workflows/`, og hold `health.yml`'s workflow-liste i synk med `name:` i de øvrige workflows.
 
 ## Kommandoer
