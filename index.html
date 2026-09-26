@@ -1294,8 +1294,8 @@ function kpiStripV2() {
   const w7 = _last(D.weightMovingAvg7) ?? round1(avg7Of(D.weightHistory));
   const f7 = _last(D.fatMovingAvg7)    ?? round1(avg7Of(D.fatHistory));
   // Vægt/fedt: status mod glidepath'en (data.body) — plan/foran grøn, bagud
-  // orange, før cut neutral. Sub under cut: "7d-snit · dag 72,3 · forv. 72,1"
-  // (26/9-2026: dagstallet skal også være synligt under cuttet).
+  // orange, før cut neutral. Sub under cut: tre faste linjer "7d-snit" /
+  // "dag 72,3" / "forv. 72,1", så vægt og fedt står på linje (26/9-2026).
   const g = (D.body && D.body.glidepath) || null;
   const fb = (D.body && D.body.fat) || null;
   const stCol = st => (st==='plan'||st==='foran') ? 'var(--ok)' : (st==='bagud' ? '#E67E22' : 'var(--muted)');
@@ -1307,13 +1307,13 @@ function kpiStripV2() {
     if (g.avg7 != null) wVal = _fmt1(g.avg7);
     // 14/9-2026: vinduet og dagstallet skal være synligt — "7d-snit · dag 71,1".
     if (g.phase === 'pre')       { wSub = `7d-snit${wDay}`; wCol = 'var(--muted)'; }
-    else if (g.phase === 'cut')  { wSub = g.expectedKg != null ? `7d-snit${wDay} · forv. ${_fmt1(g.expectedKg)}` : `7d-snit${wDay}`; wCol = stCol(g.status); }
+    else if (g.phase === 'cut')  { wSub = g.expectedKg != null ? ['7d-snit', `dag ${wLast != null ? _fmt1(wLast) : '—'}`, `forv. ${_fmt1(g.expectedKg)}`] : `7d-snit${wDay}`; wCol = stCol(g.status); }
     else if (g.phase === 'hold') { wSub = `7d-snit · hold ${_fmt1(g.targetKg)} ±${_fmt1(g.corridorKg)}`; wCol = stCol(g.status); }
   }
   if (fb) {
     if (fb.avg14 != null) fVal = _fmt1(fb.avg14)+' %';
     if (g && g.phase === 'pre')  { fSub = `14d-snit${fDay}`; fCol = 'var(--muted)'; }
-    else if (fb.expected != null) { fSub = `14d-snit${fDay} · forv. ${_fmt1(fb.expected)}`; fCol = stCol(fb.status); }
+    else if (fb.expected != null) { fSub = ['14d-snit', `dag ${fLast != null ? _fmt1(fLast) : '—'}`, `forv. ${_fmt1(fb.expected)}`]; fCol = stCol(fb.status); }
     else fSub = `14d-snit${fDay}`;
   }
   const tiles = [
@@ -1322,7 +1322,7 @@ function kpiStripV2() {
     { l:'FEDT',    v: fVal, s: fSub, c: fCol },
     { l:'AF-DAGE', v:`${D.afDays?.weekDone ?? '—'}/${D.afDays?.target || 6}`, s:'denne uge', c: find('AF DAGE').color },
   ];
-  return `<div class="kpi4">` + tiles.map(t => `<div class="kpi4-t"><div class="lab">${t.l}</div><div class="kpi4-v"${(t.l==='VÆGT'||t.l==='FEDT') && t.c ? ` style="color:${t.c}"` : ''}>${t.v}</div><div class="kpi4-s">${esc(t.s||'')}</div></div>`).join('') + `</div>`;
+  return `<div class="kpi4">` + tiles.map(t => `<div class="kpi4-t"><div class="lab">${t.l}</div><div class="kpi4-v"${(t.l==='VÆGT'||t.l==='FEDT') && t.c ? ` style="color:${t.c}"` : ''}>${t.v}</div><div class="kpi4-s">${Array.isArray(t.s) ? t.s.map(x => `<div>${esc(x)}</div>`).join('') : esc(t.s||'')}</div></div>`).join('') + `</div>`;
 }
 function shortText(t, max){ t = String(t||'').trim(); if (t.length <= max) return t; let out=''; for (const sent of t.split(/(?<=[.!?])\s+/)) { if ((out+' '+sent).trim().length > max) break; out = (out+' '+sent).trim(); } return out || t.slice(0, max).replace(/\s\S*$/, '') + '…'; }
 function coachVoiceCard() {

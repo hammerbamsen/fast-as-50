@@ -17,3 +17,7 @@ Under cuttet (fra 21/9) erstattede "forventet X" dagens måling på VÆGT- og FE
 ## Ikke verificeret
 - Visuel ombrydning af den længere tekst i det smalle felt på iPhone.
 - sw.js er ikke bumpet — app-shell er stale-while-revalidate, så ændringen vises efter næste genindlæsning.
+
+## Opfølgning 26/9 16:00 — linjeret layout
+- `index.html`: VÆGT- og FEDT-feltets undertekst under cut er nu tre faste linjer (`7d-snit`/`14d-snit`, `dag X`, `forv. Y`), så tallene står på linje. Mangler dagens måling, står der `dag —`. Feltets `s` kan nu være en liste (én linje pr. element).
+- Test: pytest 660 passed / 1 skipped, validate OK, node --check OK. Visuelt tjekket i Chromium ved 393 px bredde.
