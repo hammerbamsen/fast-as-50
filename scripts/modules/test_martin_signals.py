@@ -123,7 +123,7 @@ def test_build_weekly_eight_lines_from_data():
     assert L[4] == "Styrke 2/2 · check-in —"
     assert L[5] == "Cut-tjek: inaktivt — Aktiveres uge 39 (21/9)"
     assert L[6] == ("Næste uge (38, RACE): TSS-mål 250 · hårde/lange dage: "
-                    "tir 15/9 Løb VO2 5×3 min 45 min, lør 19/9 z2_depottur_2t 130 min")
+                    "tir 15/9 Løb VO2 5×3 min 45 min, lør 19/9 Cykel Z2 90 min 130 min")
     assert L[7] == "Planændringer siden sidst: 2 — se martin_signals.md"
 
 

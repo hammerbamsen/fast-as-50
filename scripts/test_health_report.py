@@ -34,7 +34,7 @@ def test_merge_into_empty_creates_entry_with_expected_every_min():
     assert w["event"] == "schedule"
     assert w["runUrl"].endswith("/runs/123")
     assert w["durationS"] == 84
-    assert w["expectedEveryMin"] == 60
+    assert w["expectedEveryMin"] == 120
     assert out["generatedAt"] == "2026-09-07T05:10:00Z"
     assert out["secrets"]["PRIVATE_REPO_TOKEN"]["expires"] == "2026-10-15"
     assert "Send daglig push-påmindelse" in out["secrets"]["PRIVATE_REPO_TOKEN"]["usedBy"]

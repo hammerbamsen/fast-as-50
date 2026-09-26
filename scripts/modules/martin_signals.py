@@ -351,7 +351,7 @@ def _line_next_week(data, plan, today, athlete="kennet"):
             if _load_of(e, wo, pt_load) == "haard" or mins >= LONG_MIN:
                 dd = date.fromisoformat(d_iso)
                 hard.append(f"{DOW_SHORT[dd.weekday()]} {dd.day}/{dd.month} "
-                            f"{e.get('libraryId') or wo.get('name', '?')} {mins} min")
+                            f"{wo.get('name') or e.get('libraryId') or '?'} {mins} min")
     return (f"Næste uge ({iso}, {meta.get('blockType') or '—'}): TSS-mål {_da(meta.get('tssTarget'), 0)} "
             f"· hårde/lange dage: {', '.join(hard) if hard else 'ingen'}")
 

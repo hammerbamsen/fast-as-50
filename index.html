@@ -1197,9 +1197,8 @@ function oneThing(r){
     }
   }
   const stale = c && c.stale ? `<p class="small" style="color:var(--muted);font-size:11px">Coachen er ikke opdateret med de nyeste data.</p>` : '';
-  // 15/9-26: når alle dagens planlagte pas er udført, handler "én ting" om i morgen — sig det.
-  const todaySess = (D.week_sessions||[]).filter(s => s && s.today && !s.extra);
-  const lab = (c && todaySess.length && todaySess.every(s => s.done)) ? 'Én ting til i morgen' : 'Én ting i dag';
+  // 26/9-26: altid "i dag" — coachen skriver ikke om i morgen, så "til i morgen" gav en forkert overskrift.
+  const lab = 'Én ting i dag';
   return `<div class="action"><span class="lab">${lab}</span><p>${esc(main)}</p>${why.length?`<p>${esc(why.slice(0,2).join(' '))}</p>`:''}${stale}</div>`;
 }
 
@@ -2817,11 +2816,6 @@ function renderOverview() {
       <div class="zone-bar" style="background:${z.color}22;border:1px solid ${z.color}44"><span class="zone-name" style="color:${z.color}">${z.name}</span></div>
       <span class="zone-range">${z.range}</span>
     </div>`).join("")}
-  </div>
-  <div class="card">
-    <div class="label">Styrke — Functional Strength 2</div>
-    <div>${STATIC.strength.map(e=>`<span class="strength-tag">${e}</span>`).join("")}</div>
-    <div class="eq-note">KB: 12.5 / 16 / 20 kg · DB: 5 / 7 / 10 / 12.5 / 15 kg</div>
   </div>
 
 `;

@@ -44,7 +44,7 @@ HEALTH_PATH = "health.json"
 # værktøjer, event-drevne) står ikke her og får ingen expectedEveryMin.
 WEEK_MIN = 7 * 24 * 60
 EXPECTED_EVERY_MIN = {
-    "Daglig dashboard-opdatering": 60,          # */30-cron, i praksis 1-2 t
+    "Daglig dashboard-opdatering": 120,         # */30-cron, i praksis 2-3,5 t (GitHub drosler) — gul først efter 4 t
     "Send daglig push-påmindelse": 1500,        # 05:00 + 17:00 UTC → ~25 t = tolerance
     "Byg workouts i Intervals.icu": WEEK_MIN,   # søndag 05:00 UTC
     "Sync workouts til Outlook kalender": WEEK_MIN,  # søndag 18:00 UTC (+ efter build)

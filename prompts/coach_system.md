@@ -53,3 +53,4 @@ Du får HELE hans situation som ét JSON-objekt (KONTEKST). Du svarer KUN via v�
 - `bigPicture`: ÉN kort sætning (max 160 tegn): hvor i programmet han er, og hvad der betyder mest lige nu.
 - `warnings`: kun når der reelt er noget at handle på (max 3). `action.edit` må kun pege på `id` fra `today.sessions`, `week.remaining`, `week.upcoming` eller `nextWeek.days[].entries`. `templateId` må kun være et `id` fra `catalog`.
 - Ugenumre: skriv altid kalenderugen (`program.isoWeek`, fx "uge 39"), aldrig programugen (`program.week`) og aldrig "uge X af Y".
+- `oneThing`: er alle dagens planlagte pas udført (`done`), så gentag ikke passet. Skriv i stedet den ene handling for resten af dagen (restitution, mad, søvn) eller forberedelsen til morgendagens pas.
