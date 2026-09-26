@@ -1744,12 +1744,11 @@ function ptWeekDetail(i){
 function renderPlan() {
   if (!D.planTab || !ptWeeks().length) {
     return `<div class="banner info"><span>ℹ️</span><span>Plan-fanens nye visning kommer når pipelinen har skrevet planTab til data.json.</span></div>
-      ${renderWeek()}${strengthCardHtml()}`;
+      ${renderWeek()}`;
   }
   const sel = ptSelIdx();
   setTimeout(() => ptScrollToSel('auto'), 0);   // aktuel/valgt uge centreret ved åbning
-  return `${ptProposalsHtml()}${ptStrip()}${ptCtlChart()}<div id="pt-detail">${ptWeekDetail(sel)}</div>
-    ${strengthCardHtml()}`;
+  return `${ptProposalsHtml()}${ptStrip()}${ptCtlChart()}<div id="pt-detail">${ptWeekDetail(sel)}</div>`;
 }
 
 // I dag → "Byt / aflys": åbn Plan-fanens ⋯-ark for dagens første planlagte pas
@@ -2278,6 +2277,7 @@ function renderMore() {
   return `
   <h2 class="section-h">Træning</h2>
   ${renderOverview()}
+  ${strengthCardHtml()}
   <h2 class="section-h">Regler</h2>
   ${renderRules()}
   <h2 class="section-h">Martin</h2>
