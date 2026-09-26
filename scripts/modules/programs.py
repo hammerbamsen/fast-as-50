@@ -234,7 +234,11 @@ def upcoming_races(plan, athlete="kennet", today=None):
     Dubletter (samme navn+dato i to programmer) fjernes."""
     today = _to_date(today) if today else date.today()
     seen, out = set(), []
-    for p in programs_for(plan, athlete):
+    # 26/9-2026: plan.nextSeason.races er også Kennets løb (fx Hegnet Half 7/3-27),
+    # selvom de ikke står i programmets egen races-liste.
+    extra = ({"id": "nextSeason", "races": (plan.get("nextSeason") or {}).get("races") or []}
+             if athlete == "kennet" else None)
+    for p in list(programs_for(plan, athlete)) + ([extra] if extra else []):
         for r in (p.get("races") or []):
             if not r.get("date"):
                 continue

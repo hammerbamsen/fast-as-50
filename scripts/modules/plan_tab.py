@@ -228,7 +228,7 @@ def _match_actuals(day_entries, day_short, remote_sessions, used):
 
 def build_plan_tab(plan, plan_view, week_sessions, all_weeks, today, *,
                    lib=None, week_tss_actual=None, ctl_daily=None, travel=None,
-                   weeks_back=4, weeks_ahead=None, history_weeks=12, chart_weeks_ahead=7, athlete="kennet"):
+                   weeks_back=4, weeks_ahead=None, from_program_start=False, history_weeks=12, chart_weeks_ahead=7, athlete="kennet"):
     """Byg data.planTab. Kan køres offline.
 
     plan            data/plan.json (dict)
@@ -311,6 +311,10 @@ def build_plan_tab(plan, plan_view, week_sessions, all_weeks, today, *,
             "note": e.get("note"), "isKey": is_key, "optional": bool(e.get("optional")),
         }
 
+    if from_program_start:
+        # 26/9-2026: Plan-fanen viser hele det aktive program (tds-2027 = 51 uger), ikke 4 uger bagud på tværs af programmer.
+        weeks_back = max(0, (cur_monday - _monday(_to_date(active["start"]))).days // 7)
+        weeks_ahead = max(0, (_monday(_to_date(active["end"])) - cur_monday).days // 7)
     if weeks_ahead is None:
         # Til slutningen af det aktive program — eller af det program der starter i
         # næste uge (6/9: medoc slutter i dag, tds-2027 starter 7/9 => 51 uger frem).

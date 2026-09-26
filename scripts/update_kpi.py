@@ -743,7 +743,7 @@ def main():
         _ctl_daily = get_ctl_daily() or {}
         data['planTab'] = build_plan_tab(
             PLAN, _plan_view, data.get('week_sessions', []), data.get('all_weeks', {}), today,
-            week_tss_actual=data.get('weekTssActual'), ctl_daily=_ctl_daily)
+            week_tss_actual=data.get('weekTssActual'), ctl_daily=_ctl_daily, from_program_start=True)
         print(f"  planTab -> {len(data['planTab']['weeks'])} uger, "
               f"{sum(len(d['entries']) for s in data['planTab']['sessions'] for d in s['days'])} pas, "
               f"{len(data['planTab']['hardSpacing'])} hårde par")
