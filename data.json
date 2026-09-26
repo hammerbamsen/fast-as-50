@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-26 14:44",
+    "updated": "2026-09-26 15:57",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -100,9 +100,9 @@
       "color": "#27AE60"
     },
     "protein": {
-      "value": "5",
+      "value": "6",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 2,8",
+      "sub": "3/3-dage · 4 uger 3,0",
       "color": "#27AE60"
     }
   },
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Kennet er i uge 3 af TRANSITION-fasen i Tour des Stations 2027-programmet, mesocyklus 1/2 — en bevidst let uge der bygger bro efter CPH Half og frem mod FTP-testen 8. oktober. Cuttet er startet, og alkohol-klyngen i denne uge er den vigtigste variabel at styre nu. {HL} Lørdagens graveltur er gennemført: 100 min og 64 TSS mod planlagte 90 min — ren Z2 ude, præcis som skrevet. Ugen har 2 gennemførte pas og 2 missede (styrke mandag og Z2-cykel onsdag).",
-  "coachHighlight": "Kør Gravel Z2 ude — du har allerede gennemført turen (100 min, 64 TSS). Hold dig i Z2 og kør ikke over. Ingen ERG.",
+  "coachSpeech": "Lørdag — uge 3 af 51. {HL} Fokus: 151 af 216 TSS er i hus — Løb let Z1 30 min (valgfri) står tilbage. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,1 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 6 afsluttede dage — 3 mangler i 1 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "Søvn på 8,1 timer er solid",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
@@ -2073,7 +2073,8 @@
     "2026-09-22": 0,
     "2026-09-23": 0,
     "2026-09-24": 1,
-    "2026-09-25": 1
+    "2026-09-25": 1,
+    "2026-09-26": 1
   },
   "all_weeks": {
     "1": {
@@ -3343,23 +3344,17 @@
     {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 42,0 ms — 18% under 7d-snit (51,0 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
+      "message": "HRV 42,0 ms — 18% under 7d-snit (51,0 ms). Kroppen er presset."
     },
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
     },
     {
       "type": "alcohol_cluster",
-      "level": "warn",
-      "message": "2 drikkedage i træk 24/9–25/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
+      "level": "critical",
+      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 5.7,
@@ -3637,7 +3632,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-26T12:44:40.847611",
+  "credentialsCheckedTs": "2026-09-26T13:57:38.729746",
   "coachAssessmentTsFull": "2026-09-26T12:44:40",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 3,
@@ -4724,13 +4719,13 @@
     },
     {
       "date": "2026-09-26",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 1,
+      "protein": 2,
+      "energi": 4,
       "sult": null
     }
   ],
-  "energy7": 2.0,
+  "energy7": 2.3,
   "af_kind": {
     "2026-09-02": "drak",
     "2026-09-04": "faa",
@@ -4742,7 +4737,8 @@
     "2026-09-19": "faa",
     "2026-09-20": "faa",
     "2026-09-24": "faa",
-    "2026-09-25": "faa"
+    "2026-09-25": "faa",
+    "2026-09-26": "faa"
   },
   "planTab": {
     "today": "2026-09-26",
@@ -11097,7 +11093,7 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
@@ -11133,10 +11129,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 3,
-            "run": 2
+            "days7": 4,
+            "run": 3
           },
-          "text": "3 drikkedage på 7 dage · 2 i træk"
+          "text": "4 drikkedage på 7 dage · 3 i træk"
         }
       }
     }
@@ -11456,13 +11452,13 @@
       "Uge 39: TSS 151 af 216 (70 %) · CTL 46,6 (mål 53) · TSB +5,7",
       "Vægt 7d 72,5 kg · fedt 14d 21,6 % · på plan mod glidepath (72,1)",
       "HRV 7d 51 (28d 54) · hvilepuls 44 · søvn 7d 8,1 t",
-      "AF 3/7 · protein 3/3 5/7 · aftensult —/7",
+      "AF 3/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 0/2 · check-in —",
-      "Cut-tjek: warn — 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, tir 29/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 z2_depottur_2t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-26T12:44:13Z"
+    "generatedAt": "2026-09-26T13:57:38Z"
   },
   "proposals": [],
   "ftp": {
