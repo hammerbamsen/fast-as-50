@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-26T01:49:36Z",
+ "generated": "2026-09-26T07:08:24Z",
  "kennet": {
   "programId": "tds-2027",
   "seed": {
@@ -1711,7 +1711,15 @@
     "week": 3,
     "projEndCtl": 45.5,
     "deviation": -7.5,
-    "flags": []
+    "flags": [
+     {
+      "week": 3,
+      "rule": "low_readiness",
+      "level": "WARN",
+      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+      "historic": false
+     }
+    ]
    },
    {
     "week": 4,
@@ -2020,6 +2028,13 @@
   ],
   "flags": [
    {
+    "week": 3,
+    "rule": "low_readiness",
+    "level": "WARN",
+    "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+    "historic": false
+   },
+   {
     "week": 39,
     "rule": "race_tsb",
     "level": "WARN",
@@ -2061,7 +2076,7 @@
    "suggestion": null,
    "phase_guard": "Ingen hårde pas i de kommende 7 dage at justere."
   },
-  "readiness": "HIGH"
+  "readiness": "LOW"
  },
- "inputsHash": "655a086816a9695d"
+ "inputsHash": "c2299fe34e4ca14f"
 }
