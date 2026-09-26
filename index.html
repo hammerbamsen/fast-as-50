@@ -1294,7 +1294,8 @@ function kpiStripV2() {
   const w7 = _last(D.weightMovingAvg7) ?? round1(avg7Of(D.weightHistory));
   const f7 = _last(D.fatMovingAvg7)    ?? round1(avg7Of(D.fatHistory));
   // Vægt/fedt: status mod glidepath'en (data.body) — plan/foran grøn, bagud
-  // orange, før cut neutral. Sub "forventet 71,0" / "cut starter uge 39".
+  // orange, før cut neutral. Sub under cut: "7d-snit · dag 72,3 · forv. 72,1"
+  // (26/9-2026: dagstallet skal også være synligt under cuttet).
   const g = (D.body && D.body.glidepath) || null;
   const fb = (D.body && D.body.fat) || null;
   const stCol = st => (st==='plan'||st==='foran') ? 'var(--ok)' : (st==='bagud' ? '#E67E22' : 'var(--muted)');
@@ -1306,13 +1307,13 @@ function kpiStripV2() {
     if (g.avg7 != null) wVal = _fmt1(g.avg7);
     // 14/9-2026: vinduet og dagstallet skal være synligt — "7d-snit · dag 71,1".
     if (g.phase === 'pre')       { wSub = `7d-snit${wDay}`; wCol = 'var(--muted)'; }
-    else if (g.phase === 'cut')  { wSub = g.expectedKg != null ? `7d-snit · forventet ${_fmt1(g.expectedKg)}` : `7d-snit${wDay}`; wCol = stCol(g.status); }
+    else if (g.phase === 'cut')  { wSub = g.expectedKg != null ? `7d-snit${wDay} · forv. ${_fmt1(g.expectedKg)}` : `7d-snit${wDay}`; wCol = stCol(g.status); }
     else if (g.phase === 'hold') { wSub = `7d-snit · hold ${_fmt1(g.targetKg)} ±${_fmt1(g.corridorKg)}`; wCol = stCol(g.status); }
   }
   if (fb) {
     if (fb.avg14 != null) fVal = _fmt1(fb.avg14)+' %';
     if (g && g.phase === 'pre')  { fSub = `14d-snit${fDay}`; fCol = 'var(--muted)'; }
-    else if (fb.expected != null) { fSub = `14d-snit · forventet ${_fmt1(fb.expected)}`; fCol = stCol(fb.status); }
+    else if (fb.expected != null) { fSub = `14d-snit${fDay} · forv. ${_fmt1(fb.expected)}`; fCol = stCol(fb.status); }
     else fSub = `14d-snit${fDay}`;
   }
   const tiles = [
