@@ -653,7 +653,7 @@ COACH_TOOL = {
             "training": {
                 "type": "object",
                 "properties": {
-                    "text": {"type": "string", "description": "Træning & load, 2-4 sætninger."},
+                    "text": {"type": "string", "description": "Træning & load: 1-2 korte sætninger, kun det der kræver opmærksomhed."},
                     "refs": {"type": "array", "items": {"type": "number"}, "description": "Tal brugt i teksten."},
                 },
                 "required": ["text", "refs"],
@@ -661,7 +661,7 @@ COACH_TOOL = {
             "body": {
                 "type": "object",
                 "properties": {
-                    "text": {"type": "string", "description": "Krop & kost (7-dages snit mod plan), 2-4 sætninger."},
+                    "text": {"type": "string", "description": "Krop & kost (7-dages snit mod plan): 1-2 korte sætninger, kun afvigelsen."},
                     "refs": {"type": "array", "items": {"type": "number"}},
                 },
                 "required": ["text", "refs"],
@@ -669,12 +669,12 @@ COACH_TOOL = {
             "habits": {
                 "type": "object",
                 "properties": {
-                    "text": {"type": "string", "description": "Vaner: AF, protein, søvn, energi. 2-3 sætninger."},
+                    "text": {"type": "string", "description": "Vaner: AF, protein, søvn, energi. 1-2 korte sætninger, kun det der halter."},
                     "refs": {"type": "array", "items": {"type": "number"}},
                 },
                 "required": ["text", "refs"],
             },
-            "bigPicture": {"type": "string", "description": "1-2 sætninger: hvor i programmet, og hvorfor ugen ser sådan ud."},
+            "bigPicture": {"type": "string", "description": "ÉN sætning, max 160 tegn: hvor i programmet, og hvad der betyder mest nu."},
             "weekFocus": {"type": ["string", "null"], "description": "Kun søndag/mandag: ét ugefokus, max 12 ord. Ellers null."},
             "warnings": {
                 "type": "array",

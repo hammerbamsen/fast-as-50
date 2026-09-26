@@ -229,6 +229,8 @@ body.sw-update .main { padding-top:62px !important; }
 /* Coach v2: vurdering renderet fra sektioner — klasser, ingen inline font-styles */
 .coach-head { margin:0 0 8px; font-size:14px; line-height:1.6; color:var(--ink); }
 .coach-sec  { margin:0 0 10px; font-family:'Hanken Grotesk',sans-serif; font-size:14px; line-height:1.6; color:var(--ink); }
+.card-wine .coach-sec { color:var(--hero-ink); position:relative; }
+.card-wine .coach-sec-h, .card-wine #coach-assessment-ts, .card-wine .coach-obs-h { color:var(--hero-ink); opacity:.65; }
 .coach-sec-h { display:block; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
 .coach-big { color:var(--muted); }
 .coach-voice-big { display:block; color:var(--hero-muted); margin-bottom:6px; }
@@ -1326,14 +1328,25 @@ function kpiStripV2() {
 }
 function shortText(t, max){ t = String(t||'').trim(); if (t.length <= max) return t; let out=''; for (const sent of t.split(/(?<=[.!?])\s+/)) { if ((out+' '+sent).trim().length > max) break; out = (out+' '+sent).trim(); } return out || t.slice(0, max).replace(/\s\S*$/, '') + '…'; }
 function coachVoiceCard() {
+  // 26/9-2026: coach-vurderingen er flyttet fra Plan til I dag. Kort først:
+  // én linje om hvor du er + "Obs" (coachens advarsler, uden dem banneret
+  // allerede viser). Hele vurderingen ligger foldet nedenunder.
   const c = coachV2();
-  if (c && (c.bigPicture || (c.training && c.training.text))) {
-    const t = shortText(c.training && c.training.text, 260);
-    return `<div class="card card-wine" style="padding:14px 16px;margin:12px 0 0"><div class="label label-gold" style="margin-bottom:6px">TRÆNER + DIÆTIST</div><div class="coach-text">${c.bigPicture?`<span class="coach-voice-big">${esc(c.bigPicture)}</span>`:''}${esc(t)}</div></div>`;
+  if (c) {
+    const bannerTypes = new Set((D.warnings||[]).filter(w => w && (w.level==='critical'||w.level==='act')).map(w => w.type));
+    const aw = coachActionWarning(); if (aw) bannerTypes.add(aw.type);
+    const obs = (c.warnings||[]).filter(w => w && w.message && !bannerTypes.has(w.type)).slice(0,3);
+    const big = c.bigPicture ? shortText(c.bigPicture, 180) : '';
+    return `<div class="card card-wine" style="padding:14px 16px;margin:12px 0 0">
+      <div class="label label-gold" style="margin-bottom:6px">TRÆNER + DIÆTIST</div>
+      ${big ? `<div class="coach-text" style="margin-bottom:${obs.length?'8px':'0'}">${esc(big)}</div>` : ''}
+      ${obs.length ? `<div class="label coach-obs-h" style="margin:4px 0 4px">OBS</div><ul class="coach-obs" style="margin:0;padding-left:18px">${obs.map(w => `<li class="coach-text" style="margin:2px 0">${esc(w.message)}</li>`).join('')}</ul>` : ''}
+      ${coachFoldedCard()}
+    </div>`;
   }
   if (!D.coachSpeech) return '';
   const parts = String(D.coachSpeech).split('{HL}');
-  return `<div class="card card-wine" style="padding:14px 16px;margin:12px 0 0"><div class="label label-gold" style="margin-bottom:6px">TRÆNER + DIÆTIST</div><div class="coach-text">${parts[0]||''}<span class="coach-hl">${D.coachHighlight||''}</span>${parts[1]||''}</div></div>`;
+  return `<div class="card card-wine" style="padding:14px 16px;margin:12px 0 0"><div class="label label-gold" style="margin-bottom:6px">TRÆNER + DIÆTIST</div><div class="coach-text">${parts[0]||''}<span class="coach-hl">${D.coachHighlight||''}</span>${parts[1]||''}</div>${coachFoldedCard()}</div>`;
 }
 
 function renderToday() {
@@ -1499,22 +1512,14 @@ function renderWeek() {
     }).join("");
   })()}
   <div class="card" style="margin-top:8px"><div class="label">Ugefokus</div>${renderFocus(focus)}</div>
-  ${isCurrentWeek ? coachFoldedCard() : ''}
   `;
 }
 
-// Coach-tale + AI-vurdering — kun her, og foldet. I dag-fanen viser dem ikke.
+// Hele coach-vurderingen, foldet inde i TRÆNER + DIÆTIST-kortet på I dag (26/9-2026).
 function coachFoldedCard() {
-  const parts = (D.coachSpeech || '').split("{HL}");
-  // Coach v2: bigPicture + de tre afsnit renderes i loadCoachAssessment — den
-  // gamle coachSpeech-boks ville bare gentage dem.
-  const speech = (D.coachSpeech && !coachV2())
-    ? `<div class="card card-wine" style="padding:16px 18px;margin:12px 0 10px"><div class="label label-gold" style="margin-bottom:8px">TRÆNER + DIÆTIST · UGE ${D.week}</div><div class="coach-text">${parts[0]||""}<span class="coach-hl">${D.coachHighlight||""}</span>${parts[1]||""}</div></div>`
-    : '';
   return `
-  <details class="fold card" id="coach-assessment-box" style="border-left:3px solid var(--wine);padding:14px 18px;margin-bottom:14px" ontoggle="if(this.open&&typeof loadCoachAssessment==='function')loadCoachAssessment(false)">
-    <summary><span class="label" style="margin:0">COACH-VURDERING</span></summary>
-    ${speech}
+  <details class="fold" id="coach-assessment-box" style="margin-top:10px" ontoggle="if(this.open&&typeof loadCoachAssessment==='function')loadCoachAssessment(false)">
+    <summary><span class="label" style="margin:0">HELE VURDERINGEN</span></summary>
     <div style="display:flex;justify-content:flex-end;margin:6px 0 2px">
       <button id="coach-refresh-btn" onclick="refreshCoachAssessment()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:0 4px;min-width:38px;text-align:right;font-family:'Space Mono',monospace;" title="Opdatér">↻</button>
     </div>
@@ -1744,8 +1749,7 @@ function renderPlan() {
   const sel = ptSelIdx();
   setTimeout(() => ptScrollToSel('auto'), 0);   // aktuel/valgt uge centreret ved åbning
   return `${ptProposalsHtml()}${ptStrip()}${ptCtlChart()}<div id="pt-detail">${ptWeekDetail(sel)}</div>
-    ${strengthCardHtml()}
-    ${coachFoldedCard()}`;
+    ${strengthCardHtml()}`;
 }
 
 // I dag → "Byt / aflys": åbn Plan-fanens ⋯-ark for dagens første planlagte pas
@@ -2543,7 +2547,6 @@ async function loadCoachAssessment(force) {
   if (c && c.training && c.body && c.habits) {
     const sec = (h, t) => t ? `<p class="coach-sec"><span class="coach-sec-h">${h}</span>${esc(t)}</p>` : '';
     box.innerHTML = credBanner() + structureBanner() + staleBanner()
-      + (c.bigPicture ? `<p class="coach-sec coach-big">${esc(c.bigPicture)}</p>` : '')
       + sec('Træning &amp; load', c.training.text) + sec('Krop &amp; kost', c.body.text) + sec('Vaner', c.habits.text)
       + (c.weekFocus ? sec('Ugefokus', c.weekFocus) : '');
     if (tsEl) tsEl.textContent = 'Opdateret: ' + (D.coachAssessmentTs || (c.generatedAt ? String(c.generatedAt).slice(11,16) + ' UTC' : '')) + (c.model ? ' · ' + c.model : '') + (c.stale ? ' · ikke opdateret med nyeste data' : '');
