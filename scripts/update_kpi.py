@@ -487,7 +487,7 @@ def main():
                        {'value': fmt(weight), 'unit': 'kg', 'sub': weight_sub, 'color': '#7A6A58'}),
         'fat':        (_body.fat_kpi(body) if body else
                        {'value': fmt(fat), 'unit': '%', 'sub': '14d-snit', 'color': '#7A6A58'}),
-        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f"Uge {week_num}-mål {ctl_plan_for_week(week_num)} · {week_meta.get('blockType', '')}".rstrip(' ·'), 'color': color_for(ctl, ctl_plan_for_week(week_num), lower=False) if ctl else '#7A6A58'},
+        'ctl':        {'value': fmt(ctl, 1),           'unit': '',   'sub': f"Uge {today.isocalendar()[1]}-mål {ctl_plan_for_week(week_num)} · {week_meta.get('blockType', '')}".rstrip(' ·'), 'color': color_for(ctl, ctl_plan_for_week(week_num), lower=False) if ctl else '#7A6A58'},
         'tsb':        {'value': fmt(tsb, 1),           'unit': '',   'sub': ('Hård blok · CTL−ATL, frisk >0' if tsb and tsb < -10 else 'Form · CTL−ATL, frisk >0'), 'color': '#E67E22' if tsb and tsb < -10 else '#27AE60'},
         'sleep':      {'value': fmt(sleep_last, 1) if sleep_last else '—', 'unit': 't', 'sub': _sleep_sub, 'color': _sleep_color},
         'runKm':      {'value': fmt(km_week, 1),       'unit': 'km', 'sub': _run_sub,                                   'color': _run_color},
@@ -966,7 +966,7 @@ def main():
 
     if ai_answer:
         program_day = _programs.program_day(ACTIVE_PROGRAM, date.today())
-        header_str = f"Dag {program_day} af {days_total} · {DK_DAYS[weekday]} · Uge {week_num}"
+        header_str = f"Dag {program_day} af {days_total} · {DK_DAYS[weekday]} · Uge {date.today().isocalendar()[1]}"
         _now_utc = datetime.utcnow().replace(microsecond=0)
         _merged = _coach_val.merge_warnings(warnings, ai_answer.get('warnings'))
         data['coach'] = {

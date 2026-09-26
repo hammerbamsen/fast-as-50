@@ -223,9 +223,9 @@ def build_trajectory_note(week_num, ctl, weight, weight_history):
         plan_target = ctl_plan_for_week(week_num)
         delta = round(ctl - plan_target, 1)
         if delta >= 0:
-            parts.append(f"CTL {fmt(ctl,1)} er {delta} point FORAN ugeplanen (planmål uge {week_num}: {plan_target}).")
+            parts.append(f"CTL {fmt(ctl,1)} er {delta} point FORAN ugeplanen (planmål uge {date.today().isocalendar()[1]}: {plan_target}).")
         else:
-            parts.append(f"CTL {fmt(ctl,1)} er {abs(delta)} point BAG ugeplanen (planmål uge {week_num}: {plan_target}).")
+            parts.append(f"CTL {fmt(ctl,1)} er {abs(delta)} point BAG ugeplanen (planmål uge {date.today().isocalendar()[1]}: {plan_target}).")
 
     if weight is not None and weight_history:
         reals = [h for h in weight_history if isinstance(h, dict) and h.get('real') and h.get('v') is not None]
@@ -427,13 +427,13 @@ def generate_coach_speech(week_num, weekday, streak, af_this_week, today_session
 
     # Ugedag-intro
     if weekday == 0:  # mandag
-        intro = f"Ny uge starter — uge {week_num} af {TOTAL_WEEKS}. {block_label.capitalize()}."
+        intro = f"Ny uge starter — uge {date.today().isocalendar()[1]}. {block_label.capitalize()}."
     elif weekday == 4:  # fredag
-        intro = f"Fredag — tre dage tilbage af uge {week_num}."
+        intro = f"Fredag — tre dage tilbage af uge {date.today().isocalendar()[1]}."
     elif weekday == 6:  # søndag
-        intro = f"Søndag — afslut uge {week_num} stærkt."
+        intro = f"Søndag — afslut uge {date.today().isocalendar()[1]} stærkt."
     else:
-        intro = f"{day_name.capitalize()} — uge {week_num} af {TOTAL_WEEKS}."
+        intro = f"{day_name.capitalize()} — uge {date.today().isocalendar()[1]}."
 
     # --- Friel (træning) + Kreutzer (krop/AF): hvad er godt, hvad skal der fokuseres på ---
     expected_ctl = ctl_plan_for_week(week_num)  # rigtig plan m. recovery-dyk, ikke lineær tilnærmelse

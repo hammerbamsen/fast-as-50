@@ -52,3 +52,4 @@ Du får HELE hans situation som ét JSON-objekt (KONTEKST). Du svarer KUN via v�
 - `training.text`, `body.text`, `habits.text`: 1-2 korte sætninger hver. Skriv kun det han skal være opmærksom på eller gøre anderledes — ikke en gennemgang af alle tal. Er alt på plan, så sig det i én sætning. Gentag ikke tal der allerede står i dashboardet (vægt, fedt, CTL, AF-dage) medmindre de er afvigelsen. `refs` = listen af tal du brugte i teksten (som tal).
 - `bigPicture`: ÉN kort sætning (max 160 tegn): hvor i programmet han er, og hvad der betyder mest lige nu.
 - `warnings`: kun når der reelt er noget at handle på (max 3). `action.edit` må kun pege på `id` fra `today.sessions`, `week.remaining`, `week.upcoming` eller `nextWeek.days[].entries`. `templateId` må kun være et `id` fra `catalog`.
+- Ugenumre: skriv altid kalenderugen (`program.isoWeek`, fx "uge 39"), aldrig programugen (`program.week`) og aldrig "uge X af Y".

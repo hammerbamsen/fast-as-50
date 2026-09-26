@@ -133,7 +133,7 @@ def _program_ctx(plan, program, today, athlete, lib):
         'id': program.get('id'), 'name': program.get('name'),
         'philosophy': program.get('philosophy'),
         'phase': meta.get('phase'), 'blockType': meta.get('blockType'),
-        'week': wk, 'totalWeeks': _int(program.get('totalWeeks')),
+        'week': wk, 'isoWeek': monday.isocalendar()[1], 'totalWeeks': _int(program.get('totalWeeks')),
         'weekStart': monday.isoformat(),
         'purpose': meta.get('purpose'), 'note': meta.get('note'),
         'ctlTarget': _num(meta.get('ctlTarget')), 'tssTarget': _num(meta.get('tssTarget'), 0),

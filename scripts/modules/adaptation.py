@@ -173,7 +173,7 @@ def suggest(plan, missed, today, readiness=None):
         cw = None
     phase = friel._phase(weeks_meta, cw) if cw else ""
     if phase in ("RECOVERY", "TAPER", "RACE"):
-        out["phase_guard"] = (f"Uge {cw} er {phase} — missede pas her er ofte "
+        out["phase_guard"] = (f"Uge {today.isocalendar()[1]} er {phase} — missede pas her er ofte "
                               "planlagt reduktion; ingen justering foreslås.")
         return out
 

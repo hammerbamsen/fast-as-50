@@ -972,7 +972,7 @@ function ctlGraph() {
   const actualPath=smoothPath(actual);
   const actualArea=`${actualPath} L${x(actual.length-1)},${H-pad.b} L${x(0)},${H-pad.b} Z`;
 
-  const labels=plan.map((_,i)=>String(i+1));
+  const labels=plan.map((_,i)=>String(progIso(i+1)));
   return `<svg class="ctl-svg" viewBox="0 0 ${W} ${H}" style="overflow:visible">
     <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="var(--gold)" stop-opacity=".35"/>
@@ -1019,7 +1019,7 @@ function periodTimeline() {
       const active=p.w===wk;
       return `<div class="period-cell" style="background:${active?col:col+'22'};border-color:${col}">
         <span class="pc-lbl" style="color:${active?"white":col}">${p.l}</span>
-        <span class="pc-num" style="color:${active?"rgba(255,255,255,.7)":col+'aa'}">${p.w}</span>
+        <span class="pc-num" style="color:${active?"rgba(255,255,255,.7)":col+'aa'}">${progIso(p.w)}</span>
       </div>`;
     }).join("")}
   </div>
@@ -1093,6 +1093,8 @@ const esc = t => String(t == null ? '' : t).replace(/[<>&"]/g, c => ({'<':'&lt;'
 const fmtDa = (v, d=1) => (v == null || isNaN(v)) ? '—' : Number(v).toFixed(d).replace('.', ',');
 function isoOf(dt){ return dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0'); }
 function todayIso(){ return isoOf(new Date()); }
+// Programuge n → kalenderuge (ISO). Regnes ud fra dags dato: programuge D.week = denne uge (26/9-26: Kennet vil kun se kalenderuger).
+function progIso(n){ const d = new Date(); d.setHours(12,0,0,0); d.setDate(d.getDate() + ((Number(n)||0) - (Number(D.week)||0)) * 7); return isoWeekOf(d); }
 function isoWeekOf(d){ const dt = (d instanceof Date) ? new Date(d) : new Date(String(d).slice(0,10)+'T12:00:00'); dt.setHours(12,0,0,0); dt.setDate(dt.getDate() + 3 - ((dt.getDay()+6)%7)); const w1 = new Date(dt.getFullYear(),0,4); return 1 + Math.round(((dt - w1)/86400000 - 3 + ((w1.getDay()+6)%7))/7); }
 function mondayOf(dt){ const m = new Date(dt); m.setHours(0,0,0,0); m.setDate(m.getDate() - ((m.getDay()+6)%7)); return m; }
 function lastVal(series){ for (const p of [...(series||[])].reverse()) if (p && p.v != null && !isNaN(p.v)) return p; return null; }
@@ -1451,14 +1453,14 @@ function renderWeek() {
   const isCurrentWeek = viewWeek === 0;
   const prevOk = w > 1;
   const nextOk = w < D.totalWeeks;
-  const weekLabel = isCurrentWeek ? 'DENNE UGE' : `UGE ${w} AF ${D.totalWeeks}`;
+  const weekLabel = isCurrentWeek ? `DENNE UGE · UGE ${progIso(w)}` : `UGE ${progIso(w)}`;
 
   return `
   <div class="hero-card">
     <div class="hero-eyebrow">${weekLabel} · ${block||D.blockType}</div>
     <div class="hero-title" style="display:flex;align-items:center;justify-content:space-between">
       <button onclick="changeWeekView(-1)" style="background:none;border:none;color:${prevOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${prevOk?'pointer':'default'};padding:0 8px">‹</button>
-      <span>${isCurrentWeek ? 'Ugeoversigt' : `Uge ${w}`}</span>
+      <span>${isCurrentWeek ? 'Ugeoversigt' : `Uge ${progIso(w)}`}</span>
       <button onclick="changeWeekView(1)" style="background:none;border:none;color:${nextOk?'var(--gold)':'rgba(255,255,255,.2)'};font-size:22px;cursor:${nextOk?'pointer':'default'};padding:0 8px">›</button>
     </div>
     ${isCurrentWeek ? '' : `<div style="text-align:center;margin-top:6px"><button onclick="changeWeekView(${-viewWeek})" style="background:rgba(255,255,255,.1);border:none;color:var(--gold);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;padding:4px 12px;border-radius:20px;cursor:pointer">→ GÅ TIL DENNE UGE</button></div>`}
@@ -1999,7 +2001,7 @@ function ptMoveConsequence(entryId, targetIso){
     const max = q[key] ?? 0, lim = key==='haard' ? rules.maxHaard : rules.maxModerat;
     const over = used[key] > max, hardOver = lim != null && used[key] > lim;
     if (hardOver) level = 'bad'; else if (over && level !== 'bad') level = 'warn';
-    out.push(`<div>Kvote uge ${tw.week}: <b>${used[key]}/${max}</b> ${PT_LOAD_DA[key]}${hardOver?` ✗ — over bibliotekets max ${lim}`:over?' — over ugens kvote':' ✓'}</div>`);
+    out.push(`<div>Kvote uge ${tw.start ? isoWeekOf(tw.start) : tw.week}: <b>${used[key]}/${max}</b> ${PT_LOAD_DA[key]}${hardOver?` ✗ — over bibliotekets max ${lim}`:over?' — over ugens kvote':' ✓'}</div>`);
   }
   const td = ptSessions().flatMap(w=>w.days).find(d=>d.date===targetIso);
   const swapNames = td ? td.entries.filter(x=>x.id && !x.extra).map(x=>x.zwiftName||x.name) : [];
@@ -2057,7 +2059,7 @@ function ptPickTemplate(id, btn){
     const wk = ptWeeks().find(x => x.start <= f.day.date && f.day.date <= x.end);
     if (wk && w.load !== f.e.load && (w.load==='haard'||w.load==='moderat')) {
       const used = (wk.quotaUsed||{})[w.load]||0, max = (wk.quota||{})[w.load]||0, n = used + 1;
-      document.getElementById('pt-msg').innerHTML = `<div class="pt-cons ${n>max?'warn':'ok'}">Kvote uge ${wk.week}: <b>${n}/${max}</b> ${PT_LOAD_DA[w.load]}${n>max?' — over ugens kvote':' ✓'}</div>`;
+      document.getElementById('pt-msg').innerHTML = `<div class="pt-cons ${n>max?'warn':'ok'}">Kvote uge ${wk.start ? isoWeekOf(wk.start) : wk.week}: <b>${n}/${max}</b> ${PT_LOAD_DA[w.load]}${n>max?' — over ugens kvote':' ✓'}</div>`;
     } else document.getElementById('pt-msg').innerHTML = '';
   }
 }
@@ -2718,13 +2720,13 @@ function renderOverview() {
   ${upcomingRacesCard()}
   <div class="card"><div class="label">${D.totalWeeks}-ugers periodeplan</div>${periodTimeline()}</div>
   <div class="card">
-    <div class="label" style="margin-bottom:12px">Træningsfordeling — uge ${D.week}</div>
+    <div class="label" style="margin-bottom:12px">Træningsfordeling — uge ${progIso(D.week)}</div>
     ${trainingDonut()}
   </div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
       <div class="label" style="margin-bottom:0">CTL-progression</div>
-      <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--gold)">MÅL: ${CTL_PLAN[CTL_PLAN.length-1]} (uge ${CTL_PLAN.length})</span>
+      <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--gold)">MÅL: ${CTL_PLAN[CTL_PLAN.length-1]} (uge ${progIso(CTL_PLAN.length)})</span>
     </div>
     ${ctlGraph()}
   </div>
@@ -2753,7 +2755,7 @@ function renderOverview() {
         return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
           <div style="font-family:Space Mono,monospace;font-size:7px;color:${isThisWeek ? 'var(--swim)' : 'var(--muted)'};min-height:10px;line-height:10px">${kmLabel}</div>
           <div style="width:${barW}px;height:${h}px;background:${isThisWeek ? 'var(--swim)' : 'rgba(26,122,94,.35)'};border-radius:2px 2px 0 0;min-height:2px"></div>
-          <div style="font-family:Space Mono,monospace;font-size:7px;color:var(--muted)">${w.week}</div>
+          <div style="font-family:Space Mono,monospace;font-size:7px;color:var(--muted)">${w.date ? isoWeekOf(w.date) : w.week}</div>
         </div>`;
       }).join('');
       return `
@@ -4369,7 +4371,7 @@ window.addEventListener('online',  updateDataAge);
 window.addEventListener('offline', updateDataAge);
 
 function updateMeta() {
-  document.getElementById("sf-week").textContent = `UGE ${isoWeekOf(new Date())} · program-uge ${D.week}/${D.totalWeeks}`;
+  document.getElementById("sf-week").textContent = `UGE ${isoWeekOf(new Date())}`;
   document.getElementById("sf-block").textContent = `${D.blockType} BLOCK`;
   updateDataAge();   // tegner også statuslinjen (renderPageSub)
 }

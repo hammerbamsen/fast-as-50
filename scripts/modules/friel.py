@@ -126,6 +126,11 @@ def _week_no(d_iso, plan_start):
     return (date.fromisoformat(d_iso) - plan_start).days // 7 + 1
 
 
+def _iso(plan_start, w):
+    """Programuge w → kalenderuge (ISO) til tekster. Kennet læser kun kalenderuger (26/9-2026)."""
+    return (plan_start + timedelta(weeks=w - 1)).isocalendar()[1]
+
+
 def _camp_weeks(plan, program=None):
     """Uger med rejse-ophold markeret som camp (Mallorca) — TSB-gulv -35."""
     camps = set()
@@ -196,7 +201,7 @@ def structural_flags(plan, athlete="kennet", today=None):
     for w, n in runs_per_week.items():
         if n > MAX_RUNS_PER_WEEK and _load_rules_apply(w):
             flags.append({"week": w, "rule": "max_runs", "level": "HARD",
-                          "msg": f"{n} løbedage i uge {w} (max {MAX_RUNS_PER_WEEK})"})
+                          "msg": f"{n} løbedage i uge {_iso(plan_start, w)} (max {MAX_RUNS_PER_WEEK})"})
 
     # Fortløbende løbedage — HARD
     run_dates.sort()
@@ -215,10 +220,10 @@ def structural_flags(plan, athlete="kennet", today=None):
         if bt.startswith("BUILD") and w in planned_weeks:
             if vo2_per_week[w] == 0:
                 flags.append({"week": w, "rule": "vo2_missing", "level": "WARN",
-                              "msg": f"Ingen VO2-stimulus i build-uge {w}"})
+                              "msg": f"Ingen VO2-stimulus i build-uge {_iso(plan_start, w)}"})
             elif vo2_per_week[w] > 1:
                 flags.append({"week": w, "rule": "vo2_excess", "level": "WARN",
-                              "msg": f"{vo2_per_week[w]} VO2-pas i uge {w} (plan: 1)"})
+                              "msg": f"{vo2_per_week[w]} VO2-pas i uge {_iso(plan_start, w)} (plan: 1)"})
 
     # Recovery efter max 3 build-uger i træk — WARN
     streak = 0
@@ -228,7 +233,7 @@ def structural_flags(plan, athlete="kennet", today=None):
             streak += 1
             if streak > 3:
                 flags.append({"week": w, "rule": "missing_recovery", "level": "WARN",
-                              "msg": f"{streak}. build-uge i træk uden recovery (uge {w})"})
+                              "msg": f"{streak}. build-uge i træk uden recovery (uge {_iso(plan_start, w)})"})
         else:
             streak = 0
 
@@ -330,7 +335,7 @@ def load_flags(plan, seed_ctl, seed_atl, seed_date,
             floor = new_floor
         if tsb < floor:
             flags.append({"week": w, "rule": "tsb_floor", "level": "HARD",
-                          "msg": f"TSB {tsb} i uge {w} under gulv {floor}"
+                          "msg": f"TSB {tsb} i uge {_iso(plan_start, w)} under gulv {floor}"
                                  + (" (camp)" if w in camps else "")
                                  + (" (taper)" if phase == "TAPER" else "")
                                  + (f" (readiness {readiness.lower()})"
@@ -345,13 +350,13 @@ def load_flags(plan, seed_ctl, seed_atl, seed_date,
                 # CTL SKAL falde her — negativ ramp er korrekt, stigning er fejl
                 if ramp > TAPER_RAMP_RISE_WARN:
                     flags.append({"week": w, "rule": "taper_ctl_rising", "level": "WARN",
-                                  "msg": f"CTL stiger +{ramp:.1f} i {phase.lower()}-uge {w} — belastningen skal ned"})
+                                  "msg": f"CTL stiger +{ramp:.1f} i {phase.lower()}-uge {_iso(plan_start, w)} — belastningen skal ned"})
             elif ramp > RAMP_HARD:
                 flags.append({"week": w, "rule": "ctl_ramp", "level": "HARD",
-                              "msg": f"CTL-ramp +{ramp:.1f} i uge {w} (hårdt loft {RAMP_HARD:.0f})"})
+                              "msg": f"CTL-ramp +{ramp:.1f} i uge {_iso(plan_start, w)} (hårdt loft {RAMP_HARD:.0f})"})
             elif ramp > RAMP_SOFT:
                 flags.append({"week": w, "rule": "ctl_ramp", "level": "WARN",
-                              "msg": f"CTL-ramp +{ramp:.1f} i uge {w} (blødt loft {RAMP_SOFT:.0f})"})
+                              "msg": f"CTL-ramp +{ramp:.1f} i uge {_iso(plan_start, w)} (blødt loft {RAMP_SOFT:.0f})"})
         prev = week_end_ctl[w]
 
     # Race-dags-readiness: TSB på hver race-dag bør ligge i +5..+25.
