@@ -69,3 +69,7 @@
 - **lørdag 2026-12-12** (uge 14, apply_proposal): FaF 2 Dur - Negativ split 2 t (130 min) [langt] → FaF 2 Dur - Negativ split 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
 - **lørdag 2026-12-19** (uge 15, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
 - **lørdag 2027-01-02** (uge 17, apply_proposal): FaF 1 Z2 - Depottur 2 t (130 min) [langt] → FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+
+### Planændring 26/09 16:33
+- **tirsdag 2026-09-29** (uge 4, move): Cykel Z2 180 min Mallorca (180 min) [langt] → Styrke A · Functional 4 · 2 runder (25 min); Løb Z2 45 min (45 min)
+- **onsdag 2026-09-30** (uge 4, move): Styrke A · Functional 4 · 2 runder (25 min); Løb Z2 45 min (45 min) → Cykel Z2 180 min Mallorca (180 min) [langt]
