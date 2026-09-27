@@ -1,0 +1,83 @@
+{
+  "id": "2026-09-27-lob-man-pas",
+  "title": "Man 28/9: løb som pas (06:30) + cykel",
+  "status": "pending",
+  "createdAt": "2026-09-27T06:55:00Z",
+  "createdBy": "claude-code",
+  "note": "Kennet 27/9: løb man+tir er ok (bekræftet). Erstatter noten fra 2026-09-27-lob-til-man.",
+  "summary": [
+    "Man 28/9: løb let Z1 30 min 06:30 + cykel Z2 120 min efter mødet."
+  ],
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-09-28",
+      "entries": [
+        {
+          "workout": {
+            "name": "Løb let Z1 30 min",
+            "type": "Run",
+            "moving_time": 1800,
+            "description": "- Let løb 30m >5:39/km Pace",
+            "workout_doc": {
+              "steps": [
+                {
+                  "text": "Let løb >5:39/km",
+                  "pace": {
+                    "start": 65,
+                    "end": 78,
+                    "units": "%pace"
+                  },
+                  "duration": 1800
+                }
+              ]
+            }
+          },
+          "note": "Flyttet fra søn 27/9 (rejsedag). Kl. 06:30 før Rosello-mødet 09:00. Løber også tir — hold det helt let"
+        },
+        {
+          "note": "Mallorca dag 1: Sóller–Deià–Valldemossa og retur. Ren Z2. KØR EFTER Rosello-mødet kl. 09:00–09:45 — start ca. 10:00",
+          "workout": {
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "moving_time": 7200,
+            "name": "Cykel Z2 120 min Mallorca",
+            "type": "Ride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 600,
+                  "power": {
+                    "end": 68,
+                    "start": 45,
+                    "units": "%ftp"
+                  },
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "duration": 6300,
+                  "power": {
+                    "end": 76,
+                    "start": 56,
+                    "units": "%ftp"
+                  },
+                  "text": "Aerob base 56-76% FTP"
+                },
+                {
+                  "cooldown": true,
+                  "duration": 300,
+                  "power": {
+                    "end": 45,
+                    "start": 68,
+                    "units": "%ftp"
+                  },
+                  "ramp": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
