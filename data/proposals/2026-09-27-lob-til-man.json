@@ -1,0 +1,72 @@
+{
+  "id": "2026-09-27-lob-til-man",
+  "title": "Løb flyttet fra søn 27/9 til man 28/9 tidlig",
+  "status": "pending",
+  "createdAt": "2026-09-27T06:45:00Z",
+  "createdBy": "claude-code",
+  "note": "Kennet 27/9: flyt dagens løb til i morgen tidlig, cykel stadig mandag. Gaten afviser løb man+tir (HARD), så løbet står som note på mandag, ikke som pas.",
+  "summary": [
+    "Søn 27/9: fri (rejsedag).",
+    "Man 28/9: note om let løb 30 min 06:30 + cykel Z2 120 min efter mødet."
+  ],
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-09-27",
+      "entries": [
+        {
+          "workout": null,
+          "note": "Fri — rejsedag. Løbet er flyttet til man 28/9 kl. 06:30"
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-09-28",
+      "entries": [
+        {
+          "note": "Løb først: let Z1 30 min kl. 06:30 (flyttet fra søn — står ikke som pas pga. løb tir). Cykel EFTER Rosello-mødet 09:00–09:45 — start ca. 10:00. Sóller–Deià–Valldemossa, ren Z2",
+          "workout": {
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "moving_time": 7200,
+            "name": "Cykel Z2 120 min Mallorca",
+            "type": "Ride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 600,
+                  "power": {
+                    "end": 68,
+                    "start": 45,
+                    "units": "%ftp"
+                  },
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "duration": 6300,
+                  "power": {
+                    "end": 76,
+                    "start": 56,
+                    "units": "%ftp"
+                  },
+                  "text": "Aerob base 56-76% FTP"
+                },
+                {
+                  "cooldown": true,
+                  "duration": 300,
+                  "power": {
+                    "end": 45,
+                    "start": 68,
+                    "units": "%ftp"
+                  },
+                  "ramp": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
