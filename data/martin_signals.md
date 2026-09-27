@@ -83,3 +83,7 @@
 - Cut-tjek: warn — 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere
 - Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, ons 30/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 FaF 1 Z2 - Depottur 2 t 130 min
 - Planændringer siden sidst: 2 — se martin_signals.md
+
+### Planændring 27/09 18:39
+- **fredag 2026-10-02** (uge 4, move): Cykel Z2 90 min Mallorca (90 min) [langt] → hviledag
+- **lørdag 2026-10-03** (uge 4, move): hviledag → Cykel Z2 90 min Mallorca (90 min) [langt]
