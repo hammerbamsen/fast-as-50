@@ -1694,6 +1694,7 @@ function ptSessionCard(e, day){
   const dc = C[e.disc] || C.free;
   const name = e.zwiftName || e.name || '—';
   const meta = [];
+  if (e.start) meta.push(`<span>kl. ${esc(e.start)}</span>`);   // 27/9-2026
   if (e.mins) meta.push(`<span>${ptMins(e.mins)}</span>`);
   if (e.load) meta.push(`<span class="pt-load ${esc(e.load)}">${PT_LOAD_DA[e.load]||e.load}</span>`);
   if (e.libraryId && e.erg != null) meta.push(`<span class="pt-erg${e.erg?'':' no'}">${e.erg ? 'ERG' : 'IKKE ERG — styr selv'}</span>`);
@@ -1871,7 +1872,7 @@ function ptRenderMenu(){
   ptSheetEl().innerHTML = ptSheetHead('Hvad vil du?') + `<div class="pt-menu">
     <button onclick="ptSheetMove()">${icon('week',18,'currentColor')}<span>Flyt<small>læg oveni en anden dag, eller byt dagene</small></span></button>
     <button onclick="ptSheetSwap()">${icon('plan',18,'currentColor')}<span>Skift pas<small>${isBike?'vælg et andet kælderpas fra biblioteket':'vælg en skabelon'}</small></span></button>
-    <button onclick="ptSheetAdjust()">${icon('today',18,'currentColor')}<span>Justér<small>varighed${f.e.mins?` (nu ${ptMins(f.e.mins)})`:''} og note</small></span></button>
+    <button onclick="ptSheetAdjust()">${icon('today',18,'currentColor')}<span>Justér<small>varighed${f.e.mins?` (nu ${ptMins(f.e.mins)})`:''}, starttid og note</small></span></button>
     <button onclick="ptSheetOptional()">${icon('flag',18,'currentColor')}<span>${isOpt?'Gør obligatorisk':'Gør valgfri'}<small>${isOpt?'tæller igen fuldt i CTL-projektionen':'bliver stående, men tæller ikke i CTL-projektionen'}</small></span></button>
     <button onclick="ptSheetNote()">${icon('rules',18,'currentColor')}<span>Note<small>${f.e.note?esc(f.e.note):'skriv en note til passet'}</small></span></button>
     <button class="danger" onclick="ptSheetCancel()">${icon('rest',18,'currentColor')}<span>Aflys<small>dagen bliver hviledag i Intervals og Outlook</small></span></button>
@@ -1887,6 +1888,8 @@ function ptSheetAdjust(){
   ptSheetEl().innerHTML = ptSheetHead('Justér pas') + `
     <label class="pt-lab" for="pt-mins">Varighed (minutter)</label>
     <input class="pt-in" id="pt-mins" type="number" inputmode="numeric" min="10" max="360" step="5" value="${f.e.mins ? Math.round(f.e.mins) : 60}" oninput="ptAdjustChanged()">
+    <label class="pt-lab" for="pt-start">Starttid i kalenderen${f.e.startFixed?'':' <span style="font-weight:400;color:var(--muted)">(standard)</span>'}</label>
+    <input class="pt-in" id="pt-start" type="time" step="900" value="${esc(f.e.start||'')}" oninput="ptAdjustChanged()">
     <label class="pt-lab" for="pt-adj-note">Note (valgfri)</label>
     <textarea class="pt-note" id="pt-adj-note" placeholder="Fx: kortere i dag — benene er tunge" oninput="ptAdjustChanged()">${esc(f.e.note||'')}</textarea>
     <div id="pt-cons"></div><div class="pt-msg" id="pt-msg"></div>
@@ -1895,22 +1898,26 @@ function ptSheetAdjust(){
 function ptAdjustRead(){
   const mins = parseInt(document.getElementById('pt-mins').value, 10);
   const note = document.getElementById('pt-adj-note').value;
-  return { mins: isNaN(mins) ? null : mins, note };
+  const st = document.getElementById('pt-start'), start = st ? st.value : '';
+  return { mins: isNaN(mins) ? null : mins, note, start };
 }
 function ptAdjustChanged(){
   const f = ptFindEntry(PT.sheet.entryId); if (!f) return;
-  const { mins, note } = ptAdjustRead();
+  const { mins, note, start } = ptAdjustRead();
   const go = document.getElementById('pt-go'), cons = document.getElementById('pt-cons');
   const bad = mins == null || mins < 10 || mins > 360;
-  const changed = !bad && (mins !== Math.round(f.e.mins||0) || note !== (f.e.note||''));
+  const changed = !bad && (mins !== Math.round(f.e.mins||0) || note !== (f.e.note||'') || start !== (f.e.start||''));
   go.disabled = !changed;
   if (bad) cons.innerHTML = `<div class="pt-cons bad">Varighed skal være 10–360 min.</div>`;
   else if (f.e.mins && mins !== Math.round(f.e.mins)) { const d = mins - Math.round(f.e.mins); cons.innerHTML = `<div class="pt-cons ${Math.abs(d) >= 30 ? 'warn' : 'ok'}"><b>${d>0?'+':''}${d} min</b> — ${ptMins(f.e.mins)} → ${ptMins(mins)}${Math.abs(d) >= 30 ? ' · ændrer ugens belastning mærkbart' : ''}</div>`; }
   else cons.innerHTML = '';
 }
 function ptAdjustGo(){
-  const { mins, note } = ptAdjustRead(); if (mins == null) return;
+  const f = ptFindEntry(PT.sheet.entryId);
+  const { mins, note, start } = ptAdjustRead(); if (mins == null) return;
   PT.sheet.params = { moving_time: mins * 60, note };
+  // 27/9-2026: kun ved ændring — tomt felt = tilbage til standardtid
+  if (f && start !== (f.e.start||'')) PT.sheet.params.start_time = start || null;
   ptSubmit();
 }
 
@@ -2275,6 +2282,7 @@ function ptApplyLocal(action, entryId, params){
   } else if (action === 'adjust') {
     if ('note' in params) f.e.note = params.note;
     if (params.moving_time) f.e.mins = Math.round(params.moving_time / 60);   // blok 9: Justér-arket
+    if ('start_time' in params) { f.e.start = params.start_time || f.e.start; f.e.startFixed = !!params.start_time; }
   } else if (action === 'toggle_optional') {
     f.e.optional = !f.e.optional;   // blok 9: backend vender flaget — spejl det lokalt
   } else if (action === 'swap_template') {

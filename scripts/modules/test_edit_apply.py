@@ -161,6 +161,29 @@ def test_consecutive_runs_is_warn_not_hard():
             assert f["level"] == "WARN"
 
 
+def test_adjust_start_time_sets_and_clears_override():
+    """27/9-2026: Justér-arket sætter starttid pr. pas i timeOverrides."""
+    plan = _plan_copy()
+    src_date, e = _future_run_entry(plan)
+    typ = e["workout"]["type"]
+    sim = edit_apply._simulate_mutation(plan, "adjust", e["id"], {"start_time": "16:15"})[0]
+    assert sim["athletes"]["kennet"]["timeOverrides"][src_date][typ] == [16, 15]
+    sim2 = edit_apply._simulate_mutation(sim, "adjust", e["id"], {"start_time": None})[0]
+    assert typ not in (sim2["athletes"]["kennet"]["timeOverrides"].get(src_date) or {})
+    with pytest.raises(ValueError):
+        edit_apply._simulate_mutation(plan, "adjust", e["id"], {"start_time": "25:00"})
+
+
+def test_adjust_start_time_converts_day_override():
+    """En dagsdækkende override bliver pr. disciplin, så dagens andre pas bliver."""
+    plan = _plan_copy()
+    src_date, e = _future_run_entry(plan)
+    plan["athletes"]["kennet"].setdefault("timeOverrides", {})[src_date] = [7, 0]
+    sim = edit_apply._simulate_mutation(plan, "adjust", e["id"], {"start_time": "17:00"})[0]
+    tov = sim["athletes"]["kennet"]["timeOverrides"][src_date]
+    assert isinstance(tov, dict) and tov[e["workout"]["type"]] == [17, 0]
+
+
 # -- gate --
 
 def test_reject_when_adding_hard_flag():

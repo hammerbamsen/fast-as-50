@@ -133,7 +133,7 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
     extra_date = ""
 
     if action == "adjust":
-        # params: {name?, type?, moving_time?, description?, note?}
+        # params: {name?, type?, moving_time?, description?, note?, start_time? 'HH:MM'|null}
         wo = src_entry.get("workout") or {}
         for k in ("name", "type", "description"):
             if k in params:
@@ -143,6 +143,8 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
         src_entry["workout"] = wo
         if "note" in params:
             src_entry["note"] = params["note"]
+        if "start_time" in params:
+            _set_start_time(ath, src_day["date"], wo.get("type"), params["start_time"])
 
     elif action == "toggle_done":
         # Marker/aflys 'gennemført' — ingen Friel-implikationer, kun status
@@ -228,6 +230,45 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
         raise ValueError(f"Ukendt action: {action!r}")
 
     return sim, src_day["date"], extra_date
+
+
+def _parse_hm(v):
+    """'16:15' | [16, 15] -> [16, 15]; None -> None. ValueError ved alt andet."""
+    if v is None or v == "":
+        return None
+    if isinstance(v, str) and ":" in v:
+        v = v.split(":", 1)
+    try:
+        h, m = int(v[0]), int(v[1])
+    except (TypeError, ValueError, IndexError):
+        raise ValueError(f"start_time skal være 'HH:MM' (fik {v!r})")
+    if not (0 <= h <= 23 and 0 <= m <= 59):
+        raise ValueError(f"start_time uden for døgnet: {v!r}")
+    return [h, m]
+
+
+def _set_start_time(ath: dict, d_iso: str, wtype, value) -> None:
+    """27/9-2026 (Justér-arket): fast starttid for ét pas -> timeOverrides[dato][type].
+    None/'' fjerner passets tid. En dagsdækkende override ([h, m]) laves om til
+    pr.-disciplin for dagens øvrige pas, så de ikke flytter sig."""
+    if not wtype:
+        raise ValueError("start_time kræver et pas med type")
+    hm = _parse_hm(value)
+    tov = ath.setdefault("timeOverrides", {})
+    cur = tov.get(d_iso)
+    if isinstance(cur, list):
+        day = next((d for d in ath["days"] if d["date"] == d_iso), {"entries": []})
+        cur = {(e.get("workout") or {}).get("type"): list(cur)
+               for e in day["entries"] if (e.get("workout") or {}).get("type")}
+    cur = dict(cur or {})
+    if hm is None:
+        cur.pop(wtype, None)
+    else:
+        cur[wtype] = hm
+    if cur:
+        tov[d_iso] = cur
+    else:
+        tov.pop(d_iso, None)
 
 
 STRENGTH_NOTE_MAX = 140

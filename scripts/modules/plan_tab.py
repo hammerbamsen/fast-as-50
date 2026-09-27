@@ -18,6 +18,7 @@ from datetime import date, timedelta
 
 from . import programs as _programs
 from . import bike_library as _bike
+from . import outlook_times as _ot
 
 DAY_SHORT = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
 
@@ -226,6 +227,28 @@ def _match_actuals(day_entries, day_short, remote_sessions, used):
 
 # ── Hovedfunktion ───────────────────────────────────────────────────────────
 
+def _add_start_times(entries, raw_entries, d_iso, time_overrides):
+    """27/9-2026: 'start' (HH:MM) pr. pas = samme tid som Outlook-synken giver
+    (outlook_times.schedule_day + timeOverrides). 'startFixed' = tiden er sat."""
+    wos, ids = [], []
+    for e in raw_entries:
+        if e.get("workout"):
+            wos.append({**e["workout"], "start_date_local": f"{d_iso}T00:00:00", "_id": e.get("id")})
+    if not wos:
+        return
+    ov = time_overrides.get(d_iso)
+    try:
+        placed = _ot.schedule_day(wos, ov)
+    except Exception:
+        return
+    by_id = {w.get("_id"): (st, bool(_ot.override_for(ov, w.get("type")))) for w, st in placed}
+    for x in entries:
+        hit = by_id.get(x.get("id"))
+        if hit:
+            x["start"] = hit[0].strftime("%H:%M")
+            x["startFixed"] = hit[1]
+
+
 def build_plan_tab(plan, plan_view, week_sessions, all_weeks, today, *,
                    lib=None, week_tss_actual=None, ctl_daily=None, travel=None,
                    weeks_back=4, weeks_ahead=None, from_program_start=False, history_weeks=12, chart_weeks_ahead=7, athlete="kennet"):
@@ -272,6 +295,8 @@ def build_plan_tab(plan, plan_view, week_sessions, all_weeks, today, *,
 
     cur_monday = _monday(today)
     meso_cache = {}
+    time_overrides = _ot.normalize_overrides(
+        (plan.get("athletes") or {}).get(athlete, {}).get("timeOverrides"))
 
     def _prog_for(monday):
         p = _programs.active_program(plan, athlete, monday)
@@ -347,6 +372,7 @@ def build_plan_tab(plan, plan_view, week_sessions, all_weeks, today, *,
             d_iso = d.isoformat()
             raw = days_by_date.get(d_iso, {"date": d_iso, "entries": []})
             entries = [x for x in (_entry(e, d_iso, race_dates) for e in raw.get("entries", [])) if x]
+            _add_start_times(entries, raw.get("entries", []), d_iso, time_overrides)
             rest_note = " · ".join(e.get("note") for e in raw.get("entries", []) if not e.get("workout") and e.get("note")) or None
             rest_id = next((e.get("id") for e in raw.get("entries", []) if not e.get("workout") and e.get("id")), None)
             extras = _match_actuals(entries, DAY_SHORT[i], remote, used) if remote else []
