@@ -14,3 +14,8 @@ Kennet 27/9: vil selv kunne sætte starttid på et pas i appen (ikke kun via cha
 
 ## Ikke verificeret
 - Arket er ikke klikket igennem på iPhone. "kl."-tider vises først efter næste update-kpi-kørsel.
+
+## QA 27/9 (samme dag)
+- UI i headless Chromium (390×844) med rigtig data.json: Flyt-ark viser "Læg oveni" (valgt) / "Byt dage", 13 dage (denne + næste uge), korrekt konsekvenstekst og payload `mode: add|swap`. Justér-ark forudfylder 16:15, Gem er slået fra indtil ændring, sender `start_time` kun ved ændring, `null` ved tomt felt. Ingen JS-fejl.
+- Ende-til-ende: adjust `start_time: '16:30'` via plan-edit → timeOverrides opdateret, Outlook-event flyttet til 16:30–18:30, ingen sync-fejl. Sat tilbage til 16:15.
+- Fejl fundet og rettet: "Læg oveni" på en fri dag lod "Fri"-noten blive stående ved siden af passet. Nu fjernes hviledags-noter (uden workout, ikke done) på måldagen. Ny test. pytest: 669 passed.

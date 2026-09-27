@@ -152,6 +152,16 @@ def test_move_add_keeps_target_entries():
     assert not any(x.get("id") == e["id"] for x in src_d["entries"])
 
 
+def test_move_add_to_rest_day_drops_rest_note():
+    plan = _plan_copy()
+    src_date, e = _future_run_entry(plan)
+    rest = {"date": "2027-12-24", "entries": [{"id": "rest1234", "workout": None, "note": "Fri"}]}
+    plan["athletes"]["kennet"]["days"].append(rest)
+    sim = edit_apply._simulate_mutation(plan, "move", e["id"], {"target_date": "2027-12-24", "mode": "add"})[0]
+    dst = next(d for d in sim["athletes"]["kennet"]["days"] if d["date"] == "2027-12-24")
+    assert [x["id"] for x in dst["entries"]] == [e["id"]]
+
+
 def test_consecutive_runs_is_warn_not_hard():
     """27/9-2026: to løbedage i træk kan bekræftes væk (WARN)."""
     from modules import friel

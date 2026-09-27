@@ -211,6 +211,8 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
             # 27/9-2026: "Læg oveni" — flyt KUN det valgte pas; måldagens
             # pas bliver liggende. Kildedagen beholder sine øvrige pas.
             src_idx = next(i for i, e in enumerate(src_day["entries"]) if e is src_entry)
+            # En hviledags-note ("Fri — …") giver ikke mening ved siden af et pas.
+            dst_day["entries"] = [e for e in dst_day["entries"] if e.get("workout") or e.get("done")]
             dst_day["entries"].append(src_day["entries"].pop(src_idx))
         elif mode == "swap" and len(src_day["entries"]) == 1:
             # Enkelt-pas-kildedag: byt hele dagenes indhold, som hidtil.

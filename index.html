@@ -2272,7 +2272,7 @@ function ptApplyLocal(action, entryId, params){
     const td = allDays.find(d => d.date === params.target_date); if (!td) return;
     const src = f.day;
     const srcPlanned = src.entries.filter(x=>x.id && !x.extra), tPlanned = td.entries.filter(x=>x.id && !x.extra);
-    if (params.mode === 'add') { src.entries = src.entries.filter(x=>x!==f.e); td.entries.push(f.e); }   // læg oveni
+    if (params.mode === 'add') { src.entries = src.entries.filter(x=>x!==f.e); td.entries.push(f.e); td.restNote = null; td.restId = null; }   // læg oveni
     else if (srcPlanned.length === 1) { // swap af hele dagenes indhold (som edit_apply)
       src.entries = src.entries.filter(x=>!x.id || x.extra).concat(tPlanned);
       td.entries = td.entries.filter(x=>!x.id || x.extra).concat(srcPlanned);
