@@ -105,6 +105,20 @@ def test_set_day_creates_missing_day():
     assert ds == sorted(ds)
 
 
+def test_set_day_time_writes_and_clears_time_override():
+    """27/9-2026: set_day.time -> athletes.kennet.timeOverrides[dato]."""
+    plan = _plan()
+    ch = {"date": "2027-12-24", "action": "set_day", "entries": [_styrke()], "time": {"WeightTraining": [16, 15]}}
+    proposals.validate(_prop([ch]))
+    sim, _ = proposals.apply_changes(plan, [ch])
+    assert sim["athletes"]["kennet"]["timeOverrides"]["2027-12-24"] == {"WeightTraining": [16, 15]}
+    assert "2027-12-24" not in plan["athletes"]["kennet"].get("timeOverrides", {})   # input urørt
+    sim2, _ = proposals.apply_changes(sim, [{**ch, "time": None}])
+    assert "2027-12-24" not in sim2["athletes"]["kennet"]["timeOverrides"]
+    sim3, _ = proposals.apply_changes(sim, [{k: v for k, v in ch.items() if k != "time"}])
+    assert sim3["athletes"]["kennet"]["timeOverrides"]["2027-12-24"] == {"WeightTraining": [16, 15]}
+
+
 # -- validate -------------------------------------------------------------------
 
 @pytest.mark.parametrize("bad", [
@@ -114,6 +128,9 @@ def test_set_day_creates_missing_day():
     {"changes": [{"date": "2026-10-01", "action": "set_day", "entries": []},
                  {"date": "2026-10-01", "action": "set_day", "entries": []}]},
     {"changes": [{"date": "2026-10-01", "action": "set_day", "entries": [{"workout": {"name": "x"}}]}]},
+    {"changes": [{"date": "2026-10-01", "action": "set_day", "entries": [], "time": "16:15"}]},
+    {"changes": [{"date": "2026-10-01", "action": "set_day", "entries": [], "time": [25, 0]}]},
+    {"changes": [{"date": "2026-10-01", "action": "set_day", "entries": [], "time": {"Ride": [16]}}]},
 ])
 def test_validate_rejects(bad):
     p = _prop([])

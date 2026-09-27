@@ -133,10 +133,27 @@ def validate(prop: dict) -> None:
         seen.add(d_iso)
         if not isinstance(ch.get("entries"), list):
             raise ValueError(f"set_day {d_iso}: entries skal være en liste")
+        if "time" in ch:
+            _check_time(ch["time"], d_iso)
         for e in ch["entries"]:
             wo = e.get("workout")
             if wo is not None and not (isinstance(wo, dict) and wo.get("name") and wo.get("type")):
                 raise ValueError(f"set_day {d_iso}: workout kræver name + type")
+
+
+def _check_time(t, d_iso: str) -> None:
+    """27/9-2026: set_day.time = starttid i kalenderen (samme format som
+    athletes.<a>.timeOverrides): [h, m] for hele dagen, {"Ride": [h, m], ...}
+    pr. disciplin, eller null for at fjerne dagens override."""
+    def _hm(v):
+        return (isinstance(v, list) and len(v) == 2
+                and all(isinstance(x, int) and not isinstance(x, bool) for x in v)
+                and 0 <= v[0] <= 23 and 0 <= v[1] <= 59)
+    if t is None or _hm(t):
+        return
+    if isinstance(t, dict) and t and all(isinstance(k, str) and k and _hm(v) for k, v in t.items()):
+        return
+    raise ValueError(f"set_day {d_iso}: time skal være [h, m], {{disciplin: [h, m]}} eller null (fik {t!r})")
 
 
 # -- id-generering ------------------------------------------------------------
@@ -208,6 +225,13 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
                 e = {"id": new_entry_id(d_iso, name, existing_ids), **e}
             new_entries.append(e)
         day["entries"] = kept + new_entries
+        if "time" in ch:
+            # 27/9-2026: starttid -> timeOverrides (læses af Outlook/Intervals-synk)
+            tov = ath.setdefault("timeOverrides", {})
+            if ch["time"] is None:
+                tov.pop(d_iso, None)
+            else:
+                tov[d_iso] = copy.deepcopy(ch["time"])
         dates.append(d_iso)
     ath["days"].sort(key=lambda d: d["date"])
     return sim, dates

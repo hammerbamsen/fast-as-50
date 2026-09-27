@@ -34,6 +34,8 @@
           "properties": {
             "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
             "action": {"type": "string", "enum": ["set_day"]},
+            "time": {"description": "Starttid (27/9-2026) -> timeOverrides: [h, m], {disciplin: [h, m]} eller null",
+                     "type": ["array", "object", "null"]},
             "entries": {
               "type": "array",
               "items": {
