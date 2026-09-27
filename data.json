@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-27 08:19",
+    "updated": "2026-09-27 08:48",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "46,2",
+      "value": "45,5",
       "unit": "",
       "sub": "Uge 39-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "7,0",
+      "value": "10,0",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -72,7 +72,7 @@
     "tssComp": {
       "value": "151",
       "unit": "TSS",
-      "sub": "151 af 216 planlagt TSS",
+      "sub": "151 af 188 planlagt TSS",
       "color": "#E67E22"
     },
     "bikeKm": {
@@ -111,16 +111,16 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Søndag — afslut uge 39 stærkt. {HL} Fokus: 151 af 216 TSS er i hus — Løb let Z1 30 min (valgfri) står tilbage. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,1 kg (målt 26/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 7 afsluttede dage — 3 mangler i 0 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved. 📊 Store billede: CTL 46,2 er 6.8 point BAG ugeplanen (planmål uge 39: 53). Vægten har tabt 0.7 kg over de seneste 89 dage (72,8 → 72,1 kg).  \"Det er ikke om at have tid. Det er om at tage den.\"",
-  "coachHighlight": "Søvn på 8,0 timer er solid",
+  "coachSpeech": "Uge 39 afsluttet — TRANSITION/BASE, mesocyklus 1/2. Næste uge er Mallorca: ren Z2-volumen, ingen hård belastning. {HL} Uge 39: 3 pas gennemført (gåtur 100 min, løb 24 min, gravel Z2 100 min) — 151 TSS mod mål 188. TRANSITION-blok: lavere TSS er fint, ikke et efterslæb. Styrke A og Grundtur 80 (planlagt 80 min/55 TSS) blev misset.",
+  "coachHighlight": "Pak tasken i aften: sportsmad til mandag (spis hvert 20. min på cyklen) og læg rejseplanen fast for morgenløbet kl. 06:30.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
-      "discipline": "run",
-      "title": "Løb let Z1 30 min (valgfri)",
+      "discipline": "rest",
+      "title": "Hviledag",
       "duration": "",
       "zone": "–",
-      "desc": "",
+      "desc": "Ingen planlagt træning i dag.",
       "completed": false
     }
   ],
@@ -231,22 +231,12 @@
       "actual_mins": 100,
       "actual_distance_m": 40692.17,
       "intervals_compliance": 101.6
-    },
-    {
-      "day": "Søn",
-      "disc": "run",
-      "label": "Løb let Z1 30 min (valgfri)",
-      "done": false,
-      "planned_tss": 28,
-      "planned_mins": 30,
-      "planned_distance_m": null,
-      "today": true
     }
   ],
   "ctlCurve": [
     49.1,
     49.9,
-    46.2
+    45.5
   ],
   "weightHistory": [
     {
@@ -1948,7 +1938,7 @@
     },
     {
       "date": "2026-09-27",
-      "v": 7.0,
+      "v": 10.1,
       "real": true
     }
   ],
@@ -2343,16 +2333,6 @@
           "actual_mins": 100,
           "actual_distance_m": 40692.17,
           "intervals_compliance": 101.6
-        },
-        {
-          "day": "Søn",
-          "disc": "run",
-          "label": "Løb let Z1 30 min (valgfri)",
-          "done": false,
-          "planned_tss": 28,
-          "planned_mins": 30,
-          "planned_distance_m": null,
-          "today": true
         }
       ],
       "blockType": "BASE",
@@ -2362,11 +2342,21 @@
       "sessions": [
         {
           "day": "Man",
+          "disc": "run",
+          "label": "Løb let Z1 30 min",
+          "done": false,
+          "today": false,
+          "planned_tss": 30,
+          "planned_mins": 30,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Man",
           "disc": "bike",
           "label": "Cykel Z2 120 min Mallorca",
           "done": false,
           "today": false,
-          "planned_tss": 90,
+          "planned_tss": 85,
           "planned_mins": 120,
           "planned_distance_m": null
         },
@@ -2442,7 +2432,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Mallorca: hold Z2 igennem — også op ad bakkerne"
+      "focus": "Ren Z2 på Mallorca — kadence, energiplan og ikke Sa Calobra PR"
     },
     "5": {
       "sessions": [
@@ -2978,7 +2968,7 @@
     "walk": 218.0,
     "swim": 41.0,
     "run": 24.0,
-    "planned": 290.0,
+    "planned": 260.0,
     "actual_total": 406.0
   },
   "fatHistory": [
@@ -3329,22 +3319,26 @@
     },
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 21 af 357 · Søndag · Uge 39</strong></p><p class=\"coach-sec coach-big\">Uge 39 slut: TRANSITION/BASE, mesocyklus 1/2 afsluttet — næste uge er Mallorca Z2-blok, 4 lange udendørs pas der bygger aerob base.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen gav 151 TSS mod planens 216 (70 %) — men det er en TRANSITION-uge med kvote 0 hårde/moderate, og CTL er 46,2 mod mål 53,0. Misset: Styrke A og Grundtur 80 min. Næste uge er Mallorca: 4 cykel-Z2-pas (120, 180, 240 og 90 min), styrke tirsdag og søndag, løb tirsdag. Kvote: 0 hårde, 0 moderate — alt er let. TSS-mål 508. CTL-mål 55,0.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit 72,4 kg mod planens 72,1 kg — 0,4 kg over. Fedtsnit 21,7 % er stabilt (ændring de seneste 28 dage på 0,2 procentpoint, under tærsklen på 0,5). Protein ved hvert måltid på Mallorca — det er den ene kost-handling denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage mod mål 6 — og 3 drikkedage i træk 24/9–26/9 koster HRV og muskelproteinsyntese. Protein ramt 6 ud af 7 dage, søvnsnit 8,1 t. Næste uge: ingen alkohol på Mallorca.</p>",
-  "coachAssessmentTs": "02:47",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 21 af 357 · Søndag · Uge 39</strong></p><p class=\"coach-sec coach-big\">Uge 39 afsluttet — TRANSITION/BASE, mesocyklus 1/2. Næste uge er Mallorca: ren Z2-volumen, ingen hård belastning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 39: 3 pas gennemført (gåtur 100 min, løb 24 min, gravel Z2 100 min) — 151 TSS mod mål 188. TRANSITION-blok: lavere TSS er fint, ikke et efterslæb. Styrke A og Grundtur 80 (planlagt 80 min/55 TSS) blev misset. CTL er 45,5 mod mål 53,0. Næste uge er BASE, mesocyklus 2/2 — ren Z2 på Mallorca, mål 508 TSS, kvote 0 hårde/0 moderate. Nøglepas: Z2 120 min mandag og Z2 180 min onsdag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,4 kg mod forventet 72,1 kg — 0,4 kg over plan. Snit-retningen den seneste måned er +0,4 kg, hvilket er på grænsen; fedt-snittet har bevæget sig 0,2 procentpoint, dvs. stabilt. Hold protein ved hvert måltid hele Mallorca-ugen — det er den ene kost-handling der holder fedtfri masse.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage mod mål 6 — og 3 drikkedage i træk (24/9–26/9) rammer HRV hårdere end spredte dage. Protein-dage er 6 ud af 7, søvn-snit 8,0 timer — begge dele godt. Uge 40: ingen alkohol de første dage på Mallorca, og hold den stribe.</p>",
+  "coachAssessmentTs": "08:48",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 7.0,
+  "tsb": 10.0,
   "swimHistory": [
     {
       "week": 1,
@@ -3367,7 +3361,7 @@
   ],
   "coachAssessmentLastActId": "i190541586",
   "weekFocusWeek": 3,
-  "coachAssessmentPlanAtGen": "Løb let Z1 30 min (valgfri)",
+  "coachAssessmentPlanAtGen": "",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
@@ -3619,8 +3613,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-27T06:19:40.835187",
-  "coachAssessmentTsFull": "2026-09-27T00:47:30",
+  "credentialsCheckedTs": "2026-09-27T06:49:00.527878",
+  "coachAssessmentTsFull": "2026-09-27T06:49:00",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [
@@ -4836,14 +4830,7 @@
           "moderat": 0
         },
         "keySessions": [],
-        "flags": [
-          {
-            "level": "WARN",
-            "rule": "low_readiness",
-            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-            "historic": false
-          }
-        ],
+        "flags": [],
         "races": [],
         "travel": "Mallorca 27/9-3/10 (Kennet alene)",
         "isCurrent": true,
@@ -6334,7 +6321,9 @@
                 "actualTss": null,
                 "note": "Restitution efter Médoc — gang, intet løb",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6361,7 +6350,9 @@
                 "actualTss": null,
                 "note": "Gang i Bordeaux — restitution",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6388,7 +6379,9 @@
                 "actualTss": null,
                 "note": "Restitution — gang, stadig intet løb",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6415,7 +6408,9 @@
                 "actualTss": null,
                 "note": "Første aerobe pas efter Médoc — ude, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6450,7 +6445,9 @@
                 "actualTss": null,
                 "note": "Første løb efter Médoc — kun hvis benene er rene — tvivl = drop",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "1e0d0569",
@@ -6468,7 +6465,9 @@
                 "actualTss": null,
                 "note": "Styrke overkrop + core — ben resumerer 21/9",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6495,7 +6494,9 @@
                 "actualTss": null,
                 "note": "Aerob base — ugens længste pas",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6529,7 +6530,9 @@
                 "actualTss": null,
                 "note": "Let rul — race-uge",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "3fe4e63b",
@@ -6547,7 +6550,9 @@
                 "actualTss": null,
                 "note": "Styrke overkrop + core — sidste før løbet",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6574,7 +6579,9 @@
                 "actualTss": null,
                 "note": "Sub 1:30-åbner: 4×3 min på 4:12-4:18. Stop efter 3 reps hvis benene ikke er der efter Médoc",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6601,7 +6608,9 @@
                 "actualTss": null,
                 "note": "Restitution mellem de to løbepas",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6628,7 +6637,9 @@
                 "actualTss": null,
                 "note": "Følingstest: 8 min på 4:15 skal føles kontrolleret. Ellers justér målet søndag",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6655,7 +6666,9 @@
                 "actualTss": null,
                 "note": "Kort og let. Benene sparet",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6682,7 +6695,9 @@
                 "actualTss": null,
                 "note": "Let gang, benene op resten af dagen. Racesko på i 10 min",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -6709,7 +6724,9 @@
                 "actualTss": null,
                 "note": "Sub 1:30-forsøg, 4:15/km. Bail-out ved 10 km: senere end 42:45 → 4:30/km. Gel 7 + 14 km",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "08:30",
+                "startFixed": true
               }
             ],
             "restNote": null,
@@ -6743,7 +6760,9 @@
                 "actualTss": null,
                 "note": "Functional 4 — progression efter check-in. Uge 39 · cut + kælder starter",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               },
               {
                 "id": null,
@@ -6789,6 +6808,8 @@
                 "note": "Stive ben efter CPH Half — gåtur i stedet for cykel",
                 "isKey": false,
                 "optional": false,
+                "start": "06:00",
+                "startFixed": false,
                 "completion": "done"
               },
               {
@@ -6835,6 +6856,8 @@
                 "note": "Flyttet fra lør 26/9. Let Z2 — stop hvis benene protesterer",
                 "isKey": false,
                 "optional": false,
+                "start": "07:00",
+                "startFixed": false,
                 "completion": "minimal"
               }
             ],
@@ -6863,6 +6886,8 @@
                 "note": "Træt uge — kort let tur i stedet for proben. Proben tages igen uge 43.",
                 "isKey": false,
                 "optional": false,
+                "start": "06:30",
+                "startFixed": false,
                 "completion": "done"
               }
             ],
@@ -6936,6 +6961,8 @@
                 "note": "Gravel ude, ren Z2. FTP-testen er flyttet til tor 8/10.",
                 "isKey": false,
                 "optional": false,
+                "start": "07:00",
+                "startFixed": false,
                 "completion": "done"
               }
             ],
@@ -6946,28 +6973,9 @@
           {
             "date": "2026-09-27",
             "weekday": "Søn",
-            "entries": [
-              {
-                "id": "db424c86",
-                "name": "Løb let Z1 30 min",
-                "type": "Run",
-                "disc": "run",
-                "mins": 30,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Rejsedag — fly til Mallorca. Let løb hvis der er tid, ellers fri",
-                "isKey": false,
-                "optional": true
-              }
-            ],
-            "restNote": null,
-            "restId": null,
+            "entries": [],
+            "restNote": "Fri — rejsedag. Løbet er flyttet til man 28/9 kl. 06:30",
+            "restId": "d0c2f90d",
             "isToday": true
           }
         ]
@@ -6982,6 +6990,26 @@
             "weekday": "Man",
             "entries": [
               {
+                "id": "5984a5c0",
+                "name": "Løb let Z1 30 min",
+                "type": "Run",
+                "disc": "run",
+                "mins": 30,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "Flyttet fra søn 27/9 (rejsedag). Kl. 06:30 før Rosello-mødet 09:00. Løber også tir — hold det helt let",
+                "isKey": false,
+                "optional": false,
+                "start": "06:30",
+                "startFixed": true
+              },
+              {
                 "id": "c2e28529",
                 "name": "Cykel Z2 120 min Mallorca",
                 "type": "Ride",
@@ -6995,9 +7023,11 @@
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Mallorca dag 1: Sóller–Deià–Valldemossa og retur. Ren Z2. KØR EFTER Rosello-mødet kl. 09:00–09:45 — start ca. 10:00",
+                "note": "Mallorca dag 1: Sóller–Deià–Valldemossa og retur. Ren Z2. Kør om eftermiddagen efter møderne — start ca. 16:15",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "16:15",
+                "startFixed": true
               }
             ],
             "restNote": null,
@@ -7024,7 +7054,9 @@
                 "actualTss": null,
                 "note": "Mallorca: brug det der er i huset — ellers kropsvægt (squat, push-up, step-up, planke)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               },
               {
                 "id": "f2834a75",
@@ -7042,7 +7074,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 i Sóller-dalen, fladt",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7069,7 +7103,9 @@
                 "actualTss": null,
                 "note": "Mallorca dag 2: Coll de Sóller + Puig Major i Z2 (66-72 % FTP, kadence 74+). Spis hvert 20. min",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7096,7 +7132,9 @@
                 "actualTss": null,
                 "note": "Mallorca dag 4 — ugens lange: Lluc–Pollença–Sa Calobra i Z2. INGEN PR-forsøg på Sa Calobra, det gemmes til uge 13. Energiplan som Depottur",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7123,7 +7161,9 @@
                 "actualTss": null,
                 "note": "Mallorca dag 5: let afrulning, kaffe i Sóller. Kør om morgenen — Hoka udsalg kl. 14 og Norseman-tilmelding kl. 16:45 (Outlook)",
                 "isKey": false,
-                "optional": true
+                "optional": true,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7158,7 +7198,9 @@
                 "actualTss": null,
                 "note": "Hjemme igen: 2 t let. Uge 41 er recovery — det er fortjent",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "18e58592",
@@ -7176,7 +7218,9 @@
                 "actualTss": null,
                 "note": "Styrke B hjemme — 2 runder, ingen progression efter Mallorca-ugen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7210,7 +7254,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7237,7 +7283,9 @@
                 "actualTss": null,
                 "note": "Recovery — benene skal føles lette bagefter — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7264,7 +7312,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 let — recovery",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7291,7 +7341,9 @@
                 "actualTss": null,
                 "note": "FTP-TEST efter Mallorca + recovery-uge. Indendørs, samme opsætning, IKKE ERG. Zoner sættes efter resultatet (set-zones.yml).",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7318,7 +7370,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7345,7 +7399,9 @@
                 "actualTss": null,
                 "note": "Gang let — Uge 41 · recovery",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "b5ceeb7b",
@@ -7363,7 +7419,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7390,7 +7448,9 @@
                 "actualTss": null,
                 "note": "Recovery-ugens lange: kun 2 t, ren Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7424,7 +7484,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 42 · sweet spot + bjergtur (besluttet 7/9)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7451,7 +7513,9 @@
                 "actualTss": null,
                 "note": "Z2 — ren grundtur",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7478,7 +7542,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7505,7 +7571,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7532,7 +7600,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7559,7 +7629,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "7a0bbf50",
@@ -7577,7 +7649,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7604,7 +7678,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7638,7 +7714,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 43 · tærskel + kvalitet sent i turen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7665,7 +7743,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7692,7 +7772,9 @@
                 "actualTss": null,
                 "note": "AEROB PROBE (løb) — samme rute, 5:15/km, notér snit-puls",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7719,7 +7801,9 @@
                 "actualTss": null,
                 "note": "AEROB PROBE (cykel) — 25 min @ 190 W i Z2-delen, notér snit-puls sidste 15 min — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7746,7 +7830,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7773,7 +7859,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "6c02900e",
@@ -7791,7 +7879,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7818,7 +7908,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7852,7 +7944,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7879,7 +7973,9 @@
                 "actualTss": null,
                 "note": "Recovery — benene skal føles lette bagefter — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7906,7 +8002,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 let — recovery",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7933,7 +8031,9 @@
                 "actualTss": null,
                 "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7960,7 +8060,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -7987,7 +8089,9 @@
                 "actualTss": null,
                 "note": "Gang let — Uge 44 · recovery. Stelvio couples-tilmelding senest tor 29/10",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "90c39698",
@@ -8005,7 +8109,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8032,7 +8138,9 @@
                 "actualTss": null,
                 "note": "Recovery-ugens lange: kun 2 t, ren Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8066,7 +8174,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 45 · VO2-blok 1/6",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8093,7 +8203,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8120,7 +8232,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8147,7 +8261,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8174,7 +8290,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8201,7 +8319,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "81117463",
@@ -8219,7 +8339,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8246,7 +8368,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8280,7 +8404,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 46 · VO2-blok 2/6",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8307,7 +8433,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8334,7 +8462,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8361,7 +8491,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8388,7 +8520,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8415,7 +8549,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "1478b736",
@@ -8433,7 +8569,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8460,7 +8598,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8494,7 +8634,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 47 · VO2-blok 3/6 — første 4-timers",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8521,7 +8663,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8548,7 +8692,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8575,7 +8721,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8602,7 +8750,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8629,7 +8779,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "dff25d34",
@@ -8647,7 +8799,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8674,7 +8828,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8708,7 +8864,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8735,7 +8893,9 @@
                 "actualTss": null,
                 "note": "Recovery — benene skal føles lette bagefter — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8762,7 +8922,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 let — recovery",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8789,7 +8951,9 @@
                 "actualTss": null,
                 "note": "Recovery Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8816,7 +8980,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8843,7 +9009,9 @@
                 "actualTss": null,
                 "note": "Gang let — Uge 48 · recovery",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "86e8d476",
@@ -8861,7 +9029,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8888,7 +9058,9 @@
                 "actualTss": null,
                 "note": "Recovery-ugens lange: kun 2 t, ren Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8922,7 +9094,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 49 · VO2-blok 4/6",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8949,7 +9123,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8976,7 +9152,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9003,7 +9181,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9030,7 +9210,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9057,7 +9239,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "424a12fd",
@@ -9075,7 +9259,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9102,7 +9288,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9136,7 +9324,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 50 · VO2-blok 5/6",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9163,7 +9353,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9190,7 +9382,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9217,7 +9411,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9244,7 +9440,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9271,7 +9469,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "304a935f",
@@ -9289,7 +9489,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9316,7 +9518,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9350,7 +9554,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 51 · VO2-blok 6/6",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9377,7 +9583,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9404,7 +9612,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9431,7 +9641,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9458,7 +9670,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9485,7 +9699,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "1aa6ead9",
@@ -9503,7 +9719,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9530,7 +9748,9 @@
                 "actualTss": null,
                 "note": "Bjerg 2×45 + fri Z2 forlængelse ude/inde til 3,5 t hvis benene er der — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9564,7 +9784,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9591,7 +9813,9 @@
                 "actualTss": null,
                 "note": "Recovery — benene skal føles lette bagefter — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9618,7 +9842,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9661,7 +9887,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 let — 2. juledag",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:15",
+                "startFixed": false
               },
               {
                 "id": "585bb52f",
@@ -9679,7 +9907,9 @@
                 "actualTss": null,
                 "note": "recovery: 2 runder, ingen progression",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9706,7 +9936,9 @@
                 "actualTss": null,
                 "note": "Recovery-ugens lange: kun 2 t, ren Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9740,7 +9972,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. Uge 53 · bro til lange intervaller fra uge 1",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9767,7 +10001,9 @@
                 "actualTss": null,
                 "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9794,7 +10030,9 @@
                 "actualTss": null,
                 "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9821,7 +10059,9 @@
                 "actualTss": null,
                 "note": "Z2 grundtur — let dag før weekenden — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9848,7 +10088,9 @@
                 "actualTss": null,
                 "note": "Løb Z2 — ugens løb, let",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9875,7 +10117,9 @@
                 "actualTss": null,
                 "note": "Lørdag — Z2, spis efter planen — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:30",
+                "startFixed": false
               },
               {
                 "id": "9a434ec1",
@@ -9893,7 +10137,9 @@
                 "actualTss": null,
                 "note": "45 min: 10 min opvarmning + 3 runder. Functional 4 — progression efter check-in. efter cyklen eller om aftenen",
                 "isKey": false,
-                "optional": false
+                "optional": false,
+                "start": "06:30",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -9920,7 +10166,9 @@
                 "actualTss": null,
                 "note": "Ugens lange — første 2 t skal føles meget lette — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
-                "optional": false
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -10002,7 +10250,7 @@
           "week": 3,
           "programId": "tds-2027",
           "start": "2026-09-21",
-          "ctl": 46.2
+          "ctl": 45.5
         }
       ],
       "projection": [
@@ -10445,67 +10693,59 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-27T00:47:30Z",
-    "inputsHash": "682aabffbd3289f6716f5cb95683b9981b585d70",
+    "generatedAt": "2026-09-27T06:49:00Z",
+    "inputsHash": "35ae3288cd9a4ef31a95fa642d70813d2fce1853",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Pak proteinkilder til flyet og dag 1 på Mallorca — spis protein ved hvert måltid fra i dag af.",
-      "why": "HRV er presset (42,0 ms, 18 % under 7d-snit) og du er 0,4 kg over cut-planen — protein holder muskelmasse og støtter restitution undervejs."
+      "action": "Pak tasken i aften: sportsmad til mandag (spis hvert 20. min på cyklen) og læg rejseplanen fast for morgenløbet kl. 06:30.",
+      "why": "Energiplanen på Mallorca er det der afgør udbyttet — forbered den nu, ikke på cyklen."
     },
     "training": {
-      "text": "Ugen gav 151 TSS mod planens 216 (70 %) — men det er en TRANSITION-uge med kvote 0 hårde/moderate, og CTL er 46,2 mod mål 53,0. Misset: Styrke A og Grundtur 80 min. Næste uge er Mallorca: 4 cykel-Z2-pas (120, 180, 240 og 90 min), styrke tirsdag og søndag, løb tirsdag. Kvote: 0 hårde, 0 moderate — alt er let. TSS-mål 508. CTL-mål 55,0.",
+      "text": "Uge 39: 3 pas gennemført (gåtur 100 min, løb 24 min, gravel Z2 100 min) — 151 TSS mod mål 188. TRANSITION-blok: lavere TSS er fint, ikke et efterslæb. Styrke A og Grundtur 80 (planlagt 80 min/55 TSS) blev misset. CTL er 45,5 mod mål 53,0. Næste uge er BASE, mesocyklus 2/2 — ren Z2 på Mallorca, mål 508 TSS, kvote 0 hårde/0 moderate. Nøglepas: Z2 120 min mandag og Z2 180 min onsdag.",
       "refs": [
+        100.0,
+        24.0,
+        100.0,
         151.0,
-        216.0,
-        70.0,
-        46.2,
+        188.0,
+        80.0,
+        55.0,
+        45.5,
         53.0,
-        120.0,
-        180.0,
-        240.0,
-        90.0,
         508.0,
-        55.0
+        120.0,
+        180.0
       ]
     },
     "body": {
-      "text": "7-dages snit 72,4 kg mod planens 72,1 kg — 0,4 kg over. Fedtsnit 21,7 % er stabilt (ændring de seneste 28 dage på 0,2 procentpoint, under tærsklen på 0,5). Protein ved hvert måltid på Mallorca — det er den ene kost-handling denne uge.",
+      "text": "7-dages snit er 72,4 kg mod forventet 72,1 kg — 0,4 kg over plan. Snit-retningen den seneste måned er +0,4 kg, hvilket er på grænsen; fedt-snittet har bevæget sig 0,2 procentpoint, dvs. stabilt. Hold protein ved hvert måltid hele Mallorca-ugen — det er den ene kost-handling der holder fedtfri masse.",
       "refs": [
         72.4,
         72.1,
         0.4,
-        21.7,
-        0.2,
-        0.5
+        0.4,
+        0.2
       ]
     },
     "habits": {
-      "text": "3 AF-dage mod mål 6 — og 3 drikkedage i træk 24/9–26/9 koster HRV og muskelproteinsyntese. Protein ramt 6 ud af 7 dage, søvnsnit 8,1 t. Næste uge: ingen alkohol på Mallorca.",
+      "text": "3 AF-dage mod mål 6 — og 3 drikkedage i træk (24/9–26/9) rammer HRV hårdere end spredte dage. Protein-dage er 6 ud af 7, søvn-snit 8,0 timer — begge dele godt. Uge 40: ingen alkohol de første dage på Mallorca, og hold den stribe.",
       "refs": [
         3.0,
         6.0,
         3.0,
         6.0,
-        7.0,
-        8.1
+        8.0
       ]
     },
-    "bigPicture": "Uge 39 slut: TRANSITION/BASE, mesocyklus 1/2 afsluttet — næste uge er Mallorca Z2-blok, 4 lange udendørs pas der bygger aerob base.",
-    "weekFocus": "Mallorca: hold Z2 igennem — også op ad bakkerne",
+    "bigPicture": "Uge 39 afsluttet — TRANSITION/BASE, mesocyklus 1/2. Næste uge er Mallorca: ren Z2-volumen, ingen hård belastning.",
+    "weekFocus": "Ren Z2 på Mallorca — kadence, energiplan og ikke Sa Calobra PR",
     "weekFocusFor": 4,
     "warnings": [
       {
         "type": "alcohol_cluster",
         "level": "act",
         "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
-        "action": null,
-        "source": "rule"
-      },
-      {
-        "type": "hrv",
-        "level": "warn",
-        "message": "HRV 42,0 ms — 18% under 7d-snit (51,3 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
@@ -10519,14 +10759,20 @@
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": null,
+    "validationRejected": [
+      {
+        "errors": [
+          "warnings[1].message: tal ikke i konteksten: 42"
+        ]
+      }
+    ],
     "notes": null,
     "stale": false
   },
   "weekFocusNext": {
     "week": 4,
     "programId": "tds-2027",
-    "text": "Mallorca: hold Z2 igennem — også op ad bakkerne"
+    "text": "Ren Z2 på Mallorca — kadence, energiplan og ikke Sa Calobra PR"
   },
   "strengthLog": {
     "from": "2026-08-30",
@@ -11083,13 +11329,13 @@
   },
   "weekTss": {
     "actual": 151,
-    "planned": 216
+    "planned": 188
   },
   "martinMail": {
     "week": 3,
     "isoWeek": 39,
     "lines": [
-      "Uge 39: TSS 151 af 216 (70 %) · CTL 46,2 (mål 53) · TSB +7,0",
+      "Uge 39: TSS 151 af 188 (80 %) · CTL 45,5 (mål 53) · TSB +10,0",
       "Vægt 7d 72,4 kg · fedt 14d 21,6 % · på plan mod glidepath (72,1)",
       "HRV 7d 52 (28d 55) · hvilepuls 44 · søvn 7d 8,0 t",
       "AF 3/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11098,7 +11344,7 @@
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, ons 30/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-27T06:19:40Z"
+    "generatedAt": "2026-09-27T06:48:13Z"
   },
   "proposals": [],
   "ftp": {
@@ -11161,7 +11407,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-27",
-    "ctl": 46.2,
-    "atl": 39.2
+    "ctl": 45.5,
+    "atl": 35.5
   }
 }
