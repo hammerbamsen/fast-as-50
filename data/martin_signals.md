@@ -73,3 +73,13 @@
 ### Planændring 26/09 16:33
 - **tirsdag 2026-09-29** (uge 4, move): Cykel Z2 180 min Mallorca (180 min) [langt] → Styrke A · Functional 4 · 2 runder (25 min); Løb Z2 45 min (45 min)
 - **onsdag 2026-09-30** (uge 4, move): Styrke A · Functional 4 · 2 runder (25 min); Løb Z2 45 min (45 min) → Cykel Z2 180 min Mallorca (180 min) [langt]
+
+### Signaler uge 39
+- Uge 39: TSS 151 af 216 (70 %) · CTL 46,2 (mål 53) · TSB +7,0
+- Vægt 7d 72,4 kg · fedt 14d 21,6 % · på plan mod glidepath (72,1)
+- HRV 7d 51 (28d 54) · hvilepuls 45 · søvn 7d 8,2 t
+- AF 3/7 · protein 3/3 6/7 · aftensult —/7
+- Styrke 0/2 · check-in —
+- Cut-tjek: warn — 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere
+- Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, ons 30/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 FaF 1 Z2 - Depottur 2 t 130 min
+- Planændringer siden sidst: 2 — se martin_signals.md
