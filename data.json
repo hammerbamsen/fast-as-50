@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-27 14:19",
+    "updated": "2026-09-27 17:18",
     "week": 3,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "45,5",
+      "value": "46,5",
       "unit": "",
       "sub": "Uge 39-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "10,0",
+      "value": "5,5",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "151",
+      "value": "193",
       "unit": "TSS",
-      "sub": "151 af 172 planlagt TSS",
+      "sub": "193 af 172 planlagt TSS",
       "color": "#27AE60"
     },
     "bikeKm": {
-      "value": "51,7",
+      "value": "108,7",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Søndag — afslut uge 39 stærkt. {HL} Fokus: 151 af 172 TSS er i hus. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,1 kg (målt 26/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 7 afsluttede dage — 2 mangler i 0 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved. 📊 Store billede: CTL 45,5 er 7.5 point BAG ugeplanen (planmål uge 39: 53). Vægten har tabt 0.7 kg over de seneste 89 dage (72,8 → 72,1 kg).  \"Det er ikke om at have tid. Det er om at tage den.\"",
-  "coachHighlight": "Søvn på 8,0 timer er solid",
+  "coachSpeech": "Uge 39 afsluttet — BASE blok, TRANSITION-fase, uge 3/51. Næste uge er Mallorca: ren Z2-volumen, nul hård belastning. {HL} Ugen leverede 193 TSS mod 172 planlagt (112 %) — et plus i TRANSITION/BASE er fint. Gennemført: gåtur 100 min/11 TSS, let løb 24 min/15 TSS, gravel Z2 100 min/64 TSS plus dagens Fornalutx-tur 164 min/42 TSS som ekstra.",
+  "coachHighlight": "Pak energi til mandag: mindst 3 portioner kulhydrat-rationer klar til 120 min Z2 — ét hvert 20. minut som planlagt.",
   "weekFocus": "Kom i gang med cut: styrke, protein og én hård test",
   "today": [
     {
-      "discipline": "rest",
-      "title": "Hviledag",
+      "discipline": "bike",
+      "title": "Fornalutx Cykling på vej",
       "duration": "",
       "zone": "–",
-      "desc": "Ingen planlagt træning i dag.",
-      "completed": false
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -229,12 +229,23 @@
       "actual_tss": 64,
       "actual_mins": 100,
       "actual_distance_m": 40692.17
+    },
+    {
+      "day": "Søn",
+      "disc": "bike",
+      "label": "Fornalutx Cykling på vej",
+      "done": true,
+      "extra": true,
+      "actual_tss": 42,
+      "actual_mins": 164,
+      "actual_distance_m": 56954.78,
+      "today": true
     }
   ],
   "ctlCurve": [
     49.1,
     49.9,
-    45.5
+    46.5
   ],
   "weightHistory": [
     {
@@ -1936,7 +1947,7 @@
     },
     {
       "date": "2026-09-27",
-      "v": 10.1,
+      "v": 5.5,
       "real": true
     }
   ],
@@ -2330,6 +2341,17 @@
           "actual_tss": 64,
           "actual_mins": 100,
           "actual_distance_m": 40692.17
+        },
+        {
+          "day": "Søn",
+          "disc": "bike",
+          "label": "Fornalutx Cykling på vej",
+          "done": true,
+          "extra": true,
+          "actual_tss": 42,
+          "actual_mins": 164,
+          "actual_distance_m": 56954.78,
+          "today": true
         }
       ],
       "blockType": "BASE",
@@ -2429,7 +2451,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Byg aerob base på Mallorca — Z2 hele vejen, ingen PR"
+      "focus": "Mallorca: hold Z2-disciplin hele vejen — ingen PR på Sa Calobra"
     },
     "5": {
       "sessions": [
@@ -2961,12 +2983,12 @@
     }
   ],
   "train_mins": {
-    "bike": 123.0,
+    "bike": 287.0,
     "walk": 218.0,
     "swim": 41.0,
     "run": 24.0,
     "planned": 260.0,
-    "actual_total": 406.0
+    "actual_total": 570.0
   },
   "fatHistory": [
     {
@@ -3316,22 +3338,33 @@
     },
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 21 af 357 · Søndag · Uge 39</strong></p><p class=\"coach-sec coach-big\">{\"$comment\": \"uge 39 = isoWeek 39; program.week=3\", \"value\": \"Uge 39 afsluttet — letter nu ind i Mallorca-ugen (uge 40), der er ugens aerobe fundament i BASE-blokken mod TdS 2027.\"}</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 39 endte på 151 TSS mod planlagte 188 (80 %). I BASE/TRANSITION-blokken er det acceptabelt — det var en træt uge efter CPH Half. Styrke mandag og Grundtur 80 onsdag blev misset. Gravel Z2 lørdag landede på 64 TSS mod planlagte 63 — præcist. CTL er 45,5 mod mål 53,0; ramp er -4,4 — negativ fordi ugen bevidst var let. Næste uge (uge 40) er BASE, mesocyklus 2/2, TRANSITION-fase: fire Mallorca-udendørs Z2-pas (120, 180, 240, 90 min) + styrke to gange. Kvote er 0 hårde og 0 moderate — kun lette pas. CTL-mål næste uge er 55,0.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,4 kg mod planlagt 72,1 kg — 0,4 kg over cutplanen. Faktisk rate de seneste 4 uger er 0,1 kg/uge mod mål 0,22 kg/uge; tempoet skal op. 28-dages ændring er 0,4 kg op — retningen er opad og over tærsklen på 0,3 kg. Hold protein ved hvert eneste måltid på Mallorca; det er den ene kost-handling der beskytter muskelmassen (fedtfri masse faldt 0,3 kg på 28 dage mod mål 57,1 kg).</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 AF-dage mod mål 6 — og 3 drikkedage i træk 24/9–26/9; klynger rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein alle 7 dage — hold det på Mallorca. Søvn-snit er 8,0 timer, men søndag 26/9 var kun 6,6 timer. Næste uge: nul alkohol hele Mallorca-opholdet.</p>",
-  "coachAssessmentTs": "12:09",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 21 af 357 · Søndag · Uge 39</strong></p><p class=\"coach-sec coach-big\">Uge 39 afsluttet — BASE blok, TRANSITION-fase, uge 3/51. Næste uge er Mallorca: ren Z2-volumen, nul hård belastning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen leverede 193 TSS mod 172 planlagt (112 %) — et plus i TRANSITION/BASE er fint. Gennemført: gåtur 100 min/11 TSS, let løb 24 min/15 TSS, gravel Z2 100 min/64 TSS plus dagens Fornalutx-tur 164 min/42 TSS som ekstra. Misset: Styrke A og Grundtur 80 min (60 TSS). CTL er 46,5 mod mål 53,0 — der mangler 6,5 point, men Mallorca-ugen (mål 508 TSS, kvote 0 hårde/0 moderate) er netop designet til at bygge volumen i Z2. Ramp er -3,4 — ingen alarm. Næste uge: BASE, mesouge 2/2, tre nøglepas (120+180+240 min Z2), al belastning let, FTP-test torsdag 8/10 er næste hårde pas.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,4 kg mod forventet 72,1 kg — 0,4 kg over plan. Faktisk tabt rate er 0,1 kg/uge mod mål 0,22 kg/uge; det er for langsomt, men alkohol-klyngen de seneste 3 dage er en direkte årsag. 7-dages fedtsnit på 21,7 % er stabil — ændringen den seneste måned er 0,2 procentpoint, under tærsklen for at kalde en retning. Ugens ene kost-handling: protein ved hvert eneste måltid på Mallorca — det holder FFM oppe, der allerede er faldet 0,3 kg på 28 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-dage: 4 ud af 6 mål — 1 dag kortere end rækken viser, fordi du havde 3 drikkedage i træk (24/9–26/9). Ingen dage med 3+ genstande, men klynger giver samme HRV-effekt. Protein: 7 ud af 7 dage registreret — fortsæt det på Mallorca. Søvn-snit 8,0 t er godt; natten i nat var 6,6 t — kom dig i seng tidligt i aften før rejsedagen.</p>",
+  "coachAssessmentTs": "17:18",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "readiness",
+      "level": "info",
+      "message": "Søvn i nat 6,6 t — under målet på 7,0 t. Kom i seng senest kl. 21:30 i aften (rejsedag i morgen tidlig).",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": 10.0,
+  "tsb": 5.5,
   "swimHistory": [
     {
       "week": 1,
@@ -3352,9 +3385,9 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i190541586",
+  "coachAssessmentLastActId": "i190895686",
   "weekFocusWeek": 3,
-  "coachAssessmentPlanAtGen": "",
+  "coachAssessmentPlanAtGen": "Fornalutx Cykling på vej",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
@@ -3606,8 +3639,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-27T12:19:15.912676",
-  "coachAssessmentTsFull": "2026-09-27T10:10:00",
+  "credentialsCheckedTs": "2026-09-27T15:18:59.325462",
+  "coachAssessmentTsFull": "2026-09-27T15:18:59",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
@@ -3696,7 +3729,7 @@
   "weekTssActual": {
     "1": 289,
     "2": 397,
-    "3": 151
+    "3": 193
   },
   "racesUpcoming": [
     {
@@ -4801,7 +4834,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 415,
-        "tssActual": 151,
+        "tssActual": 193,
         "purpose": "Base: cut starter. Træt uge — let løb tor, gravel Z2 90 min ude lør. FTP-test flyttet til tor 8/10 (uge 41).",
         "note": "Cut starter. FTP-test flyttet 24/9 til tor 8/10 (træt uge). Fra uge 41: styrke man+lør 45 min, svøm fre (ons alternativ).",
         "quota": {
@@ -6963,7 +6996,26 @@
           {
             "date": "2026-09-27",
             "weekday": "Søn",
-            "entries": [],
+            "entries": [
+              {
+                "id": null,
+                "name": "Fornalutx Cykling på vej",
+                "type": null,
+                "disc": "bike",
+                "mins": 164,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 164,
+                "actualTss": 42,
+                "note": null,
+                "isKey": false,
+                "extra": true
+              }
+            ],
             "restNote": "Fri — rejsedag. Løbet er flyttet til man 28/9 kl. 06:30",
             "restId": "d0c2f90d",
             "isToday": true
@@ -10240,7 +10292,7 @@
           "week": 3,
           "programId": "tds-2027",
           "start": "2026-09-21",
-          "ctl": 45.5
+          "ctl": 46.5
         }
       ],
       "projection": [
@@ -10683,59 +10735,62 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-27T10:10:00Z",
-    "inputsHash": "15825738af8209992ef7955ce3211e8ba947861e",
+    "generatedAt": "2026-09-27T15:18:59Z",
+    "inputsHash": "940f8c1a0dee84223a2d31ab843674c14743637c",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Pak tasken i aften: cykelsko, pulsmåler, energigels til mandag eftermiddag — og læg alkoholen på hylden hele Mallorca-ugen.",
-      "why": "3 drikkedage i træk 24/9–26/9 har presset HRV ned; Mallorca-ugen er Z2-arbejde der kræver klar biologi."
+      "action": "Pak energi til mandag: mindst 3 portioner kulhydrat-rationer klar til 120 min Z2 — ét hvert 20. minut som planlagt.",
+      "why": "Energiplanen på lange ture er det der historisk knækker dig — start Mallorca-ugen med den vane på plads fra dag 1."
     },
     "training": {
-      "text": "Uge 39 endte på 151 TSS mod planlagte 188 (80 %). I BASE/TRANSITION-blokken er det acceptabelt — det var en træt uge efter CPH Half. Styrke mandag og Grundtur 80 onsdag blev misset. Gravel Z2 lørdag landede på 64 TSS mod planlagte 63 — præcist. CTL er 45,5 mod mål 53,0; ramp er -4,4 — negativ fordi ugen bevidst var let. Næste uge (uge 40) er BASE, mesocyklus 2/2, TRANSITION-fase: fire Mallorca-udendørs Z2-pas (120, 180, 240, 90 min) + styrke to gange. Kvote er 0 hårde og 0 moderate — kun lette pas. CTL-mål næste uge er 55,0.",
+      "text": "Ugen leverede 193 TSS mod 172 planlagt (112 %) — et plus i TRANSITION/BASE er fint. Gennemført: gåtur 100 min/11 TSS, let løb 24 min/15 TSS, gravel Z2 100 min/64 TSS plus dagens Fornalutx-tur 164 min/42 TSS som ekstra. Misset: Styrke A og Grundtur 80 min (60 TSS). CTL er 46,5 mod mål 53,0 — der mangler 6,5 point, men Mallorca-ugen (mål 508 TSS, kvote 0 hårde/0 moderate) er netop designet til at bygge volumen i Z2. Ramp er -3,4 — ingen alarm. Næste uge: BASE, mesouge 2/2, tre nøglepas (120+180+240 min Z2), al belastning let, FTP-test torsdag 8/10 er næste hårde pas.",
       "refs": [
-        151.0,
-        188.0,
-        80.0,
+        193.0,
+        172.0,
+        112.0,
+        11.0,
+        15.0,
         64.0,
-        63.0,
-        45.5,
+        164.0,
+        42.0,
+        60.0,
+        46.5,
         53.0,
-        -4.4,
+        6.5,
+        508.0,
         120.0,
         180.0,
-        240.0,
-        90.0,
-        55.0
+        240.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 72,4 kg mod planlagt 72,1 kg — 0,4 kg over cutplanen. Faktisk rate de seneste 4 uger er 0,1 kg/uge mod mål 0,22 kg/uge; tempoet skal op. 28-dages ændring er 0,4 kg op — retningen er opad og over tærsklen på 0,3 kg. Hold protein ved hvert eneste måltid på Mallorca; det er den ene kost-handling der beskytter muskelmassen (fedtfri masse faldt 0,3 kg på 28 dage mod mål 57,1 kg).",
+      "text": "7-dages snit er 72,4 kg mod forventet 72,1 kg — 0,4 kg over plan. Faktisk tabt rate er 0,1 kg/uge mod mål 0,22 kg/uge; det er for langsomt, men alkohol-klyngen de seneste 3 dage er en direkte årsag. 7-dages fedtsnit på 21,7 % er stabil — ændringen den seneste måned er 0,2 procentpoint, under tærsklen for at kalde en retning. Ugens ene kost-handling: protein ved hvert eneste måltid på Mallorca — det holder FFM oppe, der allerede er faldet 0,3 kg på 28 dage.",
       "refs": [
         72.4,
         72.1,
         0.4,
         0.1,
         0.22,
-        0.4,
-        0.3,
-        0.3,
-        57.1
+        21.7,
+        0.2,
+        0.3
       ]
     },
     "habits": {
-      "text": "4 AF-dage mod mål 6 — og 3 drikkedage i træk 24/9–26/9; klynger rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein alle 7 dage — hold det på Mallorca. Søvn-snit er 8,0 timer, men søndag 26/9 var kun 6,6 timer. Næste uge: nul alkohol hele Mallorca-opholdet.",
+      "text": "AF-dage: 4 ud af 6 mål — 1 dag kortere end rækken viser, fordi du havde 3 drikkedage i træk (24/9–26/9). Ingen dage med 3+ genstande, men klynger giver samme HRV-effekt. Protein: 7 ud af 7 dage registreret — fortsæt det på Mallorca. Søvn-snit 8,0 t er godt; natten i nat var 6,6 t — kom dig i seng tidligt i aften før rejsedagen.",
       "refs": [
         4.0,
         6.0,
         3.0,
         7.0,
+        7.0,
         8.0,
         6.6
       ]
     },
-    "bigPicture": "{\"$comment\": \"uge 39 = isoWeek 39; program.week=3\", \"value\": \"Uge 39 afsluttet — letter nu ind i Mallorca-ugen (uge 40), der er ugens aerobe fundament i BASE-blokken mod TdS 2027.\"}",
-    "weekFocus": "Byg aerob base på Mallorca — Z2 hele vejen, ingen PR",
+    "bigPicture": "Uge 39 afsluttet — BASE blok, TRANSITION-fase, uge 3/51. Næste uge er Mallorca: ren Z2-volumen, nul hård belastning.",
+    "weekFocus": "Mallorca: hold Z2-disciplin hele vejen — ingen PR på Sa Calobra",
     "weekFocusFor": 4,
     "warnings": [
       {
@@ -10751,6 +10806,13 @@
         "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
+      },
+      {
+        "type": "readiness",
+        "level": "info",
+        "message": "Søvn i nat 6,6 t — under målet på 7,0 t. Kom i seng senest kl. 21:30 i aften (rejsedag i morgen tidlig).",
+        "action": null,
+        "source": "ai"
       }
     ],
     "error": null,
@@ -10762,7 +10824,7 @@
   "weekFocusNext": {
     "week": 4,
     "programId": "tds-2027",
-    "text": "Byg aerob base på Mallorca — Z2 hele vejen, ingen PR"
+    "text": "Mallorca: hold Z2-disciplin hele vejen — ingen PR på Sa Calobra"
   },
   "strengthLog": {
     "from": "2026-08-30",
@@ -11318,14 +11380,14 @@
     }
   },
   "weekTss": {
-    "actual": 151,
+    "actual": 193,
     "planned": 172
   },
   "martinMail": {
     "week": 3,
     "isoWeek": 39,
     "lines": [
-      "Uge 39: TSS 151 af 172 (88 %) · CTL 45,5 (mål 53) · TSB +10,0",
+      "Uge 39: TSS 193 af 172 (112 %) · CTL 46,5 (mål 53) · TSB +5,5",
       "Vægt 7d 72,4 kg · fedt 14d 21,6 % · på plan mod glidepath (72,1)",
       "HRV 7d 52 (28d 55) · hvilepuls 44 · søvn 7d 8,0 t",
       "AF 4/7 · protein 3/3 7/7 · aftensult —/7",
@@ -11334,7 +11396,7 @@
       "Næste uge (40, BASE): TSS-mål 508 · hårde/lange dage: man 28/9 Cykel Z2 120 min Mallorca 120 min, ons 30/9 Cykel Z2 180 min Mallorca 180 min, tor 1/10 Cykel Z2 240 min Mallorca 240 min, fre 2/10 Cykel Z2 90 min Mallorca 90 min, søn 4/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-27T12:19:15Z"
+    "generatedAt": "2026-09-27T15:18:29Z"
   },
   "proposals": [],
   "ftp": {
@@ -11397,7 +11459,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-27",
-    "ctl": 45.5,
-    "atl": 35.5
+    "ctl": 46.5,
+    "atl": 41.0
   }
 }
