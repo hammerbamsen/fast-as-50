@@ -191,7 +191,7 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
         src_entry["note"] = params.get("note", "Aflyst — hviledag")
 
     elif action == "move":
-        # params: {target_date, mode: 'swap'|'replace'}
+        # params: {target_date, mode: 'swap'|'add'|'replace'}
         target_date = params["target_date"]
         mode = params.get("mode", "swap")
         # find måldag
@@ -205,7 +205,12 @@ def _simulate_mutation(plan: dict, action: str, entry_id: str,
             dst_day = {"date": target_date, "entries": []}
             ath["days"].append(dst_day)
             ath["days"].sort(key=lambda d: d["date"])
-        if mode == "swap" and len(src_day["entries"]) == 1:
+        if mode == "add":
+            # 27/9-2026: "Læg oveni" — flyt KUN det valgte pas; måldagens
+            # pas bliver liggende. Kildedagen beholder sine øvrige pas.
+            src_idx = next(i for i, e in enumerate(src_day["entries"]) if e is src_entry)
+            dst_day["entries"].append(src_day["entries"].pop(src_idx))
+        elif mode == "swap" and len(src_day["entries"]) == 1:
             # Enkelt-pas-kildedag: byt hele dagenes indhold, som hidtil.
             src_day["entries"], dst_day["entries"] = dst_day["entries"], src_day["entries"]
         elif mode == "swap":

@@ -136,6 +136,31 @@ def test_move_swap_swaps_days():
     assert not any(x.get("id") == e["id"] for x in src_d["entries"])
 
 
+def test_move_add_keeps_target_entries():
+    """27/9-2026: mode 'add' flytter kun passet — måldagens pas bliver."""
+    plan = _plan_copy()
+    src_date, e = _future_run_entry(plan)
+    dst = next(d for d in plan["athletes"]["kennet"]["days"]
+               if d["date"] > src_date and any(x.get("workout") for x in d["entries"])
+               and not any(x.get("id") == e["id"] for x in d["entries"]))
+    before_ids = [x.get("id") for x in dst["entries"]]
+    sim = edit_apply._simulate_mutation(plan, "move", e["id"],
+                                        {"target_date": dst["date"], "mode": "add"})[0]
+    src_d = next(d for d in sim["athletes"]["kennet"]["days"] if d["date"] == src_date)
+    dst_d = next(d for d in sim["athletes"]["kennet"]["days"] if d["date"] == dst["date"])
+    assert [x.get("id") for x in dst_d["entries"]] == before_ids + [e["id"]]
+    assert not any(x.get("id") == e["id"] for x in src_d["entries"])
+
+
+def test_consecutive_runs_is_warn_not_hard():
+    """27/9-2026: to løbedage i træk kan bekræftes væk (WARN)."""
+    from modules import friel
+    plan = _plan_copy()
+    for f in friel.structural_flags(plan):
+        if f["rule"] == "consecutive_runs":
+            assert f["level"] == "WARN"
+
+
 # -- gate --
 
 def test_reject_when_adding_hard_flag():

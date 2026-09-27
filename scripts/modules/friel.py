@@ -15,7 +15,7 @@ Regler (jf. PROJECT_KICKOFF.md):
 Input er plan.json-strukturen (dict). Output er liste af flags:
   {"week": int, "rule": str, "level": "WARN"|"HARD", "msg": str}
 Reset-års-prioritet: konsistens og løbefrekvens vægtes hårdest —
-løbe-regler er HARD, ramp/TSB er HARD ved brud på hårdt loft, WARN ved blødt.
+løbe-regler er HARD (undtagen fortløbende løbedage = WARN fra 27/9-2026), ramp/TSB er HARD ved brud på hårdt loft, WARN ved blødt.
 """
 from datetime import date, timedelta
 
@@ -203,14 +203,15 @@ def structural_flags(plan, athlete="kennet", today=None):
             flags.append({"week": w, "rule": "max_runs", "level": "HARD",
                           "msg": f"{n} løbedage i uge {_iso(plan_start, w)} (max {MAX_RUNS_PER_WEEK})"})
 
-    # Fortløbende løbedage — HARD
+    # Fortløbende løbedage — WARN (Kennet 27/9-2026: "tilsidesæt gate" —
+    # kan bekræftes væk med confirmedWarn; max 3 løb/uge er stadig HARD)
     run_dates.sort()
     for a, b in zip(run_dates, run_dates[1:]):
         if (b - a).days == 1:
             w = _week_no(b.isoformat(), plan_start)
             if not _load_rules_apply(w):
                 continue
-            flags.append({"week": w, "rule": "consecutive_runs", "level": "HARD",
+            flags.append({"week": w, "rule": "consecutive_runs", "level": "WARN",
                           "msg": f"Fortløbende løbedage {a.isoformat()} + {b.isoformat()}"})
 
     # VO2 1x pr. build-uge — WARN (0 eller >1). Kun uger der faktisk er

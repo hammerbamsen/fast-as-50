@@ -1214,7 +1214,7 @@ function coachOpenAction(idx){
   setTimeout(() => {
     if (!ptFindEntry(ed.entryId)) return;
     ptOpenSheet(ed.entryId);
-    if (ed.action === 'move') { ptSheetMove(); if (ed.toDate) { const b = [...document.querySelectorAll('#pt-move-pick button')].find(x => x.getAttribute('onclick').includes(`'${ed.toDate}'`)); if (b) ptPickMove(ed.toDate, b); } }
+    if (ed.action === 'move') { PT.moveMode = ed.mode || 'swap'; ptSheetMove(); if (ed.toDate) { const b = [...document.querySelectorAll('#pt-move-pick button')].find(x => x.getAttribute('onclick').includes(`'${ed.toDate}'`)); if (b) ptPickMove(ed.toDate, b); } }
     else if (ed.action === 'cancel') ptSheetCancel();
     else if (ed.action === 'swap_template') { Promise.resolve(ptSheetSwap()).then(() => { if (ed.templateId) { const b = [...document.querySelectorAll('#pt-tpl-pick button')].find(x => x.getAttribute('onclick').includes(`'${ed.templateId}'`)); if (b) ptPickTemplate(ed.templateId, b); } }); }
   }, 80);
@@ -1869,7 +1869,7 @@ function ptRenderMenu(){
   const isBike = f.e.disc === 'bike';
   const isOpt = !!f.e.optional;
   ptSheetEl().innerHTML = ptSheetHead('Hvad vil du?') + `<div class="pt-menu">
-    <button onclick="ptSheetMove()">${icon('week',18,'currentColor')}<span>Flyt<small>vælg en anden dag i ugen — dagene byttes</small></span></button>
+    <button onclick="ptSheetMove()">${icon('week',18,'currentColor')}<span>Flyt<small>læg oveni en anden dag, eller byt dagene</small></span></button>
     <button onclick="ptSheetSwap()">${icon('plan',18,'currentColor')}<span>Skift pas<small>${isBike?'vælg et andet kælderpas fra biblioteket':'vælg en skabelon'}</small></span></button>
     <button onclick="ptSheetAdjust()">${icon('today',18,'currentColor')}<span>Justér<small>varighed${f.e.mins?` (nu ${ptMins(f.e.mins)})`:''} og note</small></span></button>
     <button onclick="ptSheetOptional()">${icon('flag',18,'currentColor')}<span>${isOpt?'Gør obligatorisk':'Gør valgfri'}<small>${isOpt?'tæller igen fuldt i CTL-projektionen':'bliver stående, men tæller ikke i CTL-projektionen'}</small></span></button>
@@ -2004,21 +2004,35 @@ function ptMoveConsequence(entryId, targetIso){
   }
   const td = ptSessions().flatMap(w=>w.days).find(d=>d.date===targetIso);
   const swapNames = td ? td.entries.filter(x=>x.id && !x.extra).map(x=>x.zwiftName||x.name) : [];
-  out.push(`<div style="color:var(--muted)">${swapNames.length?`Byttes med: ${esc(swapNames.join(', '))}`:'Måldagen er fri'}${sw && sw !== tw ? ' · flytter til en anden uge' : ''}</div>`);
+  const addMode = (PT.moveMode || 'add') === 'add';
+  out.push(`<div style="color:var(--muted)">${swapNames.length?(addMode?`Lægges oveni: ${esc(swapNames.join(', '))} bliver`:`Byttes med: ${esc(swapNames.join(', '))}`):'Måldagen er fri'}${sw && sw !== tw ? ' · flytter til en anden uge' : ''}</div>`);
   return `<div class="pt-cons ${level}">${out.join('')}</div>`;
 }
 function ptSheetMove(){
   const s = PT.sheet, f = ptFindEntry(s.entryId); if (!f) return;
-  const wk = ptSessions()[s.wkIdx] || f.wk;
-  const days = wk.days.filter(d => d.date !== s.date);
-  ptSheetEl().innerHTML = ptSheetHead('Flyt pas') + `<div class="pt-pick" id="pt-move-pick">${days.map(d => {
+  // 27/9-2026: denne uge + næste uge (søndag → mandag skal kunne lade sig gøre)
+  const all = ptSessions(), wi = Math.max(0, all.indexOf(all[s.wkIdx] || f.wk));
+  const days = all.slice(wi, wi + 2).flatMap(w => w.days).filter(d => d.date !== s.date);
+  if (!PT.moveMode) PT.moveMode = 'add';
+  const seg = (m, t) => `<button class="${PT.moveMode===m?'sel':''}" onclick="ptMoveMode('${m}')"><span><b>${t}</b><small>${m==='add'?'passet flyttes, måldagens pas bliver':'måldagens pas kommer herover'}</small></span></button>`;
+  ptSheetEl().innerHTML = ptSheetHead('Flyt pas') + `<div class="pt-pick" id="pt-move-mode" style="grid-template-columns:1fr 1fr">${seg('add','Læg oveni')}${seg('swap','Byt dage')}</div>
+    <div class="pt-pick" id="pt-move-pick">${days.map(d => {
       const names = d.entries.filter(x=>x.id&&!x.extra).map(x=>x.zwiftName||x.name);
       return `<button onclick="ptPickMove('${d.date}', this)"><span><b>${esc(ptDayLabel(d.date))}</b><small>${names.length?esc(names.join(' · ')):'fri'}</small></span></button>`; }).join('')}</div>
     <div id="pt-cons"></div><div class="pt-msg" id="pt-msg"></div>
     <div class="pt-btns"><button class="sec" onclick="ptRenderMenu()">Tilbage</button><button class="pri" id="pt-go" disabled onclick="ptSubmit()">Flyt</button></div>`;
 }
+function ptMoveMode(m){
+  PT.moveMode = m;
+  document.querySelectorAll('#pt-move-mode button').forEach((b, i) => b.classList.toggle('sel', (i === 0) === (m === 'add')));
+  const iso = PT.sheet && PT.sheet.params && PT.sheet.params.target_date;
+  if (iso && PT.sheet.action === 'move') {
+    PT.sheet.params.mode = m;
+    document.getElementById('pt-cons').innerHTML = ptMoveConsequence(PT.sheet.entryId, iso);
+  }
+}
 function ptPickMove(iso, btn){
-  PT.sheet.action = 'move'; PT.sheet.params = { target_date: iso, mode: 'swap' };
+  PT.sheet.action = 'move'; PT.sheet.params = { target_date: iso, mode: PT.moveMode || 'add' };
   document.querySelectorAll('#pt-move-pick button').forEach(b => b.classList.toggle('sel', b === btn));
   document.getElementById('pt-cons').innerHTML = ptMoveConsequence(PT.sheet.entryId, iso);
   const go = document.getElementById('pt-go'); go.disabled = false; go.textContent = `Flyt til ${ptDayLabel(iso)}`;
@@ -2251,7 +2265,8 @@ function ptApplyLocal(action, entryId, params){
     const td = allDays.find(d => d.date === params.target_date); if (!td) return;
     const src = f.day;
     const srcPlanned = src.entries.filter(x=>x.id && !x.extra), tPlanned = td.entries.filter(x=>x.id && !x.extra);
-    if (srcPlanned.length === 1) { // swap af hele dagenes indhold (som edit_apply)
+    if (params.mode === 'add') { src.entries = src.entries.filter(x=>x!==f.e); td.entries.push(f.e); }   // læg oveni
+    else if (srcPlanned.length === 1) { // swap af hele dagenes indhold (som edit_apply)
       src.entries = src.entries.filter(x=>!x.id || x.extra).concat(tPlanned);
       td.entries = td.entries.filter(x=>!x.id || x.extra).concat(srcPlanned);
     } else { src.entries = src.entries.filter(x=>x!==f.e); td.entries.push(f.e); }
