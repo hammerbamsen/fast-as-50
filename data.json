@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-28 03:52",
+    "updated": "2026-09-28 07:30",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,46 +34,46 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "48,2",
+      "value": "48,5",
       "unit": "",
       "sub": "Uge 40-mål 55 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-3,1",
+      "value": "-4,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "6,6",
+      "value": "8,8",
       "unit": "t",
       "sub": "Snit 7d 8,0t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
-      "value": "0,0",
+      "value": "6,0",
       "unit": "km",
       "sub": "Løb denne uge",
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "53,5",
+      "value": "51,4",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "44",
+      "value": "45",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "40",
       "unit": "TSS",
-      "sub": "0 af 669 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "40 af 669 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0,0",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Uge 40, BASE/TRANSITION — Mallorca-uge starter i dag; Z2-volumen er nøglen, ikke intensitet. {HL} Ugen er akkurat begyndt — 0 TSS i hus af 669 planlagt. Ingen hårde pas denne uge (kvote 0/0). CTL på 48,2 er 6,8 under mål på 55,0, men BASE-ugen her er Z2-volumen, ikke intensitet — ramprate på 1,7 er fin.",
-  "coachHighlight": "Løb 30 min let Z1 kl. 06:30, kør derefter Cykel Z2 120 min (Sóller–Deià–Valldemossa) ca. 16:15 — hold begge pas i Z2/Z1, ingen eskalering.",
-  "weekFocus": "Ren Z2 hele ugen — volumen bygger CTL, ikke tempo",
+  "coachSpeech": "{\"text\": \"Uge 40, BASE-blok uge 2/2 — Mallorca Z2-volumen er kernen denne uge, og kroppen trænger til at køre roligt efter HRV-dyk.\"} {HL} Løbet er i hus — 36 min og 40 TSS. Cykel Z2 120 min venter til eftermiddagen. HRV 39,0 ms er 24% under 7d-snit: hold Z2 disciplineret, ingen ekstra intensitet.",
+  "coachHighlight": "Kør Cykel Z2 120 min Mallorca (Sóller–Deià–Valldemossa og retur) ca. 16:15 — hold dig i ren Z2 hele vejen.",
+  "weekFocus": "Ren Z2 på Mallorca — volumen uden intensitet",
   "today": [
     {
       "discipline": "run",
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "bike",
@@ -137,11 +137,17 @@
       "day": "Man",
       "disc": "run",
       "label": "Løb let Z1 30 min",
-      "done": false,
+      "done": true,
       "planned_tss": 28,
       "planned_mins": 30,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 143,
+      "actual_tss": 40,
+      "actual_mins": 36,
+      "actual_distance_m": 6014.21,
+      "intervals_compliance": 142.9
     },
     {
       "day": "Man",
@@ -221,7 +227,7 @@
     49.1,
     49.9,
     46.5,
-    48.2
+    48.5
   ],
   "weightHistory": [
     {
@@ -1013,7 +1019,11 @@
       "v": 58.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-28",
+      "v": 39.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1461,7 +1471,11 @@
       "v": 6.6,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-28",
+      "v": 8.8,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1911,7 +1925,7 @@
     },
     {
       "date": "2026-09-28",
-      "v": -3.1,
+      "v": -4.4,
       "real": true
     }
   ],
@@ -2185,11 +2199,17 @@
           "day": "Man",
           "disc": "run",
           "label": "Løb let Z1 30 min",
-          "done": false,
+          "done": true,
           "planned_tss": 28,
           "planned_mins": 30,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 143,
+          "actual_tss": 40,
+          "actual_mins": 36,
+          "actual_distance_m": 6014.21,
+          "intervals_compliance": 142.9
         },
         {
           "day": "Man",
@@ -2266,7 +2286,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Ren Z2 hele ugen — volumen bygger CTL, ikke tempo"
+      "focus": "Ren Z2 på Mallorca — volumen uden intensitet"
     },
     "5": {
       "sessions": [
@@ -2884,8 +2904,9 @@
     }
   ],
   "train_mins": {
+    "run": 36.0,
     "planned": 885.0,
-    "actual_total": 0
+    "actual_total": 36.0
   },
   "fatHistory": [
     {
@@ -3231,8 +3252,8 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 22 af 357 · Mandag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE/TRANSITION — Mallorca-uge starter i dag; Z2-volumen er nøglen, ikke intensitet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen er akkurat begyndt — 0 TSS i hus af 669 planlagt. Ingen hårde pas denne uge (kvote 0/0). CTL på 48,2 er 6,8 under mål på 55,0, men BASE-ugen her er Z2-volumen, ikke intensitet — ramprate på 1,7 er fin.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på 72,2 kg er 0,2 kg over cut-planen på 72,1 kg — stabil afvigelse, ikke alarm. Fedt og vægt begge stabile (ændring seneste måned under tærsklen).</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 drikkedage i træk 24/9–26/9 under et aktivt cut rammer HRV hårdere end spredte dage — AF resten af ugen er ikke valgfrit nu. Protein 6 af 7 dage er godt; søvn natten til i dag 6,6 t — under målet på 7 t.</p>",
-  "coachAssessmentTs": "03:52",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 22 af 357 · Mandag · Uge 40</strong></p><p class=\"coach-sec coach-big\">{\"text\": \"Uge 40, BASE-blok uge 2/2 — Mallorca Z2-volumen er kernen denne uge, og kroppen trænger til at køre roligt efter HRV-dyk.\"}</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Løbet er i hus — 36 min og 40 TSS. Cykel Z2 120 min venter til eftermiddagen. HRV 39,0 ms er 24% under 7d-snit: hold Z2 disciplineret, ingen ekstra intensitet. CTL 48,5 er 6,5 under mål — ugen her er Z2-volumen på Mallorca, det løfter den i rette tempo.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,2 kg over planlagt niveau — raten er stadig positiv, men meget langsom (0,02 kg/uge mod mål 0,22). Retning er stabil: ændringen de seneste 28 dage er under tærsklen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 drikkedage på de seneste 7 dage, heraf 3 i træk — hold AF resten af ugen. Protein er på 6 ud af 6 registrerede dage: fortsæt det.</p>",
+  "coachAssessmentTs": "07:30",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3243,21 +3264,21 @@
       "source": "rule"
     },
     {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 39,0 ms — 24% under 7d-snit (51,4 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
       "type": "cut",
       "level": "warn",
       "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "action": null,
       "source": "rule"
-    },
-    {
-      "type": "ctl_recalib",
-      "level": "info",
-      "message": "CTL 48,2 er 6,8 under ugens mål 55 — ingen rekalibrering nedad (mandag efter FTP-test (uge 3)).",
-      "action": null,
-      "source": "rule"
     }
   ],
-  "tsb": -3.1,
+  "tsb": -4.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3284,7 +3305,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i191063390",
   "weekFocusWeek": 4,
   "coachAssessmentPlanAtGen": "Løb let Z1 30 min",
   "weightGoal": 68,
@@ -3538,8 +3559,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-28T01:53:10.757641",
-  "coachAssessmentTsFull": "2026-09-28T01:53:10",
+  "credentialsCheckedTs": "2026-09-28T05:30:48.775076",
+  "coachAssessmentTsFull": "2026-09-28T05:30:48",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3628,7 +3649,8 @@
   "weekTssActual": {
     "1": 289,
     "2": 397,
-    "3": 193
+    "3": 193,
+    "4": 40
   },
   "racesUpcoming": [
     {
@@ -4365,7 +4387,11 @@
       "v": 44,
       "real": true
     },
-    null
+    {
+      "date": "2026-09-28",
+      "v": 46,
+      "real": true
+    }
   ],
   "blockType": "BASE",
   "blockTypes": {
@@ -4758,7 +4784,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 55,
         "tssTarget": 508,
-        "tssActual": null,
+        "tssActual": 40,
         "purpose": "Mallorca (Eva i Singapore): udendørs Z2-uge 2+3+4 t med stigninger i Z2, Sa Calobra uden PR. Søn 27/9 rejsedag. Hjem lør 3/10, Depottur 2 t + styrke søn 4/10.",
         "note": "Lagt om 11/9 fra kælderuge til udendørs efter Outlook. Uge 41 er recovery.",
         "quota": {
@@ -6841,14 +6867,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 36,
+                "actualTss": 40,
                 "note": "Flyttet fra søn 27/9 (rejsedag). Kl. 06:30 før Rosello-mødet 09:00. Løber også tir — hold det helt let",
                 "isKey": false,
                 "optional": false,
                 "start": "06:30",
-                "startFixed": true
+                "startFixed": true,
+                "completion": "done"
               },
               {
                 "id": "c2e28529",
@@ -10091,233 +10118,229 @@
           "week": 4,
           "programId": "tds-2027",
           "start": "2026-09-28",
-          "ctl": 48.2
+          "ctl": 48.5
         }
       ],
       "projection": [
         {
-          "d": "2026-09-28",
-          "ctl": 47.4
-        },
-        {
           "d": "2026-09-29",
-          "ctl": 48.3
+          "ctl": 49.1
         },
         {
           "d": "2026-09-30",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-10-01",
-          "ctl": 50.0
-        },
-        {
-          "d": "2026-10-02",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-10-03",
-          "ctl": 47.7
-        },
-        {
-          "d": "2026-10-04",
-          "ctl": 48.5
-        },
-        {
-          "d": "2026-10-05",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-10-06",
-          "ctl": 48.1
-        },
-        {
-          "d": "2026-10-07",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-10-08",
-          "ctl": 47.6
-        },
-        {
-          "d": "2026-10-09",
-          "ctl": 47.4
-        },
-        {
-          "d": "2026-10-10",
-          "ctl": 47.2
-        },
-        {
-          "d": "2026-10-11",
-          "ctl": 47.0
-        },
-        {
-          "d": "2026-10-12",
-          "ctl": 47.4
-        },
-        {
-          "d": "2026-10-13",
-          "ctl": 47.8
-        },
-        {
-          "d": "2026-10-14",
-          "ctl": 48.1
-        },
-        {
-          "d": "2026-10-15",
-          "ctl": 48.5
-        },
-        {
-          "d": "2026-10-16",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-10-17",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-10-18",
-          "ctl": 49.5
-        },
-        {
-          "d": "2026-10-19",
           "ctl": 49.9
         },
         {
-          "d": "2026-10-20",
-          "ctl": 50.2
-        },
-        {
-          "d": "2026-10-21",
-          "ctl": 50.6
-        },
-        {
-          "d": "2026-10-22",
-          "ctl": 50.9
-        },
-        {
-          "d": "2026-10-23",
-          "ctl": 51.2
-        },
-        {
-          "d": "2026-10-24",
-          "ctl": 51.6
-        },
-        {
-          "d": "2026-10-25",
-          "ctl": 51.9
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 51.6
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 51.2
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 50.9
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 50.6
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 50.3
-        },
-        {
-          "d": "2026-10-31",
-          "ctl": 50.0
-        },
-        {
-          "d": "2026-11-01",
-          "ctl": 49.7
-        },
-        {
-          "d": "2026-11-02",
-          "ctl": 50.1
-        },
-        {
-          "d": "2026-11-03",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-11-04",
+          "d": "2026-10-01",
           "ctl": 50.7
         },
         {
-          "d": "2026-11-05",
+          "d": "2026-10-02",
+          "ctl": 49.5
+        },
+        {
+          "d": "2026-10-03",
+          "ctl": 48.4
+        },
+        {
+          "d": "2026-10-04",
+          "ctl": 49.2
+        },
+        {
+          "d": "2026-10-05",
+          "ctl": 49.0
+        },
+        {
+          "d": "2026-10-06",
+          "ctl": 48.7
+        },
+        {
+          "d": "2026-10-07",
+          "ctl": 48.5
+        },
+        {
+          "d": "2026-10-08",
+          "ctl": 48.3
+        },
+        {
+          "d": "2026-10-09",
+          "ctl": 48.0
+        },
+        {
+          "d": "2026-10-10",
+          "ctl": 47.8
+        },
+        {
+          "d": "2026-10-11",
+          "ctl": 47.6
+        },
+        {
+          "d": "2026-10-12",
+          "ctl": 48.0
+        },
+        {
+          "d": "2026-10-13",
+          "ctl": 48.3
+        },
+        {
+          "d": "2026-10-14",
+          "ctl": 48.7
+        },
+        {
+          "d": "2026-10-15",
+          "ctl": 49.0
+        },
+        {
+          "d": "2026-10-16",
+          "ctl": 49.3
+        },
+        {
+          "d": "2026-10-17",
+          "ctl": 49.7
+        },
+        {
+          "d": "2026-10-18",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-10-19",
+          "ctl": 50.3
+        },
+        {
+          "d": "2026-10-20",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-10-21",
           "ctl": 51.0
         },
         {
-          "d": "2026-11-06",
+          "d": "2026-10-22",
           "ctl": 51.3
         },
         {
-          "d": "2026-11-07",
-          "ctl": 51.6
+          "d": "2026-10-23",
+          "ctl": 51.7
         },
         {
-          "d": "2026-11-08",
-          "ctl": 51.9
+          "d": "2026-10-24",
+          "ctl": 52.0
         },
         {
-          "d": "2026-11-09",
+          "d": "2026-10-25",
           "ctl": 52.3
         },
         {
-          "d": "2026-11-10",
+          "d": "2026-10-26",
+          "ctl": 52.0
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 51.6
+        },
+        {
+          "d": "2026-10-28",
+          "ctl": 51.3
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 51.0
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 50.4
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 50.1
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 50.4
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-11-04",
+          "ctl": 51.1
+        },
+        {
+          "d": "2026-11-05",
+          "ctl": 51.4
+        },
+        {
+          "d": "2026-11-06",
+          "ctl": 51.7
+        },
+        {
+          "d": "2026-11-07",
+          "ctl": 51.9
+        },
+        {
+          "d": "2026-11-08",
+          "ctl": 52.2
+        },
+        {
+          "d": "2026-11-09",
           "ctl": 52.6
         },
         {
-          "d": "2026-11-11",
+          "d": "2026-11-10",
           "ctl": 52.9
         },
         {
-          "d": "2026-11-12",
+          "d": "2026-11-11",
           "ctl": 53.2
         },
         {
-          "d": "2026-11-13",
+          "d": "2026-11-12",
           "ctl": 53.5
         },
         {
-          "d": "2026-11-14",
+          "d": "2026-11-13",
           "ctl": 53.8
         },
         {
+          "d": "2026-11-14",
+          "ctl": 54.0
+        },
+        {
           "d": "2026-11-15",
-          "ctl": 54.1
+          "ctl": 54.3
         },
         {
           "d": "2026-11-16",
-          "ctl": 54.5
+          "ctl": 54.7
         },
         {
           "d": "2026-11-17",
-          "ctl": 54.8
+          "ctl": 55.1
         },
         {
           "d": "2026-11-18",
-          "ctl": 55.2
+          "ctl": 55.4
         },
         {
           "d": "2026-11-19",
-          "ctl": 55.5
+          "ctl": 55.8
         },
         {
           "d": "2026-11-20",
-          "ctl": 55.9
+          "ctl": 56.1
         },
         {
           "d": "2026-11-21",
-          "ctl": 56.2
+          "ctl": 56.4
         },
         {
           "d": "2026-11-22",
-          "ctl": 56.5
+          "ctl": 56.8
         }
       ],
       "targets": [
@@ -10572,45 +10595,46 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-28T01:53:10Z",
-    "inputsHash": "b965c768d06cab6935310135bf0254227429acf5",
+    "generatedAt": "2026-09-28T05:30:48Z",
+    "inputsHash": "a780b71556e8bbf5585b6c6bc87a621896cfb056",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Løb 30 min let Z1 kl. 06:30, kør derefter Cykel Z2 120 min (Sóller–Deià–Valldemossa) ca. 16:15 — hold begge pas i Z2/Z1, ingen eskalering.",
-      "why": "Dag 1 på Mallorca er fundamentet for resten af ugen — spild ikke form på tempo du ikke har brug for i dag."
+      "action": "Kør Cykel Z2 120 min Mallorca (Sóller–Deià–Valldemossa og retur) ca. 16:15 — hold dig i ren Z2 hele vejen.",
+      "why": "Readiness er LOW og HRV 24% under 7d-snit — Z2 er præcis det rigtige niveau i dag, men gå ikke over."
     },
     "training": {
-      "text": "Ugen er akkurat begyndt — 0 TSS i hus af 669 planlagt. Ingen hårde pas denne uge (kvote 0/0). CTL på 48,2 er 6,8 under mål på 55,0, men BASE-ugen her er Z2-volumen, ikke intensitet — ramprate på 1,7 er fin.",
+      "text": "Løbet er i hus — 36 min og 40 TSS. Cykel Z2 120 min venter til eftermiddagen. HRV 39,0 ms er 24% under 7d-snit: hold Z2 disciplineret, ingen ekstra intensitet. CTL 48,5 er 6,5 under mål — ugen her er Z2-volumen på Mallorca, det løfter den i rette tempo.",
       "refs": [
-        0.0,
-        669.0,
-        48.2,
-        55.0,
-        6.8,
-        1.7
+        36.0,
+        40.0,
+        120.0,
+        39.0,
+        24.0,
+        48.5,
+        6.5
       ]
     },
     "body": {
-      "text": "7-dages snit på 72,2 kg er 0,2 kg over cut-planen på 72,1 kg — stabil afvigelse, ikke alarm. Fedt og vægt begge stabile (ændring seneste måned under tærsklen).",
+      "text": "7-dages snit er 0,2 kg over planlagt niveau — raten er stadig positiv, men meget langsom (0,02 kg/uge mod mål 0,22). Retning er stabil: ændringen de seneste 28 dage er under tærsklen.",
       "refs": [
-        72.2,
-        72.1,
-        0.2
+        0.2,
+        0.02,
+        0.22
       ]
     },
     "habits": {
-      "text": "3 drikkedage i træk 24/9–26/9 under et aktivt cut rammer HRV hårdere end spredte dage — AF resten af ugen er ikke valgfrit nu. Protein 6 af 7 dage er godt; søvn natten til i dag 6,6 t — under målet på 7 t.",
+      "text": "3 drikkedage på de seneste 7 dage, heraf 3 i træk — hold AF resten af ugen. Protein er på 6 ud af 6 registrerede dage: fortsæt det.",
       "refs": [
         3.0,
-        6.0,
         7.0,
-        6.6,
-        7.0
+        3.0,
+        6.0,
+        6.0
       ]
     },
-    "bigPicture": "Uge 40, BASE/TRANSITION — Mallorca-uge starter i dag; Z2-volumen er nøglen, ikke intensitet.",
-    "weekFocus": "Ren Z2 hele ugen — volumen bygger CTL, ikke tempo",
+    "bigPicture": "{\"text\": \"Uge 40, BASE-blok uge 2/2 — Mallorca Z2-volumen er kernen denne uge, og kroppen trænger til at køre roligt efter HRV-dyk.\"}",
+    "weekFocus": "Ren Z2 på Mallorca — volumen uden intensitet",
     "weekFocusFor": 4,
     "warnings": [
       {
@@ -10621,16 +10645,16 @@
         "source": "rule"
       },
       {
-        "type": "cut",
+        "type": "hrv",
         "level": "warn",
-        "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+        "message": "HRV 39,0 ms — 24% under 7d-snit (51,4 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
       {
-        "type": "ctl_recalib",
-        "level": "info",
-        "message": "CTL 48,2 er 6,8 under ugens mål 55 — ingen rekalibrering nedad (mandag efter FTP-test (uge 3)).",
+        "type": "cut",
+        "level": "warn",
+        "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
       }
@@ -10866,10 +10890,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 0.0,
-            "hrvPct": -6.7
+            "rhr": 0.1,
+            "hrvPct": -8.4
           },
-          "text": "hvilepuls 0 · HRV −7 % (14 dage)"
+          "text": "hvilepuls 0 · HRV −8 % (14 dage)"
         },
         "plateau": {
           "level": "info",
@@ -11192,23 +11216,23 @@
     }
   },
   "weekTss": {
-    "actual": 0,
+    "actual": 40,
     "planned": 669
   },
   "martinMail": {
     "week": 4,
     "isoWeek": 40,
     "lines": [
-      "Uge 40: TSS 0 af 669 (0 %) · CTL 48,2 (mål 55) · TSB −3,1",
+      "Uge 40: TSS 40 af 669 (6 %) · CTL 48,5 (mål 55) · TSB −4,4",
       "Vægt 7d 72,2 kg · fedt 14d 21,6 % · på plan mod glidepath (72,1)",
-      "HRV 7d 54 (28d 54) · hvilepuls 44 · søvn 7d 7,9 t",
+      "HRV 7d 51 (28d 54) · hvilepuls 45 · søvn 7d 8,0 t",
       "AF 3/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 0/2 · check-in —",
       "Cut-tjek: warn — 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (41, RECOVERY): TSS-mål 271 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-28T01:52:49Z"
+    "generatedAt": "2026-09-28T05:30:29Z"
   },
   "proposals": [],
   "ftp": {
@@ -11271,7 +11295,7 @@
   },
   "fitnessLive": {
     "date": "2026-09-28",
-    "ctl": 48.2,
-    "atl": 51.3
+    "ctl": 48.5,
+    "atl": 52.9
   }
 }
