@@ -17,7 +17,7 @@
 //   * Alt andet (fonts, ikoner, Worker-API, GitHub API) går direkte til nettet.
 // skipWaiting + clients.claim er bevaret, push/notificationclick er uændrede.
 
-const SW_VERSION = "20260907-swr";
+const SW_VERSION = "20260928-swr";
 const CACHE_NAME = "fast50-" + SW_VERSION;
 
 // Scope = /fast-as-50/ på Pages, / lokalt. Alle nøgler regnes relativt hertil.

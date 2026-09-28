@@ -16,6 +16,7 @@ Reglerne er kode, ikke prosa:
 validate(answer, ctx) -> (ok, errors, cleaned). ok=False => svaret kasseres og
 forrige beholdes (som QA-gaten altid har gjort).
 """
+import json
 import re
 
 SMALL_INT_OK = 7
@@ -137,6 +138,22 @@ def _catalog_ids(ctx):
     return {w.get("id") for w in (ctx.get("catalog") or []) if w.get("id")}
 
 
+def _unwrap_text(val):
+    """Modellen pakker af og til et strengfelt som JSON ('{"text": "..."}') —
+    pak det ud til ren tekst."""
+    if isinstance(val, dict):
+        val = val.get("text") or ""
+    val = str(val or "").strip()
+    if val.startswith("{") and val.endswith("}"):
+        try:
+            obj = json.loads(val)
+            if isinstance(obj, dict):
+                val = str(obj.get("text") or next((v for v in obj.values() if isinstance(v, str)), "")).strip()
+        except ValueError:
+            pass
+    return val
+
+
 def validate(answer, ctx, *, require_week_focus=False):
     """Returnerer (ok, errors, cleaned). errors er en liste af strenge (dansk)."""
     errors, notes = [], []
@@ -170,10 +187,10 @@ def validate(answer, ctx, *, require_week_focus=False):
             errors.append(f"{k}.text mangler")
         refs = [float(r) for r in (sec.get("refs") or []) if isinstance(r, (int, float)) and not isinstance(r, bool)]
         a[k] = {"text": txt, "refs": refs}
-    a["bigPicture"] = (a.get("bigPicture") or "").strip() or None
+    a["bigPicture"] = _unwrap_text(a.get("bigPicture")) or None
     if not a["bigPicture"]:
         errors.append("bigPicture mangler")
-    wf = (a.get("weekFocus") or "")
+    wf = _unwrap_text(a.get("weekFocus"))
     wf = str(wf).strip().split("\n")[0].strip().strip('"').strip("'").rstrip(".")[:120] if wf else None
     a["weekFocus"] = wf or None
     if require_week_focus and not wf:

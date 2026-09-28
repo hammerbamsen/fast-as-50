@@ -1327,7 +1327,8 @@ function kpiStripV2() {
   ];
   return `<div class="kpi4">` + tiles.map(t => `<div class="kpi4-t"><div class="lab">${t.l}</div><div class="kpi4-v"${(t.l==='VÆGT'||t.l==='FEDT') && t.c ? ` style="color:${t.c}"` : ''}>${t.v}</div><div class="kpi4-s">${Array.isArray(t.s) ? t.s.map(x => `<div>${esc(x)}</div>`).join('') : esc(t.s||'')}</div></div>`).join('') + `</div>`;
 }
-function shortText(t, max){ t = String(t||'').trim(); if (t.length <= max) return t; let out=''; for (const sent of t.split(/(?<=[.!?])\s+/)) { if ((out+' '+sent).trim().length > max) break; out = (out+' '+sent).trim(); } return out || t.slice(0, max).replace(/\s\S*$/, '') + '…'; }
+function unwrapText(t){ t = String(t||'').trim(); if (t.startsWith('{') && t.endsWith('}')) { try { const o = JSON.parse(t); if (o && typeof o === 'object') return String(o.text || Object.values(o).find(v => typeof v === 'string') || '').trim(); } catch(e){} } return t; }
+function shortText(t, max){ t = unwrapText(t); if (t.length <= max) return t; let out=''; for (const sent of t.split(/(?<=[.!?])\s+/)) { if ((out+' '+sent).trim().length > max) break; out = (out+' '+sent).trim(); } return out || t.slice(0, max).replace(/\s\S*$/, '') + '…'; }
 function coachVoiceCard() {
   // 26/9-2026: coach-vurderingen er flyttet fra Plan til I dag. Kort først:
   // én linje om hvor du er + "Obs" (coachens advarsler, uden dem banneret
