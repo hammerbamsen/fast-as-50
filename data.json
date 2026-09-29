@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-29 13:23",
+    "updated": "2026-09-29 16:56",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -40,7 +40,7 @@
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "0,7",
+      "value": "0,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "107",
+      "value": "110",
       "unit": "TSS",
-      "sub": "107 af 669 planlagt TSS",
+      "sub": "110 af 669 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Tirsdag — uge 40. {HL} Fokus: 107 af 669 TSS er i hus — 6 sessioner tilbage, heriblandt Styrke A · Functional 4 · 2 runder, Cykel Z2 180 min Mallorca. Vægt på 72,1 kg (målt 26/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 2 afsluttede dage — 6 mangler i 5 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Keep moving forward.\"",
-  "coachHighlight": "Søvn på 7,9 timer er solid",
+  "coachSpeech": "Uge 40, BASE-blok på Mallorca — volumen er omdrejningspunktet, men readiness er LOW og AF-mønsteret skal brydes nu. {HL} Styrke og løb er udført i dag — godt. To fortløbende løbedage (mandag + tirsdag) er markeret; hold det i baghovedet onsdag, hvor 180 min cykel venter.",
+  "coachHighlight": "Begge dagens pas er i hus — fokus resten af dagen: hold AF og sov minimum 7 timer i nat.",
   "weekFocus": "Alkoholfri uge — lad Z2 og søvn gøre arbejdet",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "run",
@@ -166,11 +166,16 @@
       "day": "Tir",
       "disc": "strength",
       "label": "Styrke A · Functional 4 · 2 runder",
-      "done": false,
+      "done": true,
       "planned_tss": 17,
       "planned_mins": 25,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 80,
+      "actual_tss": 3,
+      "actual_mins": 20,
+      "actual_distance_m": null
     },
     {
       "day": "Tir",
@@ -1932,7 +1937,7 @@
     },
     {
       "date": "2026-09-29",
-      "v": 0.6,
+      "v": 0.2,
       "real": true
     }
   ],
@@ -2236,11 +2241,16 @@
           "day": "Tir",
           "disc": "strength",
           "label": "Styrke A · Functional 4 · 2 runder",
-          "done": false,
+          "done": true,
           "planned_tss": 17,
           "planned_mins": 25,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 80,
+          "actual_tss": 3,
+          "actual_mins": 20,
+          "actual_distance_m": null
         },
         {
           "day": "Tir",
@@ -2923,10 +2933,11 @@
     }
   ],
   "train_mins": {
+    "strength": 20.0,
     "run": 79.0,
     "bike": 80.0,
     "planned": 885.0,
-    "actual_total": 159.0
+    "actual_total": 179.0
   },
   "fatHistory": [
     {
@@ -3268,27 +3279,33 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 23 af 357 · Tirsdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE-fase på Mallorca: Z2-volumen er kernen — kroppen er presset nu, men uge 41 er recovery.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Løbet er i havn (43 min, 44 TSS). Styrke A mangler stadig i dag — hold det let, 25 min med kropsvægt. Readiness er LOW, og du har løbet to dage i træk; ingen grund til at lægge mere på.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er stabilt — ændringen den seneste måned ligger under tærsklen for en klar retning. Du er 0,1 kg over cutplanens forventede 72,0 kg — ikke alarmerende, men hold protein-princippet ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 drikkedage på 7 dage, 3 i træk — det rammer HRV direkte, og HRV er allerede 11 % under 7-dages snit. AF resten af ugen.</p>",
-  "coachAssessmentTs": "06:54",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 23 af 357 · Tirsdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE-blok på Mallorca — volumen er omdrejningspunktet, men readiness er LOW og AF-mønsteret skal brydes nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke og løb er udført i dag — godt. To fortløbende løbedage (mandag + tirsdag) er markeret; hold det i baghovedet onsdag, hvor 180 min cykel venter. CTL på 46,9 er 8,1 point under målet på 55,0, men det er en BASE-uge midt i Mallorca-blokken — ugens volumen bygger videre.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,1 kg over cutplanen på 72,0 kg — afvigelsen er minimal, raten er kun -0,06 kg/uge mod målsatte -0,25 kg/uge. Alkoholdagene er den primære bremse.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>0 AF-dage denne uge ud af 6 i mål, og 3 drikkedage i træk 24/9–26/9 rammer HRV direkte. Protein er på plads 6 ud af 7 dage — hold det.</p>",
+  "coachAssessmentTs": "16:56",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "alcohol_cluster",
+      "level": "critical",
+      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 45,0 ms — 11% under 7d-snit (50,6 ms). Kroppen er presset."
+      "message": "HRV 45,0 ms — 11% under 7d-snit (50,6 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
     },
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
-      "type": "alcohol_cluster",
-      "level": "critical",
-      "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 0.7,
+  "tsb": 0.3,
   "swimHistory": [
     {
       "week": 1,
@@ -3315,7 +3332,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i191400979",
+  "coachAssessmentLastActId": "i191549689",
   "weekFocusWeek": 4,
   "coachAssessmentPlanAtGen": "Styrke A · Functional 4 · 2 runder",
   "weightGoal": 68,
@@ -3569,8 +3586,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-29T11:23:30.415439",
-  "coachAssessmentTsFull": "2026-09-29T04:54:53",
+  "credentialsCheckedTs": "2026-09-29T14:57:08.819391",
+  "coachAssessmentTsFull": "2026-09-29T14:57:08",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3660,7 +3677,7 @@
     "1": 289,
     "2": 397,
     "3": 193,
-    "4": 107
+    "4": 110
   },
   "racesUpcoming": [
     {
@@ -4795,7 +4812,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 55,
         "tssTarget": 508,
-        "tssActual": 107,
+        "tssActual": 110,
         "purpose": "Mallorca (Eva i Singapore): udendørs Z2-uge 2+3+4 t med stigninger i Z2, Sa Calobra uden PR. Søn 27/9 rejsedag. Hjem lør 3/10, Depottur 2 t + styrke søn 4/10.",
         "note": "Lagt om 11/9 fra kælderuge til udendørs efter Outlook. Uge 41 er recovery.",
         "quota": {
@@ -6935,14 +6952,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 20,
+                "actualTss": 3,
                 "note": "Mallorca: brug det der er i huset — ellers kropsvægt (squat, push-up, step-up, planke)",
                 "isKey": false,
                 "optional": false,
                 "start": "06:30",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "done"
               },
               {
                 "id": "f2834a75",
@@ -10610,38 +10628,43 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-29T04:54:53Z",
-    "inputsHash": "4ded8a3e3de8a55e4b2e12d408c538129b308ec8",
+    "generatedAt": "2026-09-29T14:57:08Z",
+    "inputsHash": "d782fb5a8f7240fb6b347e253b7f56748b3c6352",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Lav Styrke A · Functional 4 · 2 runder — kropsvægt (squat, push-up, step-up, planke), 25 min. Hold det let og kortt.",
-      "why": "Readiness er LOW (HRV 45,0 ms), så styrken køres som planlagt men uden at presse — bevar bevægelsen, spar kroppen."
+      "action": "Begge dagens pas er i hus — fokus resten af dagen: hold AF og sov minimum 7 timer i nat.",
+      "why": "HRV er 11% under 7-dages snit, og 3 drikkedage i træk har presset restitutionen — AF og søvn er det hurtigste greb."
     },
     "training": {
-      "text": "Løbet er i havn (43 min, 44 TSS). Styrke A mangler stadig i dag — hold det let, 25 min med kropsvægt. Readiness er LOW, og du har løbet to dage i træk; ingen grund til at lægge mere på.",
+      "text": "Styrke og løb er udført i dag — godt. To fortløbende løbedage (mandag + tirsdag) er markeret; hold det i baghovedet onsdag, hvor 180 min cykel venter. CTL på 46,9 er 8,1 point under målet på 55,0, men det er en BASE-uge midt i Mallorca-blokken — ugens volumen bygger videre.",
       "refs": [
-        43.0,
-        44.0,
-        25.0
+        46.9,
+        55.0,
+        8.1,
+        180.0
       ]
     },
     "body": {
-      "text": "7-dages snit er stabilt — ændringen den seneste måned ligger under tærsklen for en klar retning. Du er 0,1 kg over cutplanens forventede 72,0 kg — ikke alarmerende, men hold protein-princippet ved hvert måltid.",
+      "text": "7-dages snit er 0,1 kg over cutplanen på 72,0 kg — afvigelsen er minimal, raten er kun -0,06 kg/uge mod målsatte -0,25 kg/uge. Alkoholdagene er den primære bremse.",
       "refs": [
         72.0,
-        0.1
+        0.1,
+        0.06,
+        0.25
       ]
     },
     "habits": {
-      "text": "4 drikkedage på 7 dage, 3 i træk — det rammer HRV direkte, og HRV er allerede 11 % under 7-dages snit. AF resten af ugen.",
+      "text": "0 AF-dage denne uge ud af 6 i mål, og 3 drikkedage i træk 24/9–26/9 rammer HRV direkte. Protein er på plads 6 ud af 7 dage — hold det.",
       "refs": [
-        4.0,
+        0.0,
+        6.0,
         3.0,
-        11.0
+        6.0,
+        7.0
       ]
     },
-    "bigPicture": "Uge 40, BASE-fase på Mallorca: Z2-volumen er kernen — kroppen er presset nu, men uge 41 er recovery.",
+    "bigPicture": "Uge 40, BASE-blok på Mallorca — volumen er omdrejningspunktet, men readiness er LOW og AF-mønsteret skal brydes nu.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10711,6 +10734,15 @@
       },
       {
         "date": "2026-09-19",
+        "name": "Styrketræning",
+        "source": "activity",
+        "note": "",
+        "rpe": null,
+        "complete": null,
+        "template": null
+      },
+      {
+        "date": "2026-09-29",
         "name": "Styrketræning",
         "source": "activity",
         "note": "",
@@ -10854,7 +10886,7 @@
       "holdKg": -0.5
     },
     "strengthWeek": {
-      "done": 0,
+      "done": 1,
       "target": 2
     },
     "strengthWeeks": {
@@ -11161,6 +11193,14 @@
     },
     "last4": [
       {
+        "date": "2026-09-29",
+        "name": "Styrketræning",
+        "ab": null,
+        "rpe": null,
+        "complete": null,
+        "note": ""
+      },
+      {
         "date": "2026-09-19",
         "name": "Styrketræning",
         "ab": null,
@@ -11178,14 +11218,6 @@
       },
       {
         "date": "2026-09-12",
-        "name": "Styrketræning",
-        "ab": null,
-        "rpe": null,
-        "complete": null,
-        "note": ""
-      },
-      {
-        "date": "2026-09-01",
         "name": "Styrketræning",
         "ab": null,
         "rpe": null,
@@ -11214,23 +11246,23 @@
     }
   },
   "weekTss": {
-    "actual": 107,
+    "actual": 110,
     "planned": 669
   },
   "martinMail": {
     "week": 4,
     "isoWeek": 40,
     "lines": [
-      "Uge 40: TSS 107 af 669 (16 %) · CTL 46,9 (mål 55) · TSB +0,7",
+      "Uge 40: TSS 110 af 669 (16 %) · CTL 46,9 (mål 55) · TSB +0,3",
       "Vægt 7d 72,0 kg · fedt 14d 21,6 % · på plan mod glidepath (72,0)",
       "HRV 7d 51 (28d 53) · hvilepuls 45 · søvn 7d 7,9 t",
       "AF 2/7 · protein 3/3 6/7 · aftensult —/7",
-      "Styrke 0/2 · check-in —",
+      "Styrke 1/2 · check-in —",
       "Cut-tjek: warn — 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (41, RECOVERY): TSS-mål 271 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-29T11:23:30Z"
+    "generatedAt": "2026-09-29T14:56:47Z"
   },
   "proposals": [],
   "ftp": {
@@ -11294,6 +11326,6 @@
   "fitnessLive": {
     "date": "2026-09-29",
     "ctl": 46.9,
-    "atl": 46.2
+    "atl": 46.6
   }
 }
