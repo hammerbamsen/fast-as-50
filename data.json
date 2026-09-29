@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-29 17:24",
+    "updated": "2026-09-29 22:08",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -100,9 +100,9 @@
       "color": "#27AE60"
     },
     "protein": {
-      "value": "6",
+      "value": "7",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 3,5",
+      "sub": "3/3-dage · 4 uger 3,8",
       "color": "#27AE60"
     }
   },
@@ -2061,7 +2061,8 @@
     "2026-09-25": 1,
     "2026-09-26": 1,
     "2026-09-27": 0,
-    "2026-09-28": 1
+    "2026-09-28": 1,
+    "2026-09-29": 1
   },
   "all_weeks": {
     "2": {
@@ -3291,7 +3292,7 @@
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
+      "message": "Cut-tjek: 5 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
     },
     {
       "type": "alcohol_cluster",
@@ -3580,7 +3581,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-29T15:24:54.185835",
+  "credentialsCheckedTs": "2026-09-29T20:08:24.737500",
   "coachAssessmentTsFull": "2026-09-29T14:57:08",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 0,
@@ -4667,13 +4668,13 @@
     },
     {
       "date": "2026-09-29",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 1,
+      "protein": 2,
+      "energi": 4,
       "sult": null
     }
   ],
-  "energy7": 2.2,
+  "energy7": 2.4,
   "af_kind": {
     "2026-09-02": "drak",
     "2026-09-04": "faa",
@@ -4687,7 +4688,8 @@
     "2026-09-24": "faa",
     "2026-09-25": "faa",
     "2026-09-26": "faa",
-    "2026-09-28": "faa"
+    "2026-09-28": "faa",
+    "2026-09-29": "faa"
   },
   "planTab": {
     "today": "2026-09-29",
@@ -10891,7 +10893,7 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "5 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
@@ -10927,10 +10929,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 4,
+            "days7": 5,
             "run": 3
           },
-          "text": "4 drikkedage på 7 dage · 3 i træk"
+          "text": "5 drikkedage på 7 dage · 3 i træk"
         }
       }
     }
@@ -11250,13 +11252,13 @@
       "Uge 40: TSS 110 af 669 (16 %) · CTL 46,9 (mål 55) · TSB +0,3",
       "Vægt 7d 72,0 kg · fedt 14d 21,6 % · på plan mod glidepath (72,0)",
       "HRV 7d 51 (28d 53) · hvilepuls 45 · søvn 7d 7,9 t",
-      "AF 2/7 · protein 3/3 6/7 · aftensult —/7",
+      "AF 2/7 · protein 3/3 7/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
-      "Cut-tjek: warn — 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 5 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (41, RECOVERY): TSS-mål 271 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-29T15:24:54Z"
+    "generatedAt": "2026-09-29T20:08:24Z"
   },
   "proposals": [],
   "ftp": {
