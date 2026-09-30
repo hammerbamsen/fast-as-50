@@ -1184,14 +1184,18 @@ function complianceHtml(){
       plT += s.planned_tss || 0; acT += s.actual_tss || 0;
       plM += s.planned_mins || 0; acM += s.actual_mins || 0;
     }
+    const pc = (a, b) => (a != null && b) ? Math.round(a / b * 100) : null;
+    const part = (lab, a, b, unit) => {
+      if (a == null && b == null) return '';
+      const q = pc(a, b);
+      return `${lab} ${a ?? 0}/${b ?? '—'}${unit}${q != null ? ` = <b style="color:${compColor(q)}">${q} %</b>` : ''}`;
+    };
     const detail = counted
-      ? [ (s.actual_mins != null || s.planned_mins != null) ? `${s.actual_mins ?? 0}/${s.planned_mins ?? '—'} min` : '',
-          (s.actual_tss != null || s.planned_tss != null) ? `TSS ${s.actual_tss ?? 0}/${s.planned_tss ?? '—'}` : '',
-          note ].filter(Boolean).join(' · ')
+      ? [part('Tid', s.actual_mins, s.planned_mins, ' min'), part('TSS', s.actual_tss, s.planned_tss, ''), note ? esc(note) : ''].filter(Boolean).join(' · ')
       : 'planlagt';
     const pctTxt = pct != null ? `${pct} %` : (s.done ? '✓' : '');
     return `<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:6px 0;border-top:1px solid var(--cream-d)">
-      <span style="min-width:0"><b style="font-size:12px">${esc(s.day)}</b> <span style="font-size:13px">${esc(s.label)}</span><br><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${esc(detail)}</span></span>
+      <span style="min-width:0"><b style="font-size:12px">${esc(s.day)}</b> <span style="font-size:13px">${esc(s.label)}</span><br><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${detail}</span></span>
       <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;white-space:nowrap;color:${compColor(pct)}">${pctTxt}</span></div>`;
   }).join('');
   const totPct = plT > 0 ? Math.round(acT / plT * 100) : null;
@@ -1201,7 +1205,7 @@ function complianceHtml(){
       <div class="label" style="margin-bottom:0">Compliance — ugens pas</div>
       <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:${compColor(totPct)}">${totPct != null ? totPct + ' % TSS' : '—'}${totMin != null ? ' · ' + totMin + ' % tid' : ''}</span>
     </div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Faktisk mod planlagt for ${n} pas til og med i dag. Grøn 80–120 %.</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:4px">${n} pas til og med i dag. Højre tal er det svageste af tid og TSS. Grøn 80–120 %.</div>
     ${rows}
     ${ctlStatusHtml()}
   </div>`;

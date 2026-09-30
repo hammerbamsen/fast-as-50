@@ -14,3 +14,7 @@ Kennet kunne ikke se compliance pr. pas i dashboardet. `data.json` havde feltern
 
 ## Ikke verificeret
 - Kortet er ikke set gengivet på telefon. Layoutet bruger de eksisterende `.card`/`.label`-klasser.
+
+## Tillæg (30/9-2026, senere): begge procenter pr. pas
+- `index.html`: hvert pas viser nu tid og TSS hver for sig med egen procent og farve (fx "Tid 300/240 min = 125 % · TSS 95/171 = 56 %"). Tallet til højre er uændret pipelinens `completion_pct` (det svageste af tid og TSS). Forklaringslinjen er rettet.
+- Ingen ændring i `DURATION_FIRST_DISCS` — cykel er stadig ikke tid-først. Beslutning venter.
