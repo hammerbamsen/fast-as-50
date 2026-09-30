@@ -1256,6 +1256,7 @@ def build_week_sessions(done_map, planned_sessions):
                 new_s['completion']         = status
                 new_s['completion_pct']     = pct
                 new_s['actual_tss']         = act_tss
+                new_s['actual_name']        = act_name   # Garmin-navn (indeholder stednavn, fx 'Fornalutx Cykling på vej')
                 new_s['actual_mins']        = act_dur_mins
                 new_s['planned_mins']       = planned_mins_val
                 new_s['actual_distance_m']  = act_distance_m

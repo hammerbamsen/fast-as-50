@@ -165,6 +165,22 @@ def test_build_week_sessions_no_distance_target_unaffected():
     assert today.get("planned_distance_m") is None
 
 
+def test_build_week_sessions_carries_activity_name():
+    """30/9-2026: aktivitetens Garmin-navn (med stednavn) lægges på passet som
+    actual_name, så dashboardet kan se at en cykeltur er kørt fra Fornalutx."""
+    planned = [{
+        "day": TODAY_KEY, "disc": "bike", "label": "Cykel Z2 240 min",
+        "done": False, "today": True,
+        "planned_tss": 171, "planned_mins": 240, "planned_distance_m": None,
+    }]
+    done_map = {
+        TODAY_KEY: [("bike", "Fornalutx Cykling på vej", 95, 300, None, None, None, None, "act789", None)]
+    }
+    result = sessions.build_week_sessions(done_map, planned)
+    today = next(s for s in result if s.get("today"))
+    assert today["actual_name"] == "Fornalutx Cykling på vej"
+
+
 # ── calc_completion — hike/walk måles på tid, ikke TSS (13/8-2026) ──────
 
 def test_hike_uses_duration_not_tss():

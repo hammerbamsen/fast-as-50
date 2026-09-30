@@ -20,3 +20,4 @@ Kennet kunne ikke se compliance pr. pas i dashboardet. `data.json` havde feltern
 - Ingen ændring i `DURATION_FIRST_DISCS` — cykel er stadig ikke tid-først. Beslutning venter.
 - Senere samme dag: tallet til højre pr. pas (pipelinens `completion_pct`) er fjernet fra kortet, fordi tid og TSS nu står hver for sig. Ugetotalen i toppen er uændret.
 - Senere samme dag (Kennets ønske): på cykelpas med "Mallorca" i navnet vises TSS-procenten uden farve (bjerge og pauser trækker TSS ned). Tiden farves stadig. Indendørs og danske pas er uændrede. Ugetotalen (TSS) tæller stadig Mallorca-pas med.
+- Senere samme dag: `scripts/modules/sessions.py` lægger Garmin-aktivitetens navn på passet som `actual_name` (ny test i `test_sessions.py`). Dashboardet neutraliserer nu TSS-farven på cykelpas hvis pasnavnet indeholder "Mallorca" ELLER aktivitetens navn indeholder "Fornalutx". `actual_name` findes først i data.json efter næste pipeline-kørsel; indtil da virker kun pasnavns-reglen.

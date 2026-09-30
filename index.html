@@ -1185,9 +1185,9 @@ function complianceHtml(){
       plM += s.planned_mins || 0; acM += s.actual_mins || 0;
     }
     const pc = (a, b) => (a != null && b) ? Math.round(a / b * 100) : null;
-    // Mallorca-ture (udendørs, bjerge): nedkørsler og pauser trækker TSS ned uden at turen var for let —
+    // Mallorca-ture (udendørs, bjerge; 'Mallorca' i pasnavnet eller 'Fornalutx' i Garmin-aktivitetens navn): nedkørsler og pauser trækker TSS ned uden at turen var for let —
     // TSS-procenten vises uden farve. Indendørs og danske pas farves som før.
-    const mall = s.disc === 'bike' && /mallorca/i.test(s.label || '');
+    const mall = s.disc === 'bike' && (/mallorca/i.test(s.label || '') || /fornalutx/i.test(s.actual_name || ''));
     const part = (lab, a, b, unit, neutral) => {
       if (a == null && b == null) return '';
       const q = pc(a, b);
