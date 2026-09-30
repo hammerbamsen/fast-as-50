@@ -87,3 +87,7 @@
 ### Planændring 27/09 18:39
 - **fredag 2026-10-02** (uge 4, move): Cykel Z2 90 min Mallorca (90 min) [langt] → hviledag
 - **lørdag 2026-10-03** (uge 4, move): hviledag → Cykel Z2 90 min Mallorca (90 min) [langt]
+
+### Planændring 30/09 03:13
+- **onsdag 2026-09-30** (uge 4, move): Cykel Z2 180 min Mallorca (180 min) [langt] → Cykel Z2 240 min Mallorca (240 min) [langt]
+- **torsdag 2026-10-01** (uge 4, move): Cykel Z2 240 min Mallorca (240 min) [langt] → Cykel Z2 180 min Mallorca (180 min) [langt]
