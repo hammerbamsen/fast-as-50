@@ -1,0 +1,16 @@
+# Compliance pr. pas + CTL mod plan (30/9-2026)
+
+Kennet kunne ikke se compliance pr. pas i dashboardet. `data.json` havde felterne (`completion_pct`, `actual_mins`, `actual_tss`, `planned_*`) i `week_sessions`, men `index.html` læste dem ikke.
+
+## Ændringer
+- `index.html`: nyt kort "Compliance — ugens pas" på I dag (under ugestriben): pr. pas faktisk/planlagt (min og TSS) og procent. Farve: grøn 80–120 %, gul 50–79 %, rød under 50 % eller over 120 %. Et planlagt pas på en dag der er gået uden aktivitet tæller som 0 %. Ugetotal (TSS og tid) for pas til og med i dag.
+- `index.html`: linjen "CTL mod plan" i samme kort: CTL nu mod ugens mål, forskel, ugeændring mod planlagt ugeændring, ATL og afvigelse for de seneste 4 uger.
+- `index.html`: `applyRemote` kopierer nu `fitnessLive` ind i `D` (bruges til CTL nu).
+- Ingen ændringer i pipeline, plan.json eller skemaer.
+
+## Test
+- pytest 669 bestået, 1 sprunget over; `schemas/validate.py` OK; `node --check sw.js` OK; index.html inline-scripts OK.
+- Logikken kørt mod live `data.json` i browseren: CTL 48,0 mod mål 55 (−7,0), ugeændring +1,5 mod plan +2,0.
+
+## Ikke verificeret
+- Kortet er ikke set gengivet på telefon. Layoutet bruger de eksisterende `.card`/`.label`-klasser.

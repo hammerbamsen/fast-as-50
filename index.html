@@ -1160,6 +1160,76 @@ function weekStripV2(){
   <div class="dayinfo" id="dayinfo" data-i=""></div>`;
 }
 
+// Compliance pr. pas + CTL-status (30/9-2026). Kilde: week_sessions (completion_pct
+// regnes i pipelinen af sessions.calc_completion) samt ctlPlan/ctlCurve/fitnessLive.
+// Grøn 80–120 %, gul 50–79 %, rød under 50 % eller over 120 %.
+function compColor(p){
+  if (p == null) return 'var(--muted)';
+  return (p >= 80 && p <= 120) ? 'var(--ok)' : (p >= 50 && p < 80) ? 'var(--watch)' : 'var(--act)';
+}
+function complianceHtml(){
+  const ws = (D.week_sessions || []).filter(s => s && !s.extra);
+  if (!ws.length) return '';
+  const tIdx = (new Date().getDay() + 6) % 7;
+  let plT = 0, acT = 0, plM = 0, acM = 0, n = 0;
+  const rows = ws.map(s => {
+    const di = DK_DAY_SHORT.indexOf(s.day);
+    const past = di >= 0 && di < tIdx;
+    let pct = s.completion_pct != null ? s.completion_pct : null;
+    let note = '';
+    if (pct == null && !s.done && past) { pct = 0; note = 'ikke gennemført'; }
+    const counted = pct != null || s.done;
+    if (counted) {
+      n++;
+      plT += s.planned_tss || 0; acT += s.actual_tss || 0;
+      plM += s.planned_mins || 0; acM += s.actual_mins || 0;
+    }
+    const detail = counted
+      ? [ (s.actual_mins != null || s.planned_mins != null) ? `${s.actual_mins ?? 0}/${s.planned_mins ?? '—'} min` : '',
+          (s.actual_tss != null || s.planned_tss != null) ? `TSS ${s.actual_tss ?? 0}/${s.planned_tss ?? '—'}` : '',
+          note ].filter(Boolean).join(' · ')
+      : 'planlagt';
+    const pctTxt = pct != null ? `${pct} %` : (s.done ? '✓' : '');
+    return `<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:6px 0;border-top:1px solid var(--cream-d)">
+      <span style="min-width:0"><b style="font-size:12px">${esc(s.day)}</b> <span style="font-size:13px">${esc(s.label)}</span><br><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${esc(detail)}</span></span>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;white-space:nowrap;color:${compColor(pct)}">${pctTxt}</span></div>`;
+  }).join('');
+  const totPct = plT > 0 ? Math.round(acT / plT * 100) : null;
+  const totMin = plM > 0 ? Math.round(acM / plM * 100) : null;
+  return `<div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+      <div class="label" style="margin-bottom:0">Compliance — ugens pas</div>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:${compColor(totPct)}">${totPct != null ? totPct + ' % TSS' : '—'}${totMin != null ? ' · ' + totMin + ' % tid' : ''}</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Faktisk mod planlagt for ${n} pas til og med i dag. Grøn 80–120 %.</div>
+    ${rows}
+    ${ctlStatusHtml()}
+  </div>`;
+}
+function ctlStatusHtml(){
+  const wk = D.week || 1;
+  const curve = (D.ctlCurve || []);
+  const live = D.fitnessLive && D.fitnessLive.ctl != null ? Number(D.fitnessLive.ctl) : null;
+  const lastCurve = [...curve].reverse().find(v => v != null);
+  const cur = live != null ? live : lastCurve;
+  const target = CTL_PLAN[wk - 1];
+  if (cur == null || target == null) return '';
+  const gap = cur - target;
+  const gc = gap >= -3 ? 'var(--ok)' : gap >= -8 ? 'var(--watch)' : 'var(--act)';
+  const sg = v => (v > 0 ? '+' : v < 0 ? '−' : '±') + fmtDa(Math.abs(v));
+  const prev = curve.length >= 2 ? curve[curve.length - 2] : null;
+  const prevT = CTL_PLAN[wk - 2];
+  const dAct = prev != null ? cur - prev : null, dPlan = prevT != null ? target - prevT : null;
+  const hist = curve.map((v, i) => (v != null && CTL_PLAN[i] != null) ? `Uge ${progIso(i + 1)} ${sg(v - CTL_PLAN[i])}` : '').filter(Boolean).slice(-4).join(' · ');
+  return `<div style="margin-top:10px;padding-top:10px;border-top:2px solid var(--cream-d)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <div class="label" style="margin-bottom:0">CTL mod plan</div>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:${gc}">${fmtDa(cur)} / ${fmtDa(target, 0)} · ${sg(gap)}</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:4px">${dAct != null ? `Ugeændring ${sg(dAct)}${dPlan != null ? ' (plan ' + sg(dPlan) + ')' : ''}. ` : ''}${D.fitnessLive && D.fitnessLive.atl != null ? 'ATL ' + fmtDa(D.fitnessLive.atl) + '. ' : ''}${hist ? 'Afvigelse pr. uge: ' + esc(hist) + '.' : ''}</div>
+  </div>`;
+}
+
 function toggleDayInfo(i){
   const strip = document.getElementById('week-strip'), info = document.getElementById('dayinfo');
   if (!strip || !info) return;
@@ -1386,6 +1456,7 @@ function renderToday() {
     </div>
   </div>
   ${weekStripV2()}
+  ${complianceHtml()}
   ${ckCardHtml()}
   ${todayStrengthHtml()}
   ${oneThing(r)}
@@ -4459,6 +4530,7 @@ function applyRemote(remote) {
       if (remote.weightGoal  !== undefined) D.weightGoal  = remote.weightGoal;
       if (remote.bodyFatGoal !== undefined) D.bodyFatGoal = remote.bodyFatGoal;
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
+      D.fitnessLive = (remote.fitnessLive && typeof remote.fitnessLive === 'object') ? remote.fitnessLive : null;
       D.ftp = (remote.ftp && typeof remote.ftp === 'object') ? remote.ftp : null;   // blok 13
       if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
       if (Array.isArray(remote.weightMovingAvg7)) D.weightMovingAvg7 = remote.weightMovingAvg7;
