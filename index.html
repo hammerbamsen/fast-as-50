@@ -1185,13 +1185,17 @@ function complianceHtml(){
       plM += s.planned_mins || 0; acM += s.actual_mins || 0;
     }
     const pc = (a, b) => (a != null && b) ? Math.round(a / b * 100) : null;
-    const part = (lab, a, b, unit) => {
+    // Mallorca-ture (udendørs, bjerge): nedkørsler og pauser trækker TSS ned uden at turen var for let —
+    // TSS-procenten vises uden farve. Indendørs og danske pas farves som før.
+    const mall = s.disc === 'bike' && /mallorca/i.test(s.label || '');
+    const part = (lab, a, b, unit, neutral) => {
       if (a == null && b == null) return '';
       const q = pc(a, b);
-      return `${lab} ${a ?? 0}/${b ?? '—'}${unit}${q != null ? ` = <b style="color:${compColor(q)}">${q} %</b>` : ''}`;
+      const col = neutral ? 'var(--muted)' : compColor(q);
+      return `${lab} ${a ?? 0}/${b ?? '—'}${unit}${q != null ? ` = <b style="color:${col}">${q} %</b>` : ''}`;
     };
     const detail = counted
-      ? [part('Tid', s.actual_mins, s.planned_mins, ' min'), part('TSS', s.actual_tss, s.planned_tss, ''), note ? esc(note) : ''].filter(Boolean).join(' · ') || 'gennemført'
+      ? [part('Tid', s.actual_mins, s.planned_mins, ' min'), part('TSS', s.actual_tss, s.planned_tss, '', mall), note ? esc(note) : ''].filter(Boolean).join(' · ') || 'gennemført'
       : 'planlagt';
     return `<div style="padding:6px 0;border-top:1px solid var(--cream-d)">
       <b style="font-size:12px">${esc(s.day)}</b> <span style="font-size:13px">${esc(s.label)}</span><br><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">${detail}</span></div>`;
