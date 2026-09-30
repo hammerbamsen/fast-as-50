@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-30 18:41",
+    "updated": "2026-09-30 23:14",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Onsdag — uge 40. {HL} Fokus: 205 af 652 TSS er i hus — 4 sessioner tilbage, heriblandt Cykel Z2 180 min Mallorca, Cykel Z2 90 min Mallorca. Vægt på 72,1 kg (målt 26/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 3 afsluttede dage — 6 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-  "coachHighlight": "Søvn på 8,1 timer er solid",
+  "coachSpeech": "BASE/TRANSITION uge 40, dag 4 på Mallorca — alkohol er den eneste trussel mod cut og restitution nu. {HL} Dagens lange Mallorca-etape (Lluc–Pollença–Sa Calobra) er i hus: 300 min og 95 TSS mod planlagte 240 min. Ingen nøglepas er misset denne uge.",
+  "coachHighlight": "Stop alkohol resten af ugen — i dag og torsdag: vand og søvn.",
   "weekFocus": "Alkoholfri uge — lad Z2 og søvn gøre arbejdet",
   "today": [
     {
@@ -3285,19 +3285,23 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 24 af 357 · Onsdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE/TRANSITION — Mallorca dag 4 er gennemført; alkohol-klyngen er det eneste der kræver handling i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens lange — 300 min på cyklen med 95 TSS — er i hus. Ugens TSS er på 205 af 508 planlagt; resten ligger i de fire tilbageværende pas fra torsdag og frem — det er planlagt sådan. CTL på 48,0 mod mål 55,0 er forventeligt i en BASE/TRANSITION-uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er præcist på plan (deltaVsPlan 0,0). Fedtprocenten er gået 0,5 procentpoint op den seneste måned — tæt på tærsklen, men ikke nok til at kalde det en retning endnu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage på 7 dage med 3 i træk er det eneste der halter — se oneThing. Protein er på 6 af 7 dage, søvn 8,1 t i snit og energi 2,7 ud af 5 er lavt men acceptabelt under en hård cykeluge.</p>",
-  "coachAssessmentTs": "14:22",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 24 af 357 · Onsdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">BASE/TRANSITION uge 40, dag 4 på Mallorca — alkohol er den eneste trussel mod cut og restitution nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens lange Mallorca-etape (Lluc–Pollença–Sa Calobra) er i hus: 300 min og 95 TSS mod planlagte 240 min. Ingen nøglepas er misset denne uge. CTL ligger på 48,0 mod mål 55,0 — men vi er i BASE/TRANSITION med recovery næste uge, så hold kursen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt er nede 0,5 kg den seneste måned — retningen er rigtig. Fedtprocenten er dog steget 0,5 procentpoint: hold proteinen oppe ved hvert måltid og drop alkoholen resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 drikkedage på 7 og 3 i træk under cuttet er det eneste der halter — 0 AF-dage indtil nu denne uge. Søvn og protein er flot.</p>",
+  "coachAssessmentTs": "23:14",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 6 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 28/9–30/9 — klynger rammer HRV hårdere end spredte dage."
+      "message": "3 drikkedage i træk 28/9–30/9 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 6 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": -3.1,
@@ -3581,8 +3585,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-30T16:41:15.167273",
-  "coachAssessmentTsFull": "2026-09-30T12:23:16",
+  "credentialsCheckedTs": "2026-09-30T21:15:09.706964",
+  "coachAssessmentTsFull": "2026-09-30T21:15:09",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -10615,57 +10619,55 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-30T12:23:16Z",
-    "inputsHash": "dc90236a22d4d0f17079a668278b448a59fa1714",
+    "generatedAt": "2026-09-30T21:15:09Z",
+    "inputsHash": "66a5496d028ba5511bd3d93bd9895206e9290157",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Drik ingen alkohol i aften — og hold det resten af ugen frem til hjemkomst lørdag.",
-      "why": "5 drikkedage på 7 dage, heraf 3 i træk, sænker HRV og muskelproteinsyntese midt i din travleste cykeluge."
+      "action": "Stop alkohol resten af ugen — i dag og torsdag: vand og søvn.",
+      "why": "3 drikkedage i træk tærer på HRV og muskelproteinsyntese midt i en cut-uge med daglig cykling."
     },
     "training": {
-      "text": "Dagens lange — 300 min på cyklen med 95 TSS — er i hus. Ugens TSS er på 205 af 508 planlagt; resten ligger i de fire tilbageværende pas fra torsdag og frem — det er planlagt sådan. CTL på 48,0 mod mål 55,0 er forventeligt i en BASE/TRANSITION-uge.",
+      "text": "Dagens lange Mallorca-etape (Lluc–Pollença–Sa Calobra) er i hus: 300 min og 95 TSS mod planlagte 240 min. Ingen nøglepas er misset denne uge. CTL ligger på 48,0 mod mål 55,0 — men vi er i BASE/TRANSITION med recovery næste uge, så hold kursen.",
       "refs": [
         300.0,
         95.0,
-        205.0,
-        508.0,
+        240.0,
         48.0,
         55.0
       ]
     },
     "body": {
-      "text": "7-dages snit er præcist på plan (deltaVsPlan 0,0). Fedtprocenten er gået 0,5 procentpoint op den seneste måned — tæt på tærsklen, men ikke nok til at kalde det en retning endnu.",
+      "text": "7-dages snit på vægt er nede 0,5 kg den seneste måned — retningen er rigtig. Fedtprocenten er dog steget 0,5 procentpoint: hold proteinen oppe ved hvert måltid og drop alkoholen resten af ugen.",
       "refs": [
-        0.0,
+        0.5,
         0.5
       ]
     },
     "habits": {
-      "text": "5 drikkedage på 7 dage med 3 i træk er det eneste der halter — se oneThing. Protein er på 6 af 7 dage, søvn 8,1 t i snit og energi 2,7 ud af 5 er lavt men acceptabelt under en hård cykeluge.",
+      "text": "6 drikkedage på 7 og 3 i træk under cuttet er det eneste der halter — 0 AF-dage indtil nu denne uge. Søvn og protein er flot.",
       "refs": [
-        5.0,
-        3.0,
         6.0,
-        8.1,
-        2.7
+        7.0,
+        3.0,
+        0.0
       ]
     },
-    "bigPicture": "Uge 40, BASE/TRANSITION — Mallorca dag 4 er gennemført; alkohol-klyngen er det eneste der kræver handling i dag.",
+    "bigPicture": "BASE/TRANSITION uge 40, dag 4 på Mallorca — alkohol er den eneste trussel mod cut og restitution nu.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "alcohol_cluster",
         "level": "act",
-        "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
+        "message": "3 drikkedage i træk 28/9–30/9 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut-tjek: 5 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+        "message": "Cut-tjek: 6 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
       }
@@ -11233,7 +11235,7 @@
       "Næste uge (41, RECOVERY): TSS-mål 271 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-30T16:41:15Z"
+    "generatedAt": "2026-09-30T21:14:52Z"
   },
   "proposals": [],
   "ftp": {
