@@ -1,28 +1,28 @@
 {
   "meta": {
-    "updated": "2026-09-30 01:53",
+    "updated": "2026-09-30 06:20",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
-    "dayName": "Tirsdag",
-    "date": "29. sep",
+    "dayName": "Onsdag",
+    "date": "30. sep",
     "rhrField": "restingHR",
     "nextRace": {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "daysTo": 159,
+      "daysTo": 158,
       "priority": "C"
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "phase": "TRANSITION",
-    "programDay": 23,
+    "programDay": 24,
     "programDays": 357,
     "isoWeek": 40
   },
   "kpis": {
     "weight": {
-      "value": "72,0",
+      "value": "71,9",
       "unit": "kg",
       "sub": "forventet 72,0 · på plan",
       "color": "#27AE60"
@@ -30,25 +30,25 @@
     "fat": {
       "value": "21,6",
       "unit": "%",
-      "sub": "14d-snit · forventet 21,8",
+      "sub": "14d-snit · forventet 21,7",
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "46,9",
+      "value": "49,8",
       "unit": "",
       "sub": "Uge 40-mål 55 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "0,3",
+      "value": "-11,4",
       "unit": "",
-      "sub": "Form · CTL−ATL, frisk >0",
-      "color": "#27AE60"
+      "sub": "Hård blok · CTL−ATL, frisk >0",
+      "color": "#E67E22"
     },
     "sleep": {
-      "value": "7,2",
+      "value": "9,2",
       "unit": "t",
-      "sub": "Snit 7d 7,9t · mål 7t",
+      "sub": "Snit 7d 8,1t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "50,6",
+      "value": "49,7",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -72,7 +72,7 @@
     "tssComp": {
       "value": "110",
       "unit": "TSS",
-      "sub": "110 af 669 planlagt TSS",
+      "sub": "110 af 652 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -96,11 +96,11 @@
     "ftp": {
       "value": "278",
       "unit": "W",
-      "sub": "3,86 W/kg · mål 278 (TRANSITION) · test 8/10",
+      "sub": "3,87 W/kg · mål 278 (TRANSITION) · test 8/10",
       "color": "#27AE60"
     },
     "protein": {
-      "value": "7",
+      "value": "6",
       "unit": "/7",
       "sub": "3/3-dage · 4 uger 3,8",
       "color": "#27AE60"
@@ -111,25 +111,17 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 40, BASE/TRANSITION uge 2 af 2 på Mallorca — de lange Z2-cykelture onsdag og torsdag er ugens kerne. {HL} Styrke og løb er begge gennemført i dag — styrke 20 min (plan: 25) og løb 43 min (plan: 45).",
-  "coachHighlight": "Alle dagens pas er i hus — spis et protein-måltid nu og læg dig til at sove senest 22:30.",
+  "coachSpeech": "Uge 40, meso 2/2 af BASE — Mallorca Z2-uge, dagens lange pas er ugens tyngdepunkt. {HL} 4 pas gennemført, ingen misset. Dagens pas er ugens lange: 240 min cykel Z2 med Sa Calobra.",
+  "coachHighlight": "Cykel Z2 240 min — Lluc–Pollença–Sa Calobra i Z2. Hold dig i Z2 hele vejen op ad Sa Calobra, ingen PR-forsøg.",
   "weekFocus": "Alkoholfri uge — lad Z2 og søvn gøre arbejdet",
   "today": [
     {
-      "discipline": "strength",
-      "title": "Styrke A · Functional 4 · 2 runder",
+      "discipline": "bike",
+      "title": "Cykel Z2 240 min Mallorca",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": true
-    },
-    {
-      "discipline": "run",
-      "title": "Løb Z2 45 min",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
+      "completed": false
     }
   ],
   "week_sessions": [
@@ -170,7 +162,6 @@
       "planned_tss": 17,
       "planned_mins": 25,
       "planned_distance_m": null,
-      "today": true,
       "completion": "done",
       "completion_pct": 80,
       "actual_tss": 3,
@@ -185,7 +176,6 @@
       "planned_tss": 41,
       "planned_mins": 45,
       "planned_distance_m": null,
-      "today": true,
       "completion": "done",
       "completion_pct": 107,
       "actual_tss": 44,
@@ -196,19 +186,20 @@
     {
       "day": "Ons",
       "disc": "bike",
-      "label": "Cykel Z2 180 min Mallorca",
+      "label": "Cykel Z2 240 min Mallorca",
       "done": false,
-      "planned_tss": 135,
-      "planned_mins": 180,
-      "planned_distance_m": null
+      "planned_tss": 171,
+      "planned_mins": 240,
+      "planned_distance_m": null,
+      "today": true
     },
     {
       "day": "Tor",
       "disc": "bike",
-      "label": "Cykel Z2 240 min Mallorca",
+      "label": "Cykel Z2 180 min Mallorca",
       "done": false,
-      "planned_tss": 180,
-      "planned_mins": 240,
+      "planned_tss": 127,
+      "planned_mins": 180,
       "planned_distance_m": null
     },
     {
@@ -243,14 +234,9 @@
     49.1,
     49.9,
     46.5,
-    46.9
+    49.8
   ],
   "weightHistory": [
-    {
-      "date": "2026-07-02",
-      "v": 72.5,
-      "real": true
-    },
     {
       "date": "2026-07-03",
       "v": 72.5,
@@ -583,14 +569,10 @@
     },
     null,
     null,
+    null,
     null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-07-02",
-      "v": 50.0,
-      "real": true
-    },
     {
       "date": "2026-07-03",
       "v": 52.0,
@@ -1035,14 +1017,14 @@
       "date": "2026-09-29",
       "v": 45.0,
       "real": true
+    },
+    {
+      "date": "2026-09-30",
+      "v": 52.0,
+      "real": true
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-07-02",
-      "v": 6.2,
-      "real": true
-    },
     {
       "date": "2026-07-03",
       "v": 6.6,
@@ -1487,14 +1469,14 @@
       "date": "2026-09-29",
       "v": 7.2,
       "real": true
+    },
+    {
+      "date": "2026-09-30",
+      "v": 9.2,
+      "real": true
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-07-02",
-      "v": -16.6,
-      "real": true
-    },
     {
       "date": "2026-07-03",
       "v": -11.8,
@@ -1937,7 +1919,12 @@
     },
     {
       "date": "2026-09-29",
-      "v": 0.2,
+      "v": 2.5,
+      "real": true
+    },
+    {
+      "date": "2026-09-30",
+      "v": -11.5,
       "real": true
     }
   ],
@@ -2246,7 +2233,6 @@
           "planned_tss": 17,
           "planned_mins": 25,
           "planned_distance_m": null,
-          "today": true,
           "completion": "done",
           "completion_pct": 80,
           "actual_tss": 3,
@@ -2261,7 +2247,6 @@
           "planned_tss": 41,
           "planned_mins": 45,
           "planned_distance_m": null,
-          "today": true,
           "completion": "done",
           "completion_pct": 107,
           "actual_tss": 44,
@@ -2272,19 +2257,20 @@
         {
           "day": "Ons",
           "disc": "bike",
-          "label": "Cykel Z2 180 min Mallorca",
+          "label": "Cykel Z2 240 min Mallorca",
           "done": false,
-          "planned_tss": 135,
-          "planned_mins": 180,
-          "planned_distance_m": null
+          "planned_tss": 171,
+          "planned_mins": 240,
+          "planned_distance_m": null,
+          "today": true
         },
         {
           "day": "Tor",
           "disc": "bike",
-          "label": "Cykel Z2 240 min Mallorca",
+          "label": "Cykel Z2 180 min Mallorca",
           "done": false,
-          "planned_tss": 180,
-          "planned_mins": 240,
+          "planned_tss": 127,
+          "planned_mins": 180,
           "planned_distance_m": null
         },
         {
@@ -2929,7 +2915,7 @@
       "iso": 40,
       "monday": "2026-09-28",
       "done": 0,
-      "total": 2,
+      "total": 3,
       "label": "Uge 40"
     }
   ],
@@ -2941,11 +2927,6 @@
     "actual_total": 179.0
   },
   "fatHistory": [
-    {
-      "date": "2026-07-02",
-      "v": 21.7,
-      "real": true
-    },
     {
       "date": "2026-07-03",
       "v": 22.6,
@@ -3278,23 +3259,17 @@
     },
     null,
     null,
+    null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 23 af 357 · Tirsdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE/TRANSITION uge 2 af 2 på Mallorca — de lange Z2-cykelture onsdag og torsdag er ugens kerne.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke og løb er begge gennemført i dag — styrke 20 min (plan: 25) og løb 43 min (plan: 45). Ugen er i BASE/TRANSITION og TSS-loftet er ikke det vigtigste her; CTL på 46,9 er 8,1 under målet på 55,0, men de lange Mallorca-pas onsdag og torsdag bygger det videre. Readiness er LOW i dag — det er godt at begge pas var lette.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt er 0,1 kg over cutplanen (72,0 kg forventet). Fedtprocent og vægt er begge stabile — ændringen den seneste måned er under tærsklerne.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage på 7 dage med 3 i træk — det presser HRV direkte. AF resten af ugen. Protein er registreret alle 7 dage, søvn i nat var 7,2 timer.</p>",
-  "coachAssessmentTs": "01:53",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 24 af 357 · Onsdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, meso 2/2 af BASE — Mallorca Z2-uge, dagens lange pas er ugens tyngdepunkt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>4 pas gennemført, ingen misset. Dagens pas er ugens lange: 240 min cykel Z2 med Sa Calobra. CTL er 49,8 mod mål på 55,0 — det er BASE, men denne uge er en udendørs Z2-uge med loft på 0 hårde/moderate pas, så opbygningen fortsætter planmæssigt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,5 kg nedad den seneste måned og 0,5 procentpoint op i fedt — vægten bevæger sig i den rigtige retning, fedtprocenten er stabil. Du er præcis på plan (deltaVsPlan = 0,0 kg).</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage på de seneste 7 dage, heraf 3 i træk — hold dig AF resten af ugen. Protein dækket 6 ud af 7 dage, søvn er god.</p>",
+  "coachAssessmentTs": "06:20",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "alcohol_cluster",
       "level": "critical",
       "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 45,0 ms — 11% under 7d-snit (50,6 ms). Kroppen er presset.",
       "action": null,
       "source": "rule"
     },
@@ -3306,7 +3281,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 0.3,
+  "tsb": -11.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3335,17 +3310,16 @@
   ],
   "coachAssessmentLastActId": "i191549689",
   "weekFocusWeek": 4,
-  "coachAssessmentPlanAtGen": "Styrke A · Functional 4 · 2 runder",
+  "coachAssessmentPlanAtGen": "Cykel Z2 240 min Mallorca",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
     null,
     null,
-    72.63,
+    72.73,
     72.67,
-    72.64,
-    72.58,
-    72.56,
+    72.6,
+    72.57,
     72.57,
     72.58,
     72.5,
@@ -3428,16 +3402,16 @@
     72.51,
     72.38,
     72.22,
-    72.0
+    72.0,
+    71.93
   ],
   "fatMovingAvg7": [
     null,
     null,
-    21.87,
-    21.9,
-    21.82,
-    21.83,
-    21.83,
+    21.97,
+    21.85,
+    21.86,
+    21.85,
     21.85,
     21.7,
     21.8,
@@ -3520,7 +3494,8 @@
     21.76,
     21.68,
     21.58,
-    21.75
+    21.75,
+    21.97
   ],
   "ctlPlan": [
     47,
@@ -3587,8 +3562,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-09-29T23:53:39.045465",
-  "coachAssessmentTsFull": "2026-09-29T23:53:39",
+  "credentialsCheckedTs": "2026-09-30T04:21:10.291334",
+  "coachAssessmentTsFull": "2026-09-30T04:21:10",
   "coachAssessmentWeightAtGen": 72.1,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3684,7 +3659,7 @@
     {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "days": 159,
+      "days": 158,
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
@@ -3693,7 +3668,7 @@
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
       "date": "2027-06-06",
-      "days": 250,
+      "days": 249,
       "priority": "B",
       "distance": "130km / 4500hm",
       "registered": true,
@@ -3702,7 +3677,7 @@
     {
       "name": "Tour des Stations Ultrafondo",
       "date": "2027-08-28",
-      "days": 333,
+      "days": 332,
       "priority": "A",
       "distance": "242km / 8848hm",
       "registered": false,
@@ -3960,21 +3935,16 @@
       "thin": true
     },
     "bike": {
-      "current": 1.424,
-      "previous": null,
-      "pct": null,
-      "n": 9,
-      "n_prev": 2,
+      "current": 1.42,
+      "previous": 1.508,
+      "pct": -5.8,
+      "n": 8,
+      "n_prev": 3,
       "window": 42,
       "thin": false
     }
   },
   "rhrHistory": [
-    {
-      "date": "2026-07-02",
-      "v": 43,
-      "real": true
-    },
     {
       "date": "2026-07-03",
       "v": 42,
@@ -4419,6 +4389,11 @@
       "date": "2026-09-29",
       "v": 46,
       "real": true
+    },
+    {
+      "date": "2026-09-30",
+      "v": 43,
+      "real": true
     }
   ],
   "blockType": "BASE",
@@ -4483,13 +4458,6 @@
     "strengthPerWeek": 2
   },
   "checkinLog": [
-    {
-      "date": "2026-09-02",
-      "alkohol": 1,
-      "protein": null,
-      "energi": null,
-      "sult": null
-    },
     {
       "date": "2026-09-03",
       "alkohol": 0,
@@ -4678,11 +4646,17 @@
       "protein": 2,
       "energi": 4,
       "sult": null
+    },
+    {
+      "date": "2026-09-30",
+      "alkohol": null,
+      "protein": null,
+      "energi": null,
+      "sult": null
     }
   ],
-  "energy7": 2.4,
+  "energy7": 2.7,
   "af_kind": {
-    "2026-09-02": "drak",
     "2026-09-04": "faa",
     "2026-09-05": "faa",
     "2026-09-06": "faa",
@@ -4698,7 +4672,7 @@
     "2026-09-29": "faa"
   },
   "planTab": {
-    "today": "2026-09-29",
+    "today": "2026-09-30",
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "currentWeek": 4,
@@ -4827,7 +4801,7 @@
         },
         "keySessions": [
           "Cykel Z2 120 min Mallorca",
-          "Cykel Z2 180 min Mallorca"
+          "Cykel Z2 240 min Mallorca"
         ],
         "flags": [
           {
@@ -6988,40 +6962,11 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": true
+            "isToday": false
           },
           {
             "date": "2026-09-30",
             "weekday": "Ons",
-            "entries": [
-              {
-                "id": "e9ae10a3",
-                "name": "Cykel Z2 180 min Mallorca",
-                "type": "Ride",
-                "disc": "bike",
-                "mins": 180,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Mallorca dag 2: Coll de Sóller + Puig Major i Z2 (66-72 % FTP, kadence 74+). Spis hvert 20. min",
-                "isKey": true,
-                "optional": false,
-                "start": "07:00",
-                "startFixed": false
-              }
-            ],
-            "restNote": null,
-            "restId": null,
-            "isToday": false
-          },
-          {
-            "date": "2026-10-01",
-            "weekday": "Tor",
             "entries": [
               {
                 "id": "29374778",
@@ -7038,6 +6983,35 @@
                 "actualMins": null,
                 "actualTss": null,
                 "note": "Mallorca dag 4 — ugens lange: Lluc–Pollença–Sa Calobra i Z2. INGEN PR-forsøg på Sa Calobra, det gemmes til uge 13. Energiplan som Depottur",
+                "isKey": true,
+                "optional": false,
+                "start": "07:00",
+                "startFixed": false
+              }
+            ],
+            "restNote": null,
+            "restId": null,
+            "isToday": true
+          },
+          {
+            "date": "2026-10-01",
+            "weekday": "Tor",
+            "entries": [
+              {
+                "id": "e9ae10a3",
+                "name": "Cykel Z2 180 min Mallorca",
+                "type": "Ride",
+                "disc": "bike",
+                "mins": 180,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
+                "note": "Mallorca dag 2: Coll de Sóller + Puig Major i Z2 (66-72 % FTP, kadence 74+). Spis hvert 20. min",
                 "isKey": true,
                 "optional": false,
                 "start": "07:00",
@@ -10157,7 +10131,7 @@
           "week": 4,
           "programId": "tds-2027",
           "start": "2026-09-28",
-          "ctl": 46.9
+          "ctl": 49.8
         }
       ],
       "projection": [
@@ -10630,44 +10604,42 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-09-29T23:53:39Z",
-    "inputsHash": "d22f160d6932633a74deeb65d9d0a8d81fdef2e8",
+    "generatedAt": "2026-09-30T04:21:10Z",
+    "inputsHash": "4b79fda76535ed56f40a88c393bcba4c639ec396",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Alle dagens pas er i hus — spis et protein-måltid nu og læg dig til at sove senest 22:30.",
-      "why": "HRV er 11% under 7-dages snit og readiness er LOW — søvn er det eneste der genudbedrer det til morgen."
+      "action": "Cykel Z2 240 min — Lluc–Pollença–Sa Calobra i Z2. Hold dig i Z2 hele vejen op ad Sa Calobra, ingen PR-forsøg.",
+      "why": "Det er ugens lange pas og kernen i Mallorca-ugen — Z2 hele vejen er planen, Sa Calobra-PR gemmes til uge 13."
     },
     "training": {
-      "text": "Styrke og løb er begge gennemført i dag — styrke 20 min (plan: 25) og løb 43 min (plan: 45). Ugen er i BASE/TRANSITION og TSS-loftet er ikke det vigtigste her; CTL på 46,9 er 8,1 under målet på 55,0, men de lange Mallorca-pas onsdag og torsdag bygger det videre. Readiness er LOW i dag — det er godt at begge pas var lette.",
+      "text": "4 pas gennemført, ingen misset. Dagens pas er ugens lange: 240 min cykel Z2 med Sa Calobra. CTL er 49,8 mod mål på 55,0 — det er BASE, men denne uge er en udendørs Z2-uge med loft på 0 hårde/moderate pas, så opbygningen fortsætter planmæssigt.",
       "refs": [
-        20.0,
-        25.0,
-        43.0,
-        45.0,
-        46.9,
+        240.0,
+        49.8,
         55.0,
-        8.1
+        0.0
       ]
     },
     "body": {
-      "text": "7-dages snit på vægt er 0,1 kg over cutplanen (72,0 kg forventet). Fedtprocent og vægt er begge stabile — ændringen den seneste måned er under tærsklerne.",
+      "text": "7-dages snit er 0,5 kg nedad den seneste måned og 0,5 procentpoint op i fedt — vægten bevæger sig i den rigtige retning, fedtprocenten er stabil. Du er præcis på plan (deltaVsPlan = 0,0 kg).",
       "refs": [
-        0.1,
-        72.0
+        0.5,
+        0.5,
+        0.0
       ]
     },
     "habits": {
-      "text": "5 drikkedage på 7 dage med 3 i træk — det presser HRV direkte. AF resten af ugen. Protein er registreret alle 7 dage, søvn i nat var 7,2 timer.",
+      "text": "5 drikkedage på de seneste 7 dage, heraf 3 i træk — hold dig AF resten af ugen. Protein dækket 6 ud af 7 dage, søvn er god.",
       "refs": [
         5.0,
         7.0,
         3.0,
-        7.0,
-        7.2
+        6.0,
+        7.0
       ]
     },
-    "bigPicture": "Uge 40, BASE/TRANSITION uge 2 af 2 på Mallorca — de lange Z2-cykelture onsdag og torsdag er ugens kerne.",
+    "bigPicture": "Uge 40, meso 2/2 af BASE — Mallorca Z2-uge, dagens lange pas er ugens tyngdepunkt.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10675,13 +10647,6 @@
         "type": "alcohol_cluster",
         "level": "act",
         "message": "3 drikkedage i træk 24/9–26/9 — klynger rammer HRV hårdere end spredte dage.",
-        "action": null,
-        "source": "rule"
-      },
-      {
-        "type": "hrv",
-        "level": "warn",
-        "message": "HRV 45,0 ms — 11% under 7d-snit (50,6 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
@@ -10705,18 +10670,9 @@
     "text": "Mallorca: hold Z2-disciplin hele vejen — ingen udbrud"
   },
   "strengthLog": {
-    "from": "2026-09-01",
-    "to": "2026-09-29",
+    "from": "2026-09-02",
+    "to": "2026-09-30",
     "sessions": [
-      {
-        "date": "2026-09-01",
-        "name": "Styrketræning",
-        "source": "activity",
-        "note": "",
-        "rpe": null,
-        "complete": null,
-        "template": null
-      },
       {
         "date": "2026-09-12",
         "name": "Styrketræning",
@@ -10756,7 +10712,7 @@
     ]
   },
   "body": {
-    "asOf": "2026-09-29",
+    "asOf": "2026-09-30",
     "glidepath": {
       "phase": "cut",
       "cutWeek": 2,
@@ -10769,13 +10725,13 @@
       "targetKg": 68.0,
       "expectedKg": 72.0,
       "corridorKg": 0.5,
-      "avg7": 72.0,
+      "avg7": 71.9,
       "avg7Date": "2026-09-26",
-      "delta": 0.0,
+      "delta": -0.1,
       "status": "plan",
       "note": null,
       "ratePerWeek": -0.22,
-      "actualRate4w": -0.06,
+      "actualRate4w": -0.12,
       "series": [
         {
           "date": "2026-09-21",
@@ -10872,7 +10828,7 @@
     "fat": {
       "avg14": 21.6,
       "avg14Change28d": 0.2,
-      "expected": 21.8,
+      "expected": 21.7,
       "target": 16.0,
       "corridorPp": 0.5,
       "status": "plan",
@@ -10880,7 +10836,7 @@
     },
     "ffm": {
       "now": 56.7,
-      "change28d": -0.2,
+      "change28d": -0.1,
       "target": 57.1,
       "status": "ok",
       "baseline": 56.7,
@@ -10904,13 +10860,13 @@
       "signals": {
         "rate": {
           "level": null,
-          "value": -0.08,
-          "text": "−0,08 kg/uge (2 uger)"
+          "value": -0.05,
+          "text": "−0,05 kg/uge (2 uger)"
         },
         "ffm": {
           "level": null,
-          "value": -0.2,
-          "text": "−0,2 kg på 4 uger"
+          "value": -0.1,
+          "text": "−0,1 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -10923,10 +10879,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 0.4,
-            "hrvPct": -8.5
+            "rhr": 0.1,
+            "hrvPct": -9.6
           },
-          "text": "hvilepuls 0 · HRV −9 % (14 dage)"
+          "text": "hvilepuls 0 · HRV −10 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11124,62 +11080,62 @@
       }
     ],
     "next": {
-      "ab": "a",
-      "templateId": "styrke-fs4-a-2r",
-      "name": "Styrke A · Functional 4 · 2 runder",
+      "ab": "b",
+      "templateId": "styrke-fs4-b-2r",
+      "name": "Styrke B · Functional 4 · 2 runder",
       "rounds": 2,
-      "date": "2026-09-29",
-      "reasoning": "Planlagt 29/9: Styrke A · Functional 4 · 2 runder",
+      "date": "2026-10-04",
+      "reasoning": "Planlagt 4/10: Styrke B · Functional 4 · 2 runder",
       "recovery": false,
       "exercises": [
         {
-          "name": "Thruster",
-          "load": "2×5 kg DB",
-          "reps": 10,
+          "name": "RDL",
+          "load": "12,5 kg KB",
+          "reps": 12,
           "unit": "reps",
           "group": "ben",
-          "baseLoad": "2×5 kg DB",
-          "baseReps": 10,
+          "baseLoad": "12,5 kg KB",
+          "baseReps": 12,
           "capped": false
         },
         {
-          "name": "Renegade row",
-          "load": "10 kg DB",
+          "name": "Split squat",
+          "load": "12,5 kg KB goblet",
           "reps": 8,
-          "unit": "reps/side",
-          "group": "core",
-          "baseLoad": "10 kg DB",
+          "unit": "reps/ben",
+          "group": "ben",
+          "baseLoad": "12,5 kg KB goblet",
           "baseReps": 8,
           "capped": false
         },
         {
-          "name": "KB swing",
-          "load": "12,5 kg KB",
-          "reps": 15,
+          "name": "Pullover",
+          "load": "7 kg DB",
+          "reps": 12,
           "unit": "reps",
-          "group": "ben",
-          "baseLoad": "12,5 kg KB",
-          "baseReps": 15,
+          "group": "overkrop",
+          "baseLoad": "7 kg DB",
+          "baseReps": 12,
           "capped": false
         },
         {
-          "name": "KB row",
-          "load": "10 kg DB",
-          "reps": 10,
-          "unit": "reps/side",
+          "name": "Bænkpres",
+          "load": "2×7 kg DB",
+          "reps": 12,
+          "unit": "reps",
           "group": "overkrop",
-          "baseLoad": "10 kg DB",
-          "baseReps": 10,
+          "baseLoad": "2×7 kg DB",
+          "baseReps": 12,
           "capped": false
         },
         {
-          "name": "Press",
-          "load": "2×5 kg DB",
-          "reps": 10,
-          "unit": "reps",
-          "group": "overkrop",
-          "baseLoad": "2×5 kg DB",
-          "baseReps": 10,
+          "name": "Farmers walk",
+          "load": "2×10 kg DB",
+          "reps": 40,
+          "unit": "m",
+          "group": "core",
+          "baseLoad": "2×10 kg DB",
+          "baseReps": 40,
           "capped": false
         }
       ],
@@ -11250,28 +11206,28 @@
   },
   "weekTss": {
     "actual": 110,
-    "planned": 669
+    "planned": 652
   },
   "martinMail": {
     "week": 4,
     "isoWeek": 40,
     "lines": [
-      "Uge 40: TSS 110 af 669 (16 %) · CTL 46,9 (mål 55) · TSB +0,3",
-      "Vægt 7d 72,0 kg · fedt 14d 21,6 % · på plan mod glidepath (72,0)",
-      "HRV 7d 51 (28d 53) · hvilepuls 45 · søvn 7d 7,9 t",
-      "AF 2/7 · protein 3/3 7/7 · aftensult —/7",
+      "Uge 40: TSS 110 af 652 (17 %) · CTL 49,8 (mål 55) · TSB −11,4",
+      "Vægt 7d 71,9 kg · fedt 14d 21,6 % · på plan mod glidepath (72,0)",
+      "HRV 7d 50 (28d 52) · hvilepuls 45 · søvn 7d 8,1 t",
+      "AF 1/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: warn — 5 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (41, RECOVERY): TSS-mål 271 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
-      "Planændringer siden sidst: 1 — se martin_signals.md"
+      "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-09-29T23:53:19Z"
+    "generatedAt": "2026-09-30T04:20:52Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 278,
-    "wkg": 3.86,
-    "weightAvg7": 72.0,
+    "wkg": 3.87,
+    "weightAvg7": 71.9,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
@@ -11327,8 +11283,8 @@
     ]
   },
   "fitnessLive": {
-    "date": "2026-09-29",
-    "ctl": 46.9,
-    "atl": 46.6
+    "date": "2026-09-30",
+    "ctl": 49.8,
+    "atl": 61.2
   }
 }
