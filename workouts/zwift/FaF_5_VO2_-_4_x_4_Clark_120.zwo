@@ -1,0 +1,15 @@
+<workout_file>
+    <author>K. Hammerby / Fast as 50</author>
+    <name>FaF 5 VO2 - 4 x 4 Clark 120</name>
+    <description>Hårdere 4x4 fra Clark Cycles. Samme format som klassikeren, men 120 % i stedet for 110 %. Brug den som progression, når 110 % føles kontrolleret.  Kilde: clarkcycles (S. Clark). 120 % er aflæst fra et skærmbillede — tjek mod FTP-testen 8/10 før første brug.</description>
+    <sportType>bike</sportType>
+    <tags><tag name="vo2"/></tags>
+    <workout>
+        <Warmup Duration="600" PowerLow="0.5000" PowerHigh="0.7500"/>
+        <IntervalsT Repeat="3" OnDuration="30" OffDuration="120" OnPower="1.1000" OffPower="0.5000"/>
+        <IntervalsT Repeat="4" OnDuration="240" OffDuration="240" OnPower="1.2000" OffPower="0.5000">
+            <textevent timeoffset="0" message="4 x 4 min @ 120% — jævnt fra sekund et"/>
+        </IntervalsT>
+        <Cooldown Duration="600" PowerLow="0.6000" PowerHigh="0.4000"/>
+    </workout>
+</workout_file>

@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "updated": "2026-09-11",
+    "updated": "2026-10-01",
     "target": "Tour des Stations Ultrafondo, august 2027",
     "ftpBasis": "indoor",
     "categories": {
@@ -1415,6 +1415,74 @@
         {
           "type": "ramp",
           "min": 8,
+          "from": 60,
+          "to": 40,
+          "kind": "cooldown",
+          "text": "Cool-down"
+        }
+      ]
+    },
+    {
+      "id": "vo2_4x4_clark",
+      "name": "FaF 5 VO2 - 4 x 4 Clark 120",
+      "category": "vo2",
+      "load": "haard",
+      "est_min": 59,
+      "purpose": "Hårdere 4x4 fra Clark Cycles. Samme format som klassikeren, men 120 % i stedet for 110 %. Brug den som progression, når 110 % føles kontrolleret.",
+      "erg": true,
+      "notes": "Kilde: clarkcycles (S. Clark). 120 % er aflæst fra et skærmbillede — tjek mod FTP-testen 8/10 før første brug.",
+      "tags": [
+        "vo2"
+      ],
+      "steps": [
+        {
+          "type": "ramp",
+          "min": 10,
+          "from": 50,
+          "to": 75,
+          "kind": "warmup",
+          "text": "Varm-op"
+        },
+        {
+          "type": "reps",
+          "n": 3,
+          "steps": [
+            {
+              "type": "steady",
+              "min": 0.5,
+              "pct": 110,
+              "text": "Åbner"
+            },
+            {
+              "type": "steady",
+              "min": 2,
+              "pct": 50,
+              "text": "Pause"
+            }
+          ]
+        },
+        {
+          "type": "reps",
+          "n": 4,
+          "steps": [
+            {
+              "type": "steady",
+              "min": 4,
+              "pct": 120,
+              "text": "4 min"
+            },
+            {
+              "type": "steady",
+              "min": 4,
+              "pct": 50,
+              "text": "Pause"
+            }
+          ],
+          "text": "4 x 4 min @ 120% — jævnt fra sekund et"
+        },
+        {
+          "type": "ramp",
+          "min": 10,
           "from": 60,
           "to": 40,
           "kind": "cooldown",

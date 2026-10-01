@@ -1,0 +1,104 @@
+{
+  "id": "2026-10-01-vo2-clark-8dec",
+  "title": "Tir 8/12: VO2 4x4 skifter til Clark 120 %",
+  "status": "pending",
+  "createdAt": "2026-10-01T04:30:00Z",
+  "createdBy": "claude",
+  "note": "Kennet 1/10: progression i 4x4 — 10/11 bliver klassisk 110 %, 8/12 (VO2-blok 5) skifter til Clark-versionen på 120 %. Nyt bibliotekspas vo2_4x4_clark. Ingen andre dage ændres.",
+  "summary": [
+    "Tir 8/12: VO2 4x4 110 % → Clark 4x4 120 % (vo2_4x4_clark)",
+    "Tir 10/11 uændret (vo2_4x4, 110 %)"
+  ],
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-12-08",
+      "entries": [
+        {
+          "workout": {
+            "name": "FaF 5 VO2 - 4 x 4 Clark 120",
+            "type": "Ride",
+            "moving_time": 3570,
+            "description": "- Varm-op 10m ramp 50-75% FTP\n\n3x \n- Åbner 30s 110% FTP\n- Pause 2m 50% FTP\n\n\n4x 4 x 4 min @ 120% — jævnt fra sekund et\n- 4 min 4m 120% FTP\n- Pause 4m 50% FTP\n\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Hårdere 4x4 fra Clark Cycles. Samme format som klassikeren, men 120 % i stedet for 110 %. Brug den som progression, når 110 % føles kontrolleret.\n\nKilde: clarkcycles (S. Clark). 120 % er aflæst fra et skærmbillede — tjek mod FTP-testen 8/10 før første brug.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 50,
+                    "end": 75,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "reps": 3,
+                  "text": "3x",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 110,
+                        "end": 110,
+                        "units": "%ftp"
+                      },
+                      "duration": 30,
+                      "text": "Åbner 110% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 50,
+                        "end": 50,
+                        "units": "%ftp"
+                      },
+                      "duration": 120,
+                      "text": "Pause 50% FTP"
+                    }
+                  ]
+                },
+                {
+                  "reps": 4,
+                  "text": "4 x 4 min @ 120% — jævnt fra sekund et",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 120,
+                        "end": 120,
+                        "units": "%ftp"
+                      },
+                      "duration": 240,
+                      "text": "4 min 120% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 50,
+                        "end": 50,
+                        "units": "%ftp"
+                      },
+                      "duration": 240,
+                      "text": "Pause 50% FTP"
+                    }
+                  ]
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 60,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "libraryId": "vo2_4x4_clark",
+          "note": "HIT — kun hvis HRV/RHR er normal i morges. Ellers byt til Z2 grundtur 80"
+        }
+      ]
+    }
+  ]
+}
