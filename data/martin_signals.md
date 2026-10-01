@@ -91,3 +91,6 @@
 ### Planændring 30/09 03:13
 - **onsdag 2026-09-30** (uge 4, move): Cykel Z2 180 min Mallorca (180 min) [langt] → Cykel Z2 240 min Mallorca (240 min) [langt]
 - **torsdag 2026-10-01** (uge 4, move): Cykel Z2 240 min Mallorca (240 min) [langt] → Cykel Z2 180 min Mallorca (180 min) [langt]
+
+### Planændring 01/10 06:26
+- **tirsdag 2026-12-08** (uge 14, apply_proposal): FaF 5 VO2 - 4 x 4 (62 min) [hårdt] → FaF 5 VO2 - 4 x 4 Clark 120 (59 min) [hårdt]
