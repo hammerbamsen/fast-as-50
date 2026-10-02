@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-02 11:53",
+    "updated": "2026-10-02 12:39",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "0",
+      "value": "1",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 4,0",
+      "sub": "af 6 denne uge · snit 4 uger 4,0 · streak 1",
       "color": "#59182A"
     },
     "ftp": {
@@ -107,12 +107,12 @@
     }
   },
   "af": {
-    "weekDone": 0,
+    "weekDone": 1,
     "target": 6,
-    "streak": 0
+    "streak": 1
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 40. {HL} Fokus: 250 af 652 TSS er i hus — 3 sessioner tilbage, heriblandt Cykel Z2 90 min Mallorca, FaF 1 Z2 - Depottur 2 t. Vægt på 72,1 kg (målt 26/9) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 5 afsluttede dage — 6 mangler i 2 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Sæt målet højt, men sæt i dag realistisk.\"",
-  "coachHighlight": "Søvn på 8,0 timer er solid",
+  "coachSpeech": "TRANSITION uge 40 (2/2), rejsedag hjem — AF-mønsteret er det eneste der kræver handling nu. {HL} Ingen planlagte pas i dag — rejsedag hjem fra Mallorca. Ugen har 6 gennemførte pas og 3 tilbage (lørdag og søndag).",
+  "coachHighlight": "Hold dig alkoholfri i dag og i morgen — det er de to resterende dage i ugen.",
   "weekFocus": "Alkoholfri uge — lad Z2 og søvn gøre arbejdet",
   "today": [
     {
@@ -2059,7 +2059,8 @@
     "2026-09-28": 1,
     "2026-09-29": 1,
     "2026-09-30": 1,
-    "2026-10-01": 1
+    "2026-10-01": 1,
+    "2026-10-02": 0
   },
   "all_weeks": {
     "2": {
@@ -2940,7 +2941,7 @@
       "week": 4,
       "iso": 40,
       "monday": "2026-09-28",
-      "done": 0,
+      "done": 1,
       "total": 5,
       "label": "Uge 40"
     }
@@ -3280,19 +3281,23 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 26 af 357 · Fredag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE/TRANSITION — Mallorca-blokken er i hus; det vigtigste nu er alkoholfri hjemkomst og klar til søndagens depottur.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas i dag — rejsedag hjem fra Mallorca. Ugen har 6 gennemførte pas uden misset. TSS-procenten er lav (250 af 652 planlagt), men det afspejler Mallorca-blokken med reducerede plantal og to resterende pas lørdag og søndag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 71,9 kg mod forventet 71,9 kg — du er præcis på plan. Fedtprocenten på 7-dages snit er steget 0,5 procentpoint den seneste måned — grænsen er nået, så hold raten og skru ikke yderligere ned for maden i en uge med restituion på programmet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage på 7 dage med 4 i træk er for meget under et cut — ingen 3+-dage denne uge, men klyngen koster HRV. Protein er i orden (6 af 7 dage). Søvn er på 8,0 timer i snit.</p>",
-  "coachAssessmentTs": "06:25",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 26 af 357 · Fredag · Uge 40</strong></p><p class=\"coach-sec coach-big\">TRANSITION uge 40 (2/2), rejsedag hjem — AF-mønsteret er det eneste der kræver handling nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen planlagte pas i dag — rejsedag hjem fra Mallorca. Ugen har 6 gennemførte pas og 3 tilbage (lørdag og søndag). TSS er 250 af 652 planlagt, men uge 41 er recovery, og TRANSITION-blokken prioriterer kvalitet over TSS-kvote. CTL er 49,7 mod mål 51,0 — en forskel på 1,3 point der er uproblematisk nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 71,9 kg mod forventet 71,9 kg — præcis på plan. Fedtprocent på 7-dages snit er steget 0,5 procentpoint den seneste måned — er ved tærsklen, men drevet mere af alkoholdagene end af maden.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>1 AF-dag af 6 i mål — 5 dage tilbage at rette op. 5 drikkedage på 7 dage, heraf 4 i træk, koster søvnkvalitet og muskelproteinsyntese. Protein er registreret 6 af 7 dage — solidt.</p>",
+  "coachAssessmentTs": "12:39",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 5 drikkedage på 7 dage · 4 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "4 drikkedage i træk 28/9–1/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "4 drikkedage i træk 28/9–1/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 5 drikkedage på 7 dage · 4 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": -8.6,
@@ -3576,10 +3581,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-02T09:53:47.565228",
-  "coachAssessmentTsFull": "2026-10-02T04:25:25",
+  "credentialsCheckedTs": "2026-10-02T10:40:15.771283",
+  "coachAssessmentTsFull": "2026-10-02T10:40:15",
   "coachAssessmentWeightAtGen": 72.1,
-  "coachAssessmentAfAtGen": 0,
+  "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 21.7,
   "zones": {
@@ -4663,13 +4668,13 @@
     },
     {
       "date": "2026-10-02",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 0,
+      "protein": 1,
+      "energi": 4,
       "sult": null
     }
   ],
-  "energy7": 3.3,
+  "energy7": 3.4,
   "af_kind": {
     "2026-09-05": "faa",
     "2026-09-06": "faa",
@@ -10152,203 +10157,203 @@
         },
         {
           "d": "2026-10-04",
-          "ctl": 49.4
+          "ctl": 49.3
         },
         {
           "d": "2026-10-05",
-          "ctl": 49.1
-        },
-        {
-          "d": "2026-10-06",
           "ctl": 48.9
         },
         {
-          "d": "2026-10-07",
+          "d": "2026-10-06",
           "ctl": 48.6
         },
         {
+          "d": "2026-10-07",
+          "ctl": 48.3
+        },
+        {
           "d": "2026-10-08",
-          "ctl": 48.4
+          "ctl": 48.0
         },
         {
           "d": "2026-10-09",
-          "ctl": 48.2
-        },
-        {
-          "d": "2026-10-10",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-10-11",
           "ctl": 47.7
         },
         {
+          "d": "2026-10-10",
+          "ctl": 47.4
+        },
+        {
+          "d": "2026-10-11",
+          "ctl": 47.2
+        },
+        {
           "d": "2026-10-12",
-          "ctl": 48.1
+          "ctl": 47.5
         },
         {
           "d": "2026-10-13",
-          "ctl": 48.4
+          "ctl": 47.8
         },
         {
           "d": "2026-10-14",
-          "ctl": 48.8
+          "ctl": 48.1
         },
         {
           "d": "2026-10-15",
-          "ctl": 49.1
+          "ctl": 48.3
         },
         {
           "d": "2026-10-16",
-          "ctl": 49.5
+          "ctl": 48.6
         },
         {
           "d": "2026-10-17",
-          "ctl": 49.8
+          "ctl": 48.9
         },
         {
           "d": "2026-10-18",
-          "ctl": 50.1
+          "ctl": 49.2
         },
         {
           "d": "2026-10-19",
-          "ctl": 50.4
+          "ctl": 49.5
         },
         {
           "d": "2026-10-20",
-          "ctl": 50.8
+          "ctl": 49.8
         },
         {
           "d": "2026-10-21",
-          "ctl": 51.1
+          "ctl": 50.1
         },
         {
           "d": "2026-10-22",
-          "ctl": 51.5
+          "ctl": 50.4
         },
         {
           "d": "2026-10-23",
-          "ctl": 51.8
+          "ctl": 50.7
         },
         {
           "d": "2026-10-24",
-          "ctl": 52.1
+          "ctl": 51.0
         },
         {
           "d": "2026-10-25",
-          "ctl": 52.4
+          "ctl": 51.3
         },
         {
           "d": "2026-10-26",
-          "ctl": 52.0
+          "ctl": 50.9
         },
         {
           "d": "2026-10-27",
-          "ctl": 51.7
+          "ctl": 50.6
         },
         {
           "d": "2026-10-28",
-          "ctl": 51.4
+          "ctl": 50.3
         },
         {
           "d": "2026-10-29",
-          "ctl": 51.1
+          "ctl": 50.0
         },
         {
           "d": "2026-10-30",
-          "ctl": 50.8
+          "ctl": 49.7
         },
         {
           "d": "2026-10-31",
-          "ctl": 50.5
+          "ctl": 49.4
         },
         {
           "d": "2026-11-01",
-          "ctl": 50.2
+          "ctl": 49.1
         },
         {
           "d": "2026-11-02",
-          "ctl": 50.5
+          "ctl": 49.4
         },
         {
           "d": "2026-11-03",
-          "ctl": 50.8
+          "ctl": 49.7
         },
         {
           "d": "2026-11-04",
-          "ctl": 51.1
+          "ctl": 50.0
         },
         {
           "d": "2026-11-05",
-          "ctl": 51.4
+          "ctl": 50.4
         },
         {
           "d": "2026-11-06",
-          "ctl": 51.7
+          "ctl": 50.7
         },
         {
           "d": "2026-11-07",
-          "ctl": 52.0
+          "ctl": 50.9
         },
         {
           "d": "2026-11-08",
-          "ctl": 52.3
+          "ctl": 51.2
         },
         {
           "d": "2026-11-09",
-          "ctl": 52.6
+          "ctl": 51.6
         },
         {
           "d": "2026-11-10",
-          "ctl": 52.9
+          "ctl": 51.9
         },
         {
           "d": "2026-11-11",
-          "ctl": 53.2
+          "ctl": 52.2
         },
         {
           "d": "2026-11-12",
-          "ctl": 53.5
+          "ctl": 52.6
         },
         {
           "d": "2026-11-13",
-          "ctl": 53.8
+          "ctl": 52.9
         },
         {
           "d": "2026-11-14",
-          "ctl": 54.1
+          "ctl": 53.2
         },
         {
           "d": "2026-11-15",
-          "ctl": 54.4
+          "ctl": 53.5
         },
         {
           "d": "2026-11-16",
-          "ctl": 54.8
+          "ctl": 53.9
         },
         {
           "d": "2026-11-17",
-          "ctl": 55.1
+          "ctl": 54.3
         },
         {
           "d": "2026-11-18",
-          "ctl": 55.5
+          "ctl": 54.6
         },
         {
           "d": "2026-11-19",
-          "ctl": 55.8
+          "ctl": 55.0
         },
         {
           "d": "2026-11-20",
-          "ctl": 56.2
+          "ctl": 55.3
         },
         {
           "d": "2026-11-21",
-          "ctl": 56.5
+          "ctl": 55.7
         },
         {
           "d": "2026-11-22",
-          "ctl": 56.8
+          "ctl": 56.0
         }
       ],
       "targets": [
@@ -10603,40 +10608,48 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-02T04:25:25Z",
-    "inputsHash": "b7a08aa2a41c37953293b3da6f2e014d9a358695",
+    "generatedAt": "2026-10-02T10:40:15Z",
+    "inputsHash": "db27d0c411e6752214d21e6cf192a80ce08639d7",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Hold AF i dag og i morgen — ingen alkohol fredag og lørdag.",
-      "why": "5 drikkedage på 7 dage, 4 i træk, presser HRV og muskelproteinsyntese mens du er i aktiv cut."
+      "action": "Hold dig alkoholfri i dag og i morgen — det er de to resterende dage i ugen.",
+      "why": "5 drikkedage på 7 dage og 4 i træk har ramt HRV hårdere end spredte dage; AF resten af ugen er cut-kravet."
     },
     "training": {
-      "text": "Ingen pas i dag — rejsedag hjem fra Mallorca. Ugen har 6 gennemførte pas uden misset. TSS-procenten er lav (250 af 652 planlagt), men det afspejler Mallorca-blokken med reducerede plantal og to resterende pas lørdag og søndag.",
+      "text": "Ingen planlagte pas i dag — rejsedag hjem fra Mallorca. Ugen har 6 gennemførte pas og 3 tilbage (lørdag og søndag). TSS er 250 af 652 planlagt, men uge 41 er recovery, og TRANSITION-blokken prioriterer kvalitet over TSS-kvote. CTL er 49,7 mod mål 51,0 — en forskel på 1,3 point der er uproblematisk nu.",
       "refs": [
+        6.0,
+        3.0,
         250.0,
         652.0,
-        6.0
+        49.7,
+        51.0,
+        1.3
       ]
     },
     "body": {
-      "text": "7-dages snit er 71,9 kg mod forventet 71,9 kg — du er præcis på plan. Fedtprocenten på 7-dages snit er steget 0,5 procentpoint den seneste måned — grænsen er nået, så hold raten og skru ikke yderligere ned for maden i en uge med restituion på programmet.",
+      "text": "7-dages snit er 71,9 kg mod forventet 71,9 kg — præcis på plan. Fedtprocent på 7-dages snit er steget 0,5 procentpoint den seneste måned — er ved tærsklen, men drevet mere af alkoholdagene end af maden.",
       "refs": [
         71.9,
         71.9,
+        22.0,
         0.5
       ]
     },
     "habits": {
-      "text": "5 drikkedage på 7 dage med 4 i træk er for meget under et cut — ingen 3+-dage denne uge, men klyngen koster HRV. Protein er i orden (6 af 7 dage). Søvn er på 8,0 timer i snit.",
+      "text": "1 AF-dag af 6 i mål — 5 dage tilbage at rette op. 5 drikkedage på 7 dage, heraf 4 i træk, koster søvnkvalitet og muskelproteinsyntese. Protein er registreret 6 af 7 dage — solidt.",
       "refs": [
+        1.0,
+        6.0,
         5.0,
+        7.0,
         4.0,
         6.0,
-        8.0
+        7.0
       ]
     },
-    "bigPicture": "Uge 40, BASE/TRANSITION — Mallorca-blokken er i hus; det vigtigste nu er alkoholfri hjemkomst og klar til søndagens depottur.",
+    "bigPicture": "TRANSITION uge 40 (2/2), rejsedag hjem — AF-mønsteret er det eneste der kræver handling nu.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11212,13 +11225,13 @@
       "Uge 40: TSS 250 af 652 (38 %) · CTL 49,7 (mål 51) · TSB −8,6",
       "Vægt 7d 71,9 kg · fedt 14d 21,7 % · på plan mod glidepath (71,9)",
       "HRV 7d 49 (28d 52) · hvilepuls 45 · søvn 7d 8,0 t",
-      "AF 1/7 · protein 3/3 6/7 · aftensult —/7",
+      "AF 2/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: warn — 5 drikkedage på 7 dage · 4 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (41, RECOVERY): TSS-mål 250 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 3 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-02T09:53:47Z"
+    "generatedAt": "2026-10-02T10:39:56Z"
   },
   "proposals": [],
   "ftp": {
