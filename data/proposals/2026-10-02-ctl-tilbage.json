@@ -1,0 +1,65 @@
+{
+  "id": "2026-10-02-ctl-tilbage",
+  "title": "CTL-mål uge 40-45 tilbage til oprindelige",
+  "status": "applied-offline",
+  "createdAt": "2026-10-02T06:16:10+00:00",
+  "createdBy": "claude",
+  "note": "Rejsedag fre 2/10 gør uge 40 umulig at nå (TSS 250/508). Løftet fra ctl-recalib-2026-09-14 rulles tilbage for uge 40-45, så målene igen ligger på sæsonens oprindelige linje. Uge 38-39 er afsluttet og røres ikke. Peak, race og camp-uger røres ikke.",
+  "summary": [
+    "uge 40: CTL 55 → 51, TSS 508 → 480",
+    "uge 41: CTL 53 → 50, TSS 271 → 250",
+    "uge 42: CTL 56 → 53, TSS 441 → 420",
+    "uge 43: CTL 58 → 56, TSS 454 → 440",
+    "uge 44: CTL 56 → 55, TSS 267 → 260",
+    "uge 45: CTL 58 → 57, TSS 447 → 440"
+  ],
+  "changes": [
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 4,
+      "ctlTarget": 51,
+      "tssTarget": 480
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 5,
+      "ctlTarget": 50,
+      "tssTarget": 250
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 6,
+      "ctlTarget": 53,
+      "tssTarget": 420
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 7,
+      "ctlTarget": 56,
+      "tssTarget": 440
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 8,
+      "ctlTarget": 55,
+      "tssTarget": 260
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 9,
+      "ctlTarget": 57,
+      "tssTarget": 440
+    }
+  ],
+  "decidedAt": "2026-10-02T06:16:10+00:00",
+  "result": {
+    "dates_changed": [],
+    "commit": null
+  }
+}
