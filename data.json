@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-03 13:54",
+    "updated": "2026-10-03 15:50",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -2087,7 +2087,8 @@
     "2026-09-29": 1,
     "2026-09-30": 1,
     "2026-10-01": 1,
-    "2026-10-02": 1
+    "2026-10-02": 1,
+    "2026-10-03": 1
   },
   "all_weeks": {
     "2": {
@@ -3335,12 +3336,12 @@
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere"
+      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere"
     },
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "5 drikkedage i træk 28/9–2/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "6 drikkedage i træk 28/9–3/10 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 0.2,
@@ -3624,7 +3625,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-03T11:54:03.527742",
+  "credentialsCheckedTs": "2026-10-03T13:50:26.999747",
   "coachAssessmentTsFull": "2026-10-03T08:21:45",
   "coachAssessmentWeightAtGen": 73.5,
   "coachAssessmentAfAtGen": 0,
@@ -4720,7 +4721,7 @@
     },
     {
       "date": "2026-10-03",
-      "alkohol": null,
+      "alkohol": 1,
       "protein": null,
       "energi": null,
       "sult": null
@@ -4741,7 +4742,8 @@
     "2026-09-29": "faa",
     "2026-09-30": "faa",
     "2026-10-01": "faa",
-    "2026-10-02": "faa"
+    "2026-10-02": "faa",
+    "2026-10-03": "faa"
   },
   "planTab": {
     "today": "2026-10-03",
@@ -10931,7 +10933,7 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
@@ -10967,10 +10969,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 5,
-            "run": 5
+            "days7": 6,
+            "run": 6
           },
-          "text": "5 drikkedage på 7 dage · 5 i træk"
+          "text": "6 drikkedage på 7 dage · 6 i træk"
         }
       }
     }
@@ -11292,11 +11294,11 @@
       "HRV 7d 50 (28d 52) · hvilepuls 45 · søvn 7d 7,9 t",
       "AF 1/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
-      "Cut-tjek: warn — 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (41, RECOVERY): TSS-mål 250 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 3 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-03T11:54:03Z"
+    "generatedAt": "2026-10-03T13:50:26Z"
   },
   "proposals": [],
   "ftp": {
