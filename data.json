@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-03 08:54",
+    "updated": "2026-10-03 10:21",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "47,2",
+      "value": "47,4",
       "unit": "",
       "sub": "Uge 40-mål 51 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "1,0",
+      "value": "0,2",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "313",
+      "value": "321",
       "unit": "TSS",
-      "sub": "313 af 652 planlagt TSS",
+      "sub": "321 af 652 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,13 +111,21 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Lørdag — uge 40. {HL} Vægt på 73,5 kg — Vægten er 1.4 kg højere end seneste måling (2026-09-26) — sandsynligvis væske/natrium snarere end fedt, ikke et disciplinproblem. Giv den et par dage før du dømmer tallet. Fokus: 313 af 652 TSS er i hus — 2 sessioner tilbage, heriblandt FaF 1 Z2 - Depottur 2 t, Styrke B · Functional 4 · 2 runder. 0 AF-dage i 6 afsluttede dage — 6 mangler i 1 dage tilbage. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Søvn på 7,9 timer er solid",
+  "coachSpeech": "Uge 40, BASE/TRANSITION — hjemkomstdag fra Mallorca. Alle dagens pas er i hus; i morgen venter depottur og styrke. {HL} Dagens to pas er klaret: 92 min cykel og 54 min gang. Ugen viser 321 af 652 planlagte TSS — men det er en Z2-Mallorca-uge i BASE/TRANSITION, ikke et efterslæb.",
+  "coachHighlight": "Stop alkohol i aften og resten af weekenden — det er den eneste håndtag du har på cut-sporet og HRV nu.",
   "weekFocus": "Alkoholfri uge — lad Z2 og søvn gøre arbejdet",
   "today": [
     {
       "discipline": "bike",
       "title": "Cykel Z2 90 min Mallorca",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "walk",
+      "title": "Gentofte Gang",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -236,6 +244,17 @@
       "intervals_compliance": 100.0
     },
     {
+      "day": "Lør",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 8,
+      "actual_mins": 54,
+      "actual_distance_m": 4758.45,
+      "today": true
+    },
+    {
       "day": "Søn",
       "disc": "bike",
       "label": "FaF 1 Z2 - Depottur 2 t",
@@ -258,7 +277,7 @@
     49.1,
     49.9,
     46.5,
-    47.2
+    47.4
   ],
   "weightHistory": [
     {
@@ -1940,7 +1959,7 @@
     },
     {
       "date": "2026-10-03",
-      "v": 1.0,
+      "v": 0.1,
       "real": true
     }
   ],
@@ -2324,6 +2343,17 @@
           "actual_mins": 92,
           "actual_distance_m": 49737.07,
           "intervals_compliance": 100.0
+        },
+        {
+          "day": "Lør",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 8,
+          "actual_mins": 54,
+          "actual_distance_m": 4758.45,
+          "today": true
         },
         {
           "day": "Søn",
@@ -2963,11 +2993,12 @@
     }
   ],
   "train_mins": {
+    "walk": 54.0,
     "bike": 661.0,
     "strength": 20.0,
     "run": 79.0,
     "planned": 885.0,
-    "actual_total": 760.0
+    "actual_total": 814.0
   },
   "fatHistory": [
     {
@@ -3297,22 +3328,26 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 27 af 357 · Lørdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE/TRANSITION uge 4 — Mallorca-ugen afsluttes i dag; søndag venter Depottur og styrke hjemme.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens afrulning på 92 min og 63 TSS er i mål — præcis som planlagt på Mallorca dag 5. Ugens TSS er på 313 af 652 planlagte, men Depottur + styrke søndag bringer dig tættere på. CTL på 47,2 er 3,8 under målet, men det er en BASE/TRANSITION-uge med lav kvote — ingen grund til at jage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på 71,9 kg er 0,1 kg over cut-planen på 71,9 kg — i praksis på plan. Fedtprocenten er steget 0,5 procentpoint den seneste måned, så retningen er opadgående — hold protein ved hvert måltid og undgå alkohol resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>0 AF-dage denne uge mod et mål på 6, og 5 drikkedage i træk (28/9–2/10) under cuttet er det største problem nu. Protein er registreret 5 af 6 dage — fortsæt det.</p>",
-  "coachAssessmentTs": "08:26",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 27 af 357 · Lørdag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40, BASE/TRANSITION — hjemkomstdag fra Mallorca. Alle dagens pas er i hus; i morgen venter depottur og styrke.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens to pas er klaret: 92 min cykel og 54 min gang. Ugen viser 321 af 652 planlagte TSS — men det er en Z2-Mallorca-uge i BASE/TRANSITION, ikke et efterslæb. CTL er 47,4 mod mål 51,0; i morgens depottur + styrke er de eneste tilbageværende pas.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt er 71,9 kg mod forventet 71,9 kg — præcis på plan. Fedtprocent på 7-dages snit er steget 0,5 procentpoint den seneste måned, så retningen er opadgående — alkohol-klyngen er den oplagte årsag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>0 AF-dage denne uge mod mål 6, og 5 drikkedage i træk — ingen dage med 3+, men klyngen i sig selv presser HRV og muskelproteinsyntese. Protein ramt 5 af 6 registrerede dage; søvn 7,3 t i nat er under de 7,9 t på 7-dages snit men over gulvet.</p>",
+  "coachAssessmentTs": "10:21",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "5 drikkedage i træk 28/9–2/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "5 drikkedage i træk 28/9–2/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 1.0,
+  "tsb": 0.2,
   "swimHistory": [
     {
       "week": 1,
@@ -3339,7 +3374,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i192840955",
+  "coachAssessmentLastActId": "i192870194",
   "weekFocusWeek": 4,
   "coachAssessmentPlanAtGen": "Cykel Z2 90 min Mallorca",
   "weightGoal": 68,
@@ -3593,8 +3628,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-03T06:54:11.032800",
-  "coachAssessmentTsFull": "2026-10-03T06:26:26",
+  "credentialsCheckedTs": "2026-10-03T08:21:45.765818",
+  "coachAssessmentTsFull": "2026-10-03T08:21:45",
   "coachAssessmentWeightAtGen": 73.5,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3684,7 +3719,7 @@
     "1": 289,
     "2": 397,
     "3": 193,
-    "4": 313
+    "4": 321
   },
   "racesUpcoming": [
     {
@@ -4829,7 +4864,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 51,
         "tssTarget": 480,
-        "tssActual": 313,
+        "tssActual": 321,
         "purpose": "Mallorca (Eva i Singapore): udendørs Z2-uge 2+3+4 t med stigninger i Z2, Sa Calobra uden PR. Søn 27/9 rejsedag. Hjem lør 3/10, Depottur 2 t + styrke søn 4/10.",
         "note": "Lagt om 11/9 fra kælderuge til udendørs efter Outlook. Uge 41 er recovery.",
         "quota": {
@@ -7091,6 +7126,24 @@
                 "start": "07:00",
                 "startFixed": false,
                 "completion": "done"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 54,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 54,
+                "actualTss": 8,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10169,7 +10222,7 @@
           "week": 4,
           "programId": "tds-2027",
           "start": "2026-09-28",
-          "ctl": 47.2
+          "ctl": 47.4
         }
       ],
       "projection": [
@@ -10626,46 +10679,46 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-03T06:26:26Z",
-    "inputsHash": "6f3f320b43083b39ddab0259e74457a521617cca",
+    "generatedAt": "2026-10-03T08:21:45Z",
+    "inputsHash": "567979d8ae01e88d86b0f063cf70c1a1aded5f0f",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Drik ikke alkohol i aften — hold AF resten af weekenden inden hjemkomst søndag.",
-      "why": "5 drikkedage i træk rammer HRV og muskelproteinsyntese; du er allerede 0,1 kg over cut-planen."
+      "action": "Stop alkohol i aften og resten af weekenden — det er den eneste håndtag du har på cut-sporet og HRV nu.",
+      "why": "5 drikkedage i træk har trykt HRV ned; ingen flere dage med alkohol giver kroppen en chance inden depotturen i morgen."
     },
     "training": {
-      "text": "Dagens afrulning på 92 min og 63 TSS er i mål — præcis som planlagt på Mallorca dag 5. Ugens TSS er på 313 af 652 planlagte, men Depottur + styrke søndag bringer dig tættere på. CTL på 47,2 er 3,8 under målet, men det er en BASE/TRANSITION-uge med lav kvote — ingen grund til at jage.",
+      "text": "Dagens to pas er klaret: 92 min cykel og 54 min gang. Ugen viser 321 af 652 planlagte TSS — men det er en Z2-Mallorca-uge i BASE/TRANSITION, ikke et efterslæb. CTL er 47,4 mod mål 51,0; i morgens depottur + styrke er de eneste tilbageværende pas.",
       "refs": [
         92.0,
-        63.0,
-        313.0,
+        54.0,
+        321.0,
         652.0,
-        47.2,
-        51.0,
-        3.8
+        47.4,
+        51.0
       ]
     },
     "body": {
-      "text": "7-dages snit på 71,9 kg er 0,1 kg over cut-planen på 71,9 kg — i praksis på plan. Fedtprocenten er steget 0,5 procentpoint den seneste måned, så retningen er opadgående — hold protein ved hvert måltid og undgå alkohol resten af ugen.",
+      "text": "7-dages snit på vægt er 71,9 kg mod forventet 71,9 kg — præcis på plan. Fedtprocent på 7-dages snit er steget 0,5 procentpoint den seneste måned, så retningen er opadgående — alkohol-klyngen er den oplagte årsag.",
       "refs": [
         71.9,
         71.9,
-        0.1,
         0.5
       ]
     },
     "habits": {
-      "text": "0 AF-dage denne uge mod et mål på 6, og 5 drikkedage i træk (28/9–2/10) under cuttet er det største problem nu. Protein er registreret 5 af 6 dage — fortsæt det.",
+      "text": "0 AF-dage denne uge mod mål 6, og 5 drikkedage i træk — ingen dage med 3+, men klyngen i sig selv presser HRV og muskelproteinsyntese. Protein ramt 5 af 6 registrerede dage; søvn 7,3 t i nat er under de 7,9 t på 7-dages snit men over gulvet.",
       "refs": [
         0.0,
         6.0,
         5.0,
         5.0,
-        6.0
+        6.0,
+        7.3,
+        7.9
       ]
     },
-    "bigPicture": "Uge 40, BASE/TRANSITION uge 4 — Mallorca-ugen afsluttes i dag; søndag venter Depottur og styrke hjemme.",
+    "bigPicture": "Uge 40, BASE/TRANSITION — hjemkomstdag fra Mallorca. Alle dagens pas er i hus; i morgen venter depottur og styrke.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11231,14 +11284,14 @@
     }
   },
   "weekTss": {
-    "actual": 313,
+    "actual": 321,
     "planned": 652
   },
   "martinMail": {
     "week": 4,
     "isoWeek": 40,
     "lines": [
-      "Uge 40: TSS 313 af 652 (48 %) · CTL 47,2 (mål 51) · TSB +1,0",
+      "Uge 40: TSS 321 af 652 (49 %) · CTL 47,4 (mål 51) · TSB +0,2",
       "Vægt 7d 71,9 kg · fedt 14d 21,7 % · på plan mod glidepath (71,9)",
       "HRV 7d 50 (28d 52) · hvilepuls 45 · søvn 7d 7,9 t",
       "AF 1/7 · protein 3/3 5/7 · aftensult —/7",
@@ -11247,7 +11300,7 @@
       "Næste uge (41, RECOVERY): TSS-mål 250 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min",
       "Planændringer siden sidst: 3 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-03T06:54:11Z"
+    "generatedAt": "2026-10-03T08:21:26Z"
   },
   "proposals": [],
   "ftp": {
@@ -11310,8 +11363,8 @@
   },
   "fitnessLive": {
     "date": "2026-10-03",
-    "ctl": 47.2,
-    "atl": 46.2
+    "ctl": 47.4,
+    "atl": 47.2
   },
   "aerobicFlag": {
     "date": "2026-10-03",
