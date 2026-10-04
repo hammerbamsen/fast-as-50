@@ -104,3 +104,6 @@
 - Cut-tjek: warn — 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere
 - Næste uge (41, RECOVERY): TSS-mål 250 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min
 - Planændringer siden sidst: 3 — se martin_signals.md
+
+### Planændring 04/10 06:48
+- **søndag 2026-10-04** (uge 4, adjust): FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 2 runder (25 min) → FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 2 runder (25 min)
