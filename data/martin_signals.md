@@ -122,3 +122,6 @@
 
 ### Planændring 04/10 06:51
 - **lørdag 2026-11-07** (uge 9, adjust): FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
+
+### Planændring 04/10 06:51
+- **lørdag 2026-11-21** (uge 11, adjust): FaF 1 Z2 - Depottur 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min)
