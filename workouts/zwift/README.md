@@ -29,7 +29,7 @@ efter kategori fordi navnene starter med `FaF 0`-`FaF 6`.
 ## Pas
 - `FaF_0_Test_-_FTP_20_min.zwo` — FaF 0 Test - FTP 20 min · 53 min · haard
 - `FaF_1_Z2_-_Grundtur_80.zwo` — FaF 1 Z2 - Grundtur 80 · 80 min · let
-- `FaF_1_Z2_-_Depottur_2_t.zwo` — FaF 1 Z2 - Depottur 2 t · 130 min · let
+- `FaF_1_Z2_-_Lang_Z2_2_t.zwo` — FaF 1 Z2 - Lang Z2 2 t · 130 min · let
 - `FaF_2_Dur_-_Kvalitet_sent_3_x_8.zwo` — FaF 2 Dur - Kvalitet sent 3 x 8 · 189 min · haard
 - `FaF_2_Dur_-_Bjergtur_3_t.zwo` — FaF 2 Dur - Bjergtur 3 t · 185 min · moderat
 - `FaF_2_Dur_-_Negativ_split_2_t.zwo` — FaF 2 Dur - Negativ split 2 t · 130 min · moderat
