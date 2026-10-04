@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-04 09:50",
+    "updated": "2026-10-04 10:47",
     "week": 4,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -40,7 +40,7 @@
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "-6,3",
+      "value": "-6,6",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "329",
+      "value": "427",
       "unit": "TSS",
-      "sub": "329 af 642 planlagt TSS",
+      "sub": "427 af 642 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "248,3",
+      "value": "318,3",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Søndag — afslut uge 40 stærkt. {HL} Fokus: 329 af 642 TSS er i hus — FaF 1 Z2 - Lang Z2 2 t står tilbage. Vægt på 73,3 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 7 afsluttede dage — 6 mangler i 0 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved. 📊 Store billede: CTL 48,5 er 2.5 point BAG ugeplanen (planmål uge 40: 51). Vægten har taget på 1.0 kg over de seneste 89 dage (72,3 → 73,3 kg).  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 8,2 timer er solid",
+  "coachSpeech": "Uge 40 slut: BASE-blok 2/2 fra Mallorca, 0 missede pas. Næste uge er RECOVERY med FTP-test torsdag — nulpunktet for resten af programmet. {HL} 7 pas gennemført, 0 misset. Faktisk TSS endte på 427 mod planlagte 642 — men i BASE/Mallorca-uge med lange udendørsture er lavere TSS-effektivitet normalt; kvaliteten (km og minutter) er solid.",
+  "coachHighlight": "Læg tøj og udstyr klar til FTP-testen torsdag — trainer, blæser, samme opsætning. Beslut også hvilke dage næste uge der er AF.",
   "weekFocus": "Alkoholfri uge — lad Z2 og søvn gøre arbejdet",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "strength",
@@ -256,11 +256,18 @@
       "day": "Søn",
       "disc": "bike",
       "label": "FaF 1 Z2 - Lang Z2 2 t",
-      "done": false,
+      "done": true,
       "planned_tss": 96,
       "planned_mins": 130,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 102,
+      "actual_tss": 98,
+      "actual_name": "FaF 1 Z2 - Lang Z2 2 t",
+      "actual_mins": 129,
+      "actual_distance_m": 69981.7,
+      "intervals_compliance": 102.1
     },
     {
       "day": "Søn",
@@ -1965,7 +1972,7 @@
     },
     {
       "date": "2026-10-04",
-      "v": -6.3,
+      "v": -6.5,
       "real": true
     }
   ],
@@ -2364,11 +2371,18 @@
           "day": "Søn",
           "disc": "bike",
           "label": "FaF 1 Z2 - Lang Z2 2 t",
-          "done": false,
+          "done": true,
           "planned_tss": 96,
           "planned_mins": 130,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 102,
+          "actual_tss": 98,
+          "actual_name": "FaF 1 Z2 - Lang Z2 2 t",
+          "actual_mins": 129,
+          "actual_distance_m": 69981.7,
+          "intervals_compliance": 102.1
         },
         {
           "day": "Søn",
@@ -2474,7 +2488,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Bliv frisk, test FTP torsdag — zoner sættes bagefter"
+      "focus": "Recovery og ét ærligt FTP-svar torsdag"
     },
     "6": {
       "sessions": [
@@ -3006,12 +3020,12 @@
     }
   ],
   "train_mins": {
+    "bike": 790.0,
     "strength": 49.0,
     "walk": 54.0,
-    "bike": 661.0,
     "run": 79.0,
     "planned": 874.0,
-    "actual_total": 843.0
+    "actual_total": 972.0
   },
   "fatHistory": [
     {
@@ -3341,22 +3355,33 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 28 af 357 · Søndag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40 slut — Mallorca-blokken er i kroppen; uge 41 er recovery med FTP-test torsdag, der nulstiller alle zoner.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 40 (BASE, rejseuge Mallorca): 329 faktisk TSS mod 642 planlagt — 51 %. I en BASE-uge er det et efterslæb, men konteksten er Mallorca med udendørs Z2 og rejsedag søndag 27/9; intet pas blev misset. CTL er 48,5 mod mål 51,0 — 2,5 point under. Ramp denne uge: 2,0, godt under den bløde grænse på 5,0. Næste uge (uge 41) er RECOVERY med TSS-mål 250 og kun 1 hårdt pas: FTP-test torsdag 8/10 er nøglepas — al anden belastning er let. CTL-mål falder til 50,0.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit: 71,9 kg mod plan 71,9 kg — præcis på plan. Fedtprocent-snittet er steget 0,5 procentpoint den seneste måned — det er akkurat på tærsklen, men med 6 drikkedage på 7 dage er alkohol den mest sandsynlige driver. Næste uges ene kost-handling: protein ved hvert eneste måltid — det holder muskelmasse oppe når træningsbelastningen falder i recovery.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>0 AF-dage denne uge mod mål 6 — og 6 dage med 1-2 genstande i 6 dage i træk. Ingen dage med 3+, men klyngen rammer HRV hårdere end spredte dage. Søvnsnit er 8,2 t — over målet på 7 t, det er godt. Protein registreret 5 af 6 dage. Næste uge: hold AF alle 7 dage frem til FTP-testen torsdag.</p>",
-  "coachAssessmentTs": "08:06",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 28 af 357 · Søndag · Uge 40</strong></p><p class=\"coach-sec coach-big\">Uge 40 slut: BASE-blok 2/2 fra Mallorca, 0 missede pas. Næste uge er RECOVERY med FTP-test torsdag — nulpunktet for resten af programmet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>7 pas gennemført, 0 misset. Faktisk TSS endte på 427 mod planlagte 642 — men i BASE/Mallorca-uge med lange udendørsture er lavere TSS-effektivitet normalt; kvaliteten (km og minutter) er solid. CTL er 48,5 mod mål 51,0, ramp 2,0 — ingen alarmklokker. Næste uge er RECOVERY (kvota: 1 hård, 0 moderate); nøglepas er FTP-testen torsdag — indendørs, ingen ERG, samme opsætning som altid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 71,9 kg mod planlagte 71,9 kg — du er præcis på plan. Den seneste måneds retning er -0,5 kg, tæt på tærsklen; fedt-snittet har bevæget sig 0,5 procentpoint — begge dele peger i rigtig retning, men akkurat på grænsen. Ugens ene kost-handling: protein ved HVERT måltid næste uge, også de lette restitutionsdage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 drikkedage på 7 — ingen dage med 3+ genstande, men 6 i træk under cuttet presser HRV og muskelproteinsyntese. Protein-registreret 5 af 6 loggede dage er fint. Søvnsnit 8,2 timer — over mål, ingen indvendinger der. Næste uge: tag mindst 4 AF-dage; 0 er ikke i nærheden af målet på 6.</p>",
+  "coachAssessmentTs": "10:47",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "6 drikkedage i træk 28/9–3/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "6 drikkedage i træk 28/9–3/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "spacing",
+      "level": "info",
+      "message": "CPH Half (20/9) → FTP-test (8/10): 432 timer — 72 t-reglen er overholdt med god margin.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": -6.3,
+  "tsb": -6.6,
   "swimHistory": [
     {
       "week": 1,
@@ -3383,7 +3408,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i193256288",
+  "coachAssessmentLastActId": "i193307325",
   "weekFocusWeek": 4,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Lang Z2 2 t",
   "weightGoal": 68,
@@ -3637,8 +3662,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-04T07:50:22.557731",
-  "coachAssessmentTsFull": "2026-10-04T06:07:12",
+  "credentialsCheckedTs": "2026-10-04T08:47:49.679253",
+  "coachAssessmentTsFull": "2026-10-04T08:47:49",
   "coachAssessmentWeightAtGen": 73.3,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3728,7 +3753,7 @@
     "1": 289,
     "2": 397,
     "3": 193,
-    "4": 329
+    "4": 427
   },
   "racesUpcoming": [
     {
@@ -4005,6 +4030,15 @@
         "hr": 123,
         "name": "75m Z2",
         "id": "i192840955"
+      },
+      {
+        "date": "2026-10-04",
+        "v": 1.48,
+        "real": true,
+        "mins": 129,
+        "hr": 127,
+        "name": "FaF 1 Z2 - Lang Z2 2 t",
+        "id": "i193307325"
       }
     ]
   },
@@ -4019,10 +4053,10 @@
       "thin": true
     },
     "bike": {
-      "current": 1.42,
+      "current": 1.424,
       "previous": 1.504,
-      "pct": -5.6,
-      "n": 8,
+      "pct": -5.3,
+      "n": 9,
       "n_prev": 4,
       "window": 42,
       "thin": false
@@ -4873,7 +4907,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 51,
         "tssTarget": 480,
-        "tssActual": 329,
+        "tssActual": 427,
         "purpose": "Mallorca (Eva i Singapore): udendørs Z2-uge 2+3+4 t med stigninger i Z2, Sa Calobra uden PR. Søn 27/9 rejsedag. Hjem lør 3/10, Depottur 2 t + styrke søn 4/10.",
         "note": "Lagt om 11/9 fra kælderuge til udendørs efter Outlook. Uge 41 er recovery.",
         "quota": {
@@ -7174,14 +7208,15 @@
                 "erg": true,
                 "purpose": "To timer Z2 med fast energiplan. Lige så meget mavetræning som bentræning. Race-evalueringerne siger det samme i ni år: energiplanen er det der knækker dig.",
                 "zwiftName": "FaF 1 Z2 - Lang Z2 2 t",
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 129,
+                "actualTss": 98,
                 "note": "Hjemme igen: 2 t let. Uge 41 er recovery — det er fortjent",
                 "isKey": true,
                 "optional": false,
                 "start": "07:15",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "done"
               },
               {
                 "id": "18e58592",
@@ -10685,55 +10720,49 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-04T06:07:12Z",
-    "inputsHash": "dbfb7d65076e22b3e5fbf5824eedd853279fca85",
+    "generatedAt": "2026-10-04T08:47:49Z",
+    "inputsHash": "24cd903c71d1072349ba9a6c07d0ec1aecc4a0a5",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Gennemfør 2 t Z2 på cyklen i dag — benene, ikke pulsen, bestemmer tempoet.",
-      "why": "Styrke B er i hus. Depotturen lukker ugen og giver den aerobe bundlinje du skal starte recovery-ugen på."
+      "action": "Læg tøj og udstyr klar til FTP-testen torsdag — trainer, blæser, samme opsætning. Beslut også hvilke dage næste uge der er AF.",
+      "why": "FTP-testen er nulpunktet for hele programmets skalering — opsætning og friskhed afgør resultatet."
     },
     "training": {
-      "text": "Uge 40 (BASE, rejseuge Mallorca): 329 faktisk TSS mod 642 planlagt — 51 %. I en BASE-uge er det et efterslæb, men konteksten er Mallorca med udendørs Z2 og rejsedag søndag 27/9; intet pas blev misset. CTL er 48,5 mod mål 51,0 — 2,5 point under. Ramp denne uge: 2,0, godt under den bløde grænse på 5,0. Næste uge (uge 41) er RECOVERY med TSS-mål 250 og kun 1 hårdt pas: FTP-test torsdag 8/10 er nøglepas — al anden belastning er let. CTL-mål falder til 50,0.",
+      "text": "7 pas gennemført, 0 misset. Faktisk TSS endte på 427 mod planlagte 642 — men i BASE/Mallorca-uge med lange udendørsture er lavere TSS-effektivitet normalt; kvaliteten (km og minutter) er solid. CTL er 48,5 mod mål 51,0, ramp 2,0 — ingen alarmklokker. Næste uge er RECOVERY (kvota: 1 hård, 0 moderate); nøglepas er FTP-testen torsdag — indendørs, ingen ERG, samme opsætning som altid.",
       "refs": [
-        329.0,
+        427.0,
         642.0,
-        51.0,
         48.5,
         51.0,
-        2.5,
         2.0,
-        5.0,
-        250.0,
         1.0,
-        50.0
+        0.0
       ]
     },
     "body": {
-      "text": "7-dages snit: 71,9 kg mod plan 71,9 kg — præcis på plan. Fedtprocent-snittet er steget 0,5 procentpoint den seneste måned — det er akkurat på tærsklen, men med 6 drikkedage på 7 dage er alkohol den mest sandsynlige driver. Næste uges ene kost-handling: protein ved hvert eneste måltid — det holder muskelmasse oppe når træningsbelastningen falder i recovery.",
+      "text": "7-dages snit er 71,9 kg mod planlagte 71,9 kg — du er præcis på plan. Den seneste måneds retning er -0,5 kg, tæt på tærsklen; fedt-snittet har bevæget sig 0,5 procentpoint — begge dele peger i rigtig retning, men akkurat på grænsen. Ugens ene kost-handling: protein ved HVERT måltid næste uge, også de lette restitutionsdage.",
       "refs": [
         71.9,
         71.9,
         0.5,
-        6.0,
-        7.0
+        0.5
       ]
     },
     "habits": {
-      "text": "0 AF-dage denne uge mod mål 6 — og 6 dage med 1-2 genstande i 6 dage i træk. Ingen dage med 3+, men klyngen rammer HRV hårdere end spredte dage. Søvnsnit er 8,2 t — over målet på 7 t, det er godt. Protein registreret 5 af 6 dage. Næste uge: hold AF alle 7 dage frem til FTP-testen torsdag.",
+      "text": "6 drikkedage på 7 — ingen dage med 3+ genstande, men 6 i træk under cuttet presser HRV og muskelproteinsyntese. Protein-registreret 5 af 6 loggede dage er fint. Søvnsnit 8,2 timer — over mål, ingen indvendinger der. Næste uge: tag mindst 4 AF-dage; 0 er ikke i nærheden af målet på 6.",
       "refs": [
-        0.0,
         6.0,
-        6.0,
-        6.0,
-        8.2,
         7.0,
         5.0,
+        6.0,
+        8.2,
+        4.0,
         6.0
       ]
     },
-    "bigPicture": "Uge 40 slut — Mallorca-blokken er i kroppen; uge 41 er recovery med FTP-test torsdag, der nulstiller alle zoner.",
-    "weekFocus": "Bliv frisk, test FTP torsdag — zoner sættes bagefter",
+    "bigPicture": "Uge 40 slut: BASE-blok 2/2 fra Mallorca, 0 missede pas. Næste uge er RECOVERY med FTP-test torsdag — nulpunktet for resten af programmet.",
+    "weekFocus": "Recovery og ét ærligt FTP-svar torsdag",
     "weekFocusFor": 5,
     "warnings": [
       {
@@ -10753,7 +10782,7 @@
       {
         "type": "spacing",
         "level": "info",
-        "message": "CPH Half (20/9) → FTP-test (8/10): 432 timer mellemrum — 72 t-reglen er overholdt med god margin.",
+        "message": "CPH Half (20/9) → FTP-test (8/10): 432 timer — 72 t-reglen er overholdt med god margin.",
         "action": null,
         "source": "ai"
       }
@@ -10767,7 +10796,7 @@
   "weekFocusNext": {
     "week": 5,
     "programId": "tds-2027",
-    "text": "Bliv frisk, test FTP torsdag — zoner sættes bagefter"
+    "text": "Recovery og ét ærligt FTP-svar torsdag"
   },
   "strengthLog": {
     "from": "2026-09-06",
@@ -11314,14 +11343,14 @@
     }
   },
   "weekTss": {
-    "actual": 329,
+    "actual": 427,
     "planned": 642
   },
   "martinMail": {
     "week": 4,
     "isoWeek": 40,
     "lines": [
-      "Uge 40: TSS 329 af 642 (51 %) · CTL 48,5 (mål 51) · TSB −6,3",
+      "Uge 40: TSS 427 af 642 (67 %) · CTL 48,5 (mål 51) · TSB −6,6",
       "Vægt 7d 71,9 kg · fedt 14d 21,7 % · på plan mod glidepath (71,9)",
       "HRV 7d 51 (28d 53) · hvilepuls 44 · søvn 7d 8,2 t",
       "AF 0/7 · protein 3/3 5/7 · aftensult —/7",
@@ -11330,7 +11359,7 @@
       "Næste uge (41, RECOVERY): TSS-mål 250 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 12 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-04T07:50:22Z"
+    "generatedAt": "2026-10-04T08:47:26Z"
   },
   "proposals": [],
   "ftp": {
@@ -11394,24 +11423,24 @@
   "fitnessLive": {
     "date": "2026-10-04",
     "ctl": 48.5,
-    "atl": 54.8
+    "atl": 55.1
   },
   "aerobicFlag": {
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "discipline": "bike",
-    "name": "75m Z2",
-    "id": "i192840955",
-    "ef": 1.447,
+    "name": "FaF 1 Z2 - Lang Z2 2 t",
+    "id": "i193307325",
+    "ef": 1.48,
     "baseline": 1.42,
-    "pct": 1.9,
+    "pct": 4.2,
     "n_baseline": 8,
     "level": "ok",
     "flagged": false,
-    "avg_hr": 123,
-    "start_hour": 6,
+    "avg_hr": 127,
+    "start_hour": 8,
     "temp_c": null,
     "afternoon": false,
     "warm": false,
-    "time_of_day_comparable": false
+    "time_of_day_comparable": true
   }
 }
