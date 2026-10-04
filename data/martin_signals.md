@@ -94,3 +94,13 @@
 
 ### Planændring 01/10 06:26
 - **tirsdag 2026-12-08** (uge 14, apply_proposal): FaF 5 VO2 - 4 x 4 (62 min) [hårdt] → FaF 5 VO2 - 4 x 4 Clark 120 (59 min) [hårdt]
+
+### Signaler uge 40
+- Uge 40: TSS 321 af 652 (49 %) · CTL 48,5 (mål 51) · TSB −7,8
+- Vægt 7d 71,9 kg · fedt 14d 21,7 % · på plan mod glidepath (71,9)
+- HRV 7d 49 (28d 53) · hvilepuls 45 · søvn 7d 8,1 t
+- AF 0/7 · protein 3/3 5/7 · aftensult —/7
+- Styrke 1/2 · check-in —
+- Cut-tjek: warn — 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere
+- Næste uge (41, RECOVERY): TSS-mål 250 · hårde/lange dage: tor 8/10 FaF 0 Test - FTP 20 min 53 min, søn 11/10 FaF 1 Z2 - Depottur 2 t 130 min
+- Planændringer siden sidst: 3 — se martin_signals.md
