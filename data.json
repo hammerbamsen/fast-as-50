@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-05 17:07",
+    "updated": "2026-10-05 18:48",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "1",
+      "value": "0",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,2 · streak 1",
+      "sub": "af 6 denne uge · snit 4 uger 3,2",
       "color": "#59182A"
     },
     "ftp": {
@@ -107,13 +107,13 @@
     }
   },
   "af": {
-    "weekDone": 1,
+    "weekDone": 0,
     "target": 6,
-    "streak": 1
+    "streak": 0
   },
-  "coachSpeech": "Ny uge starter — uge 41. Restitutionsuge. {HL} Godt: Søvn på 8,2 timer er solid. 1 AF-dage i 1 gennemførte dage — på rette spor. 5 mere og ugens mål er i hus. Fokus: Vægt på 73,3 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
-  "weekFocus": "Nul alkohol frem til FTP-testen torsdag",
+  "coachSpeech": "Uge 41, recovery-blok — FTP-test torsdag 8/10 er ugens eneste nøglepunkt; alt andet er let. {HL} Styrke A er gennemført (28 min, TSS 12) — mandag er i hus. Recovery-uge med FTP-test torsdag som eneste hårde pas; hold resten let så du møder testen frisk.",
+  "coachHighlight": "Drik ikke alkohol i dag — start AF-stregen nu, resten af ugen er alkoholfri.",
+  "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
       "discipline": "strength",
@@ -2043,7 +2043,7 @@
     "2026-10-02": 1,
     "2026-10-03": 1,
     "2026-10-04": 1,
-    "2026-10-05": 0
+    "2026-10-05": 1
   },
   "all_weeks": {
     "3": {
@@ -2293,7 +2293,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Nul alkohol frem til FTP-testen torsdag"
+      "focus": "AF hele ugen — frisk til FTP-test torsdag"
     },
     "6": {
       "sessions": [
@@ -2905,7 +2905,7 @@
       "week": 5,
       "iso": 41,
       "monday": "2026-10-05",
-      "done": 1,
+      "done": 0,
       "total": 1,
       "label": "Uge 41"
     }
@@ -3244,19 +3244,23 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 29 af 357 · Mandag · Uge 41</strong></p><p class=\"coach-sec coach-big\">bigPicture is a string field</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke A (2 runder, 28 min) er i hus — recovery-pas som planlagt. FTP-testen torsdag er ugens eneste hårde pas; den sidder 432 timer efter CPH Half, så spacingen er fin. RECOVERY-uge: hold TSS lavt frem til testen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 1,6 kg over planlagt vægt ved dette punkt i cuttet. Retningen er opadgående den seneste måned — hold protein ved hvert måltid og skær alkohol for at stoppe drift.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 drikkedage på de seneste 7 dage er det primære problem nu — ingen dage med 3+, men frekvensen i sig selv under et aktivt cut koster. Protein-dage er 6 af 7, søvn og energi er fine.</p>",
-  "coachAssessmentTs": "11:49",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 29 af 357 · Mandag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-blok — FTP-test torsdag 8/10 er ugens eneste nøglepunkt; alt andet er let.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke A er gennemført (28 min, TSS 12) — mandag er i hus. Recovery-uge med FTP-test torsdag som eneste hårde pas; hold resten let så du møder testen frisk.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 1,6 kg over planlagt vægt på dette tidspunkt i cuttet. Retningen er opad den seneste måned — hold protein ved hvert måltid og stop alkohol nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>7 drikkedage på 7 dage er det primære problem — ingen dage med 3+ genstande, men hyppigheden er for høj under et aktivt cut. Søvn og energi er fine.</p>",
+  "coachAssessmentTs": "18:48",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "6 drikkedage i træk 29/9–4/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "7 drikkedage i træk 29/9–5/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 7 drikkedage på 7 dage · 7 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": -4.0,
@@ -3546,10 +3550,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-05T15:07:47.244047",
-  "coachAssessmentTsFull": "2026-10-05T09:49:39",
+  "credentialsCheckedTs": "2026-10-05T16:48:47.804944",
+  "coachAssessmentTsFull": "2026-10-05T16:48:47",
   "coachAssessmentWeightAtGen": 73.3,
-  "coachAssessmentAfAtGen": 1,
+  "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 21.6,
   "zones": {
@@ -4652,7 +4656,7 @@
     },
     {
       "date": "2026-10-05",
-      "alkohol": 0,
+      "alkohol": 1,
       "protein": 2,
       "energi": 4,
       "sult": null
@@ -4674,7 +4678,8 @@
     "2026-10-01": "faa",
     "2026-10-02": "faa",
     "2026-10-03": "faa",
-    "2026-10-04": "faa"
+    "2026-10-04": "faa",
+    "2026-10-05": "faa"
   },
   "planTab": {
     "today": "2026-10-05",
@@ -10632,50 +10637,49 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-05T09:49:39Z",
-    "inputsHash": "d7f35a2c189407a6eae5a5b4cdb8a13d6100d7cf",
+    "generatedAt": "2026-10-05T16:48:47Z",
+    "inputsHash": "b846a7c51a52a7f2e662dfbf614ff8fe6710c355",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Drik ikke alkohol i aften — og resten af ugen frem til FTP-testen torsdag.",
-      "why": "6 drikkedage i træk rammer HRV og muskelproteinsyntese; testen torsdag kræver at du møder frisk op."
+      "action": "Drik ikke alkohol i dag — start AF-stregen nu, resten af ugen er alkoholfri.",
+      "why": "7 drikkedage i træk rammer HRV hårdere end spredte dage, og cuttet er 1,6 kg bag plan."
     },
     "training": {
-      "text": "Styrke A (2 runder, 28 min) er i hus — recovery-pas som planlagt. FTP-testen torsdag er ugens eneste hårde pas; den sidder 432 timer efter CPH Half, så spacingen er fin. RECOVERY-uge: hold TSS lavt frem til testen.",
+      "text": "Styrke A er gennemført (28 min, TSS 12) — mandag er i hus. Recovery-uge med FTP-test torsdag som eneste hårde pas; hold resten let så du møder testen frisk.",
       "refs": [
         28.0,
-        432.0
+        12.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 1,6 kg over planlagt vægt ved dette punkt i cuttet. Retningen er opadgående den seneste måned — hold protein ved hvert måltid og skær alkohol for at stoppe drift.",
+      "text": "7-dages snit er 1,6 kg over planlagt vægt på dette tidspunkt i cuttet. Retningen er opad den seneste måned — hold protein ved hvert måltid og stop alkohol nu.",
       "refs": [
         1.6
       ]
     },
     "habits": {
-      "text": "6 drikkedage på de seneste 7 dage er det primære problem nu — ingen dage med 3+, men frekvensen i sig selv under et aktivt cut koster. Protein-dage er 6 af 7, søvn og energi er fine.",
+      "text": "7 drikkedage på 7 dage er det primære problem — ingen dage med 3+ genstande, men hyppigheden er for høj under et aktivt cut. Søvn og energi er fine.",
       "refs": [
-        6.0,
         7.0,
-        6.0
+        7.0
       ]
     },
-    "bigPicture": "bigPicture is a string field",
-    "weekFocus": "Nul alkohol frem til FTP-testen torsdag",
+    "bigPicture": "Uge 41, recovery-blok — FTP-test torsdag 8/10 er ugens eneste nøglepunkt; alt andet er let.",
+    "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
     "weekFocusFor": 5,
     "warnings": [
       {
         "type": "alcohol_cluster",
         "level": "act",
-        "message": "6 drikkedage i træk 29/9–4/10 — klynger rammer HRV hårdere end spredte dage.",
+        "message": "7 drikkedage i træk 29/9–5/10 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
+        "message": "Cut-tjek: 7 drikkedage på 7 dage · 7 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
       }
@@ -10897,7 +10901,7 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "7 drikkedage på 7 dage · 7 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
@@ -10933,10 +10937,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 6,
-            "run": 6
+            "days7": 7,
+            "run": 7
           },
-          "text": "6 drikkedage på 7 dage · 6 i træk"
+          "text": "7 drikkedage på 7 dage · 7 i træk"
         }
       }
     }
@@ -11256,13 +11260,13 @@
       "Uge 41: TSS 25 af 310 (8 %) · CTL 47,9 (mål 50) · TSB −4,0",
       "Vægt 7d 73,4 kg · fedt 14d 21,6 % · på plan mod glidepath (71,9)",
       "HRV 7d 53 (28d 53) · hvilepuls 44 · søvn 7d 8,2 t",
-      "AF 1/7 · protein 3/3 6/7 · aftensult —/7",
+      "AF 0/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 3/2 · check-in —",
-      "Cut-tjek: warn — 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 7 drikkedage på 7 dage · 7 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 12 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-05T15:07:47Z"
+    "generatedAt": "2026-10-05T16:48:32Z"
   },
   "proposals": [],
   "ftp": {
