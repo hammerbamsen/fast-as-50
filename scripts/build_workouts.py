@@ -471,7 +471,7 @@ def bike_ftp_test():
     """20-min FTP-test — resultatet opdaterer FTP og watt-zoner i Intervals."""
     desc, doc = build([
         s_bike_ramp(20, 45, 72, "Varm-op progressiv", "warmup"),
-        s_bike(5,  "Z4", "Åbner 5 min"),
+        s_bike(5,  "Z4", "Aktivering 5 min"),
         s_bike(5,  "Z1", "Let"),
         s_free(20, "20 MIN ALL-OUT TEST — jævn max-indsats"),
         s_bike_ramp(15, 60, 40, "Cool-down", "cooldown"),
