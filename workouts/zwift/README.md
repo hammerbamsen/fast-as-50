@@ -48,5 +48,5 @@ efter kategori fordi navnene starter med `FaF 0`-`FaF 6`.
 - `FaF_6_Bjerg_-_Sa_Calobra_2_x_25.zwo` — FaF 6 Bjerg - Sa Calobra 2 x 25 · 96 min · moderat
 - `FaF_6_Bjerg_-_TdS_2_x_45_traening.zwo` — FaF 6 Bjerg - TdS 2 x 45 træning · 134 min · moderat
 - `FaF_6_Bjerg_-_TdS_racepace_3_x_50.zwo` — FaF 6 Bjerg - TdS racepace 3 x 50 · 185 min · let
-- `FaF_1_Z2_-_Aabnere_60.zwo` — FaF 1 Z2 - Åbnere 60 · 60 min · let
+- `FaF_1_Z2_-_Aktivering_60.zwo` — FaF 1 Z2 - Aktivering 60 · 60 min · let
 - `FaF_1_Z2_-_Langtur_4_t.zwo` — FaF 1 Z2 - Langtur 4 t · 240 min · let
