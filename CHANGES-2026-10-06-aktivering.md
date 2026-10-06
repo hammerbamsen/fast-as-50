@@ -14,3 +14,6 @@ Kennet: "åbnere" er direkte oversat fra engelsk "openers" og giver ikke mening 
 
 ## Test
 - pytest 675 grønne, 1 skipped; `schemas/validate.py` grøn; `node --check sw.js` og index.html inline scripts grønne.
+
+## Forslag
+- `data/proposals/2026-10-06-aktivering.json`: set_day på 15 datoer (6/10–29/12), kun tekst (pasnavn og trintekster). Anvendes via edit_apply, så Intervals og Outlook synkes.
