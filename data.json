@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-07 06:11",
+    "updated": "2026-10-07 07:53",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -22,13 +22,13 @@
   },
   "kpis": {
     "weight": {
-      "value": "73,8",
+      "value": "73,7",
       "unit": "kg",
       "sub": "forventet 71,8 · på plan",
       "color": "#27AE60"
     },
     "fat": {
-      "value": "21,8",
+      "value": "21,7",
       "unit": "%",
       "sub": "14d-snit · forventet 21,4",
       "color": "#27AE60"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "25",
+      "value": "64",
       "unit": "TSS",
-      "sub": "25 af 256 planlagt TSS",
+      "sub": "64 af 256 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "30,9",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "swimM": {
       "value": "0",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "0",
+      "value": "1",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,2",
+      "sub": "af 6 denne uge · snit 4 uger 3,2 · streak 1",
       "color": "#59182A"
     },
     "ftp": {
@@ -100,19 +100,19 @@
       "color": "#27AE60"
     },
     "protein": {
-      "value": "4",
+      "value": "6",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 5,0",
-      "color": "#E67E22"
+      "sub": "3/3-dage · 4 uger 5,5",
+      "color": "#27AE60"
     }
   },
   "af": {
-    "weekDone": 0,
+    "weekDone": 1,
     "target": 6,
-    "streak": 0
+    "streak": 1
   },
-  "coachSpeech": "Uge 41, recovery-blok: FTP-testen torsdag er omdrejningspunktet — al anden træning denne uge er til for at du rammer den frisk. {HL} Styrke A er i hus mandag. I dag: 60 min Z2-aktivering (ERG), let load. FTP-testen torsdag er ugens eneste hårde pas — kvoten er brugt op der.",
-  "coachHighlight": "Kør 60 min Z2-aktivering på cyklen i ERG — benene skal føles lette bagefter, ikke tomme.",
+  "coachSpeech": "Uge 41, recovery-uge — FTP-testen torsdag er ugens omdrejningspunkt, og HRV er høj nok til at levere. {HL} Onsdagens aktivering på 60 min / 39 TSS er i hus — benene er varmet op uden træthed. Ugen er i RECOVERY og FTP-testen torsdag er ugens nøglepas; CTL ligger 3,4 point under målet, men i en recovery-uge er det planen.",
+  "coachHighlight": "Hold alkohol-fri i aften — og resten af ugen frem til FTP-testen torsdag.",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -155,11 +155,18 @@
       "day": "Ons",
       "disc": "bike",
       "label": "FaF 1 Z2 - Aktivering 60",
-      "done": false,
+      "done": true,
       "planned_tss": 39,
       "planned_mins": 60,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 100,
+      "actual_tss": 39,
+      "actual_name": "FaF 1 Z2 - Aktivering 60m",
+      "actual_mins": 60,
+      "actual_distance_m": 30943.57,
+      "intervals_compliance": 100.0
     },
     {
       "day": "Tor",
@@ -542,7 +549,7 @@
     },
     {
       "date": "2026-10-07",
-      "v": 74.9,
+      "v": 74.7,
       "real": true
     }
   ],
@@ -2029,7 +2036,9 @@
     "2026-10-02": 1,
     "2026-10-03": 1,
     "2026-10-04": 1,
-    "2026-10-05": 1
+    "2026-10-05": 1,
+    "2026-10-06": 1,
+    "2026-10-07": 0
   },
   "all_weeks": {
     "3": {
@@ -2216,11 +2225,18 @@
           "day": "Ons",
           "disc": "bike",
           "label": "FaF 1 Z2 - Aktivering 60",
-          "done": false,
+          "done": true,
           "planned_tss": 39,
           "planned_mins": 60,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 100,
+          "actual_tss": 39,
+          "actual_name": "FaF 1 Z2 - Aktivering 60m",
+          "actual_mins": 60,
+          "actual_distance_m": 30943.57,
+          "intervals_compliance": 100.0
         },
         {
           "day": "Tor",
@@ -2881,16 +2897,17 @@
       "week": 5,
       "iso": 41,
       "monday": "2026-10-05",
-      "done": 0,
+      "done": 1,
       "total": 3,
       "label": "Uge 41"
     }
   ],
   "train_mins": {
+    "bike": 60.0,
     "walk": 90.0,
     "strength": 28.0,
     "planned": 398.0,
-    "actual_total": 118.0
+    "actual_total": 178.0
   },
   "fatHistory": [
     null,
@@ -3220,25 +3237,25 @@
     },
     {
       "date": "2026-10-07",
-      "v": 21.6,
+      "v": 21.4,
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 31 af 357 · Onsdag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-blok: FTP-testen torsdag er omdrejningspunktet — al anden træning denne uge er til for at du rammer den frisk.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke A er i hus mandag. I dag: 60 min Z2-aktivering (ERG), let load. FTP-testen torsdag er ugens eneste hårde pas — kvoten er brugt op der. CTL ligger på 46,6 mod mål på 50,0, men i en recovery-uge er lavere TSS planlagt og korrekt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er 1,5 kg over planen på 71,8 kg — det er den afvigelse der kræver opmærksomhed. Fedt-snittet er stabilt: ændringen er 0,3 procentpoint, præcis på tærsklen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage i træk 1/10–5/10 rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein er registreret 4 ud af 5 dage — hold det i dag.</p>",
-  "coachAssessmentTs": "06:11",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 31 af 357 · Onsdag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-uge — FTP-testen torsdag er ugens omdrejningspunkt, og HRV er høj nok til at levere.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Onsdagens aktivering på 60 min / 39 TSS er i hus — benene er varmet op uden træthed. Ugen er i RECOVERY og FTP-testen torsdag er ugens nøglepas; CTL ligger 3,4 point under målet, men i en recovery-uge er det planen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,0 kg over planvægten (73,7 kg mod 71,8 kg) — det er afvigelsen at tage fat på. Raten de seneste 4 uger er 0,37 kg/uge mod målet på 0,25 kg/uge, men 7-dages snittet er steget 1,5 kg den seneste måned, så retningen peger opad.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 AF-dage på 7 dage — ingen dage med 3+ genstande, men 6 drikkedage i træk under cuttet er et cluster der rammer HRV hårdere end spredte dage. Protein er dækket 6 ud af 7 dage; søvn og energi er fine.</p>",
+  "coachAssessmentTs": "07:53",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "5 drikkedage i træk 1/10–5/10 — klynger rammer HRV hårdere end spredte dage.",
+      "message": "6 drikkedage i træk 1/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
       "action": null,
       "source": "rule"
     },
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
       "action": null,
       "source": "rule"
     }
@@ -3276,7 +3293,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i193755174",
+  "coachAssessmentLastActId": "i194529361",
   "weekFocusWeek": 5,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Aktivering 60",
   "weightGoal": 68,
@@ -3371,7 +3388,7 @@
     null,
     73.37,
     73.5,
-    73.78
+    73.74
   ],
   "fatMovingAvg7": [
     null,
@@ -3463,7 +3480,7 @@
     null,
     21.77,
     21.65,
-    21.64
+    21.6
   ],
   "ctlPlan": [
     47,
@@ -3530,12 +3547,12 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-07T04:11:19.776126",
-  "coachAssessmentTsFull": "2026-10-07T04:11:19",
-  "coachAssessmentWeightAtGen": 74.9,
-  "coachAssessmentAfAtGen": 0,
+  "credentialsCheckedTs": "2026-10-07T05:53:59.034093",
+  "coachAssessmentTsFull": "2026-10-07T05:53:59",
+  "coachAssessmentWeightAtGen": 74.7,
+  "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 21.6,
+  "coachAssessmentFatAtGen": 21.4,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 278,
@@ -3622,7 +3639,7 @@
     "2": 397,
     "3": 193,
     "4": 434,
-    "5": 25
+    "5": 64
   },
   "racesUpcoming": [
     {
@@ -3908,6 +3925,15 @@
         "hr": 127,
         "name": "FaF 1 Z2 - Lang Z2 2 t",
         "id": "i193307325"
+      },
+      {
+        "date": "2026-10-07",
+        "v": 1.458,
+        "real": true,
+        "mins": 60,
+        "hr": 118,
+        "name": "FaF 1 Z2 - Aktivering 60m",
+        "id": "i194529361"
       }
     ]
   },
@@ -3922,10 +3948,10 @@
       "thin": true
     },
     "bike": {
-      "current": 1.424,
+      "current": 1.425,
       "previous": 1.504,
       "pct": -5.3,
-      "n": 9,
+      "n": 10,
       "n_prev": 4,
       "window": 42,
       "thin": false
@@ -4629,16 +4655,16 @@
     },
     {
       "date": "2026-10-06",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 1,
+      "protein": 2,
+      "energi": 4,
       "sult": null
     },
     {
       "date": "2026-10-07",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 0,
+      "protein": 2,
+      "energi": 4,
       "sult": null
     }
   ],
@@ -4659,7 +4685,8 @@
     "2026-10-02": "faa",
     "2026-10-03": "faa",
     "2026-10-04": "faa",
-    "2026-10-05": "faa"
+    "2026-10-05": "faa",
+    "2026-10-06": "faa"
   },
   "planTab": {
     "today": "2026-10-07",
@@ -4817,7 +4844,7 @@
         "mesoWeek": "R",
         "ctlTarget": 50,
         "tssTarget": 250,
-        "tssActual": 25,
+        "tssActual": 64,
         "purpose": "Recovery + FTP-test tor 8/10 (ikke ERG, zoner opdateres samme dag). Åbnere tir, løb ons, svøm fre, styrke man+lør 2 runder, 2 t søndag.",
         "note": "Recovery. FTP-test tor 8/10 efter Mallorca.",
         "quota": {
@@ -7166,14 +7193,15 @@
                 "erg": true,
                 "purpose": "Race-uge og stille uger. Zone 2 med fire korte aktiveringer i høj kadence, så benene vågner uden at der bygges træthed. Bygget 2/9-2026 to dage før Médoc.",
                 "zwiftName": "FaF 1 Z2 - Aktivering 60",
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 60,
+                "actualTss": 39,
                 "note": "Recovery — benene skal føles lette bagefter — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": false,
                 "optional": false,
                 "start": "06:30",
-                "startFixed": true
+                "startFixed": true,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -10588,53 +10616,59 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-07T04:11:19Z",
-    "inputsHash": "281800fb8948cb3ff616b8c0716c09f362be6d82",
+    "generatedAt": "2026-10-07T05:53:59Z",
+    "inputsHash": "108ee8a49f4afc0f54395a3ad0ee5293fdd23fd7",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør 60 min Z2-aktivering på cyklen i ERG — benene skal føles lette bagefter, ikke tomme.",
-      "why": "Readiness er HIGH (HRV 81), og dagens pas er en let åbner der forbereder FTP-testen i morgen."
+      "action": "Hold alkohol-fri i aften — og resten af ugen frem til FTP-testen torsdag.",
+      "why": "6 drikkedage i træk trykker HRV ned og koster søvnkvalitet. Du skal møde frisk op til testen."
     },
     "training": {
-      "text": "Styrke A er i hus mandag. I dag: 60 min Z2-aktivering (ERG), let load. FTP-testen torsdag er ugens eneste hårde pas — kvoten er brugt op der. CTL ligger på 46,6 mod mål på 50,0, men i en recovery-uge er lavere TSS planlagt og korrekt.",
+      "text": "Onsdagens aktivering på 60 min / 39 TSS er i hus — benene er varmet op uden træthed. Ugen er i RECOVERY og FTP-testen torsdag er ugens nøglepas; CTL ligger 3,4 point under målet, men i en recovery-uge er det planen.",
       "refs": [
         60.0,
-        46.6,
+        39.0,
+        3.4,
         50.0
       ]
     },
     "body": {
-      "text": "7-dages snittet er 1,5 kg over planen på 71,8 kg — det er den afvigelse der kræver opmærksomhed. Fedt-snittet er stabilt: ændringen er 0,3 procentpoint, præcis på tærsklen.",
+      "text": "7-dages snit er 2,0 kg over planvægten (73,7 kg mod 71,8 kg) — det er afvigelsen at tage fat på. Raten de seneste 4 uger er 0,37 kg/uge mod målet på 0,25 kg/uge, men 7-dages snittet er steget 1,5 kg den seneste måned, så retningen peger opad.",
       "refs": [
-        1.5,
+        73.7,
         71.8,
-        0.3
+        2.0,
+        0.37,
+        0.25,
+        1.5
       ]
     },
     "habits": {
-      "text": "5 drikkedage i træk 1/10–5/10 rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein er registreret 4 ud af 5 dage — hold det i dag.",
+      "text": "6 AF-dage på 7 dage — ingen dage med 3+ genstande, men 6 drikkedage i træk under cuttet er et cluster der rammer HRV hårdere end spredte dage. Protein er dækket 6 ud af 7 dage; søvn og energi er fine.",
       "refs": [
-        5.0,
+        6.0,
+        7.0,
+        6.0,
         4.0,
-        5.0
+        8.3
       ]
     },
-    "bigPicture": "Uge 41, recovery-blok: FTP-testen torsdag er omdrejningspunktet — al anden træning denne uge er til for at du rammer den frisk.",
+    "bigPicture": "Uge 41, recovery-uge — FTP-testen torsdag er ugens omdrejningspunkt, og HRV er høj nok til at levere.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "alcohol_cluster",
         "level": "act",
-        "message": "5 drikkedage i træk 1/10–5/10 — klynger rammer HRV hårdere end spredte dage.",
+        "message": "6 drikkedage i træk 1/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+        "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
       }
@@ -10724,13 +10758,13 @@
       "targetKg": 68.0,
       "expectedKg": 71.8,
       "corridorKg": 0.5,
-      "avg7": 73.8,
+      "avg7": 73.7,
       "avg7Date": "2026-10-07",
       "delta": 2.0,
       "status": "plan",
       "note": "over korridoren — tæller som bagud efter to mandage",
       "ratePerWeek": -0.22,
-      "actualRate4w": 0.38,
+      "actualRate4w": 0.37,
       "series": [
         {
           "date": "2026-09-21",
@@ -10825,7 +10859,7 @@
       ]
     },
     "fat": {
-      "avg14": 21.8,
+      "avg14": 21.7,
       "avg14Change28d": 0.2,
       "expected": 21.4,
       "target": 16.0,
@@ -10855,12 +10889,12 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
-          "value": 0.6,
-          "text": "0,60 kg/uge (2 uger)"
+          "value": 0.58,
+          "text": "0,58 kg/uge (2 uger)"
         },
         "ffm": {
           "level": null,
@@ -10891,10 +10925,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 5,
-            "run": 5
+            "days7": 6,
+            "run": 6
           },
-          "text": "5 drikkedage på 7 dage · 5 i træk"
+          "text": "6 drikkedage på 7 dage · 6 i træk"
         }
       }
     }
@@ -11204,29 +11238,29 @@
     }
   },
   "weekTss": {
-    "actual": 25,
+    "actual": 64,
     "planned": 256
   },
   "martinMail": {
     "week": 5,
     "isoWeek": 41,
     "lines": [
-      "Uge 41: TSS 25 af 256 (10 %) · CTL 46,6 (mål 50) · TSB +2,4",
-      "Vægt 7d 73,8 kg · fedt 14d 21,8 % · på plan mod glidepath (71,8)",
+      "Uge 41: TSS 64 af 256 (25 %) · CTL 46,6 (mål 50) · TSB +2,4",
+      "Vægt 7d 73,7 kg · fedt 14d 21,7 % · på plan mod glidepath (71,8)",
       "HRV 7d 62 (28d 55) · hvilepuls 42 · søvn 7d 8,3 t",
-      "AF 0/7 · protein 3/3 4/7 · aftensult —/7",
+      "AF 1/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 2/2 · check-in —",
-      "Cut-tjek: warn — 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 13 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-07T04:11:02Z"
+    "generatedAt": "2026-10-07T05:53:39Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 278,
     "wkg": 3.77,
-    "weightAvg7": 73.8,
+    "weightAvg7": 73.7,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
@@ -11285,5 +11319,23 @@
     "date": "2026-10-07",
     "ctl": 46.6,
     "atl": 44.2
+  },
+  "aerobicFlag": {
+    "date": "2026-10-07",
+    "discipline": "bike",
+    "name": "FaF 1 Z2 - Aktivering 60m",
+    "id": "i194529361",
+    "ef": 1.458,
+    "baseline": 1.424,
+    "pct": 2.4,
+    "n_baseline": 9,
+    "level": "ok",
+    "flagged": false,
+    "avg_hr": 118,
+    "start_hour": 6,
+    "temp_c": null,
+    "afternoon": false,
+    "warm": false,
+    "time_of_day_comparable": false
   }
 }
