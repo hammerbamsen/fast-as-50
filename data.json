@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-07 10:27",
+    "updated": "2026-10-07 10:56",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "46,6",
+      "value": "46,7",
       "unit": "",
       "sub": "Uge 41-mål 50 · RECOVERY",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "2,4",
+      "value": "1,7",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "64",
+      "value": "70",
       "unit": "TSS",
-      "sub": "64 af 256 planlagt TSS",
+      "sub": "70 af 256 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,13 +111,21 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Onsdag — uge 41. {HL} Godt: Søvn på 8,3 timer er solid. Vægt på 74,7 kg — Vægten er 0.8 kg højere end seneste måling (2026-10-06) — sandsynligvis væske/natrium snarere end fedt, ikke et disciplinproblem. Giv den et par dage før du dømmer tallet. Fokus: 1 AF-dage i 3 afsluttede dage — 5 mangler i 4 dage tilbage. Keep moving forward.  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Uge 41, recovery-blok — FTP-test torsdag er ugens nøglepunkt; alt andet handler om at ankomme frisk dertil. {HL} Begge dagens pas er i hus: aktivering på cykel (60 min, TSS 39) og Gentofte Gang (78 min). Recovery-ugen kører som planlagt — ingen missede pas.",
+  "coachHighlight": "Drik ikke alkohol i aften — og de næste dage frem til FTP-testen torsdag.",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
       "discipline": "bike",
       "title": "FaF 1 Z2 - Aktivering 60",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "walk",
+      "title": "Gentofte Gang",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -167,6 +175,17 @@
       "actual_mins": 60,
       "actual_distance_m": 30943.57,
       "intervals_compliance": 100.0
+    },
+    {
+      "day": "Ons",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 6,
+      "actual_mins": 78,
+      "actual_distance_m": 5624.24,
+      "today": true
     },
     {
       "day": "Tor",
@@ -219,7 +238,7 @@
     49.9,
     46.5,
     48.7,
-    46.6
+    46.7
   ],
   "weightHistory": [
     null,
@@ -1905,7 +1924,7 @@
     },
     {
       "date": "2026-10-07",
-      "v": 2.4,
+      "v": 1.7,
       "real": true
     }
   ],
@@ -2237,6 +2256,17 @@
           "actual_mins": 60,
           "actual_distance_m": 30943.57,
           "intervals_compliance": 100.0
+        },
+        {
+          "day": "Ons",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 6,
+          "actual_mins": 78,
+          "actual_distance_m": 5624.24,
+          "today": true
         },
         {
           "day": "Tor",
@@ -2903,11 +2933,11 @@
     }
   ],
   "train_mins": {
+    "walk": 168.0,
     "bike": 60.0,
-    "walk": 90.0,
     "strength": 28.0,
     "planned": 398.0,
-    "actual_total": 178.0
+    "actual_total": 256.0
   },
   "fatHistory": [
     null,
@@ -3241,22 +3271,26 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 31 af 357 · Onsdag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-uge — FTP-testen torsdag er ugens omdrejningspunkt, og HRV er høj nok til at levere.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Onsdagens aktivering på 60 min / 39 TSS er i hus — benene er varmet op uden træthed. Ugen er i RECOVERY og FTP-testen torsdag er ugens nøglepas; CTL ligger 3,4 point under målet, men i en recovery-uge er det planen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,0 kg over planvægten (73,7 kg mod 71,8 kg) — det er afvigelsen at tage fat på. Raten de seneste 4 uger er 0,37 kg/uge mod målet på 0,25 kg/uge, men 7-dages snittet er steget 1,5 kg den seneste måned, så retningen peger opad.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 AF-dage på 7 dage — ingen dage med 3+ genstande, men 6 drikkedage i træk under cuttet er et cluster der rammer HRV hårdere end spredte dage. Protein er dækket 6 ud af 7 dage; søvn og energi er fine.</p>",
-  "coachAssessmentTs": "07:53",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 31 af 357 · Onsdag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-blok — FTP-test torsdag er ugens nøglepunkt; alt andet handler om at ankomme frisk dertil.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Begge dagens pas er i hus: aktivering på cykel (60 min, TSS 39) og Gentofte Gang (78 min). Recovery-ugen kører som planlagt — ingen missede pas. CTL ligger på 46,7 mod mål 50,0, men i en recovery-blok er det korrekt at holde den lav.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,0 kg over planlagt cut-vægt på 71,8 kg. Tendensen den seneste måned er opadgående (1,5 kg), så alkohol-klyngen er sandsynligvis en del af forklaringen — hold protein ved hvert måltid og drop drikkene resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 drikkedage på de seneste 7 dage er for mange under et aktivt cut — ingen dage med 3+ genstande, men frekvensen alene koster dig. Protein-dage er stærke (6 ud af 7 registrerede). Søvn sidst var 7,3 t — under det 7-dages snit på 8,3 t, men over minimumsgrænsen.</p>",
+  "coachAssessmentTs": "10:56",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "6 drikkedage i træk 1/10–6/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "6 drikkedage i træk 1/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 6 drikkedage på 7 dage · 6 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 2.4,
+  "tsb": 1.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3289,7 +3323,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i194529361",
+  "coachAssessmentLastActId": "i194585708",
   "weekFocusWeek": 5,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Aktivering 60",
   "weightGoal": 68,
@@ -3543,8 +3577,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-07T08:27:41.316389",
-  "coachAssessmentTsFull": "2026-10-07T05:53:59",
+  "credentialsCheckedTs": "2026-10-07T08:57:08.254624",
+  "coachAssessmentTsFull": "2026-10-07T08:57:08",
   "coachAssessmentWeightAtGen": 74.7,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3635,7 +3669,7 @@
     "2": 397,
     "3": 193,
     "4": 434,
-    "5": 64
+    "5": 70
   },
   "racesUpcoming": [
     {
@@ -4840,7 +4874,7 @@
         "mesoWeek": "R",
         "ctlTarget": 50,
         "tssTarget": 250,
-        "tssActual": 64,
+        "tssActual": 70,
         "purpose": "Recovery + FTP-test tor 8/10 (ikke ERG, zoner opdateres samme dag). Åbnere tir, løb ons, svøm fre, styrke man+lør 2 runder, 2 t søndag.",
         "note": "Recovery. FTP-test tor 8/10 efter Mallorca.",
         "quota": {
@@ -7198,6 +7232,24 @@
                 "start": "06:30",
                 "startFixed": true,
                 "completion": "done"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 78,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 78,
+                "actualTss": 6,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10133,7 +10185,7 @@
           "week": 5,
           "programId": "tds-2027",
           "start": "2026-10-05",
-          "ctl": 46.6
+          "ctl": 46.7
         }
       ],
       "projection": [
@@ -10612,45 +10664,44 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-07T05:53:59Z",
-    "inputsHash": "108ee8a49f4afc0f54395a3ad0ee5293fdd23fd7",
+    "generatedAt": "2026-10-07T08:57:08Z",
+    "inputsHash": "46e016111d7843c7173b6140dc470ea673cb568d",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Hold alkohol-fri i aften — og resten af ugen frem til FTP-testen torsdag.",
-      "why": "6 drikkedage i træk trykker HRV ned og koster søvnkvalitet. Du skal møde frisk op til testen."
+      "action": "Drik ikke alkohol i aften — og de næste dage frem til FTP-testen torsdag.",
+      "why": "6 drikkedage i træk rammer HRV og muskelproteinsyntese; testen torsdag kræver dit bedste signal."
     },
     "training": {
-      "text": "Onsdagens aktivering på 60 min / 39 TSS er i hus — benene er varmet op uden træthed. Ugen er i RECOVERY og FTP-testen torsdag er ugens nøglepas; CTL ligger 3,4 point under målet, men i en recovery-uge er det planen.",
+      "text": "Begge dagens pas er i hus: aktivering på cykel (60 min, TSS 39) og Gentofte Gang (78 min). Recovery-ugen kører som planlagt — ingen missede pas. CTL ligger på 46,7 mod mål 50,0, men i en recovery-blok er det korrekt at holde den lav.",
       "refs": [
         60.0,
         39.0,
-        3.4,
+        78.0,
+        46.7,
         50.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 2,0 kg over planvægten (73,7 kg mod 71,8 kg) — det er afvigelsen at tage fat på. Raten de seneste 4 uger er 0,37 kg/uge mod målet på 0,25 kg/uge, men 7-dages snittet er steget 1,5 kg den seneste måned, så retningen peger opad.",
+      "text": "7-dages snit er 2,0 kg over planlagt cut-vægt på 71,8 kg. Tendensen den seneste måned er opadgående (1,5 kg), så alkohol-klyngen er sandsynligvis en del af forklaringen — hold protein ved hvert måltid og drop drikkene resten af ugen.",
       "refs": [
-        73.7,
-        71.8,
         2.0,
-        0.37,
-        0.25,
+        71.8,
         1.5
       ]
     },
     "habits": {
-      "text": "6 AF-dage på 7 dage — ingen dage med 3+ genstande, men 6 drikkedage i træk under cuttet er et cluster der rammer HRV hårdere end spredte dage. Protein er dækket 6 ud af 7 dage; søvn og energi er fine.",
+      "text": "6 drikkedage på de seneste 7 dage er for mange under et aktivt cut — ingen dage med 3+ genstande, men frekvensen alene koster dig. Protein-dage er stærke (6 ud af 7 registrerede). Søvn sidst var 7,3 t — under det 7-dages snit på 8,3 t, men over minimumsgrænsen.",
       "refs": [
         6.0,
         7.0,
         6.0,
-        4.0,
+        7.0,
+        7.3,
         8.3
       ]
     },
-    "bigPicture": "Uge 41, recovery-uge — FTP-testen torsdag er ugens omdrejningspunkt, og HRV er høj nok til at levere.",
+    "bigPicture": "Uge 41, recovery-blok — FTP-test torsdag er ugens nøglepunkt; alt andet handler om at ankomme frisk dertil.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11234,14 +11285,14 @@
     }
   },
   "weekTss": {
-    "actual": 64,
+    "actual": 70,
     "planned": 256
   },
   "martinMail": {
     "week": 5,
     "isoWeek": 41,
     "lines": [
-      "Uge 41: TSS 64 af 256 (25 %) · CTL 46,6 (mål 50) · TSB +2,4",
+      "Uge 41: TSS 70 af 256 (27 %) · CTL 46,7 (mål 50) · TSB +1,7",
       "Vægt 7d 73,7 kg · fedt 14d 21,7 % · på plan mod glidepath (71,8)",
       "HRV 7d 62 (28d 55) · hvilepuls 42 · søvn 7d 8,3 t",
       "AF 1/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11250,7 +11301,7 @@
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 13 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-07T08:27:41Z"
+    "generatedAt": "2026-10-07T08:56:49Z"
   },
   "proposals": [],
   "ftp": {
@@ -11313,8 +11364,8 @@
   },
   "fitnessLive": {
     "date": "2026-10-07",
-    "ctl": 46.6,
-    "atl": 44.2
+    "ctl": 46.7,
+    "atl": 45.0
   },
   "aerobicFlag": {
     "date": "2026-10-07",
