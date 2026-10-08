@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-08 07:43",
+    "updated": "2026-10-08 08:01",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -94,10 +94,10 @@
       "color": "#59182A"
     },
     "ftp": {
-      "value": "278",
+      "value": "257",
       "unit": "W",
-      "sub": "3,76 W/kg · mål 278 (TRANSITION) · test 8/10",
-      "color": "#27AE60"
+      "sub": "3,48 W/kg · mål 278 (TRANSITION) · test 8/10",
+      "color": "#C0392B"
     },
     "protein": {
       "value": "6",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 2
   },
-  "coachSpeech": "Recovery-uge 41 med FTP-test i dag som omdrejningspunkt — zoner sættes nu, og alkoholfri resten af ugen er det vigtigste cut-skridt. {HL} FTP-testen er kørt: 50 min / 57 TSS mod planlagte 53 min. Ugens to gennemførte pas er på plads, ingen missede. CTL er 47,6 mod mål på 50,0 — i en recovery-uge er det fint.",
-  "coachHighlight": "FTP-testen er i hus — spis et proteinrigt måltid inden for den næste time og hold alkohol ude resten af ugen.",
+  "coachSpeech": "Torsdag — uge 41. {HL} Godt: Søvn på 8,0 timer er solid. Fokus: Vægt på 74,8 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 2 AF-dage i 4 afsluttede dage — 4 mangler i 3 dage tilbage. Keep moving forward.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
+  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
@@ -3287,18 +3287,14 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "alcohol_cluster",
-      "level": "critical",
-      "message": "5 drikkedage i træk 2/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: 5 drikkedage på 7 dage · 5 i træk under cuttet — AF resten af ugen før du skærer mere"
+    },
+    {
+      "type": "alcohol_cluster",
+      "level": "critical",
+      "message": "5 drikkedage i træk 2/10–6/10 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": -2.8,
@@ -3588,7 +3584,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-08T05:43:48.194851",
+  "credentialsCheckedTs": "2026-10-08T06:01:14.469418",
   "coachAssessmentTsFull": "2026-10-08T05:43:48",
   "coachAssessmentWeightAtGen": 74.8,
   "coachAssessmentAfAtGen": 2,
@@ -3596,7 +3592,7 @@
   "coachAssessmentFatAtGen": 22.1,
   "zones": {
     "runThreshold": "4:16/km",
-    "bikeFtpW": 278,
+    "bikeFtpW": 257,
     "run": {
       "Z1": ">5:29/km",
       "Z2": "4:51-5:28/km",
@@ -3613,7 +3609,7 @@
       "Z5": "106-115% FTP"
     },
     "thresholdSec": 256,
-    "ftpW": 278,
+    "ftpW": 257,
     "runPct": {
       "Z1": [
         null,
@@ -3667,12 +3663,12 @@
       ]
     },
     "bikeWatt": {
-      "Z1": "<154 W",
-      "Z2": "154-211 W",
-      "Z3": "211-252 W",
-      "Z4": "252-293 W",
-      "Z5": "293-335 W",
-      "Z6": ">335 W"
+      "Z1": "<143 W",
+      "Z2": "143-195 W",
+      "Z3": "195-233 W",
+      "Z4": "233-271 W",
+      "Z5": "271-309 W",
+      "Z6": ">309 W"
     }
   },
   "weekTssActual": {
@@ -10203,211 +10199,211 @@
       "projection": [
         {
           "d": "2026-10-09",
-          "ctl": 46.2
+          "ctl": 47.5
         },
         {
           "d": "2026-10-10",
-          "ctl": 46.1
-        },
-        {
-          "d": "2026-10-11",
-          "ctl": 46.0
-        },
-        {
-          "d": "2026-10-12",
-          "ctl": 46.3
-        },
-        {
-          "d": "2026-10-13",
-          "ctl": 46.6
-        },
-        {
-          "d": "2026-10-14",
-          "ctl": 47.0
-        },
-        {
-          "d": "2026-10-15",
           "ctl": 47.3
         },
         {
-          "d": "2026-10-16",
-          "ctl": 47.6
+          "d": "2026-10-11",
+          "ctl": 47.2
         },
         {
-          "d": "2026-10-17",
-          "ctl": 47.9
+          "d": "2026-10-12",
+          "ctl": 47.5
         },
         {
-          "d": "2026-10-18",
-          "ctl": 48.2
+          "d": "2026-10-13",
+          "ctl": 47.8
         },
         {
-          "d": "2026-10-19",
-          "ctl": 48.5
+          "d": "2026-10-14",
+          "ctl": 48.1
         },
         {
-          "d": "2026-10-20",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-10-21",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-10-22",
-          "ctl": 49.5
-        },
-        {
-          "d": "2026-10-23",
-          "ctl": 49.8
-        },
-        {
-          "d": "2026-10-24",
-          "ctl": 50.1
-        },
-        {
-          "d": "2026-10-25",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 50.1
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 49.8
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 49.5
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-10-31",
-          "ctl": 48.6
-        },
-        {
-          "d": "2026-11-01",
+          "d": "2026-10-15",
           "ctl": 48.4
         },
         {
-          "d": "2026-11-02",
-          "ctl": 48.7
+          "d": "2026-10-16",
+          "ctl": 48.6
         },
         {
-          "d": "2026-11-03",
-          "ctl": 49.1
+          "d": "2026-10-17",
+          "ctl": 48.9
         },
         {
-          "d": "2026-11-04",
-          "ctl": 49.4
+          "d": "2026-10-18",
+          "ctl": 49.2
         },
         {
-          "d": "2026-11-05",
-          "ctl": 49.7
+          "d": "2026-10-19",
+          "ctl": 49.5
         },
         {
-          "d": "2026-11-06",
-          "ctl": 50.0
+          "d": "2026-10-20",
+          "ctl": 49.8
         },
         {
-          "d": "2026-11-07",
-          "ctl": 50.3
+          "d": "2026-10-21",
+          "ctl": 50.1
         },
         {
-          "d": "2026-11-08",
-          "ctl": 50.6
+          "d": "2026-10-22",
+          "ctl": 50.4
         },
         {
-          "d": "2026-11-09",
+          "d": "2026-10-23",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-10-24",
           "ctl": 51.0
         },
         {
-          "d": "2026-11-10",
+          "d": "2026-10-25",
           "ctl": 51.3
         },
         {
+          "d": "2026-10-26",
+          "ctl": 51.0
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 50.6
+        },
+        {
+          "d": "2026-10-28",
+          "ctl": 50.3
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 49.7
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 49.4
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 49.4
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 49.7
+        },
+        {
+          "d": "2026-11-04",
+          "ctl": 50.1
+        },
+        {
+          "d": "2026-11-05",
+          "ctl": 50.4
+        },
+        {
+          "d": "2026-11-06",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-11-07",
+          "ctl": 51.0
+        },
+        {
+          "d": "2026-11-08",
+          "ctl": 51.2
+        },
+        {
+          "d": "2026-11-09",
+          "ctl": 51.6
+        },
+        {
+          "d": "2026-11-10",
+          "ctl": 51.9
+        },
+        {
           "d": "2026-11-11",
-          "ctl": 51.7
+          "ctl": 52.2
         },
         {
           "d": "2026-11-12",
-          "ctl": 52.0
+          "ctl": 52.6
         },
         {
           "d": "2026-11-13",
-          "ctl": 52.3
+          "ctl": 52.9
         },
         {
           "d": "2026-11-14",
-          "ctl": 52.7
+          "ctl": 53.2
         },
         {
           "d": "2026-11-15",
-          "ctl": 53.0
+          "ctl": 53.5
         },
         {
           "d": "2026-11-16",
-          "ctl": 53.4
+          "ctl": 53.9
         },
         {
           "d": "2026-11-17",
-          "ctl": 53.8
+          "ctl": 54.3
         },
         {
           "d": "2026-11-18",
-          "ctl": 54.2
+          "ctl": 54.6
         },
         {
           "d": "2026-11-19",
-          "ctl": 54.5
+          "ctl": 55.0
         },
         {
           "d": "2026-11-20",
-          "ctl": 54.9
+          "ctl": 55.4
         },
         {
           "d": "2026-11-21",
-          "ctl": 55.3
+          "ctl": 55.7
         },
         {
           "d": "2026-11-22",
-          "ctl": 55.6
+          "ctl": 56.0
         },
         {
           "d": "2026-11-23",
-          "ctl": 55.2
+          "ctl": 55.6
         },
         {
           "d": "2026-11-24",
-          "ctl": 54.8
+          "ctl": 55.2
         },
         {
           "d": "2026-11-25",
-          "ctl": 54.4
+          "ctl": 54.8
         },
         {
           "d": "2026-11-26",
-          "ctl": 54.0
+          "ctl": 54.4
         },
         {
           "d": "2026-11-27",
-          "ctl": 53.7
+          "ctl": 54.1
         },
         {
           "d": "2026-11-28",
-          "ctl": 53.3
+          "ctl": 53.7
         },
         {
           "d": "2026-11-29",
-          "ctl": 53.0
+          "ctl": 53.3
         }
       ],
       "targets": [
@@ -11309,26 +11305,36 @@
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 13 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-08T05:43:31Z"
+    "generatedAt": "2026-10-08T06:01:14Z"
   },
   "proposals": [],
   "ftp": {
-    "ftpW": 278,
-    "wkg": 3.76,
+    "ftpW": 257,
+    "wkg": 3.48,
     "weightAvg7": 73.9,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
     "seasonTarget": 320,
     "seasonStart": 278,
-    "status": "ok",
-    "color": "#27AE60",
+    "status": "bagud",
+    "color": "#C0392B",
     "nextTest": "2026-10-08",
     "history": [
       {
         "date": "2026-07-28",
         "ftpW": 278,
         "source": "test_ftp20 indendørs (seed 11/9-2026)"
+      },
+      {
+        "date": "2026-10-08",
+        "ftpW": 284,
+        "source": "set_zones"
+      },
+      {
+        "date": "2026-10-08",
+        "ftpW": 257,
+        "source": "set_zones"
       }
     ],
     "phases": [
