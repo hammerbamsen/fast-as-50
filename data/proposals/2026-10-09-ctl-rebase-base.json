@@ -1,0 +1,103 @@
+{
+  "id": "2026-10-09-ctl-rebase-base",
+  "title": "CTL-pejlemærker uge 41-53 efter FTP-test",
+  "status": "pending",
+  "createdAt": "2026-10-09T06:01:50+00:00",
+  "createdBy": "claude",
+  "note": "TSS-målene (420-500 i BASE) kan ikke nå CTL-målene fra en start på 47,4: det kræver ca. 615 TSS i uge 42. Projektionen bygger på ugens tssTarget, ikke på de enkelte pas, så gabet ligger i målene. Forslaget flytter kun ctlTarget for uge 41-53 til det, de nuværende TSS-mål giver. TSS-mål, pas, peak og race er uændret. Ingen ekstra belastning under cut. Uge 1/2027 og frem (program-uge 18+) mangler dage i plan.json og røres ikke.",
+  "summary": [
+    "uge 41: CTL 50 → 47",
+    "uge 42: CTL 53 → 49",
+    "uge 43: CTL 56 → 51",
+    "uge 44: CTL 55 → 49",
+    "uge 45: CTL 57 → 51",
+    "uge 46: CTL 59 → 54",
+    "uge 47: CTL 62 → 56",
+    "uge 48: CTL 60 → 53",
+    "uge 49: CTL 62 → 55",
+    "uge 50: CTL 64 → 57",
+    "uge 51: CTL 66 → 60",
+    "uge 52: CTL 63 → 56",
+    "uge 53: CTL 61 → 57"
+  ],
+  "changes": [
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 5,
+      "ctlTarget": 47
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 6,
+      "ctlTarget": 49
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 7,
+      "ctlTarget": 51
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 8,
+      "ctlTarget": 49
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 9,
+      "ctlTarget": 51
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 10,
+      "ctlTarget": 54
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 11,
+      "ctlTarget": 56
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 12,
+      "ctlTarget": 53
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 13,
+      "ctlTarget": 55
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 14,
+      "ctlTarget": 57
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 15,
+      "ctlTarget": 60
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 16,
+      "ctlTarget": 56
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 17,
+      "ctlTarget": 57
+    }
+  ]
+}
