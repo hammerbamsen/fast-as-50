@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-09 10:47",
+    "updated": "2026-10-09 13:17",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "47,4",
+      "value": "45,8",
       "unit": "",
       "sub": "Uge 41-mål 50 · RECOVERY",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "-1,4",
+      "value": "5,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -72,7 +72,7 @@
     "tssComp": {
       "value": "127",
       "unit": "TSS",
-      "sub": "127 af 256 planlagt TSS",
+      "sub": "127 af 218 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "2",
+      "value": "3",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,2 · streak 2",
+      "sub": "af 6 denne uge · snit 4 uger 3,2 · streak 3",
       "color": "#59182A"
     },
     "ftp": {
@@ -100,27 +100,27 @@
       "color": "#C0392B"
     },
     "protein": {
-      "value": "6",
+      "value": "7",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 5,8",
+      "sub": "3/3-dage · 4 uger 6,0",
       "color": "#27AE60"
     }
   },
   "af": {
-    "weekDone": 2,
+    "weekDone": 3,
     "target": 6,
-    "streak": 2
+    "streak": 3
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 41. {HL} Godt: Søvn på 8,1 timer er solid. Fokus: Vægt på 74,5 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 2 AF-dage i 5 afsluttede dage — 4 mangler i 2 dage tilbage. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Uge 41, recovery-uge — FTP-testen er i hus, ingen pas i dag, fokus er nu på cut og alkohol-mønsteret. {HL} Ingen træning planlagt i dag. FTP-testen torsdag er gennemført — det tæller som ugens hårde kvote, og spacing til næste hårde pas er ok. Ugen har 3 pas tilbage: gang og styrke lørdag, lang Z2 søndag.",
+  "coachHighlight": "Drik ikke alkohol i dag — det er dag 4 i træk, og du er i cut. Slut klyngen her.",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
-      "discipline": "swim",
-      "title": "Svøm 1500m let teknisk",
+      "discipline": "rest",
+      "title": "Hviledag",
       "duration": "",
       "zone": "–",
-      "desc": "",
+      "desc": "Ingen planlagt træning i dag.",
       "completed": false
     }
   ],
@@ -193,16 +193,6 @@
       "actual_distance_m": 26567.22
     },
     {
-      "day": "Fre",
-      "disc": "swim",
-      "label": "Svøm 1500m let teknisk",
-      "done": false,
-      "planned_tss": 38,
-      "planned_mins": 45,
-      "planned_distance_m": 1500,
-      "today": true
-    },
-    {
       "day": "Lør",
       "disc": "hike",
       "label": "Gang let 60 min",
@@ -235,7 +225,7 @@
     49.9,
     46.5,
     48.7,
-    47.4
+    45.8
   ],
   "weightHistory": [
     null,
@@ -1924,12 +1914,12 @@
     },
     {
       "date": "2026-10-08",
-      "v": -2.8,
+      "v": 0.4,
       "real": true
     },
     {
       "date": "2026-10-09",
-      "v": -1.4,
+      "v": 5.5,
       "real": true
     }
   ],
@@ -2063,7 +2053,8 @@
     "2026-10-05": 1,
     "2026-10-06": 1,
     "2026-10-07": 0,
-    "2026-10-08": 0
+    "2026-10-08": 0,
+    "2026-10-09": 0
   },
   "all_weeks": {
     "3": {
@@ -2286,16 +2277,6 @@
           "actual_name": "FTP test",
           "actual_mins": 50,
           "actual_distance_m": 26567.22
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "planned_tss": 38,
-          "planned_mins": 45,
-          "planned_distance_m": 1500,
-          "today": true
         },
         {
           "day": "Lør",
@@ -2938,7 +2919,7 @@
       "week": 5,
       "iso": 41,
       "monday": "2026-10-05",
-      "done": 2,
+      "done": 3,
       "total": 5,
       "label": "Uge 41"
     }
@@ -2947,7 +2928,7 @@
     "bike": 110.0,
     "walk": 168.0,
     "strength": 28.0,
-    "planned": 398.0,
+    "planned": 353.0,
     "actual_total": 306.0
   },
   "fatHistory": [
@@ -3290,22 +3271,26 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 33 af 357 · Fredag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-uge med FTP-test i hus — svøm i dag afslutter ugens lette del.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>FTP-testen torsdag er gennemført. Recovery-ugen kører som planlagt — ingen missede pas. CTL er 47,4 mod mål på 50,0, men i en recovery-blok er det korrekt at holde sig under.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,4 kg over planens 71,7 kg. Ugerate på 0,22 kg/uge er under de planlagte 0,25 kg/uge — tempoet er for lavt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 drikkedage de seneste 7 dage — AF resten af ugen, ellers undergraver det cut-raten yderligere. Protein er på plads: 6 ud af 6 registrerede dage.</p>",
-  "coachAssessmentTs": "08:30",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 33 af 357 · Fredag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-uge — FTP-testen er i hus, ingen pas i dag, fokus er nu på cut og alkohol-mønsteret.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen træning planlagt i dag. FTP-testen torsdag er gennemført — det tæller som ugens hårde kvote, og spacing til næste hårde pas er ok. Ugen har 3 pas tilbage: gang og styrke lørdag, lang Z2 søndag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit i vægt er steget 1,2 kg den seneste måned og ligger 2,4 kg over planlagt cut-niveau — retningen er opad og afvigelsen er reel. Hold raten; spis protein ved hvert måltid og drop alkoholen resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 drikkedage på de seneste 7 dage, 4 i træk — stop nu. Protein er registreret alle 7 dage. Søvn og HRV er fine.</p>",
+  "coachAssessmentTs": "13:17",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut-tjek: 4 drikkedage på 7 dage · 4 i træk under cuttet — AF resten af ugen før du skærer mere"
-    },
-    {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "4 drikkedage i træk 3/10–6/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "4 drikkedage i træk 3/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 4 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": -1.4,
+  "tsb": 5.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3340,7 +3325,7 @@
   ],
   "coachAssessmentLastActId": "i194919808",
   "weekFocusWeek": 5,
-  "coachAssessmentPlanAtGen": "Svøm 1500m let teknisk",
+  "coachAssessmentPlanAtGen": "",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
@@ -3592,10 +3577,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-09T08:48:01.488699",
-  "coachAssessmentTsFull": "2026-10-09T06:30:37",
+  "credentialsCheckedTs": "2026-10-09T11:18:17.842964",
+  "coachAssessmentTsFull": "2026-10-09T11:18:17",
   "coachAssessmentWeightAtGen": 74.5,
-  "coachAssessmentAfAtGen": 2,
+  "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 21.9,
   "zones": {
@@ -4707,13 +4692,13 @@
     },
     {
       "date": "2026-10-09",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 0,
+      "protein": 2,
+      "energi": 1,
       "sult": null
     }
   ],
-  "energy7": 4.0,
+  "energy7": 3.6,
   "af_kind": {
     "2026-09-12": "faa",
     "2026-09-13": "faa",
@@ -7304,30 +7289,9 @@
           {
             "date": "2026-10-09",
             "weekday": "Fre",
-            "entries": [
-              {
-                "id": "a61fb509",
-                "name": "Svøm 1500m let teknisk",
-                "type": "Swim",
-                "disc": "swim",
-                "mins": 45,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
-                "note": "Svøm teknik — én cue pr. uge",
-                "isKey": false,
-                "optional": false,
-                "start": "06:00",
-                "startFixed": false
-              }
-            ],
-            "restNote": null,
-            "restId": null,
+            "entries": [],
+            "restNote": "Aflyst — hviledag",
+            "restId": "a61fb509",
             "isToday": true
           },
           {
@@ -10201,7 +10165,7 @@
           "week": 5,
           "programId": "tds-2027",
           "start": "2026-10-05",
-          "ctl": 47.4
+          "ctl": 45.8
         }
       ],
       "projection": [
@@ -10672,39 +10636,36 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-09T06:30:37Z",
-    "inputsHash": "c6dfd83204702148c4565fb4782abb257d259b12",
+    "generatedAt": "2026-10-09T11:18:17Z",
+    "inputsHash": "883833ecfb702040edbc0e0e4a2b9069134a28a1",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Svøm 1500m let teknisk i dag — én cue, ingen intensitet.",
-      "why": "Recovery-ugens eneste tilbageværende pas i dag. Hold det let og teknisk som noten siger."
+      "action": "Drik ikke alkohol i dag — det er dag 4 i træk, og du er i cut. Slut klyngen her.",
+      "why": "4 drikkedage i træk rammer HRV hårdere end spredte dage og bremser din rate på 0,22 kg/uge mod målet på 0,25."
     },
     "training": {
-      "text": "FTP-testen torsdag er gennemført. Recovery-ugen kører som planlagt — ingen missede pas. CTL er 47,4 mod mål på 50,0, men i en recovery-blok er det korrekt at holde sig under.",
+      "text": "Ingen træning planlagt i dag. FTP-testen torsdag er gennemført — det tæller som ugens hårde kvote, og spacing til næste hårde pas er ok. Ugen har 3 pas tilbage: gang og styrke lørdag, lang Z2 søndag.",
       "refs": [
-        47.4,
-        50.0
+        1.0,
+        3.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 2,4 kg over planens 71,7 kg. Ugerate på 0,22 kg/uge er under de planlagte 0,25 kg/uge — tempoet er for lavt.",
+      "text": "7-dages snit i vægt er steget 1,2 kg den seneste måned og ligger 2,4 kg over planlagt cut-niveau — retningen er opad og afvigelsen er reel. Hold raten; spis protein ved hvert måltid og drop alkoholen resten af ugen.",
       "refs": [
-        2.4,
-        71.7,
-        0.22,
-        0.25
+        1.2,
+        2.4
       ]
     },
     "habits": {
-      "text": "4 drikkedage de seneste 7 dage — AF resten af ugen, ellers undergraver det cut-raten yderligere. Protein er på plads: 6 ud af 6 registrerede dage.",
+      "text": "4 drikkedage på de seneste 7 dage, 4 i træk — stop nu. Protein er registreret alle 7 dage. Søvn og HRV er fine.",
       "refs": [
         4.0,
-        6.0,
-        6.0
+        7.0
       ]
     },
-    "bigPicture": "Uge 41, recovery-uge med FTP-test i hus — svøm i dag afslutter ugens lette del.",
+    "bigPicture": "Uge 41, recovery-uge — FTP-testen er i hus, ingen pas i dag, fokus er nu på cut og alkohol-mønsteret.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10725,7 +10686,13 @@
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": null,
+    "validationRejected": [
+      {
+        "errors": [
+          "warnings[1].message: tal ikke i konteksten: 42"
+        ]
+      }
+    ],
     "notes": null,
     "stale": false
   },
@@ -11289,22 +11256,22 @@
   },
   "weekTss": {
     "actual": 127,
-    "planned": 256
+    "planned": 218
   },
   "martinMail": {
     "week": 5,
     "isoWeek": 41,
     "lines": [
-      "Uge 41: TSS 127 af 256 (50 %) · CTL 47,4 (mål 50) · TSB −1,4",
+      "Uge 41: TSS 127 af 218 (58 %) · CTL 45,8 (mål 50) · TSB +5,4",
       "Vægt 7d 74,0 kg · fedt 14d 21,7 % · på plan mod glidepath (71,7)",
       "HRV 7d 69 (28d 56) · hvilepuls 40 · søvn 7d 8,1 t",
-      "AF 2/7 · protein 3/3 6/7 · aftensult —/7",
+      "AF 3/7 · protein 3/3 7/7 · aftensult —/7",
       "Styrke 2/2 · check-in —",
       "Cut-tjek: warn — 4 drikkedage på 7 dage · 4 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
-      "Planændringer siden sidst: 13 — se martin_signals.md"
+      "Planændringer siden sidst: 14 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-09T08:48:01Z"
+    "generatedAt": "2026-10-09T11:17:42Z"
   },
   "proposals": [],
   "ftp": {
@@ -11377,8 +11344,8 @@
   },
   "fitnessLive": {
     "date": "2026-10-09",
-    "ctl": 47.4,
-    "atl": 48.8
+    "ctl": 45.8,
+    "atl": 40.4
   },
   "aerobicFlag": {
     "date": "2026-10-07",
