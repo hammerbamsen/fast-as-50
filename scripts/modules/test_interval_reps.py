@@ -175,18 +175,30 @@ def test_in_zone_pct_beregnes_fra_stream():
 
 
 # ── Cykel ────────────────────────────────────────────────────────────────────
+# Forventede watt udledes af ftpW i plan.json, så testene ikke bliver røde
+# ved næste FTP-test (samme princip som løbezonerne ovenfor).
+from modules.sessions import _ftp_watts
+from modules.config import BIKE_ZONES_WATTS
+
+
+def _w(pct):
+    return int(round(_ftp_watts() * pct / 100))
+
 
 def test_bike_zone_watts_fra_ftp():
-    assert bike_zone_watts('Z4') == (252, 293)
+    lo, hi = bike_zone_watts('Z4')
+    assert (lo, hi) == BIKE_ZONES_WATTS['Z4']
+    assert lo == _w(90.74) and hi == _w(105.56)
 
 
 def test_bike_reps_paa_watt():
-    iv = [mk(300, watts=270, hr=150), mk(240, watts=120, hr=120),
-          mk(300, watts=310, hr=160)]
+    lo, hi = bike_zone_watts('Z4')
+    iv = [mk(300, watts=(lo + hi) // 2, hr=150), mk(240, watts=120, hr=120),
+          mk(300, watts=hi + 20, hr=160)]
     reps = get_interval_reps('x', 'Z4', 'bike', streams={}, intervals=iv)
     assert len(reps) == 2
     assert [r['flag'] for r in reps] == ['ok', 'fast']
-    assert 'target 252–293W' in summarize_reps(reps, 'Z4', 'bike')
+    assert f'target {lo}–{hi}W' in summarize_reps(reps, 'Z4', 'bike')
 
 
 # ── Hjælpefunktioner ─────────────────────────────────────────────────────────
@@ -274,7 +286,7 @@ def test_bike_target_fra_workout_doc():
             {'power': {'start': 44, 'end': 56, 'units': '%ftp'}, 'duration': 240},
         ]},
     ]}}
-    assert planned_target_from_event(ev, 'bike') == (253, 278)
+    assert planned_target_from_event(ev, 'bike') == (_w(91), _w(100))
 
 
 # ── Trigger: struktur, ikke zonenavn ─────────────────────────────────────────
@@ -357,7 +369,7 @@ def test_hometrainer_z3_trigger():
              'power': {'start': 56, 'end': 76, 'units': '%ftp'}}]}]}}
     spec = interval_spec(ev, 'bike')
     assert spec['reps'] == 3 and spec['work_secs'] == 900
-    assert spec['target'] == (211, 253)
+    assert spec['target'] == (_w(76), _w(91))
 
 
 def test_merged_pauser_kasseres():
