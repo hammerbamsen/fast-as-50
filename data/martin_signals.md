@@ -144,3 +144,6 @@
 ### Planændring 06/10 16:46
 - **tirsdag 2026-10-06** (uge 5, move): FaF 1 Z2 - Aktivering 60 (60 min) → hviledag
 - **onsdag 2026-10-07** (uge 5, move): hviledag → FaF 1 Z2 - Aktivering 60 (60 min)
+
+### Planændring 09/10 10:48
+- **fredag 2026-10-09** (uge 5, cancel): Svøm 1500m let teknisk (45 min) → hviledag
