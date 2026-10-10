@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-10 13:12",
+    "updated": "2026-10-10 17:18",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 4
   },
-  "coachSpeech": "Uge 41, recovery-uge — FTP-testen torsdag er i hus; i dag slutter ugen med let gang og alkohol-signalet kræver opmærksomhed. {HL} Dagens lette gang på 58 min er i hus — recovery-uge, så lavere TSS end målet er korrekt. FTP-testen torsdag gav 57 TSS mod planlagte 29; det er den eneste hårde indsats og kvoten er brugt.",
-  "coachHighlight": "Hold AF resten af weekenden — ingen alkohol lørdag og søndag.",
+  "coachSpeech": "Lørdag — uge 41. {HL} Godt: Søvn på 8,2 timer er solid. Fokus: Vægt på 74,6 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 6 afsluttede dage — 2 mangler i 1 dage tilbage. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
@@ -2066,7 +2066,7 @@
     "2026-10-07": 0,
     "2026-10-08": 0,
     "2026-10-09": 0,
-    "2026-10-10": 0
+    "2026-10-10": 1
   },
   "all_weeks": {
     "3": {
@@ -2938,7 +2938,7 @@
       "week": 5,
       "iso": 41,
       "monday": "2026-10-05",
-      "done": 4,
+      "done": 3,
       "total": 6,
       "label": "Uge 41"
     }
@@ -3299,18 +3299,14 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "alcohol_cluster",
-      "level": "critical",
-      "message": "3 drikkedage i træk 4/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere"
+    },
+    {
+      "type": "alcohol_cluster",
+      "level": "critical",
+      "message": "3 drikkedage i træk 4/10–6/10 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 9.2,
@@ -3600,7 +3596,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-10T11:12:34.493239",
+  "credentialsCheckedTs": "2026-10-10T15:18:17.060745",
   "coachAssessmentTsFull": "2026-10-10T11:12:34",
   "coachAssessmentWeightAtGen": 74.6,
   "coachAssessmentAfAtGen": 4,
@@ -4715,7 +4711,7 @@
     },
     {
       "date": "2026-10-10",
-      "alkohol": 0,
+      "alkohol": 1,
       "protein": 2,
       "energi": 1,
       "sult": null
@@ -4738,7 +4734,8 @@
     "2026-10-03": "faa",
     "2026-10-04": "faa",
     "2026-10-05": "faa",
-    "2026-10-06": "faa"
+    "2026-10-06": "faa",
+    "2026-10-10": "faa"
   },
   "planTab": {
     "today": "2026-10-10",
@@ -10922,7 +10919,7 @@
     "cutCheck": {
       "active": true,
       "level": "warn",
-      "text": "3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "text": "4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "signals": {
         "rate": {
           "level": null,
@@ -10958,10 +10955,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 3,
+            "days7": 4,
             "run": 3
           },
-          "text": "3 drikkedage på 7 dage · 3 i træk"
+          "text": "4 drikkedage på 7 dage · 3 i træk"
         }
       }
     }
@@ -11281,13 +11278,13 @@
       "Uge 41: TSS 132 af 239 (55 %) · CTL 44,9 (mål 50) · TSB +9,2",
       "Vægt 7d 74,2 kg · fedt 14d 21,8 % · på plan mod glidepath (71,7)",
       "HRV 7d 74 (28d 57) · hvilepuls 39 · søvn 7d 8,2 t",
-      "AF 4/7 · protein 3/3 7/7 · aftensult —/7",
+      "AF 3/7 · protein 3/3 7/7 · aftensult —/7",
       "Styrke 2/2 · check-in —",
-      "Cut-tjek: warn — 3 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
+      "Cut-tjek: warn — 4 drikkedage på 7 dage · 3 i træk under cuttet — AF resten af ugen før du skærer mere",
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 14 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-10T11:12:17Z"
+    "generatedAt": "2026-10-10T15:18:17Z"
   },
   "proposals": [],
   "ftp": {
