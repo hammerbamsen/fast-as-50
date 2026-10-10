@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-10 11:30",
+    "updated": "2026-10-10 12:37",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "44,8",
+      "value": "44,9",
       "unit": "",
       "sub": "Uge 41-mål 50 · RECOVERY",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "9,8",
+      "value": "9,2",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "127",
+      "value": "132",
       "unit": "TSS",
-      "sub": "127 af 239 planlagt TSS",
+      "sub": "132 af 239 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Uge 41, recovery-blok: FTP-testen er i hus, i dag er en let gang inden søndagens lange Z2. {HL} FTP-testen torsdag er gennemført. I dag er det en let gang på 60 min — ingen intensitet. CTL ligger 5,2 point under målet, men i recovery-blok er det korrekt; jag ikke stigning.",
-  "coachHighlight": "Gå de 60 min let i dag — recovery, ikke motion. Hold pulsen nede og nyd det.",
+  "coachSpeech": "Uge 41, recovery-blok: FTP-testen er i hus, i dag er gangen gjort — alkohol-klyngen er det eneste der kræver handling nu. {HL} Gangen på 58 min er klaret — dagens plan er i mål. FTP-testen torsdag leverede 57 TSS mod planlagte 29; det er fint i en recovery-uge.",
+  "coachHighlight": "Drik ikke alkohol i dag og resten af weekenden — hold AF-streaken fra nu af.",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -196,11 +196,17 @@
       "day": "Lør",
       "disc": "hike",
       "label": "Gang let 60 min",
-      "done": false,
+      "done": true,
       "planned_tss": null,
       "planned_mins": 60,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 97,
+      "actual_tss": 5,
+      "actual_name": "Gentofte Gang",
+      "actual_mins": 58,
+      "actual_distance_m": 4898.16
     },
     {
       "day": "Søn",
@@ -226,7 +232,7 @@
     49.9,
     46.5,
     48.7,
-    44.8
+    44.9
   ],
   "weightHistory": [
     {
@@ -1924,7 +1930,7 @@
     },
     {
       "date": "2026-10-10",
-      "v": 9.8,
+      "v": 9.2,
       "real": true
     }
   ],
@@ -2287,11 +2293,17 @@
           "day": "Lør",
           "disc": "hike",
           "label": "Gang let 60 min",
-          "done": false,
+          "done": true,
           "planned_tss": null,
           "planned_mins": 60,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 97,
+          "actual_tss": 5,
+          "actual_name": "Gentofte Gang",
+          "actual_mins": 58,
+          "actual_distance_m": 4898.16
         },
         {
           "day": "Søn",
@@ -2931,11 +2943,11 @@
     }
   ],
   "train_mins": {
+    "walk": 226.0,
     "bike": 110.0,
-    "walk": 168.0,
     "strength": 28.0,
     "planned": 342.0,
-    "actual_total": 306.0
+    "actual_total": 364.0
   },
   "fatHistory": [
     {
@@ -3281,8 +3293,8 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 34 af 357 · Lørdag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-blok: FTP-testen er i hus, i dag er en let gang inden søndagens lange Z2.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>FTP-testen torsdag er gennemført. I dag er det en let gang på 60 min — ingen intensitet. CTL ligger 5,2 point under målet, men i recovery-blok er det korrekt; jag ikke stigning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet på vægt er steget 1,3 kg den seneste måned og ligger 2,6 kg over cut-planen — retningen går den forkerte vej. Alkohol er den oplagte årsag: 3 drikkedage i træk denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage af 6 i målet — og 3 dage i træk med alkohol under cuttet rammer både HRV og muskelproteinsyntese. Protein er på 6 af 7 dage; søvn og energi er fine.</p>",
-  "coachAssessmentTs": "11:30",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 34 af 357 · Lørdag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41, recovery-blok: FTP-testen er i hus, i dag er gangen gjort — alkohol-klyngen er det eneste der kræver handling nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Gangen på 58 min er klaret — dagens plan er i mål. FTP-testen torsdag leverede 57 TSS mod planlagte 29; det er fint i en recovery-uge. Ugen står på 132 TSS af 239 planlagte, men i en recovery-blok er lavere TSS end målet uproblematisk.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,6 kg over cut-planen på 71,7 kg, og den seneste måneds snit er steget 1,3 kg — retningen er opadgående. Alkoholfri dage resten af ugen er den vigtigste enkelt-handling under et aktivt cut.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage af målet på 6 — ingen dage med 3+ genstande denne uge, men 3 drikkedage i træk tidligere i ugen er registreret. Protein er på 6 af 7 dage, søvn på 8,1 t i nat — begge dele solide.</p>",
+  "coachAssessmentTs": "12:37",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3300,7 +3312,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 9.8,
+  "tsb": 9.2,
   "swimHistory": [
     {
       "week": 1,
@@ -3333,7 +3345,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i194919808",
+  "coachAssessmentLastActId": "i195726935",
   "weekFocusWeek": 5,
   "coachAssessmentPlanAtGen": "Gang let 60 min",
   "weightGoal": 68,
@@ -3587,8 +3599,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-10T09:30:44.180562",
-  "coachAssessmentTsFull": "2026-10-10T09:30:44",
+  "credentialsCheckedTs": "2026-10-10T10:37:53.717722",
+  "coachAssessmentTsFull": "2026-10-10T10:37:53",
   "coachAssessmentWeightAtGen": 74.6,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [],
@@ -3679,7 +3691,7 @@
     "2": 397,
     "3": 193,
     "4": 434,
-    "5": 127
+    "5": 132
   },
   "racesUpcoming": [
     {
@@ -4883,7 +4895,7 @@
         "mesoWeek": "R",
         "ctlTarget": 50,
         "tssTarget": 250,
-        "tssActual": 127,
+        "tssActual": 132,
         "purpose": "Recovery + FTP-test tor 8/10 (ikke ERG, zoner opdateres samme dag). Åbnere tir, løb ons, svøm fre, styrke man+lør 2 runder, 2 t søndag.",
         "note": "Recovery. FTP-test tor 8/10 efter Mallorca.",
         "quota": {
@@ -7318,14 +7330,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 58,
+                "actualTss": 5,
                 "note": "Gang let — Uge 41 · recovery",
                 "isKey": false,
                 "optional": false,
                 "start": "06:00",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -10174,209 +10187,209 @@
           "week": 5,
           "programId": "tds-2027",
           "start": "2026-10-05",
-          "ctl": 44.8
+          "ctl": 44.9
         }
       ],
       "projection": [
         {
           "d": "2026-10-11",
-          "ctl": 45.3
+          "ctl": 44.9
         },
         {
           "d": "2026-10-12",
-          "ctl": 45.7
+          "ctl": 45.3
         },
         {
           "d": "2026-10-13",
-          "ctl": 46.0
+          "ctl": 45.6
         },
         {
           "d": "2026-10-14",
-          "ctl": 46.3
+          "ctl": 46.0
         },
         {
           "d": "2026-10-15",
-          "ctl": 46.7
+          "ctl": 46.3
         },
         {
           "d": "2026-10-16",
-          "ctl": 47.0
+          "ctl": 46.6
         },
         {
           "d": "2026-10-17",
-          "ctl": 47.3
+          "ctl": 47.0
         },
         {
           "d": "2026-10-18",
-          "ctl": 47.6
+          "ctl": 47.3
         },
         {
           "d": "2026-10-19",
-          "ctl": 48.0
+          "ctl": 47.6
         },
         {
           "d": "2026-10-20",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-10-21",
-          "ctl": 48.7
-        },
-        {
-          "d": "2026-10-22",
-          "ctl": 49.0
-        },
-        {
-          "d": "2026-10-23",
-          "ctl": 49.3
-        },
-        {
-          "d": "2026-10-24",
-          "ctl": 49.6
-        },
-        {
-          "d": "2026-10-25",
-          "ctl": 50.0
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 49.7
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 49.4
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 49.1
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 48.5
-        },
-        {
-          "d": "2026-10-31",
-          "ctl": 48.2
-        },
-        {
-          "d": "2026-11-01",
           "ctl": 48.0
         },
         {
-          "d": "2026-11-02",
-          "ctl": 48.3
+          "d": "2026-10-21",
+          "ctl": 48.4
         },
         {
-          "d": "2026-11-03",
+          "d": "2026-10-22",
           "ctl": 48.7
         },
         {
-          "d": "2026-11-04",
+          "d": "2026-10-23",
           "ctl": 49.0
         },
         {
-          "d": "2026-11-05",
-          "ctl": 49.3
+          "d": "2026-10-24",
+          "ctl": 49.4
         },
         {
-          "d": "2026-11-06",
+          "d": "2026-10-25",
           "ctl": 49.7
         },
         {
+          "d": "2026-10-26",
+          "ctl": 49.4
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-10-28",
+          "ctl": 48.8
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 48.5
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 48.3
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 48.0
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 47.7
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 48.1
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 48.4
+        },
+        {
+          "d": "2026-11-04",
+          "ctl": 48.8
+        },
+        {
+          "d": "2026-11-05",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-11-06",
+          "ctl": 49.5
+        },
+        {
           "d": "2026-11-07",
-          "ctl": 50.0
+          "ctl": 49.8
         },
         {
           "d": "2026-11-08",
-          "ctl": 50.3
+          "ctl": 50.1
         },
         {
           "d": "2026-11-09",
-          "ctl": 50.7
+          "ctl": 50.5
         },
         {
           "d": "2026-11-10",
-          "ctl": 51.0
+          "ctl": 50.8
         },
         {
           "d": "2026-11-11",
-          "ctl": 51.4
+          "ctl": 51.2
         },
         {
           "d": "2026-11-12",
-          "ctl": 51.7
+          "ctl": 51.5
         },
         {
           "d": "2026-11-13",
-          "ctl": 52.0
+          "ctl": 51.9
         },
         {
           "d": "2026-11-14",
-          "ctl": 52.4
+          "ctl": 52.2
         },
         {
           "d": "2026-11-15",
-          "ctl": 52.7
+          "ctl": 52.5
         },
         {
           "d": "2026-11-16",
-          "ctl": 53.1
+          "ctl": 52.9
         },
         {
           "d": "2026-11-17",
-          "ctl": 53.5
+          "ctl": 53.3
         },
         {
           "d": "2026-11-18",
-          "ctl": 53.9
+          "ctl": 53.7
         },
         {
           "d": "2026-11-19",
-          "ctl": 54.3
+          "ctl": 54.1
         },
         {
           "d": "2026-11-20",
-          "ctl": 54.6
+          "ctl": 54.5
         },
         {
           "d": "2026-11-21",
-          "ctl": 55.0
+          "ctl": 54.9
         },
         {
           "d": "2026-11-22",
-          "ctl": 55.4
+          "ctl": 55.2
         },
         {
           "d": "2026-11-23",
-          "ctl": 55.0
+          "ctl": 54.8
         },
         {
           "d": "2026-11-24",
-          "ctl": 54.6
+          "ctl": 54.4
         },
         {
           "d": "2026-11-25",
-          "ctl": 54.2
+          "ctl": 54.1
         },
         {
           "d": "2026-11-26",
-          "ctl": 53.8
+          "ctl": 53.7
         },
         {
           "d": "2026-11-27",
-          "ctl": 53.5
+          "ctl": 53.3
         },
         {
           "d": "2026-11-28",
-          "ctl": 53.1
+          "ctl": 53.0
         },
         {
           "d": "2026-11-29",
-          "ctl": 52.8
+          "ctl": 52.6
         }
       ],
       "targets": [
@@ -10641,41 +10654,44 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-10T09:30:44Z",
-    "inputsHash": "c577a6a50d490dc6b9816529c8238fb8f5267118",
+    "generatedAt": "2026-10-10T10:37:53Z",
+    "inputsHash": "32822cd098e55881fdbca1f016953e98651a5d6f",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gå de 60 min let i dag — recovery, ikke motion. Hold pulsen nede og nyd det.",
-      "why": "Readiness er høj og TSB er positiv — ben og hoved skal bare løsnes inden søndagens lange Z2-tur."
+      "action": "Drik ikke alkohol i dag og resten af weekenden — hold AF-streaken fra nu af.",
+      "why": "3 drikkedage i træk 4/10–6/10 presser HRV og muskelproteinsyntese; du er 3 AF-dage fra målet på 6 denne uge."
     },
     "training": {
-      "text": "FTP-testen torsdag er gennemført. I dag er det en let gang på 60 min — ingen intensitet. CTL ligger 5,2 point under målet, men i recovery-blok er det korrekt; jag ikke stigning.",
+      "text": "Gangen på 58 min er klaret — dagens plan er i mål. FTP-testen torsdag leverede 57 TSS mod planlagte 29; det er fint i en recovery-uge. Ugen står på 132 TSS af 239 planlagte, men i en recovery-blok er lavere TSS end målet uproblematisk.",
       "refs": [
-        60.0,
-        5.2,
-        50.0
+        58.0,
+        57.0,
+        29.0,
+        132.0,
+        239.0
       ]
     },
     "body": {
-      "text": "7-dages snittet på vægt er steget 1,3 kg den seneste måned og ligger 2,6 kg over cut-planen — retningen går den forkerte vej. Alkohol er den oplagte årsag: 3 drikkedage i træk denne uge.",
+      "text": "7-dages snit er 2,6 kg over cut-planen på 71,7 kg, og den seneste måneds snit er steget 1,3 kg — retningen er opadgående. Alkoholfri dage resten af ugen er den vigtigste enkelt-handling under et aktivt cut.",
       "refs": [
-        1.3,
         2.6,
-        3.0
+        71.7,
+        1.3
       ]
     },
     "habits": {
-      "text": "3 AF-dage af 6 i målet — og 3 dage i træk med alkohol under cuttet rammer både HRV og muskelproteinsyntese. Protein er på 6 af 7 dage; søvn og energi er fine.",
+      "text": "3 AF-dage af målet på 6 — ingen dage med 3+ genstande denne uge, men 3 drikkedage i træk tidligere i ugen er registreret. Protein er på 6 af 7 dage, søvn på 8,1 t i nat — begge dele solide.",
       "refs": [
         3.0,
         6.0,
         3.0,
         6.0,
-        7.0
+        7.0,
+        8.1
       ]
     },
-    "bigPicture": "Uge 41, recovery-blok: FTP-testen er i hus, i dag er en let gang inden søndagens lange Z2.",
+    "bigPicture": "Uge 41, recovery-blok: FTP-testen er i hus, i dag er gangen gjort — alkohol-klyngen er det eneste der kræver handling nu.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11259,14 +11275,14 @@
     }
   },
   "weekTss": {
-    "actual": 127,
+    "actual": 132,
     "planned": 239
   },
   "martinMail": {
     "week": 5,
     "isoWeek": 41,
     "lines": [
-      "Uge 41: TSS 127 af 239 (53 %) · CTL 44,8 (mål 50) · TSB +9,8",
+      "Uge 41: TSS 132 af 239 (55 %) · CTL 44,9 (mål 50) · TSB +9,2",
       "Vægt 7d 74,2 kg · fedt 14d 21,8 % · på plan mod glidepath (71,7)",
       "HRV 7d 74 (28d 57) · hvilepuls 39 · søvn 7d 8,2 t",
       "AF 3/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11275,7 +11291,7 @@
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 14 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-10T09:30:27Z"
+    "generatedAt": "2026-10-10T10:37:35Z"
   },
   "proposals": [],
   "ftp": {
@@ -11348,7 +11364,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-10",
-    "ctl": 44.8,
-    "atl": 35.0
+    "ctl": 44.9,
+    "atl": 35.7
   }
 }
