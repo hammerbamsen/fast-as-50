@@ -147,3 +147,13 @@
 
 ### Planændring 09/10 10:48
 - **fredag 2026-10-09** (uge 5, cancel): Svøm 1500m let teknisk (45 min) → hviledag
+
+### Signaler uge 41
+- Uge 41: TSS 132 af 239 (55 %) · CTL 46,1 (mål 50) · TSB +2,4
+- Vægt 7d 74,3 kg · fedt 14d 21,8 % · på plan mod glidepath (71,7)
+- HRV 7d 76 (28d 57) · hvilepuls 39 · søvn 7d 8,1 t
+- AF 3/7 · protein 3/3 6/7 · aftensult —/7
+- Styrke 1/2 · check-in —
+- Cut-tjek: warn — 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere
+- Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min
+- Planændringer siden sidst: 14 — se martin_signals.md
