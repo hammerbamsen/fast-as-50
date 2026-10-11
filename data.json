@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-11 07:53",
+    "updated": "2026-10-11 09:16",
     "week": 5,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "46,1",
+      "value": "47,1",
       "unit": "",
       "sub": "Uge 41-mål 50 · RECOVERY",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "2,0",
+      "value": "-2,6",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "135",
+      "value": "177",
       "unit": "TSS",
-      "sub": "135 af 239 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "177 af 239 planlagt TSS",
+      "color": "#E67E22"
     },
     "bikeKm": {
-      "value": "57,5",
+      "value": "89,1",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 41 afsluttet: recovery-blok med FTP-test i hus — uge 42 starter BASE meso 1/2 med CTL-mål 53. {HL} Ugen gav 135 TSS mod planlagte 239 (56 %) — men det er recovery-blok, og lavere TSS er korrekt her. FTP-testen torsdag er gennemført (57 TSS faktisk mod 29 planlagt — hårdt arbejde). Intet er misset.",
-  "coachHighlight": "Kør ikke Z2-turen i dag — lad kroppen lande. Planlæg i stedet ugens mad så protein sidder forrest ved hvert måltid fra i morgen.",
+  "coachSpeech": "Recovery-uge 41 slut: FTP-test gennemført, ingen missede pas — næste uge starter Base meso 1/2 med CTL-mål 53. {HL} Ugen leverede 177 TSS mod planlagte 239 (74 %) — men det er en recovery-uge, så lavere belastning er korrekt. FTP-testen torsdag er i hus med 57 TSS. CTL er 47,1 mod mål 50,0, ramp -1,6/uge — alt passer til recovery.",
+  "coachHighlight": "Læg mad- og søvnplan for hele næste uge nu: protein til hvert måltid, nul alkohol, i seng senest kl. 22 søndag aften.",
   "weekFocus": "AF hele ugen — frisk til FTP-test torsdag",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "strength",
@@ -219,11 +219,17 @@
       "day": "Søn",
       "disc": "bike",
       "label": "FaF 1 Z2 - Lang Z2 2 t",
-      "done": false,
+      "done": true,
       "planned_tss": 96,
       "planned_mins": 130,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "partial",
+      "completion_pct": 44,
+      "actual_tss": 42,
+      "actual_name": "FaF 1 Z2 - Z2 1 t",
+      "actual_mins": 61,
+      "actual_distance_m": 31598.8
     },
     {
       "day": "Søn",
@@ -248,7 +254,7 @@
     49.9,
     46.5,
     48.7,
-    46.1
+    47.1
   ],
   "weightHistory": [
     {
@@ -1946,7 +1952,7 @@
     },
     {
       "date": "2026-10-11",
-      "v": 2.0,
+      "v": -2.6,
       "real": true
     }
   ],
@@ -2325,11 +2331,17 @@
           "day": "Søn",
           "disc": "bike",
           "label": "FaF 1 Z2 - Lang Z2 2 t",
-          "done": false,
+          "done": true,
           "planned_tss": 96,
           "planned_mins": 130,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "partial",
+          "completion_pct": 44,
+          "actual_tss": 42,
+          "actual_name": "FaF 1 Z2 - Z2 1 t",
+          "actual_mins": 61,
+          "actual_distance_m": 31598.8
         },
         {
           "day": "Søn",
@@ -2436,7 +2448,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Byg basen stille op — bjergtur søndag er ugens anker"
+      "focus": "Byg aerob base — Z2 og bjergtur er nøglerne"
     },
     "7": {
       "sessions": [
@@ -2968,11 +2980,11 @@
     }
   ],
   "train_mins": {
+    "bike": 171.0,
     "strength": 48.0,
     "walk": 226.0,
-    "bike": 110.0,
     "planned": 342.0,
-    "actual_total": 384.0
+    "actual_total": 445.0
   },
   "fatHistory": [
     {
@@ -3318,23 +3330,10 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 35 af 357 · Søndag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Uge 41 afsluttet: recovery-blok med FTP-test i hus — uge 42 starter BASE meso 1/2 med CTL-mål 53.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen gav 135 TSS mod planlagte 239 (56 %) — men det er recovery-blok, og lavere TSS er korrekt her. FTP-testen torsdag er gennemført (57 TSS faktisk mod 29 planlagt — hårdt arbejde). Intet er misset. CTL ligger på 46,1 mod mål 50,0 og ramp er -2,6 — begge acceptable i en recovery-uge. Næste uge (uge 42) er BASE meso 1/2 med TSS-mål 420 og CTL-mål 53; kvoten er 0 hårde og 2 moderate: sweet spot tirsdag og bjergtur 3 t søndag er rygraden.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 74,5 kg mod forventet 71,7 kg — 2,9 kg over planlagt cut. Fedt-snittet er stabil (ændring seneste måned er 0,2 procentpoint, under grænsen på 0,5). Næste uges kost-handling: protein ved hvert eneste måltid — det beskytter de 1,2 kg fedtfri masse du har bygget de seneste fire uger.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage mod mål på 6, og 2 drikkedage i træk (5/10–6/10) presser HRV. Protein-dage 6 ud af 6 registrerede — hold det. Søvn-snit 7,9 t er fint. Næste uge: max 2 spredte AF-dage, ingen klynger.</p>",
-  "coachAssessmentTs": "07:53",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 35 af 357 · Søndag · Uge 41</strong></p><p class=\"coach-sec coach-big\">Recovery-uge 41 slut: FTP-test gennemført, ingen missede pas — næste uge starter Base meso 1/2 med CTL-mål 53.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen leverede 177 TSS mod planlagte 239 (74 %) — men det er en recovery-uge, så lavere belastning er korrekt. FTP-testen torsdag er i hus med 57 TSS. CTL er 47,1 mod mål 50,0, ramp -1,6/uge — alt passer til recovery. Næste uge er Base meso 1/2, TSS-mål 420, CTL-mål 53; kvoten er 0 hårde og 2 moderate pas — nøglerne er Lang Z2 2 t lørdag og Bjergtur 3 t søndag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 74,5 kg mod forventet 71,7 kg — 2,9 kg over cut-planen. Snit er steget 1,9 kg på 28 dage, det er over tærsklen: retningen er opad. Næste uge: protein ved hvert måltid, og ingen alkohol — 3 drikkedage denne uge holder kroppen over planvægten.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>3 AF-dage mod mål 6 — halvvejs. Protein-dage er 6 ud af 7, det holder. Søvnsnit 7,9 t er fint. Næste uge: nul drikkedage — alkohol-klyngen 5/10–6/10 ramte HRV med -29 % og holder vægten over plan.</p>",
+  "coachAssessmentTs": "09:16",
   "commute_pairing_warnings": [],
   "warnings": [
-    {
-      "type": "readiness",
-      "level": "critical",
-      "message": "HRV 51,0 ms — 29 % under 7-dages snit (72,1 ms). Readiness er LOW. Skub dagens Z2-tur ud af programmet.",
-      "action": {
-        "label": "Aflys Z2-tur i dag",
-        "edit": {
-          "action": "cancel",
-          "entryId": "cbfb6a72"
-        }
-      },
-      "source": "ai"
-    },
     {
       "type": "hrv",
       "level": "warn",
@@ -3348,9 +3347,16 @@
       "message": "Cut-tjek: 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
       "action": null,
       "source": "rule"
+    },
+    {
+      "type": "alcohol_cluster",
+      "level": "warn",
+      "message": "2 drikkedage i træk 5/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 2.0,
+  "tsb": -2.6,
   "swimHistory": [
     {
       "week": 1,
@@ -3383,7 +3389,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i195984005",
+  "coachAssessmentLastActId": "i196001887",
   "weekFocusWeek": 5,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Lang Z2 2 t",
   "weightGoal": 68,
@@ -3637,8 +3643,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-11T05:54:16.183719",
-  "coachAssessmentTsFull": "2026-10-11T05:54:16",
+  "credentialsCheckedTs": "2026-10-11T07:17:16.985652",
+  "coachAssessmentTsFull": "2026-10-11T07:17:16",
   "coachAssessmentWeightAtGen": 75.5,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [],
@@ -3729,7 +3735,7 @@
     "2": 397,
     "3": 193,
     "4": 434,
-    "5": 135
+    "5": 177
   },
   "racesUpcoming": [
     {
@@ -4024,6 +4030,15 @@
         "hr": 118,
         "name": "FaF 1 Z2 - Aktivering 60m",
         "id": "i194529361"
+      },
+      {
+        "date": "2026-10-11",
+        "v": 1.5,
+        "real": true,
+        "mins": 61,
+        "hr": 120,
+        "name": "FaF 1 Z2 - Z2 1 t",
+        "id": "i196001887"
       }
     ]
   },
@@ -4038,10 +4053,10 @@
       "thin": true
     },
     "bike": {
-      "current": 1.424,
+      "current": 1.425,
       "previous": 1.5,
-      "pct": -5.1,
-      "n": 9,
+      "pct": -5.0,
+      "n": 10,
       "n_prev": 5,
       "window": 42,
       "thin": false
@@ -4933,7 +4948,7 @@
         "mesoWeek": "R",
         "ctlTarget": 50,
         "tssTarget": 250,
-        "tssActual": 135,
+        "tssActual": 177,
         "purpose": "Recovery + FTP-test tor 8/10 (ikke ERG, zoner opdateres samme dag). Åbnere tir, løb ons, svøm fre, styrke man+lør 2 runder, 2 t søndag.",
         "note": "Recovery. FTP-test tor 8/10 efter Mallorca.",
         "quota": {
@@ -4948,7 +4963,14 @@
           "FaF 0 Test - FTP 20 min",
           "FaF 1 Z2 - Lang Z2 2 t"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "low_readiness",
+            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+            "historic": false
+          }
+        ],
         "races": [],
         "travel": null,
         "isCurrent": true,
@@ -7398,14 +7420,15 @@
                 "erg": true,
                 "purpose": "To timer Z2 med fast energiplan. Lige så meget mavetræning som bentræning. Race-evalueringerne siger det samme i ni år: energiplanen er det der knækker dig.",
                 "zwiftName": "FaF 1 Z2 - Lang Z2 2 t",
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 61,
+                "actualTss": 42,
                 "note": "Recovery-ugens lange: kun 2 t, ren Z2 — Må køres ude som ren Z2 i samme varighed hvis vejret tillader",
                 "isKey": true,
                 "optional": false,
                 "start": "07:15",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "partial"
               },
               {
                 "id": "b5ceeb7b",
@@ -10226,7 +10249,7 @@
           "week": 5,
           "programId": "tds-2027",
           "start": "2026-10-05",
-          "ctl": 46.1
+          "ctl": 47.1
         }
       ],
       "projection": [
@@ -10689,25 +10712,24 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-11T05:54:16Z",
-    "inputsHash": "55804fdedeb21fe13cfcd09a7de6c17289a74a84",
+    "generatedAt": "2026-10-11T07:17:16Z",
+    "inputsHash": "24aa6d55e5a28e10e65153f87912e1231dd9c956",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Kør ikke Z2-turen i dag — lad kroppen lande. Planlæg i stedet ugens mad så protein sidder forrest ved hvert måltid fra i morgen.",
-      "why": "HRV er 29 % under 7-dages snit og banden er LOW — yderligere belastning i dag forsinker opbygningen af uge 42."
+      "action": "Læg mad- og søvnplan for hele næste uge nu: protein til hvert måltid, nul alkohol, i seng senest kl. 22 søndag aften.",
+      "why": "HRV er 51 ms — 29 % under 7-dages snit. Søvn og alkoholfrihed er de to håndtag du kan dreje i dag for at starte Base-ugen frisk."
     },
     "training": {
-      "text": "Ugen gav 135 TSS mod planlagte 239 (56 %) — men det er recovery-blok, og lavere TSS er korrekt her. FTP-testen torsdag er gennemført (57 TSS faktisk mod 29 planlagt — hårdt arbejde). Intet er misset. CTL ligger på 46,1 mod mål 50,0 og ramp er -2,6 — begge acceptable i en recovery-uge. Næste uge (uge 42) er BASE meso 1/2 med TSS-mål 420 og CTL-mål 53; kvoten er 0 hårde og 2 moderate: sweet spot tirsdag og bjergtur 3 t søndag er rygraden.",
+      "text": "Ugen leverede 177 TSS mod planlagte 239 (74 %) — men det er en recovery-uge, så lavere belastning er korrekt. FTP-testen torsdag er i hus med 57 TSS. CTL er 47,1 mod mål 50,0, ramp -1,6/uge — alt passer til recovery. Næste uge er Base meso 1/2, TSS-mål 420, CTL-mål 53; kvoten er 0 hårde og 2 moderate pas — nøglerne er Lang Z2 2 t lørdag og Bjergtur 3 t søndag.",
       "refs": [
-        135.0,
+        177.0,
         239.0,
-        56.0,
+        74.0,
         57.0,
-        29.0,
-        46.1,
+        47.1,
         50.0,
-        -2.6,
+        -1.6,
         420.0,
         53.0,
         0.0,
@@ -10715,45 +10737,29 @@
       ]
     },
     "body": {
-      "text": "7-dages snit er 74,5 kg mod forventet 71,7 kg — 2,9 kg over planlagt cut. Fedt-snittet er stabil (ændring seneste måned er 0,2 procentpoint, under grænsen på 0,5). Næste uges kost-handling: protein ved hvert eneste måltid — det beskytter de 1,2 kg fedtfri masse du har bygget de seneste fire uger.",
+      "text": "7-dages snit er 74,5 kg mod forventet 71,7 kg — 2,9 kg over cut-planen. Snit er steget 1,9 kg på 28 dage, det er over tærsklen: retningen er opad. Næste uge: protein ved hvert måltid, og ingen alkohol — 3 drikkedage denne uge holder kroppen over planvægten.",
       "refs": [
         74.5,
         71.7,
         2.9,
-        0.2,
-        0.5,
-        1.2
+        1.9
       ]
     },
     "habits": {
-      "text": "3 AF-dage mod mål på 6, og 2 drikkedage i træk (5/10–6/10) presser HRV. Protein-dage 6 ud af 6 registrerede — hold det. Søvn-snit 7,9 t er fint. Næste uge: max 2 spredte AF-dage, ingen klynger.",
+      "text": "3 AF-dage mod mål 6 — halvvejs. Protein-dage er 6 ud af 7, det holder. Søvnsnit 7,9 t er fint. Næste uge: nul drikkedage — alkohol-klyngen 5/10–6/10 ramte HRV med -29 % og holder vægten over plan.",
       "refs": [
         3.0,
         6.0,
-        2.0,
         6.0,
-        6.0,
+        7.0,
         7.9,
-        2.0
+        29.0
       ]
     },
-    "bigPicture": "Uge 41 afsluttet: recovery-blok med FTP-test i hus — uge 42 starter BASE meso 1/2 med CTL-mål 53.",
-    "weekFocus": "Byg basen stille op — bjergtur søndag er ugens anker",
+    "bigPicture": "Recovery-uge 41 slut: FTP-test gennemført, ingen missede pas — næste uge starter Base meso 1/2 med CTL-mål 53.",
+    "weekFocus": "Byg aerob base — Z2 og bjergtur er nøglerne",
     "weekFocusFor": 6,
     "warnings": [
-      {
-        "type": "readiness",
-        "level": "act",
-        "message": "HRV 51,0 ms — 29 % under 7-dages snit (72,1 ms). Readiness er LOW. Skub dagens Z2-tur ud af programmet.",
-        "action": {
-          "label": "Aflys Z2-tur i dag",
-          "edit": {
-            "action": "cancel",
-            "entryId": "cbfb6a72"
-          }
-        },
-        "source": "ai"
-      },
       {
         "type": "hrv",
         "level": "warn",
@@ -10767,6 +10773,13 @@
         "message": "Cut-tjek: 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere",
         "action": null,
         "source": "rule"
+      },
+      {
+        "type": "alcohol_cluster",
+        "level": "warn",
+        "message": "2 drikkedage i træk 5/10–6/10 — klynger rammer HRV hårdere end spredte dage.",
+        "action": null,
+        "source": "rule"
       }
     ],
     "error": null,
@@ -10778,7 +10791,7 @@
   "weekFocusNext": {
     "week": 6,
     "programId": "tds-2027",
-    "text": "Byg basen stille op — bjergtur søndag er ugens anker"
+    "text": "Byg aerob base — Z2 og bjergtur er nøglerne"
   },
   "strengthLog": {
     "from": "2026-09-13",
@@ -11334,14 +11347,14 @@
     }
   },
   "weekTss": {
-    "actual": 135,
+    "actual": 177,
     "planned": 239
   },
   "martinMail": {
     "week": 5,
     "isoWeek": 41,
     "lines": [
-      "Uge 41: TSS 135 af 239 (56 %) · CTL 46,1 (mål 50) · TSB +2,0",
+      "Uge 41: TSS 177 af 239 (74 %) · CTL 47,1 (mål 50) · TSB −2,6",
       "Vægt 7d 74,5 kg · fedt 14d 21,8 % · på plan mod glidepath (71,7)",
       "HRV 7d 72 (28d 57) · hvilepuls 38 · søvn 7d 7,9 t",
       "AF 3/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11350,7 +11363,7 @@
       "Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-11T05:53:48Z"
+    "generatedAt": "2026-10-11T07:16:51Z"
   },
   "proposals": [],
   "ftp": {
@@ -11423,7 +11436,25 @@
   },
   "fitnessLive": {
     "date": "2026-10-11",
-    "ctl": 46.1,
-    "atl": 44.1
+    "ctl": 47.1,
+    "atl": 49.7
+  },
+  "aerobicFlag": {
+    "date": "2026-10-11",
+    "discipline": "bike",
+    "name": "FaF 1 Z2 - Z2 1 t",
+    "id": "i196001887",
+    "ef": 1.5,
+    "baseline": 1.425,
+    "pct": 5.3,
+    "n_baseline": 10,
+    "level": "ok",
+    "flagged": false,
+    "avg_hr": 120,
+    "start_hour": 8,
+    "temp_c": null,
+    "afternoon": false,
+    "warm": false,
+    "time_of_day_comparable": true
   }
 }
