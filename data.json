@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-12 06:49",
+    "updated": "2026-10-12 10:52",
     "week": 6,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -24,23 +24,23 @@
     "weight": {
       "value": "74,9",
       "unit": "kg",
-      "sub": "forventet 71,6 · bagud 3,3",
+      "sub": "forventet 71,6 · bagud 3,2",
       "color": "#E67E22"
     },
     "fat": {
-      "value": "21,9",
+      "value": "21,8",
       "unit": "%",
       "sub": "14d-snit · forventet 21,2",
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "43,8",
+      "value": "44,0",
       "unit": "",
       "sub": "Uge 42-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "7,8",
+      "value": "6,8",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,10 +70,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "9",
       "unit": "TSS",
-      "sub": "0 af 475 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "9 af 475 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0,0",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Ny uge starter — uge 42. Træningsuge. {HL} Godt: Søvn på 7,9 timer er solid. Ny uge med 1 dages streak i ryggen. Hold den. Fokus: Vægt på 76,2 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Fuld uge foran — i dag: Styrke A · Functional 4 · 3 runder",
-  "weekFocus": "Byg aerob base og hold styrkerytmen fra dag ét",
+  "coachSpeech": "Uge 42, første uge af BASE meso 1/2 — sæt grundvolumen i gang med rolig intensitet og de to styrketræninger. {HL} Gangturen er i hus. Styrkepasset på 45 min mangler endnu. CTL er 44,0 mod ugens mål 53,0 — differencen skyldes recovery-uge 5 og er forventet; opbyg ikke ekstra.",
+  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 3 runder på 45 min: 10 min opvarmning + 3 runder, progression efter check-in.",
+  "weekFocus": "Byg grundvolumen roligt — protein og søvn holder cut-kursen",
   "today": [
     {
       "discipline": "strength",
@@ -122,6 +122,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "walk",
+      "title": "Gentofte Gang",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -133,6 +141,17 @@
       "planned_tss": 30,
       "planned_mins": 45,
       "planned_distance_m": null,
+      "today": true
+    },
+    {
+      "day": "Man",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 9,
+      "actual_mins": 57,
+      "actual_distance_m": 4928.83,
       "today": true
     },
     {
@@ -205,7 +224,7 @@
     46.5,
     48.7,
     44.8,
-    43.8
+    44.0
   ],
   "weightHistory": [
     {
@@ -547,7 +566,7 @@
     },
     {
       "date": "2026-10-12",
-      "v": 76.2,
+      "v": 76.1,
       "real": true
     }
   ],
@@ -1903,7 +1922,7 @@
     },
     {
       "date": "2026-10-12",
-      "v": 7.8,
+      "v": 6.8,
       "real": true
     }
   ],
@@ -2218,6 +2237,17 @@
           "today": true
         },
         {
+          "day": "Man",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 9,
+          "actual_mins": 57,
+          "actual_distance_m": 4928.83,
+          "today": true
+        },
+        {
           "day": "Tir",
           "disc": "bike",
           "label": "FaF 1 Z2 - Aktivering 60",
@@ -2282,7 +2312,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Byg aerob base og hold styrkerytmen fra dag ét"
+      "focus": "Byg grundvolumen roligt — protein og søvn holder cut-kursen"
     },
     "7": {
       "sessions": [
@@ -2900,8 +2930,9 @@
     }
   ],
   "train_mins": {
+    "walk": 57.0,
     "planned": 635.0,
-    "actual_total": 0
+    "actual_total": 57.0
   },
   "fatHistory": [
     {
@@ -3243,21 +3274,30 @@
     },
     {
       "date": "2026-10-12",
-      "v": 22.1,
+      "v": 21.9,
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 36 af 357 · Mandag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, meso 1/2 af BASE — første rigtige træningsuge efter recovery; styrke og aerob base er omdrejningspunktet nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas er gennemført endnu i uge 42 — ugen starter i dag med styrke. CTL på 46,0 er 7,0 under ugens mål på 53,0, men det er forventeligt efter en recovery-uge og ingen rekalibrering nedad er aktuel.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet på fedt er ændret 0,4 procentpoint den seneste måned — under tærsklen på 0,5, så fedtretningen er stabil. Vægtsnittet er steget 2,7 kg den seneste måned og er 3,4 kg bag cut-planen — hold protein ved hvert måltid og alkohol som bevidst valg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen dage med 3+ genstande — fint. Protein er dækket 6 af 7 dage og søvnsnittet er 7,9 timer. Energisnit på 2,5 er det der kræver opmærksomhed — hold maden oppe så restitutionen ikke halter.</p>",
-  "coachAssessmentTs": "06:41",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 36 af 357 · Mandag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, første uge af BASE meso 1/2 — sæt grundvolumen i gang med rolig intensitet og de to styrketræninger.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Gangturen er i hus. Styrkepasset på 45 min mangler endnu. CTL er 44,0 mod ugens mål 53,0 — differencen skyldes recovery-uge 5 og er forventet; opbyg ikke ekstra.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 3,3 kg over cut-planen — du er bagud ift. kurven. Fedt-retningen er stabil (ændring den seneste måned er 0,4 procentpoint, under tærsklen).</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er på plads 6 af 7 dage. AF-uge er endnu ikke startet (0 af 6 dage) — tag en bevidst beslutning om alkohol i dag.</p>",
+  "coachAssessmentTs": "10:52",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "cut",
+      "level": "warn",
+      "message": "7-dages snitvægt er 3,3 kg over cut-planen. Protein ved hvert måltid og begræns alkohol-dage for at vende retningen.",
+      "action": null,
+      "source": "ai"
+    },
+    {
       "type": "ctl_recalib",
       "level": "info",
-      "message": "CTL 43,8 er 9,2 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5))."
+      "message": "CTL 44,0 er 9,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5)).",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 7.8,
+  "tsb": 6.8,
   "swimHistory": [
     {
       "week": 1,
@@ -3296,7 +3336,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i196381629",
   "weekFocusWeek": 6,
   "coachAssessmentPlanAtGen": "Styrke A · Functional 4 · 3 runder",
   "weightGoal": 68,
@@ -3391,7 +3431,7 @@
     74.0,
     74.16,
     74.47,
-    74.89
+    74.87
   ],
   "fatMovingAvg7": [
     null,
@@ -3483,7 +3523,7 @@
     21.71,
     21.86,
     21.83,
-    21.9
+    21.87
   ],
   "ctlPlan": [
     47,
@@ -3550,12 +3590,12 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-12T04:49:15.370440",
-  "coachAssessmentTsFull": "2026-10-12T04:41:35",
-  "coachAssessmentWeightAtGen": 76.2,
+  "credentialsCheckedTs": "2026-10-12T08:52:28.034670",
+  "coachAssessmentTsFull": "2026-10-12T08:52:28",
+  "coachAssessmentWeightAtGen": 76.1,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 22.1,
+  "coachAssessmentFatAtGen": 21.9,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 257,
@@ -3642,7 +3682,8 @@
     "2": 397,
     "3": 193,
     "4": 434,
-    "5": 177
+    "5": 177,
+    "6": 9
   },
   "racesUpcoming": [
     {
@@ -4887,7 +4928,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 420,
-        "tssActual": null,
+        "tssActual": 9,
         "purpose": "Base: sweet spot 3×15 tir, bjergtur 3 t søn (besluttet 7/9). Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -7344,6 +7385,24 @@
                 "optional": false,
                 "start": "06:30",
                 "startFixed": false
+              },
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 57,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 57,
+                "actualTss": 9,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10107,229 +10166,229 @@
           "week": 6,
           "programId": "tds-2027",
           "start": "2026-10-12",
-          "ctl": 43.8
+          "ctl": 44.0
         }
       ],
       "projection": [
         {
           "d": "2026-10-13",
-          "ctl": 46.3
+          "ctl": 44.2
         },
         {
           "d": "2026-10-14",
-          "ctl": 46.7
+          "ctl": 44.6
         },
         {
           "d": "2026-10-15",
-          "ctl": 47.0
+          "ctl": 44.9
         },
         {
           "d": "2026-10-16",
-          "ctl": 47.3
+          "ctl": 45.3
         },
         {
           "d": "2026-10-17",
-          "ctl": 47.6
+          "ctl": 45.6
         },
         {
           "d": "2026-10-18",
-          "ctl": 47.9
+          "ctl": 46.0
         },
         {
           "d": "2026-10-19",
-          "ctl": 48.2
+          "ctl": 46.4
         },
         {
           "d": "2026-10-20",
-          "ctl": 48.6
+          "ctl": 46.8
         },
         {
           "d": "2026-10-21",
-          "ctl": 48.9
+          "ctl": 47.2
         },
         {
           "d": "2026-10-22",
-          "ctl": 49.3
+          "ctl": 47.5
         },
         {
           "d": "2026-10-23",
-          "ctl": 49.6
+          "ctl": 47.9
         },
         {
           "d": "2026-10-24",
-          "ctl": 49.9
+          "ctl": 48.3
         },
         {
           "d": "2026-10-25",
-          "ctl": 50.2
+          "ctl": 48.6
         },
         {
           "d": "2026-10-26",
-          "ctl": 49.9
+          "ctl": 48.3
         },
         {
           "d": "2026-10-27",
-          "ctl": 49.6
+          "ctl": 48.1
         },
         {
           "d": "2026-10-28",
-          "ctl": 49.3
+          "ctl": 47.8
         },
         {
           "d": "2026-10-29",
-          "ctl": 49.0
+          "ctl": 47.5
         },
         {
           "d": "2026-10-30",
-          "ctl": 48.7
+          "ctl": 47.3
         },
         {
           "d": "2026-10-31",
-          "ctl": 48.4
+          "ctl": 47.1
         },
         {
           "d": "2026-11-01",
-          "ctl": 48.2
+          "ctl": 46.8
         },
         {
           "d": "2026-11-02",
-          "ctl": 48.5
+          "ctl": 47.2
         },
         {
           "d": "2026-11-03",
-          "ctl": 48.9
+          "ctl": 47.6
         },
         {
           "d": "2026-11-04",
-          "ctl": 49.2
+          "ctl": 47.9
         },
         {
           "d": "2026-11-05",
-          "ctl": 49.5
+          "ctl": 48.3
         },
         {
           "d": "2026-11-06",
-          "ctl": 49.8
+          "ctl": 48.6
         },
         {
           "d": "2026-11-07",
-          "ctl": 50.2
+          "ctl": 49.0
         },
         {
           "d": "2026-11-08",
-          "ctl": 50.5
+          "ctl": 49.3
         },
         {
           "d": "2026-11-09",
-          "ctl": 50.8
+          "ctl": 49.7
         },
         {
           "d": "2026-11-10",
-          "ctl": 51.2
+          "ctl": 50.1
         },
         {
           "d": "2026-11-11",
-          "ctl": 51.5
+          "ctl": 50.5
         },
         {
           "d": "2026-11-12",
-          "ctl": 51.9
+          "ctl": 50.8
         },
         {
           "d": "2026-11-13",
-          "ctl": 52.2
+          "ctl": 51.2
         },
         {
           "d": "2026-11-14",
-          "ctl": 52.5
+          "ctl": 51.5
         },
         {
           "d": "2026-11-15",
-          "ctl": 52.8
+          "ctl": 51.9
         },
         {
           "d": "2026-11-16",
-          "ctl": 53.2
+          "ctl": 52.3
         },
         {
           "d": "2026-11-17",
-          "ctl": 53.6
+          "ctl": 52.7
         },
         {
           "d": "2026-11-18",
-          "ctl": 54.0
+          "ctl": 53.1
         },
         {
           "d": "2026-11-19",
-          "ctl": 54.4
-        },
-        {
-          "d": "2026-11-20",
-          "ctl": 54.8
-        },
-        {
-          "d": "2026-11-21",
-          "ctl": 55.1
-        },
-        {
-          "d": "2026-11-22",
-          "ctl": 55.5
-        },
-        {
-          "d": "2026-11-23",
-          "ctl": 55.1
-        },
-        {
-          "d": "2026-11-24",
-          "ctl": 54.7
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 54.3
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 53.9
-        },
-        {
-          "d": "2026-11-27",
-          "ctl": 53.6
-        },
-        {
-          "d": "2026-11-28",
-          "ctl": 53.2
-        },
-        {
-          "d": "2026-11-29",
-          "ctl": 52.9
-        },
-        {
-          "d": "2026-11-30",
-          "ctl": 53.2
-        },
-        {
-          "d": "2026-12-01",
           "ctl": 53.5
         },
         {
-          "d": "2026-12-02",
-          "ctl": 53.8
+          "d": "2026-11-20",
+          "ctl": 53.9
         },
         {
-          "d": "2026-12-03",
-          "ctl": 54.0
-        },
-        {
-          "d": "2026-12-04",
+          "d": "2026-11-21",
           "ctl": 54.3
         },
         {
+          "d": "2026-11-22",
+          "ctl": 54.7
+        },
+        {
+          "d": "2026-11-23",
+          "ctl": 54.3
+        },
+        {
+          "d": "2026-11-24",
+          "ctl": 53.9
+        },
+        {
+          "d": "2026-11-25",
+          "ctl": 53.6
+        },
+        {
+          "d": "2026-11-26",
+          "ctl": 53.2
+        },
+        {
+          "d": "2026-11-27",
+          "ctl": 52.8
+        },
+        {
+          "d": "2026-11-28",
+          "ctl": 52.5
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 52.2
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 52.5
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 52.8
+        },
+        {
+          "d": "2026-12-02",
+          "ctl": 53.1
+        },
+        {
+          "d": "2026-12-03",
+          "ctl": 53.4
+        },
+        {
+          "d": "2026-12-04",
+          "ctl": 53.7
+        },
+        {
           "d": "2026-12-05",
-          "ctl": 54.6
+          "ctl": 54.0
         },
         {
           "d": "2026-12-06",
-          "ctl": 54.9
+          "ctl": 54.3
         }
       ],
       "targets": [
@@ -10604,55 +10663,52 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-12T04:41:35Z",
-    "inputsHash": "b96c6b924e9b17bcad0bac062f06a2bd6a65bd92",
+    "generatedAt": "2026-10-12T08:52:28Z",
+    "inputsHash": "994483e149ea448a14e0e3ac4a8370990f49753f",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gennemfør Styrke A · Functional 4 · 3 runder i dag — 10 min opvarmning + 3 runder, 45 min i alt.",
-      "why": "Første styrkedag i uge 42 sætter fundamentet for ugens progression — readiness er HIGH, TSB er 3,3 over gulvet."
+      "action": "Gennemfør Styrke A · Functional 4 · 3 runder på 45 min: 10 min opvarmning + 3 runder, progression efter check-in.",
+      "why": "Readiness er HIGH (HRV 76,0), og styrke 2x om ugen er fundamentet — første af ugens to styrketræninger."
     },
     "training": {
-      "text": "Ingen pas er gennemført endnu i uge 42 — ugen starter i dag med styrke. CTL på 46,0 er 7,0 under ugens mål på 53,0, men det er forventeligt efter en recovery-uge og ingen rekalibrering nedad er aktuel.",
+      "text": "Gangturen er i hus. Styrkepasset på 45 min mangler endnu. CTL er 44,0 mod ugens mål 53,0 — differencen skyldes recovery-uge 5 og er forventet; opbyg ikke ekstra.",
       "refs": [
-        46.0,
+        44.0,
         53.0,
-        7.0
+        45.0
       ]
     },
     "body": {
-      "text": "7-dages snittet på fedt er ændret 0,4 procentpoint den seneste måned — under tærsklen på 0,5, så fedtretningen er stabil. Vægtsnittet er steget 2,7 kg den seneste måned og er 3,4 kg bag cut-planen — hold protein ved hvert måltid og alkohol som bevidst valg.",
+      "text": "7-dages snit for vægt er 3,3 kg over cut-planen — du er bagud ift. kurven. Fedt-retningen er stabil (ændring den seneste måned er 0,4 procentpoint, under tærsklen).",
       "refs": [
-        0.4,
-        0.5,
-        2.7,
-        3.4
+        3.3,
+        0.4
       ]
     },
     "habits": {
-      "text": "Ingen dage med 3+ genstande — fint. Protein er dækket 6 af 7 dage og søvnsnittet er 7,9 timer. Energisnit på 2,5 er det der kræver opmærksomhed — hold maden oppe så restitutionen ikke halter.",
+      "text": "Protein er på plads 6 af 7 dage. AF-uge er endnu ikke startet (0 af 6 dage) — tag en bevidst beslutning om alkohol i dag.",
       "refs": [
         6.0,
-        7.0,
-        7.9,
-        2.5
+        0.0,
+        6.0
       ]
     },
-    "bigPicture": "Uge 42, meso 1/2 af BASE — første rigtige træningsuge efter recovery; styrke og aerob base er omdrejningspunktet nu.",
-    "weekFocus": "Byg aerob base og hold styrkerytmen fra dag ét",
+    "bigPicture": "Uge 42, første uge af BASE meso 1/2 — sæt grundvolumen i gang med rolig intensitet og de to styrketræninger.",
+    "weekFocus": "Byg grundvolumen roligt — protein og søvn holder cut-kursen",
     "weekFocusFor": 6,
     "warnings": [
       {
         "type": "cut",
         "level": "warn",
-        "message": "7-dages vægtsnittet er 3,4 kg bag cut-planen (forventet 71,6 kg). Raten de seneste 4 uger er 0,22 kg/uge mod et mål på 0,25 kg/uge.",
+        "message": "7-dages snitvægt er 3,3 kg over cut-planen. Protein ved hvert måltid og begræns alkohol-dage for at vende retningen.",
         "action": null,
         "source": "ai"
       },
       {
         "type": "ctl_recalib",
         "level": "info",
-        "message": "CTL 46,0 er 7,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5)).",
+        "message": "CTL 44,0 er 9,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5)).",
         "action": null,
         "source": "rule"
       }
@@ -10744,7 +10800,7 @@
       "corridorKg": 0.5,
       "avg7": 74.9,
       "avg7Date": "2026-10-12",
-      "delta": 3.3,
+      "delta": 3.2,
       "status": "bagud",
       "note": null,
       "ratePerWeek": -0.22,
@@ -10843,7 +10899,7 @@
       ]
     },
     "fat": {
-      "avg14": 21.9,
+      "avg14": 21.8,
       "avg14Change28d": 0.4,
       "expected": 21.2,
       "target": 16.0,
@@ -11228,15 +11284,15 @@
     }
   },
   "weekTss": {
-    "actual": 0,
+    "actual": 9,
     "planned": 475
   },
   "martinMail": {
     "week": 6,
     "isoWeek": 42,
     "lines": [
-      "Uge 42: TSS 0 af 475 (0 %) · CTL 43,8 (mål 53) · TSB +7,8",
-      "Vægt 7d 74,9 kg · fedt 14d 21,9 % · bagud 3,3 kg mod glidepath (71,6)",
+      "Uge 42: TSS 9 af 475 (2 %) · CTL 44,0 (mål 53) · TSB +6,8",
+      "Vægt 7d 74,9 kg · fedt 14d 21,8 % · bagud 3,2 kg mod glidepath (71,6)",
       "HRV 7d 75 (28d 58) · hvilepuls 38 · søvn 7d 7,9 t",
       "AF 4/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 1/2 · check-in 4/10 ben ✗ overkrop ✗",
@@ -11244,7 +11300,7 @@
       "Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 FaF 4 Tær - 3 x 12 77 min, lør 24/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 25/10 FaF 2 Dur - Kvalitet sent 3 x 8 189 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-12T04:49:15Z"
+    "generatedAt": "2026-10-12T08:52:12Z"
   },
   "proposals": [],
   "ftp": {
@@ -11317,8 +11373,8 @@
   },
   "fitnessLive": {
     "date": "2026-10-12",
-    "ctl": 43.8,
-    "atl": 36.0
+    "ctl": 44.0,
+    "atl": 37.2
   },
   "aerobicFlag": {
     "date": "2026-10-11",
