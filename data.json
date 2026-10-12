@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-12 10:52",
+    "updated": "2026-10-12 14:20",
     "week": 6,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -72,7 +72,7 @@
     "tssComp": {
       "value": "9",
       "unit": "TSS",
-      "sub": "9 af 475 planlagt TSS",
+      "sub": "9 af 473 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Uge 42, første uge af BASE meso 1/2 — sæt grundvolumen i gang med rolig intensitet og de to styrketræninger. {HL} Gangturen er i hus. Styrkepasset på 45 min mangler endnu. CTL er 44,0 mod ugens mål 53,0 — differencen skyldes recovery-uge 5 og er forventet; opbyg ikke ekstra.",
-  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 3 runder på 45 min: 10 min opvarmning + 3 runder, progression efter check-in.",
+  "coachSpeech": "Ny uge starter — uge 42. Træningsuge. {HL} Godt: Ny uge med 1 dages streak i ryggen. Hold den. Fokus: 9 af 473 TSS er i hus — 8 sessioner tilbage, heriblandt Styrke A · Functional 4 · 3 runder, FaF 1 Z2 - Rolig 60. Vægt på 76,1 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
+  "coachHighlight": "Søvn på 7,9 timer er solid",
   "weekFocus": "Byg grundvolumen roligt — protein og søvn holder cut-kursen",
   "today": [
     {
@@ -157,9 +157,9 @@
     {
       "day": "Tir",
       "disc": "bike",
-      "label": "FaF 1 Z2 - Aktivering 60",
+      "label": "FaF 1 Z2 - Rolig 60",
       "done": false,
-      "planned_tss": 39,
+      "planned_tss": 37,
       "planned_mins": 60,
       "planned_distance_m": null
     },
@@ -2250,9 +2250,9 @@
         {
           "day": "Tir",
           "disc": "bike",
-          "label": "FaF 1 Z2 - Aktivering 60",
+          "label": "FaF 1 Z2 - Rolig 60",
           "done": false,
-          "planned_tss": 39,
+          "planned_tss": 37,
           "planned_mins": 60,
           "planned_distance_m": null
         },
@@ -3283,18 +3283,9 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "cut",
-      "level": "warn",
-      "message": "7-dages snitvægt er 3,3 kg over cut-planen. Protein ved hvert måltid og begræns alkohol-dage for at vende retningen.",
-      "action": null,
-      "source": "ai"
-    },
-    {
       "type": "ctl_recalib",
       "level": "info",
-      "message": "CTL 44,0 er 9,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5)).",
-      "action": null,
-      "source": "rule"
+      "message": "CTL 44,0 er 9,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5))."
     }
   ],
   "tsb": 6.8,
@@ -3590,7 +3581,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-12T08:52:28.034670",
+  "credentialsCheckedTs": "2026-10-12T12:20:44.712624",
   "coachAssessmentTsFull": "2026-10-12T08:52:28",
   "coachAssessmentWeightAtGen": 76.1,
   "coachAssessmentAfAtGen": 0,
@@ -7414,20 +7405,20 @@
             "weekday": "Tir",
             "entries": [
               {
-                "id": "90102880",
-                "name": "FaF 1 Z2 - Aktivering 60",
+                "id": "c2899fac",
+                "name": "FaF 1 Z2 - Rolig 60",
                 "type": "Ride",
                 "disc": "bike",
                 "mins": 60,
-                "libraryId": "z2_aabnere_60",
+                "libraryId": null,
                 "load": "let",
-                "erg": true,
-                "purpose": "Race-uge og stille uger. Zone 2 med fire korte aktiveringer i høj kadence, så benene vågner uden at der bygges træthed. Bygget 2/9-2026 to dage før Médoc.",
-                "zwiftName": "FaF 1 Z2 - Aktivering 60",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Z2 — ren grundtur",
+                "note": "Z2 60 min — erstatter sweet spot pga. tung krop/høj HRV (12/10). Må køres ude.",
                 "isKey": false,
                 "optional": false,
                 "start": "07:00",
@@ -10172,135 +10163,135 @@
       "projection": [
         {
           "d": "2026-10-13",
-          "ctl": 44.2
+          "ctl": 44.4
         },
         {
           "d": "2026-10-14",
-          "ctl": 44.6
+          "ctl": 44.8
         },
         {
           "d": "2026-10-15",
-          "ctl": 44.9
+          "ctl": 45.1
         },
         {
           "d": "2026-10-16",
-          "ctl": 45.3
+          "ctl": 45.5
         },
         {
           "d": "2026-10-17",
-          "ctl": 45.6
+          "ctl": 45.8
         },
         {
           "d": "2026-10-18",
-          "ctl": 46.0
+          "ctl": 46.2
         },
         {
           "d": "2026-10-19",
-          "ctl": 46.4
+          "ctl": 46.6
         },
         {
           "d": "2026-10-20",
-          "ctl": 46.8
+          "ctl": 46.9
         },
         {
           "d": "2026-10-21",
-          "ctl": 47.2
-        },
-        {
-          "d": "2026-10-22",
-          "ctl": 47.5
-        },
-        {
-          "d": "2026-10-23",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-10-24",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-10-25",
-          "ctl": 48.6
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 48.1
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 47.8
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 47.5
-        },
-        {
-          "d": "2026-10-30",
           "ctl": 47.3
         },
         {
-          "d": "2026-10-31",
-          "ctl": 47.1
+          "d": "2026-10-22",
+          "ctl": 47.7
         },
         {
-          "d": "2026-11-01",
-          "ctl": 46.8
+          "d": "2026-10-23",
+          "ctl": 48.0
         },
         {
-          "d": "2026-11-02",
-          "ctl": 47.2
+          "d": "2026-10-24",
+          "ctl": 48.4
         },
         {
-          "d": "2026-11-03",
-          "ctl": 47.6
+          "d": "2026-10-25",
+          "ctl": 48.7
         },
         {
-          "d": "2026-11-04",
+          "d": "2026-10-26",
+          "ctl": 48.5
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 48.2
+        },
+        {
+          "d": "2026-10-28",
           "ctl": 47.9
         },
         {
+          "d": "2026-10-29",
+          "ctl": 47.7
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 47.4
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 47.2
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 46.9
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 47.3
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 47.7
+        },
+        {
+          "d": "2026-11-04",
+          "ctl": 48.1
+        },
+        {
           "d": "2026-11-05",
-          "ctl": 48.3
+          "ctl": 48.4
         },
         {
           "d": "2026-11-06",
-          "ctl": 48.6
+          "ctl": 48.8
         },
         {
           "d": "2026-11-07",
-          "ctl": 49.0
+          "ctl": 49.1
         },
         {
           "d": "2026-11-08",
-          "ctl": 49.3
+          "ctl": 49.4
         },
         {
           "d": "2026-11-09",
-          "ctl": 49.7
+          "ctl": 49.8
         },
         {
           "d": "2026-11-10",
-          "ctl": 50.1
+          "ctl": 50.2
         },
         {
           "d": "2026-11-11",
-          "ctl": 50.5
+          "ctl": 50.6
         },
         {
           "d": "2026-11-12",
-          "ctl": 50.8
+          "ctl": 50.9
         },
         {
           "d": "2026-11-13",
-          "ctl": 51.2
+          "ctl": 51.3
         },
         {
           "d": "2026-11-14",
-          "ctl": 51.5
+          "ctl": 51.6
         },
         {
           "d": "2026-11-15",
@@ -10308,27 +10299,27 @@
         },
         {
           "d": "2026-11-16",
-          "ctl": 52.3
+          "ctl": 52.4
         },
         {
           "d": "2026-11-17",
-          "ctl": 52.7
+          "ctl": 52.8
         },
         {
           "d": "2026-11-18",
-          "ctl": 53.1
+          "ctl": 53.2
         },
         {
           "d": "2026-11-19",
-          "ctl": 53.5
+          "ctl": 53.6
         },
         {
           "d": "2026-11-20",
-          "ctl": 53.9
+          "ctl": 54.0
         },
         {
           "d": "2026-11-21",
-          "ctl": 54.3
+          "ctl": 54.4
         },
         {
           "d": "2026-11-22",
@@ -10336,11 +10327,11 @@
         },
         {
           "d": "2026-11-23",
-          "ctl": 54.3
+          "ctl": 54.4
         },
         {
           "d": "2026-11-24",
-          "ctl": 53.9
+          "ctl": 54.0
         },
         {
           "d": "2026-11-25",
@@ -10348,15 +10339,15 @@
         },
         {
           "d": "2026-11-26",
-          "ctl": 53.2
+          "ctl": 53.3
         },
         {
           "d": "2026-11-27",
-          "ctl": 52.8
+          "ctl": 52.9
         },
         {
           "d": "2026-11-28",
-          "ctl": 52.5
+          "ctl": 52.6
         },
         {
           "d": "2026-11-29",
@@ -10364,27 +10355,27 @@
         },
         {
           "d": "2026-11-30",
-          "ctl": 52.5
+          "ctl": 52.6
         },
         {
           "d": "2026-12-01",
-          "ctl": 52.8
+          "ctl": 52.9
         },
         {
           "d": "2026-12-02",
-          "ctl": 53.1
+          "ctl": 53.2
         },
         {
           "d": "2026-12-03",
-          "ctl": 53.4
+          "ctl": 53.5
         },
         {
           "d": "2026-12-04",
-          "ctl": 53.7
+          "ctl": 53.8
         },
         {
           "d": "2026-12-05",
-          "ctl": 54.0
+          "ctl": 54.1
         },
         {
           "d": "2026-12-06",
@@ -11285,13 +11276,13 @@
   },
   "weekTss": {
     "actual": 9,
-    "planned": 475
+    "planned": 473
   },
   "martinMail": {
     "week": 6,
     "isoWeek": 42,
     "lines": [
-      "Uge 42: TSS 9 af 475 (2 %) · CTL 44,0 (mål 53) · TSB +6,8",
+      "Uge 42: TSS 9 af 473 (2 %) · CTL 44,0 (mål 53) · TSB +6,8",
       "Vægt 7d 74,9 kg · fedt 14d 21,8 % · bagud 3,2 kg mod glidepath (71,6)",
       "HRV 7d 75 (28d 58) · hvilepuls 38 · søvn 7d 7,9 t",
       "AF 4/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11300,7 +11291,7 @@
       "Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 FaF 4 Tær - 3 x 12 77 min, lør 24/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 25/10 FaF 2 Dur - Kvalitet sent 3 x 8 189 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-12T08:52:12Z"
+    "generatedAt": "2026-10-12T12:20:44Z"
   },
   "proposals": [],
   "ftp": {
