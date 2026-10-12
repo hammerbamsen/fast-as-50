@@ -1,0 +1,70 @@
+{
+  "id": "2026-10-12-tir-z2",
+  "title": "Tir 13/10: sweet spot → Z2 60 min",
+  "status": "accepted",
+  "createdAt": "2026-10-12T04:45:00+00:00",
+  "createdBy": "claude",
+  "note": "Kennet 12/10: tung i krop og hoved, HRV unormalt høj, vægt +2,5 kg på 8 dage. Sweet spot 3×15 erstattes af let Z2 60 min.",
+  "summary": [
+    "1 dag: tir 13/10 sweet spot → Z2 60 min"
+  ],
+  "changes": [
+    {
+      "date": "2026-10-13",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "FaF 1 Z2 - Rolig 60",
+            "type": "Ride",
+            "moving_time": 3600,
+            "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 40m 64% FTP\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Rolig Z2 i stedet for sweet spot. Tung krop og høj HRV efter CPH Half, Mallorca og FTP-test — kroppen beder om ro. Skal føles let hele vejen.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 62,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "power": {
+                    "start": 64,
+                    "end": 64,
+                    "units": "%ftp"
+                  },
+                  "duration": 2400,
+                  "text": "Zone 2 64% FTP"
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 62,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Z2 60 min — erstatter sweet spot pga. tung krop/høj HRV (12/10). Må køres ude."
+        }
+      ]
+    }
+  ],
+  "decidedAt": "2026-10-12T09:17:50+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-10-13"
+    ],
+    "commit": "ead0de8f459eb5d23d72409887260d4d3542e1a9"
+  }
+}
