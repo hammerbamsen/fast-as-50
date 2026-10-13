@@ -1,46 +1,46 @@
 {
   "meta": {
-    "updated": "2026-10-12 23:35",
+    "updated": "2026-10-13 04:51",
     "week": 6,
     "totalWeeks": 51,
     "blockType": "BASE",
-    "dayName": "Mandag",
-    "date": "12. okt",
+    "dayName": "Tirsdag",
+    "date": "13. okt",
     "rhrField": "restingHR",
     "nextRace": {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "daysTo": 146,
+      "daysTo": 145,
       "priority": "C"
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "phase": "TRANSITION",
-    "programDay": 36,
+    "programDay": 37,
     "programDays": 357,
     "isoWeek": 42
   },
   "kpis": {
     "weight": {
-      "value": "74,9",
+      "value": "75,0",
       "unit": "kg",
-      "sub": "forventet 71,6 · bagud 3,2",
+      "sub": "forventet 71,6 · bagud 3,4",
       "color": "#E67E22"
     },
     "fat": {
       "value": "21,8",
       "unit": "%",
-      "sub": "14d-snit · forventet 21,2",
+      "sub": "14d-snit · forventet 21,1",
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "44,0",
+      "value": "43,8",
       "unit": "",
       "sub": "Uge 42-mål 53 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "6,8",
+      "value": "6,6",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -100,9 +100,9 @@
       "color": "#C0392B"
     },
     "protein": {
-      "value": "7",
+      "value": "6",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 6,2",
+      "sub": "3/3-dage · 4 uger 6,0",
       "color": "#27AE60"
     }
   },
@@ -111,25 +111,17 @@
     "target": 6,
     "streak": 2
   },
-  "coachSpeech": "Ny uge starter — uge 42. Træningsuge. {HL} Godt: 1 AF-dage i 1 gennemførte dage — på rette spor. 5 mere og ugens mål er i hus. Fokus: 9 af 473 TSS er i hus — 8 sessioner tilbage, heriblandt Styrke A · Functional 4 · 3 runder, FaF 1 Z2 - Rolig 60. Vægt på 76,1 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Søvn på 7,9 timer er solid",
+  "coachSpeech": "Uge 42, BASE meso 1/2 — vægten er bagud på cut-planen, og det er det vigtigste at holde øje med denne uge. {HL} Styrkepasset mandag er misset og indhentes ikke. Dagens Z2-tur på 60 min er ugens første gennemførte pas — ugen er i gang med kun 9 TSS i kassen mod 473 planlagt, men ugen har 6 pas tilbage og BASE-fasen tåler det.",
+  "coachHighlight": "Kør FaF 1 Z2 - Rolig 60 i dag: 60 min Z2 ude — holdt let og aerobt hele vejen, ingen ERG.",
   "weekFocus": "Byg basen roligt — Z2 og styrke, ingen overivrig start",
   "today": [
     {
-      "discipline": "strength",
-      "title": "Styrke A · Functional 4 · 3 runder",
+      "discipline": "bike",
+      "title": "FaF 1 Z2 - Rolig 60",
       "duration": "",
       "zone": "–",
       "desc": "",
       "completed": false
-    },
-    {
-      "discipline": "walk",
-      "title": "Gentofte Gang",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
     }
   ],
   "week_sessions": [
@@ -140,8 +132,7 @@
       "done": false,
       "planned_tss": 30,
       "planned_mins": 45,
-      "planned_distance_m": null,
-      "today": true
+      "planned_distance_m": null
     },
     {
       "day": "Man",
@@ -151,8 +142,7 @@
       "extra": true,
       "actual_tss": 9,
       "actual_mins": 57,
-      "actual_distance_m": 4928.83,
-      "today": true
+      "actual_distance_m": 4928.83
     },
     {
       "day": "Tir",
@@ -161,7 +151,8 @@
       "done": false,
       "planned_tss": 37,
       "planned_mins": 60,
-      "planned_distance_m": null
+      "planned_distance_m": null,
+      "today": true
     },
     {
       "day": "Ons",
@@ -224,14 +215,9 @@
     46.5,
     48.7,
     44.8,
-    44.0
+    43.8
   ],
   "weightHistory": [
-    {
-      "date": "2026-07-15",
-      "v": 71.7,
-      "real": true
-    },
     {
       "date": "2026-07-16",
       "v": 71.9,
@@ -568,14 +554,10 @@
       "date": "2026-10-12",
       "v": 76.1,
       "real": true
-    }
+    },
+    null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-07-15",
-      "v": 45.0,
-      "real": true
-    },
     {
       "date": "2026-07-16",
       "v": 50.0,
@@ -1020,14 +1002,10 @@
       "date": "2026-10-12",
       "v": 76.0,
       "real": true
-    }
+    },
+    null
   ],
   "sleepHistory": [
-    {
-      "date": "2026-07-15",
-      "v": 8.0,
-      "real": true
-    },
     {
       "date": "2026-07-16",
       "v": 6.0,
@@ -1472,14 +1450,10 @@
       "date": "2026-10-12",
       "v": 9.1,
       "real": true
-    }
+    },
+    null
   ],
   "tsbHistory": [
-    {
-      "date": "2026-07-15",
-      "v": -10.9,
-      "real": true
-    },
     {
       "date": "2026-07-16",
       "v": -7.7,
@@ -1924,6 +1898,11 @@
       "date": "2026-10-12",
       "v": 6.8,
       "real": true
+    },
+    {
+      "date": "2026-10-13",
+      "v": 6.6,
+      "real": true
     }
   ],
   "af_log": {
@@ -2234,8 +2213,7 @@
           "done": false,
           "planned_tss": 30,
           "planned_mins": 45,
-          "planned_distance_m": null,
-          "today": true
+          "planned_distance_m": null
         },
         {
           "day": "Man",
@@ -2245,8 +2223,7 @@
           "extra": true,
           "actual_tss": 9,
           "actual_mins": 57,
-          "actual_distance_m": 4928.83,
-          "today": true
+          "actual_distance_m": 4928.83
         },
         {
           "day": "Tir",
@@ -2255,7 +2232,8 @@
           "done": false,
           "planned_tss": 37,
           "planned_mins": 60,
-          "planned_distance_m": null
+          "planned_distance_m": null,
+          "today": true
         },
         {
           "day": "Ons",
@@ -2926,7 +2904,7 @@
       "iso": 42,
       "monday": "2026-10-12",
       "done": 1,
-      "total": 1,
+      "total": 2,
       "label": "Uge 42"
     }
   ],
@@ -2936,11 +2914,6 @@
     "actual_total": 57.0
   },
   "fatHistory": [
-    {
-      "date": "2026-07-15",
-      "v": 21.8,
-      "real": true
-    },
     {
       "date": "2026-07-16",
       "v": 22.5,
@@ -3277,19 +3250,22 @@
       "date": "2026-10-12",
       "v": 21.9,
       "real": true
-    }
+    },
+    null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 36 af 357 · Mandag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, mesouges 1/2 i BASE — første rigtige træningsuge efter transition; CTL 9,0 under mål, men det er forventet efter recovery.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen gennemførte træningspas endnu i uge 42 — gåturen er registreret som ekstra. Styrke A (45 min) venter i dag; CTL er 44,0 mod ugens mål på 53,0, men det er forventet efter en recovery-uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 3,3 kg over cut-planen (forventet 71,6 kg) — cut-status er bagud. Det lange perspektiv er endnu for kort til at vurdere retning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er i orden alle 7 dage. AF-ugen er på 1 af 6 dage — der er plads, men fokus resten af ugen. Energi 2,5 i snit er lavt — hold protein ved hvert måltid.</p>",
-  "coachAssessmentTs": "19:12",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 37 af 357 · Tirsdag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, BASE meso 1/2 — vægten er bagud på cut-planen, og det er det vigtigste at holde øje med denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrkepasset mandag er misset og indhentes ikke. Dagens Z2-tur på 60 min er ugens første gennemførte pas — ugen er i gang med kun 9 TSS i kassen mod 473 planlagt, men ugen har 6 pas tilbage og BASE-fasen tåler det. CTL ligger på 43,8 mod mål 53,0.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt er steget 2,9 kg den seneste måned — klart opadgående, og du er 3,5 kg bagud på cut-planen. Protein-indtagelse er registreret 6 ud af 7 dage: bliv ved med protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF: 1 dag denne uge mod mål 6 — ingen dage med 3+ genstande, det er fint. Søvn sidst nat var 9,1 t og 7-dages snit er 7,9 t — ingen bekymring der. Energi-snit 2,2 er lavt; mærk efter under og efter dagens pas.</p>",
+  "coachAssessmentTs": "04:51",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "ctl_recalib",
-      "level": "info",
-      "message": "CTL 44,0 er 9,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5))."
+      "type": "cut",
+      "level": "critical",
+      "message": "Vægten er 3,5 kg bagud på cut-planen. Aktuel rate er 0,22 kg/uge mod mål 0,25 kg/uge. Protein ved hvert måltid og alkohol som bevidst valg er de eneste håndtag.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": 6.8,
+  "tsb": 6.6,
   "swimHistory": [
     {
       "week": 1,
@@ -3330,11 +3306,10 @@
   ],
   "coachAssessmentLastActId": "i196381629",
   "weekFocusWeek": 6,
-  "coachAssessmentPlanAtGen": "Styrke A · Functional 4 · 3 runder",
+  "coachAssessmentPlanAtGen": "FaF 1 Z2 - Rolig 60",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
-    null,
     null,
     null,
     null,
@@ -3423,10 +3398,10 @@
     74.0,
     74.16,
     74.47,
-    74.87
+    74.87,
+    75.03
   ],
   "fatMovingAvg7": [
-    null,
     null,
     null,
     null,
@@ -3515,7 +3490,8 @@
     21.71,
     21.86,
     21.83,
-    21.87
+    21.87,
+    21.97
   ],
   "ctlPlan": [
     47,
@@ -3582,8 +3558,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-12T21:35:06.645343",
-  "coachAssessmentTsFull": "2026-10-12T17:12:32",
+  "credentialsCheckedTs": "2026-10-13T02:51:54.646425",
+  "coachAssessmentTsFull": "2026-10-13T02:51:54",
   "coachAssessmentWeightAtGen": 76.1,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3681,7 +3657,7 @@
     {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "days": 146,
+      "days": 145,
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
@@ -3690,7 +3666,7 @@
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
       "date": "2027-06-06",
-      "days": 237,
+      "days": 236,
       "priority": "B",
       "distance": "130km / 4500hm",
       "registered": true,
@@ -3699,7 +3675,7 @@
     {
       "name": "Tour des Stations Ultrafondo",
       "date": "2027-08-28",
-      "days": 320,
+      "days": 319,
       "priority": "A",
       "distance": "242km / 8848hm",
       "registered": false,
@@ -3993,21 +3969,16 @@
       "thin": true
     },
     "bike": {
-      "current": 1.425,
-      "previous": 1.5,
-      "pct": -5.0,
-      "n": 10,
-      "n_prev": 5,
+      "current": 1.427,
+      "previous": 1.496,
+      "pct": -4.6,
+      "n": 9,
+      "n_prev": 6,
       "window": 42,
       "thin": false
     }
   },
   "rhrHistory": [
-    {
-      "date": "2026-07-15",
-      "v": 46,
-      "real": true
-    },
     {
       "date": "2026-07-16",
       "v": 45,
@@ -4450,7 +4421,12 @@
     },
     {
       "date": "2026-10-12",
-      "v": 37,
+      "v": 36,
+      "real": true
+    },
+    {
+      "date": "2026-10-13",
+      "v": 39,
       "real": true
     }
   ],
@@ -4516,13 +4492,6 @@
     "strengthPerWeek": 2
   },
   "checkinLog": [
-    {
-      "date": "2026-09-15",
-      "alkohol": 0,
-      "protein": 2,
-      "energi": 4,
-      "sult": null
-    },
     {
       "date": "2026-09-16",
       "alkohol": 0,
@@ -4711,9 +4680,16 @@
       "protein": 2,
       "energi": null,
       "sult": null
+    },
+    {
+      "date": "2026-10-13",
+      "alkohol": null,
+      "protein": null,
+      "energi": null,
+      "sult": null
     }
   ],
-  "energy7": 2.5,
+  "energy7": 2.2,
   "af_kind": {
     "2026-09-18": "faa",
     "2026-09-19": "faa",
@@ -4733,7 +4709,7 @@
     "2026-10-10": "faa"
   },
   "planTab": {
-    "today": "2026-10-12",
+    "today": "2026-10-13",
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "currentWeek": 6,
@@ -7399,7 +7375,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": true
+            "isToday": false
           },
           {
             "date": "2026-10-13",
@@ -7428,7 +7404,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": false
+            "isToday": true
           },
           {
             "date": "2026-10-14",
@@ -10158,7 +10134,7 @@
           "week": 6,
           "programId": "tds-2027",
           "start": "2026-10-12",
-          "ctl": 44.0
+          "ctl": 43.8
         }
       ],
       "projection": [
@@ -10655,55 +10631,54 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-12T17:12:32Z",
-    "inputsHash": "b7b138edd708796eeb5681b5fdf1e0fc21eade32",
+    "generatedAt": "2026-10-13T02:51:54Z",
+    "inputsHash": "427a310e9f68cf1dd025a4c3a5e705d6052a2f04",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gennemfør Styrke A · Functional 4 · 3 runder (45 min): 10 min opvarmning + 3 runder, kør progression efter check-in.",
-      "why": "Styrke 2× om ugen er ikke til forhandling — det første pas skal i hus på dag 1 af ugen."
+      "action": "Kør FaF 1 Z2 - Rolig 60 i dag: 60 min Z2 ude — holdt let og aerobt hele vejen, ingen ERG.",
+      "why": "Styrkepasset mandag er misset; dagens lette Z2 bygger ugen op uden at øge belastningen for tidligt."
     },
     "training": {
-      "text": "Ingen gennemførte træningspas endnu i uge 42 — gåturen er registreret som ekstra. Styrke A (45 min) venter i dag; CTL er 44,0 mod ugens mål på 53,0, men det er forventet efter en recovery-uge.",
+      "text": "Styrkepasset mandag er misset og indhentes ikke. Dagens Z2-tur på 60 min er ugens første gennemførte pas — ugen er i gang med kun 9 TSS i kassen mod 473 planlagt, men ugen har 6 pas tilbage og BASE-fasen tåler det. CTL ligger på 43,8 mod mål 53,0.",
       "refs": [
-        44.0,
+        9.0,
+        473.0,
+        43.8,
         53.0,
-        45.0
+        60.0,
+        6.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 3,3 kg over cut-planen (forventet 71,6 kg) — cut-status er bagud. Det lange perspektiv er endnu for kort til at vurdere retning.",
+      "text": "7-dages snit på vægt er steget 2,9 kg den seneste måned — klart opadgående, og du er 3,5 kg bagud på cut-planen. Protein-indtagelse er registreret 6 ud af 7 dage: bliv ved med protein ved hvert måltid.",
       "refs": [
-        3.3,
-        71.6
+        2.9,
+        3.5,
+        6.0,
+        7.0
       ]
     },
     "habits": {
-      "text": "Protein er i orden alle 7 dage. AF-ugen er på 1 af 6 dage — der er plads, men fokus resten af ugen. Energi 2,5 i snit er lavt — hold protein ved hvert måltid.",
+      "text": "AF: 1 dag denne uge mod mål 6 — ingen dage med 3+ genstande, det er fint. Søvn sidst nat var 9,1 t og 7-dages snit er 7,9 t — ingen bekymring der. Energi-snit 2,2 er lavt; mærk efter under og efter dagens pas.",
       "refs": [
-        7.0,
         1.0,
         6.0,
-        2.5
+        9.1,
+        7.9,
+        2.2
       ]
     },
-    "bigPicture": "Uge 42, mesouges 1/2 i BASE — første rigtige træningsuge efter transition; CTL 9,0 under mål, men det er forventet efter recovery.",
-    "weekFocus": "Byg basen roligt — Z2 og styrke, ingen overivrig start",
-    "weekFocusFor": 6,
+    "bigPicture": "Uge 42, BASE meso 1/2 — vægten er bagud på cut-planen, og det er det vigtigste at holde øje med denne uge.",
+    "weekFocus": null,
+    "weekFocusFor": null,
     "warnings": [
       {
         "type": "cut",
-        "level": "warn",
-        "message": "7-dages snit er 3,3 kg over cut-plan (forventet 71,6 kg). Protein ved hvert måltid og alkohol som bevidst valg er de to håndtag.",
+        "level": "act",
+        "message": "Vægten er 3,5 kg bagud på cut-planen. Aktuel rate er 0,22 kg/uge mod mål 0,25 kg/uge. Protein ved hvert måltid og alkohol som bevidst valg er de eneste håndtag.",
         "action": null,
         "source": "ai"
-      },
-      {
-        "type": "ctl_recalib",
-        "level": "info",
-        "message": "CTL 44,0 er 9,0 under ugens mål 53 — ingen rekalibrering nedad (mandag efter recovery-uge (uge 5)).",
-        "action": null,
-        "source": "rule"
       }
     ],
     "error": null,
@@ -10718,18 +10693,9 @@
     "text": "Byg basen roligt — Z2 og bjergtur er ugens rygrad"
   },
   "strengthLog": {
-    "from": "2026-09-14",
-    "to": "2026-10-12",
+    "from": "2026-09-15",
+    "to": "2026-10-13",
     "sessions": [
-      {
-        "date": "2026-09-14",
-        "name": "Styrketræning",
-        "source": "activity",
-        "note": "",
-        "rpe": null,
-        "complete": null,
-        "template": null
-      },
       {
         "date": "2026-09-19",
         "name": "Styrketræning",
@@ -10778,7 +10744,7 @@
     ]
   },
   "body": {
-    "asOf": "2026-10-12",
+    "asOf": "2026-10-13",
     "glidepath": {
       "phase": "cut",
       "cutWeek": 4,
@@ -10791,13 +10757,13 @@
       "targetKg": 68.0,
       "expectedKg": 71.6,
       "corridorKg": 0.5,
-      "avg7": 74.9,
+      "avg7": 75.0,
       "avg7Date": "2026-10-12",
-      "delta": 3.2,
+      "delta": 3.4,
       "status": "bagud",
       "note": null,
       "ratePerWeek": -0.22,
-      "actualRate4w": 0.66,
+      "actualRate4w": 0.72,
       "series": [
         {
           "date": "2026-09-21",
@@ -10893,8 +10859,8 @@
     },
     "fat": {
       "avg14": 21.8,
-      "avg14Change28d": 0.4,
-      "expected": 21.2,
+      "avg14Change28d": 0.3,
+      "expected": 21.1,
       "target": 16.0,
       "corridorPp": 0.5,
       "status": "bagud",
@@ -10902,7 +10868,7 @@
     },
     "ffm": {
       "now": 58.2,
-      "change28d": 1.4,
+      "change28d": 1.5,
       "target": 57.1,
       "status": "ok",
       "baseline": 56.7,
@@ -10915,7 +10881,6 @@
       "target": 2
     },
     "strengthWeeks": {
-      "2026-09-14": 2,
       "2026-09-21": 0,
       "2026-09-28": 2,
       "2026-10-05": 2
@@ -10927,13 +10892,13 @@
       "signals": {
         "rate": {
           "level": null,
-          "value": 1.33,
-          "text": "1,33 kg/uge (2 uger)"
+          "value": 1.52,
+          "text": "1,52 kg/uge (2 uger)"
         },
         "ffm": {
           "level": null,
-          "value": 1.4,
-          "text": "+1,4 kg på 4 uger"
+          "value": 1.5,
+          "text": "+1,5 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -10946,10 +10911,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": -3.4,
-            "hrvPct": 24.8
+            "rhr": -4.2,
+            "hrvPct": 29.2
           },
-          "text": "hvilepuls −3 · HRV +25 % (14 dage)"
+          "text": "hvilepuls −4 · HRV +29 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -10959,10 +10924,10 @@
         "alcohol": {
           "level": null,
           "value": {
-            "days7": 2,
+            "days7": 1,
             "run": 1
           },
-          "text": "2 drikkedage på 7 dage"
+          "text": "1 drikkedag på 7 dage"
         }
       }
     }
@@ -11147,62 +11112,62 @@
       }
     ],
     "next": {
-      "ab": "a",
-      "templateId": "styrke-fs4-a-3r",
-      "name": "Styrke A · Functional 4 · 3 runder",
+      "ab": "b",
+      "templateId": "styrke-fs4-b-3r",
+      "name": "Styrke B · Functional 4 · 3 runder",
       "rounds": 3,
-      "date": "2026-10-12",
-      "reasoning": "Planlagt 12/10: Styrke A · Functional 4 · 3 runder",
+      "date": "2026-10-17",
+      "reasoning": "Planlagt 17/10: Styrke B · Functional 4 · 3 runder",
       "recovery": false,
       "exercises": [
         {
-          "name": "Thruster",
-          "load": "2×5 kg DB",
-          "reps": 10,
+          "name": "RDL",
+          "load": "12,5 kg KB",
+          "reps": 12,
           "unit": "reps",
           "group": "ben",
-          "baseLoad": "2×5 kg DB",
-          "baseReps": 10,
+          "baseLoad": "12,5 kg KB",
+          "baseReps": 12,
           "capped": false
         },
         {
-          "name": "Renegade row",
-          "load": "10 kg DB",
+          "name": "Split squat",
+          "load": "12,5 kg KB goblet",
           "reps": 8,
-          "unit": "reps/side",
-          "group": "core",
-          "baseLoad": "10 kg DB",
+          "unit": "reps/ben",
+          "group": "ben",
+          "baseLoad": "12,5 kg KB goblet",
           "baseReps": 8,
           "capped": false
         },
         {
-          "name": "KB swing",
-          "load": "12,5 kg KB",
-          "reps": 15,
+          "name": "Pullover",
+          "load": "7 kg DB",
+          "reps": 12,
           "unit": "reps",
-          "group": "ben",
-          "baseLoad": "12,5 kg KB",
-          "baseReps": 15,
+          "group": "overkrop",
+          "baseLoad": "7 kg DB",
+          "baseReps": 12,
           "capped": false
         },
         {
-          "name": "KB row",
-          "load": "10 kg DB",
-          "reps": 10,
-          "unit": "reps/side",
+          "name": "Bænkpres",
+          "load": "2×7 kg DB",
+          "reps": 12,
+          "unit": "reps",
           "group": "overkrop",
-          "baseLoad": "10 kg DB",
-          "baseReps": 10,
+          "baseLoad": "2×7 kg DB",
+          "baseReps": 12,
           "capped": false
         },
         {
-          "name": "Press",
-          "load": "2×5 kg DB",
-          "reps": 10,
-          "unit": "reps",
-          "group": "overkrop",
-          "baseLoad": "2×5 kg DB",
-          "baseReps": 10,
+          "name": "Farmers walk",
+          "load": "2×10 kg DB",
+          "reps": 40,
+          "unit": "m",
+          "group": "core",
+          "baseLoad": "2×10 kg DB",
+          "baseReps": 40,
           "capped": false
         }
       ],
@@ -11284,22 +11249,22 @@
     "week": 6,
     "isoWeek": 42,
     "lines": [
-      "Uge 42: TSS 9 af 473 (2 %) · CTL 44,0 (mål 53) · TSB +6,8",
-      "Vægt 7d 74,9 kg · fedt 14d 21,8 % · bagud 3,2 kg mod glidepath (71,6)",
-      "HRV 7d 75 (28d 58) · hvilepuls 38 · søvn 7d 7,9 t",
-      "AF 5/7 · protein 3/3 7/7 · aftensult —/7",
+      "Uge 42: TSS 9 af 473 (2 %) · CTL 43,8 (mål 53) · TSB +6,6",
+      "Vægt 7d 75,0 kg · fedt 14d 21,8 % · bagud 3,4 kg mod glidepath (71,6)",
+      "HRV 7d 75 (28d 58) · hvilepuls 38 · søvn 7d 7,7 t",
+      "AF 5/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 1/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 FaF 4 Tær - 3 x 12 77 min, lør 24/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 25/10 FaF 2 Dur - Kvalitet sent 3 x 8 189 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-12T21:35:06Z"
+    "generatedAt": "2026-10-13T02:51:36Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 257,
     "wkg": 3.43,
-    "weightAvg7": 74.9,
+    "weightAvg7": 75.0,
     "phase": "TRANSITION",
     "phaseTarget": 278,
     "phaseWkgTarget": 3.97,
@@ -11365,8 +11330,8 @@
     ]
   },
   "fitnessLive": {
-    "date": "2026-10-12",
-    "ctl": 44.0,
+    "date": "2026-10-13",
+    "ctl": 43.8,
     "atl": 37.2
   },
   "aerobicFlag": {
