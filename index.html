@@ -2961,6 +2961,13 @@ function renderBody() {
 const GP_WORD = { plan:'På plan', foran:'Foran', bagud:'Bagud' };
 function _dkShort(iso){ if (!iso) return ''; const d = new Date(String(iso).slice(0,10)+'T12:00:00'); return `${d.getDate()}/${d.getMonth()+1}`; }
 function _signed(v, d=1){ if (v == null || isNaN(v)) return '—'; const a = Math.abs(v).toFixed(d).replace('.', ','); return (v < 0 ? '−' : (v > 0 ? '+' : '')) + a; }
+// Seneste vejning (15/10-26): Krop viste kun 7d-snit, så dagens vejning var usynlig.
+function lastWeighLine(){
+  const w = lastVal(D.weightHistory); if (!w) return '';
+  const f = (D.fatHistory||[]).find(p => p && p.date === w.date && p.v != null);
+  const when = w.date === todayIso() ? 'vejet i dag' : `seneste vejning ${_dkShort(w.date)}`;
+  return `<div class="gp-line">${when} <b>${fmtDa(w.v)}</b> kg${f ? ` · fedt <b>${fmtDa(f.v)} %</b>` : ''}</div>`;
+}
 function bodyHero(g) {
   const iso = isoWeekOf(new Date());
   if (!g) {
@@ -2972,6 +2979,7 @@ function bodyHero(g) {
     return `<div class="gp-hero"><div class="gp-eyebrow">KROP · UGE ${iso}</div>
       <div class="gp-status none">Cut starter uge ${g.cutStartIsoWeek} · ${_dkShort(g.cutStartsFrom)}</div>
       <div class="gp-line">nu: <b>vedligehold</b>${g.avg7 != null ? ` · 7d-snit <b>${fmtDa(g.avg7)}</b> kg` : ''}${g.actualRate4w != null ? ` · ${_signed(g.actualRate4w, 2)} kg/uge (4 uger)` : ''}</div>
+      ${lastWeighLine()}
       <div class="gp-note">Plan: ${fmtDa(g.startKg)} → ${fmtDa(g.targetKg)} kg over ${g.cutWeeks} uger, ${_signed(g.ratePerWeek, 2)} kg/uge. Intet underskud før ${_dkShort(g.cutStartsFrom)}.</div></div>`;
   }
   const eyebrow = g.phase === 'hold'
@@ -2988,6 +2996,7 @@ function bodyHero(g) {
   return `<div class="gp-hero"><div class="gp-eyebrow">${eyebrow}</div>
     <div class="gp-status ${cls}">${word}</div>
     <div class="gp-line">${line1}</div>
+    ${lastWeighLine()}
     <div class="gp-line">${line2}</div>
     ${g.note ? `<div class="gp-note">${esc(g.note)}</div>` : ''}</div>`;
 }
