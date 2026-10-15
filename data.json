@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-15 02:00",
+    "updated": "2026-10-15 05:35",
     "week": 6,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -46,9 +46,9 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,5",
+      "value": "7,6",
       "unit": "t",
-      "sub": "Snit 7d 7,8t · mål 7t",
+      "sub": "Snit 7d 7,9t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "74,8",
+      "value": "77,0",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 4
   },
-  "coachSpeech": "Uge 42, BASE meso 1/2 — ugen er startet skidt med 3 missede pas, men weekendens lange ture er intakte og afgørende for CTL-opbygningen. {HL} Ugen har 3 missede pas og 0 gennemførte planlagte — styrke mandag, Z2-cykel tirsdag og løb onsdag er tabt. Drop dem, indhent ikke. Dagens 80 min Z2 er det første planlagte pas du lægger i kassen.",
-  "coachHighlight": "Ryd ud på 80 min Z2-grundtur på cyklen i dag — ude som ren Z2 hvis vejret tillader, ellers ERG. Let dag før weekenden.",
+  "coachSpeech": "Torsdag — uge 42. {HL} Fokus: 33 af 473 TSS er i hus — 5 sessioner tilbage, heriblandt FaF 1 Z2 - Grundtur 80, Svøm 1500m let teknisk. 3 sessioner er misset — vinduerne er lukket. Vægt på 74,8 kg (målt 14/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachHighlight": "Søvn på 7,9 timer er solid",
   "weekFocus": "Byg basen roligt — Z2 og styrke, ingen overivrig start",
   "today": [
     {
@@ -1037,7 +1037,11 @@
       "v": 73.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-15",
+      "v": 90.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1485,7 +1489,11 @@
       "v": 7.5,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-15",
+      "v": 7.6,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3327,15 +3335,7 @@
   "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 39 af 357 · Torsdag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, BASE meso 1/2 — ugen er startet skidt med 3 missede pas, men weekendens lange ture er intakte og afgørende for CTL-opbygningen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen har 3 missede pas og 0 gennemførte planlagte — styrke mandag, Z2-cykel tirsdag og løb onsdag er tabt. Drop dem, indhent ikke. Dagens 80 min Z2 er det første planlagte pas du lægger i kassen. CTL er 43,8 mod mål på 53,0 — du er 9,2 point bag i uge 1 af 2 i mesocyklussen, men det er BASE og bloktypens formål er at bygge gradvist.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er 3,5 kg over dit forventede mål på 71,5 kg — du er bagud på cuttet, og raten den seneste måned er 0,88 kg/uge mod planens 0,25 kg/uge. Hold protein ved hvert måltid; alkohol som bevidst valg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 ud af 7 dage med protein registreret — godt. Søvn er 7,5 t de seneste dag og 7,8 i snit — begge over gulvet på 7,0 t. Energi er 1,0 i snit — hold øje med det ind mod weekendens lange ture.</p>",
   "coachAssessmentTs": "02:00",
   "commute_pairing_warnings": [],
-  "warnings": [
-    {
-      "type": "quota",
-      "level": "warn",
-      "message": "3 planlagte pas er misset denne uge (styrke mandag, Z2-cykel tirsdag, løb onsdag). Drop dem — flyt dem ikke ind i weekenden, da lørdag og søndag allerede har tunge blokke.",
-      "action": null,
-      "source": "ai"
-    }
-  ],
+  "warnings": [],
   "tsb": 6.8,
   "swimHistory": [
     {
@@ -3629,7 +3629,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-15T00:01:16.280276",
+  "credentialsCheckedTs": "2026-10-15T03:35:22.368586",
   "coachAssessmentTsFull": "2026-10-15T00:01:16",
   "coachAssessmentWeightAtGen": 74.8,
   "coachAssessmentAfAtGen": 3,
@@ -4497,7 +4497,7 @@
     },
     {
       "date": "2026-10-15",
-      "v": 37,
+      "v": 36,
       "real": true
     }
   ],
@@ -10264,20 +10264,16 @@
       ],
       "projection": [
         {
-          "d": "2026-10-15",
-          "ctl": 43.9
-        },
-        {
           "d": "2026-10-16",
-          "ctl": 44.3
+          "ctl": 44.2
         },
         {
           "d": "2026-10-17",
-          "ctl": 44.7
+          "ctl": 44.6
         },
         {
           "d": "2026-10-18",
-          "ctl": 45.0
+          "ctl": 44.9
         },
         {
           "d": "2026-10-19",
@@ -10285,15 +10281,15 @@
         },
         {
           "d": "2026-10-20",
-          "ctl": 45.9
+          "ctl": 45.8
         },
         {
           "d": "2026-10-21",
-          "ctl": 46.3
+          "ctl": 46.2
         },
         {
           "d": "2026-10-22",
-          "ctl": 46.7
+          "ctl": 46.6
         },
         {
           "d": "2026-10-23",
@@ -10301,11 +10297,11 @@
         },
         {
           "d": "2026-10-24",
-          "ctl": 47.4
+          "ctl": 47.3
         },
         {
           "d": "2026-10-25",
-          "ctl": 47.8
+          "ctl": 47.7
         },
         {
           "d": "2026-10-26",
@@ -10313,7 +10309,7 @@
         },
         {
           "d": "2026-10-27",
-          "ctl": 47.3
+          "ctl": 47.2
         },
         {
           "d": "2026-10-28",
@@ -10321,15 +10317,15 @@
         },
         {
           "d": "2026-10-29",
-          "ctl": 46.8
+          "ctl": 46.7
         },
         {
           "d": "2026-10-30",
-          "ctl": 46.6
+          "ctl": 46.5
         },
         {
           "d": "2026-10-31",
-          "ctl": 46.4
+          "ctl": 46.3
         },
         {
           "d": "2026-11-01",
@@ -10345,11 +10341,11 @@
         },
         {
           "d": "2026-11-04",
-          "ctl": 47.3
+          "ctl": 47.2
         },
         {
           "d": "2026-11-05",
-          "ctl": 47.7
+          "ctl": 47.6
         },
         {
           "d": "2026-11-06",
@@ -10357,7 +10353,7 @@
         },
         {
           "d": "2026-11-07",
-          "ctl": 48.4
+          "ctl": 48.3
         },
         {
           "d": "2026-11-08",
@@ -10377,11 +10373,11 @@
         },
         {
           "d": "2026-11-12",
-          "ctl": 50.3
+          "ctl": 50.2
         },
         {
           "d": "2026-11-13",
-          "ctl": 50.7
+          "ctl": 50.6
         },
         {
           "d": "2026-11-14",
@@ -10389,7 +10385,7 @@
         },
         {
           "d": "2026-11-15",
-          "ctl": 51.4
+          "ctl": 51.3
         },
         {
           "d": "2026-11-16",
@@ -10401,27 +10397,27 @@
         },
         {
           "d": "2026-11-18",
-          "ctl": 52.7
+          "ctl": 52.6
         },
         {
           "d": "2026-11-19",
-          "ctl": 53.1
+          "ctl": 53.0
         },
         {
           "d": "2026-11-20",
-          "ctl": 53.5
+          "ctl": 53.4
         },
         {
           "d": "2026-11-21",
-          "ctl": 53.9
+          "ctl": 53.8
         },
         {
           "d": "2026-11-22",
-          "ctl": 54.3
+          "ctl": 54.2
         },
         {
           "d": "2026-11-23",
-          "ctl": 53.9
+          "ctl": 53.8
         },
         {
           "d": "2026-11-24",
@@ -10429,7 +10425,7 @@
         },
         {
           "d": "2026-11-25",
-          "ctl": 53.2
+          "ctl": 53.1
         },
         {
           "d": "2026-11-26",
@@ -10437,7 +10433,7 @@
         },
         {
           "d": "2026-11-27",
-          "ctl": 52.5
+          "ctl": 52.4
         },
         {
           "d": "2026-11-28",
@@ -10449,11 +10445,11 @@
         },
         {
           "d": "2026-11-30",
-          "ctl": 52.2
+          "ctl": 52.1
         },
         {
           "d": "2026-12-01",
-          "ctl": 52.5
+          "ctl": 52.4
         },
         {
           "d": "2026-12-02",
@@ -11027,10 +11023,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": -5.7,
-            "hrvPct": 42.0
+            "rhr": -5.8,
+            "hrvPct": 44.9
           },
-          "text": "hvilepuls −6 · HRV +42 % (14 dage)"
+          "text": "hvilepuls −6 · HRV +45 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11367,14 +11363,14 @@
     "lines": [
       "Uge 42: TSS 33 af 473 (7 %) · CTL 43,8 (mål 53) · TSB +6,8",
       "Vægt 7d 75,3 kg · fedt 14d 21,9 % · bagud 3,7 kg mod glidepath (71,5)",
-      "HRV 7d 75 (28d 60) · hvilepuls 37 · søvn 7d 8,0 t",
+      "HRV 7d 77 (28d 61) · hvilepuls 37 · søvn 7d 7,9 t",
       "AF 5/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 1/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 FaF 4 Tær - 3 x 12 77 min, lør 24/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 25/10 FaF 2 Dur - Kvalitet sent 3 x 8 189 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-15T00:00:57Z"
+    "generatedAt": "2026-10-15T03:35:22Z"
   },
   "proposals": [],
   "ftp": {
