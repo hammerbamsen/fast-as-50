@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-16 08:26",
+    "updated": "2026-10-16 09:24",
     "week": 6,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "43,1",
+      "value": "42,0",
       "unit": "",
       "sub": "Uge 42-mål 53 · BASE",
-      "color": "#E67E22"
+      "color": "#C0392B"
     },
     "tsb": {
-      "value": "8,7",
+      "value": "12,9",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "45",
+      "value": "57",
       "unit": "TSS",
-      "sub": "45 af 473 planlagt TSS",
+      "sub": "57 af 473 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "7,5",
+      "value": "17,6",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#C0392B"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 5
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 42. {HL} Fokus: 45 af 473 TSS er i hus — 4 sessioner tilbage, heriblandt Svøm 1500m let teknisk, FaF 1 Z2 - Lang Z2 2 t. 4 sessioner er misset — vinduerne er lukket. Vægt på 73,0 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 7,7 timer er solid",
+  "coachSpeech": "Uge 42, BASE fase uge 1/2 — kroppen er træt efter en hård uge, weekendens to lange pas kræver at du ankommer udhvilet. {HL} 4 ud af 4 planlagte pas er misset denne uge — styrke mandag, cykel tirsdag, løb onsdag og cykel torsdag. Til gengæld er readiness LOW i dag: drop svømningen og prioritér recovery før lørdag og søndag.",
+  "coachHighlight": "Drop svømningen i dag — lad kroppen restituere og gå tidligt i seng, mål 8 timers søvn i nat.",
   "weekFocus": "Byg basen roligt — Z2 og styrke, ingen overivrig start",
   "today": [
     {
@@ -122,6 +122,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "commute",
+      "title": "Gentofte Cykling",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -222,6 +230,17 @@
       "today": true
     },
     {
+      "day": "Fre",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
+      "done": true,
+      "extra": true,
+      "actual_tss": 12,
+      "actual_mins": 32,
+      "actual_distance_m": 10187.91,
+      "today": true
+    },
+    {
       "day": "Lør",
       "disc": "bike",
       "label": "FaF 1 Z2 - Lang Z2 2 t",
@@ -255,7 +274,7 @@
     46.5,
     48.7,
     44.8,
-    43.1
+    42.0
   ],
   "weightHistory": [
     null,
@@ -1956,12 +1975,12 @@
     },
     {
       "date": "2026-10-15",
-      "v": 9.3,
+      "v": 15.9,
       "real": true
     },
     {
       "date": "2026-10-16",
-      "v": 8.7,
+      "v": 12.9,
       "real": true
     }
   ],
@@ -2363,6 +2382,17 @@
           "planned_tss": 38,
           "planned_mins": 45,
           "planned_distance_m": 1500,
+          "today": true
+        },
+        {
+          "day": "Fre",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
+          "done": true,
+          "extra": true,
+          "actual_tss": 12,
+          "actual_mins": 32,
+          "actual_distance_m": 10187.91,
           "today": true
         },
         {
@@ -3012,10 +3042,10 @@
     }
   ],
   "train_mins": {
+    "commute": 57.0,
     "walk": 222.0,
-    "commute": 25.0,
     "planned": 635.0,
-    "actual_total": 247.0
+    "actual_total": 279.0
   },
   "fatHistory": [
     null,
@@ -3369,17 +3399,39 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 40 af 357 · Fredag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, BASE-blok, meso 1/2 — cut er bagud og en hård misset uge, men HRV og readiness siger: hold igen i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>4 ud af 5 planlagte pas er misset denne uge — CTL ligger på 43,1 mod et mål på 53,0. Ugen er skadet, men lørdag og søndag er stadig intakte: prioritér bjergtur søndag som ugens vigtigste pas.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 3,2 kg den seneste måned — cut er bagud med 3,5 kg i forhold til planen (forventet 71,5 kg). Protein er i hus 6 ud af 7 dage — hold det.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Søvn i nat var 6,4 timer — under grænsen på 7,0 og forklarer sandsynligvis den lave readiness. Ingen dage med 3+ genstande denne uge.</p>",
-  "coachAssessmentTs": "06:49",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 40 af 357 · Fredag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, BASE fase uge 1/2 — kroppen er træt efter en hård uge, weekendens to lange pas kræver at du ankommer udhvilet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>4 ud af 4 planlagte pas er misset denne uge — styrke mandag, cykel tirsdag, løb onsdag og cykel torsdag. Til gengæld er readiness LOW i dag: drop svømningen og prioritér recovery før lørdag og søndag. CTL er 42,0 mod mål på 53,0 — ugen er ikke reddet ved at indhente nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 3,5 kg over planlagt 71,5 kg — det er det vigtigste signal. Fedt er stabilt på 7-dages snit (ændring den seneste måned på 0,5 procentpoint er præcis på grænsen — ingen klar retning endnu).</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Proteinregistrering er stærk med 6 ud af 7 dage. Søvn mangler: sidste nat 6,4 timer mod minimum 7,0 — det forklarer meget af dagens LOW readiness.</p>",
+  "coachAssessmentTs": "09:24",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "readiness",
+      "level": "critical",
+      "message": "Readiness LOW og HRV 12% under 7-dages snit (76,3 ms). Drop dagens svøm — kroppen er ikke klar til mere belastning.",
+      "action": {
+        "label": "Aflys svøm i dag",
+        "edit": {
+          "action": "cancel",
+          "entryId": "ea268049"
+        }
+      },
+      "source": "ai"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 67,0 ms — 12% under 7d-snit (76,3 ms). Kroppen er presset."
+      "message": "HRV 67,0 ms — 12% under 7d-snit (76,3 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut er 3,5 kg bagud i forhold til plan (mål 71,5 kg). Protein ved hvert måltid og alkohol som bevidst valg er de to vigtigste håndtag.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": 8.7,
+  "tsb": 12.9,
   "swimHistory": [
     {
       "week": 1,
@@ -3418,7 +3470,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i197536536",
+  "coachAssessmentLastActId": "i197846198",
   "weekFocusWeek": 6,
   "coachAssessmentPlanAtGen": "Svøm 1500m let teknisk",
   "weightGoal": 68,
@@ -3672,8 +3724,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-16T06:26:19.503625",
-  "coachAssessmentTsFull": "2026-10-16T04:50:05",
+  "credentialsCheckedTs": "2026-10-16T07:25:20.534498",
+  "coachAssessmentTsFull": "2026-10-16T07:25:20",
   "coachAssessmentWeightAtGen": 73.0,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
@@ -3765,7 +3817,7 @@
     "3": 193,
     "4": 434,
     "5": 177,
-    "6": 45
+    "6": 57
   },
   "racesUpcoming": [
     {
@@ -5009,7 +5061,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 53,
         "tssTarget": 420,
-        "tssActual": 45,
+        "tssActual": 57,
         "purpose": "Base: sweet spot 3×15 tir, bjergtur 3 t søn (besluttet 7/9). Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -7679,6 +7731,24 @@
                 "optional": false,
                 "start": "06:00",
                 "startFixed": false
+              },
+              {
+                "id": null,
+                "name": "Gentofte Cykling",
+                "type": null,
+                "disc": "commute",
+                "mins": 32,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 32,
+                "actualTss": 12,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10326,7 +10396,7 @@
           "week": 6,
           "programId": "tds-2027",
           "start": "2026-10-12",
-          "ctl": 43.1
+          "ctl": 42.0
         }
       ],
       "projection": [
@@ -10807,48 +10877,54 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-16T04:50:05Z",
-    "inputsHash": "5c3dd2cc4cd379ec123cce56f09c7e765417fbdd",
+    "generatedAt": "2026-10-16T07:25:20Z",
+    "inputsHash": "507b30d5db2950a950b140a6dd9f5301a5064953",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Svøm 45 min teknisk — fokus på én cue: catch. Hold det let og rolig, ingen fart.",
-      "why": "Readiness er LOW og HRV er 12% under 7-dages snit — teknisk svøm er præcis det der passer i dag uden at grave hullet dybere."
+      "action": "Drop svømningen i dag — lad kroppen restituere og gå tidligt i seng, mål 8 timers søvn i nat.",
+      "why": "HRV er 12% under 7-dages snit og readiness er LOW. Søvn i nat er den bedste forberedelse til weekendens to lange pas."
     },
     "training": {
-      "text": "4 ud af 5 planlagte pas er misset denne uge — CTL ligger på 43,1 mod et mål på 53,0. Ugen er skadet, men lørdag og søndag er stadig intakte: prioritér bjergtur søndag som ugens vigtigste pas.",
+      "text": "4 ud af 4 planlagte pas er misset denne uge — styrke mandag, cykel tirsdag, løb onsdag og cykel torsdag. Til gengæld er readiness LOW i dag: drop svømningen og prioritér recovery før lørdag og søndag. CTL er 42,0 mod mål på 53,0 — ugen er ikke reddet ved at indhente nu.",
       "refs": [
-        43.1,
-        53.0,
-        4.0
+        4.0,
+        42.0,
+        53.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 3,2 kg den seneste måned — cut er bagud med 3,5 kg i forhold til planen (forventet 71,5 kg). Protein er i hus 6 ud af 7 dage — hold det.",
+      "text": "7-dages snit er 3,5 kg over planlagt 71,5 kg — det er det vigtigste signal. Fedt er stabilt på 7-dages snit (ændring den seneste måned på 0,5 procentpoint er præcis på grænsen — ingen klar retning endnu).",
       "refs": [
-        3.2,
         3.5,
         71.5,
-        6.0,
-        7.0
+        0.5
       ]
     },
     "habits": {
-      "text": "Søvn i nat var 6,4 timer — under grænsen på 7,0 og forklarer sandsynligvis den lave readiness. Ingen dage med 3+ genstande denne uge.",
+      "text": "Proteinregistrering er stærk med 6 ud af 7 dage. Søvn mangler: sidste nat 6,4 timer mod minimum 7,0 — det forklarer meget af dagens LOW readiness.",
       "refs": [
+        6.0,
+        7.0,
         6.4,
         7.0
       ]
     },
-    "bigPicture": "Uge 42, BASE-blok, meso 1/2 — cut er bagud og en hård misset uge, men HRV og readiness siger: hold igen i dag.",
+    "bigPicture": "Uge 42, BASE fase uge 1/2 — kroppen er træt efter en hård uge, weekendens to lange pas kræver at du ankommer udhvilet.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
-        "type": "cut",
+        "type": "readiness",
         "level": "act",
-        "message": "Cut er bagud: 7-dages snit for vægt er steget 3,2 kg den seneste måned — deltaVsPlan er 3,5 kg. Raten er 0,22 kg/uge mod plan på 0,25 kg/uge.",
-        "action": null,
+        "message": "Readiness LOW og HRV 12% under 7-dages snit (76,3 ms). Drop dagens svøm — kroppen er ikke klar til mere belastning.",
+        "action": {
+          "label": "Aflys svøm i dag",
+          "edit": {
+            "action": "cancel",
+            "entryId": "ea268049"
+          }
+        },
         "source": "ai"
       },
       {
@@ -10859,9 +10935,9 @@
         "source": "rule"
       },
       {
-        "type": "readiness",
+        "type": "cut",
         "level": "warn",
-        "message": "HRV 67,0 ms — 12% under 7-dages snit (76,3 ms). Kroppen er presset. Søvn i nat: 6,4 t. Dagens svøm holdes let.",
+        "message": "Cut er 3,5 kg bagud i forhold til plan (mål 71,5 kg). Protein ved hvert måltid og alkohol som bevidst valg er de to vigtigste håndtag.",
         "action": null,
         "source": "ai"
       }
@@ -11427,14 +11503,14 @@
     }
   },
   "weekTss": {
-    "actual": 45,
+    "actual": 57,
     "planned": 473
   },
   "martinMail": {
     "week": 6,
     "isoWeek": 42,
     "lines": [
-      "Uge 42: TSS 45 af 473 (10 %) · CTL 43,1 (mål 53) · TSB +8,7",
+      "Uge 42: TSS 57 af 473 (12 %) · CTL 42,0 (mål 53) · TSB +12,9",
       "Vægt 7d 74,9 kg · fedt 14d 21,9 % · bagud 3,4 kg mod glidepath (71,5)",
       "HRV 7d 76 (28d 61) · hvilepuls 37 · søvn 7d 7,7 t",
       "AF 5/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11443,7 +11519,7 @@
       "Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 FaF 4 Tær - 3 x 12 77 min, lør 24/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 25/10 FaF 2 Dur - Kvalitet sent 3 x 8 189 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-16T06:26:19Z"
+    "generatedAt": "2026-10-16T07:25:01Z"
   },
   "proposals": [],
   "ftp": {
@@ -11516,7 +11592,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-16",
-    "ctl": 43.1,
-    "atl": 34.4
+    "ctl": 42.0,
+    "atl": 29.1
   }
 }
