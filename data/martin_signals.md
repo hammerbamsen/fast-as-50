@@ -157,3 +157,12 @@
 - Cut-tjek: warn — 3 drikkedage på 7 dage · 2 i træk under cuttet — AF resten af ugen før du skærer mere
 - Næste uge (42, BASE): TSS-mål 420 · hårde/lange dage: lør 17/10 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 18/10 FaF 2 Dur - Bjergtur 3 t 185 min
 - Planændringer siden sidst: 14 — se martin_signals.md
+
+### Planændring 16/10 15:45
+- **søndag 2026-10-18** (uge 6, apply_proposal): FaF 2 Dur - Bjergtur 3 t (185 min) [langt] → Cykel Z2 60 min Mallorca (60 min)
+- **mandag 2026-10-19** (uge 7, apply_proposal): Styrke A · Functional 4 · 3 runder (45 min) → Styrke A · Mallorca-kit (45 min); Løb Z2 45 min (45 min)
+- **tirsdag 2026-10-20** (uge 7, apply_proposal): FaF 4 Tær - 3 x 12 (77 min) → Cykel Z2 90 min Mallorca (90 min) [langt]
+- **onsdag 2026-10-21** (uge 7, apply_proposal): AEROB PROBE + Løb Z2 45 min (45 min) → Cykel Tærskel 3x12 Puig Major (164 min) [hårdt, langt]
+- **torsdag 2026-10-22** (uge 7, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min) → Cykel Z2 120 min Mallorca (120 min) [langt]
+- **lørdag 2026-10-24** (uge 7, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Mallorca-kit (45 min); Cykel Z2 120 min Mallorca (120 min) [langt]
+- **søndag 2026-10-25** (uge 7, apply_proposal): FaF 2 Dur - Kvalitet sent 3 x 8 (189 min) [langt] → Cykel Lang 3,5 t + 3x8 Mallorca (210 min) [langt]
