@@ -1,0 +1,586 @@
+{
+  "id": "2026-10-16-mallorca-uge43",
+  "title": "Uge 43 på Mallorca (18/10–26/10) + vejr",
+  "status": "applied-offline",
+  "createdAt": "2026-10-16T13:45:00+00:00",
+  "createdBy": "claude",
+  "note": "Kennet 16/10: rejser til Mallorca søn 18/10 – man 26/10 (Outlook). Uge 43 stod som Gentofte/Zwift. Vejrudsigt Fornalutx: regn søn–tir (75–85%), tørt ons–fre. Tærskel flyttet tir→ons, probe flyttet til ons 28/10, cykelstart 08:30 (solopgang ca. 08:15).",
+  "summary": [
+    "Søn 18: Bjergtur 3 t → valgfri Z2 60 min (rejsedag, regn)",
+    "Man 19: Styrke A Mallorca-kit + løb Z2 45 min på puls",
+    "Tir 20: tærskel → valgfri Z2 90 min (regn)",
+    "Ons 21: probe-løb → tærskel 3x12 Puig Major",
+    "Tor 22: Zwift Grundtur → Z2 2 t udendørs",
+    "Fre 23: poolsvøm → valgfri havsvøm",
+    "Lør 24: Styrke B Mallorca-kit + Z2 2 t udendørs",
+    "Søn 25: Kvalitet sent 3x8 (Zwift) → lang tur 3,5 t + 3x8 udendørs",
+    "Man 26: rejsedag, Styrke A udgår",
+    "Ons 28: løb Z2 → aerob probe (flyttet fra 21/10)"
+  ],
+  "changes": [
+    {
+      "date": "2026-10-18",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Cykel Z2 60 min Mallorca",
+            "type": "Ride",
+            "moving_time": 3600,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 45m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP\n\nUdendørs: tid er målet, ikke TSS.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 2700,
+                  "text": "Aerob base 56-76% FTP"
+                },
+                {
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "ramp": true,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Rejsedag. Kun hvis det er tørt efter landing (regn 75%). Ellers hvile. Bjergtur 3 t udgår.",
+          "optional": true
+        }
+      ],
+      "time": {
+        "Ride": [
+          15,
+          0
+        ]
+      }
+    },
+    {
+      "date": "2026-10-19",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Styrke A · Mallorca-kit",
+            "type": "WeightTraining",
+            "moving_time": 2700,
+            "description": "- Opvarmning 10m freeride\n\n3x\n- Goblet squat 8kg KB ×12 1m freeride\n- TRX row ×12 1m freeride\n- Push-up ×12 1m freeride\n- Etbens-RDL 8kg KB ×8/ben 1m freeride\n- KB swing 8kg ×20 1m freeride\n- TRX Y-raise ×10 1m freeride\n- Planke 40 sek 1m freeride\n- Pause 90 sek 2m freeride"
+          },
+          "note": "Mallorca: TRX + 2×8 kg KB + måtte på terrassen. Erstatter Functional 4 A."
+        },
+        {
+          "workout": {
+            "name": "Løb Z2 45 min",
+            "type": "Run",
+            "moving_time": 2700,
+            "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
+            "workout_doc": {
+              "steps": [
+                {
+                  "text": "Varm-op >5:39/km",
+                  "pace": {
+                    "start": 65,
+                    "end": 78,
+                    "units": "%pace"
+                  },
+                  "duration": 600
+                },
+                {
+                  "text": "Base 5:00-5:38/km",
+                  "pace": {
+                    "start": 78,
+                    "end": 88,
+                    "units": "%pace"
+                  },
+                  "duration": 1800
+                },
+                {
+                  "text": "Cool-down >5:39/km",
+                  "pace": {
+                    "start": 65,
+                    "end": 78,
+                    "units": "%pace"
+                  },
+                  "duration": 300
+                }
+              ]
+            }
+          },
+          "note": "Løb Z2 i Sóller-dalen på PULS (Z2), ikke pace — bakker og regn. Regn er ok til løb."
+        }
+      ],
+      "time": {
+        "WeightTraining": [
+          8,
+          0
+        ],
+        "Run": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "date": "2026-10-20",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Cykel Z2 90 min Mallorca",
+            "type": "Ride",
+            "moving_time": 5400,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 75m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP\n\nUdendørs: tid er målet, ikke TSS.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 4500,
+                  "text": "Aerob base 56-76% FTP"
+                },
+                {
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "ramp": true,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Kun hvis der er et tørt vindue (regn 75%). Ellers hvile. Trine og René kommer kl. 14.",
+          "optional": true
+        }
+      ],
+      "time": {
+        "Ride": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Cykel Tærskel 3x12 Puig Major",
+            "type": "Ride",
+            "moving_time": 9840,
+            "description": "- Z2 op til foden 30m 56-68% FTP\n\n3x\n- Tærskel på stigningen 12m 97-100% FTP\n- Pause let 6m 55% FTP\n\n- Retur Z2 75m 56-70% FTP\n- Cool-down 5m ramp 60-45% FTP\n\nFORMÅL: Ugens tærskelpas, udendørs. 3x12 på Puig Major fra Sóller-siden (jævn stigning). 97-100% = 249-257 W. Den sidste blok skal føles urimelig.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "power": {
+                    "start": 56,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 1800,
+                  "text": "Op mod Puig Major Z2",
+                  "ramp": false,
+                  "warmup": true
+                },
+                {
+                  "reps": 3,
+                  "text": "3x",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 97,
+                        "end": 100,
+                        "units": "%ftp"
+                      },
+                      "duration": 720,
+                      "text": "Tærskel på stigningen"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 360,
+                      "text": "Pause let"
+                    }
+                  ]
+                },
+                {
+                  "power": {
+                    "start": 56,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 4500,
+                  "text": "Retur Z2 — nedkørsel rolig"
+                },
+                {
+                  "power": {
+                    "start": 60,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "ramp": true,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Flyttet fra tir 20/10: tir er regnvejr (75%) og nedkørslen er farlig vådt. Ons er tørt. Hårdt pas 1/2 i ugen."
+        }
+      ],
+      "time": {
+        "Ride": [
+          8,
+          30
+        ]
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Cykel Z2 120 min Mallorca",
+            "type": "Ride",
+            "moving_time": 7200,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP\n\nUdendørs: tid er målet, ikke TSS.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 6300,
+                  "text": "Aerob base 56-76% FTP"
+                },
+                {
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "ramp": true,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Ren Z2 udendørs, fx Sóller–Deià og retur. Tørt."
+        }
+      ],
+      "time": {
+        "Ride": [
+          8,
+          30
+        ]
+      }
+    },
+    {
+      "date": "2026-10-23",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Havsvøm 30-40 min Port de Sóller",
+            "type": "Swim",
+            "moving_time": 2100,
+            "description": "- Let svøm 35m freeride\n\nRolig Z1-Z2 langs kysten i bugten. Cue denne uge: hoved ned i vandet. Svøm aldrig alene ud fra kysten — hold dig tæt på land.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "text": "Let havsvøm Z1-Z2",
+                  "duration": 2100
+                }
+              ]
+            }
+          },
+          "note": "Erstatter pool-svøm. Tørt og ca. 20 grader. Springes over hvis vandet er uroligt. Es Verger kl. 13:30.",
+          "optional": true
+        }
+      ],
+      "time": {
+        "Swim": [
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "date": "2026-10-24",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Styrke B · Mallorca-kit",
+            "type": "WeightTraining",
+            "moving_time": 2700,
+            "description": "- Opvarmning 10m freeride\n\n3x\n- Split squat 2×8kg KB ×10/ben 1m freeride\n- TRX bryst-press ×12 1m freeride\n- KB press 8kg ×10/arm 1m freeride\n- TRX face pull ×12 1m freeride\n- RDL 2×8kg KB ×12 1m freeride\n- Farmers walk 2×8kg 40 m 1m freeride\n- Sideplanke 30 sek/side 1m freeride\n- Pause 90 sek 2m freeride"
+          },
+          "note": "Mallorca: TRX + 2×8 kg KB + måtte. Erstatter Functional 4 B."
+        },
+        {
+          "workout": {
+            "name": "Cykel Z2 120 min Mallorca",
+            "type": "Ride",
+            "moving_time": 7200,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP\n\nUdendørs: tid er målet, ikke TSS.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 6300,
+                  "text": "Aerob base 56-76% FTP"
+                },
+                {
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "ramp": true,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Z2 2 t med energiplan 80-100 g/t. Hjem senest 10:45 — Palma kl. 13."
+        }
+      ],
+      "time": {
+        "WeightTraining": [
+          7,
+          30
+        ],
+        "Ride": [
+          8,
+          30
+        ]
+      }
+    },
+    {
+      "date": "2026-10-25",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "Cykel Lang 3,5 t + 3x8 Mallorca",
+            "type": "Ride",
+            "moving_time": 12600,
+            "description": "- Varm-op 15m ramp 45-65% FTP\n- Z2 143m 60-72% FTP\n\n3x\n- Tærskel på trætte ben 8m 95% FTP\n- Pause 6m 55% FTP\n\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Kvalitet sent i turen, udendørs. 3x8 @ 95% (ca. 245 W) på sidste stigning (fx Coll de Sóller eller Orient). Energiplan 80-100 g kulhydrat i timen. Watt falder >5% = for hård Z2 eller for lidt mad.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "power": {
+                    "start": 45,
+                    "end": 65,
+                    "units": "%ftp"
+                  },
+                  "duration": 900,
+                  "ramp": true,
+                  "warmup": true
+                },
+                {
+                  "power": {
+                    "start": 60,
+                    "end": 72,
+                    "units": "%ftp"
+                  },
+                  "duration": 8580,
+                  "text": "Z2 60-72% FTP — spis hvert 20. min"
+                },
+                {
+                  "reps": 3,
+                  "text": "3x",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 95,
+                        "end": 95,
+                        "units": "%ftp"
+                      },
+                      "duration": 480,
+                      "text": "Tærskel på trætte ben"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 360,
+                      "text": "Pause"
+                    }
+                  ]
+                },
+                {
+                  "power": {
+                    "start": 60,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "ramp": true,
+                  "cooldown": true
+                }
+              ]
+            }
+          },
+          "note": "Erstatter Kvalitet sent 3x8 (Zwift). Hårdt pas 2/2. Sommertid slutter i nat — solopgang ca. 07:15. Tjek vejret lørdag."
+        }
+      ],
+      "time": {
+        "Ride": [
+          8,
+          0
+        ]
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": null,
+          "note": "Rejsedag hjem fra Mallorca. Styrke A 2 runder udgår (recovery-uge)."
+        }
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "action": "set_day",
+      "entries": [
+        {
+          "workout": {
+            "name": "AEROB PROBE + Løb Z2 45 min",
+            "type": "Run",
+            "moving_time": 2700,
+            "description": "- Varm-op 10m >5:39/km Pace\n- PROBE 5 km @ 5:15/km FAST — samme rute hver gang 26m 5:15/km Pace\n- Base 4m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace\n\nPROBEN ER MÅLINGEN. Samme flade rute, samme 5:15/km, samme tid på dagen. Notér gennemsnitspuls for de 5 km.\nLavere puls end sidste måned = bedre form. Højere = træthed eller for stort underskud.\nBlæst og over 22 grader ugyldiggør målingen — flyt den.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "text": "Varm-op >5:39/km",
+                  "pace": {
+                    "start": 65,
+                    "end": 78,
+                    "units": "%pace"
+                  },
+                  "duration": 600
+                },
+                {
+                  "text": "PROBE 5 km @ 5:15/km FAST — notér snit-puls",
+                  "pace": {
+                    "start": 84,
+                    "end": 84,
+                    "units": "%pace"
+                  },
+                  "duration": 1560
+                },
+                {
+                  "text": "Base 5:00-5:38/km",
+                  "pace": {
+                    "start": 78,
+                    "end": 88,
+                    "units": "%pace"
+                  },
+                  "duration": 240
+                },
+                {
+                  "text": "Cool-down >5:39/km",
+                  "pace": {
+                    "start": 65,
+                    "end": 78,
+                    "units": "%pace"
+                  },
+                  "duration": 300
+                }
+              ]
+            }
+          },
+          "note": "Aerob probe flyttet fra ons 21/10 (Mallorca-bakker ugyldiggør målingen). Samme flade rute hjemme. Kl. 06:30 før Novo Portugal 08:00."
+        }
+      ]
+    }
+  ],
+  "decidedAt": "2026-10-16T13:40:04+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21",
+      "2026-10-22",
+      "2026-10-23",
+      "2026-10-24",
+      "2026-10-25",
+      "2026-10-26",
+      "2026-10-28"
+    ],
+    "commit": null
+  }
+}
