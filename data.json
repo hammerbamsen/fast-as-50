@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-17 06:14",
+    "updated": "2026-10-17 06:17",
     "week": 6,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "4",
+      "value": "5",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,0 · streak 5",
+      "sub": "af 6 denne uge · snit 4 uger 3,0 · streak 1",
       "color": "#59182A"
     },
     "ftp": {
@@ -100,19 +100,19 @@
       "color": "#C0392B"
     },
     "protein": {
-      "value": "5",
+      "value": "6",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 6,0",
+      "sub": "3/3-dage · 4 uger 6,2",
       "color": "#27AE60"
     }
   },
   "af": {
-    "weekDone": 4,
+    "weekDone": 5,
     "target": 6,
-    "streak": 5
+    "streak": 1
   },
-  "coachSpeech": "Uge 42, BASE uge 1 af 2 — ugen er kørt på minimum, men Mallorca-ugen starter søndag og giver mulighed for at genopbygge CTL. {HL} 5 pas misset i denne uge — ugens TSS er 57 af 375 planlagt, og CTL på 43,3 er 9,7 under målet på 53,0. Det er uge 1 af 2 i BASE, og tempoet er ikke sat i gang endnu.",
-  "coachHighlight": "Kør Z2-turen i dag ude eller på valsen i 130 min i ERG — hold strikt Z2, spis og drik efter planen undervejs. Styrke B bagefter eller om aft",
+  "coachSpeech": "string {HL} 5 ud af 6 planlagte pas er misset denne uge — kun de to lørdagspas er tilbage. TSB er 1,1, CTL er 43,3 mod mål på 53,0. Readiness er LOW i dag: kør Z2-turen kortere frem for at forsøge at indhente.",
+  "coachHighlight": "Kør Z2-turen i dag kortere — 90 min i stedet for 130, i ERG, striks Z2. Styrke tages om aftenen som planlagt.",
   "weekFocus": "Byg basen roligt — Z2 og styrke, ingen overivrig start",
   "today": [
     {
@@ -2125,7 +2125,8 @@
     "2026-10-12": 0,
     "2026-10-13": 0,
     "2026-10-14": 0,
-    "2026-10-15": 0
+    "2026-10-15": 0,
+    "2026-10-17": 0
   },
   "all_weeks": {
     "4": {
@@ -3040,7 +3041,7 @@
       "week": 6,
       "iso": 42,
       "monday": "2026-10-12",
-      "done": 4,
+      "done": 5,
       "total": 6,
       "label": "Uge 42"
     }
@@ -3407,30 +3408,30 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 41 af 357 · Lørdag · Uge 42</strong></p><p class=\"coach-sec coach-big\">Uge 42, BASE uge 1 af 2 — ugen er kørt på minimum, men Mallorca-ugen starter søndag og giver mulighed for at genopbygge CTL.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>5 pas misset i denne uge — ugens TSS er 57 af 375 planlagt, og CTL på 43,3 er 9,7 under målet på 53,0. Det er uge 1 af 2 i BASE, og tempoet er ikke sat i gang endnu. Dagens Z2 på 130 min + styrke er de eneste planlagte pas tilbage i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 2,9 kg den seneste måned — du er 3,2 kg bagud på cut-planen (forventet 71,5 kg). Raten er 0,22 kg/uge mod målet på 0,25 kg/uge. Hold princippet: protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen AF-dage med 3+ genstande denne uge. Protein registreret 5 af 7 dage — registrér de resterende. Søvn seneste nat 8,1 t, snit 7,7 t — det er på plan.</p>",
-  "coachAssessmentTs": "06:14",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 41 af 357 · Lørdag · Uge 42</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>5 ud af 6 planlagte pas er misset denne uge — kun de to lørdagspas er tilbage. TSB er 1,1, CTL er 43,3 mod mål på 53,0. Readiness er LOW i dag: kør Z2-turen kortere frem for at forsøge at indhente.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt ligger 3,2 kg over cut-planen på 71,5 kg. Fedtprocenten er faldet 0,5 procentpoint den seneste måned — præcis på tærsklen. Hold protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen alkoholdage denne uge — godt. Protein registreret 6 ud af 7 dage. Energisnit er 1,4 — lavt; sørg for at spise nok efter træning i dag.</p>",
+  "coachAssessmentTs": "06:17",
   "commute_pairing_warnings": [],
   "warnings": [
+    {
+      "type": "readiness",
+      "level": "critical",
+      "message": "HRV 57,0 ms — 21% under 7-dages snit på 72,4 ms. Kør ikke 130 min i dag med LOW readiness.",
+      "action": {
+        "label": "Reducer til 90 min",
+        "edit": {
+          "action": "move",
+          "entryId": "f5c47fbe",
+          "toDate": "2026-10-17"
+        }
+      },
+      "source": "ai"
+    },
     {
       "type": "hrv",
       "level": "warn",
       "message": "HRV 57,0 ms — 21% under 7d-snit (72,4 ms). Kroppen er presset.",
       "action": null,
       "source": "rule"
-    },
-    {
-      "type": "readiness",
-      "level": "warn",
-      "message": "HRV 57,0 ms — 21% under 7-dages snit på 72,4 ms. Hold dagens pas i strikt Z2 og skru ikke op for intensiteten.",
-      "action": null,
-      "source": "ai"
-    },
-    {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut: 3,2 kg bagud på planen. Raten på 0,22 kg/uge er under målet på 0,25 kg/uge. Protein ved hvert måltid er den vigtigste skrue.",
-      "action": null,
-      "source": "ai"
     }
   ],
   "tsb": 1.1,
@@ -3726,10 +3727,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-17T04:15:18.541987",
-  "coachAssessmentTsFull": "2026-10-17T04:15:18",
+  "credentialsCheckedTs": "2026-10-17T04:18:13.898769",
+  "coachAssessmentTsFull": "2026-10-17T04:18:13",
   "coachAssessmentWeightAtGen": 72.7,
-  "coachAssessmentAfAtGen": 4,
+  "coachAssessmentAfAtGen": 5,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 22.4,
   "zones": {
@@ -4851,13 +4852,13 @@
     },
     {
       "date": "2026-10-17",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 0,
+      "protein": 2,
+      "energi": 3,
       "sult": null
     }
   ],
-  "energy7": 1.0,
+  "energy7": 1.4,
   "af_kind": {
     "2026-09-20": "faa",
     "2026-09-24": "faa",
@@ -10872,68 +10873,64 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-17T04:15:18Z",
-    "inputsHash": "b3ec04a53f462416eac275ef3e424074a9a1b399",
+    "generatedAt": "2026-10-17T04:18:13Z",
+    "inputsHash": "616e4cee3075a36c9add8bba934d90a1fd05bf0e",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør Z2-turen i dag ude eller på valsen i 130 min i ERG — hold strikt Z2, spis og drik efter planen undervejs. Styrke B bagefter eller om aft",
-      "why": "HRV er 21% under 7-dages snit — Z2 er præcis den rigtige belastning i dag, men energiplanen på cyklen er pointen."
+      "action": "Kør Z2-turen i dag kortere — 90 min i stedet for 130, i ERG, striks Z2. Styrke tages om aftenen som planlagt.",
+      "why": "HRV er 21% under 7-dages snit: kroppen er presset og readiness er LOW. Reducer volumen, hold kvaliteten."
     },
     "training": {
-      "text": "5 pas misset i denne uge — ugens TSS er 57 af 375 planlagt, og CTL på 43,3 er 9,7 under målet på 53,0. Det er uge 1 af 2 i BASE, og tempoet er ikke sat i gang endnu. Dagens Z2 på 130 min + styrke er de eneste planlagte pas tilbage i dag.",
+      "text": "5 ud af 6 planlagte pas er misset denne uge — kun de to lørdagspas er tilbage. TSB er 1,1, CTL er 43,3 mod mål på 53,0. Readiness er LOW i dag: kør Z2-turen kortere frem for at forsøge at indhente.",
       "refs": [
-        57.0,
-        375.0,
+        1.1,
         43.3,
         53.0,
-        9.7,
-        130.0
+        130.0,
+        90.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 2,9 kg den seneste måned — du er 3,2 kg bagud på cut-planen (forventet 71,5 kg). Raten er 0,22 kg/uge mod målet på 0,25 kg/uge. Hold princippet: protein ved hvert måltid.",
+      "text": "7-dages snit for vægt ligger 3,2 kg over cut-planen på 71,5 kg. Fedtprocenten er faldet 0,5 procentpoint den seneste måned — præcis på tærsklen. Hold protein ved hvert måltid.",
       "refs": [
-        2.9,
         3.2,
         71.5,
-        0.22,
-        0.25
+        0.5
       ]
     },
     "habits": {
-      "text": "Ingen AF-dage med 3+ genstande denne uge. Protein registreret 5 af 7 dage — registrér de resterende. Søvn seneste nat 8,1 t, snit 7,7 t — det er på plan.",
+      "text": "Ingen alkoholdage denne uge — godt. Protein registreret 6 ud af 7 dage. Energisnit er 1,4 — lavt; sørg for at spise nok efter træning i dag.",
       "refs": [
-        5.0,
+        6.0,
         7.0,
-        8.1,
-        7.7
+        1.4
       ]
     },
-    "bigPicture": "Uge 42, BASE uge 1 af 2 — ugen er kørt på minimum, men Mallorca-ugen starter søndag og giver mulighed for at genopbygge CTL.",
+    "bigPicture": "string",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
+      {
+        "type": "readiness",
+        "level": "act",
+        "message": "HRV 57,0 ms — 21% under 7-dages snit på 72,4 ms. Kør ikke 130 min i dag med LOW readiness.",
+        "action": {
+          "label": "Reducer til 90 min",
+          "edit": {
+            "action": "move",
+            "entryId": "f5c47fbe",
+            "toDate": "2026-10-17"
+          }
+        },
+        "source": "ai"
+      },
       {
         "type": "hrv",
         "level": "warn",
         "message": "HRV 57,0 ms — 21% under 7d-snit (72,4 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
-      },
-      {
-        "type": "readiness",
-        "level": "warn",
-        "message": "HRV 57,0 ms — 21% under 7-dages snit på 72,4 ms. Hold dagens pas i strikt Z2 og skru ikke op for intensiteten.",
-        "action": null,
-        "source": "ai"
-      },
-      {
-        "type": "cut",
-        "level": "warn",
-        "message": "Cut: 3,2 kg bagud på planen. Raten på 0,22 kg/uge er under målet på 0,25 kg/uge. Protein ved hvert måltid er den vigtigste skrue.",
-        "action": null,
-        "source": "ai"
       }
     ],
     "error": null,
@@ -11507,13 +11504,13 @@
       "Uge 42: TSS 57 af 375 (15 %) · CTL 43,3 (mål 53) · TSB +1,1",
       "Vægt 7d 74,6 kg · fedt 14d 21,9 % · bagud 3,1 kg mod glidepath (71,5)",
       "HRV 7d 72 (28d 62) · hvilepuls 38 · søvn 7d 7,7 t",
-      "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
+      "AF 6/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 1/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 Cykel Z2 90 min Mallorca 90 min, ons 21/10 Cykel Tærskel 3x12 Puig Major 164 min, tor 22/10 Cykel Z2 120 min Mallorca 120 min, lør 24/10 Cykel Z2 120 min Mallorca 120 min, søn 25/10 Cykel Lang 3,5 t + 3x8 Mallorca 210 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-17T04:15:00Z"
+    "generatedAt": "2026-10-17T04:17:57Z"
   },
   "proposals": [],
   "ftp": {
