@@ -166,3 +166,13 @@
 - **torsdag 2026-10-22** (uge 7, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min) → Cykel Z2 120 min Mallorca (120 min) [langt]
 - **lørdag 2026-10-24** (uge 7, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Mallorca-kit (45 min); Cykel Z2 120 min Mallorca (120 min) [langt]
 - **søndag 2026-10-25** (uge 7, apply_proposal): FaF 2 Dur - Kvalitet sent 3 x 8 (189 min) [langt] → Cykel Lang 3,5 t + 3x8 Mallorca (210 min) [langt]
+
+### Signaler uge 42
+- Uge 42: TSS 61 af 375 (16 %) · CTL 42,5 (mål 53) · TSB +3,8
+- Vægt 7d 74,5 kg · fedt 14d 21,9 % · bagud 3,0 kg mod glidepath (71,4)
+- HRV 7d 71 (28d 62) · hvilepuls 38 · søvn 7d 7,5 t
+- AF 5/7 · protein 3/3 5/7 · aftensult —/7
+- Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗
+- Cut-tjek: ok — På plan — fortsæt
+- Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 Cykel Z2 90 min Mallorca 90 min, ons 21/10 Cykel Tærskel 3x12 Puig Major 164 min, tor 22/10 Cykel Z2 120 min Mallorca 120 min, lør 24/10 Cykel Z2 120 min Mallorca 120 min, søn 25/10 Cykel Lang 3,5 t + 3x8 Mallorca 210 min
+- Planændringer siden sidst: 1 — se martin_signals.md
