@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-19 05:34",
+    "updated": "2026-10-19 10:04",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "40,0",
+      "value": "40,5",
       "unit": "",
       "sub": "Uge 43-mål 56 · BASE",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "10,9",
+      "value": "8,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,10 +70,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "23",
       "unit": "TSS",
-      "sub": "0 af 659 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "23 af 659 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0,0",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 2
   },
-  "coachSpeech": "Uge 43, BASE-blok (uge 2/2 i meso) på Mallorca — HRV-dyk i dag, prioritér restitution så tærskelturen onsdag kan landes fuldt ud. {HL} Ingen pas er gennemført endnu i uge 43. HRV på 42,0 ms mod 7-dages snit på 66,4 ms signalerer at kroppen er presset — hold dagens to lette pas adskilt og overvej at droppe løbeturen.",
-  "coachHighlight": "Gennemfør kun Styrke A (45 min, TRX + 2×8 kg KB på terrassen) — drop løbeturen i dag.",
-  "weekFocus": "Beskyt onsdagens tærskeltur — hold kroppen frisk til den",
+  "coachSpeech": "Uge 43, BASE meso 2/2 — HRV er 37% under 7-dages snit, så dagens lette pas er det eneste rigtige valg. {HL} Vandringen i Fornalutx er i hus. Styrke A og Løb Z2 resterer — begge lette pas, og det passer perfekt til en dag med HRV på 42,0 ms. CTL ligger på 40,5 mod et mål på 56,0 — der er arbejde foran dig, men byg ikke nu.",
+  "coachHighlight": "Gennemfør Styrke A (45 min, TRX + KB på terrassen) og Løb Z2 (45 min på puls, ikke pace) — men sæt en grænse: føles det skidt under løbet, a",
+  "weekFocus": "Lav readiness — beskyt onsdag tærskel, gå ikke over kvoten",
   "today": [
     {
       "discipline": "strength",
@@ -130,6 +130,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "hike",
+      "title": "Fornalutx Vandring",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -151,6 +159,17 @@
       "planned_tss": 41,
       "planned_mins": 45,
       "planned_distance_m": null,
+      "today": true
+    },
+    {
+      "day": "Man",
+      "disc": "hike",
+      "label": "Fornalutx Vandring",
+      "done": true,
+      "extra": true,
+      "actual_tss": 23,
+      "actual_mins": 86,
+      "actual_distance_m": 7021.24,
       "today": true
     },
     {
@@ -224,7 +243,7 @@
     48.7,
     44.8,
     40.0,
-    40.0
+    40.5
   ],
   "weightHistory": [
     null,
@@ -1934,7 +1953,7 @@
     },
     {
       "date": "2026-10-19",
-      "v": 10.9,
+      "v": 8.4,
       "real": true
     }
   ],
@@ -2255,6 +2274,17 @@
           "today": true
         },
         {
+          "day": "Man",
+          "disc": "hike",
+          "label": "Fornalutx Vandring",
+          "done": true,
+          "extra": true,
+          "actual_tss": 23,
+          "actual_mins": 86,
+          "actual_distance_m": 7021.24,
+          "today": true
+        },
+        {
           "day": "Tir",
           "disc": "bike",
           "label": "Cykel Z2 90 min Mallorca (valgfri)",
@@ -2319,7 +2349,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Beskyt onsdagens tærskeltur — hold kroppen frisk til den"
+      "focus": "Lav readiness — beskyt onsdag tærskel, gå ikke over kvoten"
     },
     "8": {
       "sessions": [
@@ -2927,8 +2957,9 @@
     }
   ],
   "train_mins": {
+    "hike": 86.0,
     "planned": 874.0,
-    "actual_total": 0
+    "actual_total": 86.0
   },
   "fatHistory": [
     null,
@@ -3286,21 +3317,15 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 43 af 357 · Mandag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok (uge 2/2 i meso) på Mallorca — HRV-dyk i dag, prioritér restitution så tærskelturen onsdag kan landes fuldt ud.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas er gennemført endnu i uge 43. HRV på 42,0 ms mod 7-dages snit på 66,4 ms signalerer at kroppen er presset — hold dagens to lette pas adskilt og overvej at droppe løbeturen. Onsdagens tærskeltur (164 min) er planlagt som ugens første hårde pas; det kræver at du er frisk nok.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 1,9 kg over forventet på cut-planen — det er det vigtigste signal lige nu. Fedtprocent (7-dages snit 22,1 %) bevæger sig ikke nok nedad endnu til at afgøre retning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen alkoholdage i denne uge — godt. Protein registreret 5 af 7 dage; hold det ved alle måltider resten af ugen, særligt nu hvor du er bagud på cut-planen.</p>",
-  "coachAssessmentTs": "05:34",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 43 af 357 · Mandag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE meso 2/2 — HRV er 37% under 7-dages snit, så dagens lette pas er det eneste rigtige valg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Vandringen i Fornalutx er i hus. Styrke A og Løb Z2 resterer — begge lette pas, og det passer perfekt til en dag med HRV på 42,0 ms. CTL ligger på 40,5 mod et mål på 56,0 — der er arbejde foran dig, men byg ikke nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægten er steget 1,9 kg de seneste 28 dage — retningen er opad, og cut-status er bagud med 2,8 kg mod planen. Sørg for protein ved hvert måltid resten af dagen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen alkohol denne uge — godt. Protein registreret 5 ud af 7 dage og søvnsnittet er 7,2 timer — begge dele er tæt på mål. Energisnittet på 1,8 trækker ned; det hænger sandsynligvis sammen med den lave HRV.</p>",
+  "coachAssessmentTs": "10:04",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "readiness",
       "level": "critical",
-      "message": "HRV 42,0 ms — 37% under 7-dages snit på 66,4 ms. Readiness er LOW. Drop løbeturen i dag og bevar kun styrketræningen.",
-      "action": {
-        "label": "Aflys løbeturen",
-        "edit": {
-          "action": "cancel",
-          "entryId": "1b8aa012"
-        }
-      },
+      "message": "HRV 42,0 ms er 37% under 7-dages snittet (66,4 ms). Kroppen er presset — hold dagens pas korte og lette.",
+      "action": null,
       "source": "ai"
     },
     {
@@ -3311,7 +3336,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 10.9,
+  "tsb": 8.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3356,7 +3381,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i198902397",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Styrke A · Mallorca-kit",
   "weightGoal": 68,
@@ -3610,8 +3635,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-19T03:34:34.719683",
-  "coachAssessmentTsFull": "2026-10-19T03:34:34",
+  "credentialsCheckedTs": "2026-10-19T08:05:01.983696",
+  "coachAssessmentTsFull": "2026-10-19T08:05:01",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3703,7 +3728,8 @@
     "3": 193,
     "4": 434,
     "5": 177,
-    "6": 92
+    "6": 92,
+    "7": 23
   },
   "racesUpcoming": [
     {
@@ -4959,14 +4985,7 @@
         "keySessions": [
           "FaF 1 Z2 - Lang Z2 2 t"
         ],
-        "flags": [
-          {
-            "level": "WARN",
-            "rule": "low_readiness",
-            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-            "historic": false
-          }
-        ],
+        "flags": [],
         "races": [],
         "travel": null,
         "isCurrent": false,
@@ -4983,7 +5002,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 56,
         "tssTarget": 440,
-        "tssActual": null,
+        "tssActual": 23,
         "purpose": "Base: tærskel 3×12 tir + kvalitet sent i turen søn (120 t imellem). Aerobe prober ons (løb) + tor (cykel).",
         "note": null,
         "quota": {
@@ -4998,7 +5017,14 @@
           "Cykel Tærskel 3x12 Puig Major",
           "Cykel Lang 3,5 t + 3x8 Mallorca"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "low_readiness",
+            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+            "historic": false
+          }
+        ],
         "races": [],
         "travel": null,
         "isCurrent": true,
@@ -7658,6 +7684,24 @@
                 "optional": false,
                 "start": "09:00",
                 "startFixed": true
+              },
+              {
+                "id": null,
+                "name": "Fornalutx Vandring",
+                "type": null,
+                "disc": "hike",
+                "mins": 86,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 86,
+                "actualTss": 23,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10170,233 +10214,229 @@
           "week": 7,
           "programId": "tds-2027",
           "start": "2026-10-19",
-          "ctl": 40.0
+          "ctl": 40.5
         }
       ],
       "projection": [
         {
-          "d": "2026-10-19",
-          "ctl": 40.5
-        },
-        {
           "d": "2026-10-20",
-          "ctl": 39.6
+          "ctl": 39.0
         },
         {
           "d": "2026-10-21",
-          "ctl": 40.1
+          "ctl": 39.6
         },
         {
           "d": "2026-10-22",
-          "ctl": 40.7
-        },
-        {
-          "d": "2026-10-23",
-          "ctl": 39.7
-        },
-        {
-          "d": "2026-10-24",
-          "ctl": 40.3
-        },
-        {
-          "d": "2026-10-25",
-          "ctl": 40.8
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 39.8
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 39.9
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 40.0
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 40.1
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 40.1
-        },
-        {
-          "d": "2026-10-31",
           "ctl": 40.2
         },
         {
-          "d": "2026-11-01",
+          "d": "2026-10-23",
+          "ctl": 39.2
+        },
+        {
+          "d": "2026-10-24",
+          "ctl": 39.8
+        },
+        {
+          "d": "2026-10-25",
           "ctl": 40.3
         },
         {
+          "d": "2026-10-26",
+          "ctl": 39.4
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 39.5
+        },
+        {
+          "d": "2026-10-28",
+          "ctl": 39.6
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 39.6
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 39.7
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 39.8
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 39.9
+        },
+        {
           "d": "2026-11-02",
-          "ctl": 40.8
+          "ctl": 40.4
         },
         {
           "d": "2026-11-03",
-          "ctl": 41.4
+          "ctl": 41.0
         },
         {
           "d": "2026-11-04",
-          "ctl": 41.9
+          "ctl": 41.5
         },
         {
           "d": "2026-11-05",
-          "ctl": 42.4
+          "ctl": 42.0
         },
         {
           "d": "2026-11-06",
-          "ctl": 42.9
+          "ctl": 42.5
         },
         {
           "d": "2026-11-07",
-          "ctl": 43.3
+          "ctl": 43.0
         },
         {
           "d": "2026-11-08",
-          "ctl": 43.8
+          "ctl": 43.5
         },
         {
           "d": "2026-11-09",
-          "ctl": 44.3
+          "ctl": 44.0
         },
         {
           "d": "2026-11-10",
-          "ctl": 44.8
+          "ctl": 44.5
         },
         {
           "d": "2026-11-11",
-          "ctl": 45.3
+          "ctl": 45.0
         },
         {
           "d": "2026-11-12",
-          "ctl": 45.8
+          "ctl": 45.5
         },
         {
           "d": "2026-11-13",
-          "ctl": 46.3
+          "ctl": 46.0
         },
         {
           "d": "2026-11-14",
-          "ctl": 46.7
+          "ctl": 46.5
         },
         {
           "d": "2026-11-15",
-          "ctl": 47.2
+          "ctl": 46.9
         },
         {
           "d": "2026-11-16",
-          "ctl": 47.7
+          "ctl": 47.5
         },
         {
           "d": "2026-11-17",
-          "ctl": 48.3
+          "ctl": 48.0
         },
         {
           "d": "2026-11-18",
-          "ctl": 48.8
+          "ctl": 48.5
         },
         {
           "d": "2026-11-19",
-          "ctl": 49.3
+          "ctl": 49.0
         },
         {
           "d": "2026-11-20",
-          "ctl": 49.8
+          "ctl": 49.5
         },
         {
           "d": "2026-11-21",
-          "ctl": 50.3
-        },
-        {
-          "d": "2026-11-22",
-          "ctl": 50.7
-        },
-        {
-          "d": "2026-11-23",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-11-24",
-          "ctl": 50.2
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 49.9
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 49.6
-        },
-        {
-          "d": "2026-11-27",
-          "ctl": 49.4
-        },
-        {
-          "d": "2026-11-28",
-          "ctl": 49.1
-        },
-        {
-          "d": "2026-11-29",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-11-30",
-          "ctl": 49.3
-        },
-        {
-          "d": "2026-12-01",
-          "ctl": 49.6
-        },
-        {
-          "d": "2026-12-02",
           "ctl": 50.0
         },
         {
+          "d": "2026-11-22",
+          "ctl": 50.5
+        },
+        {
+          "d": "2026-11-23",
+          "ctl": 50.2
+        },
+        {
+          "d": "2026-11-24",
+          "ctl": 49.9
+        },
+        {
+          "d": "2026-11-25",
+          "ctl": 49.7
+        },
+        {
+          "d": "2026-11-26",
+          "ctl": 49.4
+        },
+        {
+          "d": "2026-11-27",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-11-28",
+          "ctl": 48.9
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 48.6
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 49.5
+        },
+        {
+          "d": "2026-12-02",
+          "ctl": 49.8
+        },
+        {
           "d": "2026-12-03",
-          "ctl": 50.4
+          "ctl": 50.2
         },
         {
           "d": "2026-12-04",
-          "ctl": 50.8
+          "ctl": 50.6
         },
         {
           "d": "2026-12-05",
-          "ctl": 51.1
+          "ctl": 50.9
         },
         {
           "d": "2026-12-06",
-          "ctl": 51.5
+          "ctl": 51.3
         },
         {
           "d": "2026-12-07",
-          "ctl": 51.9
+          "ctl": 51.7
         },
         {
           "d": "2026-12-08",
-          "ctl": 52.3
+          "ctl": 52.1
         },
         {
           "d": "2026-12-09",
-          "ctl": 52.7
+          "ctl": 52.5
         },
         {
           "d": "2026-12-10",
-          "ctl": 53.0
+          "ctl": 52.9
         },
         {
           "d": "2026-12-11",
-          "ctl": 53.4
+          "ctl": 53.3
         },
         {
           "d": "2026-12-12",
-          "ctl": 53.8
+          "ctl": 53.6
         },
         {
           "d": "2026-12-13",
-          "ctl": 54.1
+          "ctl": 54.0
         }
       ],
       "targets": [
@@ -10676,51 +10716,48 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-19T03:34:34Z",
-    "inputsHash": "3f7c84978d36468d297edc79db0c27707e8b6abd",
+    "generatedAt": "2026-10-19T08:05:01Z",
+    "inputsHash": "98876ca9414cb14ea2ce2f163e5021b0cef2d660",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gennemfør kun Styrke A (45 min, TRX + 2×8 kg KB på terrassen) — drop løbeturen i dag.",
-      "why": "HRV er 42,0 ms, 37% under 7-dages snit. Readiness er LOW — reducer dagens belastning, men bevar bevægelsen."
+      "action": "Gennemfør Styrke A (45 min, TRX + KB på terrassen) og Løb Z2 (45 min på puls, ikke pace) — men sæt en grænse: føles det skidt under løbet, a",
+      "why": "HRV på 42,0 ms er 37% under 7-dages snittet — hold belastningen lav, så du er klar til tærskeltræning onsdag."
     },
     "training": {
-      "text": "Ingen pas er gennemført endnu i uge 43. HRV på 42,0 ms mod 7-dages snit på 66,4 ms signalerer at kroppen er presset — hold dagens to lette pas adskilt og overvej at droppe løbeturen. Onsdagens tærskeltur (164 min) er planlagt som ugens første hårde pas; det kræver at du er frisk nok.",
+      "text": "Vandringen i Fornalutx er i hus. Styrke A og Løb Z2 resterer — begge lette pas, og det passer perfekt til en dag med HRV på 42,0 ms. CTL ligger på 40,5 mod et mål på 56,0 — der er arbejde foran dig, men byg ikke nu.",
       "refs": [
         42.0,
-        66.4,
-        164.0
+        40.5,
+        56.0,
+        45.0,
+        45.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 1,9 kg over forventet på cut-planen — det er det vigtigste signal lige nu. Fedtprocent (7-dages snit 22,1 %) bevæger sig ikke nok nedad endnu til at afgøre retning.",
+      "text": "7-dages snit på vægten er steget 1,9 kg de seneste 28 dage — retningen er opad, og cut-status er bagud med 2,8 kg mod planen. Sørg for protein ved hvert måltid resten af dagen.",
       "refs": [
         1.9,
-        22.1
+        2.8
       ]
     },
     "habits": {
-      "text": "Ingen alkoholdage i denne uge — godt. Protein registreret 5 af 7 dage; hold det ved alle måltider resten af ugen, særligt nu hvor du er bagud på cut-planen.",
+      "text": "Ingen alkohol denne uge — godt. Protein registreret 5 ud af 7 dage og søvnsnittet er 7,2 timer — begge dele er tæt på mål. Energisnittet på 1,8 trækker ned; det hænger sandsynligvis sammen med den lave HRV.",
       "refs": [
         5.0,
-        7.0
+        7.2,
+        1.8
       ]
     },
-    "bigPicture": "Uge 43, BASE-blok (uge 2/2 i meso) på Mallorca — HRV-dyk i dag, prioritér restitution så tærskelturen onsdag kan landes fuldt ud.",
-    "weekFocus": "Beskyt onsdagens tærskeltur — hold kroppen frisk til den",
+    "bigPicture": "Uge 43, BASE meso 2/2 — HRV er 37% under 7-dages snit, så dagens lette pas er det eneste rigtige valg.",
+    "weekFocus": "Lav readiness — beskyt onsdag tærskel, gå ikke over kvoten",
     "weekFocusFor": 7,
     "warnings": [
       {
         "type": "readiness",
         "level": "act",
-        "message": "HRV 42,0 ms — 37% under 7-dages snit på 66,4 ms. Readiness er LOW. Drop løbeturen i dag og bevar kun styrketræningen.",
-        "action": {
-          "label": "Aflys løbeturen",
-          "edit": {
-            "action": "cancel",
-            "entryId": "1b8aa012"
-          }
-        },
+        "message": "HRV 42,0 ms er 37% under 7-dages snittet (66,4 ms). Kroppen er presset — hold dagens pas korte og lette.",
+        "action": null,
         "source": "ai"
       },
       {
@@ -11284,14 +11321,14 @@
     }
   },
   "weekTss": {
-    "actual": 0,
+    "actual": 23,
     "planned": 659
   },
   "martinMail": {
     "week": 7,
     "isoWeek": 43,
     "lines": [
-      "Uge 43: TSS 0 af 659 (0 %) · CTL 40,0 (mål 56) · TSB +10,9",
+      "Uge 43: TSS 23 af 659 (3 %) · CTL 40,5 (mål 56) · TSB +8,4",
       "Vægt 7d 74,1 kg · fedt 14d 22,0 % · bagud 2,7 kg mod glidepath (71,4)",
       "HRV 7d 66 (28d 62) · hvilepuls 39 · søvn 7d 7,2 t",
       "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
@@ -11300,7 +11337,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-19T03:34:16Z"
+    "generatedAt": "2026-10-19T08:04:45Z"
   },
   "proposals": [],
   "ftp": {
@@ -11373,7 +11410,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-19",
-    "ctl": 40.0,
-    "atl": 29.1
+    "ctl": 40.5,
+    "atl": 32.1
   }
 }
