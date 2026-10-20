@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-20 07:42",
+    "updated": "2026-10-20 11:34",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Tirsdag — uge 43. {HL} Fokus: 23 af 659 TSS er i hus — 7 sessioner tilbage, heriblandt Cykel Z2 90 min Mallorca (valgfri), Cykel Tærskel 3x12 Puig Major. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 1 AF-dage i 2 afsluttede dage — 5 mangler i 5 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
-  "coachHighlight": "Søvn på 7,3 timer er solid",
+  "coachSpeech": "Uge 43, meso 2/2 i BASE — kroppen er presset (LOW readiness), og morgendagens tærskel-pas er ugens vigtigste prioritet. {HL} Ingen gennemførte træningspas endnu i uge 43 — mandag er 2 pas misset (styrke + løb). Dagens Z2-cykel er kun planlagt hvis vejret tillader det (75% regnchance), men readiness LOW med HRV på 47,0 ms taler for hvile.",
+  "coachHighlight": "Drop dagens cykeltur — hvil i stedet. Trine og René kommer kl. 14, brug eftermiddagen på dem.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -3298,14 +3298,36 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 44 af 357 · Tirsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok meso 2/2 — kroppen signalerer klart stop i dag; beskyt tærskelpas onsdag ved at hvile nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen er startet med 2 missede pas mandag (styrke + løb) og kun en vandring i benene. Ingen hårde pas er brugt af kvoten endnu — tærskelpas på onsdag er planlagt, men med HRV 42,0 ms i dag skal kroppen have en dag mere inden da.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet på vægt er steget 1,2 kg den seneste måned og er 2,3 kg over planmålet — cut er bagud. Prioritér protein ved hvert måltid og hold alkohol til nul resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Søvn 7,2 timer i snit er over minimumsgrænsen — fint. Energi er lav (snit 2,2), og protein er registreret 5 af 7 dage — hold fokus på protein i dag, særligt med hvile som dagens plan.</p>",
-  "coachAssessmentTs": "02:31",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 44 af 357 · Tirsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, meso 2/2 i BASE — kroppen er presset (LOW readiness), og morgendagens tærskel-pas er ugens vigtigste prioritet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen gennemførte træningspas endnu i uge 43 — mandag er 2 pas misset (styrke + løb). Dagens Z2-cykel er kun planlagt hvis vejret tillader det (75% regnchance), men readiness LOW med HRV på 47,0 ms taler for hvile. CTL ligger på 41,2 mod mål på 56,0 — der er afstand, men i BASE er det restitutionstilpasning der tæller, ikke at indhente.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet på vægt er 1,2 kg over det planlagte niveau på 71,4 kg i uge 5 af cut — det er et reelt bagud-signal. Fedtprocenten på 7-dages snit er steget 0,6 procentpoint den seneste måned, og cut-raten på 0,22 kg/uge er under planens 0,25 kg/uge: prioritér protein ved hvert måltid og alkohol som bevidst valg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein registreret 5 ud af 7 dage — hold det oppe. Søvn er god (7,3 t snit), men HRV afslører at kroppen stadig er presset; energisnit på 2,2 ud af 5 understøtter det.</p>",
+  "coachAssessmentTs": "11:34",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "readiness",
+      "level": "critical",
+      "message": "HRV 47,0 ms — 22% under 7-dages snit på 59,9 ms. Readiness er LOW. Drop dagens cykeltur og hvil, så du er klar til tærskel-passet onsdag.",
+      "action": {
+        "label": "Annullér dagens cykeltur",
+        "edit": {
+          "action": "cancel",
+          "entryId": "ad35de97"
+        }
+      },
+      "source": "ai"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 47,0 ms — 22% under 7d-snit (59,9 ms). Kroppen er presset."
+      "message": "HRV 47,0 ms — 22% under 7d-snit (59,9 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut er 2,3 kg bagud mod plan (forventet 71,4 kg i uge 5). Cut-raten er 0,22 kg/uge mod planens 0,25 kg/uge — protein ved hvert måltid er det vigtigste greb.",
+      "action": null,
+      "source": "ai"
     }
   ],
   "tsb": 4.3,
@@ -3607,8 +3629,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-20T05:42:05.488329",
-  "coachAssessmentTsFull": "2026-10-20T00:31:33",
+  "credentialsCheckedTs": "2026-10-20T09:35:21.482381",
+  "coachAssessmentTsFull": "2026-10-20T09:35:21",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -10684,49 +10706,53 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-20T00:31:33Z",
-    "inputsHash": "11ecce1aff83f7c76d89e3be0dfc71714a2467e0",
+    "generatedAt": "2026-10-20T09:35:21Z",
+    "inputsHash": "49ec466e85ade522ea000b19eb733b86f2fb5754",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Drop dagens cykeltur — hvil i stedet, som noten foreskriver ved regn. HRV er i bund og kroppen har brug for det.",
-      "why": "HRV 42,0 ms er 32% under 7-dages snittet på 62,0 ms — readiness er LOW, og pauset er allerede markeret valgfrit ved regn."
+      "action": "Drop dagens cykeltur — hvil i stedet. Trine og René kommer kl. 14, brug eftermiddagen på dem.",
+      "why": "HRV er 22% under 7-dages snit og readiness er LOW. Morgendagens tærskel-pas er vigtigere end en Z2-tur i regnvejr."
     },
     "training": {
-      "text": "Ugen er startet med 2 missede pas mandag (styrke + løb) og kun en vandring i benene. Ingen hårde pas er brugt af kvoten endnu — tærskelpas på onsdag er planlagt, men med HRV 42,0 ms i dag skal kroppen have en dag mere inden da.",
+      "text": "Ingen gennemførte træningspas endnu i uge 43 — mandag er 2 pas misset (styrke + løb). Dagens Z2-cykel er kun planlagt hvis vejret tillader det (75% regnchance), men readiness LOW med HRV på 47,0 ms taler for hvile. CTL ligger på 41,2 mod mål på 56,0 — der er afstand, men i BASE er det restitutionstilpasning der tæller, ikke at indhente.",
       "refs": [
-        42.0,
-        62.0,
-        2.0,
-        0.0
+        47.0,
+        41.2,
+        56.0,
+        75.0,
+        90.0
       ]
     },
     "body": {
-      "text": "7-dages snittet på vægt er steget 1,2 kg den seneste måned og er 2,3 kg over planmålet — cut er bagud. Prioritér protein ved hvert måltid og hold alkohol til nul resten af ugen.",
+      "text": "7-dages snittet på vægt er 1,2 kg over det planlagte niveau på 71,4 kg i uge 5 af cut — det er et reelt bagud-signal. Fedtprocenten på 7-dages snit er steget 0,6 procentpoint den seneste måned, og cut-raten på 0,22 kg/uge er under planens 0,25 kg/uge: prioritér protein ved hvert måltid og alkohol som bevidst valg.",
       "refs": [
+        71.4,
         1.2,
-        2.3
+        0.6,
+        0.22,
+        0.25,
+        22.1
       ]
     },
     "habits": {
-      "text": "Søvn 7,2 timer i snit er over minimumsgrænsen — fint. Energi er lav (snit 2,2), og protein er registreret 5 af 7 dage — hold fokus på protein i dag, særligt med hvile som dagens plan.",
+      "text": "Protein registreret 5 ud af 7 dage — hold det oppe. Søvn er god (7,3 t snit), men HRV afslører at kroppen stadig er presset; energisnit på 2,2 ud af 5 understøtter det.",
       "refs": [
-        7.2,
-        2.2,
         5.0,
-        7.0
+        7.3,
+        2.2
       ]
     },
-    "bigPicture": "Uge 43, BASE-blok meso 2/2 — kroppen signalerer klart stop i dag; beskyt tærskelpas onsdag ved at hvile nu.",
+    "bigPicture": "Uge 43, meso 2/2 i BASE — kroppen er presset (LOW readiness), og morgendagens tærskel-pas er ugens vigtigste prioritet.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "readiness",
         "level": "act",
-        "message": "HRV 42,0 ms — 32% under 7-dages snit (62,0 ms). Drop dagens cykeltur. Tærskelpas onsdag forudsætter at kroppen er klar.",
+        "message": "HRV 47,0 ms — 22% under 7-dages snit på 59,9 ms. Readiness er LOW. Drop dagens cykeltur og hvil, så du er klar til tærskel-passet onsdag.",
         "action": {
-          "label": "Aflys dagens cykeltur",
+          "label": "Annullér dagens cykeltur",
           "edit": {
             "action": "cancel",
             "entryId": "ad35de97"
@@ -10737,14 +10763,14 @@
       {
         "type": "hrv",
         "level": "warn",
-        "message": "HRV 42,0 ms — 32% under 7d-snit (62,0 ms). Kroppen er presset.",
+        "message": "HRV 47,0 ms — 22% under 7d-snit (59,9 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut er 2,3 kg bagud mod planen. Raten er 0,22 kg/uge mod målet 0,25 kg/uge — protein ved hvert måltid og ingen alkohol denne uge.",
+        "message": "Cut er 2,3 kg bagud mod plan (forventet 71,4 kg i uge 5). Cut-raten er 0,22 kg/uge mod planens 0,25 kg/uge — protein ved hvert måltid er det vigtigste greb.",
         "action": null,
         "source": "ai"
       }
@@ -11317,7 +11343,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-20T05:42:05Z"
+    "generatedAt": "2026-10-20T09:34:58Z"
   },
   "proposals": [],
   "ftp": {
