@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-20 02:31",
+    "updated": "2026-10-20 07:29",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -46,9 +46,9 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,3",
+      "value": "8,9",
       "unit": "t",
-      "sub": "Snit 7d 7,2t · mål 7t",
+      "sub": "Snit 7d 7,3t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,13 +58,13 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "62,0",
+      "value": "59,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "39",
+      "value": "40",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Uge 43, BASE-blok meso 2/2 — kroppen signalerer klart stop i dag; beskyt tærskelpas onsdag ved at hvile nu. {HL} Ugen er startet med 2 missede pas mandag (styrke + løb) og kun en vandring i benene.",
-  "coachHighlight": "Drop dagens cykeltur — hvil i stedet, som noten foreskriver ved regn. HRV er i bund og kroppen har brug for det.",
+  "coachSpeech": "Tirsdag — uge 43. {HL} Fokus: 23 af 659 TSS er i hus — 7 sessioner tilbage, heriblandt Cykel Z2 90 min Mallorca (valgfri), Cykel Tærskel 3x12 Puig Major. 2 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 1 AF-dage i 2 afsluttede dage — 5 mangler i 5 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Du har magt over dit sind — ikke over yderomstændigheder. Indse det, og du finder styrke.\" — Marcus Aurelius",
+  "coachHighlight": "Søvn på 7,3 timer er solid",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -1029,7 +1029,11 @@
       "v": 42.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-20",
+      "v": 47.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1477,7 +1481,11 @@
       "v": 7.3,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-20",
+      "v": 8.9,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3295,31 +3303,9 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "readiness",
-      "level": "critical",
-      "message": "HRV 42,0 ms — 32% under 7-dages snit (62,0 ms). Drop dagens cykeltur. Tærskelpas onsdag forudsætter at kroppen er klar.",
-      "action": {
-        "label": "Aflys dagens cykeltur",
-        "edit": {
-          "action": "cancel",
-          "entryId": "ad35de97"
-        }
-      },
-      "source": "ai"
-    },
-    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 42,0 ms — 32% under 7d-snit (62,0 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "cut",
-      "level": "warn",
-      "message": "Cut er 2,3 kg bagud mod planen. Raten er 0,22 kg/uge mod målet 0,25 kg/uge — protein ved hvert måltid og ingen alkohol denne uge.",
-      "action": null,
-      "source": "ai"
+      "message": "HRV 47,0 ms — 22% under 7d-snit (59,9 ms). Kroppen er presset."
     }
   ],
   "tsb": 4.3,
@@ -3621,7 +3607,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-20T00:31:33.275271",
+  "credentialsCheckedTs": "2026-10-20T05:29:04.257714",
   "coachAssessmentTsFull": "2026-10-20T00:31:33",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 1,
@@ -4488,7 +4474,11 @@
       "v": 42,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-20",
+      "v": 43,
+      "real": true
+    }
   ],
   "blockType": "BASE",
   "blockTypes": {
@@ -5965,7 +5955,7 @@
           {
             "level": "WARN",
             "rule": "race_tsb",
-            "text": "TSB 1.3 på race-dag (Santini Stelvio Gran Fondo (lang rute)) — mål +5 til +15",
+            "text": "TSB 1.4 på race-dag (Santini Stelvio Gran Fondo (lang rute)) — mål +5 til +15",
             "historic": false
           }
         ],
@@ -10201,224 +10191,220 @@
       ],
       "projection": [
         {
-          "d": "2026-10-20",
-          "ctl": 39.5
-        },
-        {
           "d": "2026-10-21",
-          "ctl": 40.1
+          "ctl": 41.7
         },
         {
           "d": "2026-10-22",
-          "ctl": 40.6
+          "ctl": 42.2
         },
         {
           "d": "2026-10-23",
-          "ctl": 39.7
+          "ctl": 41.2
         },
         {
           "d": "2026-10-24",
-          "ctl": 40.2
+          "ctl": 41.7
         },
         {
           "d": "2026-10-25",
-          "ctl": 40.8
+          "ctl": 42.2
         },
         {
           "d": "2026-10-26",
-          "ctl": 39.8
+          "ctl": 41.2
         },
         {
           "d": "2026-10-27",
-          "ctl": 39.9
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 40.0
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 40.0
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 40.1
-        },
-        {
-          "d": "2026-10-31",
-          "ctl": 40.2
-        },
-        {
-          "d": "2026-11-01",
-          "ctl": 40.3
-        },
-        {
-          "d": "2026-11-02",
-          "ctl": 40.8
-        },
-        {
-          "d": "2026-11-03",
           "ctl": 41.3
         },
         {
+          "d": "2026-10-28",
+          "ctl": 41.3
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 41.4
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 41.4
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 41.5
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 41.5
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 42.0
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 42.5
+        },
+        {
           "d": "2026-11-04",
-          "ctl": 41.8
+          "ctl": 43.0
         },
         {
           "d": "2026-11-05",
-          "ctl": 42.3
+          "ctl": 43.5
         },
         {
           "d": "2026-11-06",
-          "ctl": 42.8
+          "ctl": 43.9
         },
         {
           "d": "2026-11-07",
-          "ctl": 43.3
+          "ctl": 44.4
         },
         {
           "d": "2026-11-08",
-          "ctl": 43.8
-        },
-        {
-          "d": "2026-11-09",
-          "ctl": 44.3
-        },
-        {
-          "d": "2026-11-10",
           "ctl": 44.8
         },
         {
-          "d": "2026-11-11",
+          "d": "2026-11-09",
           "ctl": 45.3
         },
         {
-          "d": "2026-11-12",
+          "d": "2026-11-10",
           "ctl": 45.8
         },
         {
-          "d": "2026-11-13",
+          "d": "2026-11-11",
           "ctl": 46.3
         },
         {
-          "d": "2026-11-14",
+          "d": "2026-11-12",
           "ctl": 46.7
         },
         {
-          "d": "2026-11-15",
+          "d": "2026-11-13",
           "ctl": 47.2
         },
         {
+          "d": "2026-11-14",
+          "ctl": 47.6
+        },
+        {
+          "d": "2026-11-15",
+          "ctl": 48.1
+        },
+        {
           "d": "2026-11-16",
-          "ctl": 47.7
+          "ctl": 48.6
         },
         {
           "d": "2026-11-17",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-11-18",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-11-19",
-          "ctl": 49.3
-        },
-        {
-          "d": "2026-11-20",
-          "ctl": 49.8
-        },
-        {
-          "d": "2026-11-21",
-          "ctl": 50.2
-        },
-        {
-          "d": "2026-11-22",
-          "ctl": 50.7
-        },
-        {
-          "d": "2026-11-23",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-11-24",
-          "ctl": 50.1
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 49.9
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 49.6
-        },
-        {
-          "d": "2026-11-27",
-          "ctl": 49.3
-        },
-        {
-          "d": "2026-11-28",
           "ctl": 49.1
         },
         {
-          "d": "2026-11-29",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-11-30",
-          "ctl": 49.2
-        },
-        {
-          "d": "2026-12-01",
+          "d": "2026-11-18",
           "ctl": 49.6
         },
         {
-          "d": "2026-12-02",
-          "ctl": 50.0
+          "d": "2026-11-19",
+          "ctl": 50.1
         },
         {
-          "d": "2026-12-03",
-          "ctl": 50.4
+          "d": "2026-11-20",
+          "ctl": 50.6
         },
         {
-          "d": "2026-12-04",
-          "ctl": 50.8
+          "d": "2026-11-21",
+          "ctl": 51.0
         },
         {
-          "d": "2026-12-05",
-          "ctl": 51.1
-        },
-        {
-          "d": "2026-12-06",
+          "d": "2026-11-22",
           "ctl": 51.5
         },
         {
+          "d": "2026-11-23",
+          "ctl": 51.2
+        },
+        {
+          "d": "2026-11-24",
+          "ctl": 50.9
+        },
+        {
+          "d": "2026-11-25",
+          "ctl": 50.6
+        },
+        {
+          "d": "2026-11-26",
+          "ctl": 50.3
+        },
+        {
+          "d": "2026-11-27",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-11-28",
+          "ctl": 49.7
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 49.5
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 49.9
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 50.2
+        },
+        {
+          "d": "2026-12-02",
+          "ctl": 50.6
+        },
+        {
+          "d": "2026-12-03",
+          "ctl": 51.0
+        },
+        {
+          "d": "2026-12-04",
+          "ctl": 51.3
+        },
+        {
+          "d": "2026-12-05",
+          "ctl": 51.7
+        },
+        {
+          "d": "2026-12-06",
+          "ctl": 52.0
+        },
+        {
           "d": "2026-12-07",
-          "ctl": 51.9
+          "ctl": 52.4
         },
         {
           "d": "2026-12-08",
-          "ctl": 52.3
+          "ctl": 52.8
         },
         {
           "d": "2026-12-09",
-          "ctl": 52.6
+          "ctl": 53.1
         },
         {
           "d": "2026-12-10",
-          "ctl": 53.0
+          "ctl": 53.5
         },
         {
           "d": "2026-12-11",
-          "ctl": 53.4
+          "ctl": 53.9
         },
         {
           "d": "2026-12-12",
-          "ctl": 53.8
+          "ctl": 54.2
         },
         {
           "d": "2026-12-13",
-          "ctl": 54.1
+          "ctl": 54.6
         }
       ],
       "targets": [
@@ -10984,10 +10970,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": -5.3,
-            "hrvPct": 30.3
+            "rhr": -5.0,
+            "hrvPct": 27.2
           },
-          "text": "hvilepuls −5 · HRV +30 % (14 dage)"
+          "text": "hvilepuls −5 · HRV +27 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11324,14 +11310,14 @@
     "lines": [
       "Uge 43: TSS 23 af 659 (3 %) · CTL 41,2 (mål 56) · TSB +4,3",
       "Vægt 7d 73,6 kg · fedt 14d 22,0 % · bagud 2,3 kg mod glidepath (71,4)",
-      "HRV 7d 62 (28d 62) · hvilepuls 39 · søvn 7d 7,1 t",
+      "HRV 7d 60 (28d 61) · hvilepuls 40 · søvn 7d 7,3 t",
       "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-20T00:31:13Z"
+    "generatedAt": "2026-10-20T05:29:04Z"
   },
   "proposals": [],
   "ftp": {
