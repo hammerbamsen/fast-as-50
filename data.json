@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-21 14:11",
+    "updated": "2026-10-21 14:21",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "43,3",
+      "value": "42,5",
       "unit": "",
       "sub": "Uge 43-mål 56 · BASE",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-3,6",
+      "value": "-1,0",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "72",
+      "value": "105",
       "unit": "TSS",
-      "sub": "72 af 659 planlagt TSS",
+      "sub": "105 af 659 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "30,6",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "swimM": {
       "value": "0",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Onsdag — uge 43. {HL} Fokus: 72 af 659 TSS er i hus — 6 sessioner tilbage, heriblandt Cykel Tærskel 3x12 Puig Major, Cykel Z2 120 min Mallorca. 3 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 1 AF-dage i 3 afsluttede dage — 5 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Søvn på 7,5 timer er solid",
+  "coachSpeech": "Uge 43, BASE-blok, meso 2/2 — tærskelpasset er i hus trods lav readiness; restitution er nøglen resten af dagen. {HL} Tærskelpasset er gennemført: 86 min og 33 TSS mod planlagte 164 min. Readiness er LOW — det var rigtigt at gennemføre reduceret og ikke presse længden.",
+  "coachHighlight": "Spis et proteinrigt måltid inden du sover i aften og læg dig senest kl. 22.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -176,11 +176,17 @@
       "day": "Ons",
       "disc": "bike",
       "label": "Cykel Tærskel 3x12 Puig Major",
-      "done": false,
+      "done": true,
       "planned_tss": 123,
       "planned_mins": 164,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "partial",
+      "completion_pct": 27,
+      "actual_tss": 33,
+      "actual_name": "Fornalutx Cykling på vej",
+      "actual_mins": 86,
+      "actual_distance_m": 30584.04
     },
     {
       "day": "Tor",
@@ -235,7 +241,7 @@
     48.7,
     44.8,
     40.0,
-    43.3
+    42.5
   ],
   "weightHistory": [
     {
@@ -1936,12 +1942,12 @@
     },
     {
       "date": "2026-10-20",
-      "v": 6.2,
+      "v": 13.6,
       "real": true
     },
     {
       "date": "2026-10-21",
-      "v": -3.6,
+      "v": -0.9,
       "real": true
     }
   ],
@@ -2293,11 +2299,17 @@
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Tærskel 3x12 Puig Major",
-          "done": false,
+          "done": true,
           "planned_tss": 123,
           "planned_mins": 164,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "partial",
+          "completion_pct": 27,
+          "actual_tss": 33,
+          "actual_name": "Fornalutx Cykling på vej",
+          "actual_mins": 86,
+          "actual_distance_m": 30584.04
         },
         {
           "day": "Tor",
@@ -2954,9 +2966,10 @@
     }
   ],
   "train_mins": {
+    "bike": 86.0,
     "hike": 188.0,
     "planned": 874.0,
-    "actual_total": 188.0
+    "actual_total": 274.0
   },
   "fatHistory": [
     {
@@ -3310,17 +3323,33 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 45 af 357 · Onsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, meso 2/2 i BASE — cut er bagud 2,0 kg og kroppen signalerer aflastning i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Readiness er LOW: HRV 48,0 ms mod 7-dages snit 56,3 ms. Det planlagte tærskelpas er hårdt pas 1 af 2 i ugen — udsæt det til kroppen er mere klar. Ugen har 72 faktiske TSS i kassen (to vandreture); tre planlagte pas er misset.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,0 kg over forventet — cut-status er bagud. Den seneste måneds snit er steget 0,6 kg, hvilket er over grænsen for en opadgående retning. Hold protein ved hvert måltid som første prioritet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 4 ud af 7 dage med protein registreret — få styr på det, specielt på restitutionsdage. Energisnit 2,5 over 7 dage er lavt og matcher LOW readiness.</p>",
-  "coachAssessmentTs": "11:30",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 45 af 357 · Onsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok, meso 2/2 — tærskelpasset er i hus trods lav readiness; restitution er nøglen resten af dagen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Tærskelpasset er gennemført: 86 min og 33 TSS mod planlagte 164 min. Readiness er LOW — det var rigtigt at gennemføre reduceret og ikke presse længden. Mandag og tirsdag mangler tre planlagte pas (styrke, løb Z2, cykel Z2), men cykel Z2 var markeret valgfri.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt stiger — du er 2,0 kg over cut-planen på 71,3 kg. Protein ved hvert måltid er vigtigste greb nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein registreret 4 ud af 7 dage — det er for lidt, særligt under cut. Energisnit på 2,5 skal holdes øje med når belastningen stiger.</p>",
+  "coachAssessmentTs": "14:21",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 48,0 ms — 15% under 7d-snit (56,3 ms). Kroppen er presset."
+      "message": "HRV 48,0 ms — 15% under 7d-snit (56,3 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "readiness",
+      "level": "warn",
+      "message": "HRV 48,0 ms — 15% under 7-dages snit (56,3 ms). Kroppen er presset efter dagens pas. Prioritér søvn og hold torsdagens Z2 let.",
+      "action": null,
+      "source": "ai"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "7-dages snit er 2,0 kg over cut-plan (forventet 71,3 kg). Raten er 0,16 kg/uge mod mål på 0,25 kg/uge — protein ved hvert måltid er det vigtigste greb.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": -3.6,
+  "tsb": -1.0,
   "swimHistory": [
     {
       "week": 1,
@@ -3365,7 +3394,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i199422182",
+  "coachAssessmentLastActId": "i199955402",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Cykel Tærskel 3x12 Puig Major",
   "weightGoal": 68,
@@ -3619,8 +3648,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-21T12:11:23.803493",
-  "coachAssessmentTsFull": "2026-10-21T09:31:16",
+  "credentialsCheckedTs": "2026-10-21T12:22:36.316220",
+  "coachAssessmentTsFull": "2026-10-21T12:22:36",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3713,7 +3742,7 @@
     "4": 434,
     "5": 177,
     "6": 92,
-    "7": 72
+    "7": 105
   },
   "racesUpcoming": [
     {
@@ -4986,7 +5015,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 56,
         "tssTarget": 440,
-        "tssActual": 72,
+        "tssActual": 105,
         "purpose": "Base: tærskel 3×12 tir + kvalitet sent i turen søn (120 t imellem). Aerobe prober ons (løb) + tor (cykel).",
         "note": null,
         "quota": {
@@ -7754,14 +7783,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 86,
+                "actualTss": 33,
                 "note": "Flyttet fra tir 20/10: tir er regnvejr (75%) og nedkørslen er farlig vådt. Ons er tørt. Hårdt pas 1/2 i ugen.",
                 "isKey": true,
                 "optional": false,
                 "start": "08:30",
-                "startFixed": true
+                "startFixed": true,
+                "completion": "partial"
               }
             ],
             "restNote": null,
@@ -10216,7 +10246,7 @@
           "week": 7,
           "programId": "tds-2027",
           "start": "2026-10-19",
-          "ctl": 43.3
+          "ctl": 42.5
         }
       ],
       "projection": [
@@ -10710,56 +10740,41 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-21T09:31:16Z",
-    "inputsHash": "005002e6b41508e1065e4244d806a01700b46ff3",
+    "generatedAt": "2026-10-21T12:22:36Z",
+    "inputsHash": "c171bac31d893380036e9d8e223ae28e0dde87db",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Flyt Cykel Tærskel 3x12 Puig Major (164 min) til torsdag — kør Z2 120 min i stedet i dag, eller hvil helt.",
-      "why": "HRV er 48,0 ms — 15% under 7-dages snit. Et tærskelpas på LOW readiness giver mere nedbrydning end tilpasning."
+      "action": "Spis et proteinrigt måltid inden du sover i aften og læg dig senest kl. 22.",
+      "why": "HRV ligger 15% under 7-dages snit — kroppen har brug for mad og søvn til at komme sig efter dagens hårde pas."
     },
     "training": {
-      "text": "Readiness er LOW: HRV 48,0 ms mod 7-dages snit 56,3 ms. Det planlagte tærskelpas er hårdt pas 1 af 2 i ugen — udsæt det til kroppen er mere klar. Ugen har 72 faktiske TSS i kassen (to vandreture); tre planlagte pas er misset.",
+      "text": "Tærskelpasset er gennemført: 86 min og 33 TSS mod planlagte 164 min. Readiness er LOW — det var rigtigt at gennemføre reduceret og ikke presse længden. Mandag og tirsdag mangler tre planlagte pas (styrke, løb Z2, cykel Z2), men cykel Z2 var markeret valgfri.",
       "refs": [
-        48.0,
-        56.3,
-        72.0,
-        3.0
+        86.0,
+        33.0,
+        164.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 2,0 kg over forventet — cut-status er bagud. Den seneste måneds snit er steget 0,6 kg, hvilket er over grænsen for en opadgående retning. Hold protein ved hvert måltid som første prioritet.",
+      "text": "7-dages snit for vægt stiger — du er 2,0 kg over cut-planen på 71,3 kg. Protein ved hvert måltid er vigtigste greb nu.",
       "refs": [
         2.0,
-        0.6
+        71.3
       ]
     },
     "habits": {
-      "text": "Kun 4 ud af 7 dage med protein registreret — få styr på det, specielt på restitutionsdage. Energisnit 2,5 over 7 dage er lavt og matcher LOW readiness.",
+      "text": "Protein registreret 4 ud af 7 dage — det er for lidt, særligt under cut. Energisnit på 2,5 skal holdes øje med når belastningen stiger.",
       "refs": [
         4.0,
         7.0,
         2.5
       ]
     },
-    "bigPicture": "Uge 43, meso 2/2 i BASE — cut er bagud 2,0 kg og kroppen signalerer aflastning i dag.",
+    "bigPicture": "Uge 43, BASE-blok, meso 2/2 — tærskelpasset er i hus trods lav readiness; restitution er nøglen resten af dagen.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
-      {
-        "type": "readiness",
-        "level": "act",
-        "message": "HRV 48,0 ms er 15% under 7-dages snit (56,3 ms). Hårdt tærskelpas på LOW readiness er kontraproduktivt — flyt til torsdag og skub Z2 120 min ud.",
-        "action": {
-          "label": "Flyt til torsdag",
-          "edit": {
-            "action": "move",
-            "entryId": "be1e4ee8",
-            "toDate": "2026-10-23"
-          }
-        },
-        "source": "ai"
-      },
       {
         "type": "hrv",
         "level": "warn",
@@ -10768,16 +10783,30 @@
         "source": "rule"
       },
       {
+        "type": "readiness",
+        "level": "warn",
+        "message": "HRV 48,0 ms — 15% under 7-dages snit (56,3 ms). Kroppen er presset efter dagens pas. Prioritér søvn og hold torsdagens Z2 let.",
+        "action": null,
+        "source": "ai"
+      },
+      {
         "type": "cut",
         "level": "warn",
-        "message": "Cut er 2,0 kg bagud mod forventet 71,3 kg. Faktisk rate er 0,16 kg/uge mod mål 0,22 kg/uge — protein ved hvert måltid er det vigtigste greb nu.",
+        "message": "7-dages snit er 2,0 kg over cut-plan (forventet 71,3 kg). Raten er 0,16 kg/uge mod mål på 0,25 kg/uge — protein ved hvert måltid er det vigtigste greb.",
         "action": null,
         "source": "ai"
       }
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": null,
+    "validationRejected": [
+      {
+        "errors": [
+          "oneThing.why: tal ikke i konteksten: 1,9"
+        ],
+        "oneThing.why": "Spis et proteinrigt måltid nu og læg dig tidligt i aften — readiness er lav og du er 2,0 kg bagud på cut."
+      }
+    ],
     "notes": null,
     "stale": false
   },
@@ -11327,14 +11356,14 @@
     }
   },
   "weekTss": {
-    "actual": 72,
+    "actual": 105,
     "planned": 659
   },
   "martinMail": {
     "week": 7,
     "isoWeek": 43,
     "lines": [
-      "Uge 43: TSS 72 af 659 (11 %) · CTL 43,3 (mål 56) · TSB −3,6",
+      "Uge 43: TSS 105 af 659 (16 %) · CTL 42,5 (mål 56) · TSB −1,0",
       "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 1,9 kg mod glidepath (71,3)",
       "HRV 7d 56 (28d 61) · hvilepuls 41 · søvn 7d 7,5 t",
       "AF 4/7 · protein 3/3 4/7 · aftensult —/7",
@@ -11343,7 +11372,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-21T12:11:23Z"
+    "generatedAt": "2026-10-21T12:21:58Z"
   },
   "proposals": [],
   "ftp": {
@@ -11416,7 +11445,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-21",
-    "ctl": 43.3,
-    "atl": 46.9
+    "ctl": 42.5,
+    "atl": 43.5
   }
 }
