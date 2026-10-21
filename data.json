@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-21 08:22",
+    "updated": "2026-10-21 11:30",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Onsdag — uge 43. {HL} Fokus: 72 af 659 TSS er i hus — 6 sessioner tilbage, heriblandt Cykel Tærskel 3x12 Puig Major, Cykel Z2 120 min Mallorca. 3 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 1 AF-dage i 3 afsluttede dage — 5 mangler i 4 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Søvn på 7,5 timer er solid",
+  "coachSpeech": "Uge 43, meso 2/2 i BASE — cut er bagud 2,0 kg og kroppen signalerer aflastning i dag. {HL} Readiness er LOW: HRV 48,0 ms mod 7-dages snit 56,3 ms. Det planlagte tærskelpas er hårdt pas 1 af 2 i ugen — udsæt det til kroppen er mere klar.",
+  "coachHighlight": "Flyt Cykel Tærskel 3x12 Puig Major (164 min) til torsdag — kør Z2 120 min i stedet i dag, eller hvil helt.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -3310,14 +3310,37 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 45 af 357 · Onsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, meso 2/2 BASE på Mallorca — readiness er LOW i dag, og cut er 2,0 kg bagud; aflastning nu beskytter resten af ugen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen planlagte pas er gennemført denne uge — mandag og tirsdag er misset (styrke, løb Z2, cykel Z2). Dagens hårde pas bør flyttes; 72-timers-reglen er overholdt til søndag, så der er rum til torsdag. CTL er 43,3 mod mål 56,0 — du er 12,7 point under i en BASE-uge, men readiness styrer i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned og fedt 0,6 procentpoint — begge over tærsklen. Du er 2,0 kg bagud på cut-planen; mål er 71,3 kg, snit er 73,2 kg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 4 af 7 dage — mål er hver dag. Energisnit er 2,5 ud af 5; søvn er 7,3 timer i snit (over grænsen), men HRV viser kroppen er presset alligevel.</p>",
-  "coachAssessmentTs": "03:25",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 45 af 357 · Onsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, meso 2/2 i BASE — cut er bagud 2,0 kg og kroppen signalerer aflastning i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Readiness er LOW: HRV 48,0 ms mod 7-dages snit 56,3 ms. Det planlagte tærskelpas er hårdt pas 1 af 2 i ugen — udsæt det til kroppen er mere klar. Ugen har 72 faktiske TSS i kassen (to vandreture); tre planlagte pas er misset.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 2,0 kg over forventet — cut-status er bagud. Den seneste måneds snit er steget 0,6 kg, hvilket er over grænsen for en opadgående retning. Hold protein ved hvert måltid som første prioritet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 4 ud af 7 dage med protein registreret — få styr på det, specielt på restitutionsdage. Energisnit 2,5 over 7 dage er lavt og matcher LOW readiness.</p>",
+  "coachAssessmentTs": "11:30",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "readiness",
+      "level": "critical",
+      "message": "HRV 48,0 ms er 15% under 7-dages snit (56,3 ms). Hårdt tærskelpas på LOW readiness er kontraproduktivt — flyt til torsdag og skub Z2 120 min ud.",
+      "action": {
+        "label": "Flyt til torsdag",
+        "edit": {
+          "action": "move",
+          "entryId": "be1e4ee8",
+          "toDate": "2026-10-23"
+        }
+      },
+      "source": "ai"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 48,0 ms — 15% under 7d-snit (56,3 ms). Kroppen er presset."
+      "message": "HRV 48,0 ms — 15% under 7d-snit (56,3 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut er 2,0 kg bagud mod forventet 71,3 kg. Faktisk rate er 0,16 kg/uge mod mål 0,22 kg/uge — protein ved hvert måltid er det vigtigste greb nu.",
+      "action": null,
+      "source": "ai"
     }
   ],
   "tsb": -3.6,
@@ -3619,8 +3642,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-21T06:22:20.166463",
-  "coachAssessmentTsFull": "2026-10-21T01:25:59",
+  "credentialsCheckedTs": "2026-10-21T09:31:16.179741",
+  "coachAssessmentTsFull": "2026-10-21T09:31:16",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -10710,58 +10733,52 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-21T01:25:59Z",
-    "inputsHash": "834d52c9f71d942dc4d16779f241970680c552bf",
+    "generatedAt": "2026-10-21T09:31:16Z",
+    "inputsHash": "005002e6b41508e1065e4244d806a01700b46ff3",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Flyt Cykel Tærskel 3x12 Puig Major til torsdag — krop er ikke klar til 164 min hårdt i dag.",
-      "why": "HRV er 47,0 ms, 19% under 7-dages snit. At presse et hårdt pas ved LOW readiness øger skaderisiko og forsinker tilpasning."
+      "action": "Flyt Cykel Tærskel 3x12 Puig Major (164 min) til torsdag — kør Z2 120 min i stedet i dag, eller hvil helt.",
+      "why": "HRV er 48,0 ms — 15% under 7-dages snit. Et tærskelpas på LOW readiness giver mere nedbrydning end tilpasning."
     },
     "training": {
-      "text": "Ingen planlagte pas er gennemført denne uge — mandag og tirsdag er misset (styrke, løb Z2, cykel Z2). Dagens hårde pas bør flyttes; 72-timers-reglen er overholdt til søndag, så der er rum til torsdag. CTL er 43,3 mod mål 56,0 — du er 12,7 point under i en BASE-uge, men readiness styrer i dag.",
+      "text": "Readiness er LOW: HRV 48,0 ms mod 7-dages snit 56,3 ms. Det planlagte tærskelpas er hårdt pas 1 af 2 i ugen — udsæt det til kroppen er mere klar. Ugen har 72 faktiske TSS i kassen (to vandreture); tre planlagte pas er misset.",
       "refs": [
-        43.3,
-        56.0,
-        12.7,
-        47.0,
-        19.0,
-        164.0
+        48.0,
+        56.3,
+        72.0,
+        3.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned og fedt 0,6 procentpoint — begge over tærsklen. Du er 2,0 kg bagud på cut-planen; mål er 71,3 kg, snit er 73,2 kg.",
+      "text": "7-dages snit er 2,0 kg over forventet — cut-status er bagud. Den seneste måneds snit er steget 0,6 kg, hvilket er over grænsen for en opadgående retning. Hold protein ved hvert måltid som første prioritet.",
       "refs": [
-        0.6,
-        0.6,
         2.0,
-        71.3,
-        73.2
+        0.6
       ]
     },
     "habits": {
-      "text": "Protein er registreret 4 af 7 dage — mål er hver dag. Energisnit er 2,5 ud af 5; søvn er 7,3 timer i snit (over grænsen), men HRV viser kroppen er presset alligevel.",
+      "text": "Kun 4 ud af 7 dage med protein registreret — få styr på det, specielt på restitutionsdage. Energisnit 2,5 over 7 dage er lavt og matcher LOW readiness.",
       "refs": [
         4.0,
         7.0,
-        2.5,
-        7.3
+        2.5
       ]
     },
-    "bigPicture": "Uge 43, meso 2/2 BASE på Mallorca — readiness er LOW i dag, og cut er 2,0 kg bagud; aflastning nu beskytter resten af ugen.",
+    "bigPicture": "Uge 43, meso 2/2 i BASE — cut er bagud 2,0 kg og kroppen signalerer aflastning i dag.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "readiness",
         "level": "act",
-        "message": "Readiness er LOW (HRV 47,0 ms, 19% under 7d-snit). Hårdt pas i dag er for risikabelt.",
+        "message": "HRV 48,0 ms er 15% under 7-dages snit (56,3 ms). Hårdt tærskelpas på LOW readiness er kontraproduktivt — flyt til torsdag og skub Z2 120 min ud.",
         "action": {
           "label": "Flyt til torsdag",
           "edit": {
             "action": "move",
             "entryId": "be1e4ee8",
-            "toDate": "2026-10-22"
+            "toDate": "2026-10-23"
           }
         },
         "source": "ai"
@@ -10769,14 +10786,14 @@
       {
         "type": "hrv",
         "level": "warn",
-        "message": "HRV 47,0 ms — 19% under 7d-snit (57,7 ms). Kroppen er presset.",
+        "message": "HRV 48,0 ms — 15% under 7d-snit (56,3 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut er 2,0 kg bagud: 7-dages snit 73,2 kg mod forventet 71,3 kg. Vægten stiger i stedet for at falde.",
+        "message": "Cut er 2,0 kg bagud mod forventet 71,3 kg. Faktisk rate er 0,16 kg/uge mod mål 0,22 kg/uge — protein ved hvert måltid er det vigtigste greb nu.",
         "action": null,
         "source": "ai"
       }
@@ -11349,7 +11366,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-21T06:22:20Z"
+    "generatedAt": "2026-10-21T09:30:57Z"
   },
   "proposals": [],
   "ftp": {
