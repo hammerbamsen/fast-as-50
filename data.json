@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-21 14:21",
+    "updated": "2026-10-21 18:18",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "1",
+      "value": "2",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,5 · streak 3",
+      "sub": "af 6 denne uge · snit 4 uger 3,5 · streak 1",
       "color": "#59182A"
     },
     "ftp": {
@@ -100,19 +100,19 @@
       "color": "#C0392B"
     },
     "protein": {
-      "value": "4",
+      "value": "5",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 6,0",
-      "color": "#E67E22"
+      "sub": "3/3-dage · 4 uger 6,2",
+      "color": "#27AE60"
     }
   },
   "af": {
-    "weekDone": 1,
+    "weekDone": 2,
     "target": 6,
-    "streak": 3
+    "streak": 1
   },
-  "coachSpeech": "Uge 43, BASE-blok, meso 2/2 — tærskelpasset er i hus trods lav readiness; restitution er nøglen resten af dagen. {HL} Tærskelpasset er gennemført: 86 min og 33 TSS mod planlagte 164 min. Readiness er LOW — det var rigtigt at gennemføre reduceret og ikke presse længden.",
-  "coachHighlight": "Spis et proteinrigt måltid inden du sover i aften og læg dig senest kl. 22.",
+  "coachSpeech": "Uge 43, BASE-blok: tærskelpasset er klaret på Mallorca — nu er restitution og cut-retningen det vigtigste. {HL} Tærskelpasset (Cykel Tærskel 3x12 Puig Major) er gennemført: 86 min og 33 TSS mod planen på 164 min. Lavere end planlagt, men readiness var LOW i dag — fornuftigt at holde igen.",
+  "coachHighlight": "Spis et proteinrigt måltid og læg dig tidligt i aften — sov mindst 8 timer.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -2091,7 +2091,8 @@
     "2026-10-15": 0,
     "2026-10-17": 0,
     "2026-10-18": 0,
-    "2026-10-19": 0
+    "2026-10-19": 0,
+    "2026-10-21": 0
   },
   "all_weeks": {
     "5": {
@@ -2960,7 +2961,7 @@
       "week": 7,
       "iso": 43,
       "monday": "2026-10-19",
-      "done": 1,
+      "done": 2,
       "total": 3,
       "label": "Uge 43"
     }
@@ -3323,10 +3324,17 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 45 af 357 · Onsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok, meso 2/2 — tærskelpasset er i hus trods lav readiness; restitution er nøglen resten af dagen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Tærskelpasset er gennemført: 86 min og 33 TSS mod planlagte 164 min. Readiness er LOW — det var rigtigt at gennemføre reduceret og ikke presse længden. Mandag og tirsdag mangler tre planlagte pas (styrke, løb Z2, cykel Z2), men cykel Z2 var markeret valgfri.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt stiger — du er 2,0 kg over cut-planen på 71,3 kg. Protein ved hvert måltid er vigtigste greb nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein registreret 4 ud af 7 dage — det er for lidt, særligt under cut. Energisnit på 2,5 skal holdes øje med når belastningen stiger.</p>",
-  "coachAssessmentTs": "14:21",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 45 af 357 · Onsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok: tærskelpasset er klaret på Mallorca — nu er restitution og cut-retningen det vigtigste.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Tærskelpasset (Cykel Tærskel 3x12 Puig Major) er gennemført: 86 min og 33 TSS mod planen på 164 min. Lavere end planlagt, men readiness var LOW i dag — fornuftigt at holde igen. CTL er 42,5 mod et mål på 56,0; der er lang vej op, men det løses over uger, ikke i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned og ligger 2,0 kg over cutplanen (forventet 71,3 kg). Det går den forkerte vej — sørg for protein ved hvert måltid og hold alkohol som et bevidst fravalg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Energisnit er 2,5 — lavt, og det passer med LOW readiness i dag. Protein er registreret 5 ud af 7 dage; de resterende dage skal landes.</p>",
+  "coachAssessmentTs": "18:18",
   "commute_pairing_warnings": [],
   "warnings": [
+    {
+      "type": "cut",
+      "level": "critical",
+      "message": "7-dages snit for vægt er 2,0 kg over cutplanen. Raten er 0,16 kg/uge mod målet på 0,25 kg/uge — cut er bagud.",
+      "action": null,
+      "source": "ai"
+    },
     {
       "type": "hrv",
       "level": "warn",
@@ -3337,14 +3345,7 @@
     {
       "type": "readiness",
       "level": "warn",
-      "message": "HRV 48,0 ms — 15% under 7-dages snit (56,3 ms). Kroppen er presset efter dagens pas. Prioritér søvn og hold torsdagens Z2 let.",
-      "action": null,
-      "source": "ai"
-    },
-    {
-      "type": "cut",
-      "level": "warn",
-      "message": "7-dages snit er 2,0 kg over cut-plan (forventet 71,3 kg). Raten er 0,16 kg/uge mod mål på 0,25 kg/uge — protein ved hvert måltid er det vigtigste greb.",
+      "message": "HRV 48,0 ms er 15% under 7-dages snit (56,3 ms). Kroppen er presset — hold torsdagens Z2-tur rolig og kortere hvis nødvendigt.",
       "action": null,
       "source": "ai"
     }
@@ -3648,10 +3649,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-21T12:22:36.316220",
-  "coachAssessmentTsFull": "2026-10-21T12:22:36",
+  "credentialsCheckedTs": "2026-10-21T16:19:03.720242",
+  "coachAssessmentTsFull": "2026-10-21T16:19:03",
   "coachAssessmentWeightAtGen": 72.7,
-  "coachAssessmentAfAtGen": 1,
+  "coachAssessmentAfAtGen": 2,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 22.4,
   "zones": {
@@ -4517,7 +4518,7 @@
     },
     {
       "date": "2026-10-21",
-      "v": 44,
+      "v": 43,
       "real": true
     }
   ],
@@ -4774,8 +4775,8 @@
     },
     {
       "date": "2026-10-21",
-      "alkohol": null,
-      "protein": null,
+      "alkohol": 0,
+      "protein": 2,
       "energi": null,
       "sult": null
     }
@@ -10252,215 +10253,215 @@
       "projection": [
         {
           "d": "2026-10-22",
-          "ctl": 43.8
+          "ctl": 43.0
         },
         {
           "d": "2026-10-23",
-          "ctl": 42.7
+          "ctl": 42.0
         },
         {
           "d": "2026-10-24",
-          "ctl": 43.2
+          "ctl": 42.5
         },
         {
           "d": "2026-10-25",
-          "ctl": 43.7
+          "ctl": 42.9
         },
         {
           "d": "2026-10-26",
-          "ctl": 42.6
+          "ctl": 41.9
         },
         {
           "d": "2026-10-27",
-          "ctl": 42.6
+          "ctl": 42.0
         },
         {
           "d": "2026-10-28",
-          "ctl": 42.7
+          "ctl": 42.0
         },
         {
           "d": "2026-10-29",
-          "ctl": 42.7
+          "ctl": 42.0
         },
         {
           "d": "2026-10-30",
-          "ctl": 42.7
+          "ctl": 42.1
         },
         {
           "d": "2026-10-31",
-          "ctl": 42.7
+          "ctl": 42.1
         },
         {
           "d": "2026-11-01",
-          "ctl": 42.7
+          "ctl": 42.1
         },
         {
           "d": "2026-11-02",
-          "ctl": 43.2
+          "ctl": 42.6
         },
         {
           "d": "2026-11-03",
-          "ctl": 43.7
+          "ctl": 43.1
         },
         {
           "d": "2026-11-04",
-          "ctl": 44.1
+          "ctl": 43.6
         },
         {
           "d": "2026-11-05",
-          "ctl": 44.6
+          "ctl": 44.0
         },
         {
           "d": "2026-11-06",
-          "ctl": 45.0
+          "ctl": 44.5
         },
         {
           "d": "2026-11-07",
-          "ctl": 45.4
+          "ctl": 44.9
         },
         {
           "d": "2026-11-08",
-          "ctl": 45.9
+          "ctl": 45.3
         },
         {
           "d": "2026-11-09",
-          "ctl": 46.3
+          "ctl": 45.8
         },
         {
           "d": "2026-11-10",
-          "ctl": 46.8
+          "ctl": 46.3
         },
         {
           "d": "2026-11-11",
-          "ctl": 47.2
+          "ctl": 46.8
         },
         {
           "d": "2026-11-12",
-          "ctl": 47.7
+          "ctl": 47.2
         },
         {
           "d": "2026-11-13",
-          "ctl": 48.1
+          "ctl": 47.6
         },
         {
           "d": "2026-11-14",
-          "ctl": 48.5
+          "ctl": 48.1
         },
         {
           "d": "2026-11-15",
-          "ctl": 48.9
+          "ctl": 48.5
         },
         {
           "d": "2026-11-16",
-          "ctl": 49.4
+          "ctl": 49.0
         },
         {
           "d": "2026-11-17",
-          "ctl": 49.9
+          "ctl": 49.5
         },
         {
           "d": "2026-11-18",
-          "ctl": 50.4
+          "ctl": 50.0
         },
         {
           "d": "2026-11-19",
-          "ctl": 50.9
-        },
-        {
-          "d": "2026-11-20",
-          "ctl": 51.3
-        },
-        {
-          "d": "2026-11-21",
-          "ctl": 51.8
-        },
-        {
-          "d": "2026-11-22",
-          "ctl": 52.2
-        },
-        {
-          "d": "2026-11-23",
-          "ctl": 51.9
-        },
-        {
-          "d": "2026-11-24",
-          "ctl": 51.6
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 51.3
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 51.0
-        },
-        {
-          "d": "2026-11-27",
-          "ctl": 50.7
-        },
-        {
-          "d": "2026-11-28",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-11-29",
-          "ctl": 50.1
-        },
-        {
-          "d": "2026-11-30",
           "ctl": 50.5
         },
         {
-          "d": "2026-12-01",
-          "ctl": 50.8
+          "d": "2026-11-20",
+          "ctl": 50.9
         },
         {
-          "d": "2026-12-02",
-          "ctl": 51.2
+          "d": "2026-11-21",
+          "ctl": 51.4
         },
         {
-          "d": "2026-12-03",
+          "d": "2026-11-22",
+          "ctl": 51.8
+        },
+        {
+          "d": "2026-11-23",
           "ctl": 51.5
         },
         {
+          "d": "2026-11-24",
+          "ctl": 51.2
+        },
+        {
+          "d": "2026-11-25",
+          "ctl": 50.9
+        },
+        {
+          "d": "2026-11-26",
+          "ctl": 50.6
+        },
+        {
+          "d": "2026-11-27",
+          "ctl": 50.3
+        },
+        {
+          "d": "2026-11-28",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 49.8
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 50.2
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 50.5
+        },
+        {
+          "d": "2026-12-02",
+          "ctl": 50.9
+        },
+        {
+          "d": "2026-12-03",
+          "ctl": 51.2
+        },
+        {
           "d": "2026-12-04",
-          "ctl": 51.9
+          "ctl": 51.6
         },
         {
           "d": "2026-12-05",
-          "ctl": 52.2
+          "ctl": 51.9
         },
         {
           "d": "2026-12-06",
-          "ctl": 52.5
+          "ctl": 52.2
         },
         {
           "d": "2026-12-07",
-          "ctl": 52.9
+          "ctl": 52.6
         },
         {
           "d": "2026-12-08",
-          "ctl": 53.3
+          "ctl": 53.0
         },
         {
           "d": "2026-12-09",
-          "ctl": 53.6
+          "ctl": 53.4
         },
         {
           "d": "2026-12-10",
-          "ctl": 54.0
+          "ctl": 53.7
         },
         {
           "d": "2026-12-11",
-          "ctl": 54.3
+          "ctl": 54.1
         },
         {
           "d": "2026-12-12",
-          "ctl": 54.7
+          "ctl": 54.4
         },
         {
           "d": "2026-12-13",
-          "ctl": 55.0
+          "ctl": 54.8
         }
       ],
       "targets": [
@@ -10740,41 +10741,51 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-21T12:22:36Z",
-    "inputsHash": "c171bac31d893380036e9d8e223ae28e0dde87db",
+    "generatedAt": "2026-10-21T16:19:03Z",
+    "inputsHash": "617ea91b5b5840f87e062917d43b1adbe1bca0e1",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis et proteinrigt måltid inden du sover i aften og læg dig senest kl. 22.",
-      "why": "HRV ligger 15% under 7-dages snit — kroppen har brug for mad og søvn til at komme sig efter dagens hårde pas."
+      "action": "Spis et proteinrigt måltid og læg dig tidligt i aften — sov mindst 8 timer.",
+      "why": "HRV er 15% under 7-dages snit og readiness er LOW. Tærskelpasset er lagt bag dig — kroppen skal nu restituere."
     },
     "training": {
-      "text": "Tærskelpasset er gennemført: 86 min og 33 TSS mod planlagte 164 min. Readiness er LOW — det var rigtigt at gennemføre reduceret og ikke presse længden. Mandag og tirsdag mangler tre planlagte pas (styrke, løb Z2, cykel Z2), men cykel Z2 var markeret valgfri.",
+      "text": "Tærskelpasset (Cykel Tærskel 3x12 Puig Major) er gennemført: 86 min og 33 TSS mod planen på 164 min. Lavere end planlagt, men readiness var LOW i dag — fornuftigt at holde igen. CTL er 42,5 mod et mål på 56,0; der er lang vej op, men det løses over uger, ikke i dag.",
       "refs": [
         86.0,
         33.0,
-        164.0
+        164.0,
+        42.5,
+        56.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt stiger — du er 2,0 kg over cut-planen på 71,3 kg. Protein ved hvert måltid er vigtigste greb nu.",
+      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned og ligger 2,0 kg over cutplanen (forventet 71,3 kg). Det går den forkerte vej — sørg for protein ved hvert måltid og hold alkohol som et bevidst fravalg.",
       "refs": [
+        0.6,
         2.0,
         71.3
       ]
     },
     "habits": {
-      "text": "Protein registreret 4 ud af 7 dage — det er for lidt, særligt under cut. Energisnit på 2,5 skal holdes øje med når belastningen stiger.",
+      "text": "Energisnit er 2,5 — lavt, og det passer med LOW readiness i dag. Protein er registreret 5 ud af 7 dage; de resterende dage skal landes.",
       "refs": [
-        4.0,
-        7.0,
-        2.5
+        2.5,
+        5.0,
+        7.0
       ]
     },
-    "bigPicture": "Uge 43, BASE-blok, meso 2/2 — tærskelpasset er i hus trods lav readiness; restitution er nøglen resten af dagen.",
+    "bigPicture": "Uge 43, BASE-blok: tærskelpasset er klaret på Mallorca — nu er restitution og cut-retningen det vigtigste.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
+      {
+        "type": "cut",
+        "level": "act",
+        "message": "7-dages snit for vægt er 2,0 kg over cutplanen. Raten er 0,16 kg/uge mod målet på 0,25 kg/uge — cut er bagud.",
+        "action": null,
+        "source": "ai"
+      },
       {
         "type": "hrv",
         "level": "warn",
@@ -10785,28 +10796,14 @@
       {
         "type": "readiness",
         "level": "warn",
-        "message": "HRV 48,0 ms — 15% under 7-dages snit (56,3 ms). Kroppen er presset efter dagens pas. Prioritér søvn og hold torsdagens Z2 let.",
-        "action": null,
-        "source": "ai"
-      },
-      {
-        "type": "cut",
-        "level": "warn",
-        "message": "7-dages snit er 2,0 kg over cut-plan (forventet 71,3 kg). Raten er 0,16 kg/uge mod mål på 0,25 kg/uge — protein ved hvert måltid er det vigtigste greb.",
+        "message": "HRV 48,0 ms er 15% under 7-dages snit (56,3 ms). Kroppen er presset — hold torsdagens Z2-tur rolig og kortere hvis nødvendigt.",
         "action": null,
         "source": "ai"
       }
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": [
-      {
-        "errors": [
-          "oneThing.why: tal ikke i konteksten: 1,9"
-        ],
-        "oneThing.why": "Spis et proteinrigt måltid nu og læg dig tidligt i aften — readiness er lav og du er 2,0 kg bagud på cut."
-      }
-    ],
+    "validationRejected": null,
     "notes": null,
     "stale": false
   },
@@ -11025,7 +11022,7 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": -4.2,
+            "rhr": -4.3,
             "hrvPct": 19.3
           },
           "text": "hvilepuls −4 · HRV +19 % (14 dage)"
@@ -11366,13 +11363,13 @@
       "Uge 43: TSS 105 af 659 (16 %) · CTL 42,5 (mål 56) · TSB −1,0",
       "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 1,9 kg mod glidepath (71,3)",
       "HRV 7d 56 (28d 61) · hvilepuls 41 · søvn 7d 7,5 t",
-      "AF 4/7 · protein 3/3 4/7 · aftensult —/7",
+      "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-21T12:21:58Z"
+    "generatedAt": "2026-10-21T16:18:46Z"
   },
   "proposals": [],
   "ftp": {
