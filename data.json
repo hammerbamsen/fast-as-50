@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-23 08:19",
+    "updated": "2026-10-23 11:30",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "Fredag — tre dage tilbage af uge 43. {HL} Fokus: 133 af 659 TSS er i hus — 4 sessioner tilbage, heriblandt Havsvøm 30-40 min Port de Sóller (valgfri), Styrke B · Mallorca-kit. 3 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
-  "coachHighlight": "Søvn på 7,9 timer er solid",
+  "coachSpeech": "Uge 43, BASE-fase, meso 2/2 — readiness er LOW i dag, og cut er 2,0 kg bag plan; restitution og mad er fokus. {HL} Onsdag og torsdag er gennemført, men begge langt under planen i minutter og TSS: onsdag 86 min / 33 TSS mod planlagte 164 min / 123 TSS, torsdag 74 min / 28 TSS mod 120 min / 90 TSS. Tre pas er misset tidligere i ugen.",
+  "coachHighlight": "Spring havsvømmet over i dag — vandet kan vente. Spis et proteinrigt måltid til middag og læg dig ned en time.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -3322,14 +3322,36 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 47 af 357 · Fredag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok, meso 2/2 — kroppen er presset efter to vandredage og to cykelture; hvil i dag, så lørdag og søndag kan leveres.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Onsdag og torsdag er gennemført, men begge pas lå markant under plan: tærskelpas 33 af 123 planlagte TSS, Z2-cykel 28 af 90. Ugens samlede TSS er 133 af 659 planlagte. Readiness er LOW i dag — prioritér hvile frem for at hente TSS ind.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned og er nu 2,0 kg bag forventet i cuttet. 7-dages fedtsnit på 22,1 % er ligeledes steget 0,6 procentpoint — retningen er den forkerte. Hold proteinfokus ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 ud af 7 dage med protein registreret — godt. Energisnit på 3,0 er lavt; kombineret med LOW readiness er det et restitutionssignal du skal lytte til.</p>",
-  "coachAssessmentTs": "03:16",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 47 af 357 · Fredag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-fase, meso 2/2 — readiness er LOW i dag, og cut er 2,0 kg bag plan; restitution og mad er fokus.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Onsdag og torsdag er gennemført, men begge langt under planen i minutter og TSS: onsdag 86 min / 33 TSS mod planlagte 164 min / 123 TSS, torsdag 74 min / 28 TSS mod 120 min / 90 TSS. Tre pas er misset tidligere i ugen. Readiness er LOW — hold dagens svøm på hylden, og vær frisk til søndagens lange cykeltur.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned — cut er 2,0 kg bag plan. Protein ved hvert måltid er det ene håndtag du selv styrer; hold det.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er logget 6 ud af 7 dage — solidt. Energisnit på 3,0 (7 dage) er lavt; sørg for at spise nok til restitution uden at sabotere cut-raten.</p>",
+  "coachAssessmentTs": "11:30",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "readiness",
+      "level": "critical",
+      "message": "HRV 37,0 ms — 16% under 7-dages snit (44,0 ms). Readiness er LOW. Spring dagens svøm over og prioritér søvn i aften.",
+      "action": {
+        "label": "Aflyse havsvøm",
+        "edit": {
+          "action": "cancel",
+          "entryId": "ae9e2034"
+        }
+      },
+      "source": "ai"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 37,0 ms — 16% under 7d-snit (44,0 ms). Kroppen er presset."
+      "message": "HRV 37,0 ms — 16% under 7d-snit (44,0 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut er 2,0 kg bag plan (forventet 71,3 kg). Faktisk rate 0,17 kg/uge mod mål 0,22 kg/uge — protein ved hvert måltid er det vigtigste greb.",
+      "action": null,
+      "source": "ai"
     }
   ],
   "tsb": 3.4,
@@ -3631,8 +3653,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-23T06:19:25.341493",
-  "coachAssessmentTsFull": "2026-10-23T01:16:35",
+  "credentialsCheckedTs": "2026-10-23T09:30:36.221378",
+  "coachAssessmentTsFull": "2026-10-23T09:30:36",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
@@ -10714,52 +10736,52 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-23T01:16:35Z",
-    "inputsHash": "1f83881e304f223c5dd5c6827499bc6a023d2f04",
+    "generatedAt": "2026-10-23T09:30:36Z",
+    "inputsHash": "021b5e4977c07d83fc768f43faabc99710058ec1",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spring havsvømningen over i dag — lad kroppen hvile helt til i morgens styrke og cykel.",
-      "why": "HRV er 34,0 ms, 25% under dit 7-dages snit på 45,2 ms. Passet er i forvejen valgfrit hvis vandet er uroligt."
+      "action": "Spring havsvømmet over i dag — vandet kan vente. Spis et proteinrigt måltid til middag og læg dig ned en time.",
+      "why": "HRV er 37,0 ms — 16% under dit 7-dages snit. Kroppen er presset; yderligere stimulus giver ikke adaptation i dag."
     },
     "training": {
-      "text": "Onsdag og torsdag er gennemført, men begge pas lå markant under plan: tærskelpas 33 af 123 planlagte TSS, Z2-cykel 28 af 90. Ugens samlede TSS er 133 af 659 planlagte. Readiness er LOW i dag — prioritér hvile frem for at hente TSS ind.",
+      "text": "Onsdag og torsdag er gennemført, men begge langt under planen i minutter og TSS: onsdag 86 min / 33 TSS mod planlagte 164 min / 123 TSS, torsdag 74 min / 28 TSS mod 120 min / 90 TSS. Tre pas er misset tidligere i ugen. Readiness er LOW — hold dagens svøm på hylden, og vær frisk til søndagens lange cykeltur.",
       "refs": [
+        86.0,
         33.0,
+        164.0,
         123.0,
+        74.0,
         28.0,
-        90.0,
-        133.0,
-        659.0
+        120.0,
+        90.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned og er nu 2,0 kg bag forventet i cuttet. 7-dages fedtsnit på 22,1 % er ligeledes steget 0,6 procentpoint — retningen er den forkerte. Hold proteinfokus ved hvert måltid.",
+      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned — cut er 2,0 kg bag plan. Protein ved hvert måltid er det ene håndtag du selv styrer; hold det.",
       "refs": [
         0.6,
-        2.0,
-        22.1,
-        0.6
+        2.0
       ]
     },
     "habits": {
-      "text": "6 ud af 7 dage med protein registreret — godt. Energisnit på 3,0 er lavt; kombineret med LOW readiness er det et restitutionssignal du skal lytte til.",
+      "text": "Protein er logget 6 ud af 7 dage — solidt. Energisnit på 3,0 (7 dage) er lavt; sørg for at spise nok til restitution uden at sabotere cut-raten.",
       "refs": [
         6.0,
         7.0,
         3.0
       ]
     },
-    "bigPicture": "Uge 43, BASE-blok, meso 2/2 — kroppen er presset efter to vandredage og to cykelture; hvil i dag, så lørdag og søndag kan leveres.",
+    "bigPicture": "Uge 43, BASE-fase, meso 2/2 — readiness er LOW i dag, og cut er 2,0 kg bag plan; restitution og mad er fokus.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "readiness",
         "level": "act",
-        "message": "HRV 34,0 ms er 25% under 7-dages snit (45,2 ms). Dagens svømpas bør droppes — hvil er det rigtige valg.",
+        "message": "HRV 37,0 ms — 16% under 7-dages snit (44,0 ms). Readiness er LOW. Spring dagens svøm over og prioritér søvn i aften.",
         "action": {
-          "label": "Aflys havsvøm",
+          "label": "Aflyse havsvøm",
           "edit": {
             "action": "cancel",
             "entryId": "ae9e2034"
@@ -10770,14 +10792,14 @@
       {
         "type": "hrv",
         "level": "warn",
-        "message": "HRV 34,0 ms — 25% under 7d-snit (45,2 ms). Kroppen er presset.",
+        "message": "HRV 37,0 ms — 16% under 7d-snit (44,0 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut-status er 'bagud': 7-dages vægtsnittet er 2,0 kg over forventet. Retningen den seneste måned er op, ikke ned.",
+        "message": "Cut er 2,0 kg bag plan (forventet 71,3 kg). Faktisk rate 0,17 kg/uge mod mål 0,22 kg/uge — protein ved hvert måltid er det vigtigste greb.",
         "action": null,
         "source": "ai"
       }
@@ -11350,7 +11372,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-23T06:19:25Z"
+    "generatedAt": "2026-10-23T09:30:17Z"
   },
   "proposals": [],
   "ftp": {
