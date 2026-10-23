@@ -1,22 +1,22 @@
 {
   "meta": {
-    "updated": "2026-10-23 00:37",
+    "updated": "2026-10-23 03:16",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
-    "dayName": "Torsdag",
-    "date": "22. okt",
+    "dayName": "Fredag",
+    "date": "23. okt",
     "rhrField": "restingHR",
     "nextRace": {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "daysTo": 136,
+      "daysTo": 135,
       "priority": "C"
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "phase": "TRANSITION",
-    "programDay": 46,
+    "programDay": 47,
     "programDays": 357,
     "isoWeek": 43
   },
@@ -24,7 +24,7 @@
     "weight": {
       "value": "73,2",
       "unit": "kg",
-      "sub": "forventet 71,3 · bagud 1,9",
+      "sub": "forventet 71,3 · bagud 2,0",
       "color": "#E67E22"
     },
     "fat": {
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "41,5",
+      "value": "41,2",
       "unit": "",
       "sub": "Uge 43-mål 56 · BASE",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "2,3",
+      "value": "3,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -58,13 +58,13 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "48,3",
+      "value": "45,2",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "42",
+      "value": "43",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
@@ -102,7 +102,7 @@
     "protein": {
       "value": "6",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 6,5",
+      "sub": "3/3-dage · 4 uger 6,2",
       "color": "#27AE60"
     }
   },
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "Torsdag — uge 43. {HL} Godt: 4 AF-dage i 4 gennemførte dage — på rette spor. 2 mere og ugens mål er i hus. Fokus: 133 af 659 TSS er i hus — 4 sessioner tilbage, heriblandt Havsvøm 30-40 min Port de Sóller (valgfri), Styrke B · Mallorca-kit. 3 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 7,6 timer er solid",
+  "coachSpeech": "Uge 43, BASE-blok, meso 2/2 — kroppen er presset efter to vandredage og to cykelture; hvil i dag, så lørdag og søndag kan leveres. {HL} Onsdag og torsdag er gennemført, men begge pas lå markant under plan: tærskelpas 33 af 123 planlagte TSS, Z2-cykel 28 af 90. Ugens samlede TSS er 133 af 659 planlagte.",
+  "coachHighlight": "Spring havsvømningen over i dag — lad kroppen hvile helt til i morgens styrke og cykel.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
-      "discipline": "bike",
-      "title": "Cykel Z2 120 min Mallorca",
+      "discipline": "swim",
+      "title": "Havsvøm 30-40 min Port de Sóller (valgfri)",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": true
+      "completed": false
     }
   ],
   "week_sessions": [
@@ -195,7 +195,6 @@
       "planned_tss": 90,
       "planned_mins": 120,
       "planned_distance_m": null,
-      "today": true,
       "completion": "partial",
       "completion_pct": 31,
       "actual_tss": 28,
@@ -210,7 +209,8 @@
       "done": false,
       "planned_tss": 29,
       "planned_mins": 35,
-      "planned_distance_m": null
+      "planned_distance_m": null,
+      "today": true
     },
     {
       "day": "Lør",
@@ -247,14 +247,9 @@
     48.7,
     44.8,
     40.0,
-    41.5
+    41.2
   ],
   "weightHistory": [
-    {
-      "date": "2026-07-25",
-      "v": 72.8,
-      "real": true
-    },
     {
       "date": "2026-07-26",
       "v": 72.4,
@@ -595,14 +590,10 @@
     null,
     null,
     null,
+    null,
     null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-07-25",
-      "v": 65.0,
-      "real": true
-    },
     {
       "date": "2026-07-26",
       "v": 46.0,
@@ -1047,14 +1038,10 @@
       "date": "2026-10-22",
       "v": 34.0,
       "real": true
-    }
+    },
+    null
   ],
   "sleepHistory": [
-    {
-      "date": "2026-07-25",
-      "v": 6.8,
-      "real": true
-    },
     {
       "date": "2026-07-26",
       "v": 8.6,
@@ -1499,14 +1486,10 @@
       "date": "2026-10-22",
       "v": 8.2,
       "real": true
-    }
+    },
+    null
   ],
   "tsbHistory": [
-    {
-      "date": "2026-07-25",
-      "v": -11.8,
-      "real": true
-    },
     {
       "date": "2026-07-26",
       "v": -9.6,
@@ -1951,6 +1934,11 @@
       "date": "2026-10-22",
       "v": 2.3,
       "real": true
+    },
+    {
+      "date": "2026-10-23",
+      "v": 3.4,
+      "real": true
     }
   ],
   "af_log": {
@@ -2323,7 +2311,6 @@
           "planned_tss": 90,
           "planned_mins": 120,
           "planned_distance_m": null,
-          "today": true,
           "completion": "partial",
           "completion_pct": 31,
           "actual_tss": 28,
@@ -2338,7 +2325,8 @@
           "done": false,
           "planned_tss": 29,
           "planned_mins": 35,
-          "planned_distance_m": null
+          "planned_distance_m": null,
+          "today": true
         },
         {
           "day": "Lør",
@@ -2972,7 +2960,7 @@
       "iso": 43,
       "monday": "2026-10-19",
       "done": 4,
-      "total": 4,
+      "total": 5,
       "label": "Uge 43"
     }
   ],
@@ -2983,11 +2971,6 @@
     "actual_total": 348.0
   },
   "fatHistory": [
-    {
-      "date": "2026-07-25",
-      "v": 21.5,
-      "real": true
-    },
     {
       "date": "2026-07-26",
       "v": 21.6,
@@ -3328,19 +3311,42 @@
     null,
     null,
     null,
+    null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 46 af 357 · Torsdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE meso 2/2: dagens Z2-cykel er gennemført — readiness er LOW, og kroppen skal have ro resten af dagen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens Z2-cykel er kørt: 74 min og 28 TSS mod planens 120 min. Ugen har 1 gennemført pas og 3 missede (styrke A, løb Z2, valgfri cykel Z2). CTL er 41,5 mod mål på 56,0 — det er forventeligt i BASE med Mallorca-vandringer som ekstra load. TSB er 2,3, altså over gulvet — men readiness er LOW, så hold resten af dagen let.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned og fedt 0,6 procentpoint — begge over tærsklen. Du er 2,0 kg bagud på cut-planen. Protein ved hvert måltid er det eneste kost-håndtag du skal trykke på nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen dage med 3+ genstande i ugen — godt. Søvn-snittet de seneste 7 dage er 7,6 timer, men HRV viser kroppen ikke er restitueret nok; prioritér 8 timer i nat.</p>",
-  "coachAssessmentTs": "17:30",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 47 af 357 · Fredag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, BASE-blok, meso 2/2 — kroppen er presset efter to vandredage og to cykelture; hvil i dag, så lørdag og søndag kan leveres.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Onsdag og torsdag er gennemført, men begge pas lå markant under plan: tærskelpas 33 af 123 planlagte TSS, Z2-cykel 28 af 90. Ugens samlede TSS er 133 af 659 planlagte. Readiness er LOW i dag — prioritér hvile frem for at hente TSS ind.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned og er nu 2,0 kg bag forventet i cuttet. 7-dages fedtsnit på 22,1 % er ligeledes steget 0,6 procentpoint — retningen er den forkerte. Hold proteinfokus ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 ud af 7 dage med protein registreret — godt. Energisnit på 3,0 er lavt; kombineret med LOW readiness er det et restitutionssignal du skal lytte til.</p>",
+  "coachAssessmentTs": "03:16",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "readiness",
+      "level": "critical",
+      "message": "HRV 34,0 ms er 25% under 7-dages snit (45,2 ms). Dagens svømpas bør droppes — hvil er det rigtige valg.",
+      "action": {
+        "label": "Aflys havsvøm",
+        "edit": {
+          "action": "cancel",
+          "entryId": "ae9e2034"
+        }
+      },
+      "source": "ai"
+    },
+    {
       "type": "hrv",
       "level": "warn",
-      "message": "HRV 34,0 ms — 30% under 7d-snit (48,3 ms). Kroppen er presset."
+      "message": "HRV 34,0 ms — 25% under 7d-snit (45,2 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "cut",
+      "level": "warn",
+      "message": "Cut-status er 'bagud': 7-dages vægtsnittet er 2,0 kg over forventet. Retningen den seneste måned er op, ikke ned.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": 2.3,
+  "tsb": 3.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3387,17 +3393,16 @@
   ],
   "coachAssessmentLastActId": "i200322319",
   "weekFocusWeek": 7,
-  "coachAssessmentPlanAtGen": "Cykel Z2 120 min Mallorca",
+  "coachAssessmentPlanAtGen": "Havsvøm 30-40 min Port de Sóller (valgfri)",
   "weightGoal": 68,
   "bodyFatGoal": 16,
   "weightMovingAvg7": [
     null,
     null,
-    72.5,
+    72.27,
+    72.32,
     72.4,
-    72.42,
-    72.47,
-    72.39,
+    72.32,
     72.36,
     72.35,
     72.45,
@@ -3480,16 +3485,16 @@
     74.12,
     73.62,
     73.23,
+    null,
     null
   ],
   "fatMovingAvg7": [
     null,
     null,
-    21.4,
-    21.52,
-    21.62,
-    21.68,
-    21.69,
+    21.53,
+    21.65,
+    21.72,
+    21.72,
     21.56,
     21.55,
     21.67,
@@ -3572,6 +3577,7 @@
     22.08,
     22.1,
     22.07,
+    null,
     null
   ],
   "ctlPlan": [
@@ -3639,8 +3645,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-22T22:37:37.017162",
-  "coachAssessmentTsFull": "2026-10-22T15:30:34",
+  "credentialsCheckedTs": "2026-10-23T01:16:35.760581",
+  "coachAssessmentTsFull": "2026-10-23T01:16:35",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
@@ -3739,7 +3745,7 @@
     {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "days": 136,
+      "days": 135,
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
@@ -3748,7 +3754,7 @@
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
       "date": "2027-06-06",
-      "days": 227,
+      "days": 226,
       "priority": "B",
       "distance": "130km / 4500hm",
       "registered": true,
@@ -3757,7 +3763,7 @@
     {
       "name": "Tour des Stations Ultrafondo",
       "date": "2027-08-28",
-      "days": 310,
+      "days": 309,
       "priority": "A",
       "distance": "242km / 8848hm",
       "registered": false,
@@ -4061,11 +4067,6 @@
     }
   },
   "rhrHistory": [
-    {
-      "date": "2026-07-25",
-      "v": 44,
-      "real": true
-    },
     {
       "date": "2026-07-26",
       "v": 44,
@@ -4510,6 +4511,11 @@
       "date": "2026-10-22",
       "v": 44,
       "real": true
+    },
+    {
+      "date": "2026-10-23",
+      "v": 46,
+      "real": true
     }
   ],
   "blockType": "BASE",
@@ -4574,13 +4580,6 @@
     "strengthPerWeek": 2
   },
   "checkinLog": [
-    {
-      "date": "2026-09-25",
-      "alkohol": 1,
-      "protein": 2,
-      "energi": 3,
-      "sult": null
-    },
     {
       "date": "2026-09-26",
       "alkohol": 1,
@@ -4769,11 +4768,17 @@
       "protein": 2,
       "energi": 3,
       "sult": null
+    },
+    {
+      "date": "2026-10-23",
+      "alkohol": null,
+      "protein": null,
+      "energi": null,
+      "sult": null
     }
   ],
   "energy7": 3.0,
   "af_kind": {
-    "2026-09-25": "faa",
     "2026-09-26": "faa",
     "2026-09-28": "faa",
     "2026-09-29": "faa",
@@ -4787,7 +4792,7 @@
     "2026-10-10": "faa"
   },
   "planTab": {
-    "today": "2026-10-22",
+    "today": "2026-10-23",
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "currentWeek": 7,
@@ -7816,7 +7821,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": true
+            "isToday": false
           },
           {
             "date": "2026-10-23",
@@ -7845,7 +7850,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": false
+            "isToday": true
           },
           {
             "date": "2026-10-24",
@@ -10237,7 +10242,7 @@
           "week": 7,
           "programId": "tds-2027",
           "start": "2026-10-19",
-          "ctl": 41.5
+          "ctl": 41.2
         }
       ],
       "projection": [
@@ -10727,64 +10732,70 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-22T15:30:34Z",
-    "inputsHash": "0d721c2ca2442404ffefee3304b37040c357c52f",
+    "generatedAt": "2026-10-23T01:16:35Z",
+    "inputsHash": "1f83881e304f223c5dd5c6827499bc6a023d2f04",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Sov 8 timer i nat og drop alt ekstra — ingen uplanlagt aktivitet i eftermiddag eller aften.",
-      "why": "HRV er 34,0 ms, 30 % under dit 7-dages snit på 48,3 ms. Kroppen er presset og skal restituere til søndagens lange tur."
+      "action": "Spring havsvømningen over i dag — lad kroppen hvile helt til i morgens styrke og cykel.",
+      "why": "HRV er 34,0 ms, 25% under dit 7-dages snit på 45,2 ms. Passet er i forvejen valgfrit hvis vandet er uroligt."
     },
     "training": {
-      "text": "Dagens Z2-cykel er kørt: 74 min og 28 TSS mod planens 120 min. Ugen har 1 gennemført pas og 3 missede (styrke A, løb Z2, valgfri cykel Z2). CTL er 41,5 mod mål på 56,0 — det er forventeligt i BASE med Mallorca-vandringer som ekstra load. TSB er 2,3, altså over gulvet — men readiness er LOW, så hold resten af dagen let.",
+      "text": "Onsdag og torsdag er gennemført, men begge pas lå markant under plan: tærskelpas 33 af 123 planlagte TSS, Z2-cykel 28 af 90. Ugens samlede TSS er 133 af 659 planlagte. Readiness er LOW i dag — prioritér hvile frem for at hente TSS ind.",
       "refs": [
-        74.0,
+        33.0,
+        123.0,
         28.0,
-        120.0,
-        1.0,
-        3.0,
-        41.5,
-        56.0,
-        2.3
+        90.0,
+        133.0,
+        659.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned og fedt 0,6 procentpoint — begge over tærsklen. Du er 2,0 kg bagud på cut-planen. Protein ved hvert måltid er det eneste kost-håndtag du skal trykke på nu.",
+      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned og er nu 2,0 kg bag forventet i cuttet. 7-dages fedtsnit på 22,1 % er ligeledes steget 0,6 procentpoint — retningen er den forkerte. Hold proteinfokus ved hvert måltid.",
       "refs": [
         0.6,
-        0.6,
-        2.0
+        2.0,
+        22.1,
+        0.6
       ]
     },
     "habits": {
-      "text": "Ingen dage med 3+ genstande i ugen — godt. Søvn-snittet de seneste 7 dage er 7,6 timer, men HRV viser kroppen ikke er restitueret nok; prioritér 8 timer i nat.",
+      "text": "6 ud af 7 dage med protein registreret — godt. Energisnit på 3,0 er lavt; kombineret med LOW readiness er det et restitutionssignal du skal lytte til.",
       "refs": [
-        7.6,
-        8.0
+        6.0,
+        7.0,
+        3.0
       ]
     },
-    "bigPicture": "Uge 43, BASE meso 2/2: dagens Z2-cykel er gennemført — readiness er LOW, og kroppen skal have ro resten af dagen.",
+    "bigPicture": "Uge 43, BASE-blok, meso 2/2 — kroppen er presset efter to vandredage og to cykelture; hvil i dag, så lørdag og søndag kan leveres.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "readiness",
         "level": "act",
-        "message": "HRV 34,0 ms er 30 % under 7-dages snit (48,3 ms). Lav readiness på en dag du allerede har trænet — drop al ekstra belastning i dag.",
-        "action": null,
+        "message": "HRV 34,0 ms er 25% under 7-dages snit (45,2 ms). Dagens svømpas bør droppes — hvil er det rigtige valg.",
+        "action": {
+          "label": "Aflys havsvøm",
+          "edit": {
+            "action": "cancel",
+            "entryId": "ae9e2034"
+          }
+        },
         "source": "ai"
       },
       {
         "type": "hrv",
         "level": "warn",
-        "message": "HRV 34,0 ms — 30% under 7d-snit (48,3 ms). Kroppen er presset.",
+        "message": "HRV 34,0 ms — 25% under 7d-snit (45,2 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
       {
         "type": "cut",
         "level": "warn",
-        "message": "Cut-efterslæb på 2,0 kg. Raten de seneste 4 uger er 0,15 kg/uge mod planens 0,22 kg/uge. Protein ved hvert måltid er det primære greb.",
+        "message": "Cut-status er 'bagud': 7-dages vægtsnittet er 2,0 kg over forventet. Retningen den seneste måned er op, ikke ned.",
         "action": null,
         "source": "ai"
       }
@@ -10801,8 +10812,8 @@
     "text": "To hårde pas gennemført, søvn over 7 timer hver nat"
   },
   "strengthLog": {
-    "from": "2026-09-24",
-    "to": "2026-10-22",
+    "from": "2026-09-25",
+    "to": "2026-10-23",
     "sessions": [
       {
         "date": "2026-09-29",
@@ -10843,7 +10854,7 @@
     ]
   },
   "body": {
-    "asOf": "2026-10-22",
+    "asOf": "2026-10-23",
     "glidepath": {
       "phase": "cut",
       "cutWeek": 5,
@@ -10858,11 +10869,11 @@
       "corridorKg": 0.5,
       "avg7": 73.2,
       "avg7Date": "2026-10-17",
-      "delta": 1.9,
+      "delta": 2.0,
       "status": "bagud",
       "note": null,
       "ratePerWeek": -0.22,
-      "actualRate4w": 0.15,
+      "actualRate4w": 0.17,
       "series": [
         {
           "date": "2026-09-21",
@@ -10967,7 +10978,7 @@
     },
     "ffm": {
       "now": 58.1,
-      "change28d": 1.5,
+      "change28d": 1.6,
       "target": 57.1,
       "status": "ok",
       "baseline": 56.7,
@@ -10991,13 +11002,13 @@
       "signals": {
         "rate": {
           "level": null,
-          "value": -0.34,
-          "text": "−0,34 kg/uge (2 uger)"
+          "value": -0.38,
+          "text": "−0,38 kg/uge (2 uger)"
         },
         "ffm": {
           "level": null,
-          "value": 1.5,
-          "text": "+1,5 kg på 4 uger"
+          "value": 1.6,
+          "text": "+1,6 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -11010,10 +11021,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": -3.3,
-            "hrvPct": 8.4
+            "rhr": -2.4,
+            "hrvPct": 5.1
           },
-          "text": "hvilepuls −3 · HRV +8 % (14 dage)"
+          "text": "hvilepuls −2 · HRV +5 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11348,16 +11359,16 @@
     "week": 7,
     "isoWeek": 43,
     "lines": [
-      "Uge 43: TSS 133 af 659 (20 %) · CTL 41,5 (mål 56) · TSB +2,3",
-      "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 1,9 kg mod glidepath (71,3)",
-      "HRV 7d 48 (28d 60) · hvilepuls 42 · søvn 7d 7,6 t",
+      "Uge 43: TSS 133 af 659 (20 %) · CTL 41,2 (mål 56) · TSB +3,4",
+      "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 2,0 kg mod glidepath (71,3)",
+      "HRV 7d 45 (28d 60) · hvilepuls 43 · søvn 7d 7,8 t",
       "AF 6/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-22T22:37:37Z"
+    "generatedAt": "2026-10-23T01:16:16Z"
   },
   "proposals": [],
   "ftp": {
@@ -11429,8 +11440,8 @@
     ]
   },
   "fitnessLive": {
-    "date": "2026-10-22",
-    "ctl": 41.5,
-    "atl": 39.2
+    "date": "2026-10-23",
+    "ctl": 41.2,
+    "atl": 37.8
   }
 }
