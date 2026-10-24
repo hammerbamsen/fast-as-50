@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-24 17:29",
+    "updated": "2026-10-24 18:24",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "40,5",
+      "value": "40,7",
       "unit": "",
       "sub": "Uge 43-mål 56 · BASE",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-0,3",
+      "value": "-1,2",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "170",
+      "value": "178",
       "unit": "TSS",
-      "sub": "170 af 659 planlagt TSS",
+      "sub": "178 af 659 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 8
   },
-  "coachSpeech": "Lørdag — uge 43. {HL} Godt: 6/7 AF-dage — ugens mål er ramt. Fokus: 170 af 659 TSS er i hus — 3 sessioner tilbage, heriblandt Styrke B · Mallorca-kit, Cykel Z2 120 min Mallorca. 4 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Det er ikke om at have tid. Det er om at tage den.\"",
-  "coachHighlight": "Søvn på 8,1 timer er solid",
+  "coachSpeech": "Uge 43, meso 2/2 BASE — Mallorca-lejr afsluttes i dag med styrke + Z2 cykel før hjemrejse til Palma kl. 13. {HL} Uge 43 har 4 missede pas, men de fleste var valgfrie eller erstattet af rigeligt vandring og gang på Mallorca.",
+  "coachHighlight": "Gennemfør Styrke B (45 min, TRX + 2×8 kg KB + måtte) og Cykel Z2 120 min med energiplan — hjem senest 10:45.",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -134,6 +134,14 @@
     {
       "discipline": "hike",
       "title": "Fornalutx Vandring",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "walk",
+      "title": "Palma Gang",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -279,6 +287,17 @@
       "today": true
     },
     {
+      "day": "Lør",
+      "disc": "walk",
+      "label": "Palma Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 8,
+      "actual_mins": 109,
+      "actual_distance_m": 8008.91,
+      "today": true
+    },
+    {
       "day": "Søn",
       "disc": "bike",
       "label": "Cykel Lang 3,5 t + 3x8 Mallorca",
@@ -295,7 +314,7 @@
     48.7,
     44.8,
     40.0,
-    40.5
+    40.7
   ],
   "weightHistory": [
     {
@@ -1989,7 +2008,7 @@
     },
     {
       "date": "2026-10-24",
-      "v": -0.3,
+      "v": -1.2,
       "real": true
     }
   ],
@@ -2430,6 +2449,17 @@
           "actual_tss": 6,
           "actual_mins": 61,
           "actual_distance_m": 4677.07,
+          "today": true
+        },
+        {
+          "day": "Lør",
+          "disc": "walk",
+          "label": "Palma Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 8,
+          "actual_mins": 109,
+          "actual_distance_m": 8008.91,
           "today": true
         },
         {
@@ -3051,10 +3081,11 @@
     }
   ],
   "train_mins": {
+    "walk": 109.0,
     "hike": 395.0,
     "bike": 160.0,
     "planned": 874.0,
-    "actual_total": 555.0
+    "actual_total": 664.0
   },
   "fatHistory": [
     {
@@ -3396,17 +3427,19 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 48 af 357 · Lørdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">BASE uge 43, meso 2/2 — Mallorca-lejr. I dag: styrke + Z2 cykel før hjemrejse kl. 13.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Onsdag og torsdag er gennemført med hhv. 33 og 28 TSS mod planlagt 123 og 90 — ugens TSS er 170 af 659 planlagt (26%). Mallorca-lejren har givet ekstra vandring hver dag, men mange planlagte pas er misset. I dag er vandringen på 61 min allerede i hus; styrke B og Z2-cyklen mangler stadig.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for fedt er steget 0,6 procentpoint den seneste måned — retningen er opad. Cut er bagud: 2,1 kg over plan. Tabet de seneste 4 uger er 0,18 kg/uge mod målet 0,22 kg/uge — spis mere protein ved alle tre måltider, og læg lidt ekstra mad på nu cut-tjekket viser for hurtigt tab.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein registreret 6 ud af 7 dage — godt. Ingen AF-dage med 3+ genstande. Søvn 9,5 timer i nat, snit 8,1 — restitutionen er i orden.</p>",
-  "coachAssessmentTs": "13:52",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 48 af 357 · Lørdag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43, meso 2/2 BASE — Mallorca-lejr afsluttes i dag med styrke + Z2 cykel før hjemrejse til Palma kl. 13.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 43 har 4 missede pas, men de fleste var valgfrie eller erstattet af rigeligt vandring og gang på Mallorca. Dagens to pas (styrke + Z2 cykel) er de sidste planlagte denne uge — i morgen venter Lang 3,5 t + 3×8 som ugens eneste hårde pas.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,6 kg over plan og fedt-snit er steget 0,6 procentpoint den seneste måned — begge retninger er klare. Cut-tjekket viser tabet er for hurtigt: læg mere mad på, protein ved alle 3 måltider.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein registreret 6 af 7 dage — hold det. Søvn er god med 8,1 t i snit. Ingen AF-dage denne uge med 3+ genstande.</p>",
+  "coachAssessmentTs": "18:24",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: Tabet er over 0,4 kg/uge — læg 200-300 kcal på, protein 3/3"
+      "message": "Cut-tjek: Tabet er over 0,4 kg/uge — læg 200-300 kcal på, protein 3/3",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": -0.3,
+  "tsb": -1.2,
   "swimHistory": [
     {
       "week": 1,
@@ -3451,7 +3484,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i200985609",
+  "coachAssessmentLastActId": "i201160474",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Styrke B · Mallorca-kit",
   "weightGoal": 68,
@@ -3705,8 +3738,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-24T15:29:32.566105",
-  "coachAssessmentTsFull": "2026-10-24T11:52:44",
+  "credentialsCheckedTs": "2026-10-24T16:24:22.345931",
+  "coachAssessmentTsFull": "2026-10-24T16:24:22",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 6,
   "event_structure_warnings": [],
@@ -3799,7 +3832,7 @@
     "4": 434,
     "5": 177,
     "6": 92,
-    "7": 170
+    "7": 178
   },
   "racesUpcoming": [
     {
@@ -5069,7 +5102,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 56,
         "tssTarget": 440,
-        "tssActual": 170,
+        "tssActual": 178,
         "purpose": "Base: tærskel 3×12 tir + kvalitet sent i turen søn (120 t imellem). Aerobe prober ons (løb) + tor (cykel).",
         "note": null,
         "quota": {
@@ -8001,6 +8034,24 @@
                 "note": null,
                 "isKey": false,
                 "extra": true
+              },
+              {
+                "id": null,
+                "name": "Palma Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 109,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 109,
+                "actualTss": 8,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10348,7 +10399,7 @@
           "week": 7,
           "programId": "tds-2027",
           "start": "2026-10-19",
-          "ctl": 40.5
+          "ctl": 40.7
         }
       ],
       "projection": [
@@ -10830,46 +10881,38 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-24T11:52:44Z",
-    "inputsHash": "4fc6d734288a3b46c41e73860db4b9c39e6f5398",
+    "generatedAt": "2026-10-24T16:24:22Z",
+    "inputsHash": "2e3270fa8b2d29f5bac0c51ba19eeaed66cea2a5",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Cykel Z2 120 min (no ERG) — Z2 med energiplan 80-100 g/t. Hjem senest 10:45, Palma kl. 13. Styrke B (TRX + 2×8 kg KB) bagefter eller inden.",
-      "why": "Det er dagens nøglepas og det eneste planlagte, der stadig kan nås inden afrejse."
+      "action": "Gennemfør Styrke B (45 min, TRX + 2×8 kg KB + måtte) og Cykel Z2 120 min med energiplan — hjem senest 10:45.",
+      "why": "To pas i dag, logistikken styrer rækkefølgen: styrke først, cykel afslut inden afgang til Palma."
     },
     "training": {
-      "text": "Onsdag og torsdag er gennemført med hhv. 33 og 28 TSS mod planlagt 123 og 90 — ugens TSS er 170 af 659 planlagt (26%). Mallorca-lejren har givet ekstra vandring hver dag, men mange planlagte pas er misset. I dag er vandringen på 61 min allerede i hus; styrke B og Z2-cyklen mangler stadig.",
+      "text": "Uge 43 har 4 missede pas, men de fleste var valgfrie eller erstattet af rigeligt vandring og gang på Mallorca. Dagens to pas (styrke + Z2 cykel) er de sidste planlagte denne uge — i morgen venter Lang 3,5 t + 3×8 som ugens eneste hårde pas.",
       "refs": [
-        33.0,
-        28.0,
-        123.0,
-        90.0,
-        170.0,
-        659.0,
-        26.0,
-        61.0
+        45.0,
+        120.0,
+        210.0
       ]
     },
     "body": {
-      "text": "7-dages snit for fedt er steget 0,6 procentpoint den seneste måned — retningen er opad. Cut er bagud: 2,1 kg over plan. Tabet de seneste 4 uger er 0,18 kg/uge mod målet 0,22 kg/uge — spis mere protein ved alle tre måltider, og læg lidt ekstra mad på nu cut-tjekket viser for hurtigt tab.",
+      "text": "7-dages snit er 0,6 kg over plan og fedt-snit er steget 0,6 procentpoint den seneste måned — begge retninger er klare. Cut-tjekket viser tabet er for hurtigt: læg mere mad på, protein ved alle 3 måltider.",
       "refs": [
         0.6,
-        2.1,
-        0.18,
-        0.22
+        0.6
       ]
     },
     "habits": {
-      "text": "Protein registreret 6 ud af 7 dage — godt. Ingen AF-dage med 3+ genstande. Søvn 9,5 timer i nat, snit 8,1 — restitutionen er i orden.",
+      "text": "Protein registreret 6 af 7 dage — hold det. Søvn er god med 8,1 t i snit. Ingen AF-dage denne uge med 3+ genstande.",
       "refs": [
         6.0,
         7.0,
-        9.5,
         8.1
       ]
     },
-    "bigPicture": "BASE uge 43, meso 2/2 — Mallorca-lejr. I dag: styrke + Z2 cykel før hjemrejse kl. 13.",
+    "bigPicture": "Uge 43, meso 2/2 BASE — Mallorca-lejr afsluttes i dag med styrke + Z2 cykel før hjemrejse til Palma kl. 13.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11433,14 +11476,14 @@
     }
   },
   "weekTss": {
-    "actual": 170,
+    "actual": 178,
     "planned": 659
   },
   "martinMail": {
     "week": 7,
     "isoWeek": 43,
     "lines": [
-      "Uge 43: TSS 170 af 659 (26 %) · CTL 40,5 (mål 56) · TSB −0,3",
+      "Uge 43: TSS 178 af 659 (27 %) · CTL 40,7 (mål 56) · TSB −1,2",
       "Vægt 7d 73,2 kg · fedt 14d 22,0 % · bagud 2,0 kg mod glidepath (71,2)",
       "HRV 7d 42 (28d 60) · hvilepuls 43 · søvn 7d 8,1 t",
       "AF 7/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11449,7 +11492,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-24T15:29:32Z"
+    "generatedAt": "2026-10-24T16:24:05Z"
   },
   "proposals": [],
   "ftp": {
@@ -11522,7 +11565,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-24",
-    "ctl": 40.5,
-    "atl": 40.8
+    "ctl": 40.7,
+    "atl": 41.9
   }
 }
