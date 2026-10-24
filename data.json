@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-24 03:49",
+    "updated": "2026-10-24 08:55",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -46,9 +46,9 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,9",
+      "value": "9,5",
       "unit": "t",
-      "sub": "Snit 7d 7,9t · mål 7t",
+      "sub": "Snit 7d 8,1t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,13 +58,13 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "41,8",
+      "value": "42,3",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "44",
+      "value": "43",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "Uge 43, BASE/TRANSITION: Mallorca-ugen byder på let lørdag og hårdt langpas søndag — readiness er LOW, så spar kræfterne nu. {HL} Onsdag og torsdag er i hus med 86 og 74 min cykel. 4 planlagte pas er misset denne uge (styrke, løb, valgfri cykel, valgfri svøm) — de var valgfrie eller erstattet af vandring; jag dem ikke.",
-  "coachHighlight": "Gennemfør Styrke B · Mallorca-kit (45 min) + Cykel Z2 120 min Mallorca — hold Z2 strengt og energiplan 80-100 g/t. Hjem senest 10:45.",
+  "coachSpeech": "Lørdag — uge 43. {HL} Fokus: 164 af 659 TSS er i hus — 3 sessioner tilbage, heriblandt Styrke B · Mallorca-kit, Cykel Z2 120 min Mallorca. 4 sessioner er misset — vinduerne er lukket. Vægt på 72,7 kg (målt 17/10) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 6 afsluttede dage — 2 mangler i 1 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Det er ikke om at have tid. Det er om at tage den.\"",
+  "coachHighlight": "Søvn på 8,1 timer er solid",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -1064,7 +1064,11 @@
       "v": 37.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-24",
+      "v": 45.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1512,7 +1516,11 @@
       "v": 8.9,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-24",
+      "v": 9.5,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3361,25 +3369,9 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 37,0 ms — 11% under 7d-snit (41,8 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
-    },
-    {
       "type": "cut",
       "level": "warn",
-      "message": "Cut-tjek: Tabet er over 0,4 kg/uge — læg 200-300 kcal på, protein 3/3",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "readiness",
-      "level": "warn",
-      "message": "HRV 37,0 ms — 11% under 7-dages snit (41,8 ms). Hold begge pas lette i dag og undgå at skubbe intensiteten op.",
-      "action": null,
-      "source": "ai"
+      "message": "Cut-tjek: Tabet er over 0,4 kg/uge — læg 200-300 kcal på, protein 3/3"
     }
   ],
   "tsb": -2.4,
@@ -3681,7 +3673,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-24T01:49:41.048089",
+  "credentialsCheckedTs": "2026-10-24T06:55:11.056063",
   "coachAssessmentTsFull": "2026-10-24T01:49:41",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 4,
@@ -4550,7 +4542,7 @@
     },
     {
       "date": "2026-10-24",
-      "v": 47,
+      "v": 46,
       "real": true
     }
   ],
@@ -6026,7 +6018,7 @@
           {
             "level": "WARN",
             "rule": "race_tsb",
-            "text": "TSB 1.3 på race-dag (Santini Stelvio Gran Fondo (lang rute)) — mål +5 til +15",
+            "text": "TSB 1.4 på race-dag (Santini Stelvio Gran Fondo (lang rute)) — mål +5 til +15",
             "historic": false
           }
         ],
@@ -10318,208 +10310,204 @@
       ],
       "projection": [
         {
-          "d": "2026-10-24",
-          "ctl": 40.4
-        },
-        {
           "d": "2026-10-25",
-          "ctl": 41.0
-        },
-        {
-          "d": "2026-10-26",
-          "ctl": 40.0
-        },
-        {
-          "d": "2026-10-27",
-          "ctl": 40.1
-        },
-        {
-          "d": "2026-10-28",
-          "ctl": 40.2
-        },
-        {
-          "d": "2026-10-29",
-          "ctl": 40.2
-        },
-        {
-          "d": "2026-10-30",
-          "ctl": 40.3
-        },
-        {
-          "d": "2026-10-31",
-          "ctl": 40.4
-        },
-        {
-          "d": "2026-11-01",
-          "ctl": 40.5
-        },
-        {
-          "d": "2026-11-02",
-          "ctl": 41.0
-        },
-        {
-          "d": "2026-11-03",
           "ctl": 41.5
         },
         {
+          "d": "2026-10-26",
+          "ctl": 40.5
+        },
+        {
+          "d": "2026-10-27",
+          "ctl": 40.6
+        },
+        {
+          "d": "2026-10-28",
+          "ctl": 40.7
+        },
+        {
+          "d": "2026-10-29",
+          "ctl": 40.7
+        },
+        {
+          "d": "2026-10-30",
+          "ctl": 40.8
+        },
+        {
+          "d": "2026-10-31",
+          "ctl": 40.8
+        },
+        {
+          "d": "2026-11-01",
+          "ctl": 40.9
+        },
+        {
+          "d": "2026-11-02",
+          "ctl": 41.4
+        },
+        {
+          "d": "2026-11-03",
+          "ctl": 41.9
+        },
+        {
           "d": "2026-11-04",
-          "ctl": 42.0
+          "ctl": 42.4
         },
         {
           "d": "2026-11-05",
-          "ctl": 42.5
+          "ctl": 42.9
         },
         {
           "d": "2026-11-06",
-          "ctl": 43.0
+          "ctl": 43.4
         },
         {
           "d": "2026-11-07",
-          "ctl": 43.5
-        },
-        {
-          "d": "2026-11-08",
           "ctl": 43.9
         },
         {
+          "d": "2026-11-08",
+          "ctl": 44.3
+        },
+        {
           "d": "2026-11-09",
-          "ctl": 44.4
+          "ctl": 44.8
         },
         {
           "d": "2026-11-10",
-          "ctl": 45.0
+          "ctl": 45.3
         },
         {
           "d": "2026-11-11",
-          "ctl": 45.4
+          "ctl": 45.8
         },
         {
           "d": "2026-11-12",
-          "ctl": 45.9
+          "ctl": 46.3
         },
         {
           "d": "2026-11-13",
-          "ctl": 46.4
+          "ctl": 46.7
         },
         {
           "d": "2026-11-14",
-          "ctl": 46.9
+          "ctl": 47.2
         },
         {
           "d": "2026-11-15",
-          "ctl": 47.3
+          "ctl": 47.6
         },
         {
           "d": "2026-11-16",
-          "ctl": 47.9
+          "ctl": 48.2
         },
         {
           "d": "2026-11-17",
-          "ctl": 48.4
+          "ctl": 48.7
         },
         {
           "d": "2026-11-18",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-11-19",
-          "ctl": 49.4
-        },
-        {
-          "d": "2026-11-20",
-          "ctl": 49.9
-        },
-        {
-          "d": "2026-11-21",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-11-22",
-          "ctl": 50.8
-        },
-        {
-          "d": "2026-11-23",
-          "ctl": 50.5
-        },
-        {
-          "d": "2026-11-24",
-          "ctl": 50.3
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 50.0
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 49.7
-        },
-        {
-          "d": "2026-11-27",
-          "ctl": 49.4
-        },
-        {
-          "d": "2026-11-28",
           "ctl": 49.2
         },
         {
-          "d": "2026-11-29",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-11-30",
-          "ctl": 49.3
-        },
-        {
-          "d": "2026-12-01",
+          "d": "2026-11-19",
           "ctl": 49.7
         },
         {
-          "d": "2026-12-02",
-          "ctl": 50.1
+          "d": "2026-11-20",
+          "ctl": 50.2
         },
         {
-          "d": "2026-12-03",
-          "ctl": 50.5
+          "d": "2026-11-21",
+          "ctl": 50.6
         },
         {
-          "d": "2026-12-04",
+          "d": "2026-11-22",
+          "ctl": 51.1
+        },
+        {
+          "d": "2026-11-23",
           "ctl": 50.8
         },
         {
+          "d": "2026-11-24",
+          "ctl": 50.5
+        },
+        {
+          "d": "2026-11-25",
+          "ctl": 50.2
+        },
+        {
+          "d": "2026-11-26",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-11-27",
+          "ctl": 49.7
+        },
+        {
+          "d": "2026-11-28",
+          "ctl": 49.4
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 49.2
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 49.6
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 49.9
+        },
+        {
+          "d": "2026-12-02",
+          "ctl": 50.3
+        },
+        {
+          "d": "2026-12-03",
+          "ctl": 50.7
+        },
+        {
+          "d": "2026-12-04",
+          "ctl": 51.0
+        },
+        {
           "d": "2026-12-05",
-          "ctl": 51.2
+          "ctl": 51.4
         },
         {
           "d": "2026-12-06",
-          "ctl": 51.5
+          "ctl": 51.7
         },
         {
           "d": "2026-12-07",
-          "ctl": 51.9
+          "ctl": 52.1
         },
         {
           "d": "2026-12-08",
-          "ctl": 52.3
+          "ctl": 52.5
         },
         {
           "d": "2026-12-09",
-          "ctl": 52.7
+          "ctl": 52.9
         },
         {
           "d": "2026-12-10",
-          "ctl": 53.1
+          "ctl": 53.3
         },
         {
           "d": "2026-12-11",
-          "ctl": 53.5
+          "ctl": 53.6
         },
         {
           "d": "2026-12-12",
-          "ctl": 53.8
+          "ctl": 54.0
         },
         {
           "d": "2026-12-13",
-          "ctl": 54.2
+          "ctl": 54.3
         }
       ],
       "targets": [
@@ -11086,9 +11074,9 @@
           "level": null,
           "value": {
             "rhr": -1.1,
-            "hrvPct": -5.8
+            "hrvPct": -7.4
           },
-          "text": "hvilepuls −1 · HRV −6 % (14 dage)"
+          "text": "hvilepuls −1 · HRV −7 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11425,14 +11413,14 @@
     "lines": [
       "Uge 43: TSS 164 af 659 (25 %) · CTL 41,0 (mål 56) · TSB −2,4",
       "Vægt 7d 73,2 kg · fedt 14d 22,0 % · bagud 2,0 kg mod glidepath (71,2)",
-      "HRV 7d 42 (28d 60) · hvilepuls 44 · søvn 7d 7,9 t",
+      "HRV 7d 42 (28d 60) · hvilepuls 43 · søvn 7d 8,1 t",
       "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: warn — Tabet er over 0,4 kg/uge — læg 200-300 kcal på, protein 3/3",
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-24T01:49:18Z"
+    "generatedAt": "2026-10-24T06:55:11Z"
   },
   "proposals": [],
   "ftp": {
