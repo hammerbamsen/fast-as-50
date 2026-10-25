@@ -176,3 +176,13 @@
 - Cut-tjek: ok — På plan — fortsæt
 - Næste uge (43, BASE): TSS-mål 440 · hårde/lange dage: tir 20/10 Cykel Z2 90 min Mallorca 90 min, ons 21/10 Cykel Tærskel 3x12 Puig Major 164 min, tor 22/10 Cykel Z2 120 min Mallorca 120 min, lør 24/10 Cykel Z2 120 min Mallorca 120 min, søn 25/10 Cykel Lang 3,5 t + 3x8 Mallorca 210 min
 - Planændringer siden sidst: 1 — se martin_signals.md
+
+### Signaler uge 43
+- Uge 43: TSS 178 af 659 (27 %) · CTL 43,5 (mål 56) · TSB −13,8
+- Vægt 7d 73,2 kg · fedt 14d 22,0 % · bagud 2,0 kg mod glidepath (71,2)
+- HRV 7d 42 (28d 60) · hvilepuls 44 · søvn 7d 8,6 t
+- AF 6/7 · protein 3/3 5/7 · aftensult —/7
+- Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗
+- Cut-tjek: act — Tabet er 0,62 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
+- Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min
+- Planændringer siden sidst: 0 — se martin_signals.md
