@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-25 10:50",
+    "updated": "2026-10-25 12:42",
     "week": 7,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "41,4",
+      "value": "42,2",
       "unit": "",
       "sub": "Uge 43-mål 56 · BASE",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-2,1",
+      "value": "-5,7",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "178",
+      "value": "211",
       "unit": "TSS",
-      "sub": "178 af 659 planlagt TSS",
+      "sub": "211 af 659 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "54,4",
+      "value": "113,9",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#27AE60"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 8
   },
-  "coachSpeech": "Uge 43 slut — Mallorca-uge med mange vandreekstras; uge 44 er ren recovery (RECOVERY-blok) inden næste BASE-fase. {HL} Uge 43: 2 planlagte pas gennemført (86 og 74 min), 6 misset — primært styrke, løb og Z2 på Mallorca. Planen var tung med 659 TSS; faktisk TSS endte på 178.",
-  "coachHighlight": "Gennemfør dagens hårde pas (Cykel Lang 3,5 t + 3x8 Mallorca) og spis et ordentligt restitutionsmåltid med protein bagefter.",
+  "coachSpeech": "string {HL} Mallorca-ugen gav 2 planlagte pas gennemført (tærskel ons + Z2 tor) plus dagens lange 3,5 t med 3×8 — 6 programmerede pas missede, men de fleste var valgfrie eller erstattes af 6 vandringer/gåture som ekstra aktivitet.",
+  "coachHighlight": "Spis til vedligehold i dag — protein ved alle tre måltider, ingen kalorierestriktion",
   "weekFocus": "Beskyt tærskelpas onsdag — alt andet er forberedelse",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -273,11 +273,17 @@
       "day": "Søn",
       "disc": "bike",
       "label": "Cykel Lang 3,5 t + 3x8 Mallorca",
-      "done": false,
+      "done": true,
       "planned_tss": 158,
       "planned_mins": 210,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "partial",
+      "completion_pct": 21,
+      "actual_tss": 33,
+      "actual_name": "Fornalutx Cykling på vej",
+      "actual_mins": 189,
+      "actual_distance_m": 59481.55
     }
   ],
   "ctlCurve": [
@@ -287,7 +293,7 @@
     48.7,
     44.8,
     40.0,
-    41.4
+    42.2
   ],
   "weightHistory": [
     {
@@ -1977,7 +1983,7 @@
     },
     {
       "date": "2026-10-25",
-      "v": -2.1,
+      "v": -5.7,
       "real": true
     }
   ],
@@ -2431,11 +2437,17 @@
           "day": "Søn",
           "disc": "bike",
           "label": "Cykel Lang 3,5 t + 3x8 Mallorca",
-          "done": false,
+          "done": true,
           "planned_tss": 158,
           "planned_mins": 210,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "partial",
+          "completion_pct": 21,
+          "actual_tss": 33,
+          "actual_name": "Fornalutx Cykling på vej",
+          "actual_mins": 189,
+          "actual_distance_m": 59481.55
         }
       ],
       "blockType": "BASE",
@@ -2515,7 +2527,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Ren Z2 og søvn — lad benene komme helt ned"
+      "focus": "Lad kroppen absorbere Mallorca — let Z2 og god mad"
     },
     "9": {
       "sessions": [
@@ -3047,11 +3059,11 @@
     }
   ],
   "train_mins": {
+    "bike": 349.0,
     "walk": 109.0,
     "hike": 395.0,
-    "bike": 160.0,
     "planned": 874.0,
-    "actual_total": 664.0
+    "actual_total": 853.0
   },
   "fatHistory": [
     {
@@ -3389,8 +3401,8 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 49 af 357 · Søndag · Uge 43</strong></p><p class=\"coach-sec coach-big\">Uge 43 slut — Mallorca-uge med mange vandreekstras; uge 44 er ren recovery (RECOVERY-blok) inden næste BASE-fase.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 43: 2 planlagte pas gennemført (86 og 74 min), 6 misset — primært styrke, løb og Z2 på Mallorca. Planen var tung med 659 TSS; faktisk TSS endte på 178. Det er en BASE-uge, men Mallorca-vandringerne (6 extras) bidrog med reel belastning. CTL er 41,4 mod et mål på 56,0 — efterslæbet skyldes programmets opbygningsfase, ikke denne uge alene. Ramp rate er 1,4 — langt under grænsen på 5,0, så der er plads til at bygge igen. Næste uge er RECOVERY (uge 44): nul hårde og nul moderate pas, kvote 0/0 — nøglepas er Lang Z2 2 t søndag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 73,2 kg mod planens 71,2 kg — 2,1 kg bagud. Fedtprocent 7-dages snit er 22,1, og retningen er opad med 0,6 procentpoint det seneste vindue — over tærsklen på 0,5. Muskelmasseændringen de seneste 28 dage er plus 1,4 kg, hvilket er positivt. Tabet er 0,62 kg/uge — spis til vedligehold i 3-4 dage og hold protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen alkoholdage denne uge — godt. Protein registreret 5 ud af 5 dage, søvnsnit 8,6 timer. Energiniveau 3,0 i snit — hold det ved at spise nok i recovery-ugen, særligt protein ved alle tre måltider.</p>",
-  "coachAssessmentTs": "10:50",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 49 af 357 · Søndag · Uge 43</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Mallorca-ugen gav 2 planlagte pas gennemført (tærskel ons + Z2 tor) plus dagens lange 3,5 t med 3×8 — 6 programmerede pas missede, men de fleste var valgfrie eller erstattes af 6 vandringer/gåture som ekstra aktivitet. TSS endte på 211 mod planlagt 659, men det afspejler Mallorca-konteksten og ikke et reelt efterslæb. CTL er 42,2 mod mål 56,0 — underskuddet er forventet midt i basis. Ramp på 2,2/uge er under grænsen på 5,0 — ingen bekymring. Næste uge er RECOVERY: kvote 0 hårde, 0 moderate, nøglepas er søndag Lang Z2 2 t.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 73,2 kg mod plan 71,2 kg — 2,1 kg bagud. Fedtsnit 22,1 % er steget 0,6 procentpoint den seneste måned, og vægten er steget 0,6 kg — begge over tærsklerne, retningen er opad. Cut-raten på 0,62 kg/uge er for høj; spis til vedligehold 3-4 dage fremover, protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>0 dage med 3+ genstande — godt. Protein registreret 5 ud af 7 dage; de resterende 2 dage er huller næste uge skal lukkes. Søvnsnit 8,6 t er over målet — intet at ændre der.</p>",
+  "coachAssessmentTs": "12:42",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3403,12 +3415,12 @@
     {
       "type": "spacing",
       "level": "info",
-      "message": "Næste hårde pas (5 x 3 VO2) er planlagt 2026-11-03 — 216 timer efter dagens pas. 72 t-reglen er overholdt.",
+      "message": "Dagens hårde pas (3fab49e6) til næste hårde (1195fab2 den 3/11) giver 216 timers mellemrum — 72 t-reglen er overholdt.",
       "action": null,
       "source": "ai"
     }
   ],
-  "tsb": -2.1,
+  "tsb": -5.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3453,7 +3465,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i201160474",
+  "coachAssessmentLastActId": "i201410878",
   "weekFocusWeek": 7,
   "coachAssessmentPlanAtGen": "Cykel Lang 3,5 t + 3x8 Mallorca",
   "weightGoal": 68,
@@ -3707,8 +3719,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-25T09:51:12.856168",
-  "coachAssessmentTsFull": "2026-10-25T09:51:12",
+  "credentialsCheckedTs": "2026-10-25T11:42:28.886429",
+  "coachAssessmentTsFull": "2026-10-25T11:42:28",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 6,
   "event_structure_warnings": [],
@@ -3801,7 +3813,7 @@
     "4": 434,
     "5": 177,
     "6": 92,
-    "7": 178
+    "7": 211
   },
   "racesUpcoming": [
     {
@@ -5071,7 +5083,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 56,
         "tssTarget": 440,
-        "tssActual": 178,
+        "tssActual": 211,
         "purpose": "Base: tærskel 3×12 tir + kvalitet sent i turen søn (120 t imellem). Aerobe prober ons (løb) + tor (cykel).",
         "note": null,
         "quota": {
@@ -8042,14 +8054,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 189,
+                "actualTss": 33,
                 "note": "Erstatter Kvalitet sent 3x8 (Zwift). Hårdt pas 2/2. Sommertid slutter i nat — solopgang ca. 07:15. Tjek vejret lørdag.",
                 "isKey": true,
                 "optional": false,
                 "start": "08:00",
-                "startFixed": true
+                "startFixed": true,
+                "completion": "partial"
               }
             ],
             "restNote": null,
@@ -10368,205 +10381,205 @@
           "week": 7,
           "programId": "tds-2027",
           "start": "2026-10-19",
-          "ctl": 41.4
+          "ctl": 42.2
         }
       ],
       "projection": [
         {
           "d": "2026-10-26",
-          "ctl": 42.5
+          "ctl": 40.4
         },
         {
           "d": "2026-10-27",
-          "ctl": 42.5
+          "ctl": 40.5
         },
         {
           "d": "2026-10-28",
-          "ctl": 42.5
+          "ctl": 40.6
         },
         {
           "d": "2026-10-29",
-          "ctl": 42.5
+          "ctl": 40.6
         },
         {
           "d": "2026-10-30",
-          "ctl": 42.5
+          "ctl": 40.7
         },
         {
           "d": "2026-10-31",
-          "ctl": 42.6
+          "ctl": 40.7
         },
         {
           "d": "2026-11-01",
-          "ctl": 42.6
+          "ctl": 40.8
         },
         {
           "d": "2026-11-02",
-          "ctl": 43.1
+          "ctl": 41.3
         },
         {
           "d": "2026-11-03",
-          "ctl": 43.5
+          "ctl": 41.8
         },
         {
           "d": "2026-11-04",
-          "ctl": 44.0
+          "ctl": 42.3
         },
         {
           "d": "2026-11-05",
-          "ctl": 44.4
+          "ctl": 42.8
         },
         {
           "d": "2026-11-06",
-          "ctl": 44.9
+          "ctl": 43.3
         },
         {
           "d": "2026-11-07",
-          "ctl": 45.3
+          "ctl": 43.8
         },
         {
           "d": "2026-11-08",
-          "ctl": 45.7
+          "ctl": 44.2
         },
         {
           "d": "2026-11-09",
-          "ctl": 46.2
+          "ctl": 44.7
         },
         {
           "d": "2026-11-10",
-          "ctl": 46.7
+          "ctl": 45.2
         },
         {
           "d": "2026-11-11",
-          "ctl": 47.1
+          "ctl": 45.7
         },
         {
           "d": "2026-11-12",
-          "ctl": 47.6
+          "ctl": 46.2
         },
         {
           "d": "2026-11-13",
-          "ctl": 48.0
+          "ctl": 46.7
         },
         {
           "d": "2026-11-14",
-          "ctl": 48.4
+          "ctl": 47.1
         },
         {
           "d": "2026-11-15",
-          "ctl": 48.8
+          "ctl": 47.6
         },
         {
           "d": "2026-11-16",
-          "ctl": 49.3
+          "ctl": 48.1
         },
         {
           "d": "2026-11-17",
-          "ctl": 49.8
+          "ctl": 48.6
         },
         {
           "d": "2026-11-18",
-          "ctl": 50.3
+          "ctl": 49.1
         },
         {
           "d": "2026-11-19",
-          "ctl": 50.8
+          "ctl": 49.6
         },
         {
           "d": "2026-11-20",
-          "ctl": 51.2
+          "ctl": 50.1
         },
         {
           "d": "2026-11-21",
-          "ctl": 51.7
-        },
-        {
-          "d": "2026-11-22",
-          "ctl": 52.1
-        },
-        {
-          "d": "2026-11-23",
-          "ctl": 51.8
-        },
-        {
-          "d": "2026-11-24",
-          "ctl": 51.5
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 51.2
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 50.9
-        },
-        {
-          "d": "2026-11-27",
           "ctl": 50.6
         },
         {
-          "d": "2026-11-28",
-          "ctl": 50.3
+          "d": "2026-11-22",
+          "ctl": 51.0
         },
         {
-          "d": "2026-11-29",
-          "ctl": 50.0
-        },
-        {
-          "d": "2026-11-30",
-          "ctl": 50.4
-        },
-        {
-          "d": "2026-12-01",
+          "d": "2026-11-23",
           "ctl": 50.8
         },
         {
+          "d": "2026-11-24",
+          "ctl": 50.5
+        },
+        {
+          "d": "2026-11-25",
+          "ctl": 50.2
+        },
+        {
+          "d": "2026-11-26",
+          "ctl": 49.9
+        },
+        {
+          "d": "2026-11-27",
+          "ctl": 49.6
+        },
+        {
+          "d": "2026-11-28",
+          "ctl": 49.4
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 49.5
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 49.9
+        },
+        {
           "d": "2026-12-02",
-          "ctl": 51.1
+          "ctl": 50.3
         },
         {
           "d": "2026-12-03",
-          "ctl": 51.5
+          "ctl": 50.6
         },
         {
           "d": "2026-12-04",
-          "ctl": 51.8
+          "ctl": 51.0
         },
         {
           "d": "2026-12-05",
-          "ctl": 52.1
+          "ctl": 51.3
         },
         {
           "d": "2026-12-06",
-          "ctl": 52.5
+          "ctl": 51.7
         },
         {
           "d": "2026-12-07",
-          "ctl": 52.8
+          "ctl": 52.1
         },
         {
           "d": "2026-12-08",
-          "ctl": 53.2
+          "ctl": 52.5
         },
         {
           "d": "2026-12-09",
-          "ctl": 53.6
+          "ctl": 52.9
         },
         {
           "d": "2026-12-10",
-          "ctl": 53.9
+          "ctl": 53.2
         },
         {
           "d": "2026-12-11",
-          "ctl": 54.3
+          "ctl": 53.6
         },
         {
           "d": "2026-12-12",
-          "ctl": 54.6
+          "ctl": 54.0
         },
         {
           "d": "2026-12-13",
-          "ctl": 55.0
+          "ctl": 54.3
         }
       ],
       "targets": [
@@ -10846,52 +10859,52 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-25T09:51:12Z",
-    "inputsHash": "12e28037d03431a908b1c652c21b874d257746de",
+    "generatedAt": "2026-10-25T11:42:28Z",
+    "inputsHash": "0bc1dfc9cd2fdd3777567ed4c074dfeb349a62a0",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Gennemfør dagens hårde pas (Cykel Lang 3,5 t + 3x8 Mallorca) og spis et ordentligt restitutionsmåltid med protein bagefter.",
-      "why": "Det er ugens eneste hårde pas 2/2 — og næste uge er ren recovery, så kroppens signal i morgen afhænger af hvad du gør i dag."
+      "action": "Spis til vedligehold i dag — protein ved alle tre måltider, ingen kalorierestriktion",
+      "why": "Cut-raten er 0,62 kg/uge mod målet 0,22 kg/uge — kroppen skal bremses ned, ikke drives videre."
     },
     "training": {
-      "text": "Uge 43: 2 planlagte pas gennemført (86 og 74 min), 6 misset — primært styrke, løb og Z2 på Mallorca. Planen var tung med 659 TSS; faktisk TSS endte på 178. Det er en BASE-uge, men Mallorca-vandringerne (6 extras) bidrog med reel belastning. CTL er 41,4 mod et mål på 56,0 — efterslæbet skyldes programmets opbygningsfase, ikke denne uge alene. Ramp rate er 1,4 — langt under grænsen på 5,0, så der er plads til at bygge igen. Næste uge er RECOVERY (uge 44): nul hårde og nul moderate pas, kvote 0/0 — nøglepas er Lang Z2 2 t søndag.",
+      "text": "Mallorca-ugen gav 2 planlagte pas gennemført (tærskel ons + Z2 tor) plus dagens lange 3,5 t med 3×8 — 6 programmerede pas missede, men de fleste var valgfrie eller erstattes af 6 vandringer/gåture som ekstra aktivitet. TSS endte på 211 mod planlagt 659, men det afspejler Mallorca-konteksten og ikke et reelt efterslæb. CTL er 42,2 mod mål 56,0 — underskuddet er forventet midt i basis. Ramp på 2,2/uge er under grænsen på 5,0 — ingen bekymring. Næste uge er RECOVERY: kvote 0 hårde, 0 moderate, nøglepas er søndag Lang Z2 2 t.",
       "refs": [
-        86.0,
-        74.0,
+        2.0,
         6.0,
+        211.0,
         659.0,
-        178.0,
-        41.4,
+        42.2,
         56.0,
-        1.4,
+        2.2,
         5.0,
+        0.0,
         130.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 73,2 kg mod planens 71,2 kg — 2,1 kg bagud. Fedtprocent 7-dages snit er 22,1, og retningen er opad med 0,6 procentpoint det seneste vindue — over tærsklen på 0,5. Muskelmasseændringen de seneste 28 dage er plus 1,4 kg, hvilket er positivt. Tabet er 0,62 kg/uge — spis til vedligehold i 3-4 dage og hold protein ved hvert måltid.",
+      "text": "7-dages snit er 73,2 kg mod plan 71,2 kg — 2,1 kg bagud. Fedtsnit 22,1 % er steget 0,6 procentpoint den seneste måned, og vægten er steget 0,6 kg — begge over tærsklerne, retningen er opad. Cut-raten på 0,62 kg/uge er for høj; spis til vedligehold 3-4 dage fremover, protein ved hvert måltid.",
       "refs": [
         73.2,
         71.2,
         2.1,
         22.1,
         0.6,
-        0.5,
-        1.4,
+        0.6,
         0.62
       ]
     },
     "habits": {
-      "text": "Ingen alkoholdage denne uge — godt. Protein registreret 5 ud af 5 dage, søvnsnit 8,6 timer. Energiniveau 3,0 i snit — hold det ved at spise nok i recovery-ugen, særligt protein ved alle tre måltider.",
+      "text": "0 dage med 3+ genstande — godt. Protein registreret 5 ud af 7 dage; de resterende 2 dage er huller næste uge skal lukkes. Søvnsnit 8,6 t er over målet — intet at ændre der.",
       "refs": [
+        0.0,
         5.0,
-        8.6,
-        3.0
+        7.0,
+        8.6
       ]
     },
-    "bigPicture": "Uge 43 slut — Mallorca-uge med mange vandreekstras; uge 44 er ren recovery (RECOVERY-blok) inden næste BASE-fase.",
-    "weekFocus": "Ren Z2 og søvn — lad benene komme helt ned",
+    "bigPicture": "string",
+    "weekFocus": "Lad kroppen absorbere Mallorca — let Z2 og god mad",
     "weekFocusFor": 8,
     "warnings": [
       {
@@ -10904,28 +10917,21 @@
       {
         "type": "spacing",
         "level": "info",
-        "message": "Næste hårde pas (5 x 3 VO2) er planlagt 2026-11-03 — 216 timer efter dagens pas. 72 t-reglen er overholdt.",
+        "message": "Dagens hårde pas (3fab49e6) til næste hårde (1195fab2 den 3/11) giver 216 timers mellemrum — 72 t-reglen er overholdt.",
         "action": null,
         "source": "ai"
       }
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": [
-      {
-        "errors": [
-          "training.text: tal ikke i konteksten: 504, 111"
-        ],
-        "training.text": "Uge 43: 2 gennemførte pas (86 og 74 min, 33 og 28 TSS faktisk vs. 123 og 90 planlagt) plus 6 ekstra vandringer/gang i alt 504 min og 111 TSS. 6 planlagte pas blev misset — men på Mallorca er det forve"
-      }
-    ],
+    "validationRejected": null,
     "notes": null,
     "stale": false
   },
   "weekFocusNext": {
     "week": 8,
     "programId": "tds-2027",
-    "text": "Ren Z2 og søvn — lad benene komme helt ned"
+    "text": "Lad kroppen absorbere Mallorca — let Z2 og god mad"
   },
   "strengthLog": {
     "from": "2026-09-27",
@@ -11468,14 +11474,14 @@
     }
   },
   "weekTss": {
-    "actual": 178,
+    "actual": 211,
     "planned": 659
   },
   "martinMail": {
     "week": 7,
     "isoWeek": 43,
     "lines": [
-      "Uge 43: TSS 178 af 659 (27 %) · CTL 41,4 (mål 56) · TSB −2,1",
+      "Uge 43: TSS 211 af 659 (32 %) · CTL 42,2 (mål 56) · TSB −5,7",
       "Vægt 7d 73,2 kg · fedt 14d 22,0 % · bagud 2,0 kg mod glidepath (71,2)",
       "HRV 7d 44 (28d 59) · hvilepuls 44 · søvn 7d 8,6 t",
       "AF 6/7 · protein 3/3 5/7 · aftensult —/7",
@@ -11484,7 +11490,7 @@
       "Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-25T09:50:19Z"
+    "generatedAt": "2026-10-25T11:42:02Z"
   },
   "proposals": [],
   "ftp": {
@@ -11557,7 +11563,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-25",
-    "ctl": 41.4,
-    "atl": 43.5
+    "ctl": 42.2,
+    "atl": 47.9
   }
 }
