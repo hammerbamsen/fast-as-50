@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-26 17:35",
+    "updated": "2026-10-26 19:48",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "1",
+      "value": "0",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 4,0 · streak 1",
+      "sub": "af 6 denne uge · snit 4 uger 4,0",
       "color": "#59182A"
     },
     "ftp": {
@@ -107,13 +107,13 @@
     }
   },
   "af": {
-    "weekDone": 1,
+    "weekDone": 0,
     "target": 6,
-    "streak": 1
+    "streak": 0
   },
-  "coachSpeech": "Uge 44 er en ren recovery-uge med let Z2 og én styrke — brug mandagen til at spise op og lade op før tirsdagens aktivering. {HL} Ingen pas i dag — det er en fri mandag i uge 44 (RECOVERY). CTL på 41,9 er 13,1 under målet, men i en recovery-uge er det meningen; jag ikke indhentning.",
-  "coachHighlight": "Spis til vedligehold i dag: protein ved alle 3 måltider, ingen underskud.",
-  "weekFocus": "Spis til vedligehold, hvil dig klar til Z2-ugen",
+  "coachSpeech": "Uge 44, RECOVERY-blok — denne uge handler om at lade op, men cut-kurven løber løbsk og kræver handling på kosten i dag. {HL} Ingen pas i dag — RECOVERY-uge starter, og readiness er lav. Ugen har 7 pas tilbage fra tirsdag til søndag med let Z2-belastning.",
+  "coachHighlight": "Spis til vedligehold i dag — protein ved alle 3 måltider, ingen underskud",
+  "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
       "discipline": "rest",
@@ -2034,7 +2034,7 @@
     "2026-10-23": 0,
     "2026-10-24": 0,
     "2026-10-25": 1,
-    "2026-10-26": 0
+    "2026-10-26": 1
   },
   "all_weeks": {
     "6": {
@@ -2286,7 +2286,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Spis til vedligehold, hvil dig klar til Z2-ugen"
+      "focus": "Spis til vedligehold og lad kroppen lade op"
     },
     "9": {
       "sessions": [
@@ -2898,7 +2898,7 @@
       "week": 8,
       "iso": 44,
       "monday": "2026-10-26",
-      "done": 1,
+      "done": 0,
       "total": 1,
       "label": "Uge 44"
     }
@@ -3239,8 +3239,8 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 50 af 357 · Mandag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44 er en ren recovery-uge med let Z2 og én styrke — brug mandagen til at spise op og lade op før tirsdagens aktivering.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas i dag — det er en fri mandag i uge 44 (RECOVERY). CTL på 41,9 er 13,1 under målet, men i en recovery-uge er det meningen; jag ikke indhentning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er steget 0,6 kg den seneste måned — modsat cut-retningen, og snittet er nu 2,1 kg over planlagt. Det er for hurtigt tab ifølge cut-tjekket: spis op til vedligehold i 3-4 dage så du ikke mister muskelmasse.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 6 af 7 dage — solidt. HRV er 35,0 ms, 18% under 7-dages snittet på 42,7 ms; kroppen er presset — sov dig fuld i nat.</p>",
-  "coachAssessmentTs": "17:35",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 50 af 357 · Mandag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, RECOVERY-blok — denne uge handler om at lade op, men cut-kurven løber løbsk og kræver handling på kosten i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas i dag — RECOVERY-uge starter, og readiness er lav. Ugen har 7 pas tilbage fra tirsdag til søndag med let Z2-belastning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er steget 0,6 kg på en måned — men cut-kurven er 2,1 kg foran planen, og du taber 0,82 kg/uge mod et planlagt 0,22 kg/uge. Spis til vedligehold 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 alkoholdage i træk — det rammer HRV hårdere end spredte dage, og HRV er allerede 18% under 7-dages snit. Hold alkoholfrit resten af ugen.</p>",
+  "coachAssessmentTs": "19:48",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3258,11 +3258,11 @@
       "source": "rule"
     },
     {
-      "type": "readiness",
+      "type": "alcohol_cluster",
       "level": "warn",
-      "message": "HRV 35,0 ms er 18% under 7-dages snittet på 42,7 ms. Hold dagens belastning på nul og prioritér søvn i nat.",
+      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
       "action": null,
-      "source": "ai"
+      "source": "rule"
     }
   ],
   "tsb": -3.1,
@@ -3570,10 +3570,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-26T16:35:52.950161",
-  "coachAssessmentTsFull": "2026-10-26T16:35:52",
+  "credentialsCheckedTs": "2026-10-26T18:49:02.864462",
+  "coachAssessmentTsFull": "2026-10-26T18:49:02",
   "coachAssessmentWeightAtGen": 72.7,
-  "coachAssessmentAfAtGen": 1,
+  "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 22.4,
   "zones": {
@@ -4696,7 +4696,7 @@
     },
     {
       "date": "2026-10-26",
-      "alkohol": 0,
+      "alkohol": 1,
       "protein": 2,
       "energi": 3,
       "sult": null
@@ -4713,7 +4713,8 @@
     "2026-10-05": "faa",
     "2026-10-06": "faa",
     "2026-10-10": "faa",
-    "2026-10-25": "faa"
+    "2026-10-25": "faa",
+    "2026-10-26": "faa"
   },
   "planTab": {
     "today": "2026-10-26",
@@ -10640,40 +10641,38 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-26T16:35:52Z",
-    "inputsHash": "5b3fd9cf0312b89106fd82d9dc2b97390d968793",
+    "generatedAt": "2026-10-26T18:49:02Z",
+    "inputsHash": "8aac64178fcb47ace91a873f6e462f339d561184",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold i dag: protein ved alle 3 måltider, ingen underskud.",
-      "why": "7-dages snittet er 2,1 kg foran planen — tabet er for hurtigt og risikerer muskelmasse."
+      "action": "Spis til vedligehold i dag — protein ved alle 3 måltider, ingen underskud",
+      "why": "Tabet er 0,82 kg/uge mod et mål på 0,22 kg/uge — du er 2,1 kg under planlagt kurve og kroppen mister muskelmasse hvis du fortsætter."
     },
     "training": {
-      "text": "Ingen pas i dag — det er en fri mandag i uge 44 (RECOVERY). CTL på 41,9 er 13,1 under målet, men i en recovery-uge er det meningen; jag ikke indhentning.",
+      "text": "Ingen pas i dag — RECOVERY-uge starter, og readiness er lav. Ugen har 7 pas tilbage fra tirsdag til søndag med let Z2-belastning.",
       "refs": [
-        41.9,
-        55.0,
-        13.1
+        7.0
       ]
     },
     "body": {
-      "text": "7-dages snittet er steget 0,6 kg den seneste måned — modsat cut-retningen, og snittet er nu 2,1 kg over planlagt. Det er for hurtigt tab ifølge cut-tjekket: spis op til vedligehold i 3-4 dage så du ikke mister muskelmasse.",
+      "text": "7-dages snit er steget 0,6 kg på en måned — men cut-kurven er 2,1 kg foran planen, og du taber 0,82 kg/uge mod et planlagt 0,22 kg/uge. Spis til vedligehold 3-4 dage.",
       "refs": [
         0.6,
-        2.1
+        2.1,
+        0.82,
+        0.22
       ]
     },
     "habits": {
-      "text": "Protein dækket 6 af 7 dage — solidt. HRV er 35,0 ms, 18% under 7-dages snittet på 42,7 ms; kroppen er presset — sov dig fuld i nat.",
+      "text": "2 alkoholdage i træk — det rammer HRV hårdere end spredte dage, og HRV er allerede 18% under 7-dages snit. Hold alkoholfrit resten af ugen.",
       "refs": [
-        6.0,
-        35.0,
-        18.0,
-        42.7
+        2.0,
+        18.0
       ]
     },
-    "bigPicture": "Uge 44 er en ren recovery-uge med let Z2 og én styrke — brug mandagen til at spise op og lade op før tirsdagens aktivering.",
-    "weekFocus": "Spis til vedligehold, hvil dig klar til Z2-ugen",
+    "bigPicture": "Uge 44, RECOVERY-blok — denne uge handler om at lade op, men cut-kurven løber løbsk og kræver handling på kosten i dag.",
+    "weekFocus": "Spis til vedligehold og lad kroppen lade op",
     "weekFocusFor": 8,
     "warnings": [
       {
@@ -10691,11 +10690,11 @@
         "source": "rule"
       },
       {
-        "type": "readiness",
+        "type": "alcohol_cluster",
         "level": "warn",
-        "message": "HRV 35,0 ms er 18% under 7-dages snittet på 42,7 ms. Hold dagens belastning på nul og prioritér søvn i nat.",
+        "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
-        "source": "ai"
+        "source": "rule"
       }
     ],
     "error": null,
@@ -10931,12 +10930,12 @@
           "text": "−0,1 kg over 3 uger"
         },
         "alcohol": {
-          "level": null,
+          "level": "warn",
           "value": {
-            "days7": 1,
-            "run": 1
+            "days7": 2,
+            "run": 2
           },
-          "text": "1 drikkedag på 7 dage"
+          "text": "2 drikkedage på 7 dage · 2 i træk"
         }
       }
     }
@@ -11261,13 +11260,13 @@
       "Uge 44: TSS 0 af 317 (0 %) · CTL 41,9 (mål 55) · TSB −3,1",
       "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 2,1 kg mod glidepath (71,2)",
       "HRV 7d 43 (28d 59) · hvilepuls 44 · søvn 7d 8,7 t",
-      "AF 6/7 · protein 3/3 6/7 · aftensult —/7",
+      "AF 5/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: act — Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
       "Næste uge (45, BASE): TSS-mål 440 · hårde/lange dage: tir 3/11 FaF 5 VO2 - 5 x 3 71 min, lør 7/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 8/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-26T16:35:37Z"
+    "generatedAt": "2026-10-26T18:48:46Z"
   },
   "proposals": [],
   "ftp": {
