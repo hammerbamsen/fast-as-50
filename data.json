@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-26 01:34",
+    "updated": "2026-10-26 06:48",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -46,9 +46,9 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,9",
+      "value": "7,9",
       "unit": "t",
-      "sub": "Snit 7d 8,6t · mål 7t",
+      "sub": "Snit 7d 8,7t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "44,0",
+      "value": "42,7",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 8
   },
-  "coachSpeech": "Uge 44, recovery-blok: kroppen skal hvile, men cut-underskuddet på 2,1 kg kræver at maden sidder præcist. {HL} Ingen pas planlagt mandag — recovery-ugen starter roligt. Resten af ugen: 7 lette pas (Z2 cykel, løb, svøm, gang og styrke). CTL er 41,9 mod mål på 55,0 — men i en recovery-blok er det korrekt at holde belastningen lav.",
-  "coachHighlight": "Tjek Stelvio couples-tilmelding og bekræft inden torsdag 29/10 — det er dagens vigtigste administrative opgave.",
+  "coachSpeech": "Ny uge starter — uge 44. Restitutionsuge. {HL} Godt: Ny uge med 8 dages streak i ryggen. Hold den. Alt peger den rigtige vej. Hold ilden ved — ikke sluk den.  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "Søvn på 8,7 timer er solid",
   "weekFocus": "Protein ved hvert måltid og let bevægelse hele ugen",
   "today": [
     {
@@ -977,7 +977,11 @@
       "v": 53.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-26",
+      "v": 35.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1425,7 +1429,11 @@
       "v": 8.9,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-26",
+      "v": 7.9,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3234,11 +3242,14 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 35,0 ms — 18% under 7d-snit (42,7 ms). Kroppen er presset."
+    },
+    {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag"
     }
   ],
   "tsb": -3.1,
@@ -3546,7 +3557,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-26T00:34:22.300286",
+  "credentialsCheckedTs": "2026-10-26T05:48:26.603344",
   "coachAssessmentTsFull": "2026-10-26T00:34:22",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 0,
@@ -4413,7 +4424,11 @@
       "v": 44,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-26",
+      "v": 46,
+      "real": true
+    }
   ],
   "blockType": "RECOVERY",
   "blockTypes": {
@@ -10097,16 +10112,12 @@
       ],
       "projection": [
         {
-          "d": "2026-10-26",
-          "ctl": 41.9
-        },
-        {
           "d": "2026-10-27",
           "ctl": 41.9
         },
         {
           "d": "2026-10-28",
-          "ctl": 41.9
+          "ctl": 42.0
         },
         {
           "d": "2026-10-29",
@@ -10118,7 +10129,7 @@
         },
         {
           "d": "2026-10-31",
-          "ctl": 42.0
+          "ctl": 42.1
         },
         {
           "d": "2026-11-01",
@@ -10174,7 +10185,7 @@
         },
         {
           "d": "2026-11-14",
-          "ctl": 48.0
+          "ctl": 48.1
         },
         {
           "d": "2026-11-15",
@@ -10194,7 +10205,7 @@
         },
         {
           "d": "2026-11-19",
-          "ctl": 50.4
+          "ctl": 50.5
         },
         {
           "d": "2026-11-20",
@@ -10872,10 +10883,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 0.7,
-            "hrvPct": -12.5
+            "rhr": 1.0,
+            "hrvPct": -14.8
           },
-          "text": "hvilepuls +1 · HRV −12 % (14 dage)"
+          "text": "hvilepuls +1 · HRV −15 % (14 dage)"
         },
         "plateau": {
           "level": "info",
@@ -11212,14 +11223,14 @@
     "lines": [
       "Uge 44: TSS 0 af 317 (0 %) · CTL 41,9 (mål 55) · TSB −3,1",
       "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 2,1 kg mod glidepath (71,2)",
-      "HRV 7d 44 (28d 60) · hvilepuls 44 · søvn 7d 8,8 t",
+      "HRV 7d 43 (28d 59) · hvilepuls 44 · søvn 7d 8,7 t",
       "AF 5/7 · protein 3/3 4/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: act — Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
       "Næste uge (45, BASE): TSS-mål 440 · hårde/lange dage: tir 3/11 FaF 5 VO2 - 5 x 3 71 min, lør 7/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 8/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-26T00:34:06Z"
+    "generatedAt": "2026-10-26T05:48:26Z"
   },
   "proposals": [],
   "ftp": {
