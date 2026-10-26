@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-26T00:34:25Z",
+ "generated": "2026-10-26T05:48:28Z",
  "kennet": {
   "programId": "tds-2027",
   "seed": {
@@ -1599,7 +1599,15 @@
     "week": 8,
     "projEndCtl": 42.1,
     "deviation": -12.9,
-    "flags": []
+    "flags": [
+     {
+      "week": 8,
+      "rule": "low_readiness",
+      "level": "WARN",
+      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+      "historic": false
+     }
+    ]
    },
    {
     "week": 9,
@@ -1885,6 +1893,13 @@
     "historic": false
    },
    {
+    "week": 8,
+    "rule": "low_readiness",
+    "level": "WARN",
+    "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+    "historic": false
+   },
+   {
     "week": 39,
     "rule": "race_tsb",
     "level": "WARN",
@@ -1962,7 +1977,7 @@
    "suggestion": null,
    "phase_guard": "Uge 44 er RECOVERY — missede pas her er ofte planlagt reduktion; ingen justering foreslås."
   },
-  "readiness": "HIGH"
+  "readiness": "LOW"
  },
- "inputsHash": "2ad0c5cd738056de"
+ "inputsHash": "cccb6328bb0c8b9c"
 }
