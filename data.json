@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-26 06:48",
+    "updated": "2026-10-26 11:24",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 8
   },
-  "coachSpeech": "Ny uge starter — uge 44. Restitutionsuge. {HL} Godt: Ny uge med 8 dages streak i ryggen. Hold den. Alt peger den rigtige vej. Hold ilden ved — ikke sluk den.  \"Du bliver til det, du gør ofte.\"",
-  "coachHighlight": "Søvn på 8,7 timer er solid",
-  "weekFocus": "Protein ved hvert måltid og let bevægelse hele ugen",
+  "coachSpeech": "Uge 44, recovery-blok: kroppen har brug for ro — men cut-raten er for aggressiv og skal bremses nu. {HL} Ingen pas i dag — det er planlagt hviledagen i en recovery-uge. Ugen har 7 pas tilbage, alle lette. CTL er 41,9 mod mål 55,0, men i en recovery-blok er lavere CTL præcis hvad planen skriver.",
+  "coachHighlight": "Spis til vedligehold i dag: protein ved hvert af de 3 måltider, ingen kalorieunderskud.",
+  "weekFocus": "Spis til vedligehold, protein 3/3, lette pas som planlagt",
   "today": [
     {
       "discipline": "rest",
@@ -2284,7 +2284,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Protein ved hvert måltid og let bevægelse hele ugen"
+      "focus": "Spis til vedligehold, protein 3/3, lette pas som planlagt"
     },
     "9": {
       "sessions": [
@@ -3237,19 +3237,30 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 50 af 357 · Mandag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-blok: kroppen skal hvile, men cut-underskuddet på 2,1 kg kræver at maden sidder præcist.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas planlagt mandag — recovery-ugen starter roligt. Resten af ugen: 7 lette pas (Z2 cykel, løb, svøm, gang og styrke). CTL er 41,9 mod mål på 55,0 — men i en recovery-blok er det korrekt at holde belastningen lav.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snitssnit for vægt er steget 0,6 kg den seneste måned, og fedt er steget 0,6 procentpoint — begge retninger er i den forkerte retning. Du er 2,1 kg bag cutplanen: spis til vedligehold i 3-4 dage og sørg for protein ved hvert eneste måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun 4 ud af 7 registrerede dage — det er for lavt når cut er bagud. Søvn og AF er fint denne uge.</p>",
-  "coachAssessmentTs": "01:34",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 50 af 357 · Mandag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-blok: kroppen har brug for ro — men cut-raten er for aggressiv og skal bremses nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas i dag — det er planlagt hviledagen i en recovery-uge. Ugen har 7 pas tilbage, alle lette. CTL er 41,9 mod mål 55,0, men i en recovery-blok er lavere CTL præcis hvad planen skriver.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er steget 0,6 kg den seneste måned — det er fedt, ikke muskler. Tabet er 0,82 kg/uge, langt over den planlagte rate på 0,22 kg/uge. Spis til vedligehold 3-4 dage: kroppen er ved at spise sig selv.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun 4 af 7 dage — målet er 3 ud af 3 måltider hver dag resten af ugen. Energisnit er 3,0 — lavt og i tråd med at spise for lidt.</p>",
+  "coachAssessmentTs": "11:24",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 35,0 ms — 18% under 7d-snit (42,7 ms). Kroppen er presset."
-    },
-    {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag"
+      "message": "Cut-tjek: Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 35,0 ms — 18% under 7d-snit (42,7 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "readiness",
+      "level": "warn",
+      "message": "HRV 35,0 ms — 18% under 7-dages snit på 42,7 ms. Hold alle pas i dag og i morgen korte og lette.",
+      "action": null,
+      "source": "ai"
     }
   ],
   "tsb": -3.1,
@@ -3557,8 +3568,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-26T05:48:26.603344",
-  "coachAssessmentTsFull": "2026-10-26T00:34:22",
+  "credentialsCheckedTs": "2026-10-26T10:25:12.089684",
+  "coachAssessmentTsFull": "2026-10-26T10:25:12",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -4966,7 +4977,14 @@
         "keySessions": [
           "FaF 1 Z2 - Lang Z2 2 t"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "low_readiness",
+            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+            "historic": false
+          }
+        ],
         "races": [],
         "travel": null,
         "isCurrent": true,
@@ -10619,38 +10637,43 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-26T00:34:22Z",
-    "inputsHash": "83d340c51f1fe1638f91af15f1314724ea7606f4",
+    "generatedAt": "2026-10-26T10:25:12Z",
+    "inputsHash": "95046d64de83929ba9f2c6dffe049fbf57e2d37e",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Tjek Stelvio couples-tilmelding og bekræft inden torsdag 29/10 — det er dagens vigtigste administrative opgave.",
-      "why": "Deadline er 29/10, og en forpasset tilmelding kan ikke rettes bagefter."
+      "action": "Spis til vedligehold i dag: protein ved hvert af de 3 måltider, ingen kalorieunderskud.",
+      "why": "7-dages snittet falder 0,82 kg/uge — over dobbelt den planlagte rate på 0,22 kg/uge. Kroppen mister fedfri masse, og det stopper her."
     },
     "training": {
-      "text": "Ingen pas planlagt mandag — recovery-ugen starter roligt. Resten af ugen: 7 lette pas (Z2 cykel, løb, svøm, gang og styrke). CTL er 41,9 mod mål på 55,0 — men i en recovery-blok er det korrekt at holde belastningen lav.",
+      "text": "Ingen pas i dag — det er planlagt hviledagen i en recovery-uge. Ugen har 7 pas tilbage, alle lette. CTL er 41,9 mod mål 55,0, men i en recovery-blok er lavere CTL præcis hvad planen skriver.",
       "refs": [
         41.9,
-        55.0
-      ]
-    },
-    "body": {
-      "text": "7-dages snitssnit for vægt er steget 0,6 kg den seneste måned, og fedt er steget 0,6 procentpoint — begge retninger er i den forkerte retning. Du er 2,1 kg bag cutplanen: spis til vedligehold i 3-4 dage og sørg for protein ved hvert eneste måltid.",
-      "refs": [
-        0.6,
-        0.6,
-        2.1
-      ]
-    },
-    "habits": {
-      "text": "Protein kun 4 ud af 7 registrerede dage — det er for lavt når cut er bagud. Søvn og AF er fint denne uge.",
-      "refs": [
-        4.0,
+        55.0,
         7.0
       ]
     },
-    "bigPicture": "Uge 44, recovery-blok: kroppen skal hvile, men cut-underskuddet på 2,1 kg kræver at maden sidder præcist.",
-    "weekFocus": "Protein ved hvert måltid og let bevægelse hele ugen",
+    "body": {
+      "text": "7-dages snittet er steget 0,6 kg den seneste måned — det er fedt, ikke muskler. Tabet er 0,82 kg/uge, langt over den planlagte rate på 0,22 kg/uge. Spis til vedligehold 3-4 dage: kroppen er ved at spise sig selv.",
+      "refs": [
+        0.6,
+        0.82,
+        0.22,
+        3.0,
+        4.0
+      ]
+    },
+    "habits": {
+      "text": "Protein kun 4 af 7 dage — målet er 3 ud af 3 måltider hver dag resten af ugen. Energisnit er 3,0 — lavt og i tråd med at spise for lidt.",
+      "refs": [
+        4.0,
+        7.0,
+        3.0,
+        3.0
+      ]
+    },
+    "bigPicture": "Uge 44, recovery-blok: kroppen har brug for ro — men cut-raten er for aggressiv og skal bremses nu.",
+    "weekFocus": "Spis til vedligehold, protein 3/3, lette pas som planlagt",
     "weekFocusFor": 8,
     "warnings": [
       {
@@ -10659,6 +10682,20 @@
         "message": "Cut-tjek: Tabet er 0,82 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
         "action": null,
         "source": "rule"
+      },
+      {
+        "type": "hrv",
+        "level": "warn",
+        "message": "HRV 35,0 ms — 18% under 7d-snit (42,7 ms). Kroppen er presset.",
+        "action": null,
+        "source": "rule"
+      },
+      {
+        "type": "readiness",
+        "level": "warn",
+        "message": "HRV 35,0 ms — 18% under 7-dages snit på 42,7 ms. Hold alle pas i dag og i morgen korte og lette.",
+        "action": null,
+        "source": "ai"
       }
     ],
     "error": null,
@@ -11230,7 +11267,7 @@
       "Næste uge (45, BASE): TSS-mål 440 · hårde/lange dage: tir 3/11 FaF 5 VO2 - 5 x 3 71 min, lør 7/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 8/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-26T05:48:26Z"
+    "generatedAt": "2026-10-26T10:24:54Z"
   },
   "proposals": [],
   "ftp": {
