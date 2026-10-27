@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-27 03:18",
+    "updated": "2026-10-27 08:50",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,21 +34,21 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "38,4",
+      "value": "38,7",
       "unit": "",
       "sub": "Uge 44-mål 55 · RECOVERY",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "9,2",
+      "value": "7,9",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,9",
+      "value": "8,3",
       "unit": "t",
-      "sub": "Snit 7d 8,7t · mål 7t",
+      "sub": "Snit 7d 8,6t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "42,0",
+      "value": "42,6",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "12",
       "unit": "TSS",
-      "sub": "0 af 317 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "12 af 317 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "7,5",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "swimM": {
       "value": "0",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 44, recovery-blok — kroppen er presset (HRV 35,0 ms), og cut-raten er for høj: spis til vedligehold nu. {HL} Dagens plan: 60 min let Z2-cykel i ERG — recovery, ingen opbygning. Ugen er ikke startet endnu (0 pas gennemført). I RECOVERY-blok er lav TSS målet — der er intet efterslæb.",
-  "coachHighlight": "Kør 'FaF 1 Z2 - Aktivering 60' i ERG, 60 min — benene skal føles lette bagefter. Skru op for maden i dag: protein ved hvert måltid.",
+  "coachSpeech": "Uge 44, recovery-uge efter Mallorca — hold benene i gang uden at bygge træthed, og håndtér cut-alarmen. {HL} Dagens plan: 60 min let cykel med ERG (aktivering Z2 — benene skal føles lette bagefter). Recovery-uge: 0 gennemførte planpas, 6 tilbage. CTL er 38,7 mod mål 55,0 — i en recovery-uge er lav TSS det rigtige.",
+  "coachHighlight": "Ryd op i maden i dag: spis til vedligehold — protein ved hvert måltid, ingen underskud. Cut-tabet er for hurtigt.",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
@@ -122,6 +122,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "commute",
+      "title": "Gentofte Cykling",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -133,6 +141,17 @@
       "planned_tss": 45,
       "planned_mins": 60,
       "planned_distance_m": null,
+      "today": true
+    },
+    {
+      "day": "Tir",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
+      "done": true,
+      "extra": true,
+      "actual_tss": 12,
+      "actual_mins": 26,
+      "actual_distance_m": 7477.21,
       "today": true
     },
     {
@@ -198,7 +217,7 @@
     44.8,
     40.0,
     39.2,
-    38.4
+    38.7
   ],
   "weightHistory": [
     {
@@ -526,7 +545,11 @@
     null,
     null,
     null,
-    null
+    {
+      "date": "2026-10-27",
+      "v": 72.0,
+      "real": true
+    }
   ],
   "hrvHistory": [
     {
@@ -974,7 +997,11 @@
       "v": 35.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-27",
+      "v": 46.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1422,7 +1449,11 @@
       "v": 7.9,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-27",
+      "v": 8.3,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1872,7 +1903,7 @@
     },
     {
       "date": "2026-10-27",
-      "v": 9.2,
+      "v": 7.9,
       "real": true
     }
   ],
@@ -2218,6 +2249,17 @@
           "planned_tss": 45,
           "planned_mins": 60,
           "planned_distance_m": null,
+          "today": true
+        },
+        {
+          "day": "Tir",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
+          "done": true,
+          "extra": true,
+          "actual_tss": 12,
+          "actual_mins": 26,
+          "actual_distance_m": 7477.21,
           "today": true
         },
         {
@@ -2894,8 +2936,9 @@
     }
   ],
   "train_mins": {
+    "commute": 26.0,
     "planned": 445.0,
-    "actual_total": 0
+    "actual_total": 26.0
   },
   "fatHistory": [
     {
@@ -3223,23 +3266,20 @@
     null,
     null,
     null,
-    null
+    {
+      "date": "2026-10-27",
+      "v": 22.2,
+      "real": true
+    }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 51 af 357 · Tirsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-blok — kroppen er presset (HRV 35,0 ms), og cut-raten er for høj: spis til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens plan: 60 min let Z2-cykel i ERG — recovery, ingen opbygning. Ugen er ikke startet endnu (0 pas gennemført). I RECOVERY-blok er lav TSS målet — der er intet efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit på vægt stiger 0,6 kg den seneste måned — og cut-raten på 0,98 kg/uge er langt over planen på 0,22 kg/uge. Spis til vedligehold 3-4 dage: protein ved hvert måltid, ingen yderligere restriktion.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 drikkedage i træk (25/10–26/10) rammer HRV hårdere end spredte dage — stop klyngen nu. Protein kun 5 af 7 dage: sørg for protein ved alle dagens måltider.</p>",
-  "coachAssessmentTs": "03:18",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 51 af 357 · Tirsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-uge efter Mallorca — hold benene i gang uden at bygge træthed, og håndtér cut-alarmen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens plan: 60 min let cykel med ERG (aktivering Z2 — benene skal føles lette bagefter). Recovery-uge: 0 gennemførte planpas, 6 tilbage. CTL er 38,7 mod mål 55,0 — i en recovery-uge er lav TSS det rigtige.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er 0,6 procentpoint op i fedt den seneste måned — retningen er forkert. Vægten er 2,2 kg foran cut-planen; tabet går for hurtigt og truer muskelmasse.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 alkoholdage i træk (25/10–26/10) — klynger rammer HRV hårdere end spredte dage. Protein registreret 5 af 7 dage — hold 3/3 i dag.</p>",
+  "coachAssessmentTs": "08:50",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
       "message": "Cut-tjek: Tabet er 0,98 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 35,0 ms — 17% under 7d-snit (42,0 ms). Kroppen er presset.",
       "action": null,
       "source": "rule"
     },
@@ -3251,7 +3291,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 9.2,
+  "tsb": 7.9,
   "swimHistory": [
     {
       "week": 1,
@@ -3302,7 +3342,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i202193646",
   "weekFocusWeek": 8,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Aktivering 60",
   "weightGoal": 68,
@@ -3556,12 +3596,12 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-27T02:18:52.026622",
-  "coachAssessmentTsFull": "2026-10-27T02:18:52",
-  "coachAssessmentWeightAtGen": 72.7,
+  "credentialsCheckedTs": "2026-10-27T07:51:13.997449",
+  "coachAssessmentTsFull": "2026-10-27T07:51:13",
+  "coachAssessmentWeightAtGen": 72.0,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 22.4,
+  "coachAssessmentFatAtGen": 22.2,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 257,
@@ -3650,7 +3690,8 @@
     "4": 434,
     "5": 177,
     "6": 92,
-    "7": 241
+    "7": 241,
+    "8": 12
   },
   "racesUpcoming": [
     {
@@ -4425,7 +4466,7 @@
     },
     {
       "date": "2026-10-27",
-      "v": 48,
+      "v": 46,
       "real": true
     }
   ],
@@ -4952,7 +4993,7 @@
         "mesoWeek": "R",
         "ctlTarget": 55,
         "tssTarget": 260,
-        "tssActual": null,
+        "tssActual": 12,
         "purpose": "Recovery: 2 korte Z2 + 2 t søndag. Stelvio couples-tilmelding senest tor 29/10.",
         "note": "Stelvio couples early-bird deadline 29/10.",
         "quota": {
@@ -5901,7 +5942,7 @@
           {
             "level": "WARN",
             "rule": "race_tsb",
-            "text": "TSB 1.4 på race-dag (Santini Stelvio Gran Fondo (lang rute)) — mål +5 til +15",
+            "text": "TSB 1.3 på race-dag (Santini Stelvio Gran Fondo (lang rute)) — mål +5 til +15",
             "historic": false
           }
         ],
@@ -7840,6 +7881,24 @@
                 "optional": false,
                 "start": "07:00",
                 "startFixed": false
+              },
+              {
+                "id": null,
+                "name": "Gentofte Cykling",
+                "type": null,
+                "disc": "commute",
+                "mins": 26,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 26,
+                "actualTss": 12,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10114,229 +10173,225 @@
           "week": 8,
           "programId": "tds-2027",
           "start": "2026-10-26",
-          "ctl": 38.4
+          "ctl": 38.7
         }
       ],
       "projection": [
         {
-          "d": "2026-10-27",
-          "ctl": 41.9
-        },
-        {
           "d": "2026-10-28",
-          "ctl": 42.0
+          "ctl": 38.5
         },
         {
           "d": "2026-10-29",
-          "ctl": 42.0
+          "ctl": 38.6
         },
         {
           "d": "2026-10-30",
-          "ctl": 42.0
+          "ctl": 38.7
         },
         {
           "d": "2026-10-31",
-          "ctl": 42.1
+          "ctl": 38.9
         },
         {
           "d": "2026-11-01",
-          "ctl": 42.1
+          "ctl": 39.0
         },
         {
           "d": "2026-11-02",
-          "ctl": 42.6
+          "ctl": 39.5
         },
         {
           "d": "2026-11-03",
-          "ctl": 43.1
+          "ctl": 40.1
         },
         {
           "d": "2026-11-04",
-          "ctl": 43.5
+          "ctl": 40.6
         },
         {
           "d": "2026-11-05",
-          "ctl": 44.0
+          "ctl": 41.2
         },
         {
           "d": "2026-11-06",
-          "ctl": 44.4
+          "ctl": 41.7
         },
         {
           "d": "2026-11-07",
-          "ctl": 44.9
+          "ctl": 42.2
         },
         {
           "d": "2026-11-08",
-          "ctl": 45.3
+          "ctl": 42.7
         },
         {
           "d": "2026-11-09",
-          "ctl": 45.8
+          "ctl": 43.2
         },
         {
           "d": "2026-11-10",
-          "ctl": 46.3
+          "ctl": 43.8
         },
         {
           "d": "2026-11-11",
-          "ctl": 46.7
+          "ctl": 44.3
         },
         {
           "d": "2026-11-12",
-          "ctl": 47.2
+          "ctl": 44.8
         },
         {
           "d": "2026-11-13",
-          "ctl": 47.6
+          "ctl": 45.3
         },
         {
           "d": "2026-11-14",
-          "ctl": 48.1
+          "ctl": 45.8
         },
         {
           "d": "2026-11-15",
-          "ctl": 48.5
+          "ctl": 46.2
         },
         {
           "d": "2026-11-16",
-          "ctl": 49.0
+          "ctl": 46.8
         },
         {
           "d": "2026-11-17",
-          "ctl": 49.5
+          "ctl": 47.4
         },
         {
           "d": "2026-11-18",
-          "ctl": 50.0
+          "ctl": 47.9
         },
         {
           "d": "2026-11-19",
-          "ctl": 50.5
+          "ctl": 48.4
         },
         {
           "d": "2026-11-20",
-          "ctl": 50.9
+          "ctl": 48.9
         },
         {
           "d": "2026-11-21",
-          "ctl": 51.4
+          "ctl": 49.4
         },
         {
           "d": "2026-11-22",
-          "ctl": 51.8
+          "ctl": 49.9
         },
         {
           "d": "2026-11-23",
-          "ctl": 51.5
+          "ctl": 49.7
         },
         {
           "d": "2026-11-24",
-          "ctl": 51.2
+          "ctl": 49.4
         },
         {
           "d": "2026-11-25",
-          "ctl": 50.9
+          "ctl": 49.1
         },
         {
           "d": "2026-11-26",
-          "ctl": 50.6
+          "ctl": 48.9
         },
         {
           "d": "2026-11-27",
-          "ctl": 50.3
+          "ctl": 48.6
         },
         {
           "d": "2026-11-28",
-          "ctl": 50.0
+          "ctl": 48.4
         },
         {
           "d": "2026-11-29",
-          "ctl": 49.8
+          "ctl": 48.2
         },
         {
           "d": "2026-11-30",
-          "ctl": 50.1
+          "ctl": 48.6
         },
         {
           "d": "2026-12-01",
-          "ctl": 50.5
+          "ctl": 49.0
         },
         {
           "d": "2026-12-02",
-          "ctl": 50.9
+          "ctl": 49.4
         },
         {
           "d": "2026-12-03",
-          "ctl": 51.2
+          "ctl": 49.8
         },
         {
           "d": "2026-12-04",
-          "ctl": 51.6
+          "ctl": 50.2
         },
         {
           "d": "2026-12-05",
-          "ctl": 51.9
+          "ctl": 50.5
         },
         {
           "d": "2026-12-06",
-          "ctl": 52.2
+          "ctl": 50.9
         },
         {
           "d": "2026-12-07",
-          "ctl": 52.6
+          "ctl": 51.3
         },
         {
           "d": "2026-12-08",
-          "ctl": 53.0
+          "ctl": 51.7
         },
         {
           "d": "2026-12-09",
-          "ctl": 53.4
+          "ctl": 52.1
         },
         {
           "d": "2026-12-10",
-          "ctl": 53.7
+          "ctl": 52.5
         },
         {
           "d": "2026-12-11",
-          "ctl": 54.1
+          "ctl": 52.9
         },
         {
           "d": "2026-12-12",
-          "ctl": 54.4
+          "ctl": 53.3
         },
         {
           "d": "2026-12-13",
-          "ctl": 54.8
+          "ctl": 53.6
         },
         {
           "d": "2026-12-14",
-          "ctl": 55.2
+          "ctl": 54.1
         },
         {
           "d": "2026-12-15",
-          "ctl": 55.6
+          "ctl": 54.5
         },
         {
           "d": "2026-12-16",
-          "ctl": 55.9
+          "ctl": 54.9
         },
         {
           "d": "2026-12-17",
-          "ctl": 56.3
+          "ctl": 55.3
         },
         {
           "d": "2026-12-18",
-          "ctl": 56.7
+          "ctl": 55.7
         },
         {
           "d": "2026-12-19",
-          "ctl": 57.0
+          "ctl": 56.0
         },
         {
           "d": "2026-12-20",
-          "ctl": 57.4
+          "ctl": 56.4
         }
       ],
       "targets": [
@@ -10626,38 +10681,39 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-27T02:18:52Z",
-    "inputsHash": "06549aa8312ecd8c240a01bf7da3124ce6f99e2c",
+    "generatedAt": "2026-10-27T07:51:13Z",
+    "inputsHash": "00c045fa7dd2ac4ed893ad8c29687f87f08c38e7",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør 'FaF 1 Z2 - Aktivering 60' i ERG, 60 min — benene skal føles lette bagefter. Skru op for maden i dag: protein ved hvert måltid.",
-      "why": "HRV er 17% under 7-dages snit, og cut-raten på 0,98 kg/uge er for aggressiv — kroppen har brug for mad og let bevægelse, ikke mere stress."
+      "action": "Ryd op i maden i dag: spis til vedligehold — protein ved hvert måltid, ingen underskud. Cut-tabet er for hurtigt.",
+      "why": "7-dages snittet er 2,2 kg foran planen — ved det tempo mister du muskelmasse, og det koster dig på cyklen."
     },
     "training": {
-      "text": "Dagens plan: 60 min let Z2-cykel i ERG — recovery, ingen opbygning. Ugen er ikke startet endnu (0 pas gennemført). I RECOVERY-blok er lav TSS målet — der er intet efterslæb.",
+      "text": "Dagens plan: 60 min let cykel med ERG (aktivering Z2 — benene skal føles lette bagefter). Recovery-uge: 0 gennemførte planpas, 6 tilbage. CTL er 38,7 mod mål 55,0 — i en recovery-uge er lav TSS det rigtige.",
       "refs": [
         60.0,
-        0.0
+        38.7,
+        55.0,
+        6.0
       ]
     },
     "body": {
-      "text": "7-dages snit på vægt stiger 0,6 kg den seneste måned — og cut-raten på 0,98 kg/uge er langt over planen på 0,22 kg/uge. Spis til vedligehold 3-4 dage: protein ved hvert måltid, ingen yderligere restriktion.",
+      "text": "7-dages snittet er 0,6 procentpoint op i fedt den seneste måned — retningen er forkert. Vægten er 2,2 kg foran cut-planen; tabet går for hurtigt og truer muskelmasse.",
       "refs": [
         0.6,
-        0.98,
-        0.22
+        2.2
       ]
     },
     "habits": {
-      "text": "2 drikkedage i træk (25/10–26/10) rammer HRV hårdere end spredte dage — stop klyngen nu. Protein kun 5 af 7 dage: sørg for protein ved alle dagens måltider.",
+      "text": "2 alkoholdage i træk (25/10–26/10) — klynger rammer HRV hårdere end spredte dage. Protein registreret 5 af 7 dage — hold 3/3 i dag.",
       "refs": [
         2.0,
         5.0,
         7.0
       ]
     },
-    "bigPicture": "Uge 44, recovery-blok — kroppen er presset (HRV 35,0 ms), og cut-raten er for høj: spis til vedligehold nu.",
+    "bigPicture": "Uge 44, recovery-uge efter Mallorca — hold benene i gang uden at bygge træthed, og håndtér cut-alarmen.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10665,13 +10721,6 @@
         "type": "cut",
         "level": "act",
         "message": "Cut-tjek: Tabet er 0,98 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
-        "action": null,
-        "source": "rule"
-      },
-      {
-        "type": "hrv",
-        "level": "warn",
-        "message": "HRV 35,0 ms — 17% under 7d-snit (42,0 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
@@ -10751,7 +10800,7 @@
       "expectedKg": 71.2,
       "corridorKg": 0.5,
       "avg7": 73.2,
-      "avg7Date": "2026-10-17",
+      "avg7Date": "2026-10-27",
       "delta": 2.1,
       "status": "bagud",
       "note": null,
@@ -10860,8 +10909,8 @@
       "note": "±0,5 pp er måleusikkerhed"
     },
     "ffm": {
-      "now": 57.4,
-      "change28d": 0.7,
+      "now": 57.1,
+      "change28d": 0.4,
       "target": 57.1,
       "status": "ok",
       "baseline": 56.7,
@@ -10890,8 +10939,8 @@
         },
         "ffm": {
           "level": null,
-          "value": 0.7,
-          "text": "+0,7 kg på 4 uger"
+          "value": 0.4,
+          "text": "+0,4 kg på 4 uger"
         },
         "strength": {
           "level": "warn",
@@ -10904,10 +10953,10 @@
         "recovery": {
           "level": "warn",
           "value": {
-            "rhr": 2.6,
-            "hrvPct": -23.5
+            "rhr": 2.4,
+            "hrvPct": -24.1
           },
-          "text": "hvilepuls +3 · HRV −24 % (14 dage)"
+          "text": "hvilepuls +2 · HRV −24 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11235,23 +11284,23 @@
     }
   },
   "weekTss": {
-    "actual": 0,
+    "actual": 12,
     "planned": 317
   },
   "martinMail": {
     "week": 8,
     "isoWeek": 44,
     "lines": [
-      "Uge 44: TSS 0 af 317 (0 %) · CTL 38,4 (mål 55) · TSB +9,2",
+      "Uge 44: TSS 12 af 317 (4 %) · CTL 38,7 (mål 55) · TSB +7,9",
       "Vægt 7d 73,2 kg · fedt 14d 22,1 % · bagud 2,1 kg mod glidepath (71,2)",
-      "HRV 7d 42 (28d 60) · hvilepuls 45 · søvn 7d 8,7 t",
+      "HRV 7d 43 (28d 59) · hvilepuls 45 · søvn 7d 8,6 t",
       "AF 4/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: act — Tabet er 0,98 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
       "Næste uge (45, BASE): TSS-mål 440 · hårde/lange dage: tir 3/11 FaF 5 VO2 - 5 x 3 71 min, lør 7/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 8/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-27T02:18:30Z"
+    "generatedAt": "2026-10-27T07:50:54Z"
   },
   "proposals": [],
   "ftp": {
@@ -11324,7 +11373,7 @@
   },
   "fitnessLive": {
     "date": "2026-10-27",
-    "ctl": 38.4,
-    "atl": 29.2
+    "ctl": 38.7,
+    "atl": 30.8
   }
 }
