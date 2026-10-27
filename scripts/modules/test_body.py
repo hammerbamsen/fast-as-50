@@ -12,9 +12,22 @@ WP = {"startKg": 72.2, "targetKg": 68, "targetDate": "2027-01-31", "cutStartsFro
       "bodyFatPctStart": 21.8, "bodyFatPctTarget": 16, "holdFromMonth": "2027-02", "maxLossPerWeekKg": 0.25}
 
 
+# Glidestien fra 11/9-2026 frosset (27/10-2026): logiktestene nedenfor bruger
+# datoer i sep/okt 2026 og må ikke følge Kennets senere rekalibreringer af
+# den rigtige plan.weightPlan (fx genstart efter virus: cut fra 2/11).
+LEGACY_TDS_WEIGHT_PLAN = {
+    "startKg": 72.2, "targetKg": 68, "targetDate": "2027-01-31", "bodyFatPctTarget": 16,
+    "bodyFatPctStart": 21.8, "cutStartsFrom": "2026-09-21", "holdFromMonth": "2027-02",
+    "maxLossPerWeekKg": 0.25,
+    "note": "72,2 -> 68 kg over 19 uger fra 21/9 = 0,21 kg/uge (frosset testkopi).",
+}
+
+
 def _plan():
     with open(os.path.join(_ROOT, "data", "plan.json"), encoding="utf-8") as fh:
-        return json.load(fh)
+        plan = json.load(fh)
+    plan["programs"]["tds-2027"]["weightPlan"] = dict(LEGACY_TDS_WEIGHT_PLAN)
+    return plan
 
 
 def series(end, days, fn, skip=()):

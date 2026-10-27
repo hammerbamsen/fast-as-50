@@ -37,6 +37,40 @@ STATUSES = ("pending", "accepted", "rejected", "applied-offline")
 # 27/10-2026: set_goals — kropsmål pr. program (læses af update_kpi via GOALS).
 # Kun disse nøgler, med et fornuftigt interval, så en tastefejl ikke slår igennem.
 GOAL_RANGES = {"weightKg": (40, 150), "bodyFatPct": (3, 50)}
+# 27/10-2026: set_weight_plan — programmets glidesti (modules/body.py). Tal med
+# interval, datoer som ISO, holdFromMonth som YYYY-MM, note som tekst.
+WEIGHT_PLAN_RANGES = {"startKg": (40, 150), "targetKg": (40, 150),
+                      "bodyFatPctStart": (3, 50), "bodyFatPctTarget": (3, 50),
+                      "maxLossPerWeekKg": (0.05, 1.0)}
+WEIGHT_PLAN_DATES = ("cutStartsFrom", "targetDate")
+
+
+def _validate_weight_plan(wp: dict) -> None:
+    if not isinstance(wp, dict) or not wp:
+        raise ValueError("set_weight_plan: weightPlan skal være et ikke-tomt objekt")
+    for k, v in wp.items():
+        if k in WEIGHT_PLAN_RANGES:
+            lo, hi = WEIGHT_PLAN_RANGES[k]
+            if not isinstance(v, (int, float)) or isinstance(v, bool) or not lo <= v <= hi:
+                raise ValueError(f"set_weight_plan: {k}={v!r} ligger uden for {lo}-{hi}")
+        elif k in WEIGHT_PLAN_DATES:
+            try:
+                date.fromisoformat(str(v))
+            except ValueError:
+                raise ValueError(f"set_weight_plan: {k}={v!r} er ikke en ISO-dato")
+        elif k == "holdFromMonth":
+            try:
+                datetime.strptime(str(v), "%Y-%m")
+            except ValueError:
+                raise ValueError(f"set_weight_plan: holdFromMonth={v!r} skal være YYYY-MM")
+        elif k == "note":
+            if not isinstance(v, str):
+                raise ValueError("set_weight_plan: note skal være tekst")
+        else:
+            raise ValueError(f"set_weight_plan: ukendt felt {k!r}")
+    if "cutStartsFrom" in wp and "targetDate" in wp \
+            and date.fromisoformat(wp["targetDate"]) <= date.fromisoformat(wp["cutStartsFrom"]):
+        raise ValueError("set_weight_plan: targetDate skal ligge efter cutStartsFrom")
 ENTRY_ID_PREFIX = "proposal:"
 
 
@@ -111,7 +145,17 @@ def validate(prop: dict) -> None:
     seen = set()
     seen_tgt = set()
     seen_goals = set()
+    seen_wp = set()
     for ch in prop["changes"]:
+        if ch.get("action") == "set_weight_plan":
+            pid_ = ch.get("programId")
+            if not isinstance(pid_, str) or not pid_:
+                raise ValueError("set_weight_plan: programId mangler")
+            if pid_ in seen_wp:
+                raise ValueError(f"set_weight_plan: program {pid_} optræder to gange")
+            seen_wp.add(pid_)
+            _validate_weight_plan(ch.get("weightPlan"))
+            continue
         if ch.get("action") == "set_goals":
             pid_, goals = ch.get("programId"), ch.get("goals")
             if not isinstance(pid_, str) or not pid_:
@@ -143,7 +187,7 @@ def validate(prop: dict) -> None:
                 raise ValueError(f"set_week_targets uge {wk}: ctlTarget eller tssTarget skal angives")
             continue
         if ch.get("action") != "set_day":
-            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets og set_goals understøttes")
+            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_goals og set_weight_plan understøttes")
         try:
             d_iso = date.fromisoformat(str(ch.get("date"))).isoformat()
         except (TypeError, ValueError):
@@ -226,6 +270,9 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
         if ch.get("action") == "set_goals":
             _apply_goals(sim, ch)
             continue                     # ingen dage berørt -> intet at synke
+        if ch.get("action") == "set_weight_plan":
+            _apply_weight_plan(sim, ch)
+            continue                     # ingen dage berørt -> intet at synke
         d_iso = date.fromisoformat(str(ch["date"])).isoformat()
         day = days.get(d_iso)
         if day is None:
@@ -286,6 +333,22 @@ def _apply_goals(sim: dict, ch: dict) -> dict:
     for k, v in ch["goals"].items():
         goals[k] = v
     return goals
+
+
+def _apply_weight_plan(sim: dict, ch: dict) -> dict:
+    """Fletter ch['weightPlan'] ind i sim['programs'][programId]['weightPlan'] og
+    tjekker den samlede glidesti (targetDate efter cutStartsFrom)."""
+    progs = sim.get("programs")
+    prog = progs.get(ch["programId"]) if isinstance(progs, dict) else None
+    if not isinstance(prog, dict):
+        raise ValueError(f"set_weight_plan: program {ch['programId']!r} findes ikke i plan.programs")
+    wp = prog.setdefault("weightPlan", {})
+    for k, v in ch["weightPlan"].items():
+        wp[k] = v
+    if wp.get("cutStartsFrom") and wp.get("targetDate") \
+            and date.fromisoformat(str(wp["targetDate"])) <= date.fromisoformat(str(wp["cutStartsFrom"])):
+        raise ValueError("set_weight_plan: targetDate skal ligge efter cutStartsFrom")
+    return wp
 
 
 def target_changes_for_data(plan: dict, changes: list) -> list:

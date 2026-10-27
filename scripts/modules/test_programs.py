@@ -103,8 +103,11 @@ def test_tds_weeks_1_2_match_legacy_15_16():
     for w in tds["weeks"][:8]:
         assert "purpose" in w and set(w["quota"]) == {"haard", "moderat"}
     assert w1["phase"] == "TRANSITION" and w1["ftpTarget"] == 278
-    assert tds["weightPlan"]["cutStartsFrom"] == "2026-09-21"
-    assert "21/9" in tds["weightPlan"]["note"] and "19 uger" in tds["weightPlan"]["note"]
+    # glidestien kan rekalibreres via set_weight_plan (første gang 27/10-2026);
+    # test kun at den hænger sammen
+    wp = tds["weightPlan"]
+    assert wp["cutStartsFrom"] < wp["targetDate"]
+    assert wp["targetKg"] < wp["startKg"] and wp.get("note")
 
 
 def test_next_race_and_upcoming_across_programs():
@@ -132,7 +135,9 @@ def test_eva_gets_her_own_program():
 def test_ctl_plan_and_block_types():
     tds = P.list_programs(PLAN)["tds-2027"]
     cp = P.ctl_plan(tds)
-    assert len(cp) == 51 and cp[0] == 47 and cp[-1] == 82
+    # uge 3+ kan være rekalibreret (27/10-2026: fra reel CTL efter virus)
+    assert len(cp) == 51 and cp[0] == 47 and all(isinstance(c, int) and 20 <= c <= 120 for c in cp)
+    assert cp[-1] < max(cp)          # taper: racedagens mål ligger under toppen
     bt = P.block_types(tds)
     assert bt[1] == "RECOVERY" and bt[51] == "RACE"
 

@@ -364,15 +364,16 @@ def _goals_prop(goals, pid="g-1", program="tds-2027"):
 def test_set_goals_applies_to_program_only():
     plan = _plan()
     before_days = json.dumps(plan["athletes"], sort_keys=True)
-    prop = _goals_prop({"weightKg": 69.5, "bodyFatPct": 19})
+    before_goals = copy.deepcopy(plan["programs"]["tds-2027"]["goals"])
+    prop = _goals_prop({"weightKg": 66.5, "bodyFatPct": 17})
     proposals.validate(prop)
     sim, dates = proposals.apply_changes(plan, prop["changes"])
     assert dates == []
     g = sim["programs"]["tds-2027"]["goals"]
-    assert g["weightKg"] == 69.5 and g["bodyFatPct"] == 19
+    assert g["weightKg"] == 66.5 and g["bodyFatPct"] == 17
     assert g.get("strengthPerWeek") == plan["programs"]["tds-2027"]["goals"].get("strengthPerWeek")
     assert json.dumps(sim["athletes"], sort_keys=True) == before_days
-    assert plan["programs"]["tds-2027"]["goals"]["weightKg"] == 68      # input urørt
+    assert plan["programs"]["tds-2027"]["goals"] == before_goals              # input urørt
 
 
 @pytest.mark.parametrize("goals", [{}, {"weightKg": 6.95}, {"bodyFatPct": 190},
@@ -402,3 +403,67 @@ def test_set_goals_schema():
     v = jsonschema.Draft202012Validator(schema)
     assert not list(v.iter_errors(_goals_prop({"weightKg": 69.5, "bodyFatPct": 19})))
     assert list(v.iter_errors(_goals_prop({"sleepHours": 8})))
+
+
+# -- set_weight_plan (27/10-2026) ---------------------------------------------
+
+WP_NEW = {"startKg": 72.0, "bodyFatPctStart": 22.2, "cutStartsFrom": "2026-11-02",
+          "targetKg": 69.5, "bodyFatPctTarget": 19, "targetDate": "2027-01-01",
+          "maxLossPerWeekKg": 0.35, "holdFromMonth": "2027-01", "note": "test"}
+
+
+def _wp_prop(wp, pid="w-1", program="tds-2027"):
+    return {"id": pid, "title": "glidesti", "status": "pending",
+            "changes": [{"action": "set_weight_plan", "programId": program, "weightPlan": wp}]}
+
+
+def test_set_weight_plan_merges_and_moves_glidepath():
+    from modules import body
+    plan = _plan()
+    before_wp = copy.deepcopy(plan["programs"]["tds-2027"]["weightPlan"])
+    prop = _wp_prop(WP_NEW)
+    proposals.validate(prop)
+    sim, dates = proposals.apply_changes(plan, prop["changes"])
+    assert dates == []
+    wp = sim["programs"]["tds-2027"]["weightPlan"]
+    assert wp["startKg"] == 72.0 and wp["targetDate"] == "2027-01-01"
+    assert body.phase_for(wp, "2026-10-28") == "pre"
+    assert body.phase_for(wp, "2026-11-10") == "cut"
+    assert body.phase_for(wp, "2027-01-02") == "hold"
+    assert body.expected_kg(wp, "2026-11-02") == 72.0
+    # 29 af 60 dage: 72,0 − 2,5 × 29/60 = 70,79
+    assert abs(body.expected_kg(wp, "2026-12-01") - 70.79) < 0.01
+    assert body.expected_kg(wp, "2027-01-01") == 69.5
+    assert plan["programs"]["tds-2027"]["weightPlan"] == before_wp            # input urørt
+
+
+def test_set_weight_plan_partial_keeps_other_fields():
+    plan = _plan()
+    sim, _ = proposals.apply_changes(plan, _wp_prop({"targetKg": 70})["changes"])
+    wp = sim["programs"]["tds-2027"]["weightPlan"]
+    assert wp["targetKg"] == 70 and wp["startKg"] == plan["programs"]["tds-2027"]["weightPlan"]["startKg"]
+
+
+@pytest.mark.parametrize("wp", [{}, {"startKg": 7.2}, {"cutStartsFrom": "2/11"}, {"holdFromMonth": "2027-1-1"},
+                                {"foo": 1}, {"note": 3}, {"maxLossPerWeekKg": 2},
+                                {"cutStartsFrom": "2027-02-01", "targetDate": "2027-01-01"}])
+def test_set_weight_plan_rejects_bad_values(wp):
+    with pytest.raises(ValueError):
+        proposals.validate(_wp_prop(wp))
+
+
+def test_set_weight_plan_rejects_inverted_merge():
+    # kun targetDate før den eksisterende cutStartsFrom (21/9) -> fanges ved anvendelse
+    with pytest.raises(ValueError):
+        proposals.apply_changes(_plan(), _wp_prop({"targetDate": "2026-09-01"})["changes"])
+
+
+def test_set_weight_plan_through_edit_apply_and_schema():
+    jsonschema = pytest.importorskip("jsonschema")
+    raw = json.dumps(_plan(), ensure_ascii=False)
+    res = edit_apply.apply_edit(raw, "apply_proposal", "proposal:w-1", {"proposal": _wp_prop(WP_NEW)})
+    assert res["status"] == "ok", res
+    schema = json.loads((ROOT / "schemas" / "proposal.schema.json").read_text(encoding="utf-8"))
+    v = jsonschema.Draft202012Validator(schema)
+    assert not list(v.iter_errors(_wp_prop(WP_NEW)))
+    assert list(v.iter_errors(_wp_prop({"foo": 1})))
