@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "fast-as-50/proposal.schema.json",
   "title": "data/proposals/<id>.json — forslag til plan.json (blok 9)",
-  "description": "Kontrakt jf. blok9-spec §1. set_day (blok 9) og set_week_targets (ctl-recalib, 14/9-2026). Anvendes via edit_apply.apply_edit(action='apply_proposal'). additionalProperties: true.",
+  "description": "Kontrakt jf. blok9-spec §1. set_day (blok 9), set_week_targets (ctl-recalib, 14/9-2026) og set_goals (kropsmål, 27/10-2026). Anvendes via edit_apply.apply_edit(action='apply_proposal'). additionalProperties: true.",
   "type": "object",
   "required": ["id", "title", "status", "changes"],
   "additionalProperties": true,
@@ -21,7 +21,8 @@
       "items": {
         "oneOf": [
           {"$ref": "#/$defs/setDay"},
-          {"$ref": "#/$defs/setWeekTargets"}
+          {"$ref": "#/$defs/setWeekTargets"},
+          {"$ref": "#/$defs/setGoals"}
         ]
       }
     }
@@ -66,6 +67,25 @@
         "week": {"type": "integer", "minimum": 1},
         "ctlTarget": {"type": "integer", "minimum": 0},
         "tssTarget": {"type": "integer", "minimum": 0}
+      }
+    },
+    "setGoals": {
+      "type": "object",
+      "description": "Kropsmål pr. program (27/10-2026). Ingen dato, ingen sync.",
+      "required": ["action", "programId", "goals"],
+      "additionalProperties": true,
+      "properties": {
+        "action": {"type": "string", "enum": ["set_goals"]},
+        "programId": {"type": "string"},
+        "goals": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "weightKg": {"type": "number", "minimum": 40, "maximum": 150},
+            "bodyFatPct": {"type": "number", "minimum": 3, "maximum": 50}
+          }
+        }
       }
     }
   }

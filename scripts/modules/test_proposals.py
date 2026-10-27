@@ -297,6 +297,17 @@ def test_real_proposal_blok9_is_history():
     assert len(prop["changes"]) == 20
 
 
+def _later_weeks(prop: dict) -> set:
+    """ISO-uger som et senere accepteret forslag har skrevet om (Mallorca uge 43,
+    genstart efter virus uge 44-48 …). set_week_targets/set_goals har ingen dato."""
+    later = set()
+    for f in (ROOT / "data" / "proposals").glob("*.json"):
+        q = json.loads(f.read_text(encoding="utf-8"))
+        if q.get("createdAt", "") > prop["createdAt"] and q.get("status") in ("accepted", "applied-offline"):
+            later |= {date.fromisoformat(c["date"]).isocalendar()[1] for c in q["changes"] if c.get("date")}
+    return later
+
+
 def test_real_proposal_blok11_applied_offline_and_plan_matches():
     prop = json.loads(REAL_PROPOSAL_11.read_text(encoding="utf-8"))
     proposals.validate(prop)
@@ -304,10 +315,14 @@ def test_real_proposal_blok11_applied_offline_and_plan_matches():
     assert len(prop["changes"]) == 105                     # 15 uger × 7 dage
     assert prop["changes"][0]["date"] == "2026-09-21"
     assert prop["changes"][-1]["date"] == "2027-01-03"
+    # Uger som senere forslag har skrevet om (fx uge 40 Mallorca) testes ikke mod skabelonen
+    later = _later_weeks(prop)
     by_week = {}
     for d in PLAN["athletes"]["kennet"]["days"]:
         if "2026-09-21" <= d["date"] <= "2027-01-03":
             wk = date.fromisoformat(d["date"]).isocalendar()[1]
+            if wk in later:
+                continue
             for e in d["entries"]:
                 wo = e.get("workout") or {}
                 by_week.setdefault(wk, []).append((d["date"], wo.get("type"), e.get("libraryId"), e.get("templateId")))
@@ -317,16 +332,7 @@ def test_real_proposal_blok11_applied_offline_and_plan_matches():
                                                    "styrke-fs4-a-3r", "styrke-fs4-b-3r"), d["date"]
                 if e.get("libraryId"):
                     assert e["libraryId"] in bike_library.ids(), d["date"]
-    # Uger som senere forslag har skrevet om (fx uge 40 Mallorca) testes ikke mod skabelonen
-    later = set()
-    for f in (ROOT / "data" / "proposals").glob("*.json"):
-        q = json.loads(f.read_text(encoding="utf-8"))
-        if q.get("createdAt", "") > prop["createdAt"] and q.get("status") in ("accepted", "applied-offline"):
-            # set_week_targets (ctl-recalib) har ingen dato — kun dag-ændringer tæller
-            later |= {date.fromisoformat(c["date"]).isocalendar()[1] for c in q["changes"] if c.get("date")}
     for wk, rows in by_week.items():
-        if wk in later:
-            continue
         assert sum(1 for r in rows if r[1] == "Swim") == 1, ("svøm 1×/uge", wk)
         assert sum(1 for r in rows if r[1] == "WeightTraining") == 2, ("styrke 2×/uge", wk)
         sundays = [r for r in rows if date.fromisoformat(r[0]).weekday() == 6]
@@ -340,6 +346,59 @@ def test_real_proposal_blok11_quotas():
              "2026-10-19": (2, 0), "2026-10-26": (0, 0), "2026-11-02": (1, 0), "2026-11-09": (1, 2),
              "2026-11-16": (1, 0), "2026-11-23": (0, 0), "2026-11-30": (2, 0), "2026-12-07": (1, 1),
              "2026-12-14": (1, 1), "2026-12-21": (0, 0), "2026-12-28": (1, 0)}
+    later = _later_weeks(json.loads(REAL_PROPOSAL_11.read_text(encoding="utf-8")))
     for start, (h, m) in quota.items():
+        if date.fromisoformat(start).isocalendar()[1] in later:
+            continue                     # skrevet om af et senere forslag
         c = proposals.week_load_counts(PLAN, "kennet", start)
         assert (c["haard"], c["moderat"]) == (h, m), (start, c)
+
+
+# -- set_goals (27/10-2026) ---------------------------------------------------
+
+def _goals_prop(goals, pid="g-1", program="tds-2027"):
+    return {"id": pid, "title": "mål", "status": "pending",
+            "changes": [{"action": "set_goals", "programId": program, "goals": goals}]}
+
+
+def test_set_goals_applies_to_program_only():
+    plan = _plan()
+    before_days = json.dumps(plan["athletes"], sort_keys=True)
+    prop = _goals_prop({"weightKg": 69.5, "bodyFatPct": 19})
+    proposals.validate(prop)
+    sim, dates = proposals.apply_changes(plan, prop["changes"])
+    assert dates == []
+    g = sim["programs"]["tds-2027"]["goals"]
+    assert g["weightKg"] == 69.5 and g["bodyFatPct"] == 19
+    assert g.get("strengthPerWeek") == plan["programs"]["tds-2027"]["goals"].get("strengthPerWeek")
+    assert json.dumps(sim["athletes"], sort_keys=True) == before_days
+    assert plan["programs"]["tds-2027"]["goals"]["weightKg"] == 68      # input urørt
+
+
+@pytest.mark.parametrize("goals", [{}, {"weightKg": 6.95}, {"bodyFatPct": 190},
+                                   {"sleepHours": 8}, {"weightKg": True}, {"weightKg": "69"}])
+def test_set_goals_rejects_bad_values(goals):
+    with pytest.raises(ValueError):
+        proposals.validate(_goals_prop(goals))
+
+
+def test_set_goals_unknown_program():
+    with pytest.raises(ValueError):
+        proposals.apply_changes(_plan(), _goals_prop({"weightKg": 70}, program="findes-ikke")["changes"])
+
+
+def test_set_goals_through_edit_apply():
+    raw = json.dumps(_plan(), ensure_ascii=False)
+    prop = _goals_prop({"weightKg": 69.5, "bodyFatPct": 19})
+    res = edit_apply.apply_edit(raw, "apply_proposal", "proposal:g-1", {"proposal": prop})
+    assert res["status"] == "ok", res
+    new = json.loads(res["new_plan_raw"])
+    assert new["programs"]["tds-2027"]["goals"]["weightKg"] == 69.5
+
+
+def test_set_goals_schema():
+    jsonschema = pytest.importorskip("jsonschema")
+    schema = json.loads((ROOT / "schemas" / "proposal.schema.json").read_text(encoding="utf-8"))
+    v = jsonschema.Draft202012Validator(schema)
+    assert not list(v.iter_errors(_goals_prop({"weightKg": 69.5, "bodyFatPct": 19})))
+    assert list(v.iter_errors(_goals_prop({"sleepHours": 8})))

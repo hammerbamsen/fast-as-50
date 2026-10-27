@@ -34,6 +34,9 @@ from . import programs as _programs
 ROOT = Path(__file__).resolve().parent.parent.parent
 PROPOSALS_DIR = ROOT / "data" / "proposals"
 STATUSES = ("pending", "accepted", "rejected", "applied-offline")
+# 27/10-2026: set_goals — kropsmål pr. program (læses af update_kpi via GOALS).
+# Kun disse nøgler, med et fornuftigt interval, så en tastefejl ikke slår igennem.
+GOAL_RANGES = {"weightKg": (40, 150), "bodyFatPct": (3, 50)}
 ENTRY_ID_PREFIX = "proposal:"
 
 
@@ -107,7 +110,24 @@ def validate(prop: dict) -> None:
         raise ValueError("changes skal være en liste")
     seen = set()
     seen_tgt = set()
+    seen_goals = set()
     for ch in prop["changes"]:
+        if ch.get("action") == "set_goals":
+            pid_, goals = ch.get("programId"), ch.get("goals")
+            if not isinstance(pid_, str) or not pid_:
+                raise ValueError("set_goals: programId mangler")
+            if pid_ in seen_goals:
+                raise ValueError(f"set_goals: program {pid_} optræder to gange")
+            seen_goals.add(pid_)
+            if not isinstance(goals, dict) or not goals:
+                raise ValueError("set_goals: goals skal være et ikke-tomt objekt")
+            for k, v in goals.items():
+                if k not in GOAL_RANGES:
+                    raise ValueError(f"set_goals: ukendt mål {k!r} (tilladt: {', '.join(GOAL_RANGES)})")
+                lo, hi = GOAL_RANGES[k]
+                if not isinstance(v, (int, float)) or isinstance(v, bool) or not lo <= v <= hi:
+                    raise ValueError(f"set_goals: {k}={v!r} ligger uden for {lo}-{hi}")
+            continue
         if ch.get("action") == "set_week_targets":
             # 14/9-2026: CTL-rekalibrering — ændrer ctlTarget/tssTarget på en programuge.
             pid_, wk = ch.get("programId"), ch.get("week")
@@ -123,7 +143,7 @@ def validate(prop: dict) -> None:
                 raise ValueError(f"set_week_targets uge {wk}: ctlTarget eller tssTarget skal angives")
             continue
         if ch.get("action") != "set_day":
-            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day og set_week_targets understøttes")
+            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets og set_goals understøttes")
         try:
             d_iso = date.fromisoformat(str(ch.get("date"))).isoformat()
         except (TypeError, ValueError):
@@ -203,6 +223,9 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
         if ch.get("action") == "set_week_targets":
             _apply_week_targets(sim, ch)
             continue                     # ingen dage berørt -> intet at synke
+        if ch.get("action") == "set_goals":
+            _apply_goals(sim, ch)
+            continue                     # ingen dage berørt -> intet at synke
         d_iso = date.fromisoformat(str(ch["date"])).isoformat()
         day = days.get(d_iso)
         if day is None:
@@ -251,6 +274,18 @@ def _apply_week_targets(sim: dict, ch: dict) -> dict:
         if isinstance(v, (int, float)) and not isinstance(v, bool):
             wk[k] = int(round(v))
     return wk
+
+
+def _apply_goals(sim: dict, ch: dict) -> dict:
+    """Muterer sim['programs'][programId]['goals'] med de angivne mål."""
+    progs = sim.get("programs")
+    prog = progs.get(ch["programId"]) if isinstance(progs, dict) else None
+    if not isinstance(prog, dict):
+        raise ValueError(f"set_goals: program {ch['programId']!r} findes ikke i plan.programs")
+    goals = prog.setdefault("goals", {})
+    for k, v in ch["goals"].items():
+        goals[k] = v
+    return goals
 
 
 def target_changes_for_data(plan: dict, changes: list) -> list:
