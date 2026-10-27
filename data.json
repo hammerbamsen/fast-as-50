@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-27 11:37",
+    "updated": "2026-10-27 15:48",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Tirsdag — uge 44. {HL} Godt: Søvn på 8,6 timer er solid. Fokus: Vægt på 72,0 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 2 afsluttede dage — 6 mangler i 5 dage tilbage. Keep moving forward.  \"Hvil er ikke det modsatte af fremskridt — det er en del af det.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Uge 44, RECOVERY-uge — kroppen restituerer, men cut-raten er for høj og kræver mad, ikke mere træning. {HL} Intet planlagt pas er gennemført endnu i uge 44 — aktivering på 60 min er dagens eneste planlagte pas. RECOVERY-uge: lavere TSS end målet er intentionen, ikke et efterslæb.",
+  "coachHighlight": "Kør 'FaF 1 Z2 - Aktivering 60' på ergometer i dag: benene skal føles lette bagefter — let Z2, fire korte aktiveringer i høj kadence.",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
@@ -3272,19 +3272,23 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 51 af 357 · Tirsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-uge efter Mallorca — hold benene i gang uden at bygge træthed, og håndtér cut-alarmen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens plan: 60 min let cykel med ERG (aktivering Z2 — benene skal føles lette bagefter). Recovery-uge: 0 gennemførte planpas, 6 tilbage. CTL er 38,7 mod mål 55,0 — i en recovery-uge er lav TSS det rigtige.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet er 0,6 procentpoint op i fedt den seneste måned — retningen er forkert. Vægten er 2,2 kg foran cut-planen; tabet går for hurtigt og truer muskelmasse.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 alkoholdage i træk (25/10–26/10) — klynger rammer HRV hårdere end spredte dage. Protein registreret 5 af 7 dage — hold 3/3 i dag.</p>",
-  "coachAssessmentTs": "08:50",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 51 af 357 · Tirsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, RECOVERY-uge — kroppen restituerer, men cut-raten er for høj og kræver mad, ikke mere træning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Intet planlagt pas er gennemført endnu i uge 44 — aktivering på 60 min er dagens eneste planlagte pas. RECOVERY-uge: lavere TSS end målet er intentionen, ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned og er 2,2 kg over cut-planen — spis til vedligehold i 3-4 dage, hold protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 dage med alkohol i træk (25/10–26/10) — klynger rammer HRV hårdere end spredte dage. Protein ramt 5 af 7 dage — hold det.</p>",
+  "coachAssessmentTs": "15:48",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Tabet er 0,98 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag"
+      "message": "Cut-tjek: Tabet er 0,98 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+      "action": null,
+      "source": "rule"
     },
     {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": 7.9,
@@ -3592,8 +3596,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-27T10:37:39.075186",
-  "coachAssessmentTsFull": "2026-10-27T07:51:13",
+  "credentialsCheckedTs": "2026-10-27T14:49:05.552167",
+  "coachAssessmentTsFull": "2026-10-27T14:49:05",
   "coachAssessmentWeightAtGen": 72.0,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -10670,39 +10674,37 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-27T07:51:13Z",
-    "inputsHash": "00c045fa7dd2ac4ed893ad8c29687f87f08c38e7",
+    "generatedAt": "2026-10-27T14:49:05Z",
+    "inputsHash": "edffec4a02ea633d6c88ce8a0efa54d19bd5d727",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Ryd op i maden i dag: spis til vedligehold — protein ved hvert måltid, ingen underskud. Cut-tabet er for hurtigt.",
-      "why": "7-dages snittet er 2,2 kg foran planen — ved det tempo mister du muskelmasse, og det koster dig på cyklen."
+      "action": "Kør 'FaF 1 Z2 - Aktivering 60' på ergometer i dag: benene skal føles lette bagefter — let Z2, fire korte aktiveringer i høj kadence.",
+      "why": "Recovery-ugens pointe er at rydde træthed, ikke bygge form — og dagens pas er designet til netop det."
     },
     "training": {
-      "text": "Dagens plan: 60 min let cykel med ERG (aktivering Z2 — benene skal føles lette bagefter). Recovery-uge: 0 gennemførte planpas, 6 tilbage. CTL er 38,7 mod mål 55,0 — i en recovery-uge er lav TSS det rigtige.",
+      "text": "Intet planlagt pas er gennemført endnu i uge 44 — aktivering på 60 min er dagens eneste planlagte pas. RECOVERY-uge: lavere TSS end målet er intentionen, ikke et efterslæb.",
       "refs": [
         60.0,
-        38.7,
-        55.0,
-        6.0
+        317.0,
+        12.0
       ]
     },
     "body": {
-      "text": "7-dages snittet er 0,6 procentpoint op i fedt den seneste måned — retningen er forkert. Vægten er 2,2 kg foran cut-planen; tabet går for hurtigt og truer muskelmasse.",
+      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned og er 2,2 kg over cut-planen — spis til vedligehold i 3-4 dage, hold protein ved hvert måltid.",
       "refs": [
         0.6,
         2.2
       ]
     },
     "habits": {
-      "text": "2 alkoholdage i træk (25/10–26/10) — klynger rammer HRV hårdere end spredte dage. Protein registreret 5 af 7 dage — hold 3/3 i dag.",
+      "text": "2 dage med alkohol i træk (25/10–26/10) — klynger rammer HRV hårdere end spredte dage. Protein ramt 5 af 7 dage — hold det.",
       "refs": [
         2.0,
-        5.0,
-        7.0
+        5.0
       ]
     },
-    "bigPicture": "Uge 44, recovery-uge efter Mallorca — hold benene i gang uden at bygge træthed, og håndtér cut-alarmen.",
+    "bigPicture": "Uge 44, RECOVERY-uge — kroppen restituerer, men cut-raten er for høj og kræver mad, ikke mere træning.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11289,7 +11291,7 @@
       "Næste uge (45, BASE): TSS-mål 440 · hårde/lange dage: tir 3/11 FaF 5 VO2 - 5 x 3 71 min, lør 7/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 8/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-27T10:37:39Z"
+    "generatedAt": "2026-10-27T14:48:48Z"
   },
   "proposals": [],
   "ftp": {
