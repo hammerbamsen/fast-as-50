@@ -186,3 +186,19 @@
 - Cut-tjek: act — Tabet er 0,62 kg/uge — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
 - Næste uge (44, RECOVERY): TSS-mål 260 · hårde/lange dage: søn 1/11 FaF 1 Z2 - Lang Z2 2 t 130 min
 - Planændringer siden sidst: 0 — se martin_signals.md
+
+### Planændring 27/10 17:46
+- **onsdag 2026-10-28** (uge 8, apply_proposal): AEROB PROBE + Løb Z2 45 min (45 min) → hviledag
+- **torsdag 2026-10-29** (uge 8, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min) → Gang let 30 min (30 min)
+- **søndag 2026-11-01** (uge 8, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → Gang let 45 min (45 min)
+- **tirsdag 2026-11-03** (uge 9, apply_proposal): FaF 5 VO2 - 5 x 3 (71 min) [hårdt] → FaF 1 Z2 - Grundtur 80 (80 min)
+- **onsdag 2026-11-04** (uge 9, apply_proposal): Løb Z2 45 min (45 min) → hviledag
+- **lørdag 2026-11-07** (uge 9, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Functional 4 · 2 runder (25 min)
+- **søndag 2026-11-08** (uge 9, apply_proposal): FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt] → FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]
+- **tirsdag 2026-11-10** (uge 10, apply_proposal): FaF 5 VO2 - 4 x 4 (62 min) [hårdt] → FaF 1 Z2 - Grundtur 80 (80 min)
+- **lørdag 2026-11-14** (uge 10, apply_proposal): FaF 2 Dur - Negativ split 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Functional 4 · 3 runder (45 min)
+- **søndag 2026-11-15** (uge 10, apply_proposal): FaF 2 Dur - Bjergtur 3 t (185 min) [langt] → FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]
+- **lørdag 2026-11-21** (uge 11, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → FaF 1 Z2 - Grundtur 80 (80 min); Styrke B · Functional 4 · 3 runder (45 min)
+- **søndag 2026-11-22** (uge 11, apply_proposal): FaF 1 Z2 - Langtur 4 t (240 min) [langt] → FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt]
+- **tirsdag 2026-11-24** (uge 12, apply_proposal): FaF 1 Z2 - Aktivering 60 (60 min) → FaF 5 VO2 - 4 x 4 (62 min) [hårdt]
+- **søndag 2026-11-29** (uge 12, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → FaF 1 Z2 - Langtur 4 t (240 min) [langt]
