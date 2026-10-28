@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-28 05:23",
+    "updated": "2026-10-28 11:44",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -46,7 +46,7 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,3",
+      "value": "8,2",
       "unit": "t",
       "sub": "Snit 7d 8,6t · mål 7t",
       "color": "#27AE60"
@@ -58,13 +58,13 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "41,7",
+      "value": "42,0",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "46",
+      "value": "45",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Uge 44 er aktiv recovery — CTL er planmæssigt faldende, og cut begynder om 5 dage. {HL} Ingen planlagte pas i dag — hviledag i en uge med 0 gennemførte træningspas. Tirsdagens aktivering på 60 min er misset.",
-  "coachHighlight": "Intet pas i dag — brug aftenen på at bekræfte Stelvio couples-tilmeldingen inden deadline torsdag 29/10.",
+  "coachSpeech": "Uge 44, recovery-blok — CTL falder bevidst mod 35; Stelvio couples-tilmelding har deadline i morgen torsdag 29/10. {HL} Ingen pas planlagt i dag. Tirsdagens aktivering (60 min, 45 TSS) er misset — drop det, indhent det ikke.",
+  "coachHighlight": "Ingen planlagt træning i dag — brug dagen aktivt til restitution: gå en kort tur, spis protein ved hvert måltid, og læg dig i seng senest kl",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
@@ -965,7 +965,11 @@
       "v": 46.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-28",
+      "v": 44.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1413,7 +1417,11 @@
       "v": 8.3,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-28",
+      "v": 8.2,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3169,8 +3177,8 @@
     },
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 52 af 357 · Onsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44 er aktiv recovery — CTL er planmæssigt faldende, og cut begynder om 5 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen planlagte pas i dag — hviledag i en uge med 0 gennemførte træningspas. Tirsdagens aktivering på 60 min er misset. CTL er 37,8 mod mål 35,0 i en recovery-uge — ramp er negativ (-1,4), det er præcis hvad der skal ske nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 0,6 kg den seneste måned, og fedt er steget 0,6 procentpoint — begge over retningsgrænsen. Cut starter om 5 dage (2/11), så hold protein ved hvert måltid og alkohol som bevidst valg frem mod start.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 1 AF-dag af 6 hidtil i uge 44, og der var 2 drikkedage i træk 25/10–26/10 — det rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein er registreret 5 ud af 7 dage, søvn og energi er på plads.</p>",
-  "coachAssessmentTs": "05:23",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 52 af 357 · Onsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-blok — CTL falder bevidst mod 35; Stelvio couples-tilmelding har deadline i morgen torsdag 29/10.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen pas planlagt i dag. Tirsdagens aktivering (60 min, 45 TSS) er misset — drop det, indhent det ikke. Ugens TSS-pct er 7 af planlagte 161, men i en recovery-uge er det korrekt: målet er lavere belastning, ikke at ramme 161.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt stiger 0,6 kg og fedt 0,6 procentpoint den seneste måned — begge over grænsen for en klar retning opad, men cut starter først 2. november. Frem til da: hold protein ved hvert måltid og undgå alkohol-klynger.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Alkohol-advarslen fra tirsdag/onsdag i sidste uge er registreret — ingen dage med 3+ genstande, men 2 dage i træk i samme weekend rammer HRV hårdere end spredte dage. Protein er i orden 5 ud af 5 registrerede dage.</p>",
+  "coachAssessmentTs": "11:44",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3179,6 +3187,13 @@
       "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
       "action": null,
       "source": "rule"
+    },
+    {
+      "type": "quota",
+      "level": "info",
+      "message": "Husk Stelvio couples-tilmelding senest i morgen torsdag 29/10 — deadline fra programnoten.",
+      "action": null,
+      "source": "ai"
     }
   ],
   "tsb": 11.1,
@@ -3486,8 +3501,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-28T04:23:23.074664",
-  "coachAssessmentTsFull": "2026-10-28T04:23:23",
+  "credentialsCheckedTs": "2026-10-28T10:44:53.745229",
+  "coachAssessmentTsFull": "2026-10-28T10:44:53",
   "coachAssessmentWeightAtGen": 72.0,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [
@@ -4375,7 +4390,7 @@
     },
     {
       "date": "2026-10-28",
-      "v": 49,
+      "v": 47,
       "real": true
     }
   ],
@@ -9954,10 +9969,6 @@
       ],
       "projection": [
         {
-          "d": "2026-10-28",
-          "ctl": 37.8
-        },
-        {
           "d": "2026-10-29",
           "ctl": 36.9
         },
@@ -9979,7 +9990,7 @@
         },
         {
           "d": "2026-11-03",
-          "ctl": 35.9
+          "ctl": 36.0
         },
         {
           "d": "2026-11-04",
@@ -9999,7 +10010,7 @@
         },
         {
           "d": "2026-11-08",
-          "ctl": 36.1
+          "ctl": 36.2
         },
         {
           "d": "2026-11-09",
@@ -10091,7 +10102,7 @@
         },
         {
           "d": "2026-12-01",
-          "ctl": 46.6
+          "ctl": 46.7
         },
         {
           "d": "2026-12-02",
@@ -10099,7 +10110,7 @@
         },
         {
           "d": "2026-12-03",
-          "ctl": 47.5
+          "ctl": 47.6
         },
         {
           "d": "2026-12-04",
@@ -10143,7 +10154,7 @@
         },
         {
           "d": "2026-12-14",
-          "ctl": 52.3
+          "ctl": 52.4
         },
         {
           "d": "2026-12-15",
@@ -10445,42 +10456,39 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-28T04:23:23Z",
-    "inputsHash": "efe10a82f373048132ea26c07a6249a36e42426a",
+    "generatedAt": "2026-10-28T10:44:53Z",
+    "inputsHash": "f89686ee382e3ead961192b93a3b27bd5a62b7a4",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Intet pas i dag — brug aftenen på at bekræfte Stelvio couples-tilmeldingen inden deadline torsdag 29/10.",
-      "why": "Programmet siger hviledag, og tilmeldingsfristen udløber i morgen — det er den eneste handling der haster."
+      "action": "Ingen planlagt træning i dag — brug dagen aktivt til restitution: gå en kort tur, spis protein ved hvert måltid, og læg dig i seng senest kl",
+      "why": "Recovery-ugen handler om at lade CTL falde kontrolleret — ro i dag bygger fundamentet for Grundtur 80 på lørdag."
     },
     "training": {
-      "text": "Ingen planlagte pas i dag — hviledag i en uge med 0 gennemførte træningspas. Tirsdagens aktivering på 60 min er misset. CTL er 37,8 mod mål 35,0 i en recovery-uge — ramp er negativ (-1,4), det er præcis hvad der skal ske nu.",
+      "text": "Ingen pas planlagt i dag. Tirsdagens aktivering (60 min, 45 TSS) er misset — drop det, indhent det ikke. Ugens TSS-pct er 7 af planlagte 161, men i en recovery-uge er det korrekt: målet er lavere belastning, ikke at ramme 161.",
       "refs": [
-        37.8,
-        35.0,
-        -1.4,
-        60.0
+        60.0,
+        45.0,
+        7.0,
+        161.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 0,6 kg den seneste måned, og fedt er steget 0,6 procentpoint — begge over retningsgrænsen. Cut starter om 5 dage (2/11), så hold protein ved hvert måltid og alkohol som bevidst valg frem mod start.",
+      "text": "7-dages snit for vægt stiger 0,6 kg og fedt 0,6 procentpoint den seneste måned — begge over grænsen for en klar retning opad, men cut starter først 2. november. Frem til da: hold protein ved hvert måltid og undgå alkohol-klynger.",
       "refs": [
         0.6,
-        0.6,
-        5.0
+        0.6
       ]
     },
     "habits": {
-      "text": "Kun 1 AF-dag af 6 hidtil i uge 44, og der var 2 drikkedage i træk 25/10–26/10 — det rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein er registreret 5 ud af 7 dage, søvn og energi er på plads.",
+      "text": "Alkohol-advarslen fra tirsdag/onsdag i sidste uge er registreret — ingen dage med 3+ genstande, men 2 dage i træk i samme weekend rammer HRV hårdere end spredte dage. Protein er i orden 5 ud af 5 registrerede dage.",
       "refs": [
-        1.0,
-        6.0,
         2.0,
         5.0,
-        7.0
+        5.0
       ]
     },
-    "bigPicture": "Uge 44 er aktiv recovery — CTL er planmæssigt faldende, og cut begynder om 5 dage.",
+    "bigPicture": "Uge 44, recovery-blok — CTL falder bevidst mod 35; Stelvio couples-tilmelding har deadline i morgen torsdag 29/10.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10490,6 +10498,13 @@
         "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
         "source": "rule"
+      },
+      {
+        "type": "quota",
+        "level": "info",
+        "message": "Husk Stelvio couples-tilmelding senest i morgen torsdag 29/10 — deadline fra programnoten.",
+        "action": null,
+        "source": "ai"
       }
     ],
     "error": null,
@@ -10946,14 +10961,14 @@
     "lines": [
       "Uge 44: TSS 12 af 161 (7 %) · CTL 37,8 (mål 35) · TSB +11,1",
       "Vægt 7d — kg · fedt 14d 22,1 % · cut starter uge 45 (2/11)",
-      "HRV 7d 42 (28d 60) · hvilepuls 46 · søvn 7d 8,6 t",
+      "HRV 7d 42 (28d 59) · hvilepuls 45 · søvn 7d 8,6 t",
       "AF 4/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: inaktivt — Aktiveres uge 45 (2/11)",
       "Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-28T04:23:05Z"
+    "generatedAt": "2026-10-28T10:44:33Z"
   },
   "proposals": [],
   "ftp": {
