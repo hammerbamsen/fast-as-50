@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-29 09:06",
+    "updated": "2026-10-29 12:02",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -46,9 +46,9 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "8,2",
+      "value": "5,3",
       "unit": "t",
-      "sub": "Snit 7d 8,6t · mål 7t",
+      "sub": "Snit 7d 8,1t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "43,3",
+      "value": "43,9",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Uge 44, RECOVERY-blok efter Mallorca — genopbygning efter virus, dagens eneste opgave er let gang. {HL} Ingen gennemførte pas denne uge endnu — tirsdags-aktivering på 60 min er misset. I RECOVERY-blok er det ikke et problem; drop det og hold fokus på de resterende lette pas. CTL ligger på 35,9 mod mål på 35,0 — godt.",
-  "coachHighlight": "Tag din 30 minutters lette gang i dag — puls i Z1, intet mere. Genopbygning efter virus.",
+  "coachSpeech": "Torsdag — uge 44. {HL} Godt: Søvn på 8,1 timer er solid. Fokus: Vægt på 71,5 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Keep moving forward.  \"Keep moving forward.\"",
+  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
@@ -966,7 +966,11 @@
       "v": 44.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-29",
+      "v": 47.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1414,7 +1418,11 @@
       "v": 8.2,
       "real": true
     },
-    null
+    {
+      "date": "2026-10-29",
+      "v": 5.3,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3180,9 +3188,7 @@
     {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
+      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 17.3,
@@ -3490,7 +3496,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-29T08:07:28.817033",
+  "credentialsCheckedTs": "2026-10-29T11:02:04.258232",
   "coachAssessmentTsFull": "2026-10-29T08:07:28",
   "coachAssessmentWeightAtGen": 71.5,
   "coachAssessmentAfAtGen": 3,
@@ -10486,13 +10492,7 @@
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": [
-      {
-        "errors": [
-          "warnings[0].message: tal ikke i konteksten: 42"
-        ]
-      }
-    ],
+    "validationRejected": null,
     "notes": null,
     "stale": false
   },
@@ -10944,14 +10944,14 @@
     "lines": [
       "Uge 44: TSS 12 af 161 (7 %) · CTL 35,9 (mål 35) · TSB +17,3",
       "Vægt 7d — kg · fedt 14d 22,3 % · cut starter uge 45 (2/11)",
-      "HRV 7d 43 (28d 59) · hvilepuls 46 · søvn 7d 8,6 t",
+      "HRV 7d 44 (28d 59) · hvilepuls 46 · søvn 7d 8,1 t",
       "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: inaktivt — Aktiveres uge 45 (2/11)",
       "Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-29T08:06:59Z"
+    "generatedAt": "2026-10-29T11:02:04Z"
   },
   "proposals": [],
   "ftp": {
