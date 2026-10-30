@@ -1,22 +1,22 @@
 {
   "meta": {
-    "updated": "2026-10-29 21:27",
+    "updated": "2026-10-30 01:09",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
-    "dayName": "Torsdag",
-    "date": "29. okt",
+    "dayName": "Fredag",
+    "date": "30. okt",
     "rhrField": "restingHR",
     "nextRace": {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "daysTo": 129,
+      "daysTo": 128,
       "priority": "C"
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "phase": "TRANSITION",
-    "programDay": 53,
+    "programDay": 54,
     "programDays": 357,
     "isoWeek": 44
   },
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "36,0",
+      "value": "35,2",
       "unit": "",
       "sub": "Uge 44-mål 35 · RECOVERY",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "16,6",
+      "value": "18,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -58,13 +58,13 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "43,9",
+      "value": "45,0",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "46",
+      "value": "47",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 3
   },
-  "coachSpeech": "Torsdag — uge 44. {HL} Godt: Søvn på 8,1 timer er solid. Fokus: Vægt på 71,5 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Keep moving forward.  \"Keep moving forward.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Uge 44, RECOVERY-blok — kroppen er ikke klar til træning i dag; hvile er det rigtige valg. {HL} Readiness LOW: HRV 47,0 mod snit 55,8, hvilepuls 50 mod snit 46,7 — betingelsen for svøm er ikke opfyldt. Ugen viser 18 TSS ud af planlagte 161, men det er RECOVERY og lavere TSS er det rigtige — ikke et efterslæb.",
+  "coachHighlight": "Spring svøm over i dag — hvil i stedet. Din hvilepuls er 50 mod snit 46,7, og notatet siger kun svøm hvis hvilepuls max 42.",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
-      "discipline": "hike",
-      "title": "Gang let 30 min",
+      "discipline": "swim",
+      "title": "Svøm 1500m let teknisk",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": true
+      "completed": false
     }
   ],
   "week_sessions": [
@@ -152,7 +152,6 @@
       "planned_tss": null,
       "planned_mins": 30,
       "planned_distance_m": null,
-      "today": true,
       "completion": "done",
       "completion_pct": 187,
       "actual_tss": 6,
@@ -167,7 +166,8 @@
       "done": false,
       "planned_tss": null,
       "planned_mins": 1200,
-      "planned_distance_m": 1500
+      "planned_distance_m": 1500,
+      "today": true
     },
     {
       "day": "Lør",
@@ -196,14 +196,9 @@
     44.8,
     40.0,
     39.2,
-    36.0
+    35.2
   ],
   "weightHistory": [
-    {
-      "date": "2026-08-01",
-      "v": 72.6,
-      "real": true
-    },
     null,
     {
       "date": "2026-08-03",
@@ -524,14 +519,10 @@
       "date": "2026-10-29",
       "v": 71.5,
       "real": true
-    }
+    },
+    null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-08-01",
-      "v": 23.0,
-      "real": true
-    },
     {
       "date": "2026-08-02",
       "v": 32.0,
@@ -976,14 +967,10 @@
       "date": "2026-10-29",
       "v": 47.0,
       "real": true
-    }
+    },
+    null
   ],
   "sleepHistory": [
-    {
-      "date": "2026-08-01",
-      "v": 6.9,
-      "real": true
-    },
     {
       "date": "2026-08-02",
       "v": 4.3,
@@ -1428,14 +1415,10 @@
       "date": "2026-10-29",
       "v": 5.3,
       "real": true
-    }
+    },
+    null
   ],
   "tsbHistory": [
-    {
-      "date": "2026-08-01",
-      "v": -0.2,
-      "real": true
-    },
     {
       "date": "2026-08-02",
       "v": -2.4,
@@ -1880,6 +1863,11 @@
       "date": "2026-10-29",
       "v": 16.6,
       "real": true
+    },
+    {
+      "date": "2026-10-30",
+      "v": 18.3,
+      "real": true
     }
   ],
   "af_log": {
@@ -2246,7 +2234,6 @@
           "planned_tss": null,
           "planned_mins": 30,
           "planned_distance_m": null,
-          "today": true,
           "completion": "done",
           "completion_pct": 187,
           "actual_tss": 6,
@@ -2261,7 +2248,8 @@
           "done": false,
           "planned_tss": null,
           "planned_mins": 1200,
-          "planned_distance_m": 1500
+          "planned_distance_m": 1500,
+          "today": true
         },
         {
           "day": "Lør",
@@ -2856,7 +2844,7 @@
       "iso": 44,
       "monday": "2026-10-26",
       "done": 3,
-      "total": 4,
+      "total": 5,
       "label": "Uge 44"
     }
   ],
@@ -2867,11 +2855,6 @@
     "actual_total": 82.0
   },
   "fatHistory": [
-    {
-      "date": "2026-08-01",
-      "v": 20.6,
-      "real": true
-    },
     null,
     {
       "date": "2026-08-03",
@@ -3192,19 +3175,35 @@
       "date": "2026-10-29",
       "v": 22.3,
       "real": true
-    }
+    },
+    null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 53 af 357 · Torsdag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, recovery-uge efter Mallorca — dagens lette gang er gjort; i dag handler resten om Stelvio-deadline og søvn.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens gang på 56 min er gennemført — pænt over planlagte 30 min, men load er let og TSS minimal. RECOVERY-uge: lave tal er målet, CTL på 36,0 er allerede over target på 35,0.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snittet for vægt er steget 0,6 kg den seneste måned og fedtprocent 0,6 procentpoint — begge bevæger sig den forkerte vej inden cut starter 2. november.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Søvn i nat var 5,3 timer mod regel-minimum 7,0 — det er den direkte årsag til readiness LOW og HRV på 47,0 mod 7-dages snit 43,9. Prioritér 8 timers søvn i nat.</p>",
-  "coachAssessmentTs": "12:31",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 54 af 357 · Fredag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44, RECOVERY-blok — kroppen er ikke klar til træning i dag; hvile er det rigtige valg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Readiness LOW: HRV 47,0 mod snit 55,8, hvilepuls 50 mod snit 46,7 — betingelsen for svøm er ikke opfyldt. Ugen viser 18 TSS ud af planlagte 161, men det er RECOVERY og lavere TSS er det rigtige — ikke et efterslæb. CTL 35,2 er på mål.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for fedt er steget 0,6 procentpoint den seneste måned — det er over tærsklen. Vægtsnittet er tilsvarende steget 0,6 kg. Cut starter 2. november, så retningen er relevant at have med.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Søvn i nat var 5,3 timer — langt under de 7 timers minimum, og det forklarer meget af LOW-readiness. Protein er dækket 5 ud af 5 registrerede dage — det holder.</p>",
+  "coachAssessmentTs": "01:09",
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "readiness",
+      "level": "critical",
+      "message": "Readiness LOW og hvilepuls 50 overstiger betingelsen for svøm (max 42) — dagens pas droppes.",
+      "action": {
+        "label": "Afmeld svøm i dag",
+        "edit": {
+          "action": "cancel",
+          "entryId": "54d6c356"
+        }
+      },
+      "source": "ai"
+    },
+    {
       "type": "alcohol_cluster",
       "level": "warn",
-      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage."
+      "message": "2 drikkedage i træk 25/10–26/10 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 16.6,
+  "tsb": 18.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3257,17 +3256,16 @@
   ],
   "coachAssessmentLastActId": "i203120525",
   "weekFocusWeek": 8,
-  "coachAssessmentPlanAtGen": "Gang let 30 min",
+  "coachAssessmentPlanAtGen": "Svøm 1500m let teknisk",
   "weightGoal": 69.5,
   "bodyFatGoal": 19,
   "weightMovingAvg7": [
     null,
     null,
     null,
-    72.57,
-    72.45,
     72.4,
-    72.23,
+    72.35,
+    72.16,
     72.3,
     72.37,
     72.28,
@@ -3350,16 +3348,16 @@
     null,
     null,
     null,
+    null,
     null
   ],
   "fatMovingAvg7": [
     null,
     null,
     null,
-    21.17,
-    21.28,
-    21.38,
-    21.4,
+    21.5,
+    21.57,
+    21.56,
     21.55,
     21.69,
     21.67,
@@ -3442,6 +3440,7 @@
     null,
     null,
     null,
+    null,
     null
   ],
   "ctlPlan": [
@@ -3509,8 +3508,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-29T20:27:07.453199",
-  "coachAssessmentTsFull": "2026-10-29T11:31:51",
+  "credentialsCheckedTs": "2026-10-30T00:09:48.601355",
+  "coachAssessmentTsFull": "2026-10-30T00:09:48",
   "coachAssessmentWeightAtGen": 71.5,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [
@@ -3629,7 +3628,7 @@
     {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "days": 129,
+      "days": 128,
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
@@ -3638,7 +3637,7 @@
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
       "date": "2027-06-06",
-      "days": 220,
+      "days": 219,
       "priority": "B",
       "distance": "130km / 4500hm",
       "registered": true,
@@ -3647,7 +3646,7 @@
     {
       "name": "Tour des Stations Ultrafondo",
       "date": "2027-08-28",
-      "days": 303,
+      "days": 302,
       "priority": "A",
       "distance": "242km / 8848hm",
       "registered": false,
@@ -3951,11 +3950,6 @@
     }
   },
   "rhrHistory": [
-    {
-      "date": "2026-08-01",
-      "v": 50,
-      "real": true
-    },
     {
       "date": "2026-08-02",
       "v": 46,
@@ -4400,6 +4394,11 @@
       "date": "2026-10-29",
       "v": 48,
       "real": true
+    },
+    {
+      "date": "2026-10-30",
+      "v": 50,
+      "real": true
     }
   ],
   "blockType": "RECOVERY",
@@ -4464,13 +4463,6 @@
     "strengthPerWeek": 2
   },
   "checkinLog": [
-    {
-      "date": "2026-10-02",
-      "alkohol": 1,
-      "protein": 1,
-      "energi": 4,
-      "sult": null
-    },
     {
       "date": "2026-10-03",
       "alkohol": 1,
@@ -4659,11 +4651,17 @@
       "protein": 2,
       "energi": 3,
       "sult": null
+    },
+    {
+      "date": "2026-10-30",
+      "alkohol": null,
+      "protein": null,
+      "energi": null,
+      "sult": null
     }
   ],
   "energy7": 3.0,
   "af_kind": {
-    "2026-10-02": "faa",
     "2026-10-03": "faa",
     "2026-10-04": "faa",
     "2026-10-05": "faa",
@@ -4673,7 +4671,7 @@
     "2026-10-26": "faa"
   },
   "planTab": {
-    "today": "2026-10-29",
+    "today": "2026-10-30",
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "currentWeek": 8,
@@ -7861,7 +7859,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": true
+            "isToday": false
           },
           {
             "date": "2026-10-30",
@@ -7890,7 +7888,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": false
+            "isToday": true
           },
           {
             "date": "2026-10-31",
@@ -9972,7 +9970,7 @@
           "week": 8,
           "programId": "tds-2027",
           "start": "2026-10-26",
-          "ctl": 36.0
+          "ctl": 35.2
         }
       ],
       "projection": [
@@ -10460,48 +10458,56 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-10-29T11:31:51Z",
-    "inputsHash": "993965638a522cdd1c96797ea94514cabfd6a823",
+    "generatedAt": "2026-10-30T00:09:48Z",
+    "inputsHash": "1c2ae96a73136aeca84bc802c0e26cbad3422e75",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Tag stilling til Stelvio couples-tilmelding inden udgangen af i dag — det er deadline.",
-      "why": "Programnoten markerer 29/10 som early-bird deadline; det er i dag."
+      "action": "Spring svøm over i dag — hvil i stedet. Din hvilepuls er 50 mod snit 46,7, og notatet siger kun svøm hvis hvilepuls max 42.",
+      "why": "Readiness er LOW og HRV 47,0 mod 42-dages snit 55,8 — kroppen er ikke klar til selv let træning i dag."
     },
     "training": {
-      "text": "Dagens gang på 56 min er gennemført — pænt over planlagte 30 min, men load er let og TSS minimal. RECOVERY-uge: lave tal er målet, CTL på 36,0 er allerede over target på 35,0.",
+      "text": "Readiness LOW: HRV 47,0 mod snit 55,8, hvilepuls 50 mod snit 46,7 — betingelsen for svøm er ikke opfyldt. Ugen viser 18 TSS ud af planlagte 161, men det er RECOVERY og lavere TSS er det rigtige — ikke et efterslæb. CTL 35,2 er på mål.",
       "refs": [
-        56.0,
-        30.0,
-        36.0,
-        35.0
+        47.0,
+        55.8,
+        50.0,
+        46.7,
+        18.0,
+        161.0,
+        35.2
       ]
     },
     "body": {
-      "text": "7-dages snittet for vægt er steget 0,6 kg den seneste måned og fedtprocent 0,6 procentpoint — begge bevæger sig den forkerte vej inden cut starter 2. november.",
+      "text": "7-dages snit for fedt er steget 0,6 procentpoint den seneste måned — det er over tærsklen. Vægtsnittet er tilsvarende steget 0,6 kg. Cut starter 2. november, så retningen er relevant at have med.",
       "refs": [
         0.6,
         0.6
       ]
     },
     "habits": {
-      "text": "Søvn i nat var 5,3 timer mod regel-minimum 7,0 — det er den direkte årsag til readiness LOW og HRV på 47,0 mod 7-dages snit 43,9. Prioritér 8 timers søvn i nat.",
+      "text": "Søvn i nat var 5,3 timer — langt under de 7 timers minimum, og det forklarer meget af LOW-readiness. Protein er dækket 5 ud af 5 registrerede dage — det holder.",
       "refs": [
         5.3,
         7.0,
-        47.0,
-        43.9
+        5.0
       ]
     },
-    "bigPicture": "Uge 44, recovery-uge efter Mallorca — dagens lette gang er gjort; i dag handler resten om Stelvio-deadline og søvn.",
+    "bigPicture": "Uge 44, RECOVERY-blok — kroppen er ikke klar til træning i dag; hvile er det rigtige valg.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "readiness",
         "level": "act",
-        "message": "Readiness LOW: søvn 5,3 t i nat, HRV 47,0 mod 7-dages snit 43,9. Dagens gang er klaret — resten af dagen er restitution.",
-        "action": null,
+        "message": "Readiness LOW og hvilepuls 50 overstiger betingelsen for svøm (max 42) — dagens pas droppes.",
+        "action": {
+          "label": "Afmeld svøm i dag",
+          "edit": {
+            "action": "cancel",
+            "entryId": "54d6c356"
+          }
+        },
         "source": "ai"
       },
       {
@@ -10524,8 +10530,8 @@
     "text": "Lette ben, aerob probe onsdag, lang Z2 søndag"
   },
   "strengthLog": {
-    "from": "2026-10-01",
-    "to": "2026-10-29",
+    "from": "2026-10-02",
+    "to": "2026-10-30",
     "sessions": [
       {
         "date": "2026-10-04",
@@ -10557,7 +10563,7 @@
     ]
   },
   "body": {
-    "asOf": "2026-10-29",
+    "asOf": "2026-10-30",
     "glidepath": {
       "phase": "pre",
       "cutWeek": null,
@@ -10622,7 +10628,7 @@
     },
     "fat": {
       "avg14": 22.3,
-      "avg14Change28d": 0.7,
+      "avg14Change28d": 0.6,
       "expected": null,
       "target": 19.0,
       "corridorPp": 0.5,
@@ -10630,13 +10636,13 @@
       "note": "±0,5 pp er måleusikkerhed"
     },
     "ffm": {
-      "now": 56.2,
-      "change28d": -0.6,
+      "now": 56.0,
+      "change28d": -0.8,
       "target": 56.3,
       "status": "ok",
-      "baseline": 56.2,
-      "baselineDate": "2026-10-29",
-      "floor": 55.7,
+      "baseline": 56.0,
+      "baselineDate": "2026-10-30",
+      "floor": 55.5,
       "holdKg": -0.5
     },
     "strengthWeek": {
@@ -10964,16 +10970,16 @@
     "week": 8,
     "isoWeek": 44,
     "lines": [
-      "Uge 44: TSS 18 af 161 (11 %) · CTL 36,0 (mål 35) · TSB +16,6",
+      "Uge 44: TSS 18 af 161 (11 %) · CTL 35,2 (mål 35) · TSB +18,4",
       "Vægt 7d — kg · fedt 14d 22,3 % · cut starter uge 45 (2/11)",
-      "HRV 7d 44 (28d 59) · hvilepuls 46 · søvn 7d 8,1 t",
-      "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
+      "HRV 7d 45 (28d 59) · hvilepuls 47 · søvn 7d 8,0 t",
+      "AF 4/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: inaktivt — Aktiveres uge 45 (2/11)",
       "Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-29T20:27:07Z"
+    "generatedAt": "2026-10-30T00:09:31Z"
   },
   "proposals": [],
   "ftp": {
@@ -11045,8 +11051,8 @@
     ]
   },
   "fitnessLive": {
-    "date": "2026-10-29",
-    "ctl": 36.0,
-    "atl": 19.4
+    "date": "2026-10-30",
+    "ctl": 35.2,
+    "atl": 16.8
   }
 }
