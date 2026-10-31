@@ -202,3 +202,6 @@
 - **søndag 2026-11-22** (uge 11, apply_proposal): FaF 1 Z2 - Langtur 4 t (240 min) [langt] → FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt]
 - **tirsdag 2026-11-24** (uge 12, apply_proposal): FaF 1 Z2 - Aktivering 60 (60 min) → FaF 5 VO2 - 4 x 4 (62 min) [hårdt]
 - **søndag 2026-11-29** (uge 12, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → FaF 1 Z2 - Langtur 4 t (240 min) [langt]
+
+### Planændring 31/10 07:42
+- **lørdag 2026-10-31** (uge 8, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min) → Gang lang 90 min (90 min) [langt]
