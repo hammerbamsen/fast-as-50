@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-31 06:48",
+    "updated": "2026-10-31 06:50",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -72,7 +72,7 @@
     "tssComp": {
       "value": "31",
       "unit": "TSS",
-      "sub": "31 af 172 planlagt TSS",
+      "sub": "31 af 198 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -201,10 +201,10 @@
     {
       "day": "Søn",
       "disc": "bike",
-      "label": "FaF Z2 - Kælder 50",
+      "label": "FaF 1 Z2 - Grundtur 80",
       "done": false,
-      "planned_tss": 29,
-      "planned_mins": 50,
+      "planned_tss": 55,
+      "planned_mins": 80,
       "planned_distance_m": null
     }
   ],
@@ -2321,10 +2321,10 @@
         {
           "day": "Søn",
           "disc": "bike",
-          "label": "FaF Z2 - Kælder 50",
+          "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
-          "planned_tss": 29,
-          "planned_mins": 50,
+          "planned_tss": 55,
+          "planned_mins": 80,
           "planned_distance_m": null
         }
       ],
@@ -2909,7 +2909,7 @@
   "train_mins": {
     "walk": 121.0,
     "commute": 59.0,
-    "planned": 230.0,
+    "planned": 260.0,
     "actual_total": 180.0
   },
   "fatHistory": [
@@ -3559,7 +3559,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-10-31T05:48:41.154290",
+  "credentialsCheckedTs": "2026-10-31T05:50:17.277605",
   "coachAssessmentTsFull": "2026-10-31T05:48:19",
   "coachAssessmentWeightAtGen": 72.2,
   "coachAssessmentAfAtGen": 5,
@@ -8001,20 +8001,20 @@
             "weekday": "Søn",
             "entries": [
               {
-                "id": "021e0998",
-                "name": "FaF Z2 - Kælder 50",
+                "id": "90c5cd14",
+                "name": "FaF 1 Z2 - Grundtur 80",
                 "type": "Ride",
                 "disc": "bike",
-                "mins": 50,
-                "libraryId": null,
+                "mins": 80,
+                "libraryId": "z2_grundtur_80",
                 "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
+                "erg": true,
+                "purpose": "Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
+                "zwiftName": "FaF 1 Z2 - Grundtur 80",
                 "done": false,
                 "actualMins": null,
                 "actualTss": null,
-                "note": "Genopbygning efter virus. Kort Z2 indendørs, lav ende (ca. 150–175 W). Ingen intervaller. Drop eller kør kun 30 min, hvis hvilepuls er ≥2 slag over normal og HRV lav, eller hvis pulsen driver op ved samme watt.",
+                "note": "Genopbygning efter virus. Kør kun 45–50 min, lav Z2 (ca. 150–175 W), og stop før anden kadenceblok. Drop eller kør kun 30 min, hvis hvilepulsen er ≥2 slag over normal og HRV er lav, eller hvis pulsen stiger ved samme watt.",
                 "isKey": false,
                 "optional": false,
                 "start": "07:00",
@@ -11022,13 +11022,13 @@
   },
   "weekTss": {
     "actual": 31,
-    "planned": 172
+    "planned": 198
   },
   "martinMail": {
     "week": 8,
     "isoWeek": 44,
     "lines": [
-      "Uge 44: TSS 31 af 172 (18 %) · CTL 34,6 (mål 35) · TSB +18,5",
+      "Uge 44: TSS 31 af 198 (16 %) · CTL 34,6 (mål 35) · TSB +18,5",
       "Vægt 7d 72,0 kg · fedt 14d 22,6 % · cut starter uge 45 (2/11)",
       "HRV 7d 45 (28d 58) · hvilepuls 47 · søvn 7d 7,7 t",
       "AF 5/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11037,7 +11037,7 @@
       "Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-10-31T05:48:41Z"
+    "generatedAt": "2026-10-31T05:50:17Z"
   },
   "proposals": [],
   "ftp": {
