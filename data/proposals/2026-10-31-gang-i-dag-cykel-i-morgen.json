@@ -1,0 +1,92 @@
+{
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-10-31",
+      "entries": [
+        {
+          "note": "Genopbygning efter virus. Cykling udgår i dag. Lang gåtur i roligt tempo, puls i Z1. Styrke B udgår.",
+          "workout": {
+            "description": "- Gang Z1 90m freeride",
+            "moving_time": 5400,
+            "name": "Gang lang 90 min",
+            "type": "Hike",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 5400,
+                  "text": "Gang Z1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-01",
+      "entries": [
+        {
+          "note": "Genopbygning efter virus. Kort Z2 indendørs, lav ende (ca. 150–175 W). Ingen intervaller. Drop eller kør kun 30 min, hvis hvilepuls er ≥2 slag over normal og HRV lav, eller hvis pulsen driver op ved samme watt.",
+          "workout": {
+            "description": "- Varm-op 10m ramp 45-60% FTP\n- Zone 2 30m 63% FTP\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Første forsigtige cykeltur efter virus. Skal føles let.",
+            "moving_time": 3000,
+            "name": "FaF Z2 - Kælder 50",
+            "type": "Ride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 600,
+                  "power": {
+                    "end": 60,
+                    "start": 45,
+                    "units": "%ftp"
+                  },
+                  "ramp": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "duration": 1800,
+                  "power": {
+                    "units": "%ftp",
+                    "value": 63
+                  },
+                  "text": "Zone 2"
+                },
+                {
+                  "duration": 600,
+                  "power": {
+                    "end": 40,
+                    "start": 60,
+                    "units": "%ftp"
+                  },
+                  "ramp": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-10-31T05:45:00+00:00",
+  "createdBy": "claude",
+  "id": "2026-10-31-gang-i-dag-cykel-i-morgen",
+  "note": "Kennet 31/10: stadig ved at komme sig efter virus. Dropper Grundtur 80 i dag og går en lang tur. Søn 45–50 min Z2 indendørs i stedet for let gang.",
+  "status": "accepted",
+  "summary": [
+    "Lør 31/10: Grundtur 80 → lang gåtur 90 min (Z1)",
+    "Søn 1/11: let gang → Z2 kælder 50 min (lav Z2, ca. 160 W)"
+  ],
+  "title": "Lør gang, søn kort Z2 i kælderen",
+  "decidedAt": "2026-10-31T05:42:49+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-10-31",
+      "2026-11-01"
+    ],
+    "commit": "f01d04eab0cf25877f5c7d34666b364c29d65089"
+  }
+}
