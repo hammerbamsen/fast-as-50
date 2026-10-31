@@ -8472,83 +8472,18 @@
           "date": "2026-10-31",
           "entries": [
             {
-              "id": "2d5557a7",
-              "libraryId": "z2_grundtur_80",
-              "note": "Genopbygning efter virus. Første cykeltur. Hold Z2 (143–195 W). Stop efter 60 min hvis pulsen driver op. Kun hvis hvilepuls max 42. Styrke B udgår.",
+              "id": "cb72eb5a",
+              "note": "Genopbygning efter virus. Cykling udgår i dag. Lang gåtur i roligt tempo, puls i Z1. Styrke B udgår.",
               "workout": {
-                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
-                "moving_time": 4800,
-                "name": "FaF 1 Z2 - Grundtur 80",
-                "type": "Ride",
+                "description": "- Gang Z1 90m freeride",
+                "moving_time": 5400,
+                "name": "Gang lang 90 min",
+                "type": "Hike",
                 "workout_doc": {
                   "steps": [
                     {
-                      "duration": 600,
-                      "power": {
-                        "end": 62,
-                        "start": 45,
-                        "units": "%ftp"
-                      },
-                      "ramp": true,
-                      "text": "Varm-op",
-                      "warmup": true
-                    },
-                    {
-                      "duration": 1500,
-                      "power": {
-                        "end": 66,
-                        "start": 66,
-                        "units": "%ftp"
-                      },
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "cadence": {
-                        "end": 100,
-                        "start": 100,
-                        "units": "rpm"
-                      },
-                      "duration": 300,
-                      "power": {
-                        "end": 70,
-                        "start": 70,
-                        "units": "%ftp"
-                      },
-                      "text": "Kadence 100 70% FTP"
-                    },
-                    {
-                      "duration": 1500,
-                      "power": {
-                        "end": 66,
-                        "start": 66,
-                        "units": "%ftp"
-                      },
-                      "text": "Zone 2 66% FTP"
-                    },
-                    {
-                      "cadence": {
-                        "end": 100,
-                        "start": 100,
-                        "units": "rpm"
-                      },
-                      "duration": 300,
-                      "power": {
-                        "end": 70,
-                        "start": 70,
-                        "units": "%ftp"
-                      },
-                      "text": "Kadence 100 70% FTP"
-                    },
-                    {
-                      "cooldown": true,
-                      "duration": 600,
-                      "power": {
-                        "end": 40,
-                        "start": 62,
-                        "units": "%ftp"
-                      },
-                      "ramp": true,
-                      "text": "Cool-down"
+                      "duration": 5400,
+                      "text": "Gang Z1"
                     }
                   ]
                 }
@@ -8560,19 +8495,42 @@
           "date": "2026-11-01",
           "entries": [
             {
-              "id": "7b2d7d9e",
-              "note": "Genopbygning efter virus. Lang Z2 2 t udgår. Kun let gang.",
-              "optional": true,
+              "id": "021e0998",
+              "note": "Genopbygning efter virus. Kort Z2 indendørs, lav ende (ca. 150–175 W). Ingen intervaller. Drop eller kør kun 30 min, hvis hvilepuls er ≥2 slag over normal og HRV lav, eller hvis pulsen driver op ved samme watt.",
               "workout": {
-                "description": "- Gang Z1 45m freeride",
-                "moving_time": 2700,
-                "name": "Gang let 45 min",
-                "type": "Hike",
+                "description": "- Varm-op 10m ramp 45-60% FTP\n- Zone 2 30m 63% FTP\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Første forsigtige cykeltur efter virus. Skal føles let.",
+                "moving_time": 3000,
+                "name": "FaF Z2 - Kælder 50",
+                "type": "Ride",
                 "workout_doc": {
                   "steps": [
                     {
-                      "duration": 2700,
-                      "text": "Gang Z1"
+                      "duration": 600,
+                      "power": {
+                        "end": 60,
+                        "start": 45,
+                        "units": "%ftp"
+                      },
+                      "ramp": true,
+                      "text": "Varm-op"
+                    },
+                    {
+                      "duration": 1800,
+                      "power": {
+                        "units": "%ftp",
+                        "value": 63
+                      },
+                      "text": "Zone 2"
+                    },
+                    {
+                      "duration": 600,
+                      "power": {
+                        "end": 40,
+                        "start": 60,
+                        "units": "%ftp"
+                      },
+                      "ramp": true,
+                      "text": "Cool-down"
                     }
                   ]
                 }
