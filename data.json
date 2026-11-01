@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-01 12:27",
+    "updated": "2026-11-01 12:43",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "35,7",
+      "value": "35,9",
       "unit": "",
       "sub": "Uge 44-mål 35 · RECOVERY",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "11,0",
+      "value": "10,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "58",
+      "value": "60",
       "unit": "TSS",
-      "sub": "58 af 198 planlagt TSS",
+      "sub": "60 af 179 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "22,0",
+      "value": "25,9",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#C0392B"
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "Søndag — afslut uge 44 stærkt. {HL} Godt: Søvn på 7,5 timer er solid. 6/7 AF-dage — ugens mål er ramt. Fokus: Vægt på 72,0 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward. 📊 Store billede: CTL 35,7 er 0.7 point FORAN ugeplanen (planmål uge 44: 35).  \"Sæt målet højt, men sæt i dag realistisk.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Uge 44 var en planlagt recovery-uge efter Mallorca — genopbygning efter virus starter mandag i uge 45, mesocyklus 1/2 af BASE. {HL} Recovery-uge (uge 44): 60 TSS af 179 planlagt — men i en RECOVERY-blok er lavt TSS det rigtige. CTL ligger på 35,9 mod mål 35,0, ramp er -3,3 — kontrolleret nedgang som planlagt.",
+  "coachHighlight": "Planlæg konkret hvornår du vejer dig i morgen tidlig — den vejning er ny baseline for cut'en der starter 2026-11-02.",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
@@ -134,6 +134,14 @@
     {
       "discipline": "hike",
       "title": "Lyngby Tårbæk Vandring",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "commute",
+      "title": "Lyngby Tårbæk Cykling",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -163,9 +171,9 @@
     {
       "day": "Tor",
       "disc": "hike",
-      "label": "Gang let 30 min",
+      "label": "Gang let 30 min (valgfri)",
       "done": true,
-      "planned_tss": null,
+      "planned_tss": 9,
       "planned_mins": 30,
       "planned_distance_m": null,
       "completion": "done",
@@ -180,8 +188,8 @@
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
       "done": false,
-      "planned_tss": null,
-      "planned_mins": 1200,
+      "planned_tss": 38,
+      "planned_mins": 45,
       "planned_distance_m": 1500
     },
     {
@@ -209,7 +217,7 @@
       "disc": "hike",
       "label": "Gang lang 90 min",
       "done": true,
-      "planned_tss": null,
+      "planned_tss": 27,
       "planned_mins": 90,
       "planned_distance_m": null,
       "completion": "done",
@@ -224,7 +232,7 @@
       "disc": "bike",
       "label": "FaF 1 Z2 - Grundtur 80",
       "done": false,
-      "planned_tss": 55,
+      "planned_tss": 60,
       "planned_mins": 80,
       "planned_distance_m": null,
       "today": true
@@ -250,6 +258,17 @@
       "actual_mins": 65,
       "actual_distance_m": 4942.19,
       "today": true
+    },
+    {
+      "day": "Søn",
+      "disc": "commute",
+      "label": "Lyngby Tårbæk Cykling",
+      "done": true,
+      "extra": true,
+      "actual_tss": 2,
+      "actual_mins": 17,
+      "actual_distance_m": 3877.61,
+      "today": true
     }
   ],
   "ctlCurve": [
@@ -260,7 +279,7 @@
     44.8,
     40.0,
     39.2,
-    35.7
+    35.9
   ],
   "weightHistory": [
     {
@@ -1946,7 +1965,7 @@
     },
     {
       "date": "2026-11-01",
-      "v": 11.1,
+      "v": 10.3,
       "real": true
     }
   ],
@@ -2312,9 +2331,9 @@
         {
           "day": "Tor",
           "disc": "hike",
-          "label": "Gang let 30 min",
+          "label": "Gang let 30 min (valgfri)",
           "done": true,
-          "planned_tss": null,
+          "planned_tss": 9,
           "planned_mins": 30,
           "planned_distance_m": null,
           "completion": "done",
@@ -2329,8 +2348,8 @@
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
           "done": false,
-          "planned_tss": null,
-          "planned_mins": 1200,
+          "planned_tss": 38,
+          "planned_mins": 45,
           "planned_distance_m": 1500
         },
         {
@@ -2358,7 +2377,7 @@
           "disc": "hike",
           "label": "Gang lang 90 min",
           "done": true,
-          "planned_tss": null,
+          "planned_tss": 27,
           "planned_mins": 90,
           "planned_distance_m": null,
           "completion": "done",
@@ -2373,7 +2392,7 @@
           "disc": "bike",
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
-          "planned_tss": 55,
+          "planned_tss": 60,
           "planned_mins": 80,
           "planned_distance_m": null,
           "today": true
@@ -2399,6 +2418,17 @@
           "actual_mins": 65,
           "actual_distance_m": 4942.19,
           "today": true
+        },
+        {
+          "day": "Søn",
+          "disc": "commute",
+          "label": "Lyngby Tårbæk Cykling",
+          "done": true,
+          "extra": true,
+          "actual_tss": 2,
+          "actual_mins": 17,
+          "actual_distance_m": 3877.61,
+          "today": true
         }
       ],
       "blockType": "RECOVERY",
@@ -2412,8 +2442,8 @@
           "label": "Styrke A · Functional 4 · 2 runder",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 14,
+          "planned_tss": 17,
+          "planned_mins": 25,
           "planned_distance_m": null
         },
         {
@@ -2422,7 +2452,7 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 55,
+          "planned_tss": 60,
           "planned_mins": 80,
           "planned_distance_m": null
         },
@@ -2442,8 +2472,8 @@
           "label": "Svøm 1500m let teknisk",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 1200,
+          "planned_tss": 38,
+          "planned_mins": 45,
           "planned_distance_m": 1500
         },
         {
@@ -2452,8 +2482,8 @@
           "label": "Styrke B · Functional 4 · 2 runder",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 14,
+          "planned_tss": 17,
+          "planned_mins": 25,
           "planned_distance_m": null
         },
         {
@@ -2462,13 +2492,13 @@
           "label": "FaF 1 Z2 - Lang Z2 2 t",
           "done": false,
           "today": false,
-          "planned_tss": 96,
+          "planned_tss": 98,
           "planned_mins": 130,
           "planned_distance_m": null
         }
       ],
       "blockType": "BASE",
-      "focus": "To Z2-grundture, én lang Z2 og styrke to gange"
+      "focus": "Genopbygning efter virus — kun lette pas, ingen HIT"
     },
     "10": {
       "sessions": [
@@ -2488,7 +2518,7 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 55,
+          "planned_tss": 60,
           "planned_mins": 80,
           "planned_distance_m": null
         },
@@ -2498,7 +2528,7 @@
           "label": "Løb Z2 45 min",
           "done": false,
           "today": false,
-          "planned_tss": 50,
+          "planned_tss": 41,
           "planned_mins": 45,
           "planned_distance_m": null
         },
@@ -2528,8 +2558,8 @@
           "label": "Styrke B · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 31,
+          "planned_tss": 30,
+          "planned_mins": 45,
           "planned_distance_m": null
         },
         {
@@ -2538,7 +2568,7 @@
           "label": "FaF 1 Z2 - Lang Z2 2 t",
           "done": false,
           "today": false,
-          "planned_tss": 96,
+          "planned_tss": 98,
           "planned_mins": 130,
           "planned_distance_m": null
         }
@@ -2564,7 +2594,7 @@
           "label": "FaF 5 VO2 - Ronnestad 3 x 13 x 30-15",
           "done": false,
           "today": false,
-          "planned_tss": 78,
+          "planned_tss": 49,
           "planned_mins": 65,
           "planned_distance_m": null
         },
@@ -2604,7 +2634,7 @@
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
           "today": false,
-          "planned_tss": 55,
+          "planned_tss": 60,
           "planned_mins": 80,
           "planned_distance_m": null
         },
@@ -2614,8 +2644,8 @@
           "label": "Styrke B · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 31,
+          "planned_tss": 30,
+          "planned_mins": 45,
           "planned_distance_m": null
         },
         {
@@ -2624,7 +2654,7 @@
           "label": "FaF 6 Bjerg - TdS racepace 3 x 50",
           "done": false,
           "today": false,
-          "planned_tss": 129,
+          "planned_tss": 139,
           "planned_mins": 185,
           "planned_distance_m": null
         }
@@ -2640,8 +2670,8 @@
           "label": "Styrke A · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 31,
+          "planned_tss": 30,
+          "planned_mins": 45,
           "planned_distance_m": null
         },
         {
@@ -2650,7 +2680,7 @@
           "label": "FaF 5 VO2 - 4 x 4",
           "done": false,
           "today": false,
-          "planned_tss": 70,
+          "planned_tss": 47,
           "planned_mins": 62,
           "planned_distance_m": null
         },
@@ -2660,7 +2690,7 @@
           "label": "Løb Z2 45 min",
           "done": false,
           "today": false,
-          "planned_tss": 50,
+          "planned_tss": 41,
           "planned_mins": 45,
           "planned_distance_m": null
         },
@@ -2690,8 +2720,8 @@
           "label": "Styrke B · Functional 4 · 3 runder",
           "done": false,
           "today": false,
-          "planned_tss": null,
-          "planned_mins": 31,
+          "planned_tss": 30,
+          "planned_mins": 45,
           "planned_distance_m": null
         },
         {
@@ -2700,7 +2730,7 @@
           "label": "FaF 1 Z2 - Langtur 4 t",
           "done": false,
           "today": false,
-          "planned_tss": 173,
+          "planned_tss": 180,
           "planned_mins": 240,
           "planned_distance_m": null
         }
@@ -2980,11 +3010,11 @@
     }
   ],
   "train_mins": {
+    "commute": 92.0,
     "hike": 65.0,
-    "commute": 75.0,
     "walk": 246.0,
-    "planned": 260.0,
-    "actual_total": 386.0
+    "planned": 305.0,
+    "actual_total": 403.0
   },
   "fatHistory": [
     {
@@ -3318,11 +3348,25 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 56 af 357 · Søndag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44 afsluttet som recovery — TSS lav og CTL stabil er præcis det rigtige; næste uge starter BASE mesocyklus 1/2.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Recovery-ugen landede på 58 TSS mod planlagte 198 — men i en RECOVERY-blok er det ikke et efterslæb. Z2-aktivering tirsdag og svøm fredag blev misset, resten gennemført. CTL er 35,7 mod mål 35,0 og ramp på -3,5 — alt præcis hvor det skal være. Næste uge (BASE, mesocyklus 1/2) har kvote 1 hård og 0 moderate; nøglepas er Lang Z2 2 t søndag — intet hårdt i uge 45.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,0 kg og fedtprocent 22,6 — cut starter først i morgen, så ingen afvigelse at vurdere endnu. Protein ved hvert måltid fra dag ét af cut er den ene kost-handling næste uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-streak 6 dage — i mål. Ingen dage med 3+ genstande. Protein registreret 6 af 7 dage og søvnsnit 7,5 timer — begge over grænsen. Næste uge: hold protein-registreringen oppe alle 7 dage; det er fundamentet for cut-starten.</p>",
-  "coachAssessmentTs": "12:21",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 56 af 357 · Søndag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44 var en planlagt recovery-uge efter Mallorca — genopbygning efter virus starter mandag i uge 45, mesocyklus 1/2 af BASE.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Recovery-uge (uge 44): 60 TSS af 179 planlagt — men i en RECOVERY-blok er lavt TSS det rigtige. CTL ligger på 35,9 mod mål 35,0, ramp er -3,3 — kontrolleret nedgang som planlagt. Misset: Z2-aktivering tirsdag og svøm fredag, begge droppet ifm. virus — korrekt beslutning. Næste uge (uge 45) er BASE, mesocyklus 1/2: nøglepas er Lang Z2 2 t søndag, kvote 1 hård / 0 moderate, TSS-mål 280. Ingen hårde pas er planlagt — al belastning er let.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,0 kg — cut starter først mandag. Fedtprocent-snittet er steget 0,8 procentpoint den seneste måned, men vægten er faldet 1,4 kg; samlet billede er stabilt nok til at starte cut som planlagt. Uge 45-handling: sørg for protein ved hvert måltid fra dag ét i cut-perioden.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 AF-dage — præcis på mål, ingen dage med 3+ genstande. Protein registreret 6 af 7 dage. Søvnsnit 7,5 t — over grænsen på 7,0 t. Alt er på plan; hold søvnen over 7,0 t næste uge, særligt mandag–onsdag mens kroppen genstarter efter virus.</p>",
+  "coachAssessmentTs": "12:43",
   "commute_pairing_warnings": [],
-  "warnings": [],
-  "tsb": 11.0,
+  "warnings": [
+    {
+      "type": "readiness",
+      "level": "info",
+      "message": "Dagens Z2-grundtur (80 min) er ikke gennemført. Du er i recovery efter virus — spring den over eller kør max 45 min blød Z2, så du starter næste uge frisk.",
+      "action": {
+        "label": "Annuller søndagens Z2",
+        "edit": {
+          "action": "cancel",
+          "entryId": "90c5cd14"
+        }
+      },
+      "source": "ai"
+    }
+  ],
+  "tsb": 10.3,
   "swimHistory": [
     {
       "week": 1,
@@ -3373,7 +3417,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i204296305",
+  "coachAssessmentLastActId": "i204307079",
   "weekFocusWeek": 8,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Grundtur 80",
   "weightGoal": 69.5,
@@ -3627,21 +3671,11 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-01T11:27:18.558529",
-  "coachAssessmentTsFull": "2026-11-01T11:22:13",
+  "credentialsCheckedTs": "2026-11-01T11:43:31.056510",
+  "coachAssessmentTsFull": "2026-11-01T11:43:31",
   "coachAssessmentWeightAtGen": 72.0,
   "coachAssessmentAfAtGen": 6,
-  "event_structure_warnings": [
-    {
-      "date": "2026-11-06",
-      "name": "Svøm 1500m let teknisk",
-      "type": "Swim",
-      "event_id": 148947125,
-      "level": "warn",
-      "code": "SPOEGELSES_POWER",
-      "text": "2 trin har effekt-maal paa Swim. Skyldes typisk \"Z1-Z2\" i et step-navn — omdoeb trinnet."
-    }
-  ],
+  "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 22.5,
   "zones": {
     "runThreshold": "4:16/km",
@@ -3732,7 +3766,7 @@
     "5": 177,
     "6": 92,
     "7": 241,
-    "8": 58
+    "8": 60
   },
   "racesUpcoming": [
     {
@@ -5029,7 +5063,7 @@
         "mesoWeek": "R",
         "ctlTarget": 35,
         "tssTarget": 120,
-        "tssActual": 58,
+        "tssActual": 60,
         "purpose": "Recovery: 2 korte Z2 + 2 t søndag. Stelvio couples-tilmelding senest tor 29/10.",
         "note": "Stelvio couples early-bird deadline 29/10.",
         "quota": {
@@ -8123,6 +8157,24 @@
                 "note": null,
                 "isKey": false,
                 "extra": true
+              },
+              {
+                "id": null,
+                "name": "Lyngby Tårbæk Cykling",
+                "type": null,
+                "disc": "commute",
+                "mins": 17,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 17,
+                "actualTss": 2,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10151,7 +10203,7 @@
           "week": 8,
           "programId": "tds-2027",
           "start": "2026-10-26",
-          "ctl": 35.7
+          "ctl": 35.9
         }
       ],
       "projection": [
@@ -10627,53 +10679,59 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-01T11:22:13Z",
-    "inputsHash": "9a68f438ecdca41f8842ba337b5c3e6bafacf37f",
+    "generatedAt": "2026-11-01T11:43:31Z",
+    "inputsHash": "0f8d1ea94c14b363e1cd7207c4d851f3bc0323fb",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Kør dagens Z2-grundtur 45–50 min i lav Z2 som noten siger — stop der, ikke 80 min.",
-      "why": "Virus-genopbygning: kroppen er klar (TSB 11,0), men første dag tilbage sætter tonen for hele uge 45."
+      "action": "Planlæg konkret hvornår du vejer dig i morgen tidlig — den vejning er ny baseline for cut'en der starter 2026-11-02.",
+      "why": "Cut-fasen starter mandag; en tydelig baseline-vejning giver det reelle startpunkt for de næste 8 uger mod 69,5 kg."
     },
     "training": {
-      "text": "Recovery-ugen landede på 58 TSS mod planlagte 198 — men i en RECOVERY-blok er det ikke et efterslæb. Z2-aktivering tirsdag og svøm fredag blev misset, resten gennemført. CTL er 35,7 mod mål 35,0 og ramp på -3,5 — alt præcis hvor det skal være. Næste uge (BASE, mesocyklus 1/2) har kvote 1 hård og 0 moderate; nøglepas er Lang Z2 2 t søndag — intet hårdt i uge 45.",
+      "text": "Recovery-uge (uge 44): 60 TSS af 179 planlagt — men i en RECOVERY-blok er lavt TSS det rigtige. CTL ligger på 35,9 mod mål 35,0, ramp er -3,3 — kontrolleret nedgang som planlagt. Misset: Z2-aktivering tirsdag og svøm fredag, begge droppet ifm. virus — korrekt beslutning. Næste uge (uge 45) er BASE, mesocyklus 1/2: nøglepas er Lang Z2 2 t søndag, kvote 1 hård / 0 moderate, TSS-mål 280. Ingen hårde pas er planlagt — al belastning er let.",
       "refs": [
-        58.0,
-        198.0,
-        35.7,
+        60.0,
+        179.0,
+        35.9,
         35.0,
-        -3.5,
+        -3.3,
+        280.0,
         1.0,
-        0.0,
-        130.0
+        0.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 72,0 kg og fedtprocent 22,6 — cut starter først i morgen, så ingen afvigelse at vurdere endnu. Protein ved hvert måltid fra dag ét af cut er den ene kost-handling næste uge.",
+      "text": "7-dages snit er 72,0 kg — cut starter først mandag. Fedtprocent-snittet er steget 0,8 procentpoint den seneste måned, men vægten er faldet 1,4 kg; samlet billede er stabilt nok til at starte cut som planlagt. Uge 45-handling: sørg for protein ved hvert måltid fra dag ét i cut-perioden.",
       "refs": [
         72.0,
-        22.6
+        0.8,
+        1.4
       ]
     },
     "habits": {
-      "text": "AF-streak 6 dage — i mål. Ingen dage med 3+ genstande. Protein registreret 6 af 7 dage og søvnsnit 7,5 timer — begge over grænsen. Næste uge: hold protein-registreringen oppe alle 7 dage; det er fundamentet for cut-starten.",
+      "text": "6 AF-dage — præcis på mål, ingen dage med 3+ genstande. Protein registreret 6 af 7 dage. Søvnsnit 7,5 t — over grænsen på 7,0 t. Alt er på plan; hold søvnen over 7,0 t næste uge, særligt mandag–onsdag mens kroppen genstarter efter virus.",
       "refs": [
         6.0,
-        0.0,
         6.0,
-        7.0,
-        7.5
+        7.5,
+        7.0
       ]
     },
-    "bigPicture": "Uge 44 afsluttet som recovery — TSS lav og CTL stabil er præcis det rigtige; næste uge starter BASE mesocyklus 1/2.",
-    "weekFocus": "To Z2-grundture, én lang Z2 og styrke to gange",
+    "bigPicture": "Uge 44 var en planlagt recovery-uge efter Mallorca — genopbygning efter virus starter mandag i uge 45, mesocyklus 1/2 af BASE.",
+    "weekFocus": "Genopbygning efter virus — kun lette pas, ingen HIT",
     "weekFocusFor": 9,
     "warnings": [
       {
-        "type": "cut",
+        "type": "readiness",
         "level": "info",
-        "message": "Cut starter i morgen 2026-11-02 med mål 0,29 kg/uge mod 69,5 kg. Første vejning mandag er ny baseline — glem den daglige støj.",
-        "action": null,
+        "message": "Dagens Z2-grundtur (80 min) er ikke gennemført. Du er i recovery efter virus — spring den over eller kør max 45 min blød Z2, så du starter næste uge frisk.",
+        "action": {
+          "label": "Annuller søndagens Z2",
+          "edit": {
+            "action": "cancel",
+            "entryId": "90c5cd14"
+          }
+        },
         "source": "ai"
       }
     ],
@@ -10686,7 +10744,7 @@
   "weekFocusNext": {
     "week": 9,
     "programId": "tds-2027",
-    "text": "To Z2-grundture, én lang Z2 og styrke to gange"
+    "text": "Genopbygning efter virus — kun lette pas, ingen HIT"
   },
   "strengthLog": {
     "from": "2026-10-04",
@@ -11122,14 +11180,14 @@
     }
   },
   "weekTss": {
-    "actual": 58,
-    "planned": 198
+    "actual": 60,
+    "planned": 179
   },
   "martinMail": {
     "week": 8,
     "isoWeek": 44,
     "lines": [
-      "Uge 44: TSS 58 af 198 (29 %) · CTL 35,7 (mål 35) · TSB +11,0",
+      "Uge 44: TSS 60 af 179 (34 %) · CTL 35,9 (mål 35) · TSB +10,3",
       "Vægt 7d 72,0 kg · fedt 14d 22,6 % · cut starter uge 45 (2/11)",
       "HRV 7d 44 (28d 58) · hvilepuls 47 · søvn 7d 7,5 t",
       "AF 6/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11138,7 +11196,7 @@
       "Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-01T11:27:18Z"
+    "generatedAt": "2026-11-01T11:43:03Z"
   },
   "proposals": [],
   "ftp": {
@@ -11211,7 +11269,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-01",
-    "ctl": 35.7,
-    "atl": 24.7
+    "ctl": 35.9,
+    "atl": 25.6
   }
 }
