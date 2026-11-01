@@ -205,3 +205,13 @@
 
 ### Planændring 31/10 07:42
 - **lørdag 2026-10-31** (uge 8, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min) → Gang lang 90 min (90 min) [langt]
+
+### Signaler uge 44
+- Uge 44: TSS 41 af 198 (21 %) · CTL 35,3 (mål 35) · TSB +12,9
+- Vægt 7d 72,0 kg · fedt 14d 22,6 % · cut starter uge 45 (2/11)
+- HRV 7d 44 (28d 58) · hvilepuls 48 · søvn 7d 7,5 t
+- AF 5/7 · protein 3/3 5/7 · aftensult —/7
+- Styrke 0/2 · check-in 4/10 ben ✗ overkrop ✗
+- Cut-tjek: inaktivt — Aktiveres uge 45 (2/11)
+- Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min
+- Planændringer siden sidst: 2 — se martin_signals.md
