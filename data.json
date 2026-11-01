@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-01 09:48",
+    "updated": "2026-11-01 12:21",
     "week": 8,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#7A6A58"
     },
     "ctl": {
-      "value": "35,4",
+      "value": "35,7",
       "unit": "",
       "sub": "Uge 44-mål 35 · RECOVERY",
       "color": "#27AE60"
     },
     "tsb": {
-      "value": "12,4",
+      "value": "11,0",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "45",
+      "value": "58",
       "unit": "TSS",
-      "sub": "45 af 198 planlagt TSS",
+      "sub": "58 af 198 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "Søndag — afslut uge 44 stærkt. {HL} Godt: Søvn på 7,5 timer er solid. 6/7 AF-dage — ugens mål er ramt. Fokus: Vægt på 72,0 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward. 📊 Store billede: CTL 35,4 er 0.4 point FORAN ugeplanen (planmål uge 44: 35).  \"Sæt målet højt, men sæt i dag realistisk.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "Uge 44 afsluttet som recovery — TSS lav og CTL stabil er præcis det rigtige; næste uge starter BASE mesocyklus 1/2. {HL} Recovery-ugen landede på 58 TSS mod planlagte 198 — men i en RECOVERY-blok er det ikke et efterslæb. Z2-aktivering tirsdag og svøm fredag blev misset, resten gennemført.",
+  "coachHighlight": "Kør dagens Z2-grundtur 45–50 min i lav Z2 som noten siger — stop der, ikke 80 min.",
   "weekFocus": "Spis til vedligehold og lad kroppen lade op",
   "today": [
     {
@@ -126,6 +126,14 @@
     {
       "discipline": "commute",
       "title": "Gentofte Cykling",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "hike",
+      "title": "Lyngby Tårbæk Vandring",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -231,6 +239,17 @@
       "actual_mins": 16,
       "actual_distance_m": 4370.71,
       "today": true
+    },
+    {
+      "day": "Søn",
+      "disc": "hike",
+      "label": "Lyngby Tårbæk Vandring",
+      "done": true,
+      "extra": true,
+      "actual_tss": 13,
+      "actual_mins": 65,
+      "actual_distance_m": 4942.19,
+      "today": true
     }
   ],
   "ctlCurve": [
@@ -241,7 +260,7 @@
     44.8,
     40.0,
     39.2,
-    35.4
+    35.7
   ],
   "weightHistory": [
     {
@@ -1927,7 +1946,7 @@
     },
     {
       "date": "2026-11-01",
-      "v": 12.5,
+      "v": 11.1,
       "real": true
     }
   ],
@@ -2369,6 +2388,17 @@
           "actual_mins": 16,
           "actual_distance_m": 4370.71,
           "today": true
+        },
+        {
+          "day": "Søn",
+          "disc": "hike",
+          "label": "Lyngby Tårbæk Vandring",
+          "done": true,
+          "extra": true,
+          "actual_tss": 13,
+          "actual_mins": 65,
+          "actual_distance_m": 4942.19,
+          "today": true
         }
       ],
       "blockType": "RECOVERY",
@@ -2438,7 +2468,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Genopbyg roligt — Z2 hver dag, protein ved hvert måltid"
+      "focus": "To Z2-grundture, én lang Z2 og styrke to gange"
     },
     "10": {
       "sessions": [
@@ -2950,10 +2980,11 @@
     }
   ],
   "train_mins": {
+    "hike": 65.0,
     "commute": 75.0,
     "walk": 246.0,
     "planned": 260.0,
-    "actual_total": 321.0
+    "actual_total": 386.0
   },
   "fatHistory": [
     {
@@ -3287,11 +3318,19 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 56 af 357 · Søndag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44 slut — recovery-blok næsten gennemført; mandag starter uge 9, mesocyklus 1/2 af BASE-blokken.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 44 var en recovery-uge: 2 ture gennemført (gang torsdag og lørdag), 2 pas misset (Z2-aktivering tirsdag, svøm fredag). TSS endte på 45 af planlagte 198 — men i en RECOVERY-blok er lavt TSS det rigtige. CTL på 35,4 er 0,4 over målet på 35,0, og ramp på -3,8 er langt under advarslingstærsklen. Næste uge (uge 9): BASE, mesocyklus 1/2, kun lette pas — styrke mandag og lørdag, Z2 tirsdag, torsdag og søndag (nøglepas: 130 min Lang Z2), svøm fredag. Kvote: 1 hårdt, 0 moderate.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,0 kg og 22,6 % fedt. Vægten er faldet 1,4 kg den seneste måned — en klar retning nedad. Fedtprocenten er steget 0,8 procentpoint — hold protein ved hvert måltid hele næste uge for at beskytte muskelmassen, når cut starter mandag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-streaken er 6 dage, ingen dage med 3+ genstande — det er på plan. Protein registreret 6 ud af 7 dage, søvnsnit 7,5 timer. Hold stimen: protein ved hvert eneste måltid i næste uge er det vigtigste at fortsætte.</p>",
-  "coachAssessmentTs": "09:29",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 56 af 357 · Søndag · Uge 44</strong></p><p class=\"coach-sec coach-big\">Uge 44 afsluttet som recovery — TSS lav og CTL stabil er præcis det rigtige; næste uge starter BASE mesocyklus 1/2.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Recovery-ugen landede på 58 TSS mod planlagte 198 — men i en RECOVERY-blok er det ikke et efterslæb. Z2-aktivering tirsdag og svøm fredag blev misset, resten gennemført. CTL er 35,7 mod mål 35,0 og ramp på -3,5 — alt præcis hvor det skal være. Næste uge (BASE, mesocyklus 1/2) har kvote 1 hård og 0 moderate; nøglepas er Lang Z2 2 t søndag — intet hårdt i uge 45.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,0 kg og fedtprocent 22,6 — cut starter først i morgen, så ingen afvigelse at vurdere endnu. Protein ved hvert måltid fra dag ét af cut er den ene kost-handling næste uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>AF-streak 6 dage — i mål. Ingen dage med 3+ genstande. Protein registreret 6 af 7 dage og søvnsnit 7,5 timer — begge over grænsen. Næste uge: hold protein-registreringen oppe alle 7 dage; det er fundamentet for cut-starten.</p>",
+  "coachAssessmentTs": "12:21",
   "commute_pairing_warnings": [],
-  "warnings": [],
-  "tsb": 12.4,
+  "warnings": [
+    {
+      "type": "cut",
+      "level": "info",
+      "message": "Cut starter i morgen 2026-11-02 med mål 0,29 kg/uge mod 69,5 kg. Første vejning mandag er ny baseline — glem den daglige støj.",
+      "action": null,
+      "source": "ai"
+    }
+  ],
+  "tsb": 11.0,
   "swimHistory": [
     {
       "week": 1,
@@ -3342,7 +3381,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i204226518",
+  "coachAssessmentLastActId": "i204296305",
   "weekFocusWeek": 8,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Grundtur 80",
   "weightGoal": 69.5,
@@ -3596,8 +3635,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-01T08:48:52.180499",
-  "coachAssessmentTsFull": "2026-11-01T08:30:23",
+  "credentialsCheckedTs": "2026-11-01T11:22:13.359836",
+  "coachAssessmentTsFull": "2026-11-01T11:22:13",
   "coachAssessmentWeightAtGen": 72.0,
   "coachAssessmentAfAtGen": 6,
   "event_structure_warnings": [
@@ -3701,7 +3740,7 @@
     "5": 177,
     "6": 92,
     "7": 241,
-    "8": 45
+    "8": 58
   },
   "racesUpcoming": [
     {
@@ -4998,7 +5037,7 @@
         "mesoWeek": "R",
         "ctlTarget": 35,
         "tssTarget": 120,
-        "tssActual": 45,
+        "tssActual": 58,
         "purpose": "Recovery: 2 korte Z2 + 2 t søndag. Stelvio couples-tilmelding senest tor 29/10.",
         "note": "Stelvio couples early-bird deadline 29/10.",
         "quota": {
@@ -8074,6 +8113,24 @@
                 "note": null,
                 "isKey": false,
                 "extra": true
+              },
+              {
+                "id": null,
+                "name": "Lyngby Tårbæk Vandring",
+                "type": null,
+                "disc": "hike",
+                "mins": 65,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 65,
+                "actualTss": 13,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10102,7 +10159,7 @@
           "week": 8,
           "programId": "tds-2027",
           "start": "2026-10-26",
-          "ctl": 35.4
+          "ctl": 35.7
         }
       ],
       "projection": [
@@ -10578,47 +10635,56 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-01T08:30:23Z",
-    "inputsHash": "e3036e8b6f258e74b8f9d182962a5ac8b5edffa5",
+    "generatedAt": "2026-11-01T11:22:13Z",
+    "inputsHash": "9a68f438ecdca41f8842ba337b5c3e6bafacf37f",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Læg energiplan for søndagens 130 min Z2 — beslut hvad du spiser undervejs og hvornår.",
-      "why": "Nøglepasset søndag er 'lige så meget mavetræning som bentræning' — planlæg det nu, mens du har ro."
+      "action": "Kør dagens Z2-grundtur 45–50 min i lav Z2 som noten siger — stop der, ikke 80 min.",
+      "why": "Virus-genopbygning: kroppen er klar (TSB 11,0), men første dag tilbage sætter tonen for hele uge 45."
     },
     "training": {
-      "text": "Uge 44 var en recovery-uge: 2 ture gennemført (gang torsdag og lørdag), 2 pas misset (Z2-aktivering tirsdag, svøm fredag). TSS endte på 45 af planlagte 198 — men i en RECOVERY-blok er lavt TSS det rigtige. CTL på 35,4 er 0,4 over målet på 35,0, og ramp på -3,8 er langt under advarslingstærsklen. Næste uge (uge 9): BASE, mesocyklus 1/2, kun lette pas — styrke mandag og lørdag, Z2 tirsdag, torsdag og søndag (nøglepas: 130 min Lang Z2), svøm fredag. Kvote: 1 hårdt, 0 moderate.",
+      "text": "Recovery-ugen landede på 58 TSS mod planlagte 198 — men i en RECOVERY-blok er det ikke et efterslæb. Z2-aktivering tirsdag og svøm fredag blev misset, resten gennemført. CTL er 35,7 mod mål 35,0 og ramp på -3,5 — alt præcis hvor det skal være. Næste uge (BASE, mesocyklus 1/2) har kvote 1 hård og 0 moderate; nøglepas er Lang Z2 2 t søndag — intet hårdt i uge 45.",
       "refs": [
-        45.0,
+        58.0,
         198.0,
-        35.4,
+        35.7,
         35.0,
-        0.4,
-        -3.8,
+        -3.5,
+        1.0,
+        0.0,
         130.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 72,0 kg og 22,6 % fedt. Vægten er faldet 1,4 kg den seneste måned — en klar retning nedad. Fedtprocenten er steget 0,8 procentpoint — hold protein ved hvert måltid hele næste uge for at beskytte muskelmassen, når cut starter mandag.",
+      "text": "7-dages snit er 72,0 kg og fedtprocent 22,6 — cut starter først i morgen, så ingen afvigelse at vurdere endnu. Protein ved hvert måltid fra dag ét af cut er den ene kost-handling næste uge.",
       "refs": [
         72.0,
-        22.6,
-        1.4,
-        0.8
+        22.6
       ]
     },
     "habits": {
-      "text": "AF-streaken er 6 dage, ingen dage med 3+ genstande — det er på plan. Protein registreret 6 ud af 7 dage, søvnsnit 7,5 timer. Hold stimen: protein ved hvert eneste måltid i næste uge er det vigtigste at fortsætte.",
+      "text": "AF-streak 6 dage — i mål. Ingen dage med 3+ genstande. Protein registreret 6 af 7 dage og søvnsnit 7,5 timer — begge over grænsen. Næste uge: hold protein-registreringen oppe alle 7 dage; det er fundamentet for cut-starten.",
       "refs": [
         6.0,
+        0.0,
         6.0,
+        7.0,
         7.5
       ]
     },
-    "bigPicture": "Uge 44 slut — recovery-blok næsten gennemført; mandag starter uge 9, mesocyklus 1/2 af BASE-blokken.",
-    "weekFocus": "Genopbyg roligt — Z2 hver dag, protein ved hvert måltid",
+    "bigPicture": "Uge 44 afsluttet som recovery — TSS lav og CTL stabil er præcis det rigtige; næste uge starter BASE mesocyklus 1/2.",
+    "weekFocus": "To Z2-grundture, én lang Z2 og styrke to gange",
     "weekFocusFor": 9,
-    "warnings": [],
+    "warnings": [
+      {
+        "type": "cut",
+        "level": "info",
+        "message": "Cut starter i morgen 2026-11-02 med mål 0,29 kg/uge mod 69,5 kg. Første vejning mandag er ny baseline — glem den daglige støj.",
+        "action": null,
+        "source": "ai"
+      }
+    ],
     "error": null,
     "validationError": null,
     "validationRejected": null,
@@ -10628,7 +10694,7 @@
   "weekFocusNext": {
     "week": 9,
     "programId": "tds-2027",
-    "text": "Genopbyg roligt — Z2 hver dag, protein ved hvert måltid"
+    "text": "To Z2-grundture, én lang Z2 og styrke to gange"
   },
   "strengthLog": {
     "from": "2026-10-04",
@@ -11064,14 +11130,14 @@
     }
   },
   "weekTss": {
-    "actual": 45,
+    "actual": 58,
     "planned": 198
   },
   "martinMail": {
     "week": 8,
     "isoWeek": 44,
     "lines": [
-      "Uge 44: TSS 45 af 198 (23 %) · CTL 35,4 (mål 35) · TSB +12,4",
+      "Uge 44: TSS 58 af 198 (29 %) · CTL 35,7 (mål 35) · TSB +11,0",
       "Vægt 7d 72,0 kg · fedt 14d 22,6 % · cut starter uge 45 (2/11)",
       "HRV 7d 44 (28d 58) · hvilepuls 47 · søvn 7d 7,5 t",
       "AF 6/7 · protein 3/3 6/7 · aftensult —/7",
@@ -11080,7 +11146,7 @@
       "Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-01T08:48:52Z"
+    "generatedAt": "2026-11-01T11:21:51Z"
   },
   "proposals": [],
   "ftp": {
@@ -11153,7 +11219,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-01",
-    "ctl": 35.4,
-    "atl": 23.0
+    "ctl": 35.7,
+    "atl": 24.7
   }
 }
