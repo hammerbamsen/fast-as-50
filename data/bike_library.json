@@ -1879,6 +1879,46 @@
       ]
     },
     {
+      "id": "bjerg_sa_calobra_video",
+      "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
+      "category": "bjerg",
+      "load": "moderat",
+      "est_min": 70,
+      "purpose": "Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Opvarm 15 min på en flad Watopia-rute, kør så videoen på 86 % FTP. Tiden på stigningen afhænger af watt og vægt — ca. 44 min på 221 W.",
+      "erg": false,
+      "notes": "PR at slå: 35:18 på 275 W (Mallorca 2023). Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls.",
+      "tags": [
+        "bjerg",
+        "sacalobra",
+        "video"
+      ],
+      "steps": [
+        {
+          "type": "ramp",
+          "min": 15,
+          "from": 45,
+          "to": 68,
+          "kind": "warmup",
+          "text": "Varm-op (flad Watopia-rute)"
+        },
+        {
+          "type": "steady",
+          "min": 45,
+          "pct": 86,
+          "text": "SA CALOBRA — Zwift Video",
+          "cad": 72
+        },
+        {
+          "type": "ramp",
+          "min": 10,
+          "from": 60,
+          "to": 40,
+          "kind": "cooldown",
+          "text": "Cool-down"
+        }
+      ]
+    },
+    {
       "id": "bjerg_tds_2x45",
       "name": "FaF 6 Bjerg - TdS 2 x 45 træning",
       "category": "bjerg",

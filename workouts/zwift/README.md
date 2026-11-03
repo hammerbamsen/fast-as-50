@@ -18,7 +18,7 @@ efter kategori fordi navnene starter med `FaF 0`-`FaF 6`.
 - **3 Sweet spot**: 1 pas
 - **4 Tærskel**: 4 pas
 - **5 VO2max**: 5 pas
-- **6 Bjerg / TdS**: 4 pas
+- **6 Bjerg / TdS**: 5 pas
 
 ## Regler
 - Max 2 hårde cykelpas om ugen, mindst 72 timer imellem
@@ -46,6 +46,7 @@ efter kategori fordi navnene starter med `FaF 0`-`FaF 6`.
 - `FaF_5_VO2_-_10_x_1.zwo` — FaF 5 VO2 - 10 x 1 · 53 min · haard
 - `FaF_6_Bjerg_-_Sa_Calobra_1_x_30.zwo` — FaF 6 Bjerg - Sa Calobra 1 x 30 · 67 min · moderat
 - `FaF_6_Bjerg_-_Sa_Calobra_2_x_25.zwo` — FaF 6 Bjerg - Sa Calobra 2 x 25 · 96 min · moderat
+- `FaF_6_Bjerg_-_Sa_Calobra_Zwift_Video.zwo` — FaF 6 Bjerg - Sa Calobra Zwift Video · 70 min · moderat
 - `FaF_6_Bjerg_-_TdS_2_x_45_traening.zwo` — FaF 6 Bjerg - TdS 2 x 45 træning · 134 min · moderat
 - `FaF_6_Bjerg_-_TdS_racepace_3_x_50.zwo` — FaF 6 Bjerg - TdS racepace 3 x 50 · 185 min · let
 - `FaF_1_Z2_-_Aktivering_60.zwo` — FaF 1 Z2 - Aktivering 60 · 60 min · let
