@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-03 13:49",
+    "updated": "2026-11-03 16:56",
     "week": 9,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "33,1",
+      "value": "33,2",
       "unit": "",
       "sub": "Uge 45-mål 36 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "17,2",
+      "value": "16,4",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "23",
+      "value": "30",
       "unit": "TSS",
-      "sub": "23 af 305 planlagt TSS",
+      "sub": "30 af 305 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 8
   },
-  "coachSpeech": "Tirsdag — uge 45. {HL} Godt: 2 AF-dage i 2 gennemførte dage — på rette spor. 4 mere og ugens mål er i hus. Fokus: 23 af 305 TSS er i hus — 6 sessioner tilbage, heriblandt Gang 60 min, FaF Z2 - Kælder 45. Vægt på 72,5 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 7,8 timer er solid",
+  "coachSpeech": "Uge 45, BASE mesouge 1/2: genopbygning efter virus prioriteres — fedtfri masse-tabet kræver handling nu. {HL} Gåturen på 53 min er gennemført som planlagt genopbygning efter virus. Cykling flyttes til onsdag. CTL ligger på 33,2 mod mål på 36,0 — du er 2,8 under, men det er normalt tidligt i en base-blok (uge 45, mesouge 1/2).",
+  "coachHighlight": "Sørg for at spise protein ved alle tre måltider i dag og de næste 3-4 dage — hold cut-raten, men giv musklerne nok at arbejde med.",
   "weekFocus": "Vedligehold fedtfri masse — protein ved hvert måltid",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -155,11 +155,17 @@
       "day": "Tir",
       "disc": "hike",
       "label": "Gang 60 min",
-      "done": false,
+      "done": true,
       "planned_tss": null,
       "planned_mins": 60,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 88,
+      "actual_tss": 7,
+      "actual_name": "Gentofte - Gang 60 min",
+      "actual_mins": 53,
+      "actual_distance_m": 4782.22
     },
     {
       "day": "Ons",
@@ -216,7 +222,7 @@
     40.0,
     39.2,
     34.5,
-    33.1
+    33.2
   ],
   "weightHistory": [
     {
@@ -1902,7 +1908,7 @@
     },
     {
       "date": "2026-11-03",
-      "v": 17.2,
+      "v": 16.4,
       "real": true
     }
   ],
@@ -2248,11 +2254,17 @@
           "day": "Tir",
           "disc": "hike",
           "label": "Gang 60 min",
-          "done": false,
+          "done": true,
           "planned_tss": null,
           "planned_mins": 60,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 88,
+          "actual_tss": 7,
+          "actual_name": "Gentofte - Gang 60 min",
+          "actual_mins": 53,
+          "actual_distance_m": 4782.22
         },
         {
           "day": "Ons",
@@ -2999,10 +3011,10 @@
     }
   ],
   "train_mins": {
-    "walk": 55.0,
+    "walk": 108.0,
     "strength": 27.0,
     "planned": 410.0,
-    "actual_total": 82.0
+    "actual_total": 135.0
   },
   "fatHistory": [
     {
@@ -3336,17 +3348,19 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 58 af 357 · Tirsdag · Uge 45</strong></p><p class=\"coach-sec coach-big\">Uge 45, BASE-blok meso 1/2 — genopbygning efter virus prioriteres; fedtfri masse kræver handling ved kosten nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>I dag er det kun en let gåtur på 60 min (Z1) — cykling er rykket til i morgen. Ugen er så vidt starter med 1 gennemført pas (styrke mandag); 5 pas resterer, herunder ingen hårde denne uge endnu. CTL er 33,1 mod mål på 36,0 — BASE-blok, så det tages roligt i takt med restitutionen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>Fedtfri masse er faldet 1,1 kg på 4 uger — spis til vedligehold de næste 3-4 dage og sørg for protein ved alle 3 måltider. 7-dages snit for vægt falder 1,4 kg den seneste måned, fedt stiger 1,0 procentpoint — cuttet er svagt under plan.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun 4 af 5 registrerede dage — sæt 3/3 i dag. Søvn og AF er på plads.</p>",
-  "coachAssessmentTs": "12:39",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 58 af 357 · Tirsdag · Uge 45</strong></p><p class=\"coach-sec coach-big\">Uge 45, BASE mesouge 1/2: genopbygning efter virus prioriteres — fedtfri masse-tabet kræver handling nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Gåturen på 53 min er gennemført som planlagt genopbygning efter virus. Cykling flyttes til onsdag. CTL ligger på 33,2 mod mål på 36,0 — du er 2,8 under, men det er normalt tidligt i en base-blok (uge 45, mesouge 1/2).</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for fedt er steget 1,0 procentpoint den seneste måned — retningen er op. Vægten er 0,1 kg over planlagt ved dette cut-stadie, men fedtfri masse har tabt sig 1,1 kg på 4 uger, hvilket er det primære signal: spis til vedligehold 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun 4 ud af 7 dage — skal op på 3/3 resterende dage. Søvn og alkohol er på plads denne uge.</p>",
+  "coachAssessmentTs": "16:56",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −1,1 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag"
+      "message": "Cut-tjek: Fedtfri masse −1,1 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 17.2,
+  "tsb": 16.4,
   "swimHistory": [
     {
       "week": 1,
@@ -3403,7 +3417,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i204803120",
+  "coachAssessmentLastActId": "i205296482",
   "weekFocusWeek": 9,
   "coachAssessmentPlanAtGen": "Gang 60 min",
   "weightGoal": 69.5,
@@ -3657,8 +3671,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-03T12:49:18.144393",
-  "coachAssessmentTsFull": "2026-11-03T11:40:09",
+  "credentialsCheckedTs": "2026-11-03T15:57:08.193852",
+  "coachAssessmentTsFull": "2026-11-03T15:57:08",
   "coachAssessmentWeightAtGen": 72.5,
   "coachAssessmentAfAtGen": 2,
   "event_structure_warnings": [
@@ -3763,7 +3777,7 @@
     "6": 92,
     "7": 241,
     "8": 60,
-    "9": 23
+    "9": 30
   },
   "racesUpcoming": [
     {
@@ -5087,7 +5101,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 36,
         "tssTarget": 280,
-        "tssActual": 23,
+        "tssActual": 30,
         "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn TdS racepace 3 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -8137,14 +8151,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 53,
+                "actualTss": 7,
                 "note": "Genopbygning efter virus. Cykling flyttet til i morgen. Gåtur i roligt tempo, puls i Z1.",
                 "isKey": false,
                 "optional": false,
                 "start": "16:00",
-                "startFixed": true
+                "startFixed": true,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -10345,7 +10360,7 @@
           "week": 9,
           "programId": "tds-2027",
           "start": "2026-11-02",
-          "ctl": 33.1
+          "ctl": 33.2
         }
       ],
       "projection": [
@@ -10815,40 +10830,39 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-03T11:40:09Z",
-    "inputsHash": "a0c9bfee2b878badf9eb037d80400350cbdab34a",
+    "generatedAt": "2026-11-03T15:57:08Z",
+    "inputsHash": "529b210f024df947cd3c80a0caaffb3737139084",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gå 60 min i roligt tempo, puls i Z1 — præcis som planlagt i dag.",
-      "why": "Genopbygning efter virus: let belastning holder kroppen i gang uden at kompromittere cut-signalet om fedtfri masse."
+      "action": "Sørg for at spise protein ved alle tre måltider i dag og de næste 3-4 dage — hold cut-raten, men giv musklerne nok at arbejde med.",
+      "why": "Fedtfri masse er faldet 1,1 kg på 4 uger — det er for hurtigt og kræver at du spiser til vedligehold nu."
     },
     "training": {
-      "text": "I dag er det kun en let gåtur på 60 min (Z1) — cykling er rykket til i morgen. Ugen er så vidt starter med 1 gennemført pas (styrke mandag); 5 pas resterer, herunder ingen hårde denne uge endnu. CTL er 33,1 mod mål på 36,0 — BASE-blok, så det tages roligt i takt med restitutionen.",
+      "text": "Gåturen på 53 min er gennemført som planlagt genopbygning efter virus. Cykling flyttes til onsdag. CTL ligger på 33,2 mod mål på 36,0 — du er 2,8 under, men det er normalt tidligt i en base-blok (uge 45, mesouge 1/2).",
       "refs": [
-        60.0,
-        33.1,
-        36.0
+        53.0,
+        33.2,
+        36.0,
+        2.8
       ]
     },
     "body": {
-      "text": "Fedtfri masse er faldet 1,1 kg på 4 uger — spis til vedligehold de næste 3-4 dage og sørg for protein ved alle 3 måltider. 7-dages snit for vægt falder 1,4 kg den seneste måned, fedt stiger 1,0 procentpoint — cuttet er svagt under plan.",
+      "text": "7-dages snit for fedt er steget 1,0 procentpoint den seneste måned — retningen er op. Vægten er 0,1 kg over planlagt ved dette cut-stadie, men fedtfri masse har tabt sig 1,1 kg på 4 uger, hvilket er det primære signal: spis til vedligehold 3-4 dage.",
       "refs": [
-        1.1,
-        3.0,
-        1.4,
-        1.0
+        1.0,
+        0.1,
+        1.1
       ]
     },
     "habits": {
-      "text": "Protein kun 4 af 5 registrerede dage — sæt 3/3 i dag. Søvn og AF er på plads.",
+      "text": "Protein kun 4 ud af 7 dage — skal op på 3/3 resterende dage. Søvn og alkohol er på plads denne uge.",
       "refs": [
         4.0,
-        5.0,
-        3.0
+        7.0
       ]
     },
-    "bigPicture": "Uge 45, BASE-blok meso 1/2 — genopbygning efter virus prioriteres; fedtfri masse kræver handling ved kosten nu.",
+    "bigPicture": "Uge 45, BASE mesouge 1/2: genopbygning efter virus prioriteres — fedtfri masse-tabet kræver handling nu.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11338,14 +11352,14 @@
     }
   },
   "weekTss": {
-    "actual": 23,
+    "actual": 30,
     "planned": 305
   },
   "martinMail": {
     "week": 9,
     "isoWeek": 45,
     "lines": [
-      "Uge 45: TSS 23 af 305 (8 %) · CTL 33,1 (mål 36) · TSB +17,2",
+      "Uge 45: TSS 30 af 305 (10 %) · CTL 33,2 (mål 36) · TSB +16,4",
       "Vægt 7d 72,1 kg · fedt 14d 22,6 % · på plan mod glidepath (72,0)",
       "HRV 7d 46 (28d 56) · hvilepuls 47 · søvn 7d 7,8 t",
       "AF 7/7 · protein 3/3 4/7 · aftensult —/7",
@@ -11354,7 +11368,7 @@
       "Næste uge (46, BASE): TSS-mål 350 · hårde/lange dage: lør 14/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 15/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-03T12:49:18Z"
+    "generatedAt": "2026-11-03T15:56:51Z"
   },
   "proposals": [],
   "ftp": {
@@ -11427,7 +11441,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-03",
-    "ctl": 33.1,
-    "atl": 15.9
+    "ctl": 33.2,
+    "atl": 16.8
   }
 }
