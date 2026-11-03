@@ -218,3 +218,27 @@
 
 ### Planændring 03/11 07:18
 - **onsdag 2026-11-04** (uge 9, apply_proposal): hviledag → FaF Z2 - Kælder 45 (45 min)
+
+### Planændring 03/11 08:05
+- **onsdag 2026-11-11** (uge 10, apply_proposal): Løb Z2 45 min (45 min) → Løb Z2 45 min (45 min); Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-11-14** (uge 10, apply_proposal): Styrke B · Functional 4 · 3 runder (45 min) → Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]
+- **søndag 2026-11-15** (uge 10, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt]
+- **onsdag 2026-11-18** (uge 11, apply_proposal): Løb Z2 45 min (45 min) → Løb Z2 45 min (45 min); Styrke A · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-11-21** (uge 11, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min); Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Langtur 4 t (240 min) [langt]
+- **søndag 2026-11-22** (uge 11, apply_proposal): FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt] → hviledag
+- **mandag 2026-11-23** (uge 12, apply_proposal): Styrke A · Functional 4 · 3 runder (45 min) → Cykel Z2 120 min Mallorca (120 min) [langt]; Styrke A · Functional 4 · 2 runder (25 min)
+- **tirsdag 2026-11-24** (uge 12, apply_proposal): FaF 5 VO2 - 4 x 4 (62 min) [hårdt] → Cykel Sa Calobra 3 t Mallorca (180 min) [langt]
+- **onsdag 2026-11-25** (uge 12, apply_proposal): Løb Z2 45 min (45 min) → Cykel Z2 150 min Mallorca (150 min) [langt]
+- **torsdag 2026-11-26** (uge 12, apply_proposal): FaF 1 Z2 - Grundtur 80 (80 min) → Cykel Z2 90 min Mallorca (90 min) [langt]; Styrke B · Functional 4 · 2 runder (25 min)
+- **fredag 2026-11-27** (uge 12, apply_proposal): Svøm 1500m let teknisk (45 min) → hviledag
+- **søndag 2026-11-29** (uge 12, apply_proposal): FaF 1 Z2 - Langtur 4 t (240 min) [langt] → FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]
+- **mandag 2026-11-30** (uge 13, apply_proposal): Styrke A · Functional 4 · 3 runder (45 min) → FaF 5 VO2 - 5 x 3 (71 min) [hårdt]; Styrke B · Functional 4 · 3 runder (45 min)
+- **tirsdag 2026-12-01** (uge 13, apply_proposal): FaF 5 VO2 - 5 x 3 (71 min) [hårdt] → hviledag
+- **onsdag 2026-12-02** (uge 13, apply_proposal): Løb Z2 45 min (45 min) → Vandring 3 t (180 min) [langt]
+- **fredag 2026-12-04** (uge 13, apply_proposal): Svøm 1500m let teknisk (45 min) → Vandring 3 t (180 min) [langt]
+- **lørdag 2026-12-05** (uge 13, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Løb Z2 60 min (60 min); Styrke B · Functional 4 · 2 runder (25 min)
+- **søndag 2026-12-06** (uge 13, apply_proposal): FaF 2 Dur - Kvalitet sent 3 x 8 (189 min) [langt] → Vandring 3 t (180 min) [langt]
+- **tirsdag 2026-12-08** (uge 14, apply_proposal): FaF 5 VO2 - 4 x 4 Clark 120 (59 min) [hårdt] → hviledag
+- **onsdag 2026-12-09** (uge 14, apply_proposal): Løb Z2 45 min (45 min) → FaF 6 Bjerg - Sa Calobra Zwift Video (70 min); Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-12-12** (uge 14, apply_proposal): FaF 2 Dur - Negativ split 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]
+- **onsdag 2026-12-16** (uge 15, apply_proposal): Løb Z2 45 min (45 min) → Løb Z2 45 min (45 min); Styrke A · Functional 4 · 3 runder (45 min)
