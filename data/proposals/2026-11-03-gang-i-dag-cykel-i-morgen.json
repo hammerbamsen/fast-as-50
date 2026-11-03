@@ -1,0 +1,98 @@
+{
+  "id": "2026-11-03-gang-i-dag-cykel-i-morgen",
+  "title": "Tir gang kl. 16, ons kort Z2 45 min",
+  "status": "applied-offline",
+  "createdAt": "2026-11-03T05:15:00+00:00",
+  "createdBy": "claude",
+  "note": "Kennet 3/11: stadig ved at komme sig, men det går bedre. Grundtur 80 i dag flyttes til i morgen og kortes til 45 min. I dag gåtur ca. 1 time kl. 16.",
+  "summary": [
+    "Tir 3/11: Grundtur 80 → gåtur 60 min (Z1) kl. 16:00",
+    "Ons 4/11: hviledag → Z2 kælder 45 min (lav Z2)"
+  ],
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-11-03",
+      "time": {
+        "Hike": [
+          16,
+          0
+        ]
+      },
+      "entries": [
+        {
+          "note": "Genopbygning efter virus. Cykling flyttet til i morgen. Gåtur i roligt tempo, puls i Z1.",
+          "workout": {
+            "description": "- Gang Z1 60m freeride",
+            "moving_time": 3600,
+            "name": "Gang 60 min",
+            "type": "Hike",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 3600,
+                  "text": "Gang Z1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-04",
+      "entries": [
+        {
+          "note": "Genopbygning efter virus. Flyttet fra tirsdag og kortet til 45 min. Lav Z2 (ca. 150–165 W), ingen intervaller. Kør kun 30 min, hvis hvilepulsen er ≥2 slag over normal og HRV er lav, eller hvis pulsen stiger ved samme watt.",
+          "workout": {
+            "description": "- Varm-op 10m ramp 45-60% FTP\n- Zone 2 25m 63% FTP\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Kort, let Z2 i genopbygningen. Skal føles let.",
+            "moving_time": 2700,
+            "name": "FaF Z2 - Kælder 45",
+            "type": "Ride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 600,
+                  "power": {
+                    "end": 60,
+                    "start": 45,
+                    "units": "%ftp"
+                  },
+                  "ramp": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "duration": 1500,
+                  "power": {
+                    "units": "%ftp",
+                    "value": 63
+                  },
+                  "text": "Zone 2"
+                },
+                {
+                  "duration": 600,
+                  "power": {
+                    "end": 40,
+                    "start": 60,
+                    "units": "%ftp"
+                  },
+                  "ramp": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "decidedAt": "2026-11-03T05:10:56+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-11-03",
+      "2026-11-04"
+    ],
+    "commit": null
+  }
+}
