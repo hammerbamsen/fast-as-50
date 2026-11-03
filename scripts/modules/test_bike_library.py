@@ -53,7 +53,9 @@ def test_intervals_doc_har_steps_og_varighed(wid):
     assert iv["type"] == "Ride"
     assert iv["workout_doc"]["steps"]
     assert iv["moving_time"] == B.duration_seconds(wid)
-    assert iv["moving_time"] > 20 * 60
+    # 3/11-2026: rene opvarmningspas (tag "opvarmning", fx før Zwift Video) må være korte
+    min_s = 10 * 60 if "opvarmning" in (B.get(wid).get("tags") or []) else 20 * 60
+    assert iv["moving_time"] > min_s
 
 
 @pytest.mark.parametrize("wid", ALL)

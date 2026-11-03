@@ -17,3 +17,9 @@
 
 ## Ikke verificeret
 - Om Zwift Video kan køre opvarmning før ruten — Kennet opvarmer på en flad Watopia-rute.
+
+## Tillæg 3/11 kl. 08 — Sa Calobra som to pas
+- `data/bike_library.json`: nyt pas `opvarmning_15` (ERG, 15 min, let, tag "opvarmning"). `bjerg_sa_calobra_video` uden opvarmning: 45 min på 86 % + 10 min ned = 55 min. Watt uændret.
+- `scripts/modules/test_bike_library.py`: pas med tag "opvarmning" skal være over 10 min (ellers 20 min).
+- `data/proposals/2026-11-03-sa-calobra-to-pas.json`: 10/11, 19/11, 9/12, 17/12 → Opvarmning 15 + Sa Calobra Video 55.
+- Test: 707 passed. Skema grønt. Gate (kopi): Godkendt.

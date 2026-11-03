@@ -1879,12 +1879,59 @@
       ]
     },
     {
+      "id": "opvarmning_15",
+      "name": "FaF 1 Z2 - Opvarmning 15",
+      "category": "z2",
+      "load": "let",
+      "est_min": 15,
+      "purpose": "Opvarmning før et pas på Zwift Video. Kør det i Watopia på en flad rute, afslut og start så videoen.",
+      "erg": true,
+      "notes": "",
+      "tags": [
+        "opvarmning"
+      ],
+      "steps": [
+        {
+          "type": "ramp",
+          "min": 10,
+          "from": 45,
+          "to": 68,
+          "kind": "warmup",
+          "text": "Varm-op"
+        },
+        {
+          "type": "reps",
+          "n": 2,
+          "steps": [
+            {
+              "type": "steady",
+              "min": 1,
+              "pct": 95,
+              "text": "Aktivering"
+            },
+            {
+              "type": "steady",
+              "min": 1,
+              "pct": 55,
+              "text": "Pause"
+            }
+          ]
+        },
+        {
+          "type": "steady",
+          "min": 1,
+          "pct": 62,
+          "text": "Klar til videoen"
+        }
+      ]
+    },
+    {
       "id": "bjerg_sa_calobra_video",
       "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
       "category": "bjerg",
       "load": "moderat",
-      "est_min": 70,
-      "purpose": "Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Opvarm 15 min på en flad Watopia-rute, kør så videoen på 86 % FTP. Tiden på stigningen afhænger af watt og vægt — ca. 44 min på 221 W.",
+      "est_min": 55,
+      "purpose": "Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Kør passet 'Opvarmning 15 min' i Zwift først. Hold 215–225 W (86 % FTP) ved ca. 72 rpm — tiden på stigningen afhænger af watt og vægt, ca. 44 min på 221 W.",
       "erg": false,
       "notes": "PR at slå: 35:18 på 275 W (Mallorca 2023). Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls.",
       "tags": [
@@ -1893,14 +1940,6 @@
         "video"
       ],
       "steps": [
-        {
-          "type": "ramp",
-          "min": 15,
-          "from": 45,
-          "to": 68,
-          "kind": "warmup",
-          "text": "Varm-op (flad Watopia-rute)"
-        },
         {
           "type": "steady",
           "min": 45,
