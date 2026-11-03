@@ -215,3 +215,6 @@
 - Cut-tjek: inaktivt — Aktiveres uge 45 (2/11)
 - Næste uge (45, BASE): TSS-mål 280 · hårde/lange dage: søn 8/11 FaF 1 Z2 - Lang Z2 2 t 130 min
 - Planændringer siden sidst: 2 — se martin_signals.md
+
+### Planændring 03/11 07:18
+- **onsdag 2026-11-04** (uge 9, apply_proposal): hviledag → FaF Z2 - Kælder 45 (45 min)
