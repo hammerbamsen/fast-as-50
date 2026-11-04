@@ -1,16 +1,23 @@
 {
   "id": "2026-11-04-gang-i-stedet-for-cykel",
   "title": "Ons gang kl. 16 i stedet for Z2 45",
-  "status": "pending",
+  "status": "accepted",
   "createdAt": "2026-11-04T05:35:00+00:00",
   "createdBy": "claude",
   "note": "Kennet 4/11: har sovet dårligt. Z2 kælder 45 min erstattes af en gåtur i eftermiddag.",
-  "summary": ["Ons 4/11: Z2 kælder 45 → gåtur 60 min (Z1) kl. 16:00"],
+  "summary": [
+    "Ons 4/11: Z2 kælder 45 → gåtur 60 min (Z1) kl. 16:00"
+  ],
   "changes": [
     {
       "action": "set_day",
       "date": "2026-11-04",
-      "time": {"Hike": [16, 0]},
+      "time": {
+        "Hike": [
+          16,
+          0
+        ]
+      },
       "entries": [
         {
           "note": "Dårlig søvn. Cykling udgår i dag. Gåtur i roligt tempo, puls i Z1.",
@@ -19,10 +26,24 @@
             "moving_time": 3600,
             "name": "Gang 60 min",
             "type": "Hike",
-            "workout_doc": {"steps": [{"duration": 3600, "text": "Gang Z1"}]}
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 3600,
+                  "text": "Gang Z1"
+                }
+              ]
+            }
           }
         }
       ]
     }
-  ]
+  ],
+  "decidedAt": "2026-11-04T05:32:02+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-11-04"
+    ],
+    "commit": "4dafac269f0eb83c585293996b7b9d2f3e6ed8a5"
+  }
 }
