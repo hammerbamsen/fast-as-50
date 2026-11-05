@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-05 07:23",
+    "updated": "2026-11-05 09:45",
     "week": 9,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "34,1",
+      "value": "34,3",
       "unit": "",
       "sub": "Uge 45-mål 36 · BASE",
-      "color": "#E67E22"
+      "color": "#27AE60"
     },
     "tsb": {
-      "value": "8,2",
+      "value": "7,3",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,13 +70,13 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "72",
+      "value": "80",
       "unit": "TSS",
-      "sub": "72 af 328 planlagt TSS",
+      "sub": "80 af 328 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "8,2",
+      "value": "15,7",
       "unit": "km",
       "sub": "Cykel denne uge",
       "color": "#C0392B"
@@ -111,13 +111,21 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 45, BASE-blok uge 1/2 — cut-advarsel kræver handling: fedtfri masse er faldet for meget. {HL} Dagens cykel er gennemført: 37 min og 26 TSS mod planlagt 80 min. Ugen har 0 missede pas, og CTL på 34,1 ligger 1,9 under målet på 36,0 — normalt i starten af en BASE-blok. Ingen aerobt flag.",
-  "coachHighlight": "Spis til vedligehold i dag og de næste 2-3 dage: protein ved alle 3 måltider, lidt mere mad end du plejer under cut.",
+  "coachSpeech": "Uge 45, BASE-blok uge 1/2 — cut-advarsel kræver handling: fedtfri masse er faldet for hurtigt. {HL} Dagens cykeltur blev kortere end planlagt: 37 min og 26 TSS mod planlagte 80 min. Ugens TSS er 80 af planlagte 328 — men cut-signalet vejer tungere end træningsvolumen lige nu.",
+  "coachHighlight": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider, ingen underskud.",
   "weekFocus": "Vedligehold fedtfri masse — protein ved hvert måltid",
   "today": [
     {
       "discipline": "bike",
       "title": "FaF 1 Z2 - Grundtur 80",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "commute",
+      "title": "Gentofte Cykling",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -208,6 +216,17 @@
       "actual_distance_m": 8219.67
     },
     {
+      "day": "Tor",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
+      "done": true,
+      "extra": true,
+      "actual_tss": 8,
+      "actual_mins": 25,
+      "actual_distance_m": 7463.15,
+      "today": true
+    },
+    {
       "day": "Fre",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
@@ -244,7 +263,7 @@
     40.0,
     39.2,
     34.5,
-    34.1
+    34.3
   ],
   "weightHistory": [
     {
@@ -1930,7 +1949,7 @@
     },
     {
       "date": "2026-11-05",
-      "v": 8.1,
+      "v": 7.3,
       "real": true
     }
   ],
@@ -2328,6 +2347,17 @@
           "actual_name": "Back to work",
           "actual_mins": 37,
           "actual_distance_m": 8219.67
+        },
+        {
+          "day": "Tor",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
+          "done": true,
+          "extra": true,
+          "actual_tss": 8,
+          "actual_mins": 25,
+          "actual_distance_m": 7463.15,
+          "today": true
         },
         {
           "day": "Fre",
@@ -3056,11 +3086,12 @@
     }
   ],
   "train_mins": {
+    "commute": 25.0,
     "bike": 37.0,
     "walk": 235.0,
     "strength": 27.0,
     "planned": 425.0,
-    "actual_total": 299.0
+    "actual_total": 324.0
   },
   "fatHistory": [
     {
@@ -3394,8 +3425,8 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 60 af 357 · Torsdag · Uge 45</strong></p><p class=\"coach-sec coach-big\">Uge 45, BASE-blok uge 1/2 — cut-advarsel kræver handling: fedtfri masse er faldet for meget.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens cykel er gennemført: 37 min og 26 TSS mod planlagt 80 min. Ugen har 0 missede pas, og CTL på 34,1 ligger 1,9 under målet på 36,0 — normalt i starten af en BASE-blok. Ingen aerobt flag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for fedtprocent er steget 1,1 procentpoint den seneste måned — retningen er opadgående. Vægten er faldet 1,7 kg på 28 dage, men fedtfri masse er ned 1,6 kg på 4 uger: spis mere i 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 4 af 7 dage — mål er 3 af 3 frem til og med lørdag. Søvn er god: 9,4 timer i nat og 8,2 i snit.</p>",
-  "coachAssessmentTs": "07:23",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 60 af 357 · Torsdag · Uge 45</strong></p><p class=\"coach-sec coach-big\">Uge 45, BASE-blok uge 1/2 — cut-advarsel kræver handling: fedtfri masse er faldet for hurtigt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens cykeltur blev kortere end planlagt: 37 min og 26 TSS mod planlagte 80 min. Ugens TSS er 80 af planlagte 328 — men cut-signalet vejer tungere end træningsvolumen lige nu. CTL ligger 1,7 under målet på 36,0, og ramprate er -0,2 — ingen alarmklokke.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er faldet 1,7 kg den seneste måned — det er over grænsen, og fedtfri masse er med ned. Fedtprocent på 7-dages snit er steget 1,1 procentpoint på samme periode — tabet er ikke rent fedt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 4 ud af 5 dage — slå til alle tre måltider i dag. Søvn er fin med 9,4 timer i nat. Ingen dage med mange genstande denne uge.</p>",
+  "coachAssessmentTs": "09:45",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3406,7 +3437,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 8.2,
+  "tsb": 7.3,
   "swimHistory": [
     {
       "week": 1,
@@ -3463,7 +3494,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i205977921",
+  "coachAssessmentLastActId": "i206023857",
   "weekFocusWeek": 9,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Grundtur 80",
   "weightGoal": 69.5,
@@ -3717,8 +3748,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-05T06:23:21.179084",
-  "coachAssessmentTsFull": "2026-11-05T06:23:21",
+  "credentialsCheckedTs": "2026-11-05T08:46:18.245764",
+  "coachAssessmentTsFull": "2026-11-05T08:46:18",
   "coachAssessmentWeightAtGen": 72.4,
   "coachAssessmentAfAtGen": 2,
   "event_structure_warnings": [
@@ -3823,7 +3854,7 @@
     "6": 92,
     "7": 241,
     "8": 60,
-    "9": 72
+    "9": 80
   },
   "racesUpcoming": [
     {
@@ -5148,7 +5179,7 @@
         "mesoWeek": "1/2",
         "ctlTarget": 36,
         "tssTarget": 280,
-        "tssActual": 72,
+        "tssActual": 80,
         "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn TdS racepace 3 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -5162,14 +5193,7 @@
         "keySessions": [
           "FaF 1 Z2 - Lang Z2 2 t"
         ],
-        "flags": [
-          {
-            "level": "WARN",
-            "rule": "low_readiness",
-            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-            "historic": false
-          }
-        ],
+        "flags": [],
         "races": [],
         "travel": null,
         "isCurrent": true,
@@ -8292,6 +8316,24 @@
                 "start": "07:00",
                 "startFixed": false,
                 "completion": "partial"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Cykling",
+                "type": null,
+                "disc": "commute",
+                "mins": 25,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 25,
+                "actualTss": 8,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10434,217 +10476,217 @@
           "week": 9,
           "programId": "tds-2027",
           "start": "2026-11-02",
-          "ctl": 34.1
+          "ctl": 34.3
         }
       ],
       "projection": [
         {
           "d": "2026-11-06",
-          "ctl": 33.7
+          "ctl": 34.2
         },
         {
           "d": "2026-11-07",
-          "ctl": 33.8
+          "ctl": 34.4
         },
         {
           "d": "2026-11-08",
-          "ctl": 34.0
+          "ctl": 34.5
         },
         {
           "d": "2026-11-09",
-          "ctl": 34.3
+          "ctl": 34.9
         },
         {
           "d": "2026-11-10",
-          "ctl": 34.7
+          "ctl": 35.2
         },
         {
           "d": "2026-11-11",
-          "ctl": 35.1
+          "ctl": 35.6
         },
         {
           "d": "2026-11-12",
-          "ctl": 35.4
+          "ctl": 35.9
         },
         {
           "d": "2026-11-13",
-          "ctl": 35.8
+          "ctl": 36.3
         },
         {
           "d": "2026-11-14",
-          "ctl": 36.1
+          "ctl": 36.6
         },
         {
           "d": "2026-11-15",
-          "ctl": 36.4
+          "ctl": 36.9
         },
         {
           "d": "2026-11-16",
-          "ctl": 37.4
+          "ctl": 37.9
         },
         {
           "d": "2026-11-17",
-          "ctl": 38.3
+          "ctl": 38.8
         },
         {
           "d": "2026-11-18",
-          "ctl": 39.2
+          "ctl": 39.7
         },
         {
           "d": "2026-11-19",
-          "ctl": 40.1
+          "ctl": 40.6
         },
         {
           "d": "2026-11-20",
-          "ctl": 41.0
+          "ctl": 41.4
         },
         {
           "d": "2026-11-21",
-          "ctl": 41.9
+          "ctl": 42.3
         },
         {
           "d": "2026-11-22",
-          "ctl": 40.9
+          "ctl": 41.3
         },
         {
           "d": "2026-11-23",
-          "ctl": 41.6
+          "ctl": 42.0
         },
         {
           "d": "2026-11-24",
-          "ctl": 42.4
-        },
-        {
-          "d": "2026-11-25",
-          "ctl": 43.1
-        },
-        {
-          "d": "2026-11-26",
-          "ctl": 43.8
-        },
-        {
-          "d": "2026-11-27",
           "ctl": 42.8
         },
         {
-          "d": "2026-11-28",
+          "d": "2026-11-25",
           "ctl": 43.5
         },
         {
-          "d": "2026-11-29",
+          "d": "2026-11-26",
           "ctl": 44.2
         },
         {
-          "d": "2026-11-30",
-          "ctl": 45.0
+          "d": "2026-11-27",
+          "ctl": 43.2
         },
         {
-          "d": "2026-12-01",
+          "d": "2026-11-28",
           "ctl": 43.9
         },
         {
+          "d": "2026-11-29",
+          "ctl": 44.6
+        },
+        {
+          "d": "2026-11-30",
+          "ctl": 45.3
+        },
+        {
+          "d": "2026-12-01",
+          "ctl": 44.3
+        },
+        {
           "d": "2026-12-02",
-          "ctl": 44.7
+          "ctl": 45.0
         },
         {
           "d": "2026-12-03",
-          "ctl": 45.5
+          "ctl": 45.8
         },
         {
           "d": "2026-12-04",
-          "ctl": 46.2
+          "ctl": 46.5
         },
         {
           "d": "2026-12-05",
-          "ctl": 46.9
+          "ctl": 47.2
         },
         {
           "d": "2026-12-06",
-          "ctl": 47.7
+          "ctl": 47.9
         },
         {
           "d": "2026-12-07",
-          "ctl": 48.4
+          "ctl": 48.7
         },
         {
           "d": "2026-12-08",
-          "ctl": 47.3
+          "ctl": 47.5
         },
         {
           "d": "2026-12-09",
-          "ctl": 48.1
+          "ctl": 48.3
         },
         {
           "d": "2026-12-10",
-          "ctl": 48.8
+          "ctl": 49.1
         },
         {
           "d": "2026-12-11",
-          "ctl": 49.6
+          "ctl": 49.8
         },
         {
           "d": "2026-12-12",
-          "ctl": 50.3
+          "ctl": 50.5
         },
         {
           "d": "2026-12-13",
-          "ctl": 51.0
+          "ctl": 51.2
         },
         {
           "d": "2026-12-14",
-          "ctl": 51.5
+          "ctl": 51.7
         },
         {
           "d": "2026-12-15",
-          "ctl": 51.9
+          "ctl": 52.2
         },
         {
           "d": "2026-12-16",
-          "ctl": 52.4
+          "ctl": 52.6
         },
         {
           "d": "2026-12-17",
-          "ctl": 52.9
+          "ctl": 53.1
         },
         {
           "d": "2026-12-18",
-          "ctl": 53.3
+          "ctl": 53.5
         },
         {
           "d": "2026-12-19",
-          "ctl": 53.7
+          "ctl": 53.9
         },
         {
           "d": "2026-12-20",
-          "ctl": 54.2
+          "ctl": 54.4
         },
         {
           "d": "2026-12-21",
-          "ctl": 54.1
+          "ctl": 54.3
         },
         {
           "d": "2026-12-22",
-          "ctl": 54.1
+          "ctl": 54.3
         },
         {
           "d": "2026-12-23",
-          "ctl": 54.0
+          "ctl": 54.2
         },
         {
           "d": "2026-12-24",
-          "ctl": 52.7
+          "ctl": 52.9
         },
         {
           "d": "2026-12-25",
-          "ctl": 51.5
+          "ctl": 51.6
         },
         {
           "d": "2026-12-26",
-          "ctl": 51.5
+          "ctl": 51.7
         },
         {
           "d": "2026-12-27",
-          "ctl": 51.5
+          "ctl": 51.7
         }
       ],
       "targets": [
@@ -10896,43 +10938,43 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-05T06:23:21Z",
-    "inputsHash": "760b2a6e4fdbf00d2f8f92920d026782b33efd82",
+    "generatedAt": "2026-11-05T08:46:18Z",
+    "inputsHash": "e9e99380836af06491dcab36df04ef691739b4ec",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold i dag og de næste 2-3 dage: protein ved alle 3 måltider, lidt mere mad end du plejer under cut.",
-      "why": "Fedtfri masse er faldet 1,6 kg på 4 uger — det er for hurtigt og koster muskel, ikke fedt."
+      "action": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider, ingen underskud.",
+      "why": "Fedtfri masse er faldet 1,6 kg på 4 uger — det er muskler, ikke fedt. Stop tabet nu."
     },
     "training": {
-      "text": "Dagens cykel er gennemført: 37 min og 26 TSS mod planlagt 80 min. Ugen har 0 missede pas, og CTL på 34,1 ligger 1,9 under målet på 36,0 — normalt i starten af en BASE-blok. Ingen aerobt flag.",
+      "text": "Dagens cykeltur blev kortere end planlagt: 37 min og 26 TSS mod planlagte 80 min. Ugens TSS er 80 af planlagte 328 — men cut-signalet vejer tungere end træningsvolumen lige nu. CTL ligger 1,7 under målet på 36,0, og ramprate er -0,2 — ingen alarmklokke.",
       "refs": [
         37.0,
         26.0,
         80.0,
-        34.1,
+        80.0,
+        328.0,
+        1.7,
         36.0,
-        1.9
+        -0.2
       ]
     },
     "body": {
-      "text": "7-dages snit for fedtprocent er steget 1,1 procentpoint den seneste måned — retningen er opadgående. Vægten er faldet 1,7 kg på 28 dage, men fedtfri masse er ned 1,6 kg på 4 uger: spis mere i 3-4 dage.",
+      "text": "7-dages snit for vægt er faldet 1,7 kg den seneste måned — det er over grænsen, og fedtfri masse er med ned. Fedtprocent på 7-dages snit er steget 1,1 procentpoint på samme periode — tabet er ikke rent fedt.",
       "refs": [
-        1.1,
         1.7,
-        1.6
+        1.1
       ]
     },
     "habits": {
-      "text": "Protein dækket 4 af 7 dage — mål er 3 af 3 frem til og med lørdag. Søvn er god: 9,4 timer i nat og 8,2 i snit.",
+      "text": "Protein er registreret 4 ud af 5 dage — slå til alle tre måltider i dag. Søvn er fin med 9,4 timer i nat. Ingen dage med mange genstande denne uge.",
       "refs": [
         4.0,
-        3.0,
-        9.4,
-        8.2
+        5.0,
+        9.4
       ]
     },
-    "bigPicture": "Uge 45, BASE-blok uge 1/2 — cut-advarsel kræver handling: fedtfri masse er faldet for meget.",
+    "bigPicture": "Uge 45, BASE-blok uge 1/2 — cut-advarsel kræver handling: fedtfri masse er faldet for hurtigt.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11422,14 +11464,14 @@
     }
   },
   "weekTss": {
-    "actual": 72,
+    "actual": 80,
     "planned": 328
   },
   "martinMail": {
     "week": 9,
     "isoWeek": 45,
     "lines": [
-      "Uge 45: TSS 72 af 328 (22 %) · CTL 34,1 (mål 36) · TSB +8,2",
+      "Uge 45: TSS 80 af 328 (24 %) · CTL 34,3 (mål 36) · TSB +7,3",
       "Vægt 7d 72,2 kg · fedt 14d 22,6 % · på plan mod glidepath (72,0)",
       "HRV 7d 44 (28d 53) · hvilepuls 47 · søvn 7d 8,2 t",
       "AF 5/7 · protein 3/3 4/7 · aftensult —/7",
@@ -11438,7 +11480,7 @@
       "Næste uge (46, BASE): TSS-mål 350 · hårde/lange dage: lør 14/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 15/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-05T06:23:04Z"
+    "generatedAt": "2026-11-05T08:46:01Z"
   },
   "proposals": [],
   "ftp": {
@@ -11511,7 +11553,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-05",
-    "ctl": 34.1,
-    "atl": 25.9
+    "ctl": 34.3,
+    "atl": 27.0
   }
 }
