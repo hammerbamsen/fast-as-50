@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-07 12:45",
+    "updated": "2026-11-07 18:30",
     "week": 9,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Lørdag — uge 45. {HL} Fokus: 153 af 328 TSS er i hus — FaF 1 Z2 - Lang Z2 2 t står tilbage. Svøm 1500m let teknisk er misset — vinduet er lukket. Vægt på 72,7 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 2 AF-dage i 6 afsluttede dage — 4 mangler i 1 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
-  "coachHighlight": "Søvn på 8,2 timer er solid",
+  "coachSpeech": "Uge 45, BASE mesouge 1/2 — kroppen er presset af virus og cut; fedtfri masse-tabet kræver handling i dag. {HL} Styrke B på 26 min er i hus. Svøm fredag er misset. Lang Z2 på 130 min ligger på søndag som eneste tilbageværende pas — behold det, men readiness er LOW i dag, så lad kroppen lade op i eftermiddag/aften.",
+  "coachHighlight": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen underskud.",
   "weekFocus": "Vedligehold fedtfri masse — protein ved hvert måltid",
   "today": [
     {
@@ -3507,19 +3507,30 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 62 af 357 · Lørdag · Uge 45</strong></p><p class=\"coach-sec coach-big\">Uge 45, BASE-blok uge 9/51 — kroppen er presset (readiness LOW, HRV 12% under 7d-snit) og cut-signalet kræver handling nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke B er gennemført (26 min, 8 TSS). Svøm fredag er misset. Ugens TSS er 153 af planlagte 328 — men lang Z2 er rykket til søndag, og readiness er LOW: hold tempoet nede på søndagens cykeltur.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,4 kg — 0,6 kg under planlagt 71,9 kg, og raten er hurtigere end de tilsigtede 0,35 kg/uge. Fedtfri masse er nede 1,9 kg på 4 uger: spis til vedligehold i 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 2 af 3 dage — få det tredje måltid med protein i dag. AF-uge er 2 af 6 dage, men ingen dage med 3+ genstande, det er fint.</p>",
-  "coachAssessmentTs": "08:08",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 62 af 357 · Lørdag · Uge 45</strong></p><p class=\"coach-sec coach-big\">Uge 45, BASE mesouge 1/2 — kroppen er presset af virus og cut; fedtfri masse-tabet kræver handling i dag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke B på 26 min er i hus. Svøm fredag er misset. Lang Z2 på 130 min ligger på søndag som eneste tilbageværende pas — behold det, men readiness er LOW i dag, så lad kroppen lade op i eftermiddag/aften. Ugens TSS er 153 af planlagte 328, men blokken er BASE under virusgenopbygning — efterslæb er forventet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er faldet 1,8 kg den seneste måned — retningen er klar, men fedtfri masse er ned 1,9 kg på 4 uger, hvilket er for meget. Du er 0,6 kg foran plan — skru op for maden nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun 2 af 3 registrerede dage — det er kritisk nu, hvor fedtfri masse falder. Søvn 7,6 t i nats er under 7-dages snit på 8,2 t og trækker HRV ned.</p>",
+  "coachAssessmentTs": "18:30",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 37,0 ms — 12% under 7d-snit (42,1 ms). Kroppen er presset."
-    },
-    {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads"
+      "message": "Cut-tjek: Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 37,0 ms — 12% under 7d-snit (42,1 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "readiness",
+      "level": "warn",
+      "message": "HRV 37,0 ms — 12% under 7-dages snit på 42,1 ms. Kroppen er presset. Lang Z2 søndag: vurder intensitet og varighed på dagen.",
+      "action": null,
+      "source": "ai"
     }
   ],
   "tsb": 8.0,
@@ -3833,8 +3844,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-07T11:45:02.177774",
-  "coachAssessmentTsFull": "2026-11-07T07:08:20",
+  "credentialsCheckedTs": "2026-11-07T17:30:26.029331",
+  "coachAssessmentTsFull": "2026-11-07T17:30:26",
   "coachAssessmentWeightAtGen": 72.7,
   "coachAssessmentAfAtGen": 2,
   "event_structure_warnings": [
@@ -4714,7 +4725,7 @@
     },
     {
       "date": "2026-11-07",
-      "v": 51,
+      "v": 50,
       "real": true
     }
   ],
@@ -11094,43 +11105,41 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-07T07:08:20Z",
-    "inputsHash": "e799aaf9347a5ee3811e4ea18492dcb418142c58",
+    "generatedAt": "2026-11-07T17:30:26Z",
+    "inputsHash": "fc2154a6ad842f70f257d624ef5dbf0c888df9de",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen kalorieunderskud i dag.",
-      "why": "Fedtfri masse er faldet 1,9 kg på 4 uger — det er for hurtigt og kræver 3-4 dages vedligeholdsindtag nu."
+      "action": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen underskud.",
+      "why": "Fedtfri masse er faldet 1,9 kg på 4 uger — kroppen nedbryder muskler, ikke kun fedt. Stop underskuddet i 3-4 dage."
     },
     "training": {
-      "text": "Styrke B er gennemført (26 min, 8 TSS). Svøm fredag er misset. Ugens TSS er 153 af planlagte 328 — men lang Z2 er rykket til søndag, og readiness er LOW: hold tempoet nede på søndagens cykeltur.",
+      "text": "Styrke B på 26 min er i hus. Svøm fredag er misset. Lang Z2 på 130 min ligger på søndag som eneste tilbageværende pas — behold det, men readiness er LOW i dag, så lad kroppen lade op i eftermiddag/aften. Ugens TSS er 153 af planlagte 328, men blokken er BASE under virusgenopbygning — efterslæb er forventet.",
       "refs": [
         26.0,
-        8.0,
+        130.0,
         153.0,
         328.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 72,4 kg — 0,6 kg under planlagt 71,9 kg, og raten er hurtigere end de tilsigtede 0,35 kg/uge. Fedtfri masse er nede 1,9 kg på 4 uger: spis til vedligehold i 3-4 dage.",
+      "text": "7-dages snit for vægt er faldet 1,8 kg den seneste måned — retningen er klar, men fedtfri masse er ned 1,9 kg på 4 uger, hvilket er for meget. Du er 0,6 kg foran plan — skru op for maden nu.",
       "refs": [
-        72.4,
-        71.9,
-        0.6,
-        0.35,
-        1.9
+        1.8,
+        1.9,
+        0.6
       ]
     },
     "habits": {
-      "text": "Protein er registreret 2 af 3 dage — få det tredje måltid med protein i dag. AF-uge er 2 af 6 dage, men ingen dage med 3+ genstande, det er fint.",
+      "text": "Protein kun 2 af 3 registrerede dage — det er kritisk nu, hvor fedtfri masse falder. Søvn 7,6 t i nats er under 7-dages snit på 8,2 t og trækker HRV ned.",
       "refs": [
         2.0,
         3.0,
-        2.0,
-        6.0
+        7.6,
+        8.2
       ]
     },
-    "bigPicture": "Uge 45, BASE-blok uge 9/51 — kroppen er presset (readiness LOW, HRV 12% under 7d-snit) og cut-signalet kræver handling nu.",
+    "bigPicture": "Uge 45, BASE mesouge 1/2 — kroppen er presset af virus og cut; fedtfri masse-tabet kræver handling i dag.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11151,7 +11160,7 @@
       {
         "type": "readiness",
         "level": "warn",
-        "message": "HRV 37,0 ms — 12% under 7d-snit (42,1 ms). Kroppen er presset. Hold søndagens Z2-tur i let tempo.",
+        "message": "HRV 37,0 ms — 12% under 7-dages snit på 42,1 ms. Kroppen er presset. Lang Z2 søndag: vurder intensitet og varighed på dagen.",
         "action": null,
         "source": "ai"
       }
@@ -11684,7 +11693,7 @@
       "Næste uge (46, BASE): TSS-mål 350 · hårde/lange dage: lør 14/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 15/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-07T11:45:02Z"
+    "generatedAt": "2026-11-07T17:30:06Z"
   },
   "proposals": [],
   "ftp": {
