@@ -252,3 +252,9 @@
 - Cut-tjek: act — Fedtfri masse −2,1 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
 - Næste uge (46, BASE): TSS-mål 350 · hårde/lange dage: lør 14/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 15/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min
 - Planændringer siden sidst: 2 — se martin_signals.md
+
+### Planændring 08/11 15:10
+- **tirsdag 2026-11-10** (uge 10, apply_proposal): FaF 1 Z2 - Opvarmning 15 (15 min); FaF 6 Bjerg - Sa Calobra Zwift Video (55 min) → hviledag
+- **onsdag 2026-11-11** (uge 10, apply_proposal): Løb Z2 45 min (45 min); Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Functional 4 · 3 runder (45 min)
+- **lørdag 2026-11-14** (uge 10, apply_proposal): Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Grundtur 80 (80 min)
+- **søndag 2026-11-15** (uge 10, apply_proposal): FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt] → hviledag
