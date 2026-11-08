@@ -242,3 +242,13 @@
 - **onsdag 2026-12-09** (uge 14, apply_proposal): Løb Z2 45 min (45 min) → FaF 6 Bjerg - Sa Calobra Zwift Video (70 min); Styrke B · Functional 4 · 3 runder (45 min)
 - **lørdag 2026-12-12** (uge 14, apply_proposal): FaF 2 Dur - Negativ split 2 t (130 min) [langt]; Styrke B · Functional 4 · 3 runder (45 min) → Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Lang Z2 2 t (130 min) [langt]
 - **onsdag 2026-12-16** (uge 15, apply_proposal): Løb Z2 45 min (45 min) → Løb Z2 45 min (45 min); Styrke A · Functional 4 · 3 runder (45 min)
+
+### Signaler uge 45
+- Uge 45: TSS 153 af 328 (47 %) · CTL 34,1 (mål 36) · TSB −0,3
+- Vægt 7d 72,4 kg · fedt 14d 22,5 % · på plan mod glidepath (71,9)
+- HRV 7d 42 (28d 50) · hvilepuls 48 · søvn 7d 8,2 t
+- AF 2/7 · protein 3/3 1/7 · aftensult —/7
+- Styrke 3/2 · check-in 4/10 ben ✗ overkrop ✗
+- Cut-tjek: act — Fedtfri masse −2,1 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
+- Næste uge (46, BASE): TSS-mål 350 · hårde/lange dage: lør 14/11 FaF 1 Z2 - Lang Z2 2 t 130 min, søn 15/11 FaF 6 Bjerg - TdS racepace 3 x 50 185 min
+- Planændringer siden sidst: 2 — se martin_signals.md
