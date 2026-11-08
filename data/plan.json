@@ -8902,7 +8902,7 @@
                 "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
               "templateId": "styrke-fs4-a-3r",
-              "note": "Styrke 3×/uge til februar (A-B-A)."
+              "note": "Første pas efter en uge syg. Stop efter 2 runder. Rolig genstart."
             }
           ]
         },
@@ -8910,103 +8910,9 @@
           "date": "2026-11-10",
           "entries": [
             {
-              "id": "7b64136b",
-              "libraryId": "opvarmning_15",
-              "workout": {
-                "name": "FaF 1 Z2 - Opvarmning 15",
-                "type": "Ride",
-                "moving_time": 900,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n\n2x \n- Aktivering 1m 95% FTP\n- Pause 1m 55% FTP\n\n- Klar til videoen 1m 62% FTP\n\nFORMÅL: Opvarmning før et pas på Zwift Video. Kør det i Watopia på en flad rute, afslut og start så videoen.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "reps": 2,
-                      "text": "2x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 95,
-                            "end": 95,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Aktivering 95% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 55,
-                            "end": 55,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Pause 55% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 62,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 60,
-                      "text": "Klar til videoen 62% FTP"
-                    }
-                  ]
-                }
-              },
-              "note": "Kør i Zwift (Watopia, flad rute) før Sa Calobra-videoen."
-            },
-            {
-              "id": "09850238",
-              "libraryId": "bjerg_sa_calobra_video",
-              "workout": {
-                "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
-                "type": "Ride",
-                "moving_time": 3300,
-                "description": "- SA CALOBRA — Zwift Video 45m 86% FTP @ 72 rpm\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Kør passet 'Opvarmning 15 min' i Zwift først. Hold 215–225 W (86 % FTP) ved ca. 72 rpm — tiden på stigningen afhænger af watt og vægt, ca. 44 min på 221 W.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nPR at slå: 35:18 på 275 W (Mallorca 2023). Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "power": {
-                        "start": 86,
-                        "end": 86,
-                        "units": "%ftp"
-                      },
-                      "duration": 2700,
-                      "text": "SA CALOBRA — Zwift Video 86% FTP",
-                      "cadence": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 60,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "note": "Første kvalitetspas efter virus. Efter Opvarmning 15: Sa Calobra på Zwift Video (ingen ERG). 86 % FTP ≈ 221 W, 72 rpm. Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls."
+              "id": "cacd4f83",
+              "workout": null,
+              "note": "Fri eller gåtur. Sa Calobra udgår (rolig genstartuge). Gate: hvilepuls ≥3 slag over normalt, feber eller ondt i halsen → gåtur i stedet."
             }
           ]
         },
@@ -9014,49 +8920,8 @@
           "date": "2026-11-11",
           "entries": [
             {
-              "id": "92cc0770",
-              "note": "Første løb efter sygdom. Kun hvis hvilepulsen er normal.",
-              "workout": {
-                "description": "- Varm-op 10m >5:39/km Pace\n- Base 30m 5:00-5:38/km Pace\n- Cool-down 5m >5:39/km Pace",
-                "moving_time": 2700,
-                "name": "Løb Z2 45 min",
-                "type": "Run",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "duration": 600,
-                      "pace": {
-                        "end": 78,
-                        "start": 65,
-                        "units": "%pace"
-                      },
-                      "text": "Varm-op >5:39/km"
-                    },
-                    {
-                      "duration": 1800,
-                      "pace": {
-                        "end": 88,
-                        "start": 78,
-                        "units": "%pace"
-                      },
-                      "text": "Base 5:00-5:38/km"
-                    },
-                    {
-                      "duration": 300,
-                      "pace": {
-                        "end": 78,
-                        "start": 65,
-                        "units": "%pace"
-                      },
-                      "text": "Cool-down >5:39/km"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "id": "6d292055",
-              "note": "Styrke 3×/uge.",
+              "note": "Rolig genstart efter sygdom. Stop efter 2 runder, hvis du er træt.",
               "templateId": "styrke-fs4-b-3r",
               "workout": {
                 "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
@@ -9151,7 +9016,7 @@
                   ]
                 }
               },
-              "note": "Z2 grundtur."
+              "note": "Rolig genstart: ren Z2, hold pulsen lav. Bryd af, hvis pulsen løber op."
             }
           ]
         },
@@ -9207,13 +9072,13 @@
               "note": "Styrke 3×/uge."
             },
             {
-              "id": "92938fca",
-              "libraryId": "z2_depottur_2t",
+              "id": "5e88ea1e",
+              "libraryId": "z2_grundtur_80",
               "workout": {
-                "name": "FaF 1 Z2 - Lang Z2 2 t",
+                "name": "FaF 1 Z2 - Grundtur 80",
                 "type": "Ride",
-                "moving_time": 7800,
-                "description": "- Varm-op 10m ramp 45-62% FTP\n- Z2 20m 66% FTP\n- Z2 20m 70% FTP\n- Z2 20m 66% FTP\n- Z2 let op 20m 72% FTP\n- Z2 20m 66% FTP\n- Sidste 10 10m 70% FTP\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: To timer Z2 med fast energiplan. Lige så meget mavetræning som bentræning. Race-evalueringerne siger det samme i ni år: energiplanen er det der knækker dig.\n\nMål: 80-100 g kulhydrat i timen. Notér bagefter hvad du spiste og hvordan maven lå.",
+                "moving_time": 4800,
+                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
                 "workout_doc": {
                   "steps": [
                     {
@@ -9233,8 +9098,8 @@
                         "end": 66,
                         "units": "%ftp"
                       },
-                      "duration": 1200,
-                      "text": "Z2 66% FTP"
+                      "duration": 1500,
+                      "text": "Zone 2 66% FTP"
                     },
                     {
                       "power": {
@@ -9242,8 +9107,13 @@
                         "end": 70,
                         "units": "%ftp"
                       },
-                      "duration": 1200,
-                      "text": "Z2 70% FTP"
+                      "duration": 300,
+                      "text": "Kadence 100 70% FTP",
+                      "cadence": {
+                        "start": 100,
+                        "end": 100,
+                        "units": "rpm"
+                      }
                     },
                     {
                       "power": {
@@ -9251,26 +9121,8 @@
                         "end": 66,
                         "units": "%ftp"
                       },
-                      "duration": 1200,
-                      "text": "Z2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "%ftp"
-                      },
-                      "duration": 1200,
-                      "text": "Z2 let op 72% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1200,
-                      "text": "Z2 66% FTP"
+                      "duration": 1500,
+                      "text": "Zone 2 66% FTP"
                     },
                     {
                       "power": {
@@ -9278,8 +9130,13 @@
                         "end": 70,
                         "units": "%ftp"
                       },
-                      "duration": 600,
-                      "text": "Sidste 10 70% FTP"
+                      "duration": 300,
+                      "text": "Kadence 100 70% FTP",
+                      "cadence": {
+                        "start": 100,
+                        "end": 100,
+                        "units": "rpm"
+                      }
                     },
                     {
                       "ramp": true,
@@ -9295,7 +9152,7 @@
                   ]
                 }
               },
-              "note": "Lang Z2 2 t — spis efter planen."
+              "note": "Erstatter Lang Z2 2 t (rolig genstartuge). Ren Z2."
             }
           ]
         },
@@ -9303,101 +9160,9 @@
           "date": "2026-11-15",
           "entries": [
             {
-              "id": "421a6d3b",
-              "libraryId": "bjerg_tds_racepace",
-              "workout": {
-                "name": "FaF 6 Bjerg - TdS racepace 3 x 50",
-                "type": "Ride",
-                "moving_time": 11100,
-                "description": "- Varm-op 15m ramp 45-62% FTP\n- BLOK 1 50m 67% FTP @ 74 rpm\n- Depot 10m 55% FTP\n- BLOK 2 50m 67% FTP @ 74 rpm\n- Depot 10m 55% FTP\n- BLOK 3 40m 68% FTP @ 74 rpm\n- Cool-down 10m ramp 58-40% FTP\n\nFORMÅL: Det faktiske Ultrafondo-tempo: 66-68% FTP i tre lange blokke. Formålet er pacing-disciplin, ikke belastning. Du skal lære hvor lavt det føles.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nIKKE ERG — hele pointen er at DU styrer watt. Ti års race-evalueringer siger du kører 20 W under target når det gælder; her øver du det modsatte problem: at blive på et lavt tal når benene vil mere.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 900,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "power": {
-                        "start": 67,
-                        "end": 67,
-                        "units": "%ftp"
-                      },
-                      "duration": 3000,
-                      "text": "BLOK 1 67% FTP",
-                      "cadence": {
-                        "start": 74,
-                        "end": 74,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "text": "Depot 55% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 67,
-                        "end": 67,
-                        "units": "%ftp"
-                      },
-                      "duration": 3000,
-                      "text": "BLOK 2 67% FTP",
-                      "cadence": {
-                        "start": 74,
-                        "end": 74,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "text": "Depot 55% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 68,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 2400,
-                      "text": "BLOK 3 68% FTP",
-                      "cadence": {
-                        "start": 74,
-                        "end": 74,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 58,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "note": "Rolig bjergtur 3 t — hold det let."
+              "id": "f2d46546",
+              "workout": null,
+              "note": "Fri. TdS racepace 3×50 udgår (rolig genstartuge). Fuld plan og cut fra mandag 16/11."
             }
           ]
         },
