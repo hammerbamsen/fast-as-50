@@ -9408,111 +9408,7 @@
           "date": "2026-11-19",
           "entries": [
             {
-              "id": "f6ce1495",
-              "libraryId": "opvarmning_15",
-              "workout": {
-                "name": "FaF 1 Z2 - Opvarmning 15",
-                "type": "Ride",
-                "moving_time": 900,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n\n2x \n- Aktivering 1m 95% FTP\n- Pause 1m 55% FTP\n\n- Klar til videoen 1m 62% FTP\n\nFORMÅL: Opvarmning før et pas på Zwift Video. Kør det i Watopia på en flad rute, afslut og start så videoen.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "reps": 2,
-                      "text": "2x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 95,
-                            "end": 95,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Aktivering 95% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 55,
-                            "end": 55,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Pause 55% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 62,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 60,
-                      "text": "Klar til videoen 62% FTP"
-                    }
-                  ]
-                }
-              },
-              "note": "Kør i Zwift (Watopia, flad rute) før Sa Calobra-videoen."
-            },
-            {
-              "id": "975dc209",
-              "libraryId": "bjerg_sa_calobra_video",
-              "workout": {
-                "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
-                "type": "Ride",
-                "moving_time": 3300,
-                "description": "- SA CALOBRA — Zwift Video 45m 86% FTP @ 72 rpm\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Kør passet 'Opvarmning 15 min' i Zwift først. Hold 215–225 W (86 % FTP) ved ca. 72 rpm — tiden på stigningen afhænger af watt og vægt, ca. 44 min på 221 W.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nPR at slå: 35:18 på 275 W (Mallorca 2023). Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "power": {
-                        "start": 86,
-                        "end": 86,
-                        "units": "%ftp"
-                      },
-                      "duration": 2700,
-                      "text": "SA CALOBRA — Zwift Video 86% FTP",
-                      "cadence": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 60,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "note": "Efter Opvarmning 15: Sa Calobra på Zwift Video (ingen ERG). 86 % FTP ≈ 221 W, 72 rpm. Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls."
-            }
-          ]
-        },
-        {
-          "date": "2026-11-20",
-          "entries": [
-            {
-              "id": "07fef2c9",
+              "id": "9e220ffe",
               "workout": {
                 "name": "Svøm 1500m let teknisk",
                 "type": "Swim",
@@ -9542,6 +9438,108 @@
                 }
               },
               "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+            }
+          ]
+        },
+        {
+          "date": "2026-11-20",
+          "entries": [
+            {
+              "id": "d54f3aa6",
+              "libraryId": "tae_2x20",
+              "workout": {
+                "name": "FaF 4 Tær - 2 x 20",
+                "type": "Ride",
+                "moving_time": 4740,
+                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 62% FTP\n- BLOK 1 20m 95% FTP\n- Pause 10m 55% FTP\n- BLOK 2 20m 95% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Kan du køre den uden at falde fra hinanden, er dit FTP sat for lavt.",
+                "workout_doc": {
+                  "steps": [
+                    {
+                      "ramp": true,
+                      "power": {
+                        "start": 45,
+                        "end": 70,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "warmup": true,
+                      "text": "Varm-op"
+                    },
+                    {
+                      "reps": 3,
+                      "text": "3x",
+                      "steps": [
+                        {
+                          "power": {
+                            "start": 100,
+                            "end": 100,
+                            "units": "%ftp"
+                          },
+                          "duration": 60,
+                          "text": "Aktivering 100% FTP"
+                        },
+                        {
+                          "power": {
+                            "start": 55,
+                            "end": 55,
+                            "units": "%ftp"
+                          },
+                          "duration": 60,
+                          "text": "Pause 55% FTP"
+                        }
+                      ]
+                    },
+                    {
+                      "power": {
+                        "start": 62,
+                        "end": 62,
+                        "units": "%ftp"
+                      },
+                      "duration": 300,
+                      "text": "Let 62% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 95,
+                        "end": 95,
+                        "units": "%ftp"
+                      },
+                      "duration": 1200,
+                      "text": "BLOK 1 95% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "text": "Pause 55% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 95,
+                        "end": 95,
+                        "units": "%ftp"
+                      },
+                      "duration": 1200,
+                      "text": "BLOK 2 95% FTP"
+                    },
+                    {
+                      "ramp": true,
+                      "power": {
+                        "start": 60,
+                        "end": 40,
+                        "units": "%ftp"
+                      },
+                      "duration": 480,
+                      "cooldown": true,
+                      "text": "Cool-down"
+                    }
+                  ]
+                }
+              },
+              "note": "Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
             }
           ]
         },
@@ -10474,38 +10472,38 @@
           "date": "2026-12-09",
           "entries": [
             {
-              "id": "c8c1ceb3",
-              "libraryId": "opvarmning_15",
+              "id": "6c9cd03c",
+              "libraryId": "vo2_4x4",
               "workout": {
-                "name": "FaF 1 Z2 - Opvarmning 15",
+                "name": "FaF 5 VO2 - 4 x 4",
                 "type": "Ride",
-                "moving_time": 900,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n\n2x \n- Aktivering 1m 95% FTP\n- Pause 1m 55% FTP\n\n- Klar til videoen 1m 62% FTP\n\nFORMÅL: Opvarmning før et pas på Zwift Video. Kør det i Watopia på en flad rute, afslut og start så videoen.",
+                "moving_time": 3720,
+                "description": "- Varm-op 12m ramp 45-72% FTP\n\n3x \n- Aktivering 1m 90% FTP\n- Pause 1m 55% FTP\n\n- Let 4m 58% FTP\n\n4x 4 x 4 min @ 110% — jævnt fra sekund et, ikke sprint ud\n- 4 min 4m 110% FTP\n- Pause 4m 50% FTP\n\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Mentalt lettere at styre end 30/15 og lige så veldokumenteret. Brug den når du ikke orker at tælle sekunder.",
                 "workout_doc": {
                   "steps": [
                     {
                       "ramp": true,
                       "power": {
                         "start": 45,
-                        "end": 68,
+                        "end": 72,
                         "units": "%ftp"
                       },
-                      "duration": 600,
+                      "duration": 720,
                       "warmup": true,
                       "text": "Varm-op"
                     },
                     {
-                      "reps": 2,
-                      "text": "2x",
+                      "reps": 3,
+                      "text": "3x",
                       "steps": [
                         {
                           "power": {
-                            "start": 95,
-                            "end": 95,
+                            "start": 90,
+                            "end": 90,
                             "units": "%ftp"
                           },
                           "duration": 60,
-                          "text": "Aktivering 95% FTP"
+                          "text": "Aktivering 90% FTP"
                         },
                         {
                           "power": {
@@ -10520,41 +10518,36 @@
                     },
                     {
                       "power": {
-                        "start": 62,
-                        "end": 62,
+                        "start": 58,
+                        "end": 58,
                         "units": "%ftp"
                       },
-                      "duration": 60,
-                      "text": "Klar til videoen 62% FTP"
-                    }
-                  ]
-                }
-              },
-              "note": "Kør i Zwift (Watopia, flad rute) før Sa Calobra-videoen."
-            },
-            {
-              "id": "d2a64da3",
-              "libraryId": "bjerg_sa_calobra_video",
-              "workout": {
-                "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
-                "type": "Ride",
-                "moving_time": 3300,
-                "description": "- SA CALOBRA — Zwift Video 45m 86% FTP @ 72 rpm\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Kør passet 'Opvarmning 15 min' i Zwift først. Hold 215–225 W (86 % FTP) ved ca. 72 rpm — tiden på stigningen afhænger af watt og vægt, ca. 44 min på 221 W.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nPR at slå: 35:18 på 275 W (Mallorca 2023). Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls.",
-                "workout_doc": {
-                  "steps": [
+                      "duration": 240,
+                      "text": "Let 58% FTP"
+                    },
                     {
-                      "power": {
-                        "start": 86,
-                        "end": 86,
-                        "units": "%ftp"
-                      },
-                      "duration": 2700,
-                      "text": "SA CALOBRA — Zwift Video 86% FTP",
-                      "cadence": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "rpm"
-                      }
+                      "reps": 4,
+                      "text": "4 x 4 min @ 110% — jævnt fra sekund et, ikke sprint ud",
+                      "steps": [
+                        {
+                          "power": {
+                            "start": 110,
+                            "end": 110,
+                            "units": "%ftp"
+                          },
+                          "duration": 240,
+                          "text": "4 min 110% FTP"
+                        },
+                        {
+                          "power": {
+                            "start": 50,
+                            "end": 50,
+                            "units": "%ftp"
+                          },
+                          "duration": 240,
+                          "text": "Pause 50% FTP"
+                        }
+                      ]
                     },
                     {
                       "ramp": true,
@@ -10563,14 +10556,14 @@
                         "end": 40,
                         "units": "%ftp"
                       },
-                      "duration": 600,
+                      "duration": 480,
                       "cooldown": true,
                       "text": "Cool-down"
                     }
                   ]
                 }
               },
-              "note": "Efter Madeira. Efter Opvarmning 15: Sa Calobra på Zwift Video (ingen ERG). 86 % FTP ≈ 221 W, 72 rpm. Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls."
+              "note": "Ugens eneste hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). Kør i ERG."
             },
             {
               "id": "819cd166",
@@ -11132,111 +11125,7 @@
           "date": "2026-12-17",
           "entries": [
             {
-              "id": "b96987bb",
-              "libraryId": "opvarmning_15",
-              "workout": {
-                "name": "FaF 1 Z2 - Opvarmning 15",
-                "type": "Ride",
-                "moving_time": 900,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n\n2x \n- Aktivering 1m 95% FTP\n- Pause 1m 55% FTP\n\n- Klar til videoen 1m 62% FTP\n\nFORMÅL: Opvarmning før et pas på Zwift Video. Kør det i Watopia på en flad rute, afslut og start så videoen.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "reps": 2,
-                      "text": "2x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 95,
-                            "end": 95,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Aktivering 95% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 55,
-                            "end": 55,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Pause 55% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 62,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 60,
-                      "text": "Klar til videoen 62% FTP"
-                    }
-                  ]
-                }
-              },
-              "note": "Kør i Zwift (Watopia, flad rute) før Sa Calobra-videoen."
-            },
-            {
-              "id": "024b16d0",
-              "libraryId": "bjerg_sa_calobra_video",
-              "workout": {
-                "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
-                "type": "Ride",
-                "moving_time": 3300,
-                "description": "- SA CALOBRA — Zwift Video 45m 86% FTP @ 72 rpm\n- Cool-down 10m ramp 60-40% FTP\n\nFORMÅL: Hele Sa Calobra på Zwift Video (fri kørsel, ingen ERG). Kør passet 'Opvarmning 15 min' i Zwift først. Hold 215–225 W (86 % FTP) ved ca. 72 rpm — tiden på stigningen afhænger af watt og vægt, ca. 44 min på 221 W.\n\n⚠ IKKE ERG-MODE — du styrer selv effekten.\n\nPR at slå: 35:18 på 275 W (Mallorca 2023). Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "power": {
-                        "start": 86,
-                        "end": 86,
-                        "units": "%ftp"
-                      },
-                      "duration": 2700,
-                      "text": "SA CALOBRA — Zwift Video 86% FTP",
-                      "cadence": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 60,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "note": "Efter Opvarmning 15: Sa Calobra på Zwift Video (ingen ERG). 86 % FTP ≈ 221 W, 72 rpm. Fuldt forsøg kun hver 4. uge og kun ved normal HRV/hvilepuls."
-            }
-          ]
-        },
-        {
-          "date": "2026-12-18",
-          "entries": [
-            {
-              "id": "2d1b5e40",
+              "id": "db40065c",
               "workout": {
                 "name": "Svøm 1500m let teknisk",
                 "type": "Swim",
@@ -11266,6 +11155,108 @@
                 }
               },
               "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+            }
+          ]
+        },
+        {
+          "date": "2026-12-18",
+          "entries": [
+            {
+              "id": "59ffd727",
+              "libraryId": "tae_2x20",
+              "workout": {
+                "name": "FaF 4 Tær - 2 x 20",
+                "type": "Ride",
+                "moving_time": 4740,
+                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 62% FTP\n- BLOK 1 20m 95% FTP\n- Pause 10m 55% FTP\n- BLOK 2 20m 95% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Kan du køre den uden at falde fra hinanden, er dit FTP sat for lavt.",
+                "workout_doc": {
+                  "steps": [
+                    {
+                      "ramp": true,
+                      "power": {
+                        "start": 45,
+                        "end": 70,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "warmup": true,
+                      "text": "Varm-op"
+                    },
+                    {
+                      "reps": 3,
+                      "text": "3x",
+                      "steps": [
+                        {
+                          "power": {
+                            "start": 100,
+                            "end": 100,
+                            "units": "%ftp"
+                          },
+                          "duration": 60,
+                          "text": "Aktivering 100% FTP"
+                        },
+                        {
+                          "power": {
+                            "start": 55,
+                            "end": 55,
+                            "units": "%ftp"
+                          },
+                          "duration": 60,
+                          "text": "Pause 55% FTP"
+                        }
+                      ]
+                    },
+                    {
+                      "power": {
+                        "start": 62,
+                        "end": 62,
+                        "units": "%ftp"
+                      },
+                      "duration": 300,
+                      "text": "Let 62% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 95,
+                        "end": 95,
+                        "units": "%ftp"
+                      },
+                      "duration": 1200,
+                      "text": "BLOK 1 95% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "text": "Pause 55% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 95,
+                        "end": 95,
+                        "units": "%ftp"
+                      },
+                      "duration": 1200,
+                      "text": "BLOK 2 95% FTP"
+                    },
+                    {
+                      "ramp": true,
+                      "power": {
+                        "start": 60,
+                        "end": 40,
+                        "units": "%ftp"
+                      },
+                      "duration": 480,
+                      "cooldown": true,
+                      "text": "Cool-down"
+                    }
+                  ]
+                }
+              },
+              "note": "Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
             }
           ]
         },
