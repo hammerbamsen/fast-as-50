@@ -258,3 +258,6 @@
 - **onsdag 2026-11-11** (uge 10, apply_proposal): Løb Z2 45 min (45 min); Styrke B · Functional 4 · 3 runder (45 min) → Styrke B · Functional 4 · 3 runder (45 min)
 - **lørdag 2026-11-14** (uge 10, apply_proposal): Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → Styrke A · Functional 4 · 3 runder (45 min); FaF 1 Z2 - Grundtur 80 (80 min)
 - **søndag 2026-11-15** (uge 10, apply_proposal): FaF 6 Bjerg - TdS racepace 3 x 50 (185 min) [langt] → hviledag
+
+### Planændring 08/11 15:35
+- **onsdag 2026-12-09** (uge 14, apply_proposal): FaF 1 Z2 - Opvarmning 15 (15 min); FaF 6 Bjerg - Sa Calobra Zwift Video (55 min); Styrke B · Functional 4 · 3 runder (45 min) → FaF 5 VO2 - 4 x 4 (62 min) [hårdt]; Styrke B · Functional 4 · 3 runder (45 min)
