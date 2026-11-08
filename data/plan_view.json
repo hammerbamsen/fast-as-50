@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-08T00:51:03Z",
+ "generated": "2026-11-08T06:57:40Z",
  "kennet": {
   "programId": "tds-2027",
   "seed": {
@@ -1540,15 +1540,7 @@
     "week": 9,
     "projEndCtl": null,
     "deviation": null,
-    "flags": [
-     {
-      "week": 9,
-      "rule": "low_readiness",
-      "level": "WARN",
-      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-      "historic": false
-     }
-    ]
+    "flags": []
    },
    {
     "week": 10,
@@ -1828,13 +1820,6 @@
     "historic": false
    },
    {
-    "week": 9,
-    "rule": "low_readiness",
-    "level": "WARN",
-    "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-    "historic": false
-   },
-   {
     "week": 39,
     "rule": "race_tsb",
     "level": "WARN",
@@ -1874,11 +1859,12 @@
     }
    ],
    "suggestion": {
-    "suggested_action": "cancel",
+    "suggested_action": "swap_template",
     "params": {
-     "note": "Hviledag — tilpasning efter missede pas (readiness LOW)"
+     "template_id": "cykel-z2-60",
+     "note": "Nedjusteret til Z2 — tilpasning efter missede pas"
     },
-    "label": "Aflys ”FaF 6 Bjerg - Sa Calobra Zwift Video” og tag en hviledag",
+    "label": "Nedjustér ”FaF 6 Bjerg - Sa Calobra Zwift Video” til Z2",
     "entry_id": "09850238",
     "date": "2026-11-10",
     "name": "FaF 6 Bjerg - Sa Calobra Zwift Video",
@@ -1887,7 +1873,7 @@
    },
    "phase_guard": null
   },
-  "readiness": "LOW"
+  "readiness": "HIGH"
  },
- "inputsHash": "8b2b7ef6e69d90c0"
+ "inputsHash": "3b9944c88ca9f637"
 }
