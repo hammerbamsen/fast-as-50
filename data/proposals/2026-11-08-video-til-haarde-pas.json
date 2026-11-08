@@ -1,0 +1,402 @@
+{
+  "id": "2026-11-08-video-til-haarde-pas",
+  "title": "Sa Calobra Video → ét hårdt pas (Zwift Plus opsagt)",
+  "status": "pending",
+  "createdAt": "2026-11-08T13:45:00+00:00",
+  "createdBy": "claude",
+  "note": "Kennet 8/11: skiftet til almindeligt Zwift-abonnement. Videopassene (opvarmning + video) bliver til ét hårdt pas med fokus på at hæve CTL. 72 t-reglen: i uge 47 og 51 ligger det hårde pas fredag, og svøm flyttes til torsdag.",
+  "summary": [
+    "Uge 47: tor 19/11 svøm (flyttet fra fre); fre 20/11 Tærskel 2×20",
+    "Uge 50: ons 9/12 VO2 4×4 (eneste hårde pas)",
+    "Uge 51: tor 17/12 svøm (flyttet fra fre); fre 18/12 Tærskel 2×20"
+  ],
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-11-19",
+      "entries": [
+        {
+          "workout": {
+            "name": "Svøm 1500m let teknisk",
+            "type": "Swim",
+            "moving_time": 2700,
+            "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "text": "400m varm-op Z1",
+                  "duration": 480
+                },
+                {
+                  "reps": 5,
+                  "text": "5x",
+                  "steps": [
+                    {
+                      "text": "100m teknik Z1-Z2",
+                      "duration": 120
+                    }
+                  ]
+                },
+                {
+                  "text": "300m cool",
+                  "duration": 360
+                }
+              ]
+            }
+          },
+          "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-20",
+      "entries": [
+        {
+          "libraryId": "tae_2x20",
+          "workout": {
+            "name": "FaF 4 Tær - 2 x 20",
+            "type": "Ride",
+            "moving_time": 4740,
+            "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 62% FTP\n- BLOK 1 20m 95% FTP\n- Pause 10m 55% FTP\n- BLOK 2 20m 95% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Kan du køre den uden at falde fra hinanden, er dit FTP sat for lavt.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "reps": 3,
+                  "text": "3x",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 100,
+                        "end": 100,
+                        "units": "%ftp"
+                      },
+                      "duration": 60,
+                      "text": "Aktivering 100% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 60,
+                      "text": "Pause 55% FTP"
+                    }
+                  ]
+                },
+                {
+                  "power": {
+                    "start": 62,
+                    "end": 62,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "text": "Let 62% FTP"
+                },
+                {
+                  "power": {
+                    "start": 95,
+                    "end": 95,
+                    "units": "%ftp"
+                  },
+                  "duration": 1200,
+                  "text": "BLOK 1 95% FTP"
+                },
+                {
+                  "power": {
+                    "start": 55,
+                    "end": 55,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "text": "Pause 55% FTP"
+                },
+                {
+                  "power": {
+                    "start": 95,
+                    "end": 95,
+                    "units": "%ftp"
+                  },
+                  "duration": 1200,
+                  "text": "BLOK 2 95% FTP"
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 60,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 480,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-12-09",
+      "entries": [
+        {
+          "libraryId": "vo2_4x4",
+          "workout": {
+            "name": "FaF 5 VO2 - 4 x 4",
+            "type": "Ride",
+            "moving_time": 3720,
+            "description": "- Varm-op 12m ramp 45-72% FTP\n\n3x \n- Aktivering 1m 90% FTP\n- Pause 1m 55% FTP\n\n- Let 4m 58% FTP\n\n4x 4 x 4 min @ 110% — jævnt fra sekund et, ikke sprint ud\n- 4 min 4m 110% FTP\n- Pause 4m 50% FTP\n\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Mentalt lettere at styre end 30/15 og lige så veldokumenteret. Brug den når du ikke orker at tælle sekunder.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 72,
+                    "units": "%ftp"
+                  },
+                  "duration": 720,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "reps": 3,
+                  "text": "3x",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 90,
+                        "end": 90,
+                        "units": "%ftp"
+                      },
+                      "duration": 60,
+                      "text": "Aktivering 90% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 60,
+                      "text": "Pause 55% FTP"
+                    }
+                  ]
+                },
+                {
+                  "power": {
+                    "start": 58,
+                    "end": 58,
+                    "units": "%ftp"
+                  },
+                  "duration": 240,
+                  "text": "Let 58% FTP"
+                },
+                {
+                  "reps": 4,
+                  "text": "4 x 4 min @ 110% — jævnt fra sekund et, ikke sprint ud",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 110,
+                        "end": 110,
+                        "units": "%ftp"
+                      },
+                      "duration": 240,
+                      "text": "4 min 110% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 50,
+                        "end": 50,
+                        "units": "%ftp"
+                      },
+                      "duration": 240,
+                      "text": "Pause 50% FTP"
+                    }
+                  ]
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 60,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 480,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Ugens eneste hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). Kør i ERG."
+        },
+        {
+          "note": "Styrke 3×/uge.",
+          "templateId": "styrke-fs4-b-3r",
+          "workout": {
+            "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
+            "moving_time": 2700,
+            "name": "Styrke B · Functional 4 · 3 runder",
+            "type": "WeightTraining"
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-12-17",
+      "entries": [
+        {
+          "workout": {
+            "name": "Svøm 1500m let teknisk",
+            "type": "Swim",
+            "moving_time": 2700,
+            "description": "- 400m varm-op Z1 8m freeride\n\n5x\n- 100m teknik Z1-Z2 2m freeride\n\n- 300m cool 6m freeride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "text": "400m varm-op Z1",
+                  "duration": 480
+                },
+                {
+                  "reps": 5,
+                  "text": "5x",
+                  "steps": [
+                    {
+                      "text": "100m teknik Z1-Z2",
+                      "duration": 120
+                    }
+                  ]
+                },
+                {
+                  "text": "300m cool",
+                  "duration": 360
+                }
+              ]
+            }
+          },
+          "note": "Svøm teknik — én cue pr. uge (catch → hoved → hofte)"
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-12-18",
+      "entries": [
+        {
+          "libraryId": "tae_2x20",
+          "workout": {
+            "name": "FaF 4 Tær - 2 x 20",
+            "type": "Ride",
+            "moving_time": 4740,
+            "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 62% FTP\n- BLOK 1 20m 95% FTP\n- Pause 10m 55% FTP\n- BLOK 2 20m 95% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Kan du køre den uden at falde fra hinanden, er dit FTP sat for lavt.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "reps": 3,
+                  "text": "3x",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 100,
+                        "end": 100,
+                        "units": "%ftp"
+                      },
+                      "duration": 60,
+                      "text": "Aktivering 100% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 60,
+                      "text": "Pause 55% FTP"
+                    }
+                  ]
+                },
+                {
+                  "power": {
+                    "start": 62,
+                    "end": 62,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "text": "Let 62% FTP"
+                },
+                {
+                  "power": {
+                    "start": 95,
+                    "end": 95,
+                    "units": "%ftp"
+                  },
+                  "duration": 1200,
+                  "text": "BLOK 1 95% FTP"
+                },
+                {
+                  "power": {
+                    "start": 55,
+                    "end": 55,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "text": "Pause 55% FTP"
+                },
+                {
+                  "power": {
+                    "start": 95,
+                    "end": 95,
+                    "units": "%ftp"
+                  },
+                  "duration": 1200,
+                  "text": "BLOK 2 95% FTP"
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 60,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 480,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
+        }
+      ]
+    }
+  ]
+}
