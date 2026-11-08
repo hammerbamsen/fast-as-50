@@ -22,7 +22,7 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from modules import edit_apply, martin_signals, outlook_times, proposals, word_master
+from modules import edit_apply, intervals_event, martin_signals, outlook_times, proposals, word_master
 
 
 GH_TOKEN = os.environ["GITHUB_TOKEN"]
@@ -93,18 +93,20 @@ def intervals_delete_date(day_iso: str) -> int:
 
 
 def intervals_create(day_iso: str, workout: dict):
-    payload = {
-        "start_date_local": f"{day_iso}T06:00:00",
-        "category": "WORKOUT",
-        "type": workout.get("type") or "Workout",
-        "name": workout["name"],
-        "moving_time": workout.get("moving_time", 0),
-        "description": workout.get("description", ""),
-    }
+    payload = intervals_event.build_payload(day_iso, workout)
     r = requests.post(f"{INTERVALS}/events", auth=INTERVALS_AUTH,
                       json=payload, timeout=30)
     r.raise_for_status()
-    return r.json().get("id")
+    created = r.json()
+    eid = created.get("id")
+    # Intervals udleder tid af teksten (svøm "400m" = 400 min) — tving planens tal
+    fix = intervals_event.corrections(created, workout)
+    if eid and fix:
+        u = requests.put(f"{INTERVALS}/events/{eid}", auth=INTERVALS_AUTH,
+                         json=fix, timeout=30)
+        u.raise_for_status()
+        print(f"    ↳ rettet {fix}")
+    return eid
 
 
 # -- Outlook (Graph) ------------------------------------------------------
