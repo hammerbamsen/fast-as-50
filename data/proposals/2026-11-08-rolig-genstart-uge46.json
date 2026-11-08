@@ -1,0 +1,257 @@
+{
+  "id": "2026-11-08-rolig-genstart-uge46",
+  "title": "Uge 46: rolig genstart efter sygdom",
+  "status": "pending",
+  "createdAt": "2026-11-08T13:20:00+00:00",
+  "createdBy": "claude",
+  "note": "Kennet 8/11: syg hele ugen. Uge 46 = rolig genstart, kun Z2. Fuld træning og cut fra 16/11. VO2 og hårde pas fra 16/11 beholdes (Kennets valg).",
+  "summary": [
+    "Man 9/11: Styrke A, stop efter 2 runder",
+    "Tir 10/11: Sa Calobra + opvarmning → fri/gåtur",
+    "Ons 11/11: Løb Z2 45 udgår, Styrke B bevares",
+    "Tor 12/11: Grundtur 80 (uændret pas, ny note)",
+    "Fre 13/11: svøm uændret",
+    "Lør 14/11: Lang Z2 2 t → Grundtur 80",
+    "Søn 15/11: TdS racepace 3×50 → fri"
+  ],
+  "changes": [
+    {
+      "action": "set_day",
+      "date": "2026-11-09",
+      "entries": [
+        {
+          "workout": {
+            "name": "Styrke A · Functional 4 · 3 runder",
+            "type": "WeightTraining",
+            "moving_time": 2700,
+            "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+          },
+          "templateId": "styrke-fs4-a-3r",
+          "note": "Første pas efter en uge syg. Stop efter 2 runder. Rolig genstart."
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-10",
+      "entries": [
+        {
+          "workout": null,
+          "note": "Fri eller gåtur. Sa Calobra udgår (rolig genstartuge). Gate: hvilepuls ≥3 slag over normalt, feber eller ondt i halsen → gåtur i stedet."
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-11",
+      "entries": [
+        {
+          "note": "Rolig genstart efter sygdom. Stop efter 2 runder, hvis du er træt.",
+          "templateId": "styrke-fs4-b-3r",
+          "workout": {
+            "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
+            "moving_time": 2700,
+            "name": "Styrke B · Functional 4 · 3 runder",
+            "type": "WeightTraining"
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-12",
+      "entries": [
+        {
+          "libraryId": "z2_grundtur_80",
+          "workout": {
+            "name": "FaF 1 Z2 - Grundtur 80",
+            "type": "Ride",
+            "moving_time": 4800,
+            "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 62,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "power": {
+                    "start": 66,
+                    "end": 66,
+                    "units": "%ftp"
+                  },
+                  "duration": 1500,
+                  "text": "Zone 2 66% FTP"
+                },
+                {
+                  "power": {
+                    "start": 70,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "text": "Kadence 100 70% FTP",
+                  "cadence": {
+                    "start": 100,
+                    "end": 100,
+                    "units": "rpm"
+                  }
+                },
+                {
+                  "power": {
+                    "start": 66,
+                    "end": 66,
+                    "units": "%ftp"
+                  },
+                  "duration": 1500,
+                  "text": "Zone 2 66% FTP"
+                },
+                {
+                  "power": {
+                    "start": 70,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "text": "Kadence 100 70% FTP",
+                  "cadence": {
+                    "start": 100,
+                    "end": 100,
+                    "units": "rpm"
+                  }
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 62,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Rolig genstart: ren Z2, hold pulsen lav. Bryd af, hvis pulsen løber op."
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-14",
+      "entries": [
+        {
+          "workout": {
+            "name": "Styrke A · Functional 4 · 3 runder",
+            "type": "WeightTraining",
+            "moving_time": 2700,
+            "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
+          },
+          "templateId": "styrke-fs4-a-3r",
+          "note": "Styrke 3×/uge."
+        },
+        {
+          "libraryId": "z2_grundtur_80",
+          "workout": {
+            "name": "FaF 1 Z2 - Grundtur 80",
+            "type": "Ride",
+            "moving_time": 4800,
+            "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 62,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "power": {
+                    "start": 66,
+                    "end": 66,
+                    "units": "%ftp"
+                  },
+                  "duration": 1500,
+                  "text": "Zone 2 66% FTP"
+                },
+                {
+                  "power": {
+                    "start": 70,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "text": "Kadence 100 70% FTP",
+                  "cadence": {
+                    "start": 100,
+                    "end": 100,
+                    "units": "rpm"
+                  }
+                },
+                {
+                  "power": {
+                    "start": 66,
+                    "end": 66,
+                    "units": "%ftp"
+                  },
+                  "duration": 1500,
+                  "text": "Zone 2 66% FTP"
+                },
+                {
+                  "power": {
+                    "start": 70,
+                    "end": 70,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "text": "Kadence 100 70% FTP",
+                  "cadence": {
+                    "start": 100,
+                    "end": 100,
+                    "units": "rpm"
+                  }
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 62,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Erstatter Lang Z2 2 t (rolig genstartuge). Ren Z2."
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-15",
+      "entries": [
+        {
+          "workout": null,
+          "note": "Fri. TdS racepace 3×50 udgår (rolig genstartuge). Fuld plan og cut fra mandag 16/11."
+        }
+      ]
+    }
+  ]
+}
