@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-09 14:56",
+    "updated": "2026-11-09 17:08",
     "week": 10,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Ny uge starter — uge 46. Træningsuge. {HL} Godt: Ny uge med 0 dages streak i ryggen. Hold den. Fokus: 11 af 238 TSS er i hus — 5 sessioner tilbage, heriblandt Styrke B · Functional 4 · 3 runder, FaF 1 Z2 - Grundtur 80. Vægt på 72,3 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 7,8 timer er solid",
-  "weekFocus": "Genstart roligt, beskyt muskelmasse med protein",
+  "coachSpeech": "Uge 46, BASE meso 2/2 — kroppen er presset af sygdom og for hurtigt cut-tab; vedligehold og genstart er denne uges vigtigste opgave. {HL} Styrketræning i dag blev kortere end planlagt: 25 min / 11 TSS mod planlagte 45 min — første pas efter en uges sygdom, 2 runder i stedet for 3, det er korrekt.",
+  "coachHighlight": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen kalorieunderskud i aften.",
+  "weekFocus": "Genstart roligt — vedligehold mad og krop",
   "today": [
     {
       "discipline": "strength",
@@ -2055,7 +2055,8 @@
     "2026-11-05": 0,
     "2026-11-06": 1,
     "2026-11-07": 0,
-    "2026-11-08": 1
+    "2026-11-08": 1,
+    "2026-11-09": 1
   },
   "all_weeks": {
     "8": {
@@ -2255,7 +2256,7 @@
         }
       ],
       "blockType": "BASE",
-      "focus": "Genstart roligt, beskyt muskelmasse med protein"
+      "focus": "Genstart roligt — vedligehold mad og krop"
     },
     "11": {
       "sessions": [
@@ -3237,14 +3238,23 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 64 af 357 · Mandag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok uge 2/2 — genstart efter sygdom, og cut-signalet kræver at fedtfri masse beskyttes nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke A i dag blev gennemført som en kortere genstart efter sygdom: 25 min og 11 TSS mod planlagte 45 min. CTL er 31,1 mod målet på 38,0 — det er en BASE-blok, så opbygningen fortsætter i de kommende uger.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 0,8 kg over planen på 71,8 kg. Fedtfri masse er faldet 2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, ikke underskud.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 5 af 6 dage — hold det på 3 af 3 måltider i dag. Søvn sidste nat var 6,0 timer, under målet på 7.</p>",
-  "coachAssessmentTs": "06:39",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 64 af 357 · Mandag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE meso 2/2 — kroppen er presset af sygdom og for hurtigt cut-tab; vedligehold og genstart er denne uges vigtigste opgave.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrketræning i dag blev kortere end planlagt: 25 min / 11 TSS mod planlagte 45 min — første pas efter en uges sygdom, 2 runder i stedet for 3, det er korrekt. CTL er 31,1 mod målet 38,0; det indhentes roligt i BASE, ikke med ekstra load.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 0,8 kg over planlagt niveau (72,5 mod 71,8 kg), men fedtfri masse er faldet 2,2 kg på 4 uger — cut-pausen er obligatorisk nu, ikke valgfri.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 alkoholdage de seneste 7 dage med 2 dage i træk — det rammer HRV og muskelproteinsyntese direkte. Protein er slået til på 5 af 6 registrerede dage, hold det.</p>",
+  "coachAssessmentTs": "17:08",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag"
+      "message": "Cut-tjek: Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "alcohol_cluster",
+      "level": "warn",
+      "message": "2 drikkedage i træk 8/11–9/11 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": 8.8,
@@ -3564,8 +3574,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-09T13:56:24.460260",
-  "coachAssessmentTsFull": "2026-11-09T05:40:13",
+  "credentialsCheckedTs": "2026-11-09T16:08:34.386548",
+  "coachAssessmentTsFull": "2026-11-09T16:08:34",
   "coachAssessmentWeightAtGen": 72.3,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [
@@ -4694,7 +4704,7 @@
     },
     {
       "date": "2026-11-09",
-      "alkohol": null,
+      "alkohol": 1,
       "protein": null,
       "energi": null,
       "sult": null
@@ -4706,7 +4716,8 @@
     "2026-10-26": "faa",
     "2026-11-04": "faa",
     "2026-11-06": "faa",
-    "2026-11-08": "faa"
+    "2026-11-08": "faa",
+    "2026-11-09": "faa"
   },
   "planTab": {
     "today": "2026-11-09",
@@ -10603,16 +10614,16 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-09T05:40:13Z",
-    "inputsHash": "001029f0ffcde5cb5502ddf2ab4c28df7277ae04",
+    "generatedAt": "2026-11-09T16:08:34Z",
+    "inputsHash": "ad8d96784dc8bcfbe9b377c30f14ebd091563d13",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen underskud i dag.",
-      "why": "Fedtfri masse er faldet 2,2 kg på 4 uger — kroppen har brug for at stabilisere inden cut fortsætter."
+      "action": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen kalorieunderskud i aften.",
+      "why": "Fedtfri masse er faldet 2,2 kg på 4 uger — kroppen har brug for 3-4 dages vedligehold, ikke mere cut."
     },
     "training": {
-      "text": "Styrke A i dag blev gennemført som en kortere genstart efter sygdom: 25 min og 11 TSS mod planlagte 45 min. CTL er 31,1 mod målet på 38,0 — det er en BASE-blok, så opbygningen fortsætter i de kommende uger.",
+      "text": "Styrketræning i dag blev kortere end planlagt: 25 min / 11 TSS mod planlagte 45 min — første pas efter en uges sygdom, 2 runder i stedet for 3, det er korrekt. CTL er 31,1 mod målet 38,0; det indhentes roligt i BASE, ikke med ekstra load.",
       "refs": [
         25.0,
         11.0,
@@ -10622,31 +10633,38 @@
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 0,8 kg over planen på 71,8 kg. Fedtfri masse er faldet 2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, ikke underskud.",
+      "text": "7-dages snit for vægt er 0,8 kg over planlagt niveau (72,5 mod 71,8 kg), men fedtfri masse er faldet 2,2 kg på 4 uger — cut-pausen er obligatorisk nu, ikke valgfri.",
       "refs": [
         72.5,
         71.8,
-        0.8,
-        2.2
+        2.2,
+        0.8
       ]
     },
     "habits": {
-      "text": "Protein er registreret 5 af 6 dage — hold det på 3 af 3 måltider i dag. Søvn sidste nat var 6,0 timer, under målet på 7.",
+      "text": "4 alkoholdage de seneste 7 dage med 2 dage i træk — det rammer HRV og muskelproteinsyntese direkte. Protein er slået til på 5 af 6 registrerede dage, hold det.",
       "refs": [
+        4.0,
+        2.0,
         5.0,
-        6.0,
-        6.0,
-        7.0
+        6.0
       ]
     },
-    "bigPicture": "Uge 46, BASE-blok uge 2/2 — genstart efter sygdom, og cut-signalet kræver at fedtfri masse beskyttes nu.",
-    "weekFocus": "Genstart roligt, beskyt muskelmasse med protein",
+    "bigPicture": "Uge 46, BASE meso 2/2 — kroppen er presset af sygdom og for hurtigt cut-tab; vedligehold og genstart er denne uges vigtigste opgave.",
+    "weekFocus": "Genstart roligt — vedligehold mad og krop",
     "weekFocusFor": 10,
     "warnings": [
       {
         "type": "cut",
         "level": "act",
         "message": "Cut-tjek: Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag",
+        "action": null,
+        "source": "rule"
+      },
+      {
+        "type": "alcohol_cluster",
+        "level": "warn",
+        "message": "2 drikkedage i træk 8/11–9/11 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
         "source": "rule"
       }
@@ -10846,10 +10864,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 3,
-            "run": 1
+            "days7": 4,
+            "run": 2
           },
-          "text": "3 drikkedage på 7 dage"
+          "text": "4 drikkedage på 7 dage · 2 i træk"
         }
       }
     }
@@ -11180,7 +11198,7 @@
       "Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: tir 17/11 FaF 5 VO2 - Ronnestad 3 x 13 x 30-15 65 min, fre 20/11 FaF 4 Tær - 2 x 20 79 min, lør 21/11 FaF 1 Z2 - Langtur 4 t 240 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-09T13:56:24Z"
+    "generatedAt": "2026-11-09T16:08:18Z"
   },
   "proposals": [],
   "ftp": {
