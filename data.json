@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-10 04:21",
+    "updated": "2026-11-10 10:02",
     "week": 10,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,19 +34,19 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "30,4",
+      "value": "30,5",
       "unit": "",
       "sub": "Uge 46-mål 38 · BASE",
-      "color": "#C0392B"
+      "color": "#E67E22"
     },
     "tsb": {
-      "value": "11,1",
+      "value": "13,6",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "6,0",
+      "value": "8,3",
       "unit": "t",
       "sub": "Snit 7d 7,8t · mål 7t",
       "color": "#27AE60"
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "40,3",
+      "value": "39,3",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "11",
+      "value": "19",
       "unit": "TSS",
-      "sub": "11 af 238 planlagt TSS",
+      "sub": "19 af 238 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 46, BASE-blok uge 2 af 2 — kroppen taber fedtfri masse for hurtigt; det stopper alt andet. {HL} Ingen planlagt pas i dag — tirsdag er fridag i denne uge. Styrke mandag er gennemført (25 af 45 planlagte minutter).",
-  "coachHighlight": "Spis til vedligehold hele dagen — protein ved alle 3 måltider. Ingen cut-underskud i dag.",
+  "coachSpeech": "Uge 46, BASE-blok uge 2/2 — HRV og FFM-tab siger: bevar muskler og restituer nu, ikke byg CTL. {HL} Gentofte Gang (61 min) er i hus. Styrke A mandag: 25 min af 45 planlagt. HRV er 16% under 7-dages snit — ingen hårde pas i dag, og det er der heller ikke planlagt.",
+  "coachHighlight": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider.",
   "weekFocus": "Genstart roligt — vedligehold mad og krop",
   "today": [
     {
-      "discipline": "rest",
-      "title": "Hviledag",
+      "discipline": "walk",
+      "title": "Gentofte Gang",
       "duration": "",
       "zone": "–",
-      "desc": "Ingen planlagt træning i dag.",
-      "completed": false
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -139,6 +139,17 @@
       "actual_name": "Styrketræning",
       "actual_mins": 25,
       "actual_distance_m": null
+    },
+    {
+      "day": "Tir",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 8,
+      "actual_mins": 61,
+      "actual_distance_m": 5439.97,
+      "today": true
     },
     {
       "day": "Ons",
@@ -196,7 +207,7 @@
     39.2,
     34.5,
     31.8,
-    30.4
+    30.5
   ],
   "weightHistory": [
     null,
@@ -536,7 +547,11 @@
       "v": 72.3,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-10",
+      "v": 72.8,
+      "real": true
+    }
   ],
   "hrvHistory": [
     {
@@ -984,7 +999,11 @@
       "v": 42.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-10",
+      "v": 33.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1432,7 +1451,11 @@
       "v": 6.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-10",
+      "v": 8.3,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1877,12 +1900,12 @@
     },
     {
       "date": "2026-11-09",
-      "v": 8.8,
+      "v": 12.8,
       "real": true
     },
     {
       "date": "2026-11-10",
-      "v": 11.1,
+      "v": 13.6,
       "real": true
     }
   ],
@@ -2198,6 +2221,17 @@
           "actual_name": "Styrketræning",
           "actual_mins": 25,
           "actual_distance_m": null
+        },
+        {
+          "day": "Tir",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 8,
+          "actual_mins": 61,
+          "actual_distance_m": 5439.97,
+          "today": true
         },
         {
           "day": "Ons",
@@ -2884,9 +2918,10 @@
     }
   ],
   "train_mins": {
+    "walk": 61.0,
     "strength": 25.0,
     "planned": 340.0,
-    "actual_total": 25.0
+    "actual_total": 86.0
   },
   "fatHistory": [
     null,
@@ -3226,16 +3261,27 @@
       "v": 22.9,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-10",
+      "v": 22.5,
+      "real": true
+    }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 65 af 357 · Tirsdag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok uge 2 af 2 — kroppen taber fedtfri masse for hurtigt; det stopper alt andet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ingen planlagt pas i dag — tirsdag er fridag i denne uge. Styrke mandag er gennemført (25 af 45 planlagte minutter). CTL er 30,4 mod et mål på 38,0 — afstanden skyldes det lave load tidligt i blokken, ikke et problem i denne fase.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er faldet 2,7 kg den seneste måned — det er for hurtigt. Fedtprocenten (7-dages snit 22,6) er steget 0,6 procentpoint: vægttabet rammer fedtfri masse, ikke fedt. Hold raten, spis til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>4 alkoholdage den seneste uge, heraf 2 dage i træk (8/11–9/11) — klynger rammer HRV hårdere end spredte dage. Søvn i nat var 6,0 timer mod målet på 7 timer.</p>",
-  "coachAssessmentTs": "04:21",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 65 af 357 · Tirsdag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok uge 2/2 — HRV og FFM-tab siger: bevar muskler og restituer nu, ikke byg CTL.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Gentofte Gang (61 min) er i hus. Styrke A mandag: 25 min af 45 planlagt. HRV er 16% under 7-dages snit — ingen hårde pas i dag, og det er der heller ikke planlagt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,8 kg over cut-planen (72,5 kg mod forventet 71,8 kg). Fedtprocent på 7-dages snit er steget 0,6 procentpoint den seneste måned — retningen er opad. Stop underskuddet i 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 dage med alkohol i træk (8/11–9/11) — klynger presser HRV hårdere end spredte dage. Protein ramt 5 af 6 registrerede dage — hold 3 ud af 3 i dag.</p>",
+  "coachAssessmentTs": "10:02",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
       "message": "Cut-tjek: Fedtfri masse −2,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 33,0 ms — 16% under 7d-snit (39,3 ms). Kroppen er presset.",
       "action": null,
       "source": "rule"
     },
@@ -3247,7 +3293,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 11.1,
+  "tsb": 13.6,
   "swimHistory": [
     {
       "week": 1,
@@ -3310,9 +3356,9 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i207655164",
+  "coachAssessmentLastActId": "i208173748",
   "weekFocusWeek": 10,
-  "coachAssessmentPlanAtGen": "",
+  "coachAssessmentPlanAtGen": "Gentofte Gang",
   "weightGoal": 69.5,
   "bodyFatGoal": 19,
   "weightMovingAvg7": [
@@ -3405,7 +3451,7 @@
     72.36,
     72.46,
     72.47,
-    72.47
+    72.51
   ],
   "fatMovingAvg7": [
     null,
@@ -3497,7 +3543,7 @@
     22.44,
     22.49,
     22.63,
-    22.55
+    22.54
   ],
   "ctlPlan": [
     47,
@@ -3564,9 +3610,9 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-10T03:21:57.167562",
-  "coachAssessmentTsFull": "2026-11-10T03:21:57",
-  "coachAssessmentWeightAtGen": 72.3,
+  "credentialsCheckedTs": "2026-11-10T09:03:06.210614",
+  "coachAssessmentTsFull": "2026-11-10T09:03:06",
+  "coachAssessmentWeightAtGen": 72.8,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [
     {
@@ -3579,7 +3625,7 @@
       "text": "2 trin har effekt-maal paa Swim. Skyldes typisk \"Z1-Z2\" i et step-navn — omdoeb trinnet."
     }
   ],
-  "coachAssessmentFatAtGen": 22.9,
+  "coachAssessmentFatAtGen": 22.5,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 257,
@@ -3671,7 +3717,7 @@
     "7": 241,
     "8": 60,
     "9": 153,
-    "10": 11
+    "10": 19
   },
   "racesUpcoming": [
     {
@@ -5020,7 +5066,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 38,
         "tssTarget": 350,
-        "tssActual": 11,
+        "tssActual": 19,
         "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn bjergtur 3 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -8216,7 +8262,26 @@
           {
             "date": "2026-11-10",
             "weekday": "Tir",
-            "entries": [],
+            "entries": [
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 61,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 61,
+                "actualTss": 8,
+                "note": null,
+                "isKey": false,
+                "extra": true
+              }
+            ],
             "restNote": "Fri eller gåtur. Sa Calobra udgår (rolig genstartuge). Gate: hvilepuls ≥3 slag over normalt, feber eller ondt i halsen → gåtur i stedet.",
             "restId": "cacd4f83",
             "isToday": true
@@ -10084,25 +10149,21 @@
           "week": 10,
           "programId": "tds-2027",
           "start": "2026-11-09",
-          "ctl": 30.4
+          "ctl": 30.5
         }
       ],
       "projection": [
-        {
-          "d": "2026-11-10",
-          "ctl": 30.4
-        },
         {
           "d": "2026-11-11",
           "ctl": 31.3
         },
         {
           "d": "2026-11-12",
-          "ctl": 32.2
+          "ctl": 32.3
         },
         {
           "d": "2026-11-13",
-          "ctl": 33.1
+          "ctl": 33.2
         },
         {
           "d": "2026-11-14",
@@ -10114,15 +10175,15 @@
         },
         {
           "d": "2026-11-16",
-          "ctl": 34.2
+          "ctl": 34.3
         },
         {
           "d": "2026-11-17",
-          "ctl": 35.2
+          "ctl": 35.3
         },
         {
           "d": "2026-11-18",
-          "ctl": 36.2
+          "ctl": 36.3
         },
         {
           "d": "2026-11-19",
@@ -10130,11 +10191,11 @@
         },
         {
           "d": "2026-11-20",
-          "ctl": 38.1
+          "ctl": 38.2
         },
         {
           "d": "2026-11-21",
-          "ctl": 39.0
+          "ctl": 39.1
         },
         {
           "d": "2026-11-22",
@@ -10170,11 +10231,11 @@
         },
         {
           "d": "2026-11-30",
-          "ctl": 42.7
+          "ctl": 42.8
         },
         {
           "d": "2026-12-01",
-          "ctl": 41.7
+          "ctl": 41.8
         },
         {
           "d": "2026-12-02",
@@ -10190,7 +10251,7 @@
         },
         {
           "d": "2026-12-05",
-          "ctl": 44.9
+          "ctl": 45.0
         },
         {
           "d": "2026-12-06",
@@ -10210,7 +10271,7 @@
         },
         {
           "d": "2026-12-10",
-          "ctl": 47.0
+          "ctl": 47.1
         },
         {
           "d": "2026-12-11",
@@ -10242,7 +10303,7 @@
         },
         {
           "d": "2026-12-18",
-          "ctl": 51.8
+          "ctl": 51.9
         },
         {
           "d": "2026-12-19",
@@ -10254,7 +10315,7 @@
         },
         {
           "d": "2026-12-21",
-          "ctl": 52.7
+          "ctl": 52.8
         },
         {
           "d": "2026-12-22",
@@ -10604,41 +10665,42 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-10T03:21:57Z",
-    "inputsHash": "a92fda73abeebfade4ef193372c2bfb98e1d6c5b",
+    "generatedAt": "2026-11-10T09:03:06Z",
+    "inputsHash": "b54bd4585af7e34488ab3fb0150f460d4ab03021",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold hele dagen — protein ved alle 3 måltider. Ingen cut-underskud i dag.",
-      "why": "Fedtfri masse er faldet 2,3 kg på 4 uger — kroppen mister muskler, ikke fedt. 3-4 dages vedligehold stopper tabet."
+      "action": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider.",
+      "why": "Fedtfri masse er faldet 2,3 kg på 4 uger. Kroppen mister muskler, ikke fedt — stop tabet midlertidigt."
     },
     "training": {
-      "text": "Ingen planlagt pas i dag — tirsdag er fridag i denne uge. Styrke mandag er gennemført (25 af 45 planlagte minutter). CTL er 30,4 mod et mål på 38,0 — afstanden skyldes det lave load tidligt i blokken, ikke et problem i denne fase.",
+      "text": "Gentofte Gang (61 min) er i hus. Styrke A mandag: 25 min af 45 planlagt. HRV er 16% under 7-dages snit — ingen hårde pas i dag, og det er der heller ikke planlagt.",
       "refs": [
+        61.0,
         25.0,
         45.0,
-        30.4,
-        38.0
+        16.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er faldet 2,7 kg den seneste måned — det er for hurtigt. Fedtprocenten (7-dages snit 22,6) er steget 0,6 procentpoint: vægttabet rammer fedtfri masse, ikke fedt. Hold raten, spis til vedligehold nu.",
+      "text": "7-dages snit er 0,8 kg over cut-planen (72,5 kg mod forventet 71,8 kg). Fedtprocent på 7-dages snit er steget 0,6 procentpoint den seneste måned — retningen er opad. Stop underskuddet i 3-4 dage.",
       "refs": [
-        2.7,
-        22.6,
+        72.5,
+        71.8,
+        0.8,
         0.6
       ]
     },
     "habits": {
-      "text": "4 alkoholdage den seneste uge, heraf 2 dage i træk (8/11–9/11) — klynger rammer HRV hårdere end spredte dage. Søvn i nat var 6,0 timer mod målet på 7 timer.",
+      "text": "2 dage med alkohol i træk (8/11–9/11) — klynger presser HRV hårdere end spredte dage. Protein ramt 5 af 6 registrerede dage — hold 3 ud af 3 i dag.",
       "refs": [
-        4.0,
         2.0,
+        5.0,
         6.0,
-        7.0
+        3.0
       ]
     },
-    "bigPicture": "Uge 46, BASE-blok uge 2 af 2 — kroppen taber fedtfri masse for hurtigt; det stopper alt andet.",
+    "bigPicture": "Uge 46, BASE-blok uge 2/2 — HRV og FFM-tab siger: bevar muskler og restituer nu, ikke byg CTL.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10646,6 +10708,13 @@
         "type": "cut",
         "level": "act",
         "message": "Cut-tjek: Fedtfri masse −2,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag",
+        "action": null,
+        "source": "rule"
+      },
+      {
+        "type": "hrv",
+        "level": "warn",
+        "message": "HRV 33,0 ms — 16% under 7d-snit (39,3 ms). Kroppen er presset.",
         "action": null,
         "source": "rule"
       },
@@ -10725,12 +10794,12 @@
       "expectedKg": 71.8,
       "corridorKg": 0.5,
       "avg7": 72.5,
-      "avg7Date": "2026-11-09",
+      "avg7Date": "2026-11-10",
       "delta": 0.7,
       "status": "plan",
       "note": "over korridoren — tæller som bagud efter to mandage",
       "ratePerWeek": -0.29,
-      "actualRate4w": -0.68,
+      "actualRate4w": -0.67,
       "series": [
         {
           "date": "2026-11-02",
@@ -10819,8 +10888,8 @@
       "signals": {
         "rate": {
           "level": null,
-          "value": -0.38,
-          "text": "−0,38 kg/uge (2 uger)"
+          "value": -0.36,
+          "text": "−0,36 kg/uge (2 uger)"
         },
         "ffm": {
           "level": "act",
@@ -10839,14 +10908,14 @@
           "level": "warn",
           "value": {
             "rhr": 5.5,
-            "hrvPct": -15.7
+            "hrvPct": -17.2
           },
-          "text": "hvilepuls +6 · HRV −16 % (14 dage)"
+          "text": "hvilepuls +6 · HRV −17 % (14 dage)"
         },
         "plateau": {
           "level": null,
-          "value": -1.2,
-          "text": "−1,2 kg over 3 uger"
+          "value": -1.1,
+          "text": "−1,1 kg over 3 uger"
         },
         "alcohol": {
           "level": "warn",
@@ -11169,23 +11238,23 @@
     }
   },
   "weekTss": {
-    "actual": 11,
+    "actual": 19,
     "planned": 238
   },
   "martinMail": {
     "week": 10,
     "isoWeek": 46,
     "lines": [
-      "Uge 46: TSS 11 af 238 (5 %) · CTL 30,4 (mål 38) · TSB +11,1",
+      "Uge 46: TSS 19 af 238 (8 %) · CTL 30,5 (mål 38) · TSB +13,6",
       "Vægt 7d 72,5 kg · fedt 14d 22,6 % · på plan mod glidepath (71,8)",
-      "HRV 7d 40 (28d 47) · hvilepuls 49 · søvn 7d 7,7 t",
+      "HRV 7d 39 (28d 47) · hvilepuls 49 · søvn 7d 7,8 t",
       "AF 2/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 3/2 · check-in 4/10 ben ✗ overkrop ✗",
       "Cut-tjek: act — Fedtfri masse −2,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag",
       "Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: tir 17/11 FaF 5 VO2 - Ronnestad 3 x 13 x 30-15 65 min, fre 20/11 FaF 4 Tær - 2 x 20 79 min, lør 21/11 FaF 1 Z2 - Langtur 4 t 240 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-10T03:21:38Z"
+    "generatedAt": "2026-11-10T09:02:46Z"
   },
   "proposals": [],
   "ftp": {
@@ -11258,7 +11327,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-10",
-    "ctl": 30.4,
-    "atl": 19.3
+    "ctl": 30.5,
+    "atl": 16.9
   }
 }
