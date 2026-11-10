@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-10 18:51",
+    "updated": "2026-11-10 20:24",
     "week": 10,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "uge 46, BASE uge 2/2, CTL 30,5 mod mål 38,0 — fedtfri masse og HRV kræver opmærksomhed nu {HL} Gentofte Gang er i hus. Ingen planlagte træningspas i dag — ugen er i gang med styrke mandag (25 min, 11 TSS mod 30). Readiness er LOW: HRV 33,0 ms mod 7-dages snit 39,3 ms.",
-  "coachHighlight": "Stop alkohol i aften og de næste 2-3 dage — kroppen skal bruge ro til at genopbygge fedtfri masse.",
+  "coachSpeech": "Tirsdag — uge 46. {HL} Fokus: 19 af 238 TSS er i hus — 5 sessioner tilbage, heriblandt Styrke B · Functional 4 · 3 runder, FaF 1 Z2 - Grundtur 80. Vægt på 72,8 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 2 afsluttede dage — 6 mangler i 5 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Du bliver til det, du gør ofte.\"",
+  "coachHighlight": "Søvn på 7,8 timer er solid",
   "weekFocus": "Genstart roligt — vedligehold mad og krop",
   "today": [
     {
@@ -3273,25 +3273,19 @@
   "commute_pairing_warnings": [],
   "warnings": [
     {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 33,0 ms — 16% under 7d-snit (39,3 ms). Kroppen er presset."
+    },
+    {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −2,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag",
-      "action": null,
-      "source": "rule"
+      "message": "Cut-tjek: Fedtfri masse −2,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke onsdag"
     },
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "3 drikkedage i træk 8/11–10/11 — klynger rammer HRV hårdere end spredte dage.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 33,0 ms — 16% under 7d-snit (39,3 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
+      "message": "3 drikkedage i træk 8/11–10/11 — klynger rammer HRV hårdere end spredte dage."
     }
   ],
   "tsb": 13.6,
@@ -3611,7 +3605,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-10T17:51:53.122717",
+  "credentialsCheckedTs": "2026-11-10T19:24:39.792214",
   "coachAssessmentTsFull": "2026-11-10T17:51:53",
   "coachAssessmentWeightAtGen": 72.8,
   "coachAssessmentAfAtGen": 0,
@@ -4484,7 +4478,7 @@
     },
     {
       "date": "2026-11-10",
-      "v": 52,
+      "v": 50,
       "real": true
     }
   ],
@@ -4742,12 +4736,12 @@
     {
       "date": "2026-11-10",
       "alkohol": 1,
-      "protein": null,
-      "energi": null,
+      "protein": 1,
+      "energi": 1,
       "sult": null
     }
   ],
-  "energy7": 2.7,
+  "energy7": 2.4,
   "af_kind": {
     "2026-10-25": "faa",
     "2026-10-26": "faa",
@@ -10919,10 +10913,10 @@
         "recovery": {
           "level": "warn",
           "value": {
-            "rhr": 5.5,
+            "rhr": 5.4,
             "hrvPct": -17.2
           },
-          "text": "hvilepuls +6 · HRV −17 % (14 dage)"
+          "text": "hvilepuls +5 · HRV −17 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11266,7 +11260,7 @@
       "Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: tir 17/11 FaF 5 VO2 - Ronnestad 3 x 13 x 30-15 65 min, fre 20/11 FaF 4 Tær - 2 x 20 79 min, lør 21/11 FaF 1 Z2 - Langtur 4 t 240 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-10T17:51:34Z"
+    "generatedAt": "2026-11-10T19:24:39Z"
   },
   "proposals": [],
   "ftp": {
