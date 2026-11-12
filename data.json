@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-12 11:42",
+    "updated": "2026-11-12 12:54",
     "week": 10,
     "totalWeeks": 51,
     "blockType": "BASE",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "30,5",
+      "value": "31,0",
       "unit": "",
       "sub": "Uge 46-mål 38 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "5,5",
+      "value": "6,7",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "32",
+      "value": "53",
       "unit": "TSS",
-      "sub": "32 af 238 planlagt TSS",
+      "sub": "53 af 238 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "17,4",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "swimM": {
       "value": "0",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Uge 46, BASE-blok uge 2/2 — cut-tjek blinker rødt: fedtfri masse faldet, spis til vedligehold nu. {HL} To styrketræninger gennemført i uge 46 — ingen missede pas. Dagens 80 min Z2 på cykel (ERG) ligger foran.",
-  "coachHighlight": "Ryd cyklen 80 min i ERG, ren Z2 — hold pulsen lav, bryd af hvis den løber op.",
+  "coachSpeech": "Uge 46, BASE-blok uge 2/2 — cut-alarmen er aktiv og fedtfri masse falder for hurtigt; prioritér mad og restitution over ekstra træningsload. {HL} Ugen har 2 gennemførte pas (begge styrke) og ingen missede. CTL er 31,0 mod et mål på 38,0 — BASE-blok, så byg stille og roligt. Dagens Z2-tur på 80 min er endnu ikke udført.",
+  "coachHighlight": "Kør FaF 1 Z2 - Grundtur 80 i 80 min på ERG: ren Z2, hold pulsen lav — bryd af, hvis pulsen løber op.",
   "weekFocus": "Genstart roligt — vedligehold mad og krop",
   "today": [
     {
@@ -122,6 +122,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "commute",
+      "title": "Gentofte Cykling",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -186,6 +194,17 @@
       "today": true
     },
     {
+      "day": "Tor",
+      "disc": "commute",
+      "label": "Gentofte Cykling",
+      "done": true,
+      "extra": true,
+      "actual_tss": 21,
+      "actual_mins": 55,
+      "actual_distance_m": 17419.18,
+      "today": true
+    },
+    {
       "day": "Fre",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
@@ -223,7 +242,7 @@
     39.2,
     34.5,
     31.8,
-    30.5
+    31.0
   ],
   "weightHistory": [
     null,
@@ -1924,12 +1943,12 @@
     },
     {
       "date": "2026-11-11",
-      "v": 9.6,
+      "v": 13.6,
       "real": true
     },
     {
       "date": "2026-11-12",
-      "v": 5.5,
+      "v": 6.7,
       "real": true
     }
   ],
@@ -2291,6 +2310,17 @@
           "planned_tss": 55,
           "planned_mins": 80,
           "planned_distance_m": null,
+          "today": true
+        },
+        {
+          "day": "Tor",
+          "disc": "commute",
+          "label": "Gentofte Cykling",
+          "done": true,
+          "extra": true,
+          "actual_tss": 21,
+          "actual_mins": 55,
+          "actual_distance_m": 17419.18,
           "today": true
         },
         {
@@ -2960,10 +2990,11 @@
     }
   ],
   "train_mins": {
+    "commute": 55.0,
     "walk": 112.0,
     "strength": 48.0,
     "planned": 340.0,
-    "actual_total": 160.0
+    "actual_total": 215.0
   },
   "fatHistory": [
     null,
@@ -3317,8 +3348,8 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 67 af 357 · Torsdag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok uge 2/2 — cut-tjek blinker rødt: fedtfri masse faldet, spis til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>To styrketræninger gennemført i uge 46 — ingen missede pas. Dagens 80 min Z2 på cykel (ERG) ligger foran. CTL er 30,5 mod mål på 38,0 — BASE-blok, så ramp-underskuddet er ikke kritisk, men kræver at ugepasene gennemføres.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er faldet 2,4 kg den seneste måned og fedt steget 0,6 procentpoint — cut-tjekket viser fedtfri masse ned 2,2 kg på 4 uger, hvilket er for meget. Spis til vedligehold de næste 3-4 dage, protein ved alle tre måltider.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 alkoholdage de seneste 7 dage, heraf 4 i træk (8/11–11/11) — klynger rammer HRV hårdere end spredte dage. Protein kun 3 af 6 registrerede dage.</p>",
-  "coachAssessmentTs": "11:42",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 67 af 357 · Torsdag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok uge 2/2 — cut-alarmen er aktiv og fedtfri masse falder for hurtigt; prioritér mad og restitution over ekstra træningsload.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen har 2 gennemførte pas (begge styrke) og ingen missede. CTL er 31,0 mod et mål på 38,0 — BASE-blok, så byg stille og roligt. Dagens Z2-tur på 80 min er endnu ikke udført.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er faldet 2,4 kg den seneste måned — det er for hurtigt. Fedtfri masse er ned 2,2 kg på 4 uger: spis til vedligehold i 3-4 dage, protein ved alle 3 måltider.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage i de seneste 7 dage, heraf 4 i træk — ingen dage med 3+ genstande, men klynger rammer HRV hårdere end spredte dage. Protein kun 3 af 6 registrerede dage — det skal op.</p>",
+  "coachAssessmentTs": "12:54",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3336,7 +3367,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 5.5,
+  "tsb": 6.7,
   "swimHistory": [
     {
       "week": 1,
@@ -3399,7 +3430,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i208773360",
+  "coachAssessmentLastActId": "i209098018",
   "weekFocusWeek": 10,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Grundtur 80",
   "weightGoal": 69.5,
@@ -3653,8 +3684,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-12T10:42:44.884002",
-  "coachAssessmentTsFull": "2026-11-12T10:42:44",
+  "credentialsCheckedTs": "2026-11-12T11:55:16.720172",
+  "coachAssessmentTsFull": "2026-11-12T11:55:16",
   "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [
@@ -3760,7 +3791,7 @@
     "7": 241,
     "8": 60,
     "9": 153,
-    "10": 32
+    "10": 53
   },
   "racesUpcoming": [
     {
@@ -5111,7 +5142,7 @@
         "mesoWeek": "2/2",
         "ctlTarget": 38,
         "tssTarget": 350,
-        "tssActual": 32,
+        "tssActual": 53,
         "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn bjergtur 3 t. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -8409,6 +8440,24 @@
                 "optional": false,
                 "start": "07:00",
                 "startFixed": false
+              },
+              {
+                "id": null,
+                "name": "Gentofte Cykling",
+                "type": null,
+                "disc": "commute",
+                "mins": 55,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 55,
+                "actualTss": 21,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10220,7 +10269,7 @@
           "week": 10,
           "programId": "tds-2027",
           "start": "2026-11-09",
-          "ctl": 30.5
+          "ctl": 31.0
         }
       ],
       "projection": [
@@ -10728,32 +10777,32 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-12T10:42:44Z",
-    "inputsHash": "a743472abb7f35682815cc50187e10cb2b800e4c",
+    "generatedAt": "2026-11-12T11:55:16Z",
+    "inputsHash": "50c86f338d0293406b4b680eb914b4bffcadab52",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Ryd cyklen 80 min i ERG, ren Z2 — hold pulsen lav, bryd af hvis den løber op.",
-      "why": "Readiness er NORMAL og TSB er positiv (5,5) — kroppen er klar til et roligt pas, og Z2 er fundamentet under alt andet."
+      "action": "Kør FaF 1 Z2 - Grundtur 80 i 80 min på ERG: ren Z2, hold pulsen lav — bryd af, hvis pulsen løber op.",
+      "why": "Rolig Z2 er fundamentet, og cut-alarmen kræver at du holder træningen som planlagt — skru op for maden, ikke ned for arbejdet."
     },
     "training": {
-      "text": "To styrketræninger gennemført i uge 46 — ingen missede pas. Dagens 80 min Z2 på cykel (ERG) ligger foran. CTL er 30,5 mod mål på 38,0 — BASE-blok, så ramp-underskuddet er ikke kritisk, men kræver at ugepasene gennemføres.",
+      "text": "Ugen har 2 gennemførte pas (begge styrke) og ingen missede. CTL er 31,0 mod et mål på 38,0 — BASE-blok, så byg stille og roligt. Dagens Z2-tur på 80 min er endnu ikke udført.",
       "refs": [
-        80.0,
-        30.5,
-        38.0
+        2.0,
+        31.0,
+        38.0,
+        80.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er faldet 2,4 kg den seneste måned og fedt steget 0,6 procentpoint — cut-tjekket viser fedtfri masse ned 2,2 kg på 4 uger, hvilket er for meget. Spis til vedligehold de næste 3-4 dage, protein ved alle tre måltider.",
+      "text": "7-dages snit for vægt er faldet 2,4 kg den seneste måned — det er for hurtigt. Fedtfri masse er ned 2,2 kg på 4 uger: spis til vedligehold i 3-4 dage, protein ved alle 3 måltider.",
       "refs": [
         2.4,
-        0.6,
         2.2
       ]
     },
     "habits": {
-      "text": "5 alkoholdage de seneste 7 dage, heraf 4 i træk (8/11–11/11) — klynger rammer HRV hårdere end spredte dage. Protein kun 3 af 6 registrerede dage.",
+      "text": "5 drikkedage i de seneste 7 dage, heraf 4 i træk — ingen dage med 3+ genstande, men klynger rammer HRV hårdere end spredte dage. Protein kun 3 af 6 registrerede dage — det skal op.",
       "refs": [
         5.0,
         4.0,
@@ -10761,7 +10810,7 @@
         6.0
       ]
     },
-    "bigPicture": "Uge 46, BASE-blok uge 2/2 — cut-tjek blinker rødt: fedtfri masse faldet, spis til vedligehold nu.",
+    "bigPicture": "Uge 46, BASE-blok uge 2/2 — cut-alarmen er aktiv og fedtfri masse falder for hurtigt; prioritér mad og restitution over ekstra træningsload.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11301,14 +11350,14 @@
     }
   },
   "weekTss": {
-    "actual": 32,
+    "actual": 53,
     "planned": 238
   },
   "martinMail": {
     "week": 10,
     "isoWeek": 46,
     "lines": [
-      "Uge 46: TSS 32 af 238 (13 %) · CTL 30,5 (mål 38) · TSB +5,5",
+      "Uge 46: TSS 53 af 238 (22 %) · CTL 31,0 (mål 38) · TSB +6,7",
       "Vægt 7d 72,7 kg · fedt 14d 22,7 % · på plan mod glidepath (71,7)",
       "HRV 7d 39 (28d 44) · hvilepuls 49 · søvn 7d 7,7 t",
       "AF 1/7 · protein 3/3 3/7 · aftensult —/7",
@@ -11317,7 +11366,7 @@
       "Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: tir 17/11 FaF 5 VO2 - Ronnestad 3 x 13 x 30-15 65 min, fre 20/11 FaF 4 Tær - 2 x 20 79 min, lør 21/11 FaF 1 Z2 - Langtur 4 t 240 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-12T10:42:26Z"
+    "generatedAt": "2026-11-12T11:54:57Z"
   },
   "proposals": [],
   "ftp": {
@@ -11390,7 +11439,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-12",
-    "ctl": 30.5,
-    "atl": 25.0
+    "ctl": 31.0,
+    "atl": 24.3
   }
 }
