@@ -2395,6 +2395,123 @@
           "text": "Cool-down"
         }
       ]
+    },
+    {
+      "id": "z2_rolig_60",
+      "name": "FaF 1 Z2 - Rolig 60",
+      "category": "z2",
+      "load": "let",
+      "est_min": 60,
+      "purpose": "Restitutionsuger. Ren zone 2 i 60 min uden aktiveringer. Bygget 13/11-2026 til uge 47, hvor kroppen mangler restitution.",
+      "erg": true,
+      "notes": "Skal føles let. Stop eller kør kortere, hvis pulsen er 10 slag højere end normalt ved samme watt.",
+      "tags": [
+        "z2",
+        "restitution"
+      ],
+      "steps": [
+        {
+          "type": "ramp",
+          "min": 10,
+          "from": 45,
+          "to": 62,
+          "kind": "warmup",
+          "text": "Varm-op"
+        },
+        {
+          "type": "steady",
+          "min": 40,
+          "pct": 64,
+          "text": "Zone 2",
+          "msgs": [
+            [
+              0,
+              "Zone 2. Du skal kunne tale hele vejen."
+            ],
+            [
+              1200,
+              "Drik."
+            ]
+          ]
+        },
+        {
+          "type": "ramp",
+          "min": 10,
+          "from": 62,
+          "to": 40,
+          "kind": "cooldown",
+          "text": "Cool-down"
+        }
+      ]
+    },
+    {
+      "id": "intro_4x3_z34",
+      "name": "FaF 4 Tær - Intro 4 x 3",
+      "category": "taerskel",
+      "load": "moderat",
+      "est_min": 62,
+      "purpose": "Første korte intensitet efter en restitutionsperiode. 4 × 3 min i toppen af zone 3 / bunden af zone 4. Bygget 13/11-2026 til uge 49.",
+      "erg": true,
+      "notes": "Kør kun passet, hvis HRV er i dit normalområde (47-76) og hvilepulsen er under ca. 47. Ellers: kør det som ren zone 2.",
+      "tags": [
+        "taerskel",
+        "genstart"
+      ],
+      "steps": [
+        {
+          "type": "ramp",
+          "min": 10,
+          "from": 45,
+          "to": 65,
+          "kind": "warmup",
+          "text": "Varm-op"
+        },
+        {
+          "type": "steady",
+          "min": 10,
+          "pct": 64,
+          "text": "Zone 2"
+        },
+        {
+          "type": "reps",
+          "n": 4,
+          "steps": [
+            {
+              "type": "steady",
+              "min": 3,
+              "pct": 90,
+              "text": "3 min",
+              "msgs": [
+                [
+                  0,
+                  "Kontrolleret. Ikke max."
+                ]
+              ]
+            },
+            {
+              "type": "steady",
+              "min": 3,
+              "pct": 55,
+              "text": "Pause"
+            }
+          ],
+          "text": "4 x 3 min @ 90%"
+        },
+        {
+          "type": "steady",
+          "min": 10,
+          "pct": 64,
+          "text": "Zone 2"
+        },
+        {
+          "type": "ramp",
+          "min": 8,
+          "from": 60,
+          "to": 40,
+          "kind": "cooldown",
+          "text": "Cool-down"
+        }
+      ]
     }
   ]
 }

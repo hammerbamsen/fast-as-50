@@ -1,0 +1,30 @@
+<workout_file>
+    <author>K. Hammerby / Fast as 50</author>
+    <name>FaF 4 Tær - Intro 4 x 3</name>
+    <description>Første korte intensitet efter en restitutionsperiode. 4 × 3 min i toppen af zone 3 / bunden af zone 4. Bygget 13/11-2026 til uge 49.  Kør kun passet, hvis HRV er i dit normalområde (47-76) og hvilepulsen er under ca. 47. Ellers: kør det som ren zone 2.</description>
+    <sportType>bike</sportType>
+    <tags><tag name="taerskel"/><tag name="genstart"/></tags>
+    <workout>
+        <Warmup Duration="600" PowerLow="0.4500" PowerHigh="0.6500"/>
+        <SteadyState Duration="600" Power="0.6400"/>
+        <SteadyState Duration="180" Power="0.9000">
+            <textevent timeoffset="0" message="4 x 3 min @ 90%"/>
+            <textevent timeoffset="0" message="Kontrolleret. Ikke max."/>
+        </SteadyState>
+        <SteadyState Duration="180" Power="0.5500"/>
+        <SteadyState Duration="180" Power="0.9000">
+            <textevent timeoffset="0" message="Kontrolleret. Ikke max."/>
+        </SteadyState>
+        <SteadyState Duration="180" Power="0.5500"/>
+        <SteadyState Duration="180" Power="0.9000">
+            <textevent timeoffset="0" message="Kontrolleret. Ikke max."/>
+        </SteadyState>
+        <SteadyState Duration="180" Power="0.5500"/>
+        <SteadyState Duration="180" Power="0.9000">
+            <textevent timeoffset="0" message="Kontrolleret. Ikke max."/>
+        </SteadyState>
+        <SteadyState Duration="180" Power="0.5500"/>
+        <SteadyState Duration="600" Power="0.6400"/>
+        <Cooldown Duration="480" PowerLow="0.6000" PowerHigh="0.4000"/>
+    </workout>
+</workout_file>
