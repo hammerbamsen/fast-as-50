@@ -1,54 +1,54 @@
 {
   "meta": {
-    "updated": "2026-11-13 00:58",
+    "updated": "2026-11-13 06:15",
     "week": 10,
     "totalWeeks": 51,
     "blockType": "BASE",
-    "dayName": "Torsdag",
-    "date": "12. nov",
+    "dayName": "Fredag",
+    "date": "13. nov",
     "rhrField": "restingHR",
     "nextRace": {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "daysTo": 115,
+      "daysTo": 114,
       "priority": "C"
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "phase": "BASE",
-    "programDay": 67,
+    "programDay": 68,
     "programDays": 357,
     "isoWeek": 46
   },
   "kpis": {
     "weight": {
-      "value": "72,7",
+      "value": "72,8",
       "unit": "kg",
       "sub": "forventet 71,7 · på plan",
       "color": "#27AE60"
     },
     "fat": {
-      "value": "22,7",
+      "value": "22,6",
       "unit": "%",
       "sub": "14d-snit · forventet 22,0",
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "31,0",
+      "value": "31,2",
       "unit": "",
       "sub": "Uge 46-mål 38 · BASE",
       "color": "#E67E22"
     },
     "tsb": {
-      "value": "6,7",
+      "value": "5,1",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "7,6",
+      "value": "9,0",
       "unit": "t",
-      "sub": "Snit 7d 7,7t · mål 7t",
+      "sub": "Snit 7d 7,9t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -64,7 +64,7 @@
       "color": "#7A6A58"
     },
     "rhr": {
-      "value": "49",
+      "value": "48",
       "unit": "slag",
       "sub": "Hvilepuls · snit 7d",
       "color": "#7A6A58"
@@ -96,14 +96,14 @@
     "ftp": {
       "value": "257",
       "unit": "W",
-      "sub": "3,54 W/kg · mål 292 (BASE)",
+      "sub": "3,53 W/kg · mål 292 (BASE)",
       "color": "#C0392B"
     },
     "protein": {
-      "value": "3",
+      "value": "2",
       "unit": "/7",
       "sub": "3/3-dage · 4 uger 4,8",
-      "color": "#E67E22"
+      "color": "#C0392B"
     }
   },
   "af": {
@@ -111,25 +111,17 @@
     "target": 6,
     "streak": 0
   },
-  "coachSpeech": "Torsdag — uge 46. {HL} Fokus: 53 af 238 TSS er i hus — 4 sessioner tilbage, heriblandt FaF 1 Z2 - Grundtur 80, Svøm 1500m let teknisk. Vægt på 72,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 0 AF-dage i 4 afsluttede dage — 6 mangler i 3 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved.  \"Kroppen tror, hvad sindet siger.\"",
-  "coachHighlight": "Søvn på 7,7 timer er solid",
+  "coachSpeech": "Uge 46, BASE-blok: fedtfri masse falder for hurtigt og alkohol-klyngen trækker ned — kost og ro er vigtigere end TSS denne uge. {HL} To styrkepassene er i hus, men torsdagens Z2 på 80 min er misset og erstattes ikke — drop det. Lørdag samler du op med styrke og Z2 grundtur.",
+  "coachHighlight": "Svøm 45 min teknisk — fokus på ét cue: catch-fasen, som noten siger. Let tempo, ingen pres.",
   "weekFocus": "Genstart roligt — vedligehold mad og krop",
   "today": [
     {
-      "discipline": "bike",
-      "title": "FaF 1 Z2 - Grundtur 80",
+      "discipline": "swim",
+      "title": "Svøm 1500m let teknisk",
       "duration": "",
       "zone": "–",
       "desc": "",
       "completed": false
-    },
-    {
-      "discipline": "commute",
-      "title": "Gentofte Cykling",
-      "duration": "",
-      "zone": "–",
-      "desc": "",
-      "completed": true
     }
   ],
   "week_sessions": [
@@ -190,8 +182,7 @@
       "done": false,
       "planned_tss": 55,
       "planned_mins": 80,
-      "planned_distance_m": null,
-      "today": true
+      "planned_distance_m": null
     },
     {
       "day": "Tor",
@@ -201,8 +192,7 @@
       "extra": true,
       "actual_tss": 21,
       "actual_mins": 55,
-      "actual_distance_m": 17419.18,
-      "today": true
+      "actual_distance_m": 17419.18
     },
     {
       "day": "Fre",
@@ -211,7 +201,8 @@
       "done": false,
       "planned_tss": 38,
       "planned_mins": 45,
-      "planned_distance_m": 1500
+      "planned_distance_m": 1500,
+      "today": true
     },
     {
       "day": "Lør",
@@ -242,10 +233,9 @@
     39.2,
     34.5,
     31.8,
-    31.0
+    31.2
   ],
   "weightHistory": [
-    null,
     null,
     {
       "date": "2026-08-17",
@@ -594,14 +584,10 @@
       "date": "2026-11-12",
       "v": 72.9,
       "real": true
-    }
+    },
+    null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-08-15",
-      "v": 47.0,
-      "real": true
-    },
     {
       "date": "2026-08-16",
       "v": 56.0,
@@ -1046,14 +1032,14 @@
       "date": "2026-11-12",
       "v": 37.0,
       "real": true
+    },
+    {
+      "date": "2026-11-13",
+      "v": 39.0,
+      "real": true
     }
   ],
   "sleepHistory": [
-    {
-      "date": "2026-08-15",
-      "v": 7.2,
-      "real": true
-    },
     {
       "date": "2026-08-16",
       "v": 6.3,
@@ -1498,14 +1484,14 @@
       "date": "2026-11-12",
       "v": 7.6,
       "real": true
+    },
+    {
+      "date": "2026-11-13",
+      "v": 9.0,
+      "real": true
     }
   ],
   "tsbHistory": [
-    {
-      "date": "2026-08-15",
-      "v": -4.8,
-      "real": true
-    },
     {
       "date": "2026-08-16",
       "v": 0.6,
@@ -1950,6 +1936,11 @@
       "date": "2026-11-12",
       "v": 6.7,
       "real": true
+    },
+    {
+      "date": "2026-11-13",
+      "v": 5.1,
+      "real": true
     }
   ],
   "af_log": {
@@ -2310,8 +2301,7 @@
           "done": false,
           "planned_tss": 55,
           "planned_mins": 80,
-          "planned_distance_m": null,
-          "today": true
+          "planned_distance_m": null
         },
         {
           "day": "Tor",
@@ -2321,8 +2311,7 @@
           "extra": true,
           "actual_tss": 21,
           "actual_mins": 55,
-          "actual_distance_m": 17419.18,
-          "today": true
+          "actual_distance_m": 17419.18
         },
         {
           "day": "Fre",
@@ -2331,7 +2320,8 @@
           "done": false,
           "planned_tss": 38,
           "planned_mins": 45,
-          "planned_distance_m": 1500
+          "planned_distance_m": 1500,
+          "today": true
         },
         {
           "day": "Lør",
@@ -2986,7 +2976,7 @@
       "iso": 46,
       "monday": "2026-11-09",
       "done": 0,
-      "total": 4,
+      "total": 5,
       "label": "Uge 46"
     }
   ],
@@ -2998,7 +2988,6 @@
     "actual_total": 215.0
   },
   "fatHistory": [
-    null,
     null,
     {
       "date": "2026-08-17",
@@ -3347,24 +3336,29 @@
       "date": "2026-11-12",
       "v": 23.2,
       "real": true
-    }
+    },
+    null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 67 af 357 · Torsdag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok uge 2/2 — fedtfri masse er faldet for hurtigt, det er vigtigere at stoppe tabet end at ramme TSS-målet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrke mandag og onsdag er i hus (begge kortere end planlagt). Ingen missede pas. Dagens Z2-tur på 80 min er ikke udført endnu — den er let og velegnet selv med HRV under gennemsnit. CTL er 31,0 mod et mål på 38,0, men BASE-blokken er kun halvvejs — det er ikke et problem nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er faldet 2,4 kg den seneste måned — det er for hurtigt. Fedtfri masse er ned 2,2 kg på 4 uger, og du er 1,1 kg under planlagt tempo. Spis til vedligehold de næste 3-4 dage, protein ved hvert måltid.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage i træk — klyngen rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein kun 3 af 7 dage registreret.</p>",
-  "coachAssessmentTs": "19:42",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 68 af 357 · Fredag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46, BASE-blok: fedtfri masse falder for hurtigt og alkohol-klyngen trækker ned — kost og ro er vigtigere end TSS denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>To styrkepassene er i hus, men torsdagens Z2 på 80 min er misset og erstattes ikke — drop det. Lørdag samler du op med styrke og Z2 grundtur. Ugens TSS er 53 af 238 planlagt — men med et misset pas og lette rester er det forventeligt i denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 1,2 kg over planens forventning på 71,7 kg, og fedtfri masse er faldet 2,0 kg på 4 uger — det er for hurtigt. Spis til vedligehold de næste 3-4 dage: protein ved hvert måltid, alle tre af dem.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 drikkedage i træk (8/11–12/11) påvirker HRV og muskelproteinsyntese — i dag er det rette valg nul genstande. Protein kun registreret 2 af 6 registrerede dage.</p>",
+  "coachAssessmentTs": "06:15",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag"
+      "message": "Cut-tjek: Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+      "action": null,
+      "source": "rule"
     },
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "5 drikkedage i træk 8/11–12/11 — klynger rammer HRV hårdere end spredte dage."
+      "message": "5 drikkedage i træk 8/11–12/11 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 6.7,
+  "tsb": 5.1,
   "swimHistory": [
     {
       "week": 1,
@@ -3429,11 +3423,10 @@
   ],
   "coachAssessmentLastActId": "i209098018",
   "weekFocusWeek": 10,
-  "coachAssessmentPlanAtGen": "FaF 1 Z2 - Grundtur 80",
+  "coachAssessmentPlanAtGen": "Svøm 1500m let teknisk",
   "weightGoal": 69.5,
   "bodyFatGoal": 19,
   "weightMovingAvg7": [
-    null,
     null,
     null,
     null,
@@ -3522,10 +3515,10 @@
     72.47,
     72.51,
     72.66,
-    72.73
+    72.73,
+    72.77
   ],
   "fatMovingAvg7": [
-    null,
     null,
     null,
     null,
@@ -3614,7 +3607,8 @@
     22.63,
     22.54,
     22.47,
-    22.57
+    22.57,
+    22.77
   ],
   "ctlPlan": [
     47,
@@ -3681,8 +3675,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-12T23:58:45.669969",
-  "coachAssessmentTsFull": "2026-11-12T18:43:06",
+  "credentialsCheckedTs": "2026-11-13T05:15:22.657949",
+  "coachAssessmentTsFull": "2026-11-13T05:15:22",
   "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [
@@ -3794,7 +3788,7 @@
     {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "days": 115,
+      "days": 114,
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
@@ -3803,7 +3797,7 @@
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
       "date": "2027-06-06",
-      "days": 206,
+      "days": 205,
       "priority": "B",
       "distance": "130km / 4500hm",
       "registered": true,
@@ -3812,7 +3806,7 @@
     {
       "name": "Tour des Stations Ultrafondo",
       "date": "2027-08-28",
-      "days": 289,
+      "days": 288,
       "priority": "A",
       "distance": "242km / 8848hm",
       "registered": false,
@@ -4107,11 +4101,6 @@
     }
   },
   "rhrHistory": [
-    {
-      "date": "2026-08-15",
-      "v": 48,
-      "real": true
-    },
     {
       "date": "2026-08-16",
       "v": 41,
@@ -4556,6 +4545,11 @@
       "date": "2026-11-12",
       "v": 48,
       "real": true
+    },
+    {
+      "date": "2026-11-13",
+      "v": 48,
+      "real": true
     }
   ],
   "blockType": "BASE",
@@ -4620,13 +4614,6 @@
     "strengthPerWeek": 2
   },
   "checkinLog": [
-    {
-      "date": "2026-10-16",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
-      "sult": null
-    },
     {
       "date": "2026-10-17",
       "alkohol": 0,
@@ -4815,9 +4802,16 @@
       "protein": 1,
       "energi": 3,
       "sult": null
+    },
+    {
+      "date": "2026-11-13",
+      "alkohol": null,
+      "protein": null,
+      "energi": null,
+      "sult": null
     }
   ],
-  "energy7": 2.4,
+  "energy7": 2.3,
   "af_kind": {
     "2026-10-25": "faa",
     "2026-10-26": "faa",
@@ -4830,7 +4824,7 @@
     "2026-11-12": "faa"
   },
   "planTab": {
-    "today": "2026-11-12",
+    "today": "2026-11-13",
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "currentWeek": 10,
@@ -8460,7 +8454,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": true
+            "isToday": false
           },
           {
             "date": "2026-11-13",
@@ -8489,7 +8483,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": false
+            "isToday": true
           },
           {
             "date": "2026-11-14",
@@ -10267,7 +10261,7 @@
           "week": 10,
           "programId": "tds-2027",
           "start": "2026-11-09",
-          "ctl": 31.0
+          "ctl": 31.2
         }
       ],
       "projection": [
@@ -10775,46 +10769,46 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-12T18:43:06Z",
-    "inputsHash": "e094c471a253ab0b790ea266561d8b02494b0f24",
+    "generatedAt": "2026-11-13T05:15:22Z",
+    "inputsHash": "3afbb44edc2fae9206a3e43a3000d5b07dd274af",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Ryd cykelturens 80 min Z2 på ERG i dag — rolig Z2, hold pulsen lav, bryd af hvis pulsen løber op.",
-      "why": "Let Z2 i dag bygger aerob base uden at belaste den allerede pressede fedtfri masse yderligere."
+      "action": "Svøm 45 min teknisk — fokus på ét cue: catch-fasen, som noten siger. Let tempo, ingen pres.",
+      "why": "Readiness er HIGH og TSB positiv, men kroppen har brug for rolig bevægelse — ikke belastning — efter 5 drikkedage i træk."
     },
     "training": {
-      "text": "Styrke mandag og onsdag er i hus (begge kortere end planlagt). Ingen missede pas. Dagens Z2-tur på 80 min er ikke udført endnu — den er let og velegnet selv med HRV under gennemsnit. CTL er 31,0 mod et mål på 38,0, men BASE-blokken er kun halvvejs — det er ikke et problem nu.",
+      "text": "To styrkepassene er i hus, men torsdagens Z2 på 80 min er misset og erstattes ikke — drop det. Lørdag samler du op med styrke og Z2 grundtur. Ugens TSS er 53 af 238 planlagt — men med et misset pas og lette rester er det forventeligt i denne uge.",
       "refs": [
         80.0,
-        31.0,
-        38.0
+        53.0,
+        238.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er faldet 2,4 kg den seneste måned — det er for hurtigt. Fedtfri masse er ned 2,2 kg på 4 uger, og du er 1,1 kg under planlagt tempo. Spis til vedligehold de næste 3-4 dage, protein ved hvert måltid.",
+      "text": "7-dages snit er 1,2 kg over planens forventning på 71,7 kg, og fedtfri masse er faldet 2,0 kg på 4 uger — det er for hurtigt. Spis til vedligehold de næste 3-4 dage: protein ved hvert måltid, alle tre af dem.",
       "refs": [
-        2.4,
-        2.2,
-        1.1
+        1.2,
+        71.7,
+        2.0
       ]
     },
     "habits": {
-      "text": "5 drikkedage i træk — klyngen rammer HRV og muskelproteinsyntese hårdere end spredte dage. Protein kun 3 af 7 dage registreret.",
+      "text": "5 drikkedage i træk (8/11–12/11) påvirker HRV og muskelproteinsyntese — i dag er det rette valg nul genstande. Protein kun registreret 2 af 6 registrerede dage.",
       "refs": [
         5.0,
-        3.0,
-        7.0
+        2.0,
+        6.0
       ]
     },
-    "bigPicture": "Uge 46, BASE-blok uge 2/2 — fedtfri masse er faldet for hurtigt, det er vigtigere at stoppe tabet end at ramme TSS-målet.",
+    "bigPicture": "Uge 46, BASE-blok: fedtfri masse falder for hurtigt og alkohol-klyngen trækker ned — kost og ro er vigtigere end TSS denne uge.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "cut",
         "level": "act",
-        "message": "Cut-tjek: Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+        "message": "Cut-tjek: Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
         "action": null,
         "source": "rule"
       },
@@ -10838,8 +10832,8 @@
     "text": "Rolig genstart — Z2 og styrke, ingen hårde pas"
   },
   "strengthLog": {
-    "from": "2026-10-15",
-    "to": "2026-11-12",
+    "from": "2026-10-16",
+    "to": "2026-11-13",
     "sessions": [
       {
         "date": "2026-11-02",
@@ -10889,7 +10883,7 @@
     ]
   },
   "body": {
-    "asOf": "2026-11-12",
+    "asOf": "2026-11-13",
     "glidepath": {
       "phase": "cut",
       "cutWeek": 2,
@@ -10902,13 +10896,13 @@
       "targetKg": 69.5,
       "expectedKg": 71.7,
       "corridorKg": 0.5,
-      "avg7": 72.7,
+      "avg7": 72.8,
       "avg7Date": "2026-11-12",
-      "delta": 1.0,
+      "delta": 1.1,
       "status": "plan",
       "note": "over korridoren — tæller som bagud efter to mandage",
       "ratePerWeek": -0.29,
-      "actualRate4w": -0.59,
+      "actualRate4w": -0.53,
       "series": [
         {
           "date": "2026-11-02",
@@ -10963,8 +10957,8 @@
       ]
     },
     "fat": {
-      "avg14": 22.7,
-      "avg14Change28d": 0.8,
+      "avg14": 22.6,
+      "avg14Change28d": 0.7,
       "expected": 22.0,
       "target": 19.0,
       "corridorPp": 0.5,
@@ -10973,7 +10967,7 @@
     },
     "ffm": {
       "now": 56.1,
-      "change28d": -2.2,
+      "change28d": -2.0,
       "target": 56.3,
       "status": "ok",
       "baseline": 55.8,
@@ -10993,17 +10987,17 @@
     "cutCheck": {
       "active": true,
       "level": "act",
-      "text": "Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+      "text": "Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
       "signals": {
         "rate": {
           "level": null,
-          "value": null,
-          "text": "ingen data"
+          "value": 0.45,
+          "text": "0,45 kg/uge (2 uger)"
         },
         "ffm": {
           "level": "act",
-          "value": -2.2,
-          "text": "−2,2 kg på 4 uger"
+          "value": -2.0,
+          "text": "−2,0 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -11016,10 +11010,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 3.9,
-            "hrvPct": -9.9
+            "rhr": 3.1,
+            "hrvPct": -8.6
           },
-          "text": "hvilepuls +4 · HRV −10 % (14 dage)"
+          "text": "hvilepuls +3 · HRV −9 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11029,10 +11023,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 6,
+            "days7": 5,
             "run": 5
           },
-          "text": "6 drikkedage på 7 dage · 5 i træk"
+          "text": "5 drikkedage på 7 dage · 5 i træk"
         }
       }
     }
@@ -11354,22 +11348,22 @@
     "week": 10,
     "isoWeek": 46,
     "lines": [
-      "Uge 46: TSS 53 af 238 (22 %) · CTL 31,0 (mål 38) · TSB +6,7",
-      "Vægt 7d 72,7 kg · fedt 14d 22,7 % · på plan mod glidepath (71,7)",
-      "HRV 7d 39 (28d 44) · hvilepuls 49 · søvn 7d 7,7 t",
-      "AF 1/7 · protein 3/3 3/7 · aftensult —/7",
-      "Styrke 4/2 · check-in 4/10 ben ✗ overkrop ✗",
-      "Cut-tjek: act — Fedtfri masse −2,2 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
+      "Uge 46: TSS 53 af 238 (22 %) · CTL 31,2 (mål 38) · TSB +5,1",
+      "Vægt 7d 72,8 kg · fedt 14d 22,6 % · på plan mod glidepath (71,7)",
+      "HRV 7d 39 (28d 43) · hvilepuls 48 · søvn 7d 7,9 t",
+      "AF 1/7 · protein 3/3 2/7 · aftensult —/7",
+      "Styrke 3/2 · check-in 4/10 ben ✗ overkrop ✗",
+      "Cut-tjek: act — Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke lørdag",
       "Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: tir 17/11 FaF 5 VO2 - Ronnestad 3 x 13 x 30-15 65 min, fre 20/11 FaF 4 Tær - 2 x 20 79 min, lør 21/11 FaF 1 Z2 - Langtur 4 t 240 min",
       "Planændringer siden sidst: 2 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-12T23:58:45Z"
+    "generatedAt": "2026-11-13T05:15:04Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 257,
-    "wkg": 3.54,
-    "weightAvg7": 72.7,
+    "wkg": 3.53,
+    "weightAvg7": 72.8,
     "phase": "BASE",
     "phaseTarget": 292,
     "phaseWkgTarget": 4.29,
@@ -11435,8 +11429,8 @@
     ]
   },
   "fitnessLive": {
-    "date": "2026-11-12",
-    "ctl": 31.0,
-    "atl": 24.3
+    "date": "2026-11-13",
+    "ctl": 31.2,
+    "atl": 26.1
   }
 }
