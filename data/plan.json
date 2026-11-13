@@ -9171,7 +9171,7 @@
           "entries": [
             {
               "id": "3e19462f",
-              "note": "Styrke 3×/uge (B-A-B).",
+              "note": "Let styrke. Spring over, hvis du er træt.",
               "templateId": "styrke-fs4-b-3r",
               "workout": {
                 "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
@@ -9186,164 +9186,50 @@
           "date": "2026-11-17",
           "entries": [
             {
-              "id": "737d2fec",
-              "libraryId": "vo2_ronnestad_3015",
+              "id": "6aa1a896",
+              "libraryId": "z2_rolig_60",
               "workout": {
-                "name": "FaF 5 VO2 - Ronnestad 3 x 13 x 30-15",
+                "name": "FaF 1 Z2 - Rolig 60",
                 "type": "Ride",
-                "moving_time": 3915,
-                "description": "- Varm-op 12m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 90% FTP\n- Pause 1m 55% FTP\n\n- Let 4m 55% FTP\n\n13x BLOK 1\n- Stød 30s 120% FTP\n- Pause 15s 50% FTP\n\n- Pause 3m 55% FTP\n\n13x BLOK 2\n- Stød 30s 120% FTP\n- Pause 15s 50% FTP\n\n- Pause 3m 55% FTP\n\n13x BLOK 3\n- Stød 30s 122% FTP\n- Pause 15s 50% FTP\n\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Det bedst dokumenterede VO2-format for trænede cyklister. Korte pauser holder iltoptaget oppe mellem stødene, så du akkumulerer mere tid over 90% VO2max.\n\nBygget på Ronnestad 2020 (n=18 eliteryttere, 3 uger). Lille studie, stor popularitet — brug det, men tro ikke det er magi.",
+                "moving_time": 3600,
+                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 40m 64% FTP\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Restitutionsuger. Ren zone 2 i 60 min uden aktiveringer. Bygget 13/11-2026 til uge 47, hvor kroppen mangler restitution.\n\nSkal føles let. Stop eller kør kortere, hvis pulsen er 10 slag højere end normalt ved samme watt.",
                 "workout_doc": {
                   "steps": [
                     {
                       "ramp": true,
                       "power": {
                         "start": 45,
-                        "end": 70,
+                        "end": 62,
                         "units": "%ftp"
                       },
-                      "duration": 720,
+                      "duration": 600,
                       "warmup": true,
                       "text": "Varm-op"
                     },
                     {
-                      "reps": 3,
-                      "text": "3x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 90,
-                            "end": 90,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Aktivering 90% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 55,
-                            "end": 55,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Pause 55% FTP"
-                        }
-                      ]
-                    },
-                    {
                       "power": {
-                        "start": 55,
-                        "end": 55,
+                        "start": 64,
+                        "end": 64,
                         "units": "%ftp"
                       },
-                      "duration": 240,
-                      "text": "Let 55% FTP"
-                    },
-                    {
-                      "reps": 13,
-                      "text": "BLOK 1",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 120,
-                            "end": 120,
-                            "units": "%ftp"
-                          },
-                          "duration": 30,
-                          "text": "Stød 120% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 50,
-                            "end": 50,
-                            "units": "%ftp"
-                          },
-                          "duration": 15,
-                          "text": "Pause 50% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 180,
-                      "text": "Pause 55% FTP"
-                    },
-                    {
-                      "reps": 13,
-                      "text": "BLOK 2",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 120,
-                            "end": 120,
-                            "units": "%ftp"
-                          },
-                          "duration": 30,
-                          "text": "Stød 120% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 50,
-                            "end": 50,
-                            "units": "%ftp"
-                          },
-                          "duration": 15,
-                          "text": "Pause 50% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 180,
-                      "text": "Pause 55% FTP"
-                    },
-                    {
-                      "reps": 13,
-                      "text": "BLOK 3",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 122,
-                            "end": 122,
-                            "units": "%ftp"
-                          },
-                          "duration": 30,
-                          "text": "Stød 122% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 50,
-                            "end": 50,
-                            "units": "%ftp"
-                          },
-                          "duration": 15,
-                          "text": "Pause 50% FTP"
-                        }
-                      ]
+                      "duration": 2400,
+                      "text": "Zone 2 64% FTP"
                     },
                     {
                       "ramp": true,
                       "power": {
-                        "start": 60,
+                        "start": 62,
                         "end": 40,
                         "units": "%ftp"
                       },
-                      "duration": 480,
+                      "duration": 600,
                       "cooldown": true,
                       "text": "Cool-down"
                     }
                   ]
                 }
               },
-              "note": "Første VO2 efter sygdom. HIT — kun hvis HRV/hvilepuls er normal i morges. Ellers byt til Z2 grundtur 80."
+              "note": "Uge 47: kun Z1-2. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter."
             }
           ]
         },
@@ -9400,7 +9286,7 @@
                 "description": "- Opvarmning 10m freeride\n\n3x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride"
               },
               "templateId": "styrke-fs4-a-3r",
-              "note": "Styrke 3×/uge."
+              "note": "Let styrke. Spring over, hvis du er træt."
             }
           ]
         },
@@ -9445,126 +9331,13 @@
           "date": "2026-11-20",
           "entries": [
             {
-              "id": "d54f3aa6",
-              "libraryId": "tae_2x20",
+              "id": "a8b7f15d",
+              "libraryId": "z2_rolig_60",
               "workout": {
-                "name": "FaF 4 Tær - 2 x 20",
+                "name": "FaF 1 Z2 - Rolig 60",
                 "type": "Ride",
-                "moving_time": 4740,
-                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 100% FTP\n- Pause 1m 55% FTP\n\n- Let 5m 62% FTP\n- BLOK 1 20m 95% FTP\n- Pause 10m 55% FTP\n- BLOK 2 20m 95% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Klassikeren. Kan du køre den uden at falde fra hinanden, er dit FTP sat for lavt.",
-                "workout_doc": {
-                  "steps": [
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 45,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "warmup": true,
-                      "text": "Varm-op"
-                    },
-                    {
-                      "reps": 3,
-                      "text": "3x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 100,
-                            "end": 100,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Aktivering 100% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 55,
-                            "end": 55,
-                            "units": "%ftp"
-                          },
-                          "duration": 60,
-                          "text": "Pause 55% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 62,
-                        "end": 62,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Let 62% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 95,
-                        "end": 95,
-                        "units": "%ftp"
-                      },
-                      "duration": 1200,
-                      "text": "BLOK 1 95% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 600,
-                      "text": "Pause 55% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 95,
-                        "end": 95,
-                        "units": "%ftp"
-                      },
-                      "duration": 1200,
-                      "text": "BLOK 2 95% FTP"
-                    },
-                    {
-                      "ramp": true,
-                      "power": {
-                        "start": 60,
-                        "end": 40,
-                        "units": "%ftp"
-                      },
-                      "duration": 480,
-                      "cooldown": true,
-                      "text": "Cool-down"
-                    }
-                  ]
-                }
-              },
-              "note": "Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
-            }
-          ]
-        },
-        {
-          "date": "2026-11-21",
-          "entries": [
-            {
-              "id": "dff25d34",
-              "note": "Styrke 3×/uge.",
-              "templateId": "styrke-fs4-b-3r",
-              "workout": {
-                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
-                "moving_time": 2700,
-                "name": "Styrke B · Functional 4 · 3 runder",
-                "type": "WeightTraining"
-              }
-            },
-            {
-              "id": "11a0dd16",
-              "libraryId": "z2_langtur_4t",
-              "workout": {
-                "name": "FaF 1 Z2 - Langtur 4 t",
-                "type": "Ride",
-                "moving_time": 14400,
-                "description": "- Varm-op 15m ramp 45-62% FTP\n- Z2 time 1 45m 64% FTP\n- Kadence 100 5m 68% FTP @ 100 rpm\n- Z2 time 2 55m 66% FTP\n- Kadence 100 5m 68% FTP @ 100 rpm\n- Z2 time 3 55m 68% FTP @ 74 rpm\n- Kadence 100 5m 72% FTP @ 100 rpm\n- Z2 time 4 — hold formen 40m 70% FTP @ 74 rpm\n- Cool-down 15m ramp 62-40% FTP\n\nFORMÅL: Fire timer ren Z2 — vintersæsonens længste. Aerob udholdenhed bygges her, ikke i intervallerne. De første to timer skal føles meget lette; de sidste to er dem der tæller.\n\nEnergiplan som ved Lang Z2 2 t: 80-100 g kulhydrat/time fra time 1, drik hvert 15. min. Kadenceblokkene bryder monotonien og holder pedaltrækket rundt. Må køres ude som ren Z2 i samme varighed.",
+                "moving_time": 3600,
+                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 40m 64% FTP\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Restitutionsuger. Ren zone 2 i 60 min uden aktiveringer. Bygget 13/11-2026 til uge 47, hvor kroppen mangler restitution.\n\nSkal føles let. Stop eller kør kortere, hvis pulsen er 10 slag højere end normalt ved samme watt.",
                 "workout_doc": {
                   "steps": [
                     {
@@ -9574,7 +9347,7 @@
                         "end": 62,
                         "units": "%ftp"
                       },
-                      "duration": 900,
+                      "duration": 600,
                       "warmup": true,
                       "text": "Varm-op"
                     },
@@ -9584,87 +9357,8 @@
                         "end": 64,
                         "units": "%ftp"
                       },
-                      "duration": 2700,
-                      "text": "Z2 time 1 64% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 68,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 68% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 3300,
-                      "text": "Z2 time 2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 68,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 68% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 68,
-                        "end": 68,
-                        "units": "%ftp"
-                      },
-                      "duration": 3300,
-                      "text": "Z2 time 3 68% FTP",
-                      "cadence": {
-                        "start": 74,
-                        "end": 74,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Kadence 100 72% FTP",
-                      "cadence": {
-                        "start": 100,
-                        "end": 100,
-                        "units": "rpm"
-                      }
-                    },
-                    {
-                      "power": {
-                        "start": 70,
-                        "end": 70,
-                        "units": "%ftp"
-                      },
                       "duration": 2400,
-                      "text": "Z2 time 4 — hold formen 70% FTP",
-                      "cadence": {
-                        "start": 74,
-                        "end": 74,
-                        "units": "rpm"
-                      }
+                      "text": "Zone 2 64% FTP"
                     },
                     {
                       "ramp": true,
@@ -9673,14 +9367,76 @@
                         "end": 40,
                         "units": "%ftp"
                       },
-                      "duration": 900,
+                      "duration": 600,
                       "cooldown": true,
                       "text": "Cool-down"
                     }
                   ]
                 }
               },
-              "note": "Første 4-timers. Lørdag pga. rejse søndag. Første 2 t meget lette."
+              "note": "Uge 47: kun Z1-2. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter."
+            }
+          ]
+        },
+        {
+          "date": "2026-11-21",
+          "entries": [
+            {
+              "id": "dff25d34",
+              "note": "Let styrke. Spring over, hvis du er træt.",
+              "templateId": "styrke-fs4-b-3r",
+              "workout": {
+                "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
+                "moving_time": 2700,
+                "name": "Styrke B · Functional 4 · 3 runder",
+                "type": "WeightTraining"
+              }
+            },
+            {
+              "id": "fc85be44",
+              "libraryId": "z2_rolig_60",
+              "workout": {
+                "name": "FaF 1 Z2 - Rolig 60",
+                "type": "Ride",
+                "moving_time": 3600,
+                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 40m 64% FTP\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Restitutionsuger. Ren zone 2 i 60 min uden aktiveringer. Bygget 13/11-2026 til uge 47, hvor kroppen mangler restitution.\n\nSkal føles let. Stop eller kør kortere, hvis pulsen er 10 slag højere end normalt ved samme watt.",
+                "workout_doc": {
+                  "steps": [
+                    {
+                      "ramp": true,
+                      "power": {
+                        "start": 45,
+                        "end": 62,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "warmup": true,
+                      "text": "Varm-op"
+                    },
+                    {
+                      "power": {
+                        "start": 64,
+                        "end": 64,
+                        "units": "%ftp"
+                      },
+                      "duration": 2400,
+                      "text": "Zone 2 64% FTP"
+                    },
+                    {
+                      "ramp": true,
+                      "power": {
+                        "start": 62,
+                        "end": 40,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "cooldown": true,
+                      "text": "Cool-down"
+                    }
+                  ]
+                }
+              },
+              "note": "Uge 47: maks. 60 min Z2. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter."
             }
           ]
         },
@@ -9698,13 +9454,13 @@
           "date": "2026-11-23",
           "entries": [
             {
-              "id": "37ed5652",
-              "note": "Mallorca dag 1: ren Z2. Tid er målet, ikke TSS.",
+              "id": "811541cd",
+              "note": "Uge 48: maks. 90 min Z2 – kun hvis HRV er på vej op. Ellers 60 min. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
               "workout": {
-                "name": "Cykel Z2 120 min Mallorca",
+                "name": "Cykel Z2 90 min Mallorca",
                 "type": "Ride",
-                "moving_time": 7200,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+                "moving_time": 5400,
+                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 75m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
                 "workout_doc": {
                   "steps": [
                     {
@@ -9725,7 +9481,7 @@
                         "end": 76,
                         "units": "%ftp"
                       },
-                      "duration": 6300
+                      "duration": 4500
                     },
                     {
                       "ramp": true,
@@ -9759,13 +9515,13 @@
           "date": "2026-11-24",
           "entries": [
             {
-              "id": "f4b1fe98",
-              "note": "Mallorca: den rigtige Sa Calobra i en tur på ca. 3 t fra Fornalutx. Stigningen kontrolleret på ca. 86 % FTP (ca. 220 W) — ikke rekordforsøg. Resten ren Z2. Tid er målet, ikke TSS.",
+              "id": "0d3dbd1f",
+              "note": "Uge 48: maks. 90 min Z2 – kun hvis HRV er på vej op. Ellers 60 min. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
               "workout": {
-                "name": "Cykel Sa Calobra 3 t Mallorca",
+                "name": "Cykel Z2 90 min Mallorca",
                 "type": "Ride",
-                "moving_time": 10800,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n- Z2 til foden 70m 56-72% FTP\n- SA CALOBRA 36m 86% FTP\n- Z2 hjem 59m 56-72% FTP\n- Cool-down 5m ramp 68-45% FTP",
+                "moving_time": 5400,
+                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 75m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
                 "workout_doc": {
                   "steps": [
                     {
@@ -9780,31 +9536,13 @@
                       "text": "Varm-op"
                     },
                     {
-                      "text": "Z2 til foden",
+                      "text": "Aerob base 56-76% FTP",
                       "power": {
                         "start": 56,
-                        "end": 72,
+                        "end": 76,
                         "units": "%ftp"
                       },
-                      "duration": 4200
-                    },
-                    {
-                      "text": "SA CALOBRA 86% FTP",
-                      "power": {
-                        "start": 86,
-                        "end": 86,
-                        "units": "%ftp"
-                      },
-                      "duration": 2160
-                    },
-                    {
-                      "text": "Z2 hjem",
-                      "power": {
-                        "start": 56,
-                        "end": 72,
-                        "units": "%ftp"
-                      },
-                      "duration": 3540
+                      "duration": 4500
                     },
                     {
                       "ramp": true,
@@ -9827,13 +9565,13 @@
           "date": "2026-11-25",
           "entries": [
             {
-              "id": "aa35004e",
-              "note": "Mallorca: ren Z2. Spis efter planen.",
+              "id": "ade5ab87",
+              "note": "Uge 48: maks. 90 min Z2 – kun hvis HRV er på vej op. Ellers 60 min. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
               "workout": {
-                "name": "Cykel Z2 150 min Mallorca",
+                "name": "Cykel Z2 90 min Mallorca",
                 "type": "Ride",
-                "moving_time": 9000,
-                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 135m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+                "moving_time": 5400,
+                "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 75m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
                 "workout_doc": {
                   "steps": [
                     {
@@ -9854,7 +9592,7 @@
                         "end": 76,
                         "units": "%ftp"
                       },
-                      "duration": 8100
+                      "duration": 4500
                     },
                     {
                       "ramp": true,
@@ -9878,7 +9616,7 @@
           "entries": [
             {
               "id": "eb91500a",
-              "note": "Mallorca: let Z2 — benene skal føles friske.",
+              "note": "Uge 48: maks. 90 min Z2 – kun hvis HRV er på vej op. Ellers 60 min. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
               "workout": {
                 "name": "Cykel Z2 90 min Mallorca",
                 "type": "Ride",
@@ -9964,13 +9702,13 @@
           "date": "2026-11-29",
           "entries": [
             {
-              "id": "33fdea28",
-              "libraryId": "z2_depottur_2t",
+              "id": "984212a0",
+              "libraryId": "z2_grundtur_80",
               "workout": {
-                "name": "FaF 1 Z2 - Lang Z2 2 t",
+                "name": "FaF 1 Z2 - Grundtur 80",
                 "type": "Ride",
-                "moving_time": 7800,
-                "description": "- Varm-op 10m ramp 45-62% FTP\n- Z2 20m 66% FTP\n- Z2 20m 70% FTP\n- Z2 20m 66% FTP\n- Z2 let op 20m 72% FTP\n- Z2 20m 66% FTP\n- Sidste 10 10m 70% FTP\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: To timer Z2 med fast energiplan. Lige så meget mavetræning som bentræning. Race-evalueringerne siger det samme i ni år: energiplanen er det der knækker dig.\n\nMål: 80-100 g kulhydrat i timen. Notér bagefter hvad du spiste og hvordan maven lå.",
+                "moving_time": 4800,
+                "description": "- Varm-op 10m ramp 45-62% FTP\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Zone 2 25m 66% FTP\n- Kadence 100 5m 70% FTP @ 100 rpm\n- Cool-down 10m ramp 62-40% FTP\n\nFORMÅL: Ren zone 2. Skal føles kedeligt. Fundamentet under alt andet — og den enkeltfaktor der bedst forudsiger hvor lidt VO2max falder med alderen.",
                 "workout_doc": {
                   "steps": [
                     {
@@ -9990,8 +9728,8 @@
                         "end": 66,
                         "units": "%ftp"
                       },
-                      "duration": 1200,
-                      "text": "Z2 66% FTP"
+                      "duration": 1500,
+                      "text": "Zone 2 66% FTP"
                     },
                     {
                       "power": {
@@ -9999,8 +9737,13 @@
                         "end": 70,
                         "units": "%ftp"
                       },
-                      "duration": 1200,
-                      "text": "Z2 70% FTP"
+                      "duration": 300,
+                      "text": "Kadence 100 70% FTP",
+                      "cadence": {
+                        "start": 100,
+                        "end": 100,
+                        "units": "rpm"
+                      }
                     },
                     {
                       "power": {
@@ -10008,26 +9751,8 @@
                         "end": 66,
                         "units": "%ftp"
                       },
-                      "duration": 1200,
-                      "text": "Z2 66% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 72,
-                        "end": 72,
-                        "units": "%ftp"
-                      },
-                      "duration": 1200,
-                      "text": "Z2 let op 72% FTP"
-                    },
-                    {
-                      "power": {
-                        "start": 66,
-                        "end": 66,
-                        "units": "%ftp"
-                      },
-                      "duration": 1200,
-                      "text": "Z2 66% FTP"
+                      "duration": 1500,
+                      "text": "Zone 2 66% FTP"
                     },
                     {
                       "power": {
@@ -10035,8 +9760,13 @@
                         "end": 70,
                         "units": "%ftp"
                       },
-                      "duration": 600,
-                      "text": "Sidste 10 70% FTP"
+                      "duration": 300,
+                      "text": "Kadence 100 70% FTP",
+                      "cadence": {
+                        "start": 100,
+                        "end": 100,
+                        "units": "rpm"
+                      }
                     },
                     {
                       "ramp": true,
@@ -10052,7 +9782,7 @@
                   ]
                 }
               },
-              "note": "Lang Z2 2 t efter Mallorca — ikke 4 t."
+              "note": "Uge 48: maks. 90 min Z2. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter."
             }
           ]
         },
@@ -10060,20 +9790,20 @@
           "date": "2026-11-30",
           "entries": [
             {
-              "id": "8859f15e",
-              "libraryId": "vo2_5x3",
+              "id": "a5439963",
+              "libraryId": "intro_4x3_z34",
               "workout": {
-                "name": "FaF 5 VO2 - 5 x 3",
+                "name": "FaF 4 Tær - Intro 4 x 3",
                 "type": "Ride",
-                "moving_time": 4260,
-                "description": "- Varm-op 10m ramp 45-70% FTP\n\n3x \n- Aktivering 1m 90% FTP\n- Pause 1m 55% FTP\n\n- Let 4m 60% FTP\n\n3x \n- Stød 30s 110% FTP\n- Pause 30s 50% FTP\n\n- Let 5m 55% FTP\n\n5x 5 x 3 min @ 116%\n- 3 min 3m 116% FTP\n- Pause 3m 50% FTP\n\n- Ud 5m 60% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Mellemvejen. Største kondi-løftestang efter 50 — men dyr at komme sig fra. Max to hårde pas om ugen, mindst 72 timer imellem.",
+                "moving_time": 3720,
+                "description": "- Varm-op 10m ramp 45-65% FTP\n- Zone 2 10m 64% FTP\n\n4x 4 x 3 min @ 90%\n- 3 min 3m 90% FTP\n- Pause 3m 55% FTP\n\n- Zone 2 10m 64% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Første korte intensitet efter en restitutionsperiode. 4 × 3 min i toppen af zone 3 / bunden af zone 4. Bygget 13/11-2026 til uge 49.\n\nKør kun passet, hvis HRV er i dit normalområde (47-76) og hvilepulsen er under ca. 47. Ellers: kør det som ren zone 2.",
                 "workout_doc": {
                   "steps": [
                     {
                       "ramp": true,
                       "power": {
                         "start": 45,
-                        "end": 70,
+                        "end": 65,
                         "units": "%ftp"
                       },
                       "duration": 600,
@@ -10081,8 +9811,17 @@
                       "text": "Varm-op"
                     },
                     {
-                      "reps": 3,
-                      "text": "3x",
+                      "power": {
+                        "start": 64,
+                        "end": 64,
+                        "units": "%ftp"
+                      },
+                      "duration": 600,
+                      "text": "Zone 2 64% FTP"
+                    },
+                    {
+                      "reps": 4,
+                      "text": "4 x 3 min @ 90%",
                       "steps": [
                         {
                           "power": {
@@ -10090,8 +9829,8 @@
                             "end": 90,
                             "units": "%ftp"
                           },
-                          "duration": 60,
-                          "text": "Aktivering 90% FTP"
+                          "duration": 180,
+                          "text": "3 min 90% FTP"
                         },
                         {
                           "power": {
@@ -10099,85 +9838,19 @@
                             "end": 55,
                             "units": "%ftp"
                           },
-                          "duration": 60,
+                          "duration": 180,
                           "text": "Pause 55% FTP"
                         }
                       ]
                     },
                     {
                       "power": {
-                        "start": 60,
-                        "end": 60,
+                        "start": 64,
+                        "end": 64,
                         "units": "%ftp"
                       },
-                      "duration": 240,
-                      "text": "Let 60% FTP"
-                    },
-                    {
-                      "reps": 3,
-                      "text": "3x",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 110,
-                            "end": 110,
-                            "units": "%ftp"
-                          },
-                          "duration": 30,
-                          "text": "Stød 110% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 50,
-                            "end": 50,
-                            "units": "%ftp"
-                          },
-                          "duration": 30,
-                          "text": "Pause 50% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 55,
-                        "end": 55,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Let 55% FTP"
-                    },
-                    {
-                      "reps": 5,
-                      "text": "5 x 3 min @ 116%",
-                      "steps": [
-                        {
-                          "power": {
-                            "start": 116,
-                            "end": 116,
-                            "units": "%ftp"
-                          },
-                          "duration": 180,
-                          "text": "3 min 116% FTP"
-                        },
-                        {
-                          "power": {
-                            "start": 50,
-                            "end": 50,
-                            "units": "%ftp"
-                          },
-                          "duration": 180,
-                          "text": "Pause 50% FTP"
-                        }
-                      ]
-                    },
-                    {
-                      "power": {
-                        "start": 60,
-                        "end": 60,
-                        "units": "%ftp"
-                      },
-                      "duration": 300,
-                      "text": "Ud 60% FTP"
+                      "duration": 600,
+                      "text": "Zone 2 64% FTP"
                     },
                     {
                       "ramp": true,
@@ -10193,7 +9866,7 @@
                   ]
                 }
               },
-              "note": "Før Madeira. HIT — kun hvis HRV/hvilepuls er normal i morges. Ellers byt til Z2 grundtur 80."
+              "note": "Første intensitet efter restitution. Kun hvis HRV er 47-76 og hvilepuls under ca. 47 – ellers kør det som ren Z2. Stop eller skru ned, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter."
             },
             {
               "id": "448d9afb",
@@ -10563,7 +10236,7 @@
                   ]
                 }
               },
-              "note": "Ugens eneste hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). Kør i ERG."
+              "note": "Kun hvis uge 49 gik godt (HRV i normalområdet, frisk dagen efter intro-passet). Ellers: Z2 Rolig 60. Ugens eneste hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). Kør i ERG."
             },
             {
               "id": "819cd166",
@@ -11060,7 +10733,7 @@
                   ]
                 }
               },
-              "note": "HIT — kun hvis HRV/hvilepuls er normal i morges. Ellers byt til Z2 grundtur 80."
+              "note": "Kun hvis uge 49 gik godt (HRV i normalområdet, frisk dagen efter intro-passet). Ellers: Z2 Rolig 60. HIT — kun hvis HRV/hvilepuls er normal i morges. Ellers byt til Z2 grundtur 80."
             }
           ]
         },
@@ -11256,7 +10929,7 @@
                   ]
                 }
               },
-              "note": "Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
+              "note": "Kun hvis uge 49 gik godt (HRV i normalområdet, frisk dagen efter intro-passet). Ellers: Z2 Rolig 60. Ugens 2. hårde pas. Erstatter Sa Calobra Video (Zwift Plus opsagt). 72 t efter tirsdagens VO2. Kør i ERG."
             }
           ]
         },
