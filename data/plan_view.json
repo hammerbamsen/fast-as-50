@@ -1,62 +1,57 @@
 {
- "generated": "2026-11-14T08:19:11Z",
+ "generated": "2026-11-15T00:08:50Z",
  "kennet": {
   "programId": "tds-2027",
   "seed": {
-   "date": "2026-11-14",
-   "ctl": 29.9,
-   "atl": 28.8
+   "date": "2026-11-15",
+   "ctl": 29.2,
+   "atl": 25.0
   },
   "projection": [
    {
-    "d": "2026-11-15",
-    "ctl": 29.2,
-    "tsb": 4.5
-   },
-   {
     "d": "2026-11-16",
     "ctl": 30.3,
-    "tsb": -1.8
+    "tsb": -2.1
    },
    {
     "d": "2026-11-17",
     "ctl": 31.4,
-    "tsb": -7.1
+    "tsb": -7.3
    },
    {
     "d": "2026-11-18",
     "ctl": 32.5,
-    "tsb": -11.4
+    "tsb": -11.6
    },
    {
     "d": "2026-11-19",
     "ctl": 33.6,
-    "tsb": -15.1
+    "tsb": -15.2
    },
    {
     "d": "2026-11-20",
     "ctl": 34.6,
-    "tsb": -18.0
+    "tsb": -18.2
    },
    {
     "d": "2026-11-21",
     "ctl": 35.6,
-    "tsb": -20.5
+    "tsb": -20.6
    },
    {
     "d": "2026-11-22",
     "ctl": 34.7,
-    "tsb": -13.3
+    "tsb": -13.4
    },
    {
     "d": "2026-11-23",
     "ctl": 35.7,
-    "tsb": -16.0
+    "tsb": -16.1
    },
    {
     "d": "2026-11-24",
-    "ctl": 36.5,
-    "tsb": -18.2
+    "ctl": 36.6,
+    "tsb": -18.3
    },
    {
     "d": "2026-11-25",
@@ -66,7 +61,7 @@
    {
     "d": "2026-11-26",
     "ctl": 38.3,
-    "tsb": -21.4
+    "tsb": -21.5
    },
    {
     "d": "2026-11-27",
@@ -101,7 +96,7 @@
    {
     "d": "2026-12-03",
     "ctl": 40.8,
-    "tsb": -17.2
+    "tsb": -17.3
    },
    {
     "d": "2026-12-04",
@@ -116,7 +111,7 @@
    {
     "d": "2026-12-06",
     "ctl": 43.3,
-    "tsb": -21.6
+    "tsb": -21.7
    },
    {
     "d": "2026-12-07",
@@ -161,7 +156,7 @@
    {
     "d": "2026-12-15",
     "ctl": 48.4,
-    "tsb": -21.7
+    "tsb": -21.6
    },
    {
     "d": "2026-12-16",
@@ -216,7 +211,7 @@
    {
     "d": "2026-12-26",
     "ctl": 48.8,
-    "tsb": 1.1
+    "tsb": 1.2
    },
    {
     "d": "2026-12-27",
@@ -226,7 +221,7 @@
    {
     "d": "2026-12-28",
     "ctl": 49.2,
-    "tsb": -1.2
+    "tsb": -1.1
    },
    {
     "d": "2026-12-29",
@@ -330,7 +325,7 @@
    },
    {
     "d": "2027-01-18",
-    "ctl": 35.5,
+    "ctl": 35.6,
     "tsb": 29.8
    },
    {
@@ -495,7 +490,7 @@
    },
    {
     "d": "2027-02-20",
-    "ctl": 16.0,
+    "ctl": 16.1,
     "tsb": 16.0
    },
    {
@@ -566,7 +561,7 @@
    {
     "d": "2027-03-06",
     "ctl": 11.5,
-    "tsb": 11.4
+    "tsb": 11.5
    },
    {
     "d": "2027-03-07",
@@ -980,8 +975,8 @@
    },
    {
     "d": "2027-05-28",
-    "ctl": 1.5,
-    "tsb": 1.5
+    "ctl": 1.6,
+    "tsb": 1.6
    },
    {
     "d": "2027-05-29",
@@ -1514,31 +1509,15 @@
    },
    {
     "week": 10,
-    "projEndCtl": 29.2,
-    "deviation": -8.8,
-    "flags": [
-     {
-      "week": 10,
-      "rule": "low_readiness",
-      "level": "WARN",
-      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-      "historic": false
-     }
-    ]
+    "projEndCtl": null,
+    "deviation": null,
+    "flags": []
    },
    {
     "week": 11,
     "projEndCtl": 34.7,
     "deviation": -7.3,
-    "flags": [
-     {
-      "week": 11,
-      "rule": "ctl_ramp",
-      "level": "WARN",
-      "msg": "CTL-ramp +5.5 i uge 47 (blødt loft 5)",
-      "historic": false
-     }
-    ]
+    "flags": []
    },
    {
     "week": 12,
@@ -1806,20 +1785,6 @@
     "historic": false
    },
    {
-    "week": 10,
-    "rule": "low_readiness",
-    "level": "WARN",
-    "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-    "historic": false
-   },
-   {
-    "week": 11,
-    "rule": "ctl_ramp",
-    "level": "WARN",
-    "msg": "CTL-ramp +5.5 i uge 47 (blødt loft 5)",
-    "historic": false
-   },
-   {
     "week": 39,
     "rule": "race_tsb",
     "level": "WARN",
@@ -1836,8 +1801,8 @@
   ],
   "adaptation": {
    "triggered": true,
-   "missed7": 2,
-   "missed10": 3,
+   "missed7": 3,
+   "missed10": 4,
    "missed": [
     {
      "date": "2026-11-06",
@@ -1856,12 +1821,18 @@
      "entry_id": "9c7f75cf",
      "name": "Svøm 1500m let teknisk",
      "type": "Swim"
+    },
+    {
+     "date": "2026-11-14",
+     "entry_id": "5e88ea1e",
+     "name": "FaF 1 Z2 - Grundtur 80",
+     "type": "Ride"
     }
    ],
    "suggestion": null,
    "phase_guard": "Ingen hårde pas i de kommende 7 dage at justere."
   },
-  "readiness": "LOW"
+  "readiness": "NORMAL"
  },
- "inputsHash": "2c76f7706def0975"
+ "inputsHash": "a2078e7e668cf1c2"
 }
