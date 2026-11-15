@@ -270,3 +270,13 @@
 - **onsdag 2026-11-25** (uge 12, apply_proposal): Cykel Z2 150 min Mallorca (150 min) [langt] → Cykel Z2 90 min Mallorca (90 min) [langt]
 - **søndag 2026-11-29** (uge 12, apply_proposal): FaF 1 Z2 - Lang Z2 2 t (130 min) [langt] → FaF 1 Z2 - Grundtur 80 (80 min)
 - **mandag 2026-11-30** (uge 13, apply_proposal): FaF 5 VO2 - 5 x 3 (71 min) [hårdt]; Styrke B · Functional 4 · 3 runder (45 min) → FaF 4 Tær - Intro 4 x 3 (62 min); Styrke B · Functional 4 · 3 runder (45 min)
+
+### Signaler uge 46
+- Uge 46: TSS 91 af 238 (38 %) · CTL 29,2 (mål 38) · TSB +4,2
+- Vægt 7d 72,8 kg · fedt 14d 22,6 % · på plan mod glidepath (71,6)
+- HRV 7d 38 (28d 42) · hvilepuls 49 · søvn 7d 8,0 t
+- AF 0/7 · protein 3/3 0/7 · aftensult —/7
+- Styrke 4/2 · check-in 4/10 ben ✗ overkrop ✗
+- Cut-tjek: act — Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
+- Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: ingen
+- Planændringer siden sidst: 3 — se martin_signals.md
