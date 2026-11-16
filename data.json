@@ -1,46 +1,46 @@
 {
   "meta": {
-    "updated": "2026-11-15 21:11",
-    "week": 10,
+    "updated": "2026-11-16 01:11",
+    "week": 11,
     "totalWeeks": 51,
-    "blockType": "BASE",
-    "dayName": "Søndag",
-    "date": "15. nov",
+    "blockType": "BASE+",
+    "dayName": "Mandag",
+    "date": "16. nov",
     "rhrField": "restingHR",
     "nextRace": {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "daysTo": 112,
+      "daysTo": 111,
       "priority": "C"
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
     "phase": "BASE",
-    "programDay": 70,
+    "programDay": 71,
     "programDays": 357,
-    "isoWeek": 46
+    "isoWeek": 47
   },
   "kpis": {
     "weight": {
-      "value": "72,8",
+      "value": "72,9",
       "unit": "kg",
-      "sub": "forventet 71,6 · på plan",
-      "color": "#27AE60"
+      "sub": "forventet 71,5 · bagud 1,3",
+      "color": "#E67E22"
     },
     "fat": {
       "value": "22,6",
       "unit": "%",
-      "sub": "14d-snit · forventet 21,9",
+      "sub": "14d-snit · forventet 21,8",
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "28,5",
+      "value": "27,8",
       "unit": "",
-      "sub": "Uge 46-mål 38 · BASE",
+      "sub": "Uge 47-mål 42 · BASE+",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "10,3",
+      "value": "8,0",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "38,7",
+      "value": "38,2",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "114",
+      "value": "0",
       "unit": "TSS",
-      "sub": "114 af 248 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "0 af 304 planlagt TSS",
+      "color": "#7A6A58"
     },
     "bikeKm": {
-      "value": "17,4",
+      "value": "0,0",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#C0392B"
+      "color": "#7A6A58"
     },
     "swimM": {
       "value": "0",
@@ -88,7 +88,7 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "1",
+      "value": "0",
       "unit": "",
       "sub": "af 6 denne uge · snit 4 uger 4,2 · streak 1",
       "color": "#59182A"
@@ -102,100 +102,68 @@
     "protein": {
       "value": "0",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 4,2",
+      "sub": "3/3-dage · 4 uger 4,0",
       "color": "#C0392B"
     }
   },
   "af": {
-    "weekDone": 1,
+    "weekDone": 0,
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Søndag — afslut uge 46 stærkt. {HL} Fokus: 114 af 248 TSS er i hus. 3 sessioner er misset — vinduerne er lukket. Vægt på 72,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 1 AF-dage i 7 afsluttede dage — 5 mangler i 0 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved. 📊 Store billede: CTL 28,5 er 9.5 point BAG ugeplanen (planmål uge 46: 38).  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
-  "coachHighlight": "Søvn på 8,1 timer er solid",
-  "weekFocus": "Genstart roligt — vedligehold mad og krop",
+  "coachSpeech": "Uge 47, meso 1/1 af BASE+ — cut-signalet er det vigtigste at håndtere inden træningsbelastningen stiger. {HL} Uge 47 starter blank — 7 pas tilbage. CTL er 27,8 mod mål på 42,0, men i BASE+ bygger vi gradvist; ramprate på −0,7 denne uge er ikke et problem.",
+  "coachHighlight": "Gennemfør Styrke B · Functional 4 · 3 runder i dag — 45 min, let styrke som planlagt.",
+  "weekFocus": "Protein ved hvert måltid, styrke gennemføres, alkohol pause",
   "today": [
     {
-      "discipline": "walk",
-      "title": "Gentofte Gang",
+      "discipline": "strength",
+      "title": "Styrke B · Functional 4 · 3 runder",
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": true
+      "completed": false
     }
   ],
   "week_sessions": [
     {
       "day": "Man",
       "disc": "strength",
-      "label": "Styrke A · Functional 4 · 3 runder",
-      "done": true,
+      "label": "Styrke B · Functional 4 · 3 runder",
+      "done": false,
       "planned_tss": 30,
       "planned_mins": 45,
       "planned_distance_m": null,
-      "completion": "partial",
-      "completion_pct": 56,
-      "actual_tss": 11,
-      "actual_name": "Styrketræning",
-      "actual_mins": 25,
-      "actual_distance_m": null
+      "today": true
     },
     {
       "day": "Tir",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true,
-      "actual_tss": 8,
-      "actual_mins": 61,
-      "actual_distance_m": 5439.97
+      "disc": "bike",
+      "label": "FaF 1 Z2 - Rolig 60",
+      "done": false,
+      "planned_tss": 45,
+      "planned_mins": 60,
+      "planned_distance_m": null
+    },
+    {
+      "day": "Ons",
+      "disc": "run",
+      "label": "Løb Z2 45 min",
+      "done": false,
+      "planned_tss": 41,
+      "planned_mins": 45,
+      "planned_distance_m": null
     },
     {
       "day": "Ons",
       "disc": "strength",
-      "label": "Styrke B · Functional 4 · 3 runder",
-      "done": true,
+      "label": "Styrke A · Functional 4 · 3 runder",
+      "done": false,
       "planned_tss": 30,
       "planned_mins": 45,
-      "planned_distance_m": null,
-      "completion": "partial",
-      "completion_pct": 51,
-      "actual_tss": 8,
-      "actual_name": "Styrketræning",
-      "actual_mins": 23,
-      "actual_distance_m": null
-    },
-    {
-      "day": "Ons",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true,
-      "actual_tss": 5,
-      "actual_mins": 51,
-      "actual_distance_m": 4761.11
-    },
-    {
-      "day": "Tor",
-      "disc": "bike",
-      "label": "FaF 1 Z2 - Grundtur 80",
-      "done": false,
-      "planned_tss": 60,
-      "planned_mins": 80,
       "planned_distance_m": null
     },
     {
       "day": "Tor",
-      "disc": "commute",
-      "label": "Gentofte Cykling",
-      "done": true,
-      "extra": true,
-      "actual_tss": 21,
-      "actual_mins": 55,
-      "actual_distance_m": 17419.18
-    },
-    {
-      "day": "Fre",
       "disc": "swim",
       "label": "Svøm 1500m let teknisk",
       "done": false,
@@ -205,68 +173,30 @@
     },
     {
       "day": "Fre",
-      "disc": "strength",
-      "label": "Styrketræning",
-      "done": true,
-      "extra": true,
-      "actual_tss": 12,
-      "actual_mins": 25,
-      "actual_distance_m": null
-    },
-    {
-      "day": "Fre",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true,
-      "actual_tss": 8,
-      "actual_mins": 57,
-      "actual_distance_m": 5219.66
-    },
-    {
-      "day": "Lør",
-      "disc": "strength",
-      "label": "Styrke A · Functional 4 · 3 runder",
-      "done": true,
-      "planned_tss": 30,
-      "planned_mins": 45,
-      "planned_distance_m": null,
-      "completion": "partial",
-      "completion_pct": 58,
-      "actual_tss": 13,
-      "actual_name": "Styrketræning",
-      "actual_mins": 26,
-      "actual_distance_m": null
-    },
-    {
-      "day": "Lør",
       "disc": "bike",
-      "label": "FaF 1 Z2 - Grundtur 80",
+      "label": "FaF 1 Z2 - Rolig 60",
       "done": false,
-      "planned_tss": 60,
-      "planned_mins": 80,
+      "planned_tss": 45,
+      "planned_mins": 60,
       "planned_distance_m": null
     },
     {
       "day": "Lør",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true,
-      "actual_tss": 5,
-      "actual_mins": 52,
-      "actual_distance_m": 4757.62
+      "disc": "strength",
+      "label": "Styrke B · Functional 4 · 3 runder",
+      "done": false,
+      "planned_tss": 30,
+      "planned_mins": 45,
+      "planned_distance_m": null
     },
     {
-      "day": "Søn",
-      "disc": "walk",
-      "label": "Gentofte Gang",
-      "done": true,
-      "extra": true,
-      "actual_tss": 23,
-      "actual_mins": 100,
-      "actual_distance_m": 9570.81,
-      "today": true
+      "day": "Lør",
+      "disc": "bike",
+      "label": "FaF 1 Z2 - Rolig 60",
+      "done": false,
+      "planned_tss": 45,
+      "planned_mins": 60,
+      "planned_distance_m": null
     }
   ],
   "ctlCurve": [
@@ -279,14 +209,10 @@
     39.2,
     34.5,
     31.8,
-    28.5
+    28.5,
+    27.8
   ],
   "weightHistory": [
-    {
-      "date": "2026-08-18",
-      "v": 72.8,
-      "real": true
-    },
     {
       "date": "2026-08-19",
       "v": 72.9,
@@ -639,14 +565,10 @@
       "date": "2026-11-15",
       "v": 72.9,
       "real": true
-    }
+    },
+    null
   ],
   "hrvHistory": [
-    {
-      "date": "2026-08-18",
-      "v": 68.0,
-      "real": true
-    },
     {
       "date": "2026-08-19",
       "v": 59.0,
@@ -1091,14 +1013,10 @@
       "date": "2026-11-15",
       "v": 45.0,
       "real": true
-    }
+    },
+    null
   ],
   "sleepHistory": [
-    {
-      "date": "2026-08-18",
-      "v": 8.3,
-      "real": true
-    },
     {
       "date": "2026-08-19",
       "v": 9.6,
@@ -1543,14 +1461,10 @@
       "date": "2026-11-15",
       "v": 8.9,
       "real": true
-    }
+    },
+    null
   ],
   "tsbHistory": [
-    {
-      "date": "2026-08-18",
-      "v": -9.4,
-      "real": true
-    },
     {
       "date": "2026-08-19",
       "v": -6.9,
@@ -1995,6 +1909,11 @@
       "date": "2026-11-15",
       "v": 10.3,
       "real": true
+    },
+    {
+      "date": "2026-11-16",
+      "v": 8.1,
+      "real": true
     }
   ],
   "af_log": {
@@ -2167,62 +2086,6 @@
     "2026-11-15": 0
   },
   "all_weeks": {
-    "8": {
-      "sessions": [
-        {
-          "day": "Tir",
-          "disc": "bike",
-          "label": "FaF 1 Z2 - Aktivering 60",
-          "done": false,
-          "today": false,
-          "planned_tss": 45,
-          "planned_mins": 60,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Tor",
-          "disc": "hike",
-          "label": "Gang let 30 min (valgfri)",
-          "done": false,
-          "today": false,
-          "planned_tss": 9,
-          "planned_mins": 30,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Fre",
-          "disc": "swim",
-          "label": "Svøm 1500m let teknisk",
-          "done": false,
-          "today": false,
-          "planned_tss": 38,
-          "planned_mins": 45,
-          "planned_distance_m": 1500
-        },
-        {
-          "day": "Lør",
-          "disc": "hike",
-          "label": "Gang lang 90 min",
-          "done": false,
-          "today": false,
-          "planned_tss": 27,
-          "planned_mins": 90,
-          "planned_distance_m": null
-        },
-        {
-          "day": "Søn",
-          "disc": "bike",
-          "label": "FaF 1 Z2 - Grundtur 80",
-          "done": false,
-          "today": false,
-          "planned_tss": 60,
-          "planned_mins": 80,
-          "planned_distance_m": null
-        }
-      ],
-      "blockType": "RECOVERY",
-      "focus": "Spis til vedligehold og lad kroppen lade op"
-    },
     "9": {
       "sessions": [
         {
@@ -2305,144 +2168,61 @@
           "day": "Man",
           "disc": "strength",
           "label": "Styrke A · Functional 4 · 3 runder",
-          "done": true,
+          "done": false,
+          "today": false,
           "planned_tss": 30,
           "planned_mins": 45,
-          "planned_distance_m": null,
-          "completion": "partial",
-          "completion_pct": 56,
-          "actual_tss": 11,
-          "actual_name": "Styrketræning",
-          "actual_mins": 25,
-          "actual_distance_m": null
-        },
-        {
-          "day": "Tir",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true,
-          "actual_tss": 8,
-          "actual_mins": 61,
-          "actual_distance_m": 5439.97
+          "planned_distance_m": null
         },
         {
           "day": "Ons",
           "disc": "strength",
           "label": "Styrke B · Functional 4 · 3 runder",
-          "done": true,
+          "done": false,
+          "today": false,
           "planned_tss": 30,
           "planned_mins": 45,
-          "planned_distance_m": null,
-          "completion": "partial",
-          "completion_pct": 51,
-          "actual_tss": 8,
-          "actual_name": "Styrketræning",
-          "actual_mins": 23,
-          "actual_distance_m": null
-        },
-        {
-          "day": "Ons",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true,
-          "actual_tss": 5,
-          "actual_mins": 51,
-          "actual_distance_m": 4761.11
+          "planned_distance_m": null
         },
         {
           "day": "Tor",
           "disc": "bike",
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
+          "today": false,
           "planned_tss": 60,
           "planned_mins": 80,
           "planned_distance_m": null
-        },
-        {
-          "day": "Tor",
-          "disc": "commute",
-          "label": "Gentofte Cykling",
-          "done": true,
-          "extra": true,
-          "actual_tss": 21,
-          "actual_mins": 55,
-          "actual_distance_m": 17419.18
         },
         {
           "day": "Fre",
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
           "done": false,
+          "today": false,
           "planned_tss": 38,
           "planned_mins": 45,
           "planned_distance_m": 1500
         },
         {
-          "day": "Fre",
-          "disc": "strength",
-          "label": "Styrketræning",
-          "done": true,
-          "extra": true,
-          "actual_tss": 12,
-          "actual_mins": 25,
-          "actual_distance_m": null
-        },
-        {
-          "day": "Fre",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true,
-          "actual_tss": 8,
-          "actual_mins": 57,
-          "actual_distance_m": 5219.66
-        },
-        {
           "day": "Lør",
           "disc": "strength",
           "label": "Styrke A · Functional 4 · 3 runder",
-          "done": true,
+          "done": false,
+          "today": false,
           "planned_tss": 30,
           "planned_mins": 45,
-          "planned_distance_m": null,
-          "completion": "partial",
-          "completion_pct": 58,
-          "actual_tss": 13,
-          "actual_name": "Styrketræning",
-          "actual_mins": 26,
-          "actual_distance_m": null
+          "planned_distance_m": null
         },
         {
           "day": "Lør",
           "disc": "bike",
           "label": "FaF 1 Z2 - Grundtur 80",
           "done": false,
+          "today": false,
           "planned_tss": 60,
           "planned_mins": 80,
           "planned_distance_m": null
-        },
-        {
-          "day": "Lør",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true,
-          "actual_tss": 5,
-          "actual_mins": 52,
-          "actual_distance_m": 4757.62
-        },
-        {
-          "day": "Søn",
-          "disc": "walk",
-          "label": "Gentofte Gang",
-          "done": true,
-          "extra": true,
-          "actual_tss": 23,
-          "actual_mins": 100,
-          "actual_distance_m": 9570.81,
-          "today": true
         }
       ],
       "blockType": "BASE",
@@ -2455,17 +2235,16 @@
           "disc": "strength",
           "label": "Styrke B · Functional 4 · 3 runder",
           "done": false,
-          "today": false,
           "planned_tss": 30,
           "planned_mins": 45,
-          "planned_distance_m": null
+          "planned_distance_m": null,
+          "today": true
         },
         {
           "day": "Tir",
           "disc": "bike",
           "label": "FaF 1 Z2 - Rolig 60",
           "done": false,
-          "today": false,
           "planned_tss": 45,
           "planned_mins": 60,
           "planned_distance_m": null
@@ -2475,7 +2254,6 @@
           "disc": "run",
           "label": "Løb Z2 45 min",
           "done": false,
-          "today": false,
           "planned_tss": 41,
           "planned_mins": 45,
           "planned_distance_m": null
@@ -2485,7 +2263,6 @@
           "disc": "strength",
           "label": "Styrke A · Functional 4 · 3 runder",
           "done": false,
-          "today": false,
           "planned_tss": 30,
           "planned_mins": 45,
           "planned_distance_m": null
@@ -2495,7 +2272,6 @@
           "disc": "swim",
           "label": "Svøm 1500m let teknisk",
           "done": false,
-          "today": false,
           "planned_tss": 38,
           "planned_mins": 45,
           "planned_distance_m": 1500
@@ -2505,7 +2281,6 @@
           "disc": "bike",
           "label": "FaF 1 Z2 - Rolig 60",
           "done": false,
-          "today": false,
           "planned_tss": 45,
           "planned_mins": 60,
           "planned_distance_m": null
@@ -2515,7 +2290,6 @@
           "disc": "strength",
           "label": "Styrke B · Functional 4 · 3 runder",
           "done": false,
-          "today": false,
           "planned_tss": 30,
           "planned_mins": 45,
           "planned_distance_m": null
@@ -2525,14 +2299,13 @@
           "disc": "bike",
           "label": "FaF 1 Z2 - Rolig 60",
           "done": false,
-          "today": false,
           "planned_tss": 45,
           "planned_mins": 60,
           "planned_distance_m": null
         }
       ],
       "blockType": "BASE+",
-      "focus": "Restitution og alkoholfri dage — kroppen bygger sig op igen"
+      "focus": "Protein ved hvert måltid, styrke gennemføres, alkohol pause"
     },
     "12": {
       "sessions": [
@@ -2983,17 +2756,95 @@
       ],
       "blockType": "RECOVERY",
       "focus": "Restituitionsuge 16 — 1 løb · 2 cykel · 1 svøm · 3 styrke. Fokus: konsistens over intensitet."
+    },
+    "17": {
+      "sessions": [
+        {
+          "day": "Man",
+          "disc": "strength",
+          "label": "Styrke A · Functional 4 · 3 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": 30,
+          "planned_mins": 45,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Tir",
+          "disc": "bike",
+          "label": "FaF 4 Tær - 3 x 12",
+          "done": false,
+          "today": false,
+          "planned_tss": 58,
+          "planned_mins": 77,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Ons",
+          "disc": "swim",
+          "label": "Svøm 1500m let teknisk",
+          "done": false,
+          "today": false,
+          "planned_tss": 38,
+          "planned_mins": 45,
+          "planned_distance_m": 1500
+        },
+        {
+          "day": "Tor",
+          "disc": "bike",
+          "label": "FaF 1 Z2 - Grundtur 80",
+          "done": false,
+          "today": false,
+          "planned_tss": 60,
+          "planned_mins": 80,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Fre",
+          "disc": "run",
+          "label": "Løb Z2 45 min",
+          "done": false,
+          "today": false,
+          "planned_tss": 41,
+          "planned_mins": 45,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "bike",
+          "label": "FaF 1 Z2 - Lang Z2 2 t",
+          "done": false,
+          "today": false,
+          "planned_tss": 98,
+          "planned_mins": 130,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Lør",
+          "disc": "strength",
+          "label": "Styrke B · Functional 4 · 3 runder",
+          "done": false,
+          "today": false,
+          "planned_tss": 30,
+          "planned_mins": 45,
+          "planned_distance_m": null
+        },
+        {
+          "day": "Søn",
+          "disc": "bike",
+          "label": "FaF 1 Z2 - Langtur 4 t",
+          "done": false,
+          "today": false,
+          "planned_tss": 180,
+          "planned_mins": 240,
+          "planned_distance_m": null
+        }
+      ],
+      "blockType": "BASE",
+      "focus": "Træningsuge 17 — 1 løb · 4 cykel · 1 svøm · 2 styrke. Fokus: konsistens over intensitet."
     }
   },
   "af_history": [
-    {
-      "week": -1,
-      "iso": 35,
-      "monday": "2026-08-24",
-      "done": 6,
-      "total": 7,
-      "label": "Uge 35"
-    },
     {
       "week": 0,
       "iso": 36,
@@ -3081,21 +2932,21 @@
       "done": 1,
       "total": 7,
       "label": "Uge 46"
+    },
+    {
+      "week": 11,
+      "iso": 47,
+      "monday": "2026-11-16",
+      "done": 0,
+      "total": 1,
+      "label": "Uge 47"
     }
   ],
   "train_mins": {
-    "walk": 321.0,
-    "strength": 99.0,
-    "commute": 55.0,
-    "planned": 340.0,
-    "actual_total": 475.0
+    "planned": 405.0,
+    "actual_total": 0
   },
   "fatHistory": [
-    {
-      "date": "2026-08-18",
-      "v": 21.9,
-      "real": true
-    },
     {
       "date": "2026-08-19",
       "v": 21.3,
@@ -3448,24 +3299,29 @@
       "date": "2026-11-15",
       "v": 22.5,
       "real": true
-    }
+    },
+    null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 70 af 357 · Søndag · Uge 46</strong></p><p class=\"coach-sec coach-big\">Uge 46 sluttede i BASE uge 2/2 — næste uge (uge 47) er en ren restitutionsuge med kun Z2 og let styrke.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Kun de 3 styrketræninger blev gennemført (25, 23 og 26 min mod planlagte 45 min), og de 3 cykelpas gik tabt — faktisk TSS endte på 114 mod planlagte 248 (46 %). CTL er 28,5 mod mål 38,0, og rampRate er −3,3. Det er en BASE-blok, så nedgangen er et problem — næste uge (uge 47) er planlagt som restitutionsuge med TSS-mål 460 og CTL-mål 42,0: alle tre Z2-cykelpas (mandag/tirsdag/lørdag à 60 min) og 2 styrker skal sidde.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,8 kg mod forventet 71,6 kg — 1,3 kg over cut-planen. Fedtsnit er 22,6 %, og fedtfri masse er faldet 1,9 kg på 4 uger: spis til vedligehold i 3-4 dage, og sørg for protein ved alle tre måltider de næste dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>6 drikkedage i træk (9/11–14/11) med kun 1-2 genstande pr. dag — ingen enkeltdage med 3+, men klyngen trykker HRV ned (HRV 45,0 mod 42-dages snit 51,9). Protein er ikke registreret én eneste dag denne uge. Næste uge: bryd alkyl-klyngen og registrér protein 3 ud af 7 dage.</p>",
-  "coachAssessmentTs": "15:39",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 71 af 357 · Mandag · Uge 47</strong></p><p class=\"coach-sec coach-big\">Uge 47, meso 1/1 af BASE+ — cut-signalet er det vigtigste at håndtere inden træningsbelastningen stiger.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 47 starter blank — 7 pas tilbage. CTL er 27,8 mod mål på 42,0, men i BASE+ bygger vi gradvist; ramprate på −0,7 denne uge er ikke et problem.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 1,5 kg over cut-planen (forventet 71,5 kg), og fedtfri masse er faldet 2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein ved alle 3 måltider.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein ikke registreret én eneste dag denne uge — start i dag. 5 drikkedage i træk (10/11–14/11) rammer HRV hårdere end spredte dage; hold pause nu.</p>",
+  "coachAssessmentTs": "01:11",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads"
+      "message": "Cut-tjek: Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
+      "action": null,
+      "source": "rule"
     },
     {
       "type": "alcohol_cluster",
       "level": "critical",
-      "message": "6 drikkedage i træk 9/11–14/11 — klynger rammer HRV hårdere end spredte dage."
+      "message": "5 drikkedage i træk 10/11–14/11 — klynger rammer HRV hårdere end spredte dage.",
+      "action": null,
+      "source": "rule"
     }
   ],
-  "tsb": 10.3,
+  "tsb": 8.0,
   "swimHistory": [
     {
       "week": 1,
@@ -3526,20 +3382,25 @@
       "date": "2026-11-09",
       "meters": 0,
       "cumulative": 3500.0
+    },
+    {
+      "week": 11,
+      "date": "2026-11-16",
+      "meters": 0,
+      "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i210315365",
-  "weekFocusWeek": 10,
-  "coachAssessmentPlanAtGen": "Gentofte Gang",
+  "coachAssessmentLastActId": null,
+  "weekFocusWeek": 11,
+  "coachAssessmentPlanAtGen": "Styrke B · Functional 4 · 3 runder",
   "weightGoal": 69.5,
   "bodyFatGoal": 19,
   "weightMovingAvg7": [
     null,
     null,
-    72.77,
-    73.05,
-    72.96,
-    72.96,
+    73.13,
+    73.0,
+    73.0,
     72.78,
     72.57,
     72.25,
@@ -3623,16 +3484,16 @@
     72.73,
     72.74,
     72.76,
-    72.79
+    72.79,
+    72.87
   ],
   "fatMovingAvg7": [
     null,
     null,
-    21.37,
-    21.25,
-    21.36,
-    21.36,
-    21.25,
+    21.03,
+    21.23,
+    21.23,
+    21.12,
     21.2,
     21.3,
     21.38,
@@ -3715,7 +3576,8 @@
     22.57,
     22.71,
     22.69,
-    22.64
+    22.64,
+    22.6
   ],
   "ctlPlan": [
     47,
@@ -3782,10 +3644,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-15T20:11:02.485918",
-  "coachAssessmentTsFull": "2026-11-15T14:39:53",
+  "credentialsCheckedTs": "2026-11-16T00:11:32.284093",
+  "coachAssessmentTsFull": "2026-11-16T00:11:32",
   "coachAssessmentWeightAtGen": 72.9,
-  "coachAssessmentAfAtGen": 1,
+  "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 22.5,
   "zones": {
@@ -3885,7 +3747,7 @@
     {
       "name": "Hegnet Half",
       "date": "2027-03-07",
-      "days": 112,
+      "days": 111,
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
@@ -3894,7 +3756,7 @@
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
       "date": "2027-06-06",
-      "days": 203,
+      "days": 202,
       "priority": "B",
       "distance": "130km / 4500hm",
       "registered": true,
@@ -3903,7 +3765,7 @@
     {
       "name": "Tour des Stations Ultrafondo",
       "date": "2027-08-28",
-      "days": 286,
+      "days": 285,
       "priority": "A",
       "distance": "242km / 8848hm",
       "registered": false,
@@ -4198,11 +4060,6 @@
     }
   },
   "rhrHistory": [
-    {
-      "date": "2026-08-18",
-      "v": 42,
-      "real": true
-    },
     {
       "date": "2026-08-19",
       "v": 41,
@@ -4647,9 +4504,10 @@
       "date": "2026-11-15",
       "v": 49,
       "real": true
-    }
+    },
+    null
   ],
-  "blockType": "BASE",
+  "blockType": "BASE+",
   "blockTypes": {
     "1": "RECOVERY",
     "2": "RACE",
@@ -4711,13 +4569,6 @@
     "strengthPerWeek": 2
   },
   "checkinLog": [
-    {
-      "date": "2026-10-19",
-      "alkohol": 0,
-      "protein": 2,
-      "energi": 3,
-      "sult": null
-    },
     {
       "date": "2026-10-20",
       "alkohol": 0,
@@ -4906,9 +4757,16 @@
       "protein": 1,
       "energi": 3,
       "sult": null
+    },
+    {
+      "date": "2026-11-16",
+      "alkohol": null,
+      "protein": null,
+      "energi": null,
+      "sult": null
     }
   ],
-  "energy7": 2.4,
+  "energy7": 2.7,
   "af_kind": {
     "2026-10-25": "faa",
     "2026-10-26": "faa",
@@ -4923,10 +4781,10 @@
     "2026-11-14": "faa"
   },
   "planTab": {
-    "today": "2026-11-15",
+    "today": "2026-11-16",
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
-    "currentWeek": 10,
+    "currentWeek": 11,
     "minHoursHard": 72,
     "rules": {
       "maxHaard": 2,
@@ -5248,8 +5106,8 @@
         "flags": [],
         "races": [],
         "travel": null,
-        "isCurrent": true,
-        "isPast": false,
+        "isCurrent": false,
+        "isPast": true,
         "hasDays": true
       },
       {
@@ -5277,7 +5135,7 @@
         "flags": [],
         "races": [],
         "travel": null,
-        "isCurrent": false,
+        "isCurrent": true,
         "isPast": false,
         "hasDays": true
       },
@@ -8404,15 +8262,14 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": true,
-                "actualMins": 25,
-                "actualTss": 11,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
                 "note": "Første pas efter en uge syg. Stop efter 2 runder. Rolig genstart.",
                 "isKey": false,
                 "optional": false,
                 "start": "06:30",
-                "startFixed": false,
-                "completion": "partial"
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8422,26 +8279,7 @@
           {
             "date": "2026-11-10",
             "weekday": "Tir",
-            "entries": [
-              {
-                "id": null,
-                "name": "Gentofte Gang",
-                "type": null,
-                "disc": "walk",
-                "mins": 61,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 61,
-                "actualTss": 8,
-                "note": null,
-                "isKey": false,
-                "extra": true
-              }
-            ],
+            "entries": [],
             "restNote": "Fri eller gåtur. Sa Calobra udgår (rolig genstartuge). Gate: hvilepuls ≥3 slag over normalt, feber eller ondt i halsen → gåtur i stedet.",
             "restId": "cacd4f83",
             "isToday": false
@@ -8461,33 +8299,14 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": true,
-                "actualMins": 23,
-                "actualTss": 8,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
                 "note": "Rolig genstart efter sygdom. Stop efter 2 runder, hvis du er træt.",
                 "isKey": false,
                 "optional": false,
                 "start": "06:30",
-                "startFixed": false,
-                "completion": "partial"
-              },
-              {
-                "id": null,
-                "name": "Gentofte Gang",
-                "type": null,
-                "disc": "walk",
-                "mins": 51,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 51,
-                "actualTss": 5,
-                "note": null,
-                "isKey": false,
-                "extra": true
+                "startFixed": false
               }
             ],
             "restNote": null,
@@ -8517,24 +8336,6 @@
                 "optional": false,
                 "start": "07:00",
                 "startFixed": false
-              },
-              {
-                "id": null,
-                "name": "Gentofte Cykling",
-                "type": null,
-                "disc": "commute",
-                "mins": 55,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 55,
-                "actualTss": 21,
-                "note": null,
-                "isKey": false,
-                "extra": true
               }
             ],
             "restNote": null,
@@ -8564,42 +8365,6 @@
                 "optional": false,
                 "start": "06:00",
                 "startFixed": false
-              },
-              {
-                "id": null,
-                "name": "Styrketræning",
-                "type": null,
-                "disc": "strength",
-                "mins": 25,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 25,
-                "actualTss": 12,
-                "note": null,
-                "isKey": false,
-                "extra": true
-              },
-              {
-                "id": null,
-                "name": "Gentofte Gang",
-                "type": null,
-                "disc": "walk",
-                "mins": 57,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 57,
-                "actualTss": 8,
-                "note": null,
-                "isKey": false,
-                "extra": true
               }
             ],
             "restNote": null,
@@ -8621,15 +8386,14 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": true,
-                "actualMins": 26,
-                "actualTss": 13,
+                "done": false,
+                "actualMins": null,
+                "actualTss": null,
                 "note": "Styrke 3×/uge.",
                 "isKey": false,
                 "optional": false,
                 "start": "06:30",
-                "startFixed": false,
-                "completion": "partial"
+                "startFixed": false
               },
               {
                 "id": "5e88ea1e",
@@ -8650,24 +8414,6 @@
                 "optional": false,
                 "start": "07:30",
                 "startFixed": false
-              },
-              {
-                "id": null,
-                "name": "Gentofte Gang",
-                "type": null,
-                "disc": "walk",
-                "mins": 52,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 52,
-                "actualTss": 5,
-                "note": null,
-                "isKey": false,
-                "extra": true
               }
             ],
             "restNote": null,
@@ -8677,29 +8423,10 @@
           {
             "date": "2026-11-15",
             "weekday": "Søn",
-            "entries": [
-              {
-                "id": null,
-                "name": "Gentofte Gang",
-                "type": null,
-                "disc": "walk",
-                "mins": 100,
-                "libraryId": null,
-                "load": "let",
-                "erg": null,
-                "purpose": null,
-                "zwiftName": null,
-                "done": true,
-                "actualMins": 100,
-                "actualTss": 23,
-                "note": null,
-                "isKey": false,
-                "extra": true
-              }
-            ],
+            "entries": [],
             "restNote": "Fri. TdS racepace 3×50 udgår (rolig genstartuge). Fuld plan og cut fra mandag 16/11.",
             "restId": "f2d46546",
-            "isToday": true
+            "isToday": false
           }
         ]
       },
@@ -8735,7 +8462,7 @@
             ],
             "restNote": null,
             "restId": null,
-            "isToday": false
+            "isToday": true
           },
           {
             "date": "2026-11-17",
@@ -10351,12 +10078,6 @@
     "ctl": {
       "history": [
         {
-          "week": 13,
-          "programId": "medoc-2026",
-          "start": "2026-08-24",
-          "ctl": 50.7
-        },
-        {
           "week": 14,
           "programId": "medoc-2026",
           "start": "2026-08-31",
@@ -10421,6 +10142,12 @@
           "programId": "tds-2027",
           "start": "2026-11-09",
           "ctl": 28.5
+        },
+        {
+          "week": 11,
+          "programId": "tds-2027",
+          "start": "2026-11-16",
+          "ctl": 27.8
         }
       ],
       "projection": [
@@ -10619,6 +10346,34 @@
         {
           "d": "2027-01-03",
           "ctl": 50.8
+        },
+        {
+          "d": "2027-01-04",
+          "ctl": 49.6
+        },
+        {
+          "d": "2027-01-05",
+          "ctl": 48.4
+        },
+        {
+          "d": "2027-01-06",
+          "ctl": 47.3
+        },
+        {
+          "d": "2027-01-07",
+          "ctl": 46.1
+        },
+        {
+          "d": "2027-01-08",
+          "ctl": 45.0
+        },
+        {
+          "d": "2027-01-09",
+          "ctl": 44.0
+        },
+        {
+          "d": "2027-01-10",
+          "ctl": 42.9
         }
       ],
       "targets": [
@@ -10706,6 +10461,11 @@
           "week": 17,
           "start": "2026-12-28",
           "ctlTarget": 54
+        },
+        {
+          "week": 18,
+          "start": "2027-01-04",
+          "ctlTarget": 56
         }
       ],
       "phases": [
@@ -10771,13 +10531,13 @@
         },
         {
           "from": "2026-12-28",
-          "to": "2027-01-03",
+          "to": "2027-01-10",
           "name": "BASE"
         }
       ],
       "window": {
-        "from": "2026-08-24",
-        "to": "2027-01-03"
+        "from": "2026-08-31",
+        "to": "2027-01-10"
       }
     },
     "hardSpacing": [
@@ -10880,74 +10640,55 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-15T14:39:53Z",
-    "inputsHash": "c726d1e64bdad23e54b93b37a8aa8df224ea2362",
+    "generatedAt": "2026-11-16T00:11:32Z",
+    "inputsHash": "38d49e26ca8d0db6aff6edc86198ecf54a261d1c",
     "model": "claude-sonnet-4-6",
-    "mode": "sunday",
+    "mode": "daily",
     "oneThing": {
-      "action": "Hold alkohol i dag og notér, hvad du spiser til aftensmad — er der protein på tallerkenen?",
-      "why": "6 drikkedage i træk og 0 proteindage i uge 46 er et mønster der begynder at brydes i dag, ikke mandag."
+      "action": "Gennemfør Styrke B · Functional 4 · 3 runder i dag — 45 min, let styrke som planlagt.",
+      "why": "Cut-tjekket viser tab af fedtfri masse på 2,0 kg på 4 uger — styrke i dag er del af løsningen."
     },
     "training": {
-      "text": "Kun de 3 styrketræninger blev gennemført (25, 23 og 26 min mod planlagte 45 min), og de 3 cykelpas gik tabt — faktisk TSS endte på 114 mod planlagte 248 (46 %). CTL er 28,5 mod mål 38,0, og rampRate er −3,3. Det er en BASE-blok, så nedgangen er et problem — næste uge (uge 47) er planlagt som restitutionsuge med TSS-mål 460 og CTL-mål 42,0: alle tre Z2-cykelpas (mandag/tirsdag/lørdag à 60 min) og 2 styrker skal sidde.",
+      "text": "Uge 47 starter blank — 7 pas tilbage. CTL er 27,8 mod mål på 42,0, men i BASE+ bygger vi gradvist; ramprate på −0,7 denne uge er ikke et problem.",
       "refs": [
-        25.0,
-        23.0,
-        26.0,
-        45.0,
-        114.0,
-        248.0,
-        46.0,
-        28.5,
-        38.0,
-        -3.3,
-        460.0,
+        27.8,
         42.0,
-        60.0
+        -0.7,
+        7.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 72,8 kg mod forventet 71,6 kg — 1,3 kg over cut-planen. Fedtsnit er 22,6 %, og fedtfri masse er faldet 1,9 kg på 4 uger: spis til vedligehold i 3-4 dage, og sørg for protein ved alle tre måltider de næste dage.",
+      "text": "7-dages snit er 1,5 kg over cut-planen (forventet 71,5 kg), og fedtfri masse er faldet 2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein ved alle 3 måltider.",
       "refs": [
-        72.8,
-        71.6,
-        1.3,
-        22.6,
-        1.9
+        1.5,
+        71.5,
+        2.0
       ]
     },
     "habits": {
-      "text": "6 drikkedage i træk (9/11–14/11) med kun 1-2 genstande pr. dag — ingen enkeltdage med 3+, men klyngen trykker HRV ned (HRV 45,0 mod 42-dages snit 51,9). Protein er ikke registreret én eneste dag denne uge. Næste uge: bryd alkyl-klyngen og registrér protein 3 ud af 7 dage.",
+      "text": "Protein ikke registreret én eneste dag denne uge — start i dag. 5 drikkedage i træk (10/11–14/11) rammer HRV hårdere end spredte dage; hold pause nu.",
       "refs": [
-        6.0,
-        45.0,
-        51.9
+        5.0,
+        0.0
       ]
     },
-    "bigPicture": "Uge 46 sluttede i BASE uge 2/2 — næste uge (uge 47) er en ren restitutionsuge med kun Z2 og let styrke.",
-    "weekFocus": "Restitution og alkoholfri dage — kroppen bygger sig op igen",
+    "bigPicture": "Uge 47, meso 1/1 af BASE+ — cut-signalet er det vigtigste at håndtere inden træningsbelastningen stiger.",
+    "weekFocus": "Protein ved hvert måltid, styrke gennemføres, alkohol pause",
     "weekFocusFor": 11,
     "warnings": [
       {
         "type": "cut",
         "level": "act",
-        "message": "Cut-tjek: Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads",
+        "message": "Cut-tjek: Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
         "action": null,
         "source": "rule"
       },
       {
         "type": "alcohol_cluster",
         "level": "act",
-        "message": "6 drikkedage i træk 9/11–14/11 — klynger rammer HRV hårdere end spredte dage.",
+        "message": "5 drikkedage i træk 10/11–14/11 — klynger rammer HRV hårdere end spredte dage.",
         "action": null,
         "source": "rule"
-      },
-      {
-        "type": "tsb",
-        "level": "warn",
-        "message": "CTL 28,5 er 9,5 point under mål 38,0 efter en uge med kun 46 % af planlagt TSS. Alle cykelpas i uge 47 skal sidde for at vende kurven.",
-        "action": null,
-        "source": "ai"
       }
     ],
     "error": null,
@@ -10962,8 +10703,8 @@
     "text": "Restitution og alkoholfri dage — kroppen bygger sig op igen"
   },
   "strengthLog": {
-    "from": "2026-10-18",
-    "to": "2026-11-15",
+    "from": "2026-10-19",
+    "to": "2026-11-16",
     "sessions": [
       {
         "date": "2026-11-02",
@@ -11031,26 +10772,26 @@
     ]
   },
   "body": {
-    "asOf": "2026-11-15",
+    "asOf": "2026-11-16",
     "glidepath": {
       "phase": "cut",
-      "cutWeek": 2,
+      "cutWeek": 3,
       "cutWeeks": 9,
-      "isoWeek": 46,
+      "isoWeek": 47,
       "cutStartsFrom": "2026-11-02",
       "targetDate": "2027-01-01",
       "cutStartIsoWeek": 45,
       "startKg": 72.0,
       "targetKg": 69.5,
-      "expectedKg": 71.6,
+      "expectedKg": 71.5,
       "corridorKg": 0.5,
-      "avg7": 72.8,
+      "avg7": 72.9,
       "avg7Date": "2026-11-15",
-      "delta": 1.2,
-      "status": "plan",
-      "note": "over korridoren — tæller som bagud efter to mandage",
+      "delta": 1.3,
+      "status": "bagud",
+      "note": null,
       "ratePerWeek": -0.29,
-      "actualRate4w": -0.42,
+      "actualRate4w": -0.31,
       "series": [
         {
           "date": "2026-11-02",
@@ -11095,19 +10836,19 @@
       ],
       "mondays": [
         {
-          "date": "2026-11-09",
+          "date": "2026-11-16",
           "status": "bagud"
         },
         {
-          "date": "2026-11-02",
-          "status": "plan"
+          "date": "2026-11-09",
+          "status": "bagud"
         }
       ]
     },
     "fat": {
       "avg14": 22.6,
-      "avg14Change28d": 0.6,
-      "expected": 21.9,
+      "avg14Change28d": 0.7,
+      "expected": 21.8,
       "target": 19.0,
       "corridorPp": 0.5,
       "status": "bagud",
@@ -11115,7 +10856,7 @@
     },
     "ffm": {
       "now": 56.2,
-      "change28d": -1.9,
+      "change28d": -2.0,
       "target": 56.3,
       "status": "ok",
       "baseline": 55.8,
@@ -11124,42 +10865,43 @@
       "holdKg": -0.5
     },
     "strengthWeek": {
-      "done": 4,
+      "done": 0,
       "target": 2
     },
     "strengthWeeks": {
       "2026-10-19": 0,
       "2026-10-26": 0,
-      "2026-11-02": 3
+      "2026-11-02": 3,
+      "2026-11-09": 4
     },
     "cutCheck": {
       "active": true,
       "level": "act",
-      "text": "Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads",
+      "text": "Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
       "signals": {
         "rate": {
           "level": null,
-          "value": 0.41,
-          "text": "0,41 kg/uge (2 uger)"
+          "value": 0.43,
+          "text": "0,43 kg/uge (2 uger)"
         },
         "ffm": {
           "level": "act",
-          "value": -1.9,
-          "text": "−1,9 kg på 4 uger"
+          "value": -2.0,
+          "text": "−2,0 kg på 4 uger"
         },
         "strength": {
           "level": null,
           "value": [
-            0,
-            3
+            3,
+            4
           ],
-          "text": "0 og 3 pas de to seneste uger (mål 2)"
+          "text": "3 og 4 pas de to seneste uger (mål 2)"
         },
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 2.9,
-            "hrvPct": -7.7
+            "rhr": 2.8,
+            "hrvPct": -8.3
           },
           "text": "hvilepuls +3 · HRV −8 % (14 dage)"
         },
@@ -11171,10 +10913,10 @@
         "alcohol": {
           "level": "warn",
           "value": {
-            "days7": 6,
-            "run": 6
+            "days7": 5,
+            "run": 5
           },
-          "text": "6 drikkedage på 7 dage · 6 i træk"
+          "text": "5 drikkedage på 7 dage · 5 i træk"
         }
       }
     }
@@ -11489,29 +11231,29 @@
     }
   },
   "weekTss": {
-    "actual": 114,
-    "planned": 248
+    "actual": 0,
+    "planned": 304
   },
   "martinMail": {
-    "week": 10,
-    "isoWeek": 46,
+    "week": 11,
+    "isoWeek": 47,
     "lines": [
-      "Uge 46: TSS 114 af 248 (46 %) · CTL 28,5 (mål 38) · TSB +10,3",
-      "Vægt 7d 72,8 kg · fedt 14d 22,6 % · på plan mod glidepath (71,6)",
-      "HRV 7d 39 (28d 42) · hvilepuls 49 · søvn 7d 8,1 t",
+      "Uge 47: TSS 0 af 304 (0 %) · CTL 27,8 (mål 42) · TSB +8,0",
+      "Vægt 7d 72,9 kg · fedt 14d 22,6 % · bagud 1,3 kg mod glidepath (71,5)",
+      "HRV 7d 38 (28d 42) · hvilepuls 49 · søvn 7d 8,4 t",
       "AF 1/7 · protein 3/3 0/7 · aftensult —/7",
-      "Styrke 4/2 · check-in 4/10 ben ✗ overkrop ✗",
-      "Cut-tjek: act — Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads",
-      "Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: ingen",
+      "Styrke 3/2 · check-in 4/10 ben ✗ overkrop ✗",
+      "Cut-tjek: act — Fedtfri masse −2,0 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
+      "Næste uge (48, RECOVERY): TSS-mål 440 · hårde/lange dage: man 23/11 Cykel Z2 90 min Mallorca 90 min, tir 24/11 Cykel Z2 90 min Mallorca 90 min, ons 25/11 Cykel Z2 90 min Mallorca 90 min, tor 26/11 Cykel Z2 90 min Mallorca 90 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-15T20:11:02Z"
+    "generatedAt": "2026-11-16T00:11:15Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 257,
     "wkg": 3.53,
-    "weightAvg7": 72.8,
+    "weightAvg7": 72.9,
     "phase": "BASE",
     "phaseTarget": 292,
     "phaseWkgTarget": 4.29,
@@ -11577,8 +11319,8 @@
     ]
   },
   "fitnessLive": {
-    "date": "2026-11-15",
-    "ctl": 28.5,
-    "atl": 18.2
+    "date": "2026-11-16",
+    "ctl": 27.8,
+    "atl": 19.8
   }
 }
