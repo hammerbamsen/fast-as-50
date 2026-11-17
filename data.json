@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-17 09:57",
+    "updated": "2026-11-17 11:58",
     "week": 11,
     "totalWeeks": 51,
     "blockType": "BASE+",
@@ -34,13 +34,13 @@
       "color": "#E67E22"
     },
     "ctl": {
-      "value": "28,1",
+      "value": "28,3",
       "unit": "",
       "sub": "Uge 47-mål 42 · BASE+",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "7,5",
+      "value": "6,8",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "55",
+      "value": "62",
       "unit": "TSS",
-      "sub": "55 af 304 planlagt TSS",
+      "sub": "62 af 304 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,13 +111,21 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Uge 47 er en ren restitutionsuge — det vigtigste nu er at stoppe muskeltabet og holde alkohol nede. {HL} Dagens Z2-cykel er i hus: 61 min, 30 TSS med ERG. Mandag kom styrke hjem med 26 min af 45 planlagt. Ugen er i uge 47 — ren restitutionsuge, så lavt TSS er korrekt.",
-  "coachHighlight": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen kalorieunderskud i aften.",
+  "coachSpeech": "Uge 47, BASE+ uge 1/1 — restitutionsuge med cut-advarsel: fedtfri masse er faldet 1,9 kg på 4 uger. {HL} Begge dagens pas er i mål: 61 min på cyklen (30 TSS) og 52 min gåtur. Ugen har 62 TSS af 304 planlagt — men det er en restitutionsuge, og ramprate er −0,2, så der er ingen grund til at jage TSS.",
+  "coachHighlight": "Spis protein ved alle 3 måltider i dag og sæt cut på pause — vedligeholdsindtag de næste 3-4 dage.",
   "weekFocus": "Spis til vedligehold, hold styrke og Z2 i ro",
   "today": [
     {
       "discipline": "bike",
       "title": "FaF 1 Z2 - Rolig 60",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "walk",
+      "title": "Gentofte Gang",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -167,6 +175,17 @@
       "actual_mins": 61,
       "actual_distance_m": 31844.98,
       "intervals_compliance": 66.7
+    },
+    {
+      "day": "Tir",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 7,
+      "actual_mins": 52,
+      "actual_distance_m": 4919.19,
+      "today": true
     },
     {
       "day": "Ons",
@@ -234,7 +253,7 @@
     34.5,
     31.8,
     28.5,
-    28.1
+    28.3
   ],
   "weightHistory": [
     {
@@ -1948,7 +1967,7 @@
     },
     {
       "date": "2026-11-17",
-      "v": 7.5,
+      "v": 6.8,
       "real": true
     }
   ],
@@ -2310,6 +2329,17 @@
           "actual_mins": 61,
           "actual_distance_m": 31844.98,
           "intervals_compliance": 66.7
+        },
+        {
+          "day": "Tir",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 7,
+          "actual_mins": 52,
+          "actual_distance_m": 4919.19,
+          "today": true
         },
         {
           "day": "Ons",
@@ -3005,11 +3035,11 @@
     }
   ],
   "train_mins": {
+    "walk": 106.0,
     "bike": 61.0,
-    "walk": 54.0,
     "strength": 26.0,
     "planned": 405.0,
-    "actual_total": 141.0
+    "actual_total": 193.0
   },
   "fatHistory": [
     {
@@ -3371,8 +3401,8 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 72 af 357 · Tirsdag · Uge 47</strong></p><p class=\"coach-sec coach-big\">Uge 47 er en ren restitutionsuge — det vigtigste nu er at stoppe muskeltabet og holde alkohol nede.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Dagens Z2-cykel er i hus: 61 min, 30 TSS med ERG. Mandag kom styrke hjem med 26 min af 45 planlagt. Ugen er i uge 47 — ren restitutionsuge, så lavt TSS er korrekt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 1,5 kg bagud planen (72,8 kg mod 71,5 kg). Fedtprocenten på 7-dages snit er faldet 0,5 procentpoint den seneste måned — men fedtfri masse er gået 1,9 kg ned på 4 uger. Spis til vedligehold 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 1 alkoholfri dag denne uge mod et mål på 6 — og 5 drikkedage de seneste 7 dage. Protein er kun registreret 1 af 7 dage. Søvn er 8,3 timer i snit, energi 3,0.</p>",
-  "coachAssessmentTs": "09:57",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 72 af 357 · Tirsdag · Uge 47</strong></p><p class=\"coach-sec coach-big\">Uge 47, BASE+ uge 1/1 — restitutionsuge med cut-advarsel: fedtfri masse er faldet 1,9 kg på 4 uger.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Begge dagens pas er i mål: 61 min på cyklen (30 TSS) og 52 min gåtur. Ugen har 62 TSS af 304 planlagt — men det er en restitutionsuge, og ramprate er −0,2, så der er ingen grund til at jage TSS.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 1,5 kg over det forventede på 71,5 kg. Fedtfri masse er faldet 1,9 kg på 4 uger — cut-raten på 0,29 kg/uge er for aggressiv: sæt til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 1 proteindag ud af 7 registrerede — det er kerneproblemet oven på FFM-faldet. AF-uge: 1 af 6 planlagte dage, 5 dage med 1-2 genstande den seneste uge — ingen dage med 3+.</p>",
+  "coachAssessmentTs": "11:58",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3390,7 +3420,7 @@
       "source": "rule"
     }
   ],
-  "tsb": 7.5,
+  "tsb": 6.8,
   "swimHistory": [
     {
       "week": 1,
@@ -3459,7 +3489,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i211066428",
+  "coachAssessmentLastActId": "i211160677",
   "weekFocusWeek": 11,
   "coachAssessmentPlanAtGen": "FaF 1 Z2 - Rolig 60",
   "weightGoal": 69.5,
@@ -3713,8 +3743,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-17T08:58:16.510909",
-  "coachAssessmentTsFull": "2026-11-17T08:58:16",
+  "credentialsCheckedTs": "2026-11-17T10:58:48.337881",
+  "coachAssessmentTsFull": "2026-11-17T10:58:48",
   "coachAssessmentWeightAtGen": 72.6,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3811,7 +3841,7 @@
     "8": 60,
     "9": 153,
     "10": 114,
-    "11": 55
+    "11": 62
   },
   "racesUpcoming": [
     {
@@ -5204,7 +5234,7 @@
         "mesoWeek": "1/1",
         "ctlTarget": 42,
         "tssTarget": 460,
-        "tssActual": 55,
+        "tssActual": 62,
         "purpose": "Base/VO2-blok: VO2 Rønnestad 30-15 tir, lør 2 t Z2, søn Langtur 4 t — første 4-timers. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -8591,6 +8621,24 @@
                 "start": "07:00",
                 "startFixed": false,
                 "completion": "partial"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 52,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 52,
+                "actualTss": 7,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10251,7 +10299,7 @@
           "week": 11,
           "programId": "tds-2027",
           "start": "2026-11-16",
-          "ctl": 28.1
+          "ctl": 28.3
         }
       ],
       "projection": [
@@ -10736,47 +10784,45 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-17T08:58:16Z",
-    "inputsHash": "42e960769b3ff8d0f68ca59cc86d730ce2de477d",
+    "generatedAt": "2026-11-17T10:58:48Z",
+    "inputsHash": "a04ec6e262882e70424bfc33bd1e45f3ca6eadbe",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold resten af dagen: protein ved alle tre måltider, ingen kalorieunderskud i aften.",
-      "why": "Fedtfri masse er faldet 1,9 kg på 4 uger — kroppen tærer på muskler, ikke fedt. Stop underskuddet nu."
+      "action": "Spis protein ved alle 3 måltider i dag og sæt cut på pause — vedligeholdsindtag de næste 3-4 dage.",
+      "why": "Fedtfri masse er faldet 1,9 kg på 4 uger — kroppen nedbryder muskler, ikke kun fedt."
     },
     "training": {
-      "text": "Dagens Z2-cykel er i hus: 61 min, 30 TSS med ERG. Mandag kom styrke hjem med 26 min af 45 planlagt. Ugen er i uge 47 — ren restitutionsuge, så lavt TSS er korrekt.",
+      "text": "Begge dagens pas er i mål: 61 min på cyklen (30 TSS) og 52 min gåtur. Ugen har 62 TSS af 304 planlagt — men det er en restitutionsuge, og ramprate er −0,2, så der er ingen grund til at jage TSS.",
       "refs": [
         61.0,
         30.0,
-        26.0,
-        45.0
+        52.0,
+        62.0,
+        304.0,
+        -0.2
       ]
     },
     "body": {
-      "text": "7-dages snit er 1,5 kg bagud planen (72,8 kg mod 71,5 kg). Fedtprocenten på 7-dages snit er faldet 0,5 procentpoint den seneste måned — men fedtfri masse er gået 1,9 kg ned på 4 uger. Spis til vedligehold 3-4 dage.",
+      "text": "7-dages snit for vægt er 1,5 kg over det forventede på 71,5 kg. Fedtfri masse er faldet 1,9 kg på 4 uger — cut-raten på 0,29 kg/uge er for aggressiv: sæt til vedligehold nu.",
       "refs": [
-        72.8,
-        71.5,
         1.5,
-        0.5,
-        1.9
+        71.5,
+        1.9,
+        0.29
       ]
     },
     "habits": {
-      "text": "Kun 1 alkoholfri dag denne uge mod et mål på 6 — og 5 drikkedage de seneste 7 dage. Protein er kun registreret 1 af 7 dage. Søvn er 8,3 timer i snit, energi 3,0.",
+      "text": "Kun 1 proteindag ud af 7 registrerede — det er kerneproblemet oven på FFM-faldet. AF-uge: 1 af 6 planlagte dage, 5 dage med 1-2 genstande den seneste uge — ingen dage med 3+.",
       "refs": [
         1.0,
-        6.0,
-        5.0,
         7.0,
         1.0,
-        7.0,
-        8.3,
-        3.0
+        6.0,
+        5.0
       ]
     },
-    "bigPicture": "Uge 47 er en ren restitutionsuge — det vigtigste nu er at stoppe muskeltabet og holde alkohol nede.",
+    "bigPicture": "Uge 47, BASE+ uge 1/1 — restitutionsuge med cut-advarsel: fedtfri masse er faldet 1,9 kg på 4 uger.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -11343,14 +11389,14 @@
     }
   },
   "weekTss": {
-    "actual": 55,
+    "actual": 62,
     "planned": 304
   },
   "martinMail": {
     "week": 11,
     "isoWeek": 47,
     "lines": [
-      "Uge 47: TSS 55 af 304 (18 %) · CTL 28,1 (mål 42) · TSB +7,5",
+      "Uge 47: TSS 62 af 304 (20 %) · CTL 28,3 (mål 42) · TSB +6,8",
       "Vægt 7d 72,8 kg · fedt 14d 22,6 % · bagud 1,3 kg mod glidepath (71,5)",
       "HRV 7d 40 (28d 42) · hvilepuls 49 · søvn 7d 8,3 t",
       "AF 2/7 · protein 3/3 1/7 · aftensult —/7",
@@ -11359,7 +11405,7 @@
       "Næste uge (48, RECOVERY): TSS-mål 440 · hårde/lange dage: man 23/11 Cykel Z2 90 min Mallorca 90 min, tir 24/11 Cykel Z2 90 min Mallorca 90 min, ons 25/11 Cykel Z2 90 min Mallorca 90 min, tor 26/11 Cykel Z2 90 min Mallorca 90 min",
       "Planændringer siden sidst: 0 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-17T08:57:57Z"
+    "generatedAt": "2026-11-17T10:58:10Z"
   },
   "proposals": [],
   "ftp": {
@@ -11432,7 +11478,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-17",
-    "ctl": 28.1,
-    "atl": 20.6
+    "ctl": 28.3,
+    "atl": 21.5
   }
 }
