@@ -1,0 +1,32 @@
+{
+ "id": "2026-11-22-milepael-21-januar",
+ "title": "Vaegt-milepael: 70,5 kg pr. 21/1-2027 (check-in med Martin)",
+ "status": "pending",
+ "createdAt": "2026-11-22T07:23:45+00:00",
+ "createdBy": "claude",
+ "note": "Kennet 22/11: check-in med Martin 21/1-2027 er naeste milepael, og baseline er i dag. 7-dages snit 72,8 kg (21/11) og fedt 22,6 % (14-dages snit) bliver nyt udgangspunkt. Maal 70,5 kg / 20,5 % pr. 21/1 = 0,27 kg/uge over 8,6 uger, under loftet paa 0,35. Faktisk rate de seneste fire uger var -0,1 kg/uge, og julen koster 1-1,5 uge paa vedligehold, saa hoejere rate er ikke realistisk oven i genopbygningen efter sygdom. 69,5 kg / 19 % pr. 1/1 var ikke laengere naaeligt (ville kraeve 0,55 kg/uge) og bliver naeste milepael efter Japan, februar-marts. Programmets goals staar uaendret paa 69,5 kg / 19 %. Stopregel uaendret: advarer restitutionssignalet, spises der til vedligehold.",
+ "summary": [
+  "Baseline flyttet fra 72,0 kg (2/11) til 72,8 kg (22/11)",
+  "Fedt-baseline 22,2 % -> 22,6 %",
+  "Maal 69,5 kg / 19 % pr. 1/1 -> 70,5 kg / 20,5 % pr. 21/1",
+  "holdFromMonth 2027-01 -> 2027-02",
+  "Glidesti og 'bagud'-status regner forfra fra 22/11"
+ ],
+ "changes": [
+  {
+   "action": "set_weight_plan",
+   "programId": "tds-2027",
+   "weightPlan": {
+    "startKg": 72.8,
+    "bodyFatPctStart": 22.6,
+    "cutStartsFrom": "2026-11-22",
+    "targetKg": 70.5,
+    "bodyFatPctTarget": 20.5,
+    "targetDate": "2027-01-21",
+    "holdFromMonth": "2027-02",
+    "maxLossPerWeekKg": 0.35,
+    "note": "Milepael sat 22/11-2026: baseline 72,8 kg / 22,6 % (7- og 14-dages snit) -> 70,5 kg / 20,5 % pr. 21/1-2027, hvor der er check-in med Martin. 0,27 kg/uge over 8,6 uger. Julen 24/12-1/1 koerer paa vedligehold, ikke underskud. Martin saetter underskuddet; protein ~2 g/kg, styrke 2-3x/uge. Stopregel: naar restitutionssignalet advarer (hvilepuls +2 slag og HRV -5 % over 14 dage mens vaegten falder), spises der til vedligehold indtil signalerne er tilbage. 69,5 kg / 19 % er naeste milepael efter Japan, februar-marts. Garmin-fedt er bioimpedans: styr efter snittet, ikke dagstallet."
+   }
+  }
+ ]
+}
