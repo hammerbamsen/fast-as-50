@@ -1,375 +1,386 @@
 {
- "id": "2026-11-22-mallorca-uge48-genopbygning",
- "title": "Uge 48: Mallorca Z1-2 2-3 t, vandring oveni, kur koerer videre",
- "status": "pending",
- "createdAt": "2026-11-22T06:04:23+00:00",
- "createdBy": "claude",
- "note": "Kennet 22/11: udredningen er faerdig. Nu handler det om restitution og at komme i gaenge med soevn, sund mad, motion og begraenset arbejde. Kuren koerer videre mod 69,5 kg / 19 % pr. 1/1-2027, moderat, med Martin paa raten. Uge 48 i Mallorca: Z1-2, 2-3 t pr. tur, vandring oveni som frivillig Z1, ingen intensitet. Uge 49 aabner foerste intensitet, men kun naar HRV 47-76 og hvilepuls under 47 holder tre dage i traek.",
- "summary": [
-  "Man 23/11: 90 min Z2 -> 2 t Z2 + Styrke A (+ frivillig vandring 1,5 t)",
-  "Tir 24/11: 90 min Z2 -> 2,5 t Z2",
-  "Ons 25/11: 90 min Z2 -> 2 t Z2 + frivillig vandring 1,5 t",
-  "Tor 26/11: 90 min Z2 -> 3 t Z2 + Styrke B",
-  "Man 30/11: gate skaerpet til tre dage i traek, udredning ude af betingelsen",
-  "tds-2027 weightPlan: note opdateret, tal uaendret (69,5 kg / 19 % pr. 1/1-2027)"
- ],
- "changes": [
-  {
-   "action": "set_weight_plan",
-   "programId": "tds-2027",
-   "weightPlan": {
-    "note": "Rekalibreret 27/10-2026: 72,0 kg / 22,2 % -> 69,5 kg / 19 % fra 2/11 til 1/1 = 0,29 kg/uge. Gennemgaaet med Martin 19/11. Udredningen afsluttet 22/11: kuren koerer videre, men moderat. Martin saetter underskuddet — protein ~2 g/kg, styrke 2-3x/uge. Stopregel: naar restitutionssignalet advarer (hvilepuls +2 slag og HRV -5 % over 14 dage mens vaegten falder), spises der til vedligehold indtil signalerne er tilbage. Garmin-fedt er bioimpedans: styr efter 7-dages snit."
-   }
-  },
-  {
-   "action": "set_day",
-   "date": "2026-11-23",
-   "entries": [
+  "id": "2026-11-22-mallorca-uge48-genopbygning",
+  "title": "Uge 48: Mallorca Z1-2 2-3 t, vandring oveni, kur koerer videre",
+  "status": "accepted",
+  "createdAt": "2026-11-22T06:04:23+00:00",
+  "createdBy": "claude",
+  "note": "Kennet 22/11: udredningen er faerdig. Nu handler det om restitution og at komme i gaenge med soevn, sund mad, motion og begraenset arbejde. Kuren koerer videre mod 69,5 kg / 19 % pr. 1/1-2027, moderat, med Martin paa raten. Uge 48 i Mallorca: Z1-2, 2-3 t pr. tur, vandring oveni som frivillig Z1, ingen intensitet. Uge 49 aabner foerste intensitet, men kun naar HRV 47-76 og hvilepuls under 47 holder tre dage i traek.",
+  "summary": [
+    "Man 23/11: 90 min Z2 -> 2 t Z2 + Styrke A (+ frivillig vandring 1,5 t)",
+    "Tir 24/11: 90 min Z2 -> 2,5 t Z2",
+    "Ons 25/11: 90 min Z2 -> 2 t Z2 + frivillig vandring 1,5 t",
+    "Tor 26/11: 90 min Z2 -> 3 t Z2 + Styrke B",
+    "Man 30/11: gate skaerpet til tre dage i traek, udredning ude af betingelsen",
+    "tds-2027 weightPlan: note opdateret, tal uaendret (69,5 kg / 19 % pr. 1/1-2027)"
+  ],
+  "changes": [
     {
-     "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
-     "workout": {
-      "name": "Cykel Z2 2 t Mallorca",
-      "type": "Ride",
-      "moving_time": 7200,
-      "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
-      "workout_doc": {
-       "steps": [
-        {
-         "ramp": true,
-         "power": {
-          "start": 45,
-          "end": 68,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "warmup": true,
-         "text": "Varm-op"
-        },
-        {
-         "text": "Aerob base 56-76% FTP",
-         "power": {
-          "start": 56,
-          "end": 76,
-          "units": "%ftp"
-         },
-         "duration": 6300
-        },
-        {
-         "ramp": true,
-         "power": {
-          "start": 68,
-          "end": 45,
-          "units": "%ftp"
-         },
-         "duration": 300,
-         "cooldown": true,
-         "text": "Cool-down"
-        }
-       ]
+      "action": "set_weight_plan",
+      "programId": "tds-2027",
+      "weightPlan": {
+        "note": "Rekalibreret 27/10-2026: 72,0 kg / 22,2 % -> 69,5 kg / 19 % fra 2/11 til 1/1 = 0,29 kg/uge. Gennemgaaet med Martin 19/11. Udredningen afsluttet 22/11: kuren koerer videre, men moderat. Martin saetter underskuddet — protein ~2 g/kg, styrke 2-3x/uge. Stopregel: naar restitutionssignalet advarer (hvilepuls +2 slag og HRV -5 % over 14 dage mens vaegten falder), spises der til vedligehold indtil signalerne er tilbage. Garmin-fedt er bioimpedans: styr efter 7-dages snit."
       }
-     }
     },
     {
-     "note": "Rejse: brug det der er — ellers kropsvægt (squat, push-up, step-up, split squat, planke). 2 runder.",
-     "templateId": "styrke-fs4-a-2r",
-     "workout": {
-      "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride",
-      "moving_time": 1500,
-      "name": "Styrke A · Functional 4 · 2 runder",
-      "type": "WeightTraining"
-     }
-    },
-    {
-     "optional": true,
-     "note": "Oveni og frivillig. Rolig gang i Z1 — kun hvis dagens cykeltur føltes let.",
-     "workout": {
-      "name": "Vandring 1,5 t",
-      "type": "Hike",
-      "moving_time": 5400,
-      "description": "- Vandring Z1 90m freeride",
-      "workout_doc": {
-       "steps": [
+      "action": "set_day",
+      "date": "2026-11-23",
+      "entries": [
         {
-         "duration": 5400,
-         "text": "Vandring Z1"
-        }
-       ]
-      }
-     }
-    }
-   ]
-  },
-  {
-   "action": "set_day",
-   "date": "2026-11-24",
-   "entries": [
-    {
-     "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
-     "workout": {
-      "name": "Cykel Z2 2,5 t Mallorca",
-      "type": "Ride",
-      "moving_time": 9000,
-      "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 135m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
-      "workout_doc": {
-       "steps": [
-        {
-         "ramp": true,
-         "power": {
-          "start": 45,
-          "end": 68,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "warmup": true,
-         "text": "Varm-op"
-        },
-        {
-         "text": "Aerob base 56-76% FTP",
-         "power": {
-          "start": 56,
-          "end": 76,
-          "units": "%ftp"
-         },
-         "duration": 8100
-        },
-        {
-         "ramp": true,
-         "power": {
-          "start": 68,
-          "end": 45,
-          "units": "%ftp"
-         },
-         "duration": 300,
-         "cooldown": true,
-         "text": "Cool-down"
-        }
-       ]
-      }
-     }
-    }
-   ]
-  },
-  {
-   "action": "set_day",
-   "date": "2026-11-25",
-   "entries": [
-    {
-     "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
-     "workout": {
-      "name": "Cykel Z2 2 t Mallorca",
-      "type": "Ride",
-      "moving_time": 7200,
-      "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
-      "workout_doc": {
-       "steps": [
-        {
-         "ramp": true,
-         "power": {
-          "start": 45,
-          "end": 68,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "warmup": true,
-         "text": "Varm-op"
-        },
-        {
-         "text": "Aerob base 56-76% FTP",
-         "power": {
-          "start": 56,
-          "end": 76,
-          "units": "%ftp"
-         },
-         "duration": 6300
-        },
-        {
-         "ramp": true,
-         "power": {
-          "start": 68,
-          "end": 45,
-          "units": "%ftp"
-         },
-         "duration": 300,
-         "cooldown": true,
-         "text": "Cool-down"
-        }
-       ]
-      }
-     }
-    },
-    {
-     "optional": true,
-     "note": "Oveni og frivillig. Rolig gang i Z1 — kun hvis dagens cykeltur føltes let.",
-     "workout": {
-      "name": "Vandring 1,5 t",
-      "type": "Hike",
-      "moving_time": 5400,
-      "description": "- Vandring Z1 90m freeride",
-      "workout_doc": {
-       "steps": [
-        {
-         "duration": 5400,
-         "text": "Vandring Z1"
-        }
-       ]
-      }
-     }
-    }
-   ]
-  },
-  {
-   "action": "set_day",
-   "date": "2026-11-26",
-   "entries": [
-    {
-     "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
-     "workout": {
-      "name": "Cykel Z2 3 t Mallorca",
-      "type": "Ride",
-      "moving_time": 10800,
-      "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 165m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
-      "workout_doc": {
-       "steps": [
-        {
-         "ramp": true,
-         "power": {
-          "start": 45,
-          "end": 68,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "warmup": true,
-         "text": "Varm-op"
-        },
-        {
-         "text": "Aerob base 56-76% FTP",
-         "power": {
-          "start": 56,
-          "end": 76,
-          "units": "%ftp"
-         },
-         "duration": 9900
-        },
-        {
-         "ramp": true,
-         "power": {
-          "start": 68,
-          "end": 45,
-          "units": "%ftp"
-         },
-         "duration": 300,
-         "cooldown": true,
-         "text": "Cool-down"
-        }
-       ]
-      }
-     }
-    },
-    {
-     "note": "Rejse: brug det der er — ellers kropsvægt (squat, push-up, step-up, split squat, planke). 2 runder.",
-     "templateId": "styrke-fs4-b-2r",
-     "workout": {
-      "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
-      "moving_time": 1500,
-      "name": "Styrke B · Functional 4 · 2 runder",
-      "type": "WeightTraining"
-     }
-    }
-   ]
-  },
-  {
-   "action": "set_day",
-   "date": "2026-11-30",
-   "entries": [
-    {
-     "libraryId": "intro_4x3_z34",
-     "workout": {
-      "name": "FaF 4 Tær - Intro 4 x 3",
-      "type": "Ride",
-      "moving_time": 3720,
-      "description": "- Varm-op 10m ramp 45-65% FTP\n- Zone 2 10m 64% FTP\n\n4x 4 x 3 min @ 90%\n- 3 min 3m 90% FTP\n- Pause 3m 55% FTP\n\n- Zone 2 10m 64% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Første korte intensitet efter en restitutionsperiode. 4 × 3 min i toppen af zone 3 / bunden af zone 4. Bygget 13/11-2026 til uge 49.\n\nKør kun passet, hvis HRV er i dit normalområde (47-76) og hvilepulsen er under ca. 47. Ellers: kør det som ren zone 2.",
-      "workout_doc": {
-       "steps": [
-        {
-         "ramp": true,
-         "power": {
-          "start": 45,
-          "end": 65,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "warmup": true,
-         "text": "Varm-op"
-        },
-        {
-         "power": {
-          "start": 64,
-          "end": 64,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "text": "Zone 2 64% FTP"
-        },
-        {
-         "reps": 4,
-         "text": "4 x 3 min @ 90%",
-         "steps": [
-          {
-           "power": {
-            "start": 90,
-            "end": 90,
-            "units": "%ftp"
-           },
-           "duration": 180,
-           "text": "3 min 90% FTP"
-          },
-          {
-           "power": {
-            "start": 55,
-            "end": 55,
-            "units": "%ftp"
-           },
-           "duration": 180,
-           "text": "Pause 55% FTP"
+          "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
+          "workout": {
+            "name": "Cykel Z2 2 t Mallorca",
+            "type": "Ride",
+            "moving_time": 7200,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "text": "Aerob base 56-76% FTP",
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 6300
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
           }
-         ]
         },
         {
-         "power": {
-          "start": 64,
-          "end": 64,
-          "units": "%ftp"
-         },
-         "duration": 600,
-         "text": "Zone 2 64% FTP"
+          "note": "Rejse: brug det der er — ellers kropsvægt (squat, push-up, step-up, split squat, planke). 2 runder.",
+          "templateId": "styrke-fs4-a-2r",
+          "workout": {
+            "description": "2x\n- Thruster 2×5kg DB ×10 1m freeride\n- Renegade row 10kg DB ×8/side 1m freeride\n- KB swing 12,5kg KB ×15 1m freeride\n- KB row 10kg DB ×10/side 1m freeride\n- Press 2×5kg DB ×10 1m freeride\n- Pause 90 sek 2m freeride",
+            "moving_time": 1500,
+            "name": "Styrke A · Functional 4 · 2 runder",
+            "type": "WeightTraining"
+          }
         },
         {
-         "ramp": true,
-         "power": {
-          "start": 60,
-          "end": 40,
-          "units": "%ftp"
-         },
-         "duration": 480,
-         "cooldown": true,
-         "text": "Cool-down"
+          "optional": true,
+          "note": "Oveni og frivillig. Rolig gang i Z1 — kun hvis dagens cykeltur føltes let.",
+          "workout": {
+            "name": "Vandring 1,5 t",
+            "type": "Hike",
+            "moving_time": 5400,
+            "description": "- Vandring Z1 90m freeride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 5400,
+                  "text": "Vandring Z1"
+                }
+              ]
+            }
+          }
         }
-       ]
-      }
-     },
-     "note": "Foerste intensitet efter genopbygningen. Kun hvis HRV er 47-76 OG hvilepuls under ca. 47 tre dage i traek — ellers koer det som ren Z2. Udredningen er ikke laengere betingelsen; traetheden er."
+      ]
     },
     {
-     "note": "Styrke 3×/uge.",
-     "templateId": "styrke-fs4-b-3r",
-     "workout": {
-      "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
-      "moving_time": 2700,
-      "name": "Styrke B · Functional 4 · 3 runder",
-      "type": "WeightTraining"
-     }
+      "action": "set_day",
+      "date": "2026-11-24",
+      "entries": [
+        {
+          "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
+          "workout": {
+            "name": "Cykel Z2 2,5 t Mallorca",
+            "type": "Ride",
+            "moving_time": 9000,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 135m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "text": "Aerob base 56-76% FTP",
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 8100
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-25",
+      "entries": [
+        {
+          "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
+          "workout": {
+            "name": "Cykel Z2 2 t Mallorca",
+            "type": "Ride",
+            "moving_time": 7200,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 105m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "text": "Aerob base 56-76% FTP",
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 6300
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "optional": true,
+          "note": "Oveni og frivillig. Rolig gang i Z1 — kun hvis dagens cykeltur føltes let.",
+          "workout": {
+            "name": "Vandring 1,5 t",
+            "type": "Hike",
+            "moving_time": 5400,
+            "description": "- Vandring Z1 90m freeride",
+            "workout_doc": {
+              "steps": [
+                {
+                  "duration": 5400,
+                  "text": "Vandring Z1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-26",
+      "entries": [
+        {
+          "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
+          "workout": {
+            "name": "Cykel Z2 3 t Mallorca",
+            "type": "Ride",
+            "moving_time": 10800,
+            "description": "- Varm-op 10m ramp 45-68% FTP\n- Aerob base 165m 56-76% FTP\n- Cool-down 5m ramp 68-45% FTP",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 68,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "text": "Aerob base 56-76% FTP",
+                  "power": {
+                    "start": 56,
+                    "end": 76,
+                    "units": "%ftp"
+                  },
+                  "duration": 9900
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 68,
+                    "end": 45,
+                    "units": "%ftp"
+                  },
+                  "duration": 300,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "note": "Rejse: brug det der er — ellers kropsvægt (squat, push-up, step-up, split squat, planke). 2 runder.",
+          "templateId": "styrke-fs4-b-2r",
+          "workout": {
+            "description": "2x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
+            "moving_time": 1500,
+            "name": "Styrke B · Functional 4 · 2 runder",
+            "type": "WeightTraining"
+          }
+        }
+      ]
+    },
+    {
+      "action": "set_day",
+      "date": "2026-11-30",
+      "entries": [
+        {
+          "libraryId": "intro_4x3_z34",
+          "workout": {
+            "name": "FaF 4 Tær - Intro 4 x 3",
+            "type": "Ride",
+            "moving_time": 3720,
+            "description": "- Varm-op 10m ramp 45-65% FTP\n- Zone 2 10m 64% FTP\n\n4x 4 x 3 min @ 90%\n- 3 min 3m 90% FTP\n- Pause 3m 55% FTP\n\n- Zone 2 10m 64% FTP\n- Cool-down 8m ramp 60-40% FTP\n\nFORMÅL: Første korte intensitet efter en restitutionsperiode. 4 × 3 min i toppen af zone 3 / bunden af zone 4. Bygget 13/11-2026 til uge 49.\n\nKør kun passet, hvis HRV er i dit normalområde (47-76) og hvilepulsen er under ca. 47. Ellers: kør det som ren zone 2.",
+            "workout_doc": {
+              "steps": [
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 45,
+                    "end": 65,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "warmup": true,
+                  "text": "Varm-op"
+                },
+                {
+                  "power": {
+                    "start": 64,
+                    "end": 64,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "text": "Zone 2 64% FTP"
+                },
+                {
+                  "reps": 4,
+                  "text": "4 x 3 min @ 90%",
+                  "steps": [
+                    {
+                      "power": {
+                        "start": 90,
+                        "end": 90,
+                        "units": "%ftp"
+                      },
+                      "duration": 180,
+                      "text": "3 min 90% FTP"
+                    },
+                    {
+                      "power": {
+                        "start": 55,
+                        "end": 55,
+                        "units": "%ftp"
+                      },
+                      "duration": 180,
+                      "text": "Pause 55% FTP"
+                    }
+                  ]
+                },
+                {
+                  "power": {
+                    "start": 64,
+                    "end": 64,
+                    "units": "%ftp"
+                  },
+                  "duration": 600,
+                  "text": "Zone 2 64% FTP"
+                },
+                {
+                  "ramp": true,
+                  "power": {
+                    "start": 60,
+                    "end": 40,
+                    "units": "%ftp"
+                  },
+                  "duration": 480,
+                  "cooldown": true,
+                  "text": "Cool-down"
+                }
+              ]
+            }
+          },
+          "note": "Foerste intensitet efter genopbygningen. Kun hvis HRV er 47-76 OG hvilepuls under ca. 47 tre dage i traek — ellers koer det som ren Z2. Udredningen er ikke laengere betingelsen; traetheden er."
+        },
+        {
+          "note": "Styrke 3×/uge.",
+          "templateId": "styrke-fs4-b-3r",
+          "workout": {
+            "description": "- Opvarmning 10m freeride\n\n3x\n- RDL 12kg ×12 1m freeride\n- Split squat 12,5kg KB goblet ×8/ben 1m freeride\n- Pullover 7kg DB ×12 1m freeride\n- Bænkpres 2×7kg DB ×12 1m freeride\n- Farmers walk 2×10kg 40 m 1m freeride\n- Pause 90 sek 2m freeride",
+            "moving_time": 2700,
+            "name": "Styrke B · Functional 4 · 3 runder",
+            "type": "WeightTraining"
+          }
+        }
+      ]
     }
-   ]
+  ],
+  "decidedAt": "2026-11-22T06:06:04+00:00",
+  "result": {
+    "dates_changed": [
+      "2026-11-23",
+      "2026-11-24",
+      "2026-11-25",
+      "2026-11-26",
+      "2026-11-30"
+    ],
+    "commit": "19d84ebab3d0b5dfeafb49bb32764bda84a42850"
   }
- ]
 }
