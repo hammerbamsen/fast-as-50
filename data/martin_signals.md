@@ -290,3 +290,9 @@
 - Cut-tjek: act — Fedtfri masse −1,7 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
 - Næste uge (48, RECOVERY): TSS-mål 440 · hårde/lange dage: man 23/11 Cykel Z2 90 min Mallorca 90 min, tir 24/11 Cykel Z2 90 min Mallorca 90 min, ons 25/11 Cykel Z2 90 min Mallorca 90 min, tor 26/11 Cykel Z2 90 min Mallorca 90 min
 - Planændringer siden sidst: 0 — se martin_signals.md
+
+### Planændring 22/11 08:06
+- **mandag 2026-11-23** (uge 12, apply_proposal): Cykel Z2 90 min Mallorca (90 min) [langt]; Styrke A · Functional 4 · 2 runder (25 min) → Cykel Z2 2 t Mallorca (120 min) [langt]; Styrke A · Functional 4 · 2 runder (25 min); Vandring 1,5 t (90 min) [langt]
+- **tirsdag 2026-11-24** (uge 12, apply_proposal): Cykel Z2 90 min Mallorca (90 min) [langt] → Cykel Z2 2,5 t Mallorca (150 min) [langt]
+- **onsdag 2026-11-25** (uge 12, apply_proposal): Cykel Z2 90 min Mallorca (90 min) [langt] → Cykel Z2 2 t Mallorca (120 min) [langt]; Vandring 1,5 t (90 min) [langt]
+- **torsdag 2026-11-26** (uge 12, apply_proposal): Cykel Z2 90 min Mallorca (90 min) [langt]; Styrke B · Functional 4 · 2 runder (25 min) → Cykel Z2 3 t Mallorca (180 min) [langt]; Styrke B · Functional 4 · 2 runder (25 min)
