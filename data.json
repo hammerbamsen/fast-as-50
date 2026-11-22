@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-22 14:23",
+    "updated": "2026-11-22 16:35",
     "week": 11,
     "totalWeeks": 51,
     "blockType": "BASE+",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "26,7",
+      "value": "28,1",
       "unit": "",
       "sub": "Uge 47-mål 42 · BASE+",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "5,5",
+      "value": "-0,8",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,10 +70,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "168",
+      "value": "226",
       "unit": "TSS",
-      "sub": "168 af 304 planlagt TSS",
-      "color": "#C0392B"
+      "sub": "226 af 304 planlagt TSS",
+      "color": "#E67E22"
     },
     "bikeKm": {
       "value": "62,8",
@@ -111,17 +111,17 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Søndag — afslut uge 47 stærkt. {HL} Fokus: 168 af 304 TSS er i hus. 4 sessioner er misset — vinduerne er lukket. Vægt på 73,4 kg (målt 21/11) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 7 afsluttede dage — 2 mangler i 0 dage tilbage. Hård uge — men det er sådan formen bygges. Hold ved. 📊 Store billede: CTL 26,7 er 15.3 point BAG ugeplanen (planmål uge 47: 42). Vægten har taget på 1.9 kg over de seneste 89 dage (71,5 → 73,4 kg).  \"Det er ikke at have for lidt, der gør et menneske fattigt, men at ville have mere.\" — Seneca",
-  "coachHighlight": "Søvn på 8,0 timer er solid",
+  "coachSpeech": "Uge 47 slut — genopbygning starter nu. Næste uge er ren RECOVERY på Mallorca: Z2, let styrke, ingen intensitet. {HL} Ugen endte på 226 TSS mod planlagte 304 — 74 %. I BASE+ er det et efterslæb, men readiness er LOW (HRV 32,0 ms) og 4 pas blev misset (løb, cykel torsdag, svøm, lørdag styrke), så kroppen signalerede rigtigt.",
+  "coachHighlight": "Pak proteinkilder til Mallorca-turen i dag — ost, nødder, kylling eller hvad du kan medbringe — så du rammer protein ved hvert måltid fra ma",
   "weekFocus": "Spis til vedligehold, hold styrke og Z2 i ro",
   "today": [
     {
-      "discipline": "rest",
-      "title": "Hviledag",
+      "discipline": "hike",
+      "title": "Fornalutx Vandring",
       "duration": "",
       "zone": "–",
-      "desc": "Ingen planlagt træning i dag.",
-      "completed": false
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -280,6 +280,17 @@
       "actual_tss": 14,
       "actual_mins": 95,
       "actual_distance_m": 8337.67
+    },
+    {
+      "day": "Søn",
+      "disc": "hike",
+      "label": "Fornalutx Vandring",
+      "done": true,
+      "extra": true,
+      "actual_tss": 58,
+      "actual_mins": 191,
+      "actual_distance_m": 16092.8,
+      "today": true
     }
   ],
   "ctlCurve": [
@@ -293,7 +304,7 @@
     34.5,
     31.8,
     28.5,
-    26.7
+    28.1
   ],
   "weightHistory": [
     {
@@ -2007,7 +2018,7 @@
     },
     {
       "date": "2026-11-22",
-      "v": 5.5,
+      "v": -0.8,
       "real": true
     }
   ],
@@ -2486,6 +2497,17 @@
           "actual_tss": 14,
           "actual_mins": 95,
           "actual_distance_m": 8337.67
+        },
+        {
+          "day": "Søn",
+          "disc": "hike",
+          "label": "Fornalutx Vandring",
+          "done": true,
+          "extra": true,
+          "actual_tss": 58,
+          "actual_mins": 191,
+          "actual_distance_m": 16092.8,
+          "today": true
         }
       ],
       "blockType": "BASE+",
@@ -2595,7 +2617,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Z2 på føling — kør kortere hvis kroppen siger fra"
+      "focus": "Z2 på Mallorca — ro i benene, protein ved hvert måltid"
     },
     "13": {
       "sessions": [
@@ -3147,11 +3169,12 @@
     }
   ],
   "train_mins": {
+    "hike": 191.0,
     "walk": 404.0,
     "bike": 121.0,
     "strength": 81.0,
     "planned": 405.0,
-    "actual_total": 606.0
+    "actual_total": 797.0
   },
   "fatHistory": [
     {
@@ -3513,22 +3536,33 @@
     },
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 77 af 357 · Søndag · Uge 47</strong></p><p class=\"coach-sec coach-big\">Uge 47 sluttede med 55 % af planlagt TSS og lav readiness — næste uge er RECOVERY på Mallorca: kun Z2 og styrke, ingen intensitet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Uge 47: 4 pas gennemført (2 styrke, 2 cykel Z2), 4 misset (løb, cykel torsdag, svøm, styrke lørdag) — faktisk TSS 168 mod planlagt 304, svarende til 55 %. I BASE+ er det et efterslæb, men readiness er LOW (HRV 32,0 ms) og ramp er −1,8 — kroppen er ikke klar til mere. CTL 26,7 mod mål 42,0. Næste uge er RECOVERY (uge 48, blok R): kun lette Z2-ture på Mallorca og styrke 2 runder, kvote 0 hårde og 0 moderate — ingen intensitet uanset hvad.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit 72,8 kg og fedt 22,5 % — præcis på cutplanen (forventet 72,8 kg, delta 0,0 kg). Retning er endnu stabil, serien er for kort til at konkludere. Men cut-tjekket er alvorligt: fedtfri masse er faldet 1,7 kg på 4 uger — spis til vedligehold de næste 3-4 dage, protein ved alle tre måltider, og sørg for at styrketræningen sidder.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein registreret 2 af 7 dage — det er for lidt, særligt nu hvor fedtfri masse falder. AF: 4 dage mod mål 6, ingen dage med 3+ genstande. Søvn-snit 8,0 t — det er fint og skal beskyttes på Mallorca.</p>",
-  "coachAssessmentTs": "11:47",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 77 af 357 · Søndag · Uge 47</strong></p><p class=\"coach-sec coach-big\">Uge 47 slut — genopbygning starter nu. Næste uge er ren RECOVERY på Mallorca: Z2, let styrke, ingen intensitet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen endte på 226 TSS mod planlagte 304 — 74 %. I BASE+ er det et efterslæb, men readiness er LOW (HRV 32,0 ms) og 4 pas blev misset (løb, cykel torsdag, svøm, lørdag styrke), så kroppen signalerede rigtigt. CTL er 28,1 mod mål 42,0 — retningen er opad, men ramp-rate er −0,4, og restitutionen trumfer alt. Næste uge er RECOVERY (uge 12): kun lette Z2-pas på Mallorca, 0 hårde, 0 moderate, TSS-mål 440 — byg på med lange flader, ikke tempo.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,8 kg og 22,5 % fedt — præcis på cutplanens forventning (72,8 kg, fedtforventet 22,6 %). Retningen er endnu ikke fastslået (for kort serie). Fedtfri masse er dog faldet 1,7 kg på 4 uger — spis til vedligehold de næste 3-4 dage, og sørg for protein ved alle tre måltider.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>2 AF-dage mod mål 6 — ingen dage med 3+ genstande, men alkohol i 2 dage med 1 løbende dag. Protein kun registreret 2 ud af 6 registrerede dage — det er den ene ting at ændre næste uge: protein ved hvert måltid, alle dage.</p>",
+  "coachAssessmentTs": "16:35",
   "commute_pairing_warnings": [],
   "warnings": [
     {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 32,0 ms — 13% under 7d-snit (36,7 ms). Kroppen er presset."
-    },
-    {
       "type": "cut",
       "level": "critical",
-      "message": "Cut-tjek: Fedtfri masse −1,7 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads"
+      "message": "Cut-tjek: Fedtfri masse −1,7 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "hrv",
+      "level": "warn",
+      "message": "HRV 32,0 ms — 13% under 7d-snit (36,7 ms). Kroppen er presset.",
+      "action": null,
+      "source": "rule"
+    },
+    {
+      "type": "readiness",
+      "level": "warn",
+      "message": "HRV 32,0 ms — 13 % under 7-dages snit (36,7 ms). Kør kortere på Mallorca de første dage, hvis pulsen er 10 slag over normalt ved samme indsats.",
+      "action": null,
+      "source": "ai"
     }
   ],
-  "tsb": 5.5,
+  "tsb": -0.8,
   "swimHistory": [
     {
       "week": 1,
@@ -3597,9 +3631,9 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i212785711",
+  "coachAssessmentLastActId": "i213283468",
   "weekFocusWeek": 11,
-  "coachAssessmentPlanAtGen": "",
+  "coachAssessmentPlanAtGen": "Fornalutx Vandring",
   "weightGoal": 69.5,
   "bodyFatGoal": 19,
   "weightMovingAvg7": [
@@ -3851,8 +3885,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-22T13:23:19.297542",
-  "coachAssessmentTsFull": "2026-11-22T10:47:51",
+  "credentialsCheckedTs": "2026-11-22T15:36:13.046734",
+  "coachAssessmentTsFull": "2026-11-22T15:36:13",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
@@ -3949,7 +3983,7 @@
     "8": 60,
     "9": 153,
     "10": 114,
-    "11": 168
+    "11": 226
   },
   "racesUpcoming": [
     {
@@ -5351,7 +5385,7 @@
         "mesoWeek": "1/1",
         "ctlTarget": 42,
         "tssTarget": 460,
-        "tssActual": 168,
+        "tssActual": 226,
         "purpose": "Base/VO2-blok: VO2 Rønnestad 30-15 tir, lør 2 t Z2, søn Langtur 4 t — første 4-timers. Løb ons, svøm fre, styrke man+lør 45 min.",
         "note": null,
         "quota": {
@@ -9012,7 +9046,26 @@
           {
             "date": "2026-11-22",
             "weekday": "Søn",
-            "entries": [],
+            "entries": [
+              {
+                "id": null,
+                "name": "Fornalutx Vandring",
+                "type": null,
+                "disc": "hike",
+                "mins": 191,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 191,
+                "actualTss": 58,
+                "note": null,
+                "isKey": false,
+                "extra": true
+              }
+            ],
             "restNote": "Rejsedag til Mallorca — fri. Gå gerne en tur.",
             "restId": "01d118d4",
             "isToday": true
@@ -10547,7 +10600,7 @@
           "week": 11,
           "programId": "tds-2027",
           "start": "2026-11-16",
-          "ctl": 26.7
+          "ctl": 28.1
         }
       ],
       "projection": [
@@ -11012,52 +11065,51 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-22T10:47:51Z",
-    "inputsHash": "397e23857b4d4cf34162b8a0a68eba086fc1b28e",
+    "generatedAt": "2026-11-22T15:36:13Z",
+    "inputsHash": "789b72176fb7e8d67e2d13cddf1e04ef7efd8a35",
     "model": "claude-sonnet-4-6",
     "mode": "sunday",
     "oneThing": {
-      "action": "Registrer alle tre måltider med protein i dag — start allerede til frokost.",
-      "why": "Fedtfri masse er faldet 1,7 kg på 4 uger; protein 3/3 er den ene ting der bremser tabet inden Mallorca-ugen starter i morgen."
+      "action": "Pak proteinkilder til Mallorca-turen i dag — ost, nødder, kylling eller hvad du kan medbringe — så du rammer protein ved hvert måltid fra ma",
+      "why": "Fedtfri masse faldt 1,7 kg på 4 uger — protein ved alle måltider er den eneste cut-handling der tæller nu."
     },
     "training": {
-      "text": "Uge 47: 4 pas gennemført (2 styrke, 2 cykel Z2), 4 misset (løb, cykel torsdag, svøm, styrke lørdag) — faktisk TSS 168 mod planlagt 304, svarende til 55 %. I BASE+ er det et efterslæb, men readiness er LOW (HRV 32,0 ms) og ramp er −1,8 — kroppen er ikke klar til mere. CTL 26,7 mod mål 42,0. Næste uge er RECOVERY (uge 48, blok R): kun lette Z2-ture på Mallorca og styrke 2 runder, kvote 0 hårde og 0 moderate — ingen intensitet uanset hvad.",
+      "text": "Ugen endte på 226 TSS mod planlagte 304 — 74 %. I BASE+ er det et efterslæb, men readiness er LOW (HRV 32,0 ms) og 4 pas blev misset (løb, cykel torsdag, svøm, lørdag styrke), så kroppen signalerede rigtigt. CTL er 28,1 mod mål 42,0 — retningen er opad, men ramp-rate er −0,4, og restitutionen trumfer alt. Næste uge er RECOVERY (uge 12): kun lette Z2-pas på Mallorca, 0 hårde, 0 moderate, TSS-mål 440 — byg på med lange flader, ikke tempo.",
       "refs": [
-        4.0,
-        168.0,
+        226.0,
         304.0,
-        55.0,
+        74.0,
         32.0,
-        26.7,
+        28.1,
         42.0,
-        -1.8,
+        -0.4,
+        440.0,
         0.0,
         0.0
       ]
     },
     "body": {
-      "text": "7-dages snit 72,8 kg og fedt 22,5 % — præcis på cutplanen (forventet 72,8 kg, delta 0,0 kg). Retning er endnu stabil, serien er for kort til at konkludere. Men cut-tjekket er alvorligt: fedtfri masse er faldet 1,7 kg på 4 uger — spis til vedligehold de næste 3-4 dage, protein ved alle tre måltider, og sørg for at styrketræningen sidder.",
+      "text": "7-dages snit er 72,8 kg og 22,5 % fedt — præcis på cutplanens forventning (72,8 kg, fedtforventet 22,6 %). Retningen er endnu ikke fastslået (for kort serie). Fedtfri masse er dog faldet 1,7 kg på 4 uger — spis til vedligehold de næste 3-4 dage, og sørg for protein ved alle tre måltider.",
       "refs": [
         72.8,
         22.5,
         72.8,
-        0.0,
+        22.6,
         1.7
       ]
     },
     "habits": {
-      "text": "Protein registreret 2 af 7 dage — det er for lidt, særligt nu hvor fedtfri masse falder. AF: 4 dage mod mål 6, ingen dage med 3+ genstande. Søvn-snit 8,0 t — det er fint og skal beskyttes på Mallorca.",
+      "text": "2 AF-dage mod mål 6 — ingen dage med 3+ genstande, men alkohol i 2 dage med 1 løbende dag. Protein kun registreret 2 ud af 6 registrerede dage — det er den ene ting at ændre næste uge: protein ved hvert måltid, alle dage.",
       "refs": [
         2.0,
-        7.0,
-        4.0,
         6.0,
         0.0,
-        8.0
+        2.0,
+        6.0
       ]
     },
-    "bigPicture": "Uge 47 sluttede med 55 % af planlagt TSS og lav readiness — næste uge er RECOVERY på Mallorca: kun Z2 og styrke, ingen intensitet.",
-    "weekFocus": "Z2 på føling — kør kortere hvis kroppen siger fra",
+    "bigPicture": "Uge 47 slut — genopbygning starter nu. Næste uge er ren RECOVERY på Mallorca: Z2, let styrke, ingen intensitet.",
+    "weekFocus": "Z2 på Mallorca — ro i benene, protein ved hvert måltid",
     "weekFocusFor": 12,
     "warnings": [
       {
@@ -11077,15 +11129,8 @@
       {
         "type": "readiness",
         "level": "warn",
-        "message": "HRV 32,0 ms er 13 % under 7-dages snit (36,7 ms). Kør kortere på Mallorca mandag, hvis signalet ikke bedres.",
-        "action": {
-          "label": "Kør kortere mandag",
-          "edit": {
-            "action": "move",
-            "entryId": "005dc8ac",
-            "date": "2026-11-23"
-          }
-        },
+        "message": "HRV 32,0 ms — 13 % under 7-dages snit (36,7 ms). Kør kortere på Mallorca de første dage, hvis pulsen er 10 slag over normalt ved samme indsats.",
+        "action": null,
         "source": "ai"
       }
     ],
@@ -11098,7 +11143,7 @@
   "weekFocusNext": {
     "week": 12,
     "programId": "tds-2027",
-    "text": "Z2 på føling — kør kortere hvis kroppen siger fra"
+    "text": "Z2 på Mallorca — ro i benene, protein ved hvert måltid"
   },
   "strengthLog": {
     "from": "2026-10-25",
@@ -11655,14 +11700,14 @@
     }
   },
   "weekTss": {
-    "actual": 168,
+    "actual": 226,
     "planned": 304
   },
   "martinMail": {
     "week": 11,
     "isoWeek": 47,
     "lines": [
-      "Uge 47: TSS 168 af 304 (55 %) · CTL 26,7 (mål 42) · TSB +5,5",
+      "Uge 47: TSS 226 af 304 (74 %) · CTL 28,1 (mål 42) · TSB −0,8",
       "Vægt 7d 72,8 kg · fedt 14d 22,6 % · på plan mod glidepath (72,8)",
       "HRV 7d 37 (28d 40) · hvilepuls 50 · søvn 7d 8,0 t",
       "AF 4/7 · protein 3/3 2/7 · aftensult —/7",
@@ -11671,7 +11716,7 @@
       "Næste uge (48, RECOVERY): TSS-mål 440 · hårde/lange dage: man 23/11 Cykel Z2 2 t Mallorca 120 min, man 23/11 Vandring 1,5 t 90 min, tir 24/11 Cykel Z2 2,5 t Mallorca 150 min, ons 25/11 Cykel Z2 2 t Mallorca 120 min, ons 25/11 Vandring 1,5 t 90 min, tor 26/11 Cykel Z2 3 t Mallorca 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-22T13:23:19Z"
+    "generatedAt": "2026-11-22T15:35:49Z"
   },
   "proposals": [],
   "ftp": {
@@ -11744,7 +11789,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-22",
-    "ctl": 26.7,
-    "atl": 21.2
+    "ctl": 28.1,
+    "atl": 28.9
   }
 }
