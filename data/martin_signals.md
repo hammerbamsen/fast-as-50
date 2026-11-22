@@ -280,3 +280,13 @@
 - Cut-tjek: act — Fedtfri masse −1,9 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
 - Næste uge (47, BASE+): TSS-mål 460 · hårde/lange dage: ingen
 - Planændringer siden sidst: 3 — se martin_signals.md
+
+### Signaler uge 47
+- Uge 47: TSS 168 af 304 (55 %) · CTL 26,7 (mål 42) · TSB +2,1
+- Vægt 7d 72,8 kg · fedt 14d 22,6 % · bagud 1,5 kg mod glidepath (71,3)
+- HRV 7d 38 (28d 41) · hvilepuls 50 · søvn 7d 8,0 t
+- AF 1/7 · protein 3/3 1/7 · aftensult —/7
+- Styrke 3/2 · check-in 4/10 ben ✗ overkrop ✗
+- Cut-tjek: act — Fedtfri masse −1,7 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke på plads
+- Næste uge (48, RECOVERY): TSS-mål 440 · hårde/lange dage: man 23/11 Cykel Z2 90 min Mallorca 90 min, tir 24/11 Cykel Z2 90 min Mallorca 90 min, ons 25/11 Cykel Z2 90 min Mallorca 90 min, tor 26/11 Cykel Z2 90 min Mallorca 90 min
+- Planændringer siden sidst: 0 — se martin_signals.md
