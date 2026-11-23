@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-23 10:40",
+    "updated": "2026-11-23 13:08",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "30,2",
+      "value": "30,8",
       "unit": "",
       "sub": "Uge 48-mål 46 · RECOVERY",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-13,1",
+      "value": "-15,9",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "30",
+      "value": "56",
       "unit": "TSS",
-      "sub": "30 af 605 planlagt TSS",
+      "sub": "56 af 605 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "0,0",
+      "value": "30,8",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#7A6A58"
+      "color": "#C0392B"
     },
     "swimM": {
       "value": "0",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "string {HL} Vandringen på 76 min er i hus. Cykelturen (120 min, Z1-2, fladt — ingen stigninger, ingen intensitet) og styrke A (2 runder, kropsvægt) mangler stadig i dag. Readiness er HIGH, så passet kører som planlagt.",
-  "coachHighlight": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider, ingen kalorieunderskud.",
-  "weekFocus": "Z2-volumen og vedligeholdsmad — beskytt muskelmassen",
+  "coachSpeech": "Uge 48, Recovery-blok — fedtfri masse faldt 1,3 kg på 4 uger, spis til vedligehold nu. {HL} Cyklen (88 min, 26 TSS) og vandringen (76 min, 30 TSS) er i hus. Styrke A mangler endnu i dag. CTL er 30,8 mod et mål på 46,0 — Recovery-blokken betyder Z2 og lavt volumen er rigtigt nu.",
+  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 2 runder i dag — brug kropsvægt hvis ikke andet er ved hånden.",
+  "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
       "discipline": "bike",
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "strength",
@@ -145,11 +145,17 @@
       "day": "Man",
       "disc": "bike",
       "label": "Cykel Z2 2 t Mallorca",
-      "done": false,
+      "done": true,
       "planned_tss": 90,
       "planned_mins": 120,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "partial",
+      "completion_pct": 29,
+      "actual_tss": 26,
+      "actual_name": "Fornalutx Cykling på vej",
+      "actual_mins": 88,
+      "actual_distance_m": 30821.21
     },
     {
       "day": "Man",
@@ -254,7 +260,7 @@
     31.8,
     28.5,
     28.1,
-    30.2
+    30.8
   ],
   "weightHistory": [
     {
@@ -1964,7 +1970,7 @@
     },
     {
       "date": "2026-11-23",
-      "v": -13.1,
+      "v": -15.9,
       "real": true
     }
   ],
@@ -2302,11 +2308,17 @@
           "day": "Man",
           "disc": "bike",
           "label": "Cykel Z2 2 t Mallorca",
-          "done": false,
+          "done": true,
           "planned_tss": 90,
           "planned_mins": 120,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "partial",
+          "completion_pct": 29,
+          "actual_tss": 26,
+          "actual_name": "Fornalutx Cykling på vej",
+          "actual_mins": 88,
+          "actual_distance_m": 30821.21
         },
         {
           "day": "Man",
@@ -2400,7 +2412,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Z2-volumen og vedligeholdsmad — beskytt muskelmassen"
+      "focus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt"
     },
     "13": {
       "sessions": [
@@ -2957,9 +2969,10 @@
     }
   ],
   "train_mins": {
+    "bike": 88.0,
     "hike": 76.0,
     "planned": 925.0,
-    "actual_total": 76.0
+    "actual_total": 164.0
   },
   "fatHistory": [
     {
@@ -3317,8 +3330,8 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 78 af 357 · Mandag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Vandringen på 76 min er i hus. Cykelturen (120 min, Z1-2, fladt — ingen stigninger, ingen intensitet) og styrke A (2 runder, kropsvægt) mangler stadig i dag. Readiness er HIGH, så passet kører som planlagt. RECOVERY-uge: alle pas er lette, CTL på 30,2 mod mål 46,0 — det er bevidst, ugen er genopbygning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt og fedt er for kort en serie til at vise retning. Cut-signalet er dog klart: fedtfri masse ned 1,3 kg på 4 uger — spis til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun registreret 2 ud af 5 mulige dage — protein ved hvert måltid de næste 3-4 dage er akut vigtigt under cut-pausen. Søvn på 8,2 timer i nat er godt.</p>",
-  "coachAssessmentTs": "10:40",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 78 af 357 · Mandag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, Recovery-blok — fedtfri masse faldt 1,3 kg på 4 uger, spis til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Cyklen (88 min, 26 TSS) og vandringen (76 min, 30 TSS) er i hus. Styrke A mangler endnu i dag. CTL er 30,8 mod et mål på 46,0 — Recovery-blokken betyder Z2 og lavt volumen er rigtigt nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 72,8 kg mod forventet 72,8 kg — på plan. Retningen kan ikke vurderes endnu — serien er for kort. FFM er faldet 1,3 kg på 4 uger: spis til vedligehold de næste 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 2 af 5 registrerede dage — ramt det hver dag de næste 3-4 dage mens du spiser til vedligehold. Søvn 7,9 t i snit, energi 3,0 — begge acceptable.</p>",
+  "coachAssessmentTs": "13:08",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3329,7 +3342,7 @@
       "source": "rule"
     }
   ],
-  "tsb": -13.1,
+  "tsb": -15.9,
   "swimHistory": [
     {
       "week": 1,
@@ -3404,7 +3417,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i213566805",
+  "coachAssessmentLastActId": "i213613868",
   "weekFocusWeek": 12,
   "coachAssessmentPlanAtGen": "Cykel Z2 2 t Mallorca",
   "weightGoal": 69.5,
@@ -3658,8 +3671,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-23T09:40:28.088809",
-  "coachAssessmentTsFull": "2026-11-23T09:40:28",
+  "credentialsCheckedTs": "2026-11-23T12:08:32.996388",
+  "coachAssessmentTsFull": "2026-11-23T12:08:32",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3757,7 +3770,7 @@
     "9": 153,
     "10": 114,
     "11": 226,
-    "12": 30
+    "12": 56
   },
   "racesUpcoming": [
     {
@@ -5187,7 +5200,7 @@
         "mesoWeek": "R",
         "ctlTarget": 46,
         "tssTarget": 440,
-        "tssActual": 30,
+        "tssActual": 56,
         "purpose": "Recovery: åbnere, Z2 80, 2 t søndag. Styrke 2 runder.",
         "note": null,
         "quota": {
@@ -5202,14 +5215,7 @@
           "Cykel Z2 2 t Mallorca",
           "Cykel Z2 2,5 t Mallorca"
         ],
-        "flags": [
-          {
-            "level": "WARN",
-            "rule": "low_readiness",
-            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-            "historic": false
-          }
-        ],
+        "flags": [],
         "races": [],
         "travel": null,
         "isCurrent": true,
@@ -8727,14 +8733,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 88,
+                "actualTss": 26,
                 "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
                 "isKey": true,
                 "optional": false,
                 "start": "09:00",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "partial"
               },
               {
                 "id": "22ab2309",
@@ -10236,7 +10243,7 @@
           "week": 12,
           "programId": "tds-2027",
           "start": "2026-11-23",
-          "ctl": 30.2
+          "ctl": 30.8
         }
       ],
       "projection": [
@@ -10730,39 +10737,44 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-23T09:40:28Z",
-    "inputsHash": "ccf94d99cab5cc8f55c12a09a7f0a666d77076ab",
+    "generatedAt": "2026-11-23T12:08:32Z",
+    "inputsHash": "75bcf302773b1d0a01b3ab1e65d4747df4362739",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider, ingen kalorieunderskud.",
-      "why": "Fedtfri masse er faldet 1,3 kg på 4 uger. Cut-pausen beskytter muskelmassen, ikke vægten."
+      "action": "Gennemfør Styrke A · Functional 4 · 2 runder i dag — brug kropsvægt hvis ikke andet er ved hånden.",
+      "why": "Fedtfri masse er faldet 1,3 kg på 4 uger. Styrke nu holder muskelmassen, mens vægten falder."
     },
     "training": {
-      "text": "Vandringen på 76 min er i hus. Cykelturen (120 min, Z1-2, fladt — ingen stigninger, ingen intensitet) og styrke A (2 runder, kropsvægt) mangler stadig i dag. Readiness er HIGH, så passet kører som planlagt. RECOVERY-uge: alle pas er lette, CTL på 30,2 mod mål 46,0 — det er bevidst, ugen er genopbygning.",
+      "text": "Cyklen (88 min, 26 TSS) og vandringen (76 min, 30 TSS) er i hus. Styrke A mangler endnu i dag. CTL er 30,8 mod et mål på 46,0 — Recovery-blokken betyder Z2 og lavt volumen er rigtigt nu.",
       "refs": [
+        88.0,
+        26.0,
         76.0,
-        120.0,
-        30.2,
+        30.0,
+        30.8,
         46.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt og fedt er for kort en serie til at vise retning. Cut-signalet er dog klart: fedtfri masse ned 1,3 kg på 4 uger — spis til vedligehold nu.",
+      "text": "7-dages snit er 72,8 kg mod forventet 72,8 kg — på plan. Retningen kan ikke vurderes endnu — serien er for kort. FFM er faldet 1,3 kg på 4 uger: spis til vedligehold de næste 3-4 dage.",
       "refs": [
+        72.8,
+        72.8,
         1.3
       ]
     },
     "habits": {
-      "text": "Protein kun registreret 2 ud af 5 mulige dage — protein ved hvert måltid de næste 3-4 dage er akut vigtigt under cut-pausen. Søvn på 8,2 timer i nat er godt.",
+      "text": "Protein dækket 2 af 5 registrerede dage — ramt det hver dag de næste 3-4 dage mens du spiser til vedligehold. Søvn 7,9 t i snit, energi 3,0 — begge acceptable.",
       "refs": [
         2.0,
         5.0,
-        8.2
+        7.9,
+        3.0
       ]
     },
-    "bigPicture": "string",
-    "weekFocus": "Z2-volumen og vedligeholdsmad — beskytt muskelmassen",
+    "bigPicture": "Uge 48, Recovery-blok — fedtfri masse faldt 1,3 kg på 4 uger, spis til vedligehold nu.",
+    "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
     "weekFocusFor": 12,
     "warnings": [
       {
@@ -11340,14 +11352,14 @@
     }
   },
   "weekTss": {
-    "actual": 30,
+    "actual": 56,
     "planned": 605
   },
   "martinMail": {
     "week": 12,
     "isoWeek": 48,
     "lines": [
-      "Uge 48: TSS 30 af 605 (5 %) · CTL 30,2 (mål 46) · TSB −13,1",
+      "Uge 48: TSS 56 af 605 (9 %) · CTL 30,8 (mål 46) · TSB −15,9",
       "Vægt 7d 72,8 kg · fedt 14d 22,5 % · på plan mod glidepath (72,8)",
       "HRV 7d 37 (28d 40) · hvilepuls 50 · søvn 7d 7,9 t",
       "AF 4/7 · protein 3/3 2/7 · aftensult —/7",
@@ -11356,7 +11368,7 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-23T09:40:11Z"
+    "generatedAt": "2026-11-23T12:08:18Z"
   },
   "proposals": [],
   "ftp": {
@@ -11429,7 +11441,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-23",
-    "ctl": 30.2,
-    "atl": 43.3
+    "ctl": 30.8,
+    "atl": 46.7
   }
 }
