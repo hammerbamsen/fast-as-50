@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-23 07:05",
+    "updated": "2026-11-23 10:40",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -40,15 +40,15 @@
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-12,7",
+      "value": "-13,1",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
     },
     "sleep": {
-      "value": "7,8",
+      "value": "8,2",
       "unit": "t",
-      "sub": "Snit 7d 8,0t · mål 7t",
+      "sub": "Snit 7d 7,9t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "36,0",
+      "value": "36,6",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,10 +70,10 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "0",
+      "value": "30",
       "unit": "TSS",
-      "sub": "0 af 605 planlagt TSS",
-      "color": "#7A6A58"
+      "sub": "30 af 605 planlagt TSS",
+      "color": "#C0392B"
     },
     "bikeKm": {
       "value": "0,0",
@@ -111,9 +111,9 @@
     "target": 6,
     "streak": 1
   },
-  "coachSpeech": "Uge 48, Recovery-blok: HRV og fedtfri masse sender et klart signal — kroppen skal have mad og ro, ikke mere belastning. {HL} Planen i dag er 120 min Z2 på cykel — kør den kun, hvis du føler dig let. Pasets note er tydelig: kør kortere, hvis pulsen er høj eller du er træt.",
-  "coachHighlight": "Spis protein ved alle tre måltider i dag og hold energiindtaget oppe — ikke på cut-niveau.",
-  "weekFocus": "Spis til vedligehold, kør fladt og let hele ugen",
+  "coachSpeech": "string {HL} Vandringen på 76 min er i hus. Cykelturen (120 min, Z1-2, fladt — ingen stigninger, ingen intensitet) og styrke A (2 runder, kropsvægt) mangler stadig i dag. Readiness er HIGH, så passet kører som planlagt.",
+  "coachHighlight": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider, ingen kalorieunderskud.",
+  "weekFocus": "Z2-volumen og vedligeholdsmad — beskytt muskelmassen",
   "today": [
     {
       "discipline": "bike",
@@ -137,7 +137,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -165,11 +165,18 @@
       "day": "Man",
       "disc": "hike",
       "label": "Vandring 1,5 t (valgfri)",
-      "done": false,
+      "done": true,
       "planned_tss": 27,
       "planned_mins": 90,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "done",
+      "completion_pct": 84,
+      "actual_tss": 30,
+      "actual_name": "Fornalutx Vandring",
+      "actual_mins": 76,
+      "actual_distance_m": 6193.43,
+      "intervals_compliance": 111.1
     },
     {
       "day": "Tir",
@@ -1051,7 +1058,11 @@
       "v": 32.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-23",
+      "v": 40.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1499,7 +1510,11 @@
       "v": 7.8,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-23",
+      "v": 8.2,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1949,7 +1964,7 @@
     },
     {
       "date": "2026-11-23",
-      "v": -12.7,
+      "v": -13.1,
       "real": true
     }
   ],
@@ -2307,11 +2322,18 @@
           "day": "Man",
           "disc": "hike",
           "label": "Vandring 1,5 t (valgfri)",
-          "done": false,
+          "done": true,
           "planned_tss": 27,
           "planned_mins": 90,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "done",
+          "completion_pct": 84,
+          "actual_tss": 30,
+          "actual_name": "Fornalutx Vandring",
+          "actual_mins": 76,
+          "actual_distance_m": 6193.43,
+          "intervals_compliance": 111.1
         },
         {
           "day": "Tir",
@@ -2378,7 +2400,7 @@
         }
       ],
       "blockType": "RECOVERY",
-      "focus": "Spis til vedligehold, kør fladt og let hele ugen"
+      "focus": "Z2-volumen og vedligeholdsmad — beskytt muskelmassen"
     },
     "13": {
       "sessions": [
@@ -2935,8 +2957,9 @@
     }
   ],
   "train_mins": {
+    "hike": 76.0,
     "planned": 925.0,
-    "actual_total": 0
+    "actual_total": 76.0
   },
   "fatHistory": [
     {
@@ -3294,8 +3317,8 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 78 af 357 · Mandag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, Recovery-blok: HRV og fedtfri masse sender et klart signal — kroppen skal have mad og ro, ikke mere belastning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Planen i dag er 120 min Z2 på cykel — kør den kun, hvis du føler dig let. Pasets note er tydelig: kør kortere, hvis pulsen er høj eller du er træt. HRV er 32,0 ms mod 7-dages snit på 36,0 ms, og readiness er LOW — tag paset alvorligt, men tag ikke vandringen bagefter.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,8 kg, som er på plan (forventet 72,8 kg). Fedtfri masse er faldet 1,3 kg på 4 uger — spis til vedligehold de næste 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 2 af 5 registrerede dage med protein — det skal op til 3 af 3 i dag. Søvn på 7,8 timer er inden for målet.</p>",
-  "coachAssessmentTs": "07:05",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 78 af 357 · Mandag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Vandringen på 76 min er i hus. Cykelturen (120 min, Z1-2, fladt — ingen stigninger, ingen intensitet) og styrke A (2 runder, kropsvægt) mangler stadig i dag. Readiness er HIGH, så passet kører som planlagt. RECOVERY-uge: alle pas er lette, CTL på 30,2 mod mål 46,0 — det er bevidst, ugen er genopbygning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt og fedt er for kort en serie til at vise retning. Cut-signalet er dog klart: fedtfri masse ned 1,3 kg på 4 uger — spis til vedligehold nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein kun registreret 2 ud af 5 mulige dage — protein ved hvert måltid de næste 3-4 dage er akut vigtigt under cut-pausen. Søvn på 8,2 timer i nat er godt.</p>",
+  "coachAssessmentTs": "10:40",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3304,29 +3327,9 @@
       "message": "Cut-tjek: Fedtfri masse −1,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
       "action": null,
       "source": "rule"
-    },
-    {
-      "type": "hrv",
-      "level": "warn",
-      "message": "HRV 32,0 ms — 11% under 7d-snit (36,0 ms). Kroppen er presset.",
-      "action": null,
-      "source": "rule"
-    },
-    {
-      "type": "readiness",
-      "level": "warn",
-      "message": "HRV 32,0 ms — 11% under 7-dages snit (36,0 ms). Kør cykelpaset kortere end 120 min, hvis kroppen siger stop. Drop vandringen i dag.",
-      "action": {
-        "label": "Slet vandring i dag",
-        "edit": {
-          "action": "cancel",
-          "entryId": "d3afdcda"
-        }
-      },
-      "source": "ai"
     }
   ],
-  "tsb": -12.7,
+  "tsb": -13.1,
   "swimHistory": [
     {
       "week": 1,
@@ -3401,7 +3404,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": null,
+  "coachAssessmentLastActId": "i213566805",
   "weekFocusWeek": 12,
   "coachAssessmentPlanAtGen": "Cykel Z2 2 t Mallorca",
   "weightGoal": 69.5,
@@ -3655,8 +3658,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-23T06:06:28.898721",
-  "coachAssessmentTsFull": "2026-11-23T06:06:28",
+  "credentialsCheckedTs": "2026-11-23T09:40:28.088809",
+  "coachAssessmentTsFull": "2026-11-23T09:40:28",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 0,
   "event_structure_warnings": [],
@@ -3753,7 +3756,8 @@
     "8": 60,
     "9": 153,
     "10": 114,
-    "11": 226
+    "11": 226,
+    "12": 30
   },
   "racesUpcoming": [
     {
@@ -4535,7 +4539,11 @@
       "v": 50,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-23",
+      "v": 49,
+      "real": true
+    }
   ],
   "blockType": "RECOVERY",
   "blockTypes": {
@@ -5162,14 +5170,7 @@
           "moderat": 0
         },
         "keySessions": [],
-        "flags": [
-          {
-            "level": "WARN",
-            "rule": "low_readiness",
-            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-            "historic": false
-          }
-        ],
+        "flags": [],
         "races": [],
         "travel": null,
         "isCurrent": false,
@@ -5186,7 +5187,7 @@
         "mesoWeek": "R",
         "ctlTarget": 46,
         "tssTarget": 440,
-        "tssActual": null,
+        "tssActual": 30,
         "purpose": "Recovery: åbnere, Z2 80, 2 t søndag. Styrke 2 runder.",
         "note": null,
         "quota": {
@@ -5201,7 +5202,14 @@
           "Cykel Z2 2 t Mallorca",
           "Cykel Z2 2,5 t Mallorca"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "low_readiness",
+            "text": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
+            "historic": false
+          }
+        ],
         "races": [],
         "travel": null,
         "isCurrent": true,
@@ -8759,14 +8767,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 76,
+                "actualTss": 30,
                 "note": "Oveni og frivillig. Rolig gang i Z1 — kun hvis dagens cykeltur føltes let.",
                 "isKey": false,
                 "optional": true,
                 "start": "07:15",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "done"
               }
             ],
             "restNote": null,
@@ -10232,228 +10241,224 @@
       ],
       "projection": [
         {
-          "d": "2026-11-23",
-          "ctl": 29.2
-        },
-        {
           "d": "2026-11-24",
-          "ctl": 30.2
+          "ctl": 31.2
         },
         {
           "d": "2026-11-25",
-          "ctl": 31.3
+          "ctl": 32.2
         },
         {
           "d": "2026-11-26",
-          "ctl": 32.3
+          "ctl": 33.2
         },
         {
           "d": "2026-11-27",
-          "ctl": 31.5
+          "ctl": 32.4
         },
         {
           "d": "2026-11-28",
-          "ctl": 32.5
+          "ctl": 33.4
         },
         {
           "d": "2026-11-29",
-          "ctl": 33.5
+          "ctl": 34.3
         },
         {
           "d": "2026-11-30",
-          "ctl": 34.5
+          "ctl": 35.4
         },
         {
           "d": "2026-12-01",
-          "ctl": 33.7
+          "ctl": 34.5
         },
         {
           "d": "2026-12-02",
-          "ctl": 34.7
-        },
-        {
-          "d": "2026-12-03",
-          "ctl": 35.7
-        },
-        {
-          "d": "2026-12-04",
-          "ctl": 36.7
-        },
-        {
-          "d": "2026-12-05",
-          "ctl": 37.6
-        },
-        {
-          "d": "2026-12-06",
-          "ctl": 38.5
-        },
-        {
-          "d": "2026-12-07",
-          "ctl": 39.5
-        },
-        {
-          "d": "2026-12-08",
-          "ctl": 38.6
-        },
-        {
-          "d": "2026-12-09",
-          "ctl": 39.6
-        },
-        {
-          "d": "2026-12-10",
-          "ctl": 40.5
-        },
-        {
-          "d": "2026-12-11",
-          "ctl": 41.5
-        },
-        {
-          "d": "2026-12-12",
-          "ctl": 42.4
-        },
-        {
-          "d": "2026-12-13",
-          "ctl": 43.3
-        },
-        {
-          "d": "2026-12-14",
-          "ctl": 44.0
-        },
-        {
-          "d": "2026-12-15",
-          "ctl": 44.6
-        },
-        {
-          "d": "2026-12-16",
-          "ctl": 45.3
-        },
-        {
-          "d": "2026-12-17",
-          "ctl": 45.9
-        },
-        {
-          "d": "2026-12-18",
-          "ctl": 46.5
-        },
-        {
-          "d": "2026-12-19",
-          "ctl": 47.1
-        },
-        {
-          "d": "2026-12-20",
-          "ctl": 47.7
-        },
-        {
-          "d": "2026-12-21",
-          "ctl": 47.8
-        },
-        {
-          "d": "2026-12-22",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-12-23",
-          "ctl": 48.0
-        },
-        {
-          "d": "2026-12-24",
-          "ctl": 46.8
-        },
-        {
-          "d": "2026-12-25",
-          "ctl": 45.7
-        },
-        {
-          "d": "2026-12-26",
-          "ctl": 45.9
-        },
-        {
-          "d": "2026-12-27",
-          "ctl": 46.0
-        },
-        {
-          "d": "2026-12-28",
-          "ctl": 46.4
-        },
-        {
-          "d": "2026-12-29",
-          "ctl": 46.8
-        },
-        {
-          "d": "2026-12-30",
-          "ctl": 47.2
-        },
-        {
-          "d": "2026-12-31",
-          "ctl": 47.6
-        },
-        {
-          "d": "2027-01-01",
-          "ctl": 47.9
-        },
-        {
-          "d": "2027-01-02",
-          "ctl": 48.3
-        },
-        {
-          "d": "2027-01-03",
-          "ctl": 48.6
-        },
-        {
-          "d": "2027-01-04",
-          "ctl": 47.5
-        },
-        {
-          "d": "2027-01-05",
-          "ctl": 46.3
-        },
-        {
-          "d": "2027-01-06",
-          "ctl": 45.2
-        },
-        {
-          "d": "2027-01-07",
-          "ctl": 44.2
-        },
-        {
-          "d": "2027-01-08",
-          "ctl": 43.1
-        },
-        {
-          "d": "2027-01-09",
-          "ctl": 42.1
-        },
-        {
-          "d": "2027-01-10",
-          "ctl": 41.1
-        },
-        {
-          "d": "2027-01-11",
-          "ctl": 40.1
-        },
-        {
-          "d": "2027-01-12",
-          "ctl": 39.1
-        },
-        {
-          "d": "2027-01-13",
-          "ctl": 38.2
-        },
-        {
-          "d": "2027-01-14",
-          "ctl": 37.3
-        },
-        {
-          "d": "2027-01-15",
-          "ctl": 36.4
-        },
-        {
-          "d": "2027-01-16",
           "ctl": 35.5
         },
         {
+          "d": "2026-12-03",
+          "ctl": 36.5
+        },
+        {
+          "d": "2026-12-04",
+          "ctl": 37.4
+        },
+        {
+          "d": "2026-12-05",
+          "ctl": 38.4
+        },
+        {
+          "d": "2026-12-06",
+          "ctl": 39.3
+        },
+        {
+          "d": "2026-12-07",
+          "ctl": 40.3
+        },
+        {
+          "d": "2026-12-08",
+          "ctl": 39.3
+        },
+        {
+          "d": "2026-12-09",
+          "ctl": 40.3
+        },
+        {
+          "d": "2026-12-10",
+          "ctl": 41.2
+        },
+        {
+          "d": "2026-12-11",
+          "ctl": 42.1
+        },
+        {
+          "d": "2026-12-12",
+          "ctl": 43.0
+        },
+        {
+          "d": "2026-12-13",
+          "ctl": 43.9
+        },
+        {
+          "d": "2026-12-14",
+          "ctl": 44.6
+        },
+        {
+          "d": "2026-12-15",
+          "ctl": 45.2
+        },
+        {
+          "d": "2026-12-16",
+          "ctl": 45.8
+        },
+        {
+          "d": "2026-12-17",
+          "ctl": 46.5
+        },
+        {
+          "d": "2026-12-18",
+          "ctl": 47.0
+        },
+        {
+          "d": "2026-12-19",
+          "ctl": 47.6
+        },
+        {
+          "d": "2026-12-20",
+          "ctl": 48.2
+        },
+        {
+          "d": "2026-12-21",
+          "ctl": 48.3
+        },
+        {
+          "d": "2026-12-22",
+          "ctl": 48.4
+        },
+        {
+          "d": "2026-12-23",
+          "ctl": 48.5
+        },
+        {
+          "d": "2026-12-24",
+          "ctl": 47.3
+        },
+        {
+          "d": "2026-12-25",
+          "ctl": 46.2
+        },
+        {
+          "d": "2026-12-26",
+          "ctl": 46.3
+        },
+        {
+          "d": "2026-12-27",
+          "ctl": 46.5
+        },
+        {
+          "d": "2026-12-28",
+          "ctl": 46.8
+        },
+        {
+          "d": "2026-12-29",
+          "ctl": 47.2
+        },
+        {
+          "d": "2026-12-30",
+          "ctl": 47.6
+        },
+        {
+          "d": "2026-12-31",
+          "ctl": 48.0
+        },
+        {
+          "d": "2027-01-01",
+          "ctl": 48.3
+        },
+        {
+          "d": "2027-01-02",
+          "ctl": 48.7
+        },
+        {
+          "d": "2027-01-03",
+          "ctl": 49.0
+        },
+        {
+          "d": "2027-01-04",
+          "ctl": 47.8
+        },
+        {
+          "d": "2027-01-05",
+          "ctl": 46.7
+        },
+        {
+          "d": "2027-01-06",
+          "ctl": 45.6
+        },
+        {
+          "d": "2027-01-07",
+          "ctl": 44.5
+        },
+        {
+          "d": "2027-01-08",
+          "ctl": 43.4
+        },
+        {
+          "d": "2027-01-09",
+          "ctl": 42.4
+        },
+        {
+          "d": "2027-01-10",
+          "ctl": 41.4
+        },
+        {
+          "d": "2027-01-11",
+          "ctl": 40.4
+        },
+        {
+          "d": "2027-01-12",
+          "ctl": 39.4
+        },
+        {
+          "d": "2027-01-13",
+          "ctl": 38.5
+        },
+        {
+          "d": "2027-01-14",
+          "ctl": 37.6
+        },
+        {
+          "d": "2027-01-15",
+          "ctl": 36.7
+        },
+        {
+          "d": "2027-01-16",
+          "ctl": 35.8
+        },
+        {
           "d": "2027-01-17",
-          "ctl": 34.7
+          "ctl": 35.0
         }
       ],
       "targets": [
@@ -10725,41 +10730,39 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-23T06:06:28Z",
-    "inputsHash": "c89999523b98851d8d330042ae1b06e77a166f1a",
+    "generatedAt": "2026-11-23T09:40:28Z",
+    "inputsHash": "ccf94d99cab5cc8f55c12a09a7f0a666d77076ab",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis protein ved alle tre måltider i dag og hold energiindtaget oppe — ikke på cut-niveau.",
-      "why": "Fedtfri masse er faldet 1,3 kg på 4 uger. Kroppen mister muskelmasse, og det stopper du med mad, ikke med mere træning."
+      "action": "Spis til vedligehold i dag og de næste 3-4 dage — protein ved alle tre måltider, ingen kalorieunderskud.",
+      "why": "Fedtfri masse er faldet 1,3 kg på 4 uger. Cut-pausen beskytter muskelmassen, ikke vægten."
     },
     "training": {
-      "text": "Planen i dag er 120 min Z2 på cykel — kør den kun, hvis du føler dig let. Pasets note er tydelig: kør kortere, hvis pulsen er høj eller du er træt. HRV er 32,0 ms mod 7-dages snit på 36,0 ms, og readiness er LOW — tag paset alvorligt, men tag ikke vandringen bagefter.",
+      "text": "Vandringen på 76 min er i hus. Cykelturen (120 min, Z1-2, fladt — ingen stigninger, ingen intensitet) og styrke A (2 runder, kropsvægt) mangler stadig i dag. Readiness er HIGH, så passet kører som planlagt. RECOVERY-uge: alle pas er lette, CTL på 30,2 mod mål 46,0 — det er bevidst, ugen er genopbygning.",
       "refs": [
+        76.0,
         120.0,
-        32.0,
-        36.0
+        30.2,
+        46.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 72,8 kg, som er på plan (forventet 72,8 kg). Fedtfri masse er faldet 1,3 kg på 4 uger — spis til vedligehold de næste 3-4 dage.",
+      "text": "7-dages snit for vægt og fedt er for kort en serie til at vise retning. Cut-signalet er dog klart: fedtfri masse ned 1,3 kg på 4 uger — spis til vedligehold nu.",
       "refs": [
-        72.8,
-        72.8,
         1.3
       ]
     },
     "habits": {
-      "text": "Kun 2 af 5 registrerede dage med protein — det skal op til 3 af 3 i dag. Søvn på 7,8 timer er inden for målet.",
+      "text": "Protein kun registreret 2 ud af 5 mulige dage — protein ved hvert måltid de næste 3-4 dage er akut vigtigt under cut-pausen. Søvn på 8,2 timer i nat er godt.",
       "refs": [
         2.0,
         5.0,
-        3.0,
-        7.8
+        8.2
       ]
     },
-    "bigPicture": "Uge 48, Recovery-blok: HRV og fedtfri masse sender et klart signal — kroppen skal have mad og ro, ikke mere belastning.",
-    "weekFocus": "Spis til vedligehold, kør fladt og let hele ugen",
+    "bigPicture": "string",
+    "weekFocus": "Z2-volumen og vedligeholdsmad — beskytt muskelmassen",
     "weekFocusFor": 12,
     "warnings": [
       {
@@ -10768,38 +10771,11 @@
         "message": "Cut-tjek: Fedtfri masse −1,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
         "action": null,
         "source": "rule"
-      },
-      {
-        "type": "hrv",
-        "level": "warn",
-        "message": "HRV 32,0 ms — 11% under 7d-snit (36,0 ms). Kroppen er presset.",
-        "action": null,
-        "source": "rule"
-      },
-      {
-        "type": "readiness",
-        "level": "warn",
-        "message": "HRV 32,0 ms — 11% under 7-dages snit (36,0 ms). Kør cykelpaset kortere end 120 min, hvis kroppen siger stop. Drop vandringen i dag.",
-        "action": {
-          "label": "Slet vandring i dag",
-          "edit": {
-            "action": "cancel",
-            "entryId": "d3afdcda"
-          }
-        },
-        "source": "ai"
       }
     ],
     "error": null,
     "validationError": null,
-    "validationRejected": [
-      {
-        "errors": [
-          "training.text: tal ikke i konteksten: 42"
-        ],
-        "training.text": "Planen er cykel Z2 2 t (fladt, ingen intensitet) + styrke A 2 runder i dag. Vandringen er valgfri og kun relevant hvis cykelturen føltes let. HRV på 32,0 ms mod 42-dages snit på 46,0 ms og readiness L"
-      }
-    ],
+    "validationRejected": null,
     "notes": null,
     "stale": false
   },
@@ -11033,10 +11009,10 @@
         "recovery": {
           "level": null,
           "value": {
-            "rhr": 2.3,
-            "hrvPct": -13.8
+            "rhr": 2.2,
+            "hrvPct": -13.3
           },
-          "text": "hvilepuls +2 · HRV −14 % (14 dage)"
+          "text": "hvilepuls +2 · HRV −13 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11364,23 +11340,23 @@
     }
   },
   "weekTss": {
-    "actual": 0,
+    "actual": 30,
     "planned": 605
   },
   "martinMail": {
     "week": 12,
     "isoWeek": 48,
     "lines": [
-      "Uge 48: TSS 0 af 605 (0 %) · CTL 30,2 (mål 46) · TSB −12,7",
+      "Uge 48: TSS 30 af 605 (5 %) · CTL 30,2 (mål 46) · TSB −13,1",
       "Vægt 7d 72,8 kg · fedt 14d 22,5 % · på plan mod glidepath (72,8)",
-      "HRV 7d 36 (28d 40) · hvilepuls 50 · søvn 7d 7,9 t",
+      "HRV 7d 37 (28d 40) · hvilepuls 50 · søvn 7d 7,9 t",
       "AF 4/7 · protein 3/3 2/7 · aftensult —/7",
       "Styrke 2/2 · check-in 1/11 ben ✓ overkrop ✓",
       "Cut-tjek: act — Fedtfri masse −1,3 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke mandag",
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-23T06:05:51Z"
+    "generatedAt": "2026-11-23T09:40:11Z"
   },
   "proposals": [],
   "ftp": {
@@ -11454,6 +11430,6 @@
   "fitnessLive": {
     "date": "2026-11-23",
     "ctl": 30.2,
-    "atl": 42.9
+    "atl": 43.3
   }
 }
