@@ -1,57 +1,57 @@
 {
- "generated": "2026-11-23T06:06:30Z",
+ "generated": "2026-11-23T09:40:30Z",
  "kennet": {
   "programId": "tds-2027",
   "seed": {
    "date": "2026-11-23",
    "ctl": 30.2,
-   "atl": 42.9
+   "atl": 43.3
   },
   "projection": [
    {
     "d": "2026-11-24",
     "ctl": 31.2,
-    "tsb": -16.0
+    "tsb": -16.4
    },
    {
     "d": "2026-11-25",
     "ctl": 32.2,
-    "tsb": -18.7
+    "tsb": -19.0
    },
    {
     "d": "2026-11-26",
     "ctl": 33.2,
-    "tsb": -21.0
+    "tsb": -21.2
    },
    {
     "d": "2026-11-27",
     "ctl": 32.4,
-    "tsb": -14.0
+    "tsb": -14.2
    },
    {
     "d": "2026-11-28",
     "ctl": 33.4,
-    "tsb": -16.9
+    "tsb": -17.1
    },
    {
     "d": "2026-11-29",
     "ctl": 34.3,
-    "tsb": -19.2
+    "tsb": -19.4
    },
    {
     "d": "2026-11-30",
     "ctl": 35.4,
-    "tsb": -21.5
+    "tsb": -21.7
    },
    {
     "d": "2026-12-01",
     "ctl": 34.5,
-    "tsb": -14.2
+    "tsb": -14.4
    },
    {
     "d": "2026-12-02",
     "ctl": 35.5,
-    "tsb": -17.2
+    "tsb": -17.3
    },
    {
     "d": "2026-12-03",
@@ -61,12 +61,12 @@
    {
     "d": "2026-12-04",
     "ctl": 37.4,
-    "tsb": -21.6
+    "tsb": -21.7
    },
    {
     "d": "2026-12-05",
     "ctl": 38.4,
-    "tsb": -23.2
+    "tsb": -23.3
    },
    {
     "d": "2026-12-06",
@@ -76,12 +76,12 @@
    {
     "d": "2026-12-07",
     "ctl": 40.3,
-    "tsb": -25.8
+    "tsb": -25.9
    },
    {
     "d": "2026-12-08",
     "ctl": 39.3,
-    "tsb": -17.3
+    "tsb": -17.4
    },
    {
     "d": "2026-12-09",
@@ -96,12 +96,12 @@
    {
     "d": "2026-12-11",
     "ctl": 42.1,
-    "tsb": -23.1
+    "tsb": -23.2
    },
    {
     "d": "2026-12-12",
     "ctl": 43.0,
-    "tsb": -24.3
+    "tsb": -24.4
    },
    {
     "d": "2026-12-13",
@@ -131,7 +131,7 @@
    {
     "d": "2026-12-18",
     "ctl": 47.0,
-    "tsb": -23.3
+    "tsb": -23.4
    },
    {
     "d": "2026-12-19",
@@ -241,7 +241,7 @@
    {
     "d": "2027-01-09",
     "ctl": 42.4,
-    "tsb": 19.5
+    "tsb": 19.4
    },
    {
     "d": "2027-01-10",
@@ -1483,15 +1483,7 @@
     "week": 12,
     "projEndCtl": 34.3,
     "deviation": -11.7,
-    "flags": [
-     {
-      "week": 12,
-      "rule": "low_readiness",
-      "level": "WARN",
-      "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-      "historic": false
-     }
-    ]
+    "flags": []
    },
    {
     "week": 13,
@@ -1753,13 +1745,6 @@
     "historic": false
    },
    {
-    "week": 12,
-    "rule": "low_readiness",
-    "level": "WARN",
-    "msg": "Lav readiness i dag (HRV/søvn) — overvej at reducere dagens/ugens belastning",
-    "historic": false
-   },
-   {
     "week": 39,
     "rule": "race_tsb",
     "level": "WARN",
@@ -1813,7 +1798,7 @@
    "suggestion": null,
    "phase_guard": "Uge 48 er RECOVERY — missede pas her er ofte planlagt reduktion; ingen justering foreslås."
   },
-  "readiness": "LOW"
+  "readiness": "HIGH"
  },
- "inputsHash": "576d48e034ed5ce1"
+ "inputsHash": "7c2fe815c2a1b030"
 }
