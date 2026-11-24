@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-24 05:11",
+    "updated": "2026-11-24 15:14",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,21 +34,21 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "32,8",
+      "value": "33,5",
       "unit": "",
       "sub": "Uge 48-mål 46 · RECOVERY",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-22,6",
+      "value": "-25,6",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
     },
     "sleep": {
-      "value": "8,2",
+      "value": "8,6",
       "unit": "t",
-      "sub": "Snit 7d 7,9t · mål 7t",
+      "sub": "Snit 7d 8,1t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "35,7",
+      "value": "36,4",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "56",
+      "value": "176",
       "unit": "TSS",
-      "sub": "56 af 605 planlagt TSS",
+      "sub": "176 af 605 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 2
   },
-  "coachSpeech": "Uge 48, genopbygningsfase på Mallorca — fedtfri masse-signalet er det vigtigste at håndtere nu. {HL} Planen i dag er 150 min Z1-2 på fladt terræn på Mallorca — kør ingen stigninger på tid og ingen intensitet. Mandag mangler styrke A, som ikke er udført.",
-  "coachHighlight": "Spis til vedligehold i dag og de næste 2-3 dage — protein ved hvert måltid, mindst 2 af 3 måltider registreret.",
+  "coachSpeech": "Uge 48, recovery-uge på Mallorca: volumen opbygges stille, fedtfri masse kræver et par dages vedligehold ved maden. {HL} Fornalutx-vandringen er i hus som ekstra pas. Styrke A mandag er misset — det rykker til torsdag. TSB er -25,6, og ugen har kun brugt 29 % af planlagt TSS — det er forventet i en recovery-uge.",
+  "coachHighlight": "Kør Cykel Z2 2,5 t Mallorca i dag — fladt, Z1-2, ingen stigninger på tid og ingen intensitet.",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -122,6 +122,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "hike",
+      "title": "Fornalutx Vandring",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -173,6 +181,17 @@
       "planned_tss": 112,
       "planned_mins": 150,
       "planned_distance_m": null,
+      "today": true
+    },
+    {
+      "day": "Tir",
+      "disc": "hike",
+      "label": "Fornalutx Vandring",
+      "done": true,
+      "extra": true,
+      "actual_tss": 120,
+      "actual_mins": 307,
+      "actual_distance_m": 20617.05,
       "today": true
     },
     {
@@ -242,7 +261,7 @@
     31.8,
     28.5,
     28.1,
-    32.8
+    33.5
   ],
   "weightHistory": [
     {
@@ -1042,7 +1061,11 @@
       "v": 40.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-24",
+      "v": 41.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1490,7 +1513,11 @@
       "v": 8.2,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-24",
+      "v": 8.6,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -1935,12 +1962,12 @@
     },
     {
       "date": "2026-11-23",
-      "v": -15.9,
+      "v": -3.8,
       "real": true
     },
     {
       "date": "2026-11-24",
-      "v": -22.7,
+      "v": -25.6,
       "real": true
     }
   ],
@@ -2323,6 +2350,17 @@
           "planned_tss": 112,
           "planned_mins": 150,
           "planned_distance_m": null,
+          "today": true
+        },
+        {
+          "day": "Tir",
+          "disc": "hike",
+          "label": "Fornalutx Vandring",
+          "done": true,
+          "extra": true,
+          "actual_tss": 120,
+          "actual_mins": 307,
+          "actual_distance_m": 20617.05,
           "today": true
         },
         {
@@ -2938,10 +2976,10 @@
     }
   ],
   "train_mins": {
+    "hike": 383.0,
     "bike": 88.0,
-    "hike": 76.0,
     "planned": 925.0,
-    "actual_total": 164.0
+    "actual_total": 471.0
   },
   "fatHistory": [
     {
@@ -3295,8 +3333,8 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 79 af 357 · Tirsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, genopbygningsfase på Mallorca — fedtfri masse-signalet er det vigtigste at håndtere nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Planen i dag er 150 min Z1-2 på fladt terræn på Mallorca — kør ingen stigninger på tid og ingen intensitet. Mandag mangler styrke A, som ikke er udført. TSB er -22,6 — hold dig inden for Z2 og kortere hvis du mærker træthed.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 72,9 kg mod forventet 72,8 kg — altså 0,2 kg over plan. Fedtfri masse er faldet 0,7 kg på 4 uger: spis til vedligehold i 3-4 dage.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 2 ud af 5 mulige dage — sørg for at registrere alle tre måltider. Søvn og energi er på plads.</p>",
-  "coachAssessmentTs": "05:11",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 79 af 357 · Tirsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, recovery-uge på Mallorca: volumen opbygges stille, fedtfri masse kræver et par dages vedligehold ved maden.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Fornalutx-vandringen er i hus som ekstra pas. Styrke A mandag er misset — det rykker til torsdag. TSB er -25,6, og ugen har kun brugt 29 % af planlagt TSS — det er forventet i en recovery-uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for fedtfri masse er faldet 0,7 kg på 4 uger — spis til vedligehold de næste 3-4 dage og sørg for protein ved alle tre måltider. 7-dages vægten er steget 1,0 kg den seneste måned, men cut-raten er kun -0,09 kg/uge mod plan på 0,35 kg/uge — stop underskuddet nu, ikke skru mere op.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 2 ud af 5 dage — sørg for at registrere i dag og kram protein ved hvert måltid. Søvn er fin med 8,6 t i nat.</p>",
+  "coachAssessmentTs": "15:14",
   "commute_pairing_warnings": [],
   "warnings": [
     {
@@ -3309,12 +3347,12 @@
     {
       "type": "tsb",
       "level": "warn",
-      "message": "TSB -22,6 — hård belastning. Hold øje med trætheden.",
+      "message": "TSB -25,6 — hård belastning. Hold øje med trætheden.",
       "action": null,
       "source": "rule"
     }
   ],
-  "tsb": -22.6,
+  "tsb": -25.6,
   "swimHistory": [
     {
       "week": 1,
@@ -3389,7 +3427,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i213613868",
+  "coachAssessmentLastActId": "i214091326",
   "weekFocusWeek": 12,
   "coachAssessmentPlanAtGen": "Cykel Z2 2,5 t Mallorca",
   "weightGoal": 69.5,
@@ -3643,8 +3681,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-24T04:11:59.134354",
-  "coachAssessmentTsFull": "2026-11-24T04:11:59",
+  "credentialsCheckedTs": "2026-11-24T14:14:48.646882",
+  "coachAssessmentTsFull": "2026-11-24T14:14:48",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3742,7 +3780,7 @@
     "9": 153,
     "10": 114,
     "11": 226,
-    "12": 56
+    "12": 176
   },
   "racesUpcoming": [
     {
@@ -5172,7 +5210,7 @@
         "mesoWeek": "R",
         "ctlTarget": 46,
         "tssTarget": 440,
-        "tssActual": 56,
+        "tssActual": 176,
         "purpose": "Recovery: åbnere, Z2 80, 2 t søndag. Styrke 2 runder.",
         "note": null,
         "quota": {
@@ -8784,6 +8822,24 @@
                 "optional": false,
                 "start": "07:00",
                 "startFixed": false
+              },
+              {
+                "id": null,
+                "name": "Fornalutx Vandring",
+                "type": null,
+                "disc": "hike",
+                "mins": 307,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 307,
+                "actualTss": 120,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10215,229 +10271,225 @@
           "week": 12,
           "programId": "tds-2027",
           "start": "2026-11-23",
-          "ctl": 32.8
+          "ctl": 33.5
         }
       ],
       "projection": [
         {
-          "d": "2026-11-24",
-          "ctl": 31.8
-        },
-        {
           "d": "2026-11-25",
-          "ctl": 32.8
-        },
-        {
-          "d": "2026-11-26",
           "ctl": 33.8
         },
         {
-          "d": "2026-11-27",
-          "ctl": 33.0
+          "d": "2026-11-26",
+          "ctl": 34.7
         },
         {
-          "d": "2026-11-28",
+          "d": "2026-11-27",
           "ctl": 33.9
         },
         {
+          "d": "2026-11-28",
+          "ctl": 34.8
+        },
+        {
           "d": "2026-11-29",
-          "ctl": 34.9
+          "ctl": 35.7
         },
         {
           "d": "2026-11-30",
-          "ctl": 35.9
+          "ctl": 36.7
         },
         {
           "d": "2026-12-01",
-          "ctl": 35.0
+          "ctl": 35.8
         },
         {
           "d": "2026-12-02",
-          "ctl": 36.0
+          "ctl": 36.8
         },
         {
           "d": "2026-12-03",
-          "ctl": 37.0
-        },
-        {
-          "d": "2026-12-04",
-          "ctl": 37.9
-        },
-        {
-          "d": "2026-12-05",
-          "ctl": 38.8
-        },
-        {
-          "d": "2026-12-06",
-          "ctl": 39.7
-        },
-        {
-          "d": "2026-12-07",
-          "ctl": 40.7
-        },
-        {
-          "d": "2026-12-08",
-          "ctl": 39.7
-        },
-        {
-          "d": "2026-12-09",
-          "ctl": 40.7
-        },
-        {
-          "d": "2026-12-10",
-          "ctl": 41.6
-        },
-        {
-          "d": "2026-12-11",
-          "ctl": 42.5
-        },
-        {
-          "d": "2026-12-12",
-          "ctl": 43.4
-        },
-        {
-          "d": "2026-12-13",
-          "ctl": 44.3
-        },
-        {
-          "d": "2026-12-14",
-          "ctl": 44.9
-        },
-        {
-          "d": "2026-12-15",
-          "ctl": 45.6
-        },
-        {
-          "d": "2026-12-16",
-          "ctl": 46.2
-        },
-        {
-          "d": "2026-12-17",
-          "ctl": 46.8
-        },
-        {
-          "d": "2026-12-18",
-          "ctl": 47.4
-        },
-        {
-          "d": "2026-12-19",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-12-20",
-          "ctl": 48.5
-        },
-        {
-          "d": "2026-12-21",
-          "ctl": 48.6
-        },
-        {
-          "d": "2026-12-22",
-          "ctl": 48.7
-        },
-        {
-          "d": "2026-12-23",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-12-24",
-          "ctl": 47.6
-        },
-        {
-          "d": "2026-12-25",
-          "ctl": 46.5
-        },
-        {
-          "d": "2026-12-26",
-          "ctl": 46.6
-        },
-        {
-          "d": "2026-12-27",
-          "ctl": 46.7
-        },
-        {
-          "d": "2026-12-28",
-          "ctl": 47.1
-        },
-        {
-          "d": "2026-12-29",
-          "ctl": 47.5
-        },
-        {
-          "d": "2026-12-30",
-          "ctl": 47.8
-        },
-        {
-          "d": "2026-12-31",
-          "ctl": 48.2
-        },
-        {
-          "d": "2027-01-01",
-          "ctl": 48.5
-        },
-        {
-          "d": "2027-01-02",
-          "ctl": 48.9
-        },
-        {
-          "d": "2027-01-03",
-          "ctl": 49.2
-        },
-        {
-          "d": "2027-01-04",
-          "ctl": 48.1
-        },
-        {
-          "d": "2027-01-05",
-          "ctl": 46.9
-        },
-        {
-          "d": "2027-01-06",
-          "ctl": 45.8
-        },
-        {
-          "d": "2027-01-07",
-          "ctl": 44.7
-        },
-        {
-          "d": "2027-01-08",
-          "ctl": 43.6
-        },
-        {
-          "d": "2027-01-09",
-          "ctl": 42.6
-        },
-        {
-          "d": "2027-01-10",
-          "ctl": 41.6
-        },
-        {
-          "d": "2027-01-11",
-          "ctl": 40.6
-        },
-        {
-          "d": "2027-01-12",
-          "ctl": 39.6
-        },
-        {
-          "d": "2027-01-13",
-          "ctl": 38.7
-        },
-        {
-          "d": "2027-01-14",
           "ctl": 37.8
         },
         {
+          "d": "2026-12-04",
+          "ctl": 38.7
+        },
+        {
+          "d": "2026-12-05",
+          "ctl": 39.6
+        },
+        {
+          "d": "2026-12-06",
+          "ctl": 40.5
+        },
+        {
+          "d": "2026-12-07",
+          "ctl": 41.4
+        },
+        {
+          "d": "2026-12-08",
+          "ctl": 40.4
+        },
+        {
+          "d": "2026-12-09",
+          "ctl": 41.4
+        },
+        {
+          "d": "2026-12-10",
+          "ctl": 42.3
+        },
+        {
+          "d": "2026-12-11",
+          "ctl": 43.2
+        },
+        {
+          "d": "2026-12-12",
+          "ctl": 44.1
+        },
+        {
+          "d": "2026-12-13",
+          "ctl": 44.9
+        },
+        {
+          "d": "2026-12-14",
+          "ctl": 45.6
+        },
+        {
+          "d": "2026-12-15",
+          "ctl": 46.2
+        },
+        {
+          "d": "2026-12-16",
+          "ctl": 46.8
+        },
+        {
+          "d": "2026-12-17",
+          "ctl": 47.4
+        },
+        {
+          "d": "2026-12-18",
+          "ctl": 47.9
+        },
+        {
+          "d": "2026-12-19",
+          "ctl": 48.5
+        },
+        {
+          "d": "2026-12-20",
+          "ctl": 49.0
+        },
+        {
+          "d": "2026-12-21",
+          "ctl": 49.1
+        },
+        {
+          "d": "2026-12-22",
+          "ctl": 49.2
+        },
+        {
+          "d": "2026-12-23",
+          "ctl": 49.2
+        },
+        {
+          "d": "2026-12-24",
+          "ctl": 48.1
+        },
+        {
+          "d": "2026-12-25",
+          "ctl": 46.9
+        },
+        {
+          "d": "2026-12-26",
+          "ctl": 47.0
+        },
+        {
+          "d": "2026-12-27",
+          "ctl": 47.2
+        },
+        {
+          "d": "2026-12-28",
+          "ctl": 47.5
+        },
+        {
+          "d": "2026-12-29",
+          "ctl": 47.9
+        },
+        {
+          "d": "2026-12-30",
+          "ctl": 48.3
+        },
+        {
+          "d": "2026-12-31",
+          "ctl": 48.6
+        },
+        {
+          "d": "2027-01-01",
+          "ctl": 48.9
+        },
+        {
+          "d": "2027-01-02",
+          "ctl": 49.3
+        },
+        {
+          "d": "2027-01-03",
+          "ctl": 49.6
+        },
+        {
+          "d": "2027-01-04",
+          "ctl": 48.4
+        },
+        {
+          "d": "2027-01-05",
+          "ctl": 47.3
+        },
+        {
+          "d": "2027-01-06",
+          "ctl": 46.1
+        },
+        {
+          "d": "2027-01-07",
+          "ctl": 45.0
+        },
+        {
+          "d": "2027-01-08",
+          "ctl": 44.0
+        },
+        {
+          "d": "2027-01-09",
+          "ctl": 42.9
+        },
+        {
+          "d": "2027-01-10",
+          "ctl": 41.9
+        },
+        {
+          "d": "2027-01-11",
+          "ctl": 40.9
+        },
+        {
+          "d": "2027-01-12",
+          "ctl": 39.9
+        },
+        {
+          "d": "2027-01-13",
+          "ctl": 39.0
+        },
+        {
+          "d": "2027-01-14",
+          "ctl": 38.0
+        },
+        {
           "d": "2027-01-15",
-          "ctl": 36.9
+          "ctl": 37.1
         },
         {
           "d": "2027-01-16",
-          "ctl": 36.0
+          "ctl": 36.3
         },
         {
           "d": "2027-01-17",
-          "ctl": 35.1
+          "ctl": 35.4
         }
       ],
       "targets": [
@@ -10709,38 +10761,39 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-24T04:11:59Z",
-    "inputsHash": "a335c3c8fa190a745279a62933cccd0dad0e1347",
+    "generatedAt": "2026-11-24T14:14:48Z",
+    "inputsHash": "46acec4296d81a672f1bb55cfd73877684208328",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis til vedligehold i dag og de næste 2-3 dage — protein ved hvert måltid, mindst 2 af 3 måltider registreret.",
-      "why": "Fedtfri masse er faldet 0,7 kg på 4 uger — kroppen tærer på muskelmasse, ikke fedt. Stop raten nu."
+      "action": "Kør Cykel Z2 2,5 t Mallorca i dag — fladt, Z1-2, ingen stigninger på tid og ingen intensitet.",
+      "why": "Readiness er HIGH og vandringen i dag er ekstra — cykelpasset er ugens nøglepas og skal gennemføres på let indsats som planlagt."
     },
     "training": {
-      "text": "Planen i dag er 150 min Z1-2 på fladt terræn på Mallorca — kør ingen stigninger på tid og ingen intensitet. Mandag mangler styrke A, som ikke er udført. TSB er -22,6 — hold dig inden for Z2 og kortere hvis du mærker træthed.",
+      "text": "Fornalutx-vandringen er i hus som ekstra pas. Styrke A mandag er misset — det rykker til torsdag. TSB er -25,6, og ugen har kun brugt 29 % af planlagt TSS — det er forventet i en recovery-uge.",
       "refs": [
-        150.0,
-        -22.6
+        -25.6,
+        29.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 72,9 kg mod forventet 72,8 kg — altså 0,2 kg over plan. Fedtfri masse er faldet 0,7 kg på 4 uger: spis til vedligehold i 3-4 dage.",
+      "text": "7-dages snit for fedtfri masse er faldet 0,7 kg på 4 uger — spis til vedligehold de næste 3-4 dage og sørg for protein ved alle tre måltider. 7-dages vægten er steget 1,0 kg den seneste måned, men cut-raten er kun -0,09 kg/uge mod plan på 0,35 kg/uge — stop underskuddet nu, ikke skru mere op.",
       "refs": [
-        72.9,
-        72.8,
-        0.2,
-        0.7
+        -0.7,
+        1.0,
+        -0.09,
+        0.35
       ]
     },
     "habits": {
-      "text": "Protein er registreret 2 ud af 5 mulige dage — sørg for at registrere alle tre måltider. Søvn og energi er på plads.",
+      "text": "Protein er registreret 2 ud af 5 dage — sørg for at registrere i dag og kram protein ved hvert måltid. Søvn er fin med 8,6 t i nat.",
       "refs": [
         2.0,
-        5.0
+        5.0,
+        8.6
       ]
     },
-    "bigPicture": "Uge 48, genopbygningsfase på Mallorca — fedtfri masse-signalet er det vigtigste at håndtere nu.",
+    "bigPicture": "Uge 48, recovery-uge på Mallorca: volumen opbygges stille, fedtfri masse kræver et par dages vedligehold ved maden.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
@@ -10754,7 +10807,7 @@
       {
         "type": "tsb",
         "level": "warn",
-        "message": "TSB -22,6 — hård belastning. Hold øje med trætheden.",
+        "message": "TSB -25,6 — hård belastning. Hold øje med trætheden.",
         "action": null,
         "source": "rule"
       }
@@ -10995,9 +11048,9 @@
           "level": null,
           "value": {
             "rhr": 1.9,
-            "hrvPct": -10.6
+            "hrvPct": -10.1
           },
-          "text": "hvilepuls +2 · HRV −11 % (14 dage)"
+          "text": "hvilepuls +2 · HRV −10 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11325,23 +11378,23 @@
     }
   },
   "weekTss": {
-    "actual": 56,
+    "actual": 176,
     "planned": 605
   },
   "martinMail": {
     "week": 12,
     "isoWeek": 48,
     "lines": [
-      "Uge 48: TSS 56 af 605 (9 %) · CTL 32,8 (mål 46) · TSB −22,6",
+      "Uge 48: TSS 176 af 605 (29 %) · CTL 33,5 (mål 46) · TSB −25,6",
       "Vægt 7d 72,9 kg · fedt 14d 22,5 % · på plan mod glidepath (72,8)",
-      "HRV 7d 36 (28d 40) · hvilepuls 50 · søvn 7d 8,0 t",
+      "HRV 7d 36 (28d 40) · hvilepuls 50 · søvn 7d 8,1 t",
       "AF 4/7 · protein 3/3 2/7 · aftensult —/7",
       "Styrke 2/2 · check-in 1/11 ben ✓ overkrop ✓",
       "Cut-tjek: act — Fedtfri masse −0,7 kg på 4 uger — spis til vedligehold i 3-4 dage, protein 3/3, styrke torsdag",
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-24T04:11:45Z"
+    "generatedAt": "2026-11-24T14:14:33Z"
   },
   "proposals": [],
   "ftp": {
@@ -11414,7 +11467,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-24",
-    "ctl": 32.8,
-    "atl": 55.4
+    "ctl": 33.5,
+    "atl": 59.1
   }
 }
