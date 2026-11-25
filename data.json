@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-25 09:14",
+    "updated": "2026-11-25 11:54",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "35,5",
+      "value": "33,5",
       "unit": "",
       "sub": "Uge 48-mål 46 · RECOVERY",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-31,3",
+      "value": "-23,5",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -70,16 +70,16 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "176",
+      "value": "200",
       "unit": "TSS",
-      "sub": "176 af 605 planlagt TSS",
+      "sub": "200 af 605 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
-      "value": "30,8",
+      "value": "61,6",
       "unit": "km",
       "sub": "Cykel denne uge",
-      "color": "#C0392B"
+      "color": "#27AE60"
     },
     "swimM": {
       "value": "0",
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 2
   },
-  "coachSpeech": "Uge 48, RECOVERY — denne uge handler om at samle kræfter, ikke bygge form; Z2 og ro er det rigtige nu. {HL} Mandag gennemførte du 88 min cykel og 76 min vandring — tirsdag missede du Cykel Z2 2,5 t og Styrke A. Tirsdagens ekstra vandring (307 min, 120 TSS) forklarer en del af den ophobede træthed.",
-  "coachHighlight": "Kør Cykel Z2 2 t Mallorca (120 min) i Z1-2 på fladt terræn — ingen stigninger på tid, ingen intensitet.",
+  "coachSpeech": "Uge 48, recovery-blok på Mallorca: volumen over intensitet, krop og snit skal holdes i cut-sporet. {HL} Cyklen i dag blev 94 min og 24 TSS mod planens 120 min og 90 TSS — helt fint i en recovery-uge, kortere er bedre end for meget.",
+  "coachHighlight": "Tag vandreturen på 90 min i Z1 — cyklen er i hus og noten siger kun ja, hvis den føltes let.",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -121,7 +121,7 @@
       "duration": "",
       "zone": "–",
       "desc": "",
-      "completed": false
+      "completed": true
     },
     {
       "discipline": "hike",
@@ -196,11 +196,17 @@
       "day": "Ons",
       "disc": "bike",
       "label": "Cykel Z2 2 t Mallorca",
-      "done": false,
+      "done": true,
       "planned_tss": 90,
       "planned_mins": 120,
       "planned_distance_m": null,
-      "today": true
+      "today": true,
+      "completion": "partial",
+      "completion_pct": 27,
+      "actual_tss": 24,
+      "actual_name": "Fornalutx Cykling på vej",
+      "actual_mins": 94,
+      "actual_distance_m": 30821.1
     },
     {
       "day": "Ons",
@@ -261,7 +267,7 @@
     31.8,
     28.5,
     28.1,
-    35.5
+    33.5
   ],
   "weightHistory": [
     {
@@ -1958,12 +1964,12 @@
     },
     {
       "date": "2026-11-24",
-      "v": -25.6,
+      "v": -13.3,
       "real": true
     },
     {
       "date": "2026-11-25",
-      "v": -31.3,
+      "v": -23.6,
       "real": true
     }
   ],
@@ -2361,11 +2367,17 @@
           "day": "Ons",
           "disc": "bike",
           "label": "Cykel Z2 2 t Mallorca",
-          "done": false,
+          "done": true,
           "planned_tss": 90,
           "planned_mins": 120,
           "planned_distance_m": null,
-          "today": true
+          "today": true,
+          "completion": "partial",
+          "completion_pct": 27,
+          "actual_tss": 24,
+          "actual_name": "Fornalutx Cykling på vej",
+          "actual_mins": 94,
+          "actual_distance_m": 30821.1
         },
         {
           "day": "Ons",
@@ -2972,10 +2984,10 @@
     }
   ],
   "train_mins": {
+    "bike": 182.0,
     "hike": 383.0,
-    "bike": 88.0,
     "planned": 925.0,
-    "actual_total": 471.0
+    "actual_total": 565.0
   },
   "fatHistory": [
     {
@@ -3325,19 +3337,19 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 80 af 357 · Onsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, RECOVERY — denne uge handler om at samle kræfter, ikke bygge form; Z2 og ro er det rigtige nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Mandag gennemførte du 88 min cykel og 76 min vandring — tirsdag missede du Cykel Z2 2,5 t og Styrke A. Tirsdagens ekstra vandring (307 min, 120 TSS) forklarer en del af den ophobede træthed. TSB er -31,3 — under gulvet på -30 — så hold dagens cykel i streng Z1-2 og lad vandringen (90 min) blive valgfri som planen foreskriver.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,3 kg over det forventede på 72,8 kg — planen siger 'på plan', og cut-raten er 0,27 kg/uge. Fedtprocenten er stabil på 7-dages snit.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er registreret 2 af 7 dage — log de resterende dage, så du kan vide om du faktisk rammer det. Søvn er 9,4 t i nat og 8,4 t i snit — det er godt og støtter restitutionen.</p>",
-  "coachAssessmentTs": "09:14",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 80 af 357 · Onsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, recovery-blok på Mallorca: volumen over intensitet, krop og snit skal holdes i cut-sporet.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Cyklen i dag blev 94 min og 24 TSS mod planens 120 min og 90 TSS — helt fint i en recovery-uge, kortere er bedre end for meget. Ugen har to missede pas (styrke A og 2,5 t cykel tirsdag); bring styrke B torsdag og kør de resterende pas som planlagt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 73,0 kg mod forventet 72,8 kg — 0,3 kg over plan, lige på grænsen. Fedtprocent er stabil med -0,4 procentpoint den seneste måned. Protein ved hvert måltid er vigtigst nu for at beskytte muskelmassen under cut.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Kun 2 dage med protein registreret ud af 4 registrerede — det er for lidt under et cut. Søvn er god med 8,4 t i snit.</p>",
+  "coachAssessmentTs": "11:54",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "tsb",
-      "level": "critical",
-      "message": "TSB -31,3 — høj træthed. Overvej let dag eller hvile.",
+      "level": "warn",
+      "message": "TSB -23,5 — hård belastning. Hold øje med trætheden.",
       "action": null,
       "source": "rule"
     }
   ],
-  "tsb": -31.3,
+  "tsb": -23.5,
   "swimHistory": [
     {
       "week": 1,
@@ -3412,7 +3424,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i214091326",
+  "coachAssessmentLastActId": "i214470295",
   "weekFocusWeek": 12,
   "coachAssessmentPlanAtGen": "Cykel Z2 2 t Mallorca",
   "weightGoal": 69.5,
@@ -3666,8 +3678,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-25T08:14:52.602192",
-  "coachAssessmentTsFull": "2026-11-25T08:14:52",
+  "credentialsCheckedTs": "2026-11-25T10:54:25.807502",
+  "coachAssessmentTsFull": "2026-11-25T10:54:25",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 1,
   "event_structure_warnings": [],
@@ -3765,7 +3777,7 @@
     "9": 153,
     "10": 114,
     "11": 226,
-    "12": 176
+    "12": 200
   },
   "racesUpcoming": [
     {
@@ -5195,7 +5207,7 @@
         "mesoWeek": "R",
         "ctlTarget": 46,
         "tssTarget": 440,
-        "tssActual": 176,
+        "tssActual": 200,
         "purpose": "Recovery: åbnere, Z2 80, 2 t søndag. Styrke 2 runder.",
         "note": null,
         "quota": {
@@ -8846,14 +8858,15 @@
                 "erg": null,
                 "purpose": null,
                 "zwiftName": null,
-                "done": false,
-                "actualMins": null,
-                "actualTss": null,
+                "done": true,
+                "actualMins": 94,
+                "actualTss": 24,
                 "note": "Uge 48 Mallorca: Z1-2, fladt. Ingen stigninger på tid og ingen intensitet. Kør kortere, hvis HRV falder i flere dage, pulsen er 10 slag over normalt ved samme indsats, eller du er træt dagen efter.",
                 "isKey": true,
                 "optional": false,
                 "start": "07:45",
-                "startFixed": false
+                "startFixed": false,
+                "completion": "partial"
               },
               {
                 "id": "3ed66a0a",
@@ -10256,221 +10269,221 @@
           "week": 12,
           "programId": "tds-2027",
           "start": "2026-11-23",
-          "ctl": 35.5
+          "ctl": 33.5
         }
       ],
       "projection": [
         {
           "d": "2026-11-26",
-          "ctl": 34.4
+          "ctl": 36.4
         },
         {
           "d": "2026-11-27",
-          "ctl": 33.6
-        },
-        {
-          "d": "2026-11-28",
-          "ctl": 34.6
-        },
-        {
-          "d": "2026-11-29",
           "ctl": 35.5
         },
         {
+          "d": "2026-11-28",
+          "ctl": 36.4
+        },
+        {
+          "d": "2026-11-29",
+          "ctl": 37.3
+        },
+        {
           "d": "2026-11-30",
-          "ctl": 36.5
+          "ctl": 38.2
         },
         {
           "d": "2026-12-01",
-          "ctl": 35.6
+          "ctl": 37.3
         },
         {
           "d": "2026-12-02",
-          "ctl": 36.6
+          "ctl": 38.3
         },
         {
           "d": "2026-12-03",
-          "ctl": 37.5
+          "ctl": 39.2
         },
         {
           "d": "2026-12-04",
-          "ctl": 38.5
+          "ctl": 40.1
         },
         {
           "d": "2026-12-05",
-          "ctl": 39.4
+          "ctl": 41.0
         },
         {
           "d": "2026-12-06",
-          "ctl": 40.3
-        },
-        {
-          "d": "2026-12-07",
-          "ctl": 41.2
-        },
-        {
-          "d": "2026-12-08",
-          "ctl": 40.2
-        },
-        {
-          "d": "2026-12-09",
-          "ctl": 41.2
-        },
-        {
-          "d": "2026-12-10",
-          "ctl": 42.1
-        },
-        {
-          "d": "2026-12-11",
-          "ctl": 43.0
-        },
-        {
-          "d": "2026-12-12",
-          "ctl": 43.9
-        },
-        {
-          "d": "2026-12-13",
-          "ctl": 44.7
-        },
-        {
-          "d": "2026-12-14",
-          "ctl": 45.4
-        },
-        {
-          "d": "2026-12-15",
-          "ctl": 46.0
-        },
-        {
-          "d": "2026-12-16",
-          "ctl": 46.6
-        },
-        {
-          "d": "2026-12-17",
-          "ctl": 47.2
-        },
-        {
-          "d": "2026-12-18",
-          "ctl": 47.8
-        },
-        {
-          "d": "2026-12-19",
-          "ctl": 48.3
-        },
-        {
-          "d": "2026-12-20",
-          "ctl": 48.9
-        },
-        {
-          "d": "2026-12-21",
-          "ctl": 49.0
-        },
-        {
-          "d": "2026-12-22",
-          "ctl": 49.0
-        },
-        {
-          "d": "2026-12-23",
-          "ctl": 49.1
-        },
-        {
-          "d": "2026-12-24",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-12-25",
-          "ctl": 46.8
-        },
-        {
-          "d": "2026-12-26",
-          "ctl": 46.9
-        },
-        {
-          "d": "2026-12-27",
-          "ctl": 47.0
-        },
-        {
-          "d": "2026-12-28",
-          "ctl": 47.4
-        },
-        {
-          "d": "2026-12-29",
-          "ctl": 47.8
-        },
-        {
-          "d": "2026-12-30",
-          "ctl": 48.1
-        },
-        {
-          "d": "2026-12-31",
-          "ctl": 48.5
-        },
-        {
-          "d": "2027-01-01",
-          "ctl": 48.8
-        },
-        {
-          "d": "2027-01-02",
-          "ctl": 49.2
-        },
-        {
-          "d": "2027-01-03",
-          "ctl": 49.5
-        },
-        {
-          "d": "2027-01-04",
-          "ctl": 48.3
-        },
-        {
-          "d": "2027-01-05",
-          "ctl": 47.2
-        },
-        {
-          "d": "2027-01-06",
-          "ctl": 46.0
-        },
-        {
-          "d": "2027-01-07",
-          "ctl": 44.9
-        },
-        {
-          "d": "2027-01-08",
-          "ctl": 43.9
-        },
-        {
-          "d": "2027-01-09",
-          "ctl": 42.8
-        },
-        {
-          "d": "2027-01-10",
           "ctl": 41.8
         },
         {
+          "d": "2026-12-07",
+          "ctl": 42.7
+        },
+        {
+          "d": "2026-12-08",
+          "ctl": 41.7
+        },
+        {
+          "d": "2026-12-09",
+          "ctl": 42.6
+        },
+        {
+          "d": "2026-12-10",
+          "ctl": 43.5
+        },
+        {
+          "d": "2026-12-11",
+          "ctl": 44.4
+        },
+        {
+          "d": "2026-12-12",
+          "ctl": 45.2
+        },
+        {
+          "d": "2026-12-13",
+          "ctl": 46.0
+        },
+        {
+          "d": "2026-12-14",
+          "ctl": 46.6
+        },
+        {
+          "d": "2026-12-15",
+          "ctl": 47.2
+        },
+        {
+          "d": "2026-12-16",
+          "ctl": 47.8
+        },
+        {
+          "d": "2026-12-17",
+          "ctl": 48.4
+        },
+        {
+          "d": "2026-12-18",
+          "ctl": 48.9
+        },
+        {
+          "d": "2026-12-19",
+          "ctl": 49.5
+        },
+        {
+          "d": "2026-12-20",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-12-21",
+          "ctl": 50.0
+        },
+        {
+          "d": "2026-12-22",
+          "ctl": 50.1
+        },
+        {
+          "d": "2026-12-23",
+          "ctl": 50.1
+        },
+        {
+          "d": "2026-12-24",
+          "ctl": 48.9
+        },
+        {
+          "d": "2026-12-25",
+          "ctl": 47.8
+        },
+        {
+          "d": "2026-12-26",
+          "ctl": 47.9
+        },
+        {
+          "d": "2026-12-27",
+          "ctl": 48.0
+        },
+        {
+          "d": "2026-12-28",
+          "ctl": 48.3
+        },
+        {
+          "d": "2026-12-29",
+          "ctl": 48.7
+        },
+        {
+          "d": "2026-12-30",
+          "ctl": 49.0
+        },
+        {
+          "d": "2026-12-31",
+          "ctl": 49.3
+        },
+        {
+          "d": "2027-01-01",
+          "ctl": 49.7
+        },
+        {
+          "d": "2027-01-02",
+          "ctl": 50.0
+        },
+        {
+          "d": "2027-01-03",
+          "ctl": 50.3
+        },
+        {
+          "d": "2027-01-04",
+          "ctl": 49.1
+        },
+        {
+          "d": "2027-01-05",
+          "ctl": 47.9
+        },
+        {
+          "d": "2027-01-06",
+          "ctl": 46.8
+        },
+        {
+          "d": "2027-01-07",
+          "ctl": 45.7
+        },
+        {
+          "d": "2027-01-08",
+          "ctl": 44.6
+        },
+        {
+          "d": "2027-01-09",
+          "ctl": 43.5
+        },
+        {
+          "d": "2027-01-10",
+          "ctl": 42.5
+        },
+        {
           "d": "2027-01-11",
-          "ctl": 40.8
+          "ctl": 41.5
         },
         {
           "d": "2027-01-12",
-          "ctl": 39.8
+          "ctl": 40.5
         },
         {
           "d": "2027-01-13",
-          "ctl": 38.9
+          "ctl": 39.5
         },
         {
           "d": "2027-01-14",
-          "ctl": 38.0
+          "ctl": 38.6
         },
         {
           "d": "2027-01-15",
-          "ctl": 37.1
+          "ctl": 37.7
         },
         {
           "d": "2027-01-16",
-          "ctl": 36.2
+          "ctl": 36.8
         },
         {
           "d": "2027-01-17",
-          "ctl": 35.3
+          "ctl": 35.9
         }
       ],
       "targets": [
@@ -10742,51 +10755,48 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-25T08:14:52Z",
-    "inputsHash": "e4c1d569df424e91846af005533c6c3c1d389181",
+    "generatedAt": "2026-11-25T10:54:25Z",
+    "inputsHash": "acc1e0ba3691908fa398c554ff79adae6be70921",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør Cykel Z2 2 t Mallorca (120 min) i Z1-2 på fladt terræn — ingen stigninger på tid, ingen intensitet.",
-      "why": "TSB er -31,3 og du er i RECOVERY-uge. Lav belastning i dag holder restitutionen i gang uden at grave hullet dybere."
+      "action": "Tag vandreturen på 90 min i Z1 — cyklen er i hus og noten siger kun ja, hvis den føltes let.",
+      "why": "Readiness er HIGH og TSB er -23,5 — bevæg dig roligt, men skru ikke op for indsatsen."
     },
     "training": {
-      "text": "Mandag gennemførte du 88 min cykel og 76 min vandring — tirsdag missede du Cykel Z2 2,5 t og Styrke A. Tirsdagens ekstra vandring (307 min, 120 TSS) forklarer en del af den ophobede træthed. TSB er -31,3 — under gulvet på -30 — så hold dagens cykel i streng Z1-2 og lad vandringen (90 min) blive valgfri som planen foreskriver.",
+      "text": "Cyklen i dag blev 94 min og 24 TSS mod planens 120 min og 90 TSS — helt fint i en recovery-uge, kortere er bedre end for meget. Ugen har to missede pas (styrke A og 2,5 t cykel tirsdag); bring styrke B torsdag og kør de resterende pas som planlagt.",
       "refs": [
-        88.0,
-        76.0,
-        307.0,
+        94.0,
+        24.0,
         120.0,
-        -31.3,
-        -30.0,
         90.0
       ]
     },
     "body": {
-      "text": "7-dages snit er 0,3 kg over det forventede på 72,8 kg — planen siger 'på plan', og cut-raten er 0,27 kg/uge. Fedtprocenten er stabil på 7-dages snit.",
+      "text": "7-dages snit er 73,0 kg mod forventet 72,8 kg — 0,3 kg over plan, lige på grænsen. Fedtprocent er stabil med -0,4 procentpoint den seneste måned. Protein ved hvert måltid er vigtigst nu for at beskytte muskelmassen under cut.",
       "refs": [
-        0.3,
+        73.0,
         72.8,
-        0.27
+        0.3,
+        -0.4
       ]
     },
     "habits": {
-      "text": "Protein er registreret 2 af 7 dage — log de resterende dage, så du kan vide om du faktisk rammer det. Søvn er 9,4 t i nat og 8,4 t i snit — det er godt og støtter restitutionen.",
+      "text": "Kun 2 dage med protein registreret ud af 4 registrerede — det er for lidt under et cut. Søvn er god med 8,4 t i snit.",
       "refs": [
         2.0,
-        7.0,
-        9.4,
+        4.0,
         8.4
       ]
     },
-    "bigPicture": "Uge 48, RECOVERY — denne uge handler om at samle kræfter, ikke bygge form; Z2 og ro er det rigtige nu.",
+    "bigPicture": "Uge 48, recovery-blok på Mallorca: volumen over intensitet, krop og snit skal holdes i cut-sporet.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "tsb",
-        "level": "act",
-        "message": "TSB -31,3 — høj træthed. Overvej let dag eller hvile.",
+        "level": "warn",
+        "message": "TSB -23,5 — hård belastning. Hold øje med trætheden.",
         "action": null,
         "source": "rule"
       }
@@ -11357,14 +11367,14 @@
     }
   },
   "weekTss": {
-    "actual": 176,
+    "actual": 200,
     "planned": 605
   },
   "martinMail": {
     "week": 12,
     "isoWeek": 48,
     "lines": [
-      "Uge 48: TSS 176 af 605 (29 %) · CTL 35,5 (mål 46) · TSB −31,3",
+      "Uge 48: TSS 200 af 605 (33 %) · CTL 33,5 (mål 46) · TSB −23,5",
       "Vægt 7d 73,0 kg · fedt 14d 22,5 % · på plan mod glidepath (72,8)",
       "HRV 7d 37 (28d 40) · hvilepuls 50 · søvn 7d 8,4 t",
       "AF 3/7 · protein 3/3 2/7 · aftensult —/7",
@@ -11373,7 +11383,7 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-25T08:14:36Z"
+    "generatedAt": "2026-11-25T10:54:10Z"
   },
   "proposals": [],
   "ftp": {
@@ -11446,7 +11456,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-25",
-    "ctl": 35.5,
-    "atl": 66.8
+    "ctl": 33.5,
+    "atl": 57.0
   }
 }
