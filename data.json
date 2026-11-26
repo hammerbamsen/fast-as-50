@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-26 15:15",
+    "updated": "2026-11-26 16:20",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -88,9 +88,9 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "3",
+      "value": "4",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,8 · streak 4",
+      "sub": "af 6 denne uge · snit 4 uger 3,8 · streak 5",
       "color": "#59182A"
     },
     "ftp": {
@@ -100,19 +100,19 @@
       "color": "#C0392B"
     },
     "protein": {
-      "value": "4",
+      "value": "5",
       "unit": "/7",
-      "sub": "3/3-dage · 4 uger 3,2",
-      "color": "#E67E22"
+      "sub": "3/3-dage · 4 uger 3,5",
+      "color": "#27AE60"
     }
   },
   "af": {
-    "weekDone": 3,
+    "weekDone": 4,
     "target": 6,
-    "streak": 4
+    "streak": 5
   },
-  "coachSpeech": "Torsdag — uge 48. {HL} Godt: Søvn på 8,4 timer er solid. Fokus: Vægt på 73,4 kg (målt 21/11) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 3 AF-dage i 4 afsluttede dage — 3 mangler i 3 dage tilbage. Keep moving forward.  \"Den bedste træning er den, du faktisk gennemfører.\"",
-  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
+  "coachSpeech": "string {HL} Vandringen i dag er i hus (130 min, 26 TSS). Tilbage i dag: 180 min cykel Z2 og 25 min styrke B. Uge 48 er en RECOVERY-uge — TSS-pct er lav, men det er meningen; hold pas lette. TSB er -25,8, hold øje med træthed.",
+  "coachHighlight": "Cykel Z2 3 t på Mallorca i dag: flat rute, Z1-2, ingen stigninger på tid og ingen intensitet. Kør kortere, hvis du er træt efter vandringen.",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -2164,7 +2164,8 @@
     "2026-11-22": 0,
     "2026-11-23": 0,
     "2026-11-24": 0,
-    "2026-11-25": 0
+    "2026-11-25": 0,
+    "2026-11-26": 0
   },
   "all_weeks": {
     "10": {
@@ -3006,7 +3007,7 @@
       "week": 12,
       "iso": 48,
       "monday": "2026-11-23",
-      "done": 3,
+      "done": 4,
       "total": 4,
       "label": "Uge 48"
     }
@@ -3361,14 +3362,16 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 81 af 357 · Torsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Vandringen på 130 min er i hus. Cykel Z2 på 180 min og Styrke B på 25 min er tilbage i dag. TSB på -25,8 er tæt på gulvet (-30) — kør turen færdig, men afkort den uden tøven hvis pulsen ligger 10 slag over normalt ved samme indsats.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,4 kg over plan denne uge — retningen over den seneste måned er dog klart nedad med 1,1 kg, så cut-signalet er grønt. Fortsæt som nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 4 af 5 registrerede dage — helt fint. Søvn på 8,2 timer i nat er over målet, og energisnittet på 3,6 er acceptabelt på en travl rejseuge.</p>",
-  "coachAssessmentTs": "13:05",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 81 af 357 · Torsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Vandringen i dag er i hus (130 min, 26 TSS). Tilbage i dag: 180 min cykel Z2 og 25 min styrke B. Uge 48 er en RECOVERY-uge — TSS-pct er lav, men det er meningen; hold pas lette. TSB er -25,8, hold øje med træthed.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,4 kg over cut-planen (forventet 72,8 kg). Fortsæt protein ved hvert måltid — ingen grund til at justere yderligere endnu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 5 ud af 6 registrerede dage — fortsæt det. Søvn 8,2 timer i nat er godt over målet på 7 timer.</p>",
+  "coachAssessmentTs": "16:20",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "tsb",
       "level": "warn",
-      "message": "TSB -25,8 — hård belastning. Hold øje med trætheden."
+      "message": "TSB -25,8 — hård belastning. Hold øje med trætheden.",
+      "action": null,
+      "source": "rule"
     }
   ],
   "tsb": -25.8,
@@ -3700,10 +3703,10 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-26T14:15:56.697889",
-  "coachAssessmentTsFull": "2026-11-26T12:05:28",
+  "credentialsCheckedTs": "2026-11-26T15:21:07.570697",
+  "coachAssessmentTsFull": "2026-11-26T15:21:07",
   "coachAssessmentWeightAtGen": 73.4,
-  "coachAssessmentAfAtGen": 3,
+  "coachAssessmentAfAtGen": 4,
   "event_structure_warnings": [],
   "coachAssessmentFatAtGen": 22.3,
   "zones": {
@@ -4840,13 +4843,13 @@
     },
     {
       "date": "2026-11-26",
-      "alkohol": null,
-      "protein": null,
-      "energi": null,
+      "alkohol": 0,
+      "protein": 2,
+      "energi": 4,
       "sult": null
     }
   ],
-  "energy7": 3.6,
+  "energy7": 3.7,
   "af_kind": {
     "2026-11-04": "faa",
     "2026-11-06": "faa",
@@ -10791,38 +10794,38 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-26T12:05:28Z",
-    "inputsHash": "6235dce238de04a83063d3ad45b4edf85dfb48c1",
+    "generatedAt": "2026-11-26T15:21:07Z",
+    "inputsHash": "aa77fe95488a5132d7f127a1dc2d6fa439f0e328",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør Cykel Z2 3 t Mallorca i dag — fladt, Z1-2, ingen stigninger på tid og ingen intensitet. Kør kortere hvis du er træt.",
-      "why": "TSB er -25,8 og du har allerede 130 min vandring i benene i dag — hold dig i det lette og undgå at grave hullet dybere."
+      "action": "Cykel Z2 3 t på Mallorca i dag: flat rute, Z1-2, ingen stigninger på tid og ingen intensitet. Kør kortere, hvis du er træt efter vandringen.",
+      "why": "RECOVERY-uge med TSB på -25,8 — volumen er fint, men drop intensiteten helt og lyt til kroppen."
     },
     "training": {
-      "text": "Vandringen på 130 min er i hus. Cykel Z2 på 180 min og Styrke B på 25 min er tilbage i dag. TSB på -25,8 er tæt på gulvet (-30) — kør turen færdig, men afkort den uden tøven hvis pulsen ligger 10 slag over normalt ved samme indsats.",
+      "text": "Vandringen i dag er i hus (130 min, 26 TSS). Tilbage i dag: 180 min cykel Z2 og 25 min styrke B. Uge 48 er en RECOVERY-uge — TSS-pct er lav, men det er meningen; hold pas lette. TSB er -25,8, hold øje med træthed.",
       "refs": [
         130.0,
+        26.0,
         180.0,
         25.0,
-        -25.8,
-        -30.0
+        -25.8
       ]
     },
     "body": {
-      "text": "7-dages snit er 0,4 kg over plan denne uge — retningen over den seneste måned er dog klart nedad med 1,1 kg, så cut-signalet er grønt. Fortsæt som nu.",
+      "text": "7-dages snit er 0,4 kg over cut-planen (forventet 72,8 kg). Fortsæt protein ved hvert måltid — ingen grund til at justere yderligere endnu.",
       "refs": [
         0.4,
-        1.1
+        72.8
       ]
     },
     "habits": {
-      "text": "Protein dækket 4 af 5 registrerede dage — helt fint. Søvn på 8,2 timer i nat er over målet, og energisnittet på 3,6 er acceptabelt på en travl rejseuge.",
+      "text": "Protein dækket 5 ud af 6 registrerede dage — fortsæt det. Søvn 8,2 timer i nat er godt over målet på 7 timer.",
       "refs": [
-        4.0,
         5.0,
+        6.0,
         8.2,
-        3.6
+        7.0
       ]
     },
     "bigPicture": "string",
@@ -11413,13 +11416,13 @@
       "Uge 48: TSS 226 af 605 (37 %) · CTL 33,8 (mål 46) · TSB −25,8",
       "Vægt 7d 73,0 kg · fedt 14d 22,4 % · på plan mod glidepath (72,8)",
       "HRV 7d 38 (28d 40) · hvilepuls 50 · søvn 7d 8,4 t",
-      "AF 4/7 · protein 3/3 4/7 · aftensult —/7",
+      "AF 5/7 · protein 3/3 5/7 · aftensult —/7",
       "Styrke 1/2 · check-in 1/11 ben ✓ overkrop ✓",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-26T14:15:56Z"
+    "generatedAt": "2026-11-26T15:20:53Z"
   },
   "proposals": [],
   "ftp": {
