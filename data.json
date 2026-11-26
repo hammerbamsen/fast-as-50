@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-26 12:18",
+    "updated": "2026-11-26 13:05",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "35,9",
+      "value": "33,8",
       "unit": "",
       "sub": "Uge 48-mål 46 · RECOVERY",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-33,8",
+      "value": "-25,8",
       "unit": "",
       "sub": "Hård blok · CTL−ATL, frisk >0",
       "color": "#E67E22"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "200",
+      "value": "226",
       "unit": "TSS",
-      "sub": "200 af 605 planlagt TSS",
+      "sub": "226 af 605 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -111,8 +111,8 @@
     "target": 6,
     "streak": 4
   },
-  "coachSpeech": "Uge 48, RECOVERY-blok på Mallorca — blød volumen og Z2 er planen, ikke progress. TSB skal op igen. {HL} TSB på -33,8 er under gulvet (-30) — kør dagens cykel i Z1-2 og skru ned eller stop, hvis kroppen signalerer det.",
-  "coachHighlight": "Kør Cykel Z2 3 t Mallorca fladt i Z1-2 — ingen stigninger på tid, ingen intensitet. Kør kortere hvis du er træt undervejs.",
+  "coachSpeech": "string {HL} Vandringen på 130 min er i hus. Cykel Z2 på 180 min og Styrke B på 25 min er tilbage i dag.",
+  "coachHighlight": "Kør Cykel Z2 3 t Mallorca i dag — fladt, Z1-2, ingen stigninger på tid og ingen intensitet. Kør kortere hvis du er træt.",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -130,6 +130,14 @@
       "zone": "–",
       "desc": "",
       "completed": false
+    },
+    {
+      "discipline": "hike",
+      "title": "Fornalutx Vandring",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
     }
   ],
   "week_sessions": [
@@ -237,6 +245,17 @@
       "today": true
     },
     {
+      "day": "Tor",
+      "disc": "hike",
+      "label": "Fornalutx Vandring",
+      "done": true,
+      "extra": true,
+      "actual_tss": 26,
+      "actual_mins": 130,
+      "actual_distance_m": 10333.27,
+      "today": true
+    },
+    {
       "day": "Lør",
       "disc": "strength",
       "label": "Styrke A · Functional 4 · 3 runder",
@@ -267,7 +286,7 @@
     31.8,
     28.5,
     28.1,
-    35.9
+    33.8
   ],
   "weightHistory": [
     {
@@ -1960,12 +1979,12 @@
     },
     {
       "date": "2026-11-25",
-      "v": -23.6,
+      "v": -10.8,
       "real": true
     },
     {
       "date": "2026-11-26",
-      "v": -33.8,
+      "v": -25.9,
       "real": true
     }
   ],
@@ -2403,6 +2422,17 @@
           "planned_tss": 17,
           "planned_mins": 25,
           "planned_distance_m": null,
+          "today": true
+        },
+        {
+          "day": "Tor",
+          "disc": "hike",
+          "label": "Fornalutx Vandring",
+          "done": true,
+          "extra": true,
+          "actual_tss": 26,
+          "actual_mins": 130,
+          "actual_distance_m": 10333.27,
           "today": true
         },
         {
@@ -2982,10 +3012,10 @@
     }
   ],
   "train_mins": {
+    "hike": 513.0,
     "bike": 182.0,
-    "hike": 383.0,
     "planned": 925.0,
-    "actual_total": 565.0
+    "actual_total": 695.0
   },
   "fatHistory": [
     {
@@ -3331,19 +3361,19 @@
     null,
     null
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 81 af 357 · Torsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, RECOVERY-blok på Mallorca — blød volumen og Z2 er planen, ikke progress. TSB skal op igen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>TSB på -33,8 er under gulvet (-30) — kør dagens cykel i Z1-2 og skru ned eller stop, hvis kroppen signalerer det. Genopbygningsugen (uge 48) har tre gennemførte pas og tre missede; det er OK i en RECOVERY-blok — TSS-underskudet er planlagt.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 1,1 kg den seneste måned — retningen er opad, mens cut-planen forventer 72,8 kg. Du er 0,4 kg over plan. Fortsæt protein ved hvert måltid og alkohol som bevidst valg.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein ramt 4 ud af 5 registrerede dage — fortsæt det. Søvn er fin med 8,4 t i snit. Ingen dage med 3+ genstande denne uge.</p>",
-  "coachAssessmentTs": "12:18",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 81 af 357 · Torsdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Vandringen på 130 min er i hus. Cykel Z2 på 180 min og Styrke B på 25 min er tilbage i dag. TSB på -25,8 er tæt på gulvet (-30) — kør turen færdig, men afkort den uden tøven hvis pulsen ligger 10 slag over normalt ved samme indsats.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 0,4 kg over plan denne uge — retningen over den seneste måned er dog klart nedad med 1,1 kg, så cut-signalet er grønt. Fortsæt som nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 4 af 5 registrerede dage — helt fint. Søvn på 8,2 timer i nat er over målet, og energisnittet på 3,6 er acceptabelt på en travl rejseuge.</p>",
+  "coachAssessmentTs": "13:05",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "tsb",
-      "level": "critical",
-      "message": "TSB -33,8 — høj træthed. Overvej let dag eller hvile.",
+      "level": "warn",
+      "message": "TSB -25,8 — hård belastning. Hold øje med trætheden.",
       "action": null,
       "source": "rule"
     }
   ],
-  "tsb": -33.8,
+  "tsb": -25.8,
   "swimHistory": [
     {
       "week": 1,
@@ -3418,7 +3448,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i214470295",
+  "coachAssessmentLastActId": "i214905257",
   "weekFocusWeek": 12,
   "coachAssessmentPlanAtGen": "Cykel Z2 3 t Mallorca",
   "weightGoal": 69.5,
@@ -3672,8 +3702,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-26T11:18:48.323485",
-  "coachAssessmentTsFull": "2026-11-26T11:18:48",
+  "credentialsCheckedTs": "2026-11-26T12:05:28.592556",
+  "coachAssessmentTsFull": "2026-11-26T12:05:28",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 3,
   "event_structure_warnings": [],
@@ -3771,7 +3801,7 @@
     "9": 153,
     "10": 114,
     "11": 226,
-    "12": 200
+    "12": 226
   },
   "racesUpcoming": [
     {
@@ -5201,7 +5231,7 @@
         "mesoWeek": "R",
         "ctlTarget": 46,
         "tssTarget": 440,
-        "tssActual": 200,
+        "tssActual": 226,
         "purpose": "Recovery: åbnere, Z2 80, 2 t søndag. Styrke 2 runder.",
         "note": null,
         "quota": {
@@ -8930,6 +8960,24 @@
                 "optional": false,
                 "start": "06:30",
                 "startFixed": false
+              },
+              {
+                "id": null,
+                "name": "Fornalutx Vandring",
+                "type": null,
+                "disc": "hike",
+                "mins": 130,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 130,
+                "actualTss": 26,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10263,7 +10311,7 @@
           "week": 12,
           "programId": "tds-2027",
           "start": "2026-11-23",
-          "ctl": 35.9
+          "ctl": 33.8
         }
       ],
       "projection": [
@@ -10745,46 +10793,48 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-26T11:18:48Z",
-    "inputsHash": "130ef072954f9c350b92699f7a81ddae090d8629",
+    "generatedAt": "2026-11-26T12:05:28Z",
+    "inputsHash": "6235dce238de04a83063d3ad45b4edf85dfb48c1",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Kør Cykel Z2 3 t Mallorca fladt i Z1-2 — ingen stigninger på tid, ingen intensitet. Kør kortere hvis du er træt undervejs.",
-      "why": "TSB er -33,8 — langt under grænsen på -30. Blød belastning holder opbygningen i gang uden at grave hullet dybere."
+      "action": "Kør Cykel Z2 3 t Mallorca i dag — fladt, Z1-2, ingen stigninger på tid og ingen intensitet. Kør kortere hvis du er træt.",
+      "why": "TSB er -25,8 og du har allerede 130 min vandring i benene i dag — hold dig i det lette og undgå at grave hullet dybere."
     },
     "training": {
-      "text": "TSB på -33,8 er under gulvet (-30) — kør dagens cykel i Z1-2 og skru ned eller stop, hvis kroppen signalerer det. Genopbygningsugen (uge 48) har tre gennemførte pas og tre missede; det er OK i en RECOVERY-blok — TSS-underskudet er planlagt.",
+      "text": "Vandringen på 130 min er i hus. Cykel Z2 på 180 min og Styrke B på 25 min er tilbage i dag. TSB på -25,8 er tæt på gulvet (-30) — kør turen færdig, men afkort den uden tøven hvis pulsen ligger 10 slag over normalt ved samme indsats.",
       "refs": [
-        -33.8,
-        -30.0,
-        48.0
+        130.0,
+        180.0,
+        25.0,
+        -25.8,
+        -30.0
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er steget 1,1 kg den seneste måned — retningen er opad, mens cut-planen forventer 72,8 kg. Du er 0,4 kg over plan. Fortsæt protein ved hvert måltid og alkohol som bevidst valg.",
+      "text": "7-dages snit er 0,4 kg over plan denne uge — retningen over den seneste måned er dog klart nedad med 1,1 kg, så cut-signalet er grønt. Fortsæt som nu.",
       "refs": [
-        1.1,
-        72.8,
-        0.4
+        0.4,
+        1.1
       ]
     },
     "habits": {
-      "text": "Protein ramt 4 ud af 5 registrerede dage — fortsæt det. Søvn er fin med 8,4 t i snit. Ingen dage med 3+ genstande denne uge.",
+      "text": "Protein dækket 4 af 5 registrerede dage — helt fint. Søvn på 8,2 timer i nat er over målet, og energisnittet på 3,6 er acceptabelt på en travl rejseuge.",
       "refs": [
         4.0,
         5.0,
-        8.4
+        8.2,
+        3.6
       ]
     },
-    "bigPicture": "Uge 48, RECOVERY-blok på Mallorca — blød volumen og Z2 er planen, ikke progress. TSB skal op igen.",
+    "bigPicture": "string",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "tsb",
-        "level": "act",
-        "message": "TSB -33,8 — høj træthed. Overvej let dag eller hvile.",
+        "level": "warn",
+        "message": "TSB -25,8 — hård belastning. Hold øje med trætheden.",
         "action": null,
         "source": "rule"
       }
@@ -11355,14 +11405,14 @@
     }
   },
   "weekTss": {
-    "actual": 200,
+    "actual": 226,
     "planned": 605
   },
   "martinMail": {
     "week": 12,
     "isoWeek": 48,
     "lines": [
-      "Uge 48: TSS 200 af 605 (33 %) · CTL 35,9 (mål 46) · TSB −33,8",
+      "Uge 48: TSS 226 af 605 (37 %) · CTL 33,8 (mål 46) · TSB −25,8",
       "Vægt 7d 73,0 kg · fedt 14d 22,4 % · på plan mod glidepath (72,8)",
       "HRV 7d 38 (28d 40) · hvilepuls 50 · søvn 7d 8,4 t",
       "AF 4/7 · protein 3/3 4/7 · aftensult —/7",
@@ -11371,7 +11421,7 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-26T11:18:32Z"
+    "generatedAt": "2026-11-26T12:05:13Z"
   },
   "proposals": [],
   "ftp": {
@@ -11444,7 +11494,7 @@
   },
   "fitnessLive": {
     "date": "2026-11-26",
-    "ctl": 35.9,
-    "atl": 69.7
+    "ctl": 33.8,
+    "atl": 59.6
   }
 }
