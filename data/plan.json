@@ -571,17 +571,17 @@
           "week": 27,
           "start": "2027-03-08",
           "phase": "BUILD",
-          "blockType": "BUILD",
-          "ctlTarget": 60,
+          "blockType": "RECOVERY",
+          "ctlTarget": 59,
           "ftpTarget": 305,
-          "tssTarget": 470,
+          "tssTarget": 380,
           "location": "Gentofte",
           "wkgTarget": 4.49,
-          "purpose": "Build hjemme. Tirsdag over-unders 3×10, loerdag lang Z2. Soendag 14/3 rejsedag — let eller fri.",
-          "note": "Sidste hjemmeuge foer lejr #1. Soendag 14/3 er rejsedag.",
+          "purpose": "Nedtrapning før lejr #1. Tirsdag åbnere, lørdag Z2 90 min. Søndag 14/3 rejsedag.",
+          "note": "Forlejr-aflastning foer lejr #1 (var BUILD). Friel 2. udgave: R&R efter to belastningsuger, og moed ikke en belastningsblok traet — Sa Calobra-benchmarken ligger paa dag 2 af lejren.",
           "quota": {
-            "haard": 2,
-            "moderat": 2
+            "haard": 1,
+            "moderat": 1
           }
         },
         {
@@ -744,14 +744,18 @@
           "week": 37,
           "start": "2027-05-17",
           "phase": "STELVIO",
-          "blockType": "BUILD+",
-          "ctlTarget": 75,
+          "blockType": "RECOVERY",
+          "ctlTarget": 73,
           "ftpTarget": 308,
-          "tssTarget": 520,
+          "tssTarget": 420,
           "location": "Gentofte",
-          "note": "FTP-test. Forventet ~305 W = 4,5 W/kg. Sidste port foer Stelvio.",
+          "note": "Aflastning efter lejr #3 (var BUILD+). FTP-testen bliver liggende: en test er ikke en belastningsuge. To uger foer Stelvio koeber mere CTL ingenting.",
           "wkgTarget": 4.53,
-          "purpose": "Søndag 7 t. Tirsdag FTP-TEST."
+          "purpose": "Aflastning. Tirsdag FTP-test, torsdag åbnere, resten Z1-2. Søndag 3 t.",
+          "quota": {
+            "haard": 1,
+            "moderat": 1
+          }
         },
         {
           "week": 38,
@@ -846,20 +850,25 @@
           "week": 45,
           "start": "2027-07-12",
           "phase": "SPECIFIK",
-          "blockType": "SPECIFIK+",
-          "ctlTarget": 67,
+          "blockType": "RECOVERY",
+          "ctlTarget": 64,
           "ftpTarget": 320,
-          "tssTarget": 590,
+          "tssTarget": 420,
           "location": "Gentofte",
           "wkgTarget": 4.71,
-          "purpose": "Søndag 9 t. Tirsdag tærskel ude i bakker."
+          "purpose": "Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere.",
+          "note": "Forlejr-aflastning foer Alpelejren (var SPECIFIK+ med 9 t soendag). Samme moenster som foer lejr #1 og #2: en lejr er selve belastningsblokken, ugen foer skal aflaste. CTL-maalet holdes fladt: en aflastningsuge der bygger CTL er selvmodsigende.",
+          "quota": {
+            "haard": 1,
+            "moderat": 1
+          }
         },
         {
           "week": 46,
           "start": "2027-07-19",
           "phase": "SPECIFIK",
           "blockType": "CAMP",
-          "ctlTarget": 74,
+          "ctlTarget": 71,
           "ftpTarget": 320,
           "tssTarget": 780,
           "location": "Alperne",
@@ -13383,17 +13392,17 @@
         "week": 27,
         "start": "2027-03-08",
         "phase": "BUILD",
-        "blockType": "BUILD",
+        "blockType": "RECOVERY",
         "ctlTarget": 74,
         "ftpTarget": 305,
         "tssTarget": 530,
         "location": "Gentofte",
         "wkgTarget": 4.49,
-        "purpose": "Build hjemme. Tirsdag over-unders 3×10, loerdag lang Z2. Soendag 14/3 rejsedag — let eller fri.",
-        "note": "Sidste hjemmeuge foer lejr #1. Soendag 14/3 er rejsedag.",
+        "purpose": "Nedtrapning før lejr #1. Tirsdag åbnere, lørdag Z2 90 min. Søndag 14/3 rejsedag.",
+        "note": "Forlejr-aflastning foer lejr #1 (var BUILD). Friel 2. udgave: R&R efter to belastningsuger, og moed ikke en belastningsblok traet — Sa Calobra-benchmarken ligger paa dag 2 af lejren.",
         "quota": {
-          "haard": 2,
-          "moderat": 2
+          "haard": 1,
+          "moderat": 1
         }
       },
       {
@@ -13556,14 +13565,18 @@
         "week": 37,
         "start": "2027-05-17",
         "phase": "STELVIO",
-        "blockType": "BUILD+",
+        "blockType": "RECOVERY",
         "ctlTarget": 83,
         "ftpTarget": 308,
         "tssTarget": 560,
         "location": "Gentofte",
-        "note": "FTP-test. Forventet ~305 W = 4,5 W/kg. Sidste port foer Stelvio.",
+        "note": "Aflastning efter lejr #3 (var BUILD+). FTP-testen bliver liggende: en test er ikke en belastningsuge. To uger foer Stelvio koeber mere CTL ingenting.",
         "wkgTarget": 4.53,
-        "purpose": "Søndag 7 t. Tirsdag FTP-TEST."
+        "purpose": "Aflastning. Tirsdag FTP-test, torsdag åbnere, resten Z1-2. Søndag 3 t.",
+        "quota": {
+          "haard": 1,
+          "moderat": 1
+        }
       },
       {
         "week": 38,
@@ -13658,13 +13671,18 @@
         "week": 45,
         "start": "2027-07-12",
         "phase": "SPECIFIK",
-        "blockType": "SPECIFIK+",
+        "blockType": "RECOVERY",
         "ctlTarget": 83,
         "ftpTarget": 320,
         "tssTarget": 590,
         "location": "Gentofte",
         "wkgTarget": 4.71,
-        "purpose": "Søndag 9 t. Tirsdag tærskel ude i bakker."
+        "purpose": "Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere.",
+        "note": "Forlejr-aflastning foer Alpelejren (var SPECIFIK+ med 9 t soendag). Samme moenster som foer lejr #1 og #2: en lejr er selve belastningsblokken, ugen foer skal aflaste. CTL-maalet holdes fladt: en aflastningsuge der bygger CTL er selvmodsigende.",
+        "quota": {
+          "haard": 1,
+          "moderat": 1
+        }
       },
       {
         "week": 46,
