@@ -79,11 +79,16 @@ def outlook_delete_by_date(dt):
         f"{GRAPH_BASE}/users/{OUTLOOK_CAL}/calendarView",
         headers={"Authorization": f"Bearer {token}"},
         params={"startDateTime": start, "endDateTime": end,
-                "$select": "id,subject,categories", "$top": "20"},
+                "$select": "id,subject,categories,isAllDay", "$top": "20"},
         timeout=15)
     if r.status_code != 200:
         return
     for ev in r.json().get("value", []):
+        # 27/11-2026: heldagsbegivenheder er aldrig et traeningspas. Ugemarkeringerne
+        # (kategori "Ugeplan") ville ellers blive ramt af substring-filteret nedenfor,
+        # fordi en race-uges emne kan indeholde "loeb".
+        if ev.get("isAllDay"):
+            continue
         cats = " ".join(ev.get("categories", [])).encode("ascii", "ignore").decode().lower()
         subj = ev.get("subject", "").encode("ascii", "ignore").decode().lower()
         if "ning" in cats or "ning" in subj or "cykel" in subj or "l" + chr(248) + "b" in subj or "swim" in subj or "styrke" in subj or "svøm" in subj.lower():

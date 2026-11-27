@@ -6,15 +6,20 @@ on:
   schedule:
     - cron: '0 5 * * *'    # 05:00 UTC = 06:00/07:00 CET — morgenpåmindelse
     - cron: '0 17 * * *'   # 17:00 UTC = 18:00/19:00 CET — aften AF-check-in
+    # 27/11-2026: soendagsbrief. 05:30 UTC = 06:30 CET om vinteren, 07:30 CEST om
+    # sommeren — GitHub-cron kender kun UTC, og de oevrige linjer her lever med
+    # samme forskydning. Soendag er dag 0.
+    - cron: '30 5 * * 0'   # 05:30 UTC soendag = 06:30 CET — ugebrief
   workflow_dispatch:
     inputs:
       mode:
-        description: 'daily eller evening (kun ved manuel kørsel)'
+        description: 'daily, evening eller week (kun ved manuel kørsel)'
         default: daily
         type: choice
         options:
           - daily
           - evening
+          - week
 
 permissions:
   contents: read
@@ -62,5 +67,5 @@ jobs:
           PRIVATE_REPO_AUTH: ${{ steps.apptoken.outputs.token && 'app' || 'pat' }}
           VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
-          PUSH_MODE: ${{ github.event.schedule == '0 17 * * *' && 'evening' || (github.event.inputs.mode || 'daily') }}
+          PUSH_MODE: ${{ github.event.schedule == '0 17 * * *' && 'evening' || (github.event.schedule == '30 5 * * 0' && 'week' || (github.event.inputs.mode || 'daily')) }}
         run: python scripts/send_push.py

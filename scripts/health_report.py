@@ -48,6 +48,7 @@ EXPECTED_EVERY_MIN = {
     "Send daglig push-påmindelse": 1500,        # 05:00 + 17:00 UTC → ~25 t = tolerance
     "Byg workouts i Intervals.icu": WEEK_MIN,   # søndag 05:00 UTC
     "Sync workouts til Outlook kalender": WEEK_MIN,  # søndag 18:00 UTC (+ efter build)
+    "Sync ugemarkeringer til Outlook": WEEK_MIN,     # søndag 05:00 UTC (27/11-2026)
 }
 
 # Nøgler til det private repo (push-subscriptions). To tilstande:

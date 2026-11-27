@@ -1,0 +1,54 @@
+name: Sync ugemarkeringer til Outlook
+
+# Een heldagsbegivenhed pr. programuge med blockType, sted og ugens formaal,
+# saa kalenderen selv siger hvad det er for en uge. Idempotent: markeringen
+# baerer et fingeraftryk, og en uaendret uge roeres ikke.
+on:
+  schedule:
+    # Soendag 05:00 UTC = 06:00 CET, en halv time foer ugebriefen, saa
+    # kalenderen er opdateret naar pushen kommer.
+    - cron: '0 5 * * 0'
+  workflow_dispatch:
+    inputs:
+      program:
+        description: 'Program-id (tom = det aktive)'
+        required: false
+      from:
+        description: 'Kun uger fra denne mandag (ISO-dato, valgfri)'
+        required: false
+      til:
+        description: 'Kun uger til denne mandag (ISO-dato, valgfri)'
+        required: false
+      dry_run:
+        description: 'Vis hvad der ville ske, skriv ingenting'
+        type: boolean
+        default: false
+  repository_dispatch:
+    types: [week-markers]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: week-markers
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Synk ugemarkeringer
+        env:
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          PROGRAM: ${{ inputs.program || github.event.client_payload.program }}
+          FROM:    ${{ inputs.from || github.event.client_payload.from }}
+          TIL:     ${{ inputs.til || github.event.client_payload.til }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || github.event.client_payload.dry_run }}
+        run: python3 .github/workflows/scripts/sync_week_markers.py
