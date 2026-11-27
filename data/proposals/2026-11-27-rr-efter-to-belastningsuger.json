@@ -1,0 +1,67 @@
+{
+  "id": "2026-11-27-rr-efter-to-belastningsuger",
+  "createdAt": "2026-11-27T13:20:00Z",
+  "createdBy": "claude-chat",
+  "title": "R&R efter to belastningsuger — tre uger rettet",
+  "note": "De fem Friel-regler fra 2. udgave fandt tre steder med tre belastningsuger i traek: KU11 (lejr #1), KU20 (FTP-test efter lejr #3) og KU29 (Alpelejren). To af dem blev skabt tidligere i dag, da lejrene blev lagt ind. Moenstret er det samme hver gang: en lejr ER belastningsblokken, saa ugen foer skal aflaste.",
+  "summary": [
+    "KU10 (uge 27): BUILD -> RECOVERY, forlejr-aflastning foer lejr #1, TSS 470 -> 380",
+    "KU20 (uge 37): BUILD+ -> RECOVERY, FTP-testen bliver liggende, TSS 520 -> 420",
+    "KU28 (uge 45): SPECIFIK+ -> RECOVERY, forlejr-aflastning foer Alpelejren, TSS 590 -> 420",
+    "KU28 CTL 67 -> 64 (fladt i en aflastningsuge), KU29 74 -> 71, saa rampen bliver +7",
+    "Efter rettelsen: nul missing_recovery-flags paa hele planen"
+  ],
+  "status": "pending",
+  "decidedAt": null,
+  "result": null,
+  "changes": [
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 27,
+      "ctlTarget": 59,
+      "tssTarget": 380,
+      "blockType": "RECOVERY",
+      "note": "Forlejr-aflastning foer lejr #1 (var BUILD). Friel 2. udgave: R&R efter to belastningsuger, og moed ikke en belastningsblok traet — Sa Calobra-benchmarken ligger paa dag 2 af lejren.",
+      "purpose": "Nedtrapning før lejr #1. Tirsdag åbnere, lørdag Z2 90 min. Søndag 14/3 rejsedag.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 37,
+      "ctlTarget": 73,
+      "tssTarget": 420,
+      "blockType": "RECOVERY",
+      "note": "Aflastning efter lejr #3 (var BUILD+). FTP-testen bliver liggende: en test er ikke en belastningsuge. To uger foer Stelvio koeber mere CTL ingenting.",
+      "purpose": "Aflastning. Tirsdag FTP-test, torsdag åbnere, resten Z1-2. Søndag 3 t.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 45,
+      "ctlTarget": 64,
+      "tssTarget": 420,
+      "blockType": "RECOVERY",
+      "note": "Forlejr-aflastning foer Alpelejren (var SPECIFIK+ med 9 t soendag). Samme moenster som foer lejr #1 og #2: en lejr er selve belastningsblokken, ugen foer skal aflaste. CTL-maalet holdes fladt: en aflastningsuge der bygger CTL er selvmodsigende.",
+      "purpose": "Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 46,
+      "ctlTarget": 71
+    }
+  ]
+}
