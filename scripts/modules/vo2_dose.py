@@ -46,11 +46,18 @@ PHASE_TARGET = {
     "BUILD": 15,
     "STELVIO": 15,
     "SPECIFIK": 15,
-    "TAPER": 4,
+    "PEAK": 4,          # Friels Peak: 3-5 min Z5-fartlek hver tredje dag
+    # TAPER staar bevidst ikke her: den er i BLOCK_ZERO og rammer altid mal 0.
 }
 BASE_RAMP = (5, 15)     # tidlig base -> sen base
 # Blocktype slår fasen: en restitutionsuge har ingen dosis, uanset fase.
 BLOCK_ZERO = ("RECOVERY", "REST", "TAPER")
+# QA 27/11-2026 (fund 4): listen her divergerede fra resten af repoet, saa et
+# pas Intervals leverer som "Gravel" eller "MountainBike" faldt tilbage paa puls.
+# Pulsen haenger efter ved 2-4 min reps, saa dosis blev underrapporteret 60-80 %.
+# Samme liste som sessions.py:197, plan_tab.py:27 og adaptation.py.
+BIKE_TYPES = ("Ride", "VirtualRide", "MountainBike", "Cyclocross", "Gravel",
+              "GravelRide", "EBikeRide", "MountainBikeRide")
 
 
 def _z5_secs(act):
@@ -59,14 +66,18 @@ def _z5_secs(act):
     Returnerer 0 når zonedata mangler — ikke None, fordi en uge uden
     zonedata i praksis er en uge uden dokumenteret VO2-arbejde.
     """
-    disc = (act.get("type") or "").lower()
-    if disc in ("ride", "virtualride", "gravelride", "mountainbikeride", "ebikeride"):
+    if (act.get("type") or "") in BIKE_TYPES:
         pzt = act.get("icu_zone_times") or []
         secs = [z.get("secs", 0) for z in pzt if isinstance(z, dict)]
         if len(secs) > 4:
-            return sum(secs[4:])
+            # QA 27/11-2026 (fund 5): KUN Z5. Z6/Z7 er anaerobt og
+            # neuromuskulaert arbejde, ikke VO2max-arbejde — sprints paa en
+            # Z2-tur taalte ellers som VO2-dosis og kunne gore kortet rodt.
+            return secs[4] or 0
     hr = act.get("icu_hr_zone_times") or []
     if isinstance(hr, list) and len(hr) > 4:
+        # Pulszoner: alt fra Z5 og op, fordi pulsen ikke har et meningsfuldt
+        # loft over Z5 paa samme made som watt.
         return sum(z or 0 for z in hr[4:])
     return 0
 
@@ -102,8 +113,9 @@ def week_target(plan, week_start, block_type=None):
     ph = next((p for p in phases if p.get("name") == phase), None)
     if phase == "BASE" and ph:
         lo, hi = ph.get("weekFrom"), ph.get("weekTo")
-        if isinstance(lo, int) and isinstance(hi, int) and hi > lo:
-            frac = min(1.0, max(0.0, (wk["week"] - lo) / (hi - lo)))
+        w_no = wk.get("week")
+        if isinstance(lo, int) and isinstance(hi, int) and hi > lo and isinstance(w_no, int):
+            frac = min(1.0, max(0.0, (w_no - lo) / (hi - lo)))
             lo_t, hi_t = BASE_RAMP
             return int(round(lo_t + frac * (hi_t - lo_t))), phase, wk.get("blockType")
     return PHASE_TARGET.get(phase), phase, wk.get("blockType")
@@ -168,7 +180,12 @@ def card(activities, plan, today=None, weeks=WEEKS_SHOWN):
     week_late = today.weekday() >= 5
     color, status = "#7F8C8D", "ingen data"
 
-    if cur is not None and target is not None:
+    if cur is not None and target is None and z5:
+        # QA 27/11-2026 (fund 6): "ingen data" ved siden af et minuttal er
+        # selvmodsigende. Ugen ligger uden for programmet (fx efter 30/8-2027),
+        # eller fasen har intet mal — tallet er sandt, dommen findes ikke.
+        color, status = "#7F8C8D", "uden for programmet — ingen måldosis"
+    elif cur is not None and target is not None:
         # Tre færdige uger under halv dosis — kun uger der er omme, og kun
         # uger med et reelt mål (en restitutionsuge med mål 0 tæller ikke med).
         afsluttede = [r for r in rows[:-1] if r.get("target")]

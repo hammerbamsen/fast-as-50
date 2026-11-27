@@ -69,7 +69,7 @@
         "week": {"type": "integer", "minimum": 1},
         "ctlTarget": {"type": "integer", "minimum": 0},
         "tssTarget": {"type": "integer", "minimum": 0},
-        "blockType": {"type": ["string", "null"], "minLength": 1},
+        "blockType": {"type": ["string", "null"], "enum": ["BASE", "BASE+", "BUILD", "BUILD+", "CAMP", "PEAK", "RACE", "RECOVERY", "REST", "SPECIFIK", "SPECIFIK+", "STELVIO", "TAPER", null]},
         "location": {"type": ["string", "null"], "minLength": 1},
         "note": {"type": ["string", "null"], "minLength": 1},
         "purpose": {"type": ["string", "null"], "minLength": 1},
@@ -78,8 +78,8 @@
           "type": ["object", "null"],
           "additionalProperties": false,
           "properties": {
-            "haard": {"type": "integer", "minimum": 0, "maximum": 7},
-            "moderat": {"type": "integer", "minimum": 0, "maximum": 7}
+            "haard": {"type": "integer", "minimum": 0, "maximum": 2},
+            "moderat": {"type": "integer", "minimum": 0, "maximum": 2}
           }
         },
         "mirrorSeason": {"type": "boolean"}
@@ -90,6 +90,11 @@
       "description": "Rejse-ophold i plan.travel (27/11-2026). Læses af friel.py (Mallorca-ophold = camp-uge med TSB-gulv -35), adaptation.py og plan_tab.py. Ingen dato at synke.",
       "required": ["action", "travel"],
       "additionalProperties": true,
+      "allOf": [{
+        "comment": "QA 27/11-2026 (fund 3): koden tillader en upsert-patch paa label alene, skemaet kraevede start paa hvert ophold. Et saadant forslag kunne derfor aldrig committes (CI-trin b). start er nu kun paakraevet i replace-mode, hvor listen erstatter alt.",
+        "if": {"properties": {"mode": {"const": "replace"}}, "required": ["mode"]},
+        "then": {"properties": {"travel": {"items": {"required": ["label", "start"]}}}}
+      }],
       "properties": {
         "action": {"type": "string", "enum": ["set_travel"]},
         "mode": {"type": "string", "enum": ["upsert", "replace"]},
@@ -98,7 +103,7 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["label", "start"],
+            "required": ["label"],
             "additionalProperties": false,
             "properties": {
               "label": {"type": "string", "minLength": 1},

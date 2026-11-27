@@ -487,9 +487,16 @@ def main():
     try:
         from modules.sessions import get_activities_since as _acts_since
         from modules import vo2_dose as _vo2
-        data['vo2'] = _vo2.card(_acts_since(35), PLAN, today=today)
-        print(f"  VO2-dosis:  {data['vo2']['z5Min']} min Z5 / maal {data['vo2']['target']} "
-              f"({data['vo2']['sessions']} pas) -> {data['vo2']['status']}")
+        _acts_35d = _acts_since(35, strict=True)
+        if _acts_35d is None:
+            # Intervals svarede ikke. Et udfald maa ikke blive en traeningsdom:
+            # uden data beholder kortet "kommer med naeste pipeline-koersel".
+            print("  ⚠️ VO2-dosis: Intervals-kaldet fejlede — kortet springes over "
+                  "denne koersel (ingen falsk 'under maaldosis')")
+        else:
+            data['vo2'] = _vo2.card(_acts_35d, PLAN, today=today)
+            print(f"  VO2-dosis:  {data['vo2']['z5Min']} min Z5 / maal {data['vo2']['target']} "
+                  f"({data['vo2']['sessions']} pas) -> {data['vo2']['status']}")
     except Exception as _e:
         print(f"  ⚠️ VO2-dosis fejlede (ikke-blokerende): {_e}")
 

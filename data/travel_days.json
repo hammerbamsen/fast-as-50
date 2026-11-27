@@ -35,8 +35,8 @@
     {
       "label": "Norge-tur",
       "start": "2026-08-22",
-      "end": "2026-08-24",
-      "travel_home_date": "2026-08-24",
+      "end": "2026-08-23",
+      "travel_home_date": "2026-08-23",
       "label_home": "dagen efter hjemrejse fra Norge",
       "label_during": "på Norge-turen midt i taper"
     },
@@ -54,7 +54,7 @@
       "end": "2027-03-21",
       "travel_home_date": "2027-03-21",
       "label_home": "dagen efter hjemrejse fra Mallorca lejr #1",
-      "label_during": "på Mallorca lejr #1 — høj belastning, vægt kan svinge med glykogen/væske"
+      "label_during": "på Mallorca lejr #1 — volumenlejr, vægt kan svinge med glykogen/væske"
     },
     {
       "label": "Mallorca lejr #2",
@@ -70,7 +70,8 @@
       "end": "2027-05-14",
       "travel_home_date": "2027-05-14",
       "label_home": "dagen efter hjemrejse fra Mallorca lejr #3",
-      "label_during": "på Mallorca lejr #3 — Stelvio-specifik blok"
+      "label_during": "på Mallorca lejr #3 — løbsspecifik blok før Stelvio"
     }
-  ]
+  ],
+  "_note": "Dubletten af plan.json's travel-liste (QA 27/11-2026, fund 15). plan.travel er kilden og kan opdateres via et set_travel-forslag; denne fil laeses kun af coach.get_travel_label og skal rettes i haanden. Teksterne skal matche plan.travel."
 }

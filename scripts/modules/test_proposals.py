@@ -483,20 +483,22 @@ def test_week_targets_saetter_metadata_og_spejler_i_season2027():
     plan = _plan()
     before = _week(plan, "tds-2027", 28)
     blocktype_before = before["blockType"]
+    # Vaerdier der ikke findes i planen i forvejen (fund 11): ellers bestaar
+    # assertionerne ogsaa hvis _apply_week_targets ikke gjorde noget.
     ch = {"action": "set_week_targets", "programId": "tds-2027", "week": 28,
-          "ctlTarget": 66, "tssTarget": 700, "blockType": "CAMP",
-          "location": "Mallorca", "purpose": "Lejr #1", "keySession": "Sa Calobra",
-          "quota": {"haard": 2, "moderat": 2}}
+          "ctlTarget": 41, "tssTarget": 199, "blockType": "PEAK",
+          "location": "Testbjerget", "purpose": "testformaal",
+          "keySession": "testpas", "quota": {"haard": 1, "moderat": 0}}
     proposals.validate(_prop([ch]))
     sim, dates = proposals.apply_changes(plan, [ch])
     assert dates == []                              # ingen dage -> ingen sync
     wk = _week(sim, "tds-2027", 28)
-    assert (wk["ctlTarget"], wk["tssTarget"]) == (66, 700)
-    assert wk["blockType"] == "CAMP" and wk["location"] == "Mallorca"
-    assert wk["keySession"] == "Sa Calobra" and wk["quota"] == {"haard": 2, "moderat": 2}
+    assert (wk["ctlTarget"], wk["tssTarget"]) == (41, 199)
+    assert wk["blockType"] == "PEAK" and wk["location"] == "Testbjerget"
+    assert wk["keySession"] == "testpas" and wk["quota"] == {"haard": 1, "moderat": 0}
     twin = _season(sim, 28)
     assert twin["start"] == wk["start"]             # spejling kraever samme startdato
-    assert twin["blockType"] == "CAMP" and twin["location"] == "Mallorca"
+    assert twin["blockType"] == "PEAK" and twin["location"] == "Testbjerget"
     assert twin["ctlTarget"] == _season(plan, 28)["ctlTarget"]   # tal spejles IKKE
     assert _week(plan, "tds-2027", 28)["blockType"] == blocktype_before   # input urort
 
@@ -505,11 +507,11 @@ def test_week_targets_mirror_fra_og_none_fjerner_felt():
     plan = _plan()
     twin_foer = dict(_season(plan, 30))
     ch = {"action": "set_week_targets", "programId": "tds-2027", "week": 30,
-          "blockType": "TESTBLOK", "note": None, "keySession": None, "mirrorSeason": False}
+          "blockType": "PEAK", "note": None, "keySession": None, "mirrorSeason": False}
     proposals.validate(_prop([ch]))
     sim, _ = proposals.apply_changes(plan, [ch])
     wk = _week(sim, "tds-2027", 30)
-    assert wk["blockType"] == "TESTBLOK" and "note" not in wk and "keySession" not in wk
+    assert wk["blockType"] == "PEAK" and "note" not in wk and "keySession" not in wk
     assert _season(sim, 30) == twin_foer          # season2027 helt urort
 
 
@@ -530,8 +532,12 @@ def test_week_targets_metadata_alene_er_nok_men_tomt_afvises():
 def test_set_travel_upsert_opdaterer_og_tilfoejer_sorteret():
     plan = _plan()
     n_before = len(plan["travel"])
+    # Vaelg et eksisterende ophold dynamisk (fund 11) — labels kan aendres via forslag
+    kendt = plan["travel"][0]
+    kendt_label, kendt_start = kendt["label"], kendt["start"]
+    ny_end = "2099-12-31"
     ch = {"action": "set_travel", "travel": [
-        {"label": "Japan (ski) med Eva", "end": "2027-02-07"},
+        {"label": kendt_label, "end": ny_end},
         {"label": "Testlejr Andorra", "start": "2027-06-20", "end": "2027-06-27",
          "travel_home_date": "2027-06-27", "label_during": "på testlejr"}]}
     proposals.validate(_prop([ch]))
@@ -540,9 +546,9 @@ def test_set_travel_upsert_opdaterer_og_tilfoejer_sorteret():
     travel = sim["travel"]
     assert len(travel) == n_before + 1
     assert [t["start"] for t in travel] == sorted(t["start"] for t in travel)
-    japan = next(t for t in travel if t["label"] == "Japan (ski) med Eva")
-    assert japan["end"] == "2027-02-07" and japan["start"] == "2027-01-24"   # flettet
-    assert len(plan["travel"]) == n_before                                   # input urort
+    flettet = next(t for t in travel if t["label"] == kendt_label)
+    assert flettet["end"] == ny_end and flettet["start"] == kendt_start   # patch, ikke erstat
+    assert len(plan["travel"]) == n_before                                # input urort
 
 
 def test_set_travel_giver_camp_uge_i_friel_gaten():

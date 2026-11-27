@@ -41,6 +41,11 @@ GOAL_RANGES = {"weightKg": (40, 150), "bodyFatPct": (3, 50)}
 # formaal). Tidligere kunne kun ctlTarget/tssTarget aendres via forslag, saa en
 # flyttet traeningslejr skulle rettes i haanden i plan.json — det driftede.
 WEEK_META_STR = ("blockType", "location", "note", "purpose", "keySession")
+# QA 27/11-2026 (fund 2): blockType var fri tekst, saa en tastefejl som
+# "RECOVERYY" gik igennem og slog fasereglerne stille af for den uge
+# (vo2_dose.week_target gav mal 15 i stedet for 0, friel._phase gav "").
+BLOCK_TYPES = ("BASE", "BASE+", "BUILD", "BUILD+", "CAMP", "PEAK", "RACE",
+               "RECOVERY", "REST", "SPECIFIK", "SPECIFIK+", "STELVIO", "TAPER")
 WEEK_META_FIELDS = WEEK_META_STR + ("quota",)
 QUOTA_KEYS = ("haard", "moderat")
 # 27/11-2026: set_travel — rejse-ophold i plan["travel"]. Laeses af friel.py
@@ -339,16 +344,31 @@ def _validate_week_meta(ch: dict, wk: int) -> None:
             continue                     # None = fjern feltet
         if not isinstance(v, str) or not v.strip():
             raise ValueError(f"set_week_targets uge {wk}: {k} skal være en ikke-tom tekst")
+    bt = ch.get("blockType")
+    if isinstance(bt, str) and bt.strip().upper() not in BLOCK_TYPES:
+        raise ValueError(f"set_week_targets uge {wk}: ukendt blockType {bt!r} "
+                         f"(tilladt: {', '.join(BLOCK_TYPES)})")
     if "quota" in ch and ch["quota"] is not None:
         q = ch["quota"]
         if not isinstance(q, dict) or not q:
             raise ValueError(f"set_week_targets uge {wk}: quota skal være et ikke-tomt objekt")
+        # Lofterne kommer fra bike_library.meta.rules — IKKE et frit 0-7-interval.
+        # Ellers kunne et forslag skrive quota.haard: 5 og dermed bryde den
+        # ufravigelige regel ad en vej bike_library.check_week() ikke ser.
+        try:
+            rules = bike_library.meta().get("rules") or {}
+        except Exception:
+            rules = {}
+        lofter = {"haard": rules.get("maxHaardPerWeek", 2),
+                  "moderat": rules.get("maxModeratPerWeek", 2)}
         for qk, qv in q.items():
             if qk not in QUOTA_KEYS:
                 raise ValueError(f"set_week_targets uge {wk}: ukendt quota-nøgle {qk!r} "
                                  f"(tilladt: {', '.join(QUOTA_KEYS)})")
-            if not isinstance(qv, int) or isinstance(qv, bool) or not 0 <= qv <= 7:
-                raise ValueError(f"set_week_targets uge {wk}: quota.{qk}={qv!r} skal være 0-7")
+            loft = lofter[qk]
+            if not isinstance(qv, int) or isinstance(qv, bool) or not 0 <= qv <= loft:
+                raise ValueError(f"set_week_targets uge {wk}: quota.{qk}={qv!r} skal være "
+                                 f"0-{loft} (bike_library.meta.rules)")
     if "mirrorSeason" in ch and not isinstance(ch["mirrorSeason"], bool):
         raise ValueError(f"set_week_targets uge {wk}: mirrorSeason skal være true/false")
 

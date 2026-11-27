@@ -52,12 +52,17 @@ def bike_zone_watts(zone):
     return (band[0], band[1]) if band else (None, None)
 
 
-def get_activities_since(days=10):
+def get_activities_since(days=10, strict=False):
     """Rå Intervals-aktiviteter for de seneste `days` dage (inkl. i dag).
 
     Bruges af T3-adaptation, som har brug for et længere vindue end
-    'denne uge'. Returnerer en liste (evt. tom) — aldrig None, så
+    'denne uge'. Returnerer som standard en liste (evt. tom) — aldrig None, så
     kalderen kan skelne 'ingen aktiviteter' fra 'ikke forsøgt'.
+
+    `strict=True` returnerer None når kaldet FEJLEDE, så kalderen kan skelne
+    et API-udfald fra en uge uden træning (QA 27/11-2026, fund 7: et 500-svar
+    fra Intervals gav 0 minutter Z5 og dermed en falsk "under måldosis"-dom på
+    VO2-kortet). Standarden er uændret, så eksisterende kaldere ikke rammes.
     """
     newest = date.today()
     oldest = newest - timedelta(days=days)
@@ -67,8 +72,8 @@ def get_activities_since(days=10):
         try:
             return r.json()
         except Exception:
-            return []
-    return []
+            return None if strict else []
+    return None if strict else []
 
 
 def get_weekly_tss_actual(plan_start, total_weeks):
