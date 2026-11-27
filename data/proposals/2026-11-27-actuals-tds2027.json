@@ -1,0 +1,23 @@
+{
+  "id": "2026-11-27-actuals-tds2027",
+  "createdAt": "2026-11-27T13:40:00Z",
+  "createdBy": "claude-chat",
+  "title": "actualsThroughWeek flyttet til tds-2027",
+  "note": "Feltet stod paa uge 8 og pegede paa medoc-2026. programs.actuals_through_week() returnerer 0 naar markoeren peger paa et andet program, saa ingen uge i tds-2027 blev regnet som historisk — og et consecutive_runs-flag fra 28.-29. september 2026 stod stadig som aktuelt. Uge 1-11 af tds-2027 er gennemfoert; uge 12 (23.-29. november) er i gang.",
+  "summary": [
+    "actualsThroughWeek: 8 (medoc-2026) -> 11 (tds-2027)",
+    "Flag fra uge 1-11 bliver historiske og falmer i plan-fanen",
+    "Efter denne: nul aktuelle Friel-flags paa hele planen"
+  ],
+  "status": "pending",
+  "decidedAt": null,
+  "result": null,
+  "changes": [
+    {
+      "action": "set_actuals",
+      "programId": "tds-2027",
+      "throughWeek": 11,
+      "athlete": "kennet"
+    }
+  ]
+}
