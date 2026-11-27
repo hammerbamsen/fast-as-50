@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27T12:34:36Z",
+ "generated": "2026-11-27T13:42:11Z",
  "kennet": {
   "programId": "tds-2027",
   "seed": {
@@ -1413,7 +1413,7 @@
       "rule": "consecutive_runs",
       "level": "WARN",
       "msg": "Fortløbende løbedage 2026-09-28 + 2026-09-29",
-      "historic": false
+      "historic": true
      }
     ]
    },
@@ -1457,7 +1457,14 @@
     "week": 11,
     "projEndCtl": null,
     "deviation": null,
-    "flags": []
+    "flags": [
+     {
+      "week": 11,
+      "rule": "plan_actual_mismatch",
+      "level": "WARN",
+      "msg": "Logget hike-aktivitet i uge 11, men ugens plan indeholder ikke hike"
+     }
+    ]
    },
    {
     "week": 12,
@@ -1552,7 +1559,7 @@
    {
     "week": 27,
     "projEndCtl": 9.1,
-    "deviation": -50.9,
+    "deviation": -49.9,
     "flags": []
    },
    {
@@ -1612,7 +1619,7 @@
    {
     "week": 37,
     "projEndCtl": 1.7,
-    "deviation": -73.3,
+    "deviation": -71.3,
     "flags": []
    },
    {
@@ -1668,13 +1675,13 @@
    {
     "week": 45,
     "projEndCtl": 0.4,
-    "deviation": -66.6,
+    "deviation": -63.6,
     "flags": []
    },
    {
     "week": 46,
     "projEndCtl": 0.4,
-    "deviation": -73.6,
+    "deviation": -70.6,
     "flags": []
    },
    {
@@ -1722,7 +1729,7 @@
     "rule": "consecutive_runs",
     "level": "WARN",
     "msg": "Fortløbende løbedage 2026-09-28 + 2026-09-29",
-    "historic": false
+    "historic": true
    },
    {
     "week": 39,
@@ -1737,6 +1744,12 @@
     "level": "WARN",
     "msg": "TSB 0.2 på race-dag (Tour des Stations Ultrafondo) — mål +5 til +15",
     "historic": false
+   },
+   {
+    "week": 11,
+    "rule": "plan_actual_mismatch",
+    "level": "WARN",
+    "msg": "Logget hike-aktivitet i uge 11, men ugens plan indeholder ikke hike"
    }
   ],
   "adaptation": {
@@ -1792,5 +1805,5 @@
   },
   "readiness": "HIGH"
  },
- "inputsHash": "e91b7568b9bb9418"
+ "inputsHash": "fb2e43efdf37126a"
 }
