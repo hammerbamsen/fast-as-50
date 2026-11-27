@@ -164,10 +164,12 @@ def test_card_farver():
 
 
 def test_tidligere_uger_vises_med_deres_eget_maal():
+    """Mod fixture-planen: KU10 i den rigtige plan blev en RECOVERY-uge (maal 0)
+    via et forslag 27/11-2026, og testen laaste netop det (QA-fund 11 igen)."""
     acts = [_ride("2027-03-09", 300)]
-    c = vo2_dose.card(acts, PLAN, today=date(2027, 3, 15), weeks=2)
+    c = vo2_dose.card(acts, FIX, today=date(2027, 3, 15), weeks=2)
     assert c["weeks"][0]["z5Min"] == 5 and c["weeks"][0]["isoWeek"] == 10
-    assert c["weeks"][0]["target"] and c["weeks"][-1]["z5Min"] == 0
+    assert c["weeks"][0]["target"] == 15 and c["weeks"][-1]["z5Min"] == 0
 
 
 def test_card_restitutionsuge_straffer_z5():
