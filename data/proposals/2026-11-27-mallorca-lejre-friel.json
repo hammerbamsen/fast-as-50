@@ -1,0 +1,212 @@
+{
+  "id": "2026-11-27-mallorca-lejre-friel",
+  "createdAt": "2026-11-27T12:20:00Z",
+  "createdBy": "claude-chat",
+  "title": "Tre Mallorca-lejre 2027 + Friel 2. udgave",
+  "note": "Kennet har booket tre blokke paa Mallorca: 14-21/3, 11-21/4 og 9-14/5 2027. Planens lejr laa i uge 30 (KU13, 29/3) og var ikke booket — den flyttes til uge 28 (KU11). Lejrene differentieres efter Friels 2. udgave (maj 2026), hvor han vender positionen fra mere intensitet til mere base: #1 volumen, #2 hovedblok, #3 loebsspecifik. Maks 2 haarde pr. uge med 2-3 dage imellem, 3-5 dages R&R efter hver lejr.",
+  "summary": [
+    "Lejr flyttet fra uge 30 (KU13) til uge 28 (KU11) — booket 14-21/3",
+    "Uge 28 KU11: lejr #1, volumen og base, 18-22 t, ett haardt pas (Sa Calobra som benchmark)",
+    "Uge 32-33 KU15-16: lejr #2, hovedblokken, 20-25 t, Sa Calobra PR-forsoeg tir 13/4",
+    "Uge 36 KU19: lejr #3, loebsspecifik, 15-18 t, tre uger foer Stelvio",
+    "Uge 29 og 34: 3-5 dages R&R efter lejr (Friel) i stedet for 1-2",
+    "Uge 31 omlagt til forlejr-aflastning, saa PR-forsoeget sker paa friske ben",
+    "CTL foer Stelvio: 69 -> 75. Tre rejse-ophold lagt i plan.travel"
+  ],
+  "status": "pending",
+  "decidedAt": null,
+  "result": null,
+  "changes": [
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 27,
+      "ctlTarget": 60,
+      "tssTarget": 470,
+      "blockType": "BUILD",
+      "location": "Gentofte",
+      "note": "Sidste hjemmeuge foer lejr #1. Soendag 14/3 er rejsedag.",
+      "purpose": "Build hjemme. Tirsdag over-unders 3×10, loerdag lang Z2. Soendag 14/3 rejsedag — let eller fri.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 28,
+      "ctlTarget": 66,
+      "tssTarget": 680,
+      "blockType": "CAMP",
+      "location": "Mallorca",
+      "note": "LEJR #1 Mallorca 14-21/3 (booket 27/11-2026). Volumen- og baselejr: 18-22 t, lange Z2-ture 4-5 t i bjergene. ETT haardt pas: Sa Calobra som tempo-benchmark tir 16/3 paa friske ben — ikke PR-forsoeg. Friel 2. udgave (maj 2026): en lejr oeger VARIGHED, ikke varighed og intensitet samtidig. Lette dage = kun Z1-2.",
+      "purpose": "Lejr #1: volumen og aerob base. 18-22 t, ét hårdt pas, resten Z2.",
+      "keySession": "Sa Calobra tempo-benchmark tir 16/3",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 29,
+      "ctlTarget": 63,
+      "tssTarget": 300,
+      "blockType": "RECOVERY",
+      "location": "Gentofte",
+      "note": "Efterlejr-aflastning (var forlejr-aflastning). Friel: 3-5 dage aktiv restitution efter en belastningsblok, ikke 1-2.",
+      "purpose": "Aflastning efter lejr #1. Søndag 3 t let. Første kvalitet tidligst fredag.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 30,
+      "ctlTarget": 65,
+      "tssTarget": 520,
+      "blockType": "BUILD",
+      "location": "Gentofte",
+      "note": "Lejren er flyttet til uge 28 (KU11). Volumen-beslutningen fra 27/10-2026 ligger her — nu med data fra lejr #1.",
+      "purpose": "Build hjemme. Søndag 4,5-5 t. Tirsdag tærskel 2×20. Maks 2 hårde med 3 dage imellem.",
+      "keySession": null,
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 31,
+      "ctlTarget": 64,
+      "tssTarget": 380,
+      "blockType": "RECOVERY",
+      "location": "Gentofte",
+      "note": "Forlejr-aflastning foer lejr #2 (var efterlejr). Friel: moed ikke en belastningsblok traet — PR-forsoeget ligger paa dag 2 af lejren.",
+      "purpose": "Nedtrapning før lejr #2. Søndag 11/4 rejsedag.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 32,
+      "ctlTarget": 70,
+      "tssTarget": 780,
+      "blockType": "CAMP",
+      "location": "Mallorca",
+      "note": "LEJR #2 Mallorca 11-21/4 (booket 27/11-2026) — hovedblokken, foerste uge. 20-25 t. SA CALOBRA PR-FORSOEG tir 13/4 paa friske ben (PR at slaa: 35:18 paa 275 W). Andet haarde pas tidligst lor 17/4 — Friel: 3 dage mellem Z5-pas, reps 2-4 min, pause lig rep, maks ~15 min Z5 i alt. Stop med 1-2 gode reps tilbage.",
+      "purpose": "Lejr #2, uge 1: hovedblokken. 20-25 t, 2 hårde spredt, resten Z2 4-6 t.",
+      "keySession": "Sa Calobra PR-forsoeg tir 13/4 (PR 35:18 @ 275 W)",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 33,
+      "ctlTarget": 72,
+      "tssTarget": 470,
+      "blockType": "CAMP",
+      "location": "Mallorca / Gentofte",
+      "note": "Lejr #2, anden del: man 19/4 og tir 20/4 lange ture, hjemrejse ons 21/4. Resten af ugen kun Z1-2 — R&R starter ved hjemkomst.",
+      "purpose": "Sidste to lejrdage, derefter aflastning. Ingen kvalitet efter hjemkomst.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 34,
+      "ctlTarget": 69,
+      "tssTarget": 320,
+      "blockType": "RECOVERY",
+      "location": "Gentofte",
+      "note": "5 dages R&R efter lejr #2 (Friel: 2 belastningsmikrocykler + 5 dages R&R). TSB-gulv -30.",
+      "purpose": "Aflastning. Søndag 3,5 t let. Første kvalitet tidligst torsdag.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 35,
+      "ctlTarget": 71,
+      "tssTarget": 500,
+      "blockType": "BUILD",
+      "location": "Gentofte",
+      "note": "Sidste hjemmeuge foer lejr #3. Soendag 9/5 er rejsedag.",
+      "purpose": "Build hjemme. Tirsdag norsk kontrolleret, lørdag lang Z2. Søndag 9/5 rejsedag — let.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 36,
+      "ctlTarget": 74,
+      "tssTarget": 640,
+      "blockType": "CAMP",
+      "location": "Mallorca",
+      "note": "LEJR #3 Mallorca 9-14/5 (booket 27/11-2026) — loebsspecifik, tre uger foer Stelvio. 15-18 t paa 5 dage. Friels undtagelse for landevejscykling: lav 5-minutters-arbejde uanset loebslaengde. Lange stigninger paa Stelvio-watt + ett Z5-pas (reps 2-4 min, maks ~15 min i alt, 1,05-1,20 × taerskel). Hjem fre 14/5, weekend kun Z1-2.",
+      "purpose": "Lejr #3: løbsspecifik. Én dag 5-6 t, ét Z5-pas, resten Stelvio-tempo.",
+      "keySession": "Lange stigninger paa Stelvio-watt + Z5 2-4 min",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 37,
+      "ctlTarget": 75,
+      "tssTarget": 520
+    },
+    {
+      "action": "set_travel",
+      "mode": "upsert",
+      "travel": [
+        {
+          "label": "Mallorca lejr #1",
+          "start": "2027-03-14",
+          "end": "2027-03-21",
+          "travel_home_date": "2027-03-21",
+          "label_home": "dagen efter hjemrejse fra Mallorca lejr #1",
+          "label_during": "på Mallorca lejr #1 — volumenlejr, vægt kan svinge med glykogen/væske"
+        },
+        {
+          "label": "Mallorca lejr #2",
+          "start": "2027-04-11",
+          "end": "2027-04-21",
+          "travel_home_date": "2027-04-21",
+          "label_home": "dagen efter hjemrejse fra Mallorca lejr #2",
+          "label_during": "på Mallorca lejr #2 — hovedblokken, vægt kan svinge med glykogen/væske"
+        },
+        {
+          "label": "Mallorca lejr #3",
+          "start": "2027-05-09",
+          "end": "2027-05-14",
+          "travel_home_date": "2027-05-14",
+          "label_home": "dagen efter hjemrejse fra Mallorca lejr #3",
+          "label_during": "på Mallorca lejr #3 — løbsspecifik blok før Stelvio"
+        }
+      ]
+    }
+  ]
+}
