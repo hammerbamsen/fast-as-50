@@ -48,7 +48,11 @@ MAX_HARD_PER_WEEK = 2            # "faa senioratleter kan haandtere mere end to"
 HARD_GAP_H = 48                  # minimum mellem to haarde pas
 HARD_GAP_Z5_H = 72               # er begge Z5: 3 dage er oftest bedre end 2
 MIN_EASY_DAYS = 3                # 5-2: hoejst 2 haarde + 2 moderate pr. uge
-MAX_Z5_MIN_PER_SESSION = 15      # samlet rep-tid i Z5 pr. pas
+# Friel skriver "ca. 15 min" samlet rep-tid i Z5 pr. pas. Loftet staar paa 16,
+# fordi 4x4 (16 min) er et kendt protokol og ikke skal flage paa ét minut —
+# Kennets beslutning 27/11-2026. Over 16 flager: 4x4-clark (18) og
+# Ronnestad 30/15 (20) er reelt over hans tal.
+MAX_Z5_MIN_PER_SESSION = 16      # samlet rep-tid i Z5 pr. pas (Friel: ca. 15)
 MAX_LOAD_WEEKS_BEFORE_RR = 2     # to belastningsuger, saa 5 dages R&R
 Z5_PCT_FLOOR = 105               # % af FTP der regnes som Z5 i bike_library-steps
 

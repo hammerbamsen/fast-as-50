@@ -23,6 +23,7 @@
           {"$ref": "#/$defs/setDay"},
           {"$ref": "#/$defs/setWeekTargets"},
           {"$ref": "#/$defs/setTravel"},
+          {"$ref": "#/$defs/setActuals"},
           {"$ref": "#/$defs/setGoals"},
           {"$ref": "#/$defs/setWeightPlan"}
         ]
@@ -116,6 +117,18 @@
             }
           }
         }
+      }
+    },
+    "setActuals": {
+      "type": "object",
+      "description": "Hvor langt planen er gennemført (27/11-2026). Styrer hvilke Friel-flag der regnes som historiske. Ingen dato, ingen sync.",
+      "required": ["action", "programId", "throughWeek"],
+      "additionalProperties": true,
+      "properties": {
+        "action": {"type": "string", "enum": ["set_actuals"]},
+        "programId": {"type": "string"},
+        "throughWeek": {"type": "integer", "minimum": 0},
+        "athlete": {"type": "string"}
       }
     },
     "setGoals": {

@@ -589,3 +589,36 @@ def test_set_travel_nyt_ophold_uden_start_afvises_i_apply():
     proposals.validate(_prop([ch]))          # shape er ok — label findes maaske
     with pytest.raises(ValueError, match="start mangler for nyt ophold"):
         proposals.apply_changes(plan, [ch])
+
+
+def test_set_actuals_flytter_feltet_til_det_rigtige_program():
+    """27/11-2026: feltet laa fast paa medoc-2026, saa ingen uge i tds-2027 blev
+    regnet som historisk og flag fra september stod stadig som aktuelle."""
+    from modules import programs as _programs
+    plan = _plan()
+    prog = plan["programs"]["tds-2027"]
+    assert _programs.actuals_through_week(plan, "kennet", prog) == 0   # foer
+    ch = {"action": "set_actuals", "programId": "tds-2027", "throughWeek": 11}
+    proposals.validate(_prop([ch]))
+    sim, dates = proposals.apply_changes(plan, [ch])
+    assert dates == []
+    ath = sim["athletes"]["kennet"]
+    assert ath["actualsThroughWeek"] == 11
+    assert ath["actualsThroughWeekProgram"] == "tds-2027"
+    assert _programs.actuals_through_week(sim, "kennet", sim["programs"]["tds-2027"]) == 11
+    assert plan["athletes"]["kennet"]["actualsThroughWeekProgram"] == "medoc-2026"  # input urort
+
+
+def test_set_actuals_afviser_ugyldige_vaerdier():
+    with pytest.raises(ValueError, match="programId mangler"):
+        proposals.validate(_prop([{"action": "set_actuals", "throughWeek": 4}]))
+    with pytest.raises(ValueError, match="ugyldig throughWeek"):
+        proposals.validate(_prop([{"action": "set_actuals", "programId": "tds-2027",
+                                   "throughWeek": -1}]))
+    # et tal over programmets laengde ville gore hele planen historisk
+    with pytest.raises(ValueError, match="er over"):
+        proposals.apply_changes(_plan(), [{"action": "set_actuals",
+                                           "programId": "tds-2027", "throughWeek": 999}])
+    with pytest.raises(ValueError, match="findes ikke i plan.programs"):
+        proposals.apply_changes(_plan(), [{"action": "set_actuals",
+                                           "programId": "findes-ikke", "throughWeek": 1}])

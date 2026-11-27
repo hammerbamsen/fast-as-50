@@ -210,8 +210,14 @@ def validate(prop: dict) -> None:
             # 27/11-2026: rejse-ophold. Ingen datoer at synke (kun labels/gates).
             _validate_travel(ch)
             continue
+        if ch.get("action") == "set_actuals":
+            # 27/11-2026: hvor langt planen er gennemfoert. Feltet laa fast paa
+            # medoc-2026 (uge 8), saa INGEN uge i tds-2027 blev regnet som
+            # historisk, og flag fra september stod stadig som aktuelle.
+            _validate_actuals(ch)
+            continue
         if ch.get("action") != "set_day":
-            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_travel, set_goals og set_weight_plan understøttes")
+            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_travel, set_actuals, set_goals og set_weight_plan understøttes")
         try:
             d_iso = date.fromisoformat(str(ch.get("date"))).isoformat()
         except (TypeError, ValueError):
@@ -293,6 +299,9 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
             continue                     # ingen dage berørt -> intet at synke
         if ch.get("action") == "set_travel":
             _apply_travel(sim, ch)
+            continue                     # ingen dage berørt -> intet at synke
+        if ch.get("action") == "set_actuals":
+            _apply_actuals(sim, ch)
             continue                     # ingen dage berørt -> intet at synke
         if ch.get("action") == "set_goals":
             _apply_goals(sim, ch)
@@ -417,6 +426,41 @@ def _validate_travel(ch: dict) -> None:
         unknown = set(t) - set(TRAVEL_STR) - set(TRAVEL_DATES) - {"name"}
         if unknown:
             raise ValueError(f"set_travel {label}: ukendte felter {sorted(unknown)}")
+
+
+def _validate_actuals(ch: dict) -> None:
+    """Typetjek af set_actuals (27/11-2026)."""
+    pid_ = ch.get("programId")
+    if not isinstance(pid_, str) or not pid_:
+        raise ValueError("set_actuals: programId mangler")
+    wk = ch.get("throughWeek")
+    if not isinstance(wk, int) or isinstance(wk, bool) or wk < 0:
+        raise ValueError(f"set_actuals: ugyldig throughWeek {wk!r} (0 = intet gennemført)")
+    if ch.get("athlete") is not None and not isinstance(ch["athlete"], str):
+        raise ValueError("set_actuals: athlete skal være en tekst")
+
+
+def _apply_actuals(sim: dict, ch: dict) -> dict:
+    """Saetter athletes.<a>.actualsThroughWeek + ...Program.
+
+    Ugenummeret skal findes i programmet, ellers ville et tastefejl-tal gore
+    hele planen historisk (og dermed alle flag grå).
+    """
+    pid_ = ch["programId"]
+    prog = (sim.get("programs") or {}).get(pid_)
+    if not isinstance(prog, dict):
+        raise ValueError(f"set_actuals: program {pid_!r} findes ikke i plan.programs")
+    wk = ch["throughWeek"]
+    total = prog.get("totalWeeks") or 0
+    if wk > total:
+        raise ValueError(f"set_actuals: throughWeek {wk} er over {pid_}'s {total} uger")
+    athlete = ch.get("athlete") or "kennet"
+    ath = (sim.get("athletes") or {}).get(athlete)
+    if not isinstance(ath, dict):
+        raise ValueError(f"set_actuals: atlet {athlete!r} findes ikke")
+    ath["actualsThroughWeek"] = wk
+    ath["actualsThroughWeekProgram"] = pid_
+    return ath
 
 
 def _apply_week_targets(sim: dict, ch: dict) -> dict:
