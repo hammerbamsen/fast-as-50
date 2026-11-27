@@ -21,8 +21,10 @@ from datetime import date, timedelta
 
 try:
     from . import programs as _programs
+    from . import bike_library as _bike_library
 except ImportError:  # test_friel.py importerer modulet som top-level
     import programs as _programs
+    import bike_library as _bike_library
 
 CTL_TC = 42.0   # dage, Coggan/Friel standard
 ATL_TC = 7.0
@@ -36,6 +38,30 @@ TAPER_RAMP_RISE_WARN = 2.0 # CTL må ikke STIGE i taper/race-uger
 RAMP_HARD = 8.0
 RAMP_SOFT = 5.0
 MAX_RUNS_PER_WEEK = 3
+
+# --- Friels 2. udgave (maj 2026), skrevet ind 27/11-2026 ---------------------
+# Friel smed 1. udgaves manuskript ud og vendte positionen: masters-atleter
+# laver nu for meget intensitet og for lidt lav intensitet. Reglerne nedenfor er
+# hans egne tal. De fem er WARN, ikke HARD — de maa kunne bekraeftes vaek, fordi
+# klassifikationen af udendoers pas og loeb sker paa pasnavn og kan tage fejl.
+MAX_HARD_PER_WEEK = 2            # "faa senioratleter kan haandtere mere end to"
+HARD_GAP_H = 48                  # minimum mellem to haarde pas
+HARD_GAP_Z5_H = 72               # er begge Z5: 3 dage er oftest bedre end 2
+MIN_EASY_DAYS = 3                # 5-2: hoejst 2 haarde + 2 moderate pr. uge
+MAX_Z5_MIN_PER_SESSION = 15      # samlet rep-tid i Z5 pr. pas
+MAX_LOAD_WEEKS_BEFORE_RR = 2     # to belastningsuger, saa 5 dages R&R
+Z5_PCT_FLOOR = 105               # % af FTP der regnes som Z5 i bike_library-steps
+
+# Navnemarkoerer til pas UDEN libraryId — udendoers ture og alle loeb. Rammer
+# kun klassifikationen; kaelderpas laeses altid fra bike_library.load_of().
+HARD_NAME_MARKERS = ("vo2", "taerskel", "tærskel", "over-under", "over/under",
+                     "norsk", "intervaller", "sprint", "pr-forsøg", "pr-forsoeg",
+                     "z4", "z5", "ftp-test")
+EASY_NAME_MARKERS = ("z1", "z2", "rolig", "let", "restitution", "teknisk",
+                     "vandring", "gang", "shakeout", "aabner", "åbner")
+# Styrke taeller i samlet belastning, men ikke i max-2-haarde (CLAUDE.md regel 4).
+NEVER_HARD_TYPES = ("Swim", "Hike", "Walk", "WeightTraining", "Yoga", "Other")
+LOAD_BLOCKS = ("BUILD", "CAMP", "SPECIFIK", "STELVIO", "PEAK")
 
 # T1 — Wellness-integration: morgen-readiness justerer den AKTUELLE uges
 # TSB-gulv dynamisk. LOW strammer (flager tidligere = "reducér"), HIGH giver
@@ -122,6 +148,72 @@ def _is_vo2(wo):
     return any(m in name for m in VO2_MARKERS)
 
 
+def entry_load(entry):
+    """'haard' | 'moderat' | 'let' | None for et planlagt pas.
+
+    Kilderaekkefoelge, jf. CLAUDE.md regel 3 — belastningen staar i feltet
+    `load`, den udledes ikke af kategorien:
+      1. libraryId -> bike_library.load_of()  (kaelderpas, autoritativt)
+      2. pasnavn   -> navnemarkoerer           (udendoers ture og loeb)
+    None betyder "taeller ikke med": styrke, svoem, vandring og tomme dage.
+    """
+    wo = (entry or {}).get("workout") or {}
+    wtype = wo.get("type")
+    if not wtype or wtype in NEVER_HARD_TYPES:
+        return None
+    lid = entry.get("libraryId")
+    if lid:
+        try:
+            return _bike_library.load_of(lid)
+        except (KeyError, TypeError):
+            pass
+    name = (wo.get("name") or "").lower()
+    if any(m in name for m in EASY_NAME_MARKERS):
+        return "let"
+    if any(m in name for m in HARD_NAME_MARKERS):
+        return "haard"
+    return "moderat"
+
+
+def planned_z5_min(entry):
+    """Planlagte minutter >= Z5_PCT_FLOOR % af FTP i et kaelderpas.
+
+    Kun pas med libraryId kan maales: et udendoers pas har ingen steps.
+    Returnerer 0 naar der ikke er noget at maale.
+    """
+    lid = (entry or {}).get("libraryId")
+    if not lid:
+        return 0.0
+    try:
+        steps = _bike_library.get(lid).get("steps") or []
+    except (KeyError, TypeError):
+        return 0.0
+    total = 0.0
+
+    def walk(items, mult=1):
+        nonlocal total
+        for st in items:
+            if st.get("type") == "reps":
+                walk(st.get("steps") or [], mult * (st.get("n") or 1))
+                continue
+            pct = st.get("pct")
+            if pct is None and st.get("to") is not None:
+                pct = (st.get("from") or 0 + st["to"]) / 2
+            if pct is not None and pct >= Z5_PCT_FLOOR:
+                total += (st.get("min") or 0) * mult
+
+    walk(steps)
+    return total
+
+
+def _is_z5_session(entry):
+    """Z5-pas: planlagt Z5-tid, eller et navn/libraryId der markerer VO2."""
+    if planned_z5_min(entry) > 0:
+        return True
+    wo = (entry or {}).get("workout") or {}
+    return _is_vo2(wo)
+
+
 def _week_no(d_iso, plan_start):
     return (date.fromisoformat(d_iso) - plan_start).days // 7 + 1
 
@@ -152,6 +244,94 @@ def _camp_weeks(plan, program=None):
                 camps.add(w)
             d += timedelta(days=1)
     return camps
+
+
+def edition2_flags(plan, athlete="kennet", today=None):
+    """Regel 1, 2, 3 og 5 fra Friels 2. udgave (27/11-2026).
+
+    Regel 4 (R&R efter to belastningsuger) ligger i structural_flags, hvor
+    recovery-reglen allerede boede.
+
+    Alle fire er WARN. Klassifikationen af udendoers pas og loeb sker paa
+    pasnavn (entry_load), og den kan tage fejl — en HARD-gate paa et gaet ville
+    blokere rigtige planaendringer.
+    """
+    flags = []
+    program = _program(plan, athlete, today)
+    plan_start = date.fromisoformat(program["start"])
+    total_weeks = program["totalWeeks"]
+    weeks_meta = _programs.weeks_meta(program)
+    days = plan["athletes"][athlete]["days"]
+    race_dates = {r.get("date") for r in (program.get("races") or []) if r.get("date")}
+
+    # pr. uge: haarde dage, moderate dage, lette/fri dage. Og en flad liste af
+    # haarde pas med dato, saa afstanden mellem dem kan maales paa tvaers af uger.
+    per_week = {}
+    hard_sessions = []
+    for d in days:
+        w = _week_no(d["date"], plan_start)
+        if not 1 <= w <= total_weeks or d["date"] in race_dates:
+            continue
+        bucket = per_week.setdefault(w, {"haard": 0, "moderat": 0, "let": 0})
+        loads, z5, hard_names = set(), False, []
+        for e in d["entries"]:
+            lo = entry_load(e)
+            if lo:
+                loads.add(lo)
+            if lo == "haard":
+                hard_names.append(((e.get("workout") or {}).get("name") or "pas"))
+                if _is_z5_session(e):
+                    z5 = True
+            # Regel 5: loftet for Z5-tid i ETT pas
+            z5_min = planned_z5_min(e)
+            if z5_min > MAX_Z5_MIN_PER_SESSION:
+                flags.append({
+                    "week": w, "rule": "z5_per_session", "level": "WARN",
+                    "msg": f"{round(z5_min)} min Z5 i ét pas {d['date']} "
+                           f"({(e.get('workout') or {}).get('name') or 'pas'}) — "
+                           f"Friel: ca. {MAX_Z5_MIN_PER_SESSION} min"})
+        if "haard" in loads:
+            bucket["haard"] += 1
+            hard_sessions.append({"date": date.fromisoformat(d["date"]), "week": w,
+                                  "z5": z5, "name": hard_names[0] if hard_names else "pas"})
+        elif "moderat" in loads:
+            bucket["moderat"] += 1
+        else:
+            bucket["let"] += 1
+
+    for w, b in sorted(per_week.items()):
+        bt = (weeks_meta.get(w, {}).get("blockType") or "").upper()
+        if bt.startswith(("TAPER", "RACE")):
+            continue
+        # Regel 1: max 2 haarde dage pr. uge, paa tvaers af discipliner.
+        # bike_library.check_week() taeller kun cykelpas, saa et haardt loeb
+        # tirsdag + VO2 paa cyklen torsdag gik ubemaerket igennem.
+        if b["haard"] > MAX_HARD_PER_WEEK:
+            flags.append({"week": w, "rule": "hard_per_week", "level": "WARN",
+                          "msg": f"{b['haard']} hårde dage i uge {_iso(plan_start, w)} "
+                                 f"(Friel: max {MAX_HARD_PER_WEEK}, alle discipliner)"})
+        # Regel 3: 5-2 — mindst 3 dage om ugen helt lette eller fri.
+        # Kun uger der faktisk er planlagt hele vejen igennem.
+        if sum(b.values()) >= 7 and b["let"] < MIN_EASY_DAYS:
+            flags.append({"week": w, "rule": "easy_days_min", "level": "WARN",
+                          "msg": f"Kun {b['let']} lette dage i uge {_iso(plan_start, w)} "
+                                 f"(Friel 5-2: mindst {MIN_EASY_DAYS})"})
+
+    # Regel 2: afstand mellem haarde pas. 48 timer normalt, 72 naar begge er Z5.
+    hard_sessions.sort(key=lambda h: h["date"])
+    for a, b in zip(hard_sessions, hard_sessions[1:]):
+        timer = (b["date"] - a["date"]).days * 24
+        kraev = HARD_GAP_Z5_H if (a["z5"] and b["z5"]) else HARD_GAP_H
+        if timer < kraev:
+            bt = (weeks_meta.get(b["week"], {}).get("blockType") or "").upper()
+            if bt.startswith(("TAPER", "RACE")):
+                continue
+            flags.append({
+                "week": b["week"], "rule": "hard_spacing", "level": "WARN",
+                "msg": f"{timer} t mellem hårde pas {a['date'].isoformat()} og "
+                       f"{b['date'].isoformat()} (kræver {kraev} t"
+                       f"{' — begge Z5' if kraev == HARD_GAP_Z5_H else ''})"})
+    return flags
 
 
 def structural_flags(plan, athlete="kennet", today=None):
@@ -226,15 +406,20 @@ def structural_flags(plan, athlete="kennet", today=None):
                 flags.append({"week": w, "rule": "vo2_excess", "level": "WARN",
                               "msg": f"{vo2_per_week[w]} VO2-pas i uge {_iso(plan_start, w)} (plan: 1)"})
 
-    # Recovery efter max 3 build-uger i træk — WARN
+    # Regel 4 (Friel 2. udgave, 27/11-2026): R&R efter TO belastningsuger, ikke
+    # tre. Hans mesocyklus er 2 belastnings-mikrocykler + 5 dages R&R. CAMP og
+    # SPECIFIK taeller nu med som belastning — foer saa reglen kun BUILD, saa en
+    # lejr efterfulgt af to build-uger gik ubemaerket igennem.
     streak = 0
     for w in range(1, total_weeks + 1):
         bt = (weeks_meta.get(w, {}).get("blockType") or "").upper()
-        if bt.startswith("BUILD"):
+        if bt.startswith(LOAD_BLOCKS):
             streak += 1
-            if streak > 3:
+            if streak > MAX_LOAD_WEEKS_BEFORE_RR:
                 flags.append({"week": w, "rule": "missing_recovery", "level": "WARN",
-                              "msg": f"{streak}. build-uge i træk uden recovery (uge {_iso(plan_start, w)})"})
+                              "msg": f"{streak}. belastningsuge i træk uden R&R "
+                                     f"(uge {_iso(plan_start, w)}, Friel: max "
+                                     f"{MAX_LOAD_WEEKS_BEFORE_RR} + 5 dage)"})
         else:
             streak = 0
 
@@ -394,6 +579,7 @@ def validate(plan, seed_ctl=None, seed_atl=None, seed_date=None, athlete="kennet
     `today` styrer hvilket program der valideres mod (default: i dag).
     """
     flags = structural_flags(plan, athlete=athlete, today=today)
+    flags += edition2_flags(plan, athlete=athlete, today=today)
     if seed_ctl is not None and athlete == "kennet":
         flags += load_flags(plan, seed_ctl, seed_atl, seed_date,
                             readiness=readiness, current_week=current_week, today=today)

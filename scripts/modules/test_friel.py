@@ -3,6 +3,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.dirname(__file__))
+from datetime import date, timedelta
 import friel
 
 
@@ -475,3 +476,141 @@ def test_vo2_missing_ignores_unplanned_weeks():
     flags = friel.structural_flags(mk_plan(days, weeks=weeks))
     assert any(f["rule"] == "vo2_missing" and f["week"] == 1 for f in flags)
     assert not any(f["rule"] == "vo2_missing" and f["week"] == 2 for f in flags)
+
+
+# -- Friels 2. udgave: regel 1, 2, 3 og 5 (27/11-2026) ------------------------
+
+def _e2_plan(days, block="BUILD", weeks=3):
+    """Minimal plan til edition2_flags. Mandag 4/1-2027 er uge 1."""
+    return {
+        "programs": {"p": {"id": "p", "start": "2027-01-04", "end": "2027-01-31",
+                           "athletes": ["kennet"],
+                           "totalWeeks": weeks, "weeks": [
+            {"week": w, "start": (date(2027, 1, 4) + timedelta(weeks=w - 1)).isoformat(),
+             "blockType": block, "ctlTarget": 50} for w in range(1, weeks + 1)]}},
+        "athletes": {"kennet": {"days": days}},
+    }
+
+
+def _e2_day(d, *entries):
+    return {"date": d, "entries": list(entries)}
+
+
+def _lib(wid, wtype="Ride"):
+    return {"id": wid, "libraryId": wid, "workout": {"type": wtype, "name": wid}}
+
+
+def _named(name, wtype="Ride"):
+    return {"id": name[:6], "workout": {"type": wtype, "name": name}}
+
+
+def _rules(flags):
+    from collections import Counter
+    return dict(Counter(f["rule"] for f in flags))
+
+
+def test_entry_load_laeser_biblioteket_foerst_saa_navnet():
+    assert friel.entry_load(_lib("vo2_4x4")) == "haard"
+    assert friel.entry_load(_lib("z2_rolig_60")) == "let"
+    # uden libraryId: navnet afgoer
+    assert friel.entry_load(_named("Cykel Z2 3 t Mallorca")) == "let"
+    assert friel.entry_load(_named("Bjerg VO2 4x4 Puig Major")) == "haard"
+    assert friel.entry_load(_named("Løb tærskel 3x10", "Run")) == "haard"
+    assert friel.entry_load(_named("Gravel 2 t")) == "moderat"
+    # styrke, svoem og vandring taeller ikke med (CLAUDE.md regel 4)
+    assert friel.entry_load(_named("Styrke A", "WeightTraining")) is None
+    assert friel.entry_load(_named("Svøm 1500m", "Swim")) is None
+    assert friel.entry_load({"id": "x", "workout": None}) is None
+
+
+def test_regel1_max_to_haarde_dage_paa_tvaers_af_discipliner():
+    """Hullet reglen lukker: bike_library.check_week() taeller kun cykelpas."""
+    days = [_e2_day("2027-01-04", _lib("vo2_4x4")),
+            _e2_day("2027-01-06", _named("Løb tærskel 3x10", "Run")),
+            _e2_day("2027-01-08", _lib("tae_2x20")),
+            _e2_day("2027-01-09", _named("Cykel Z2 2 t")),
+            _e2_day("2027-01-10", _named("Cykel Z2 3 t"))]
+    fl = friel.edition2_flags(_e2_plan(days), today="2027-01-04")
+    assert _rules(fl).get("hard_per_week") == 1
+    msg = next(f["msg"] for f in fl if f["rule"] == "hard_per_week")
+    assert "3 hårde dage" in msg and "alle discipliner" in msg
+    # to haarde er i orden
+    days2 = [d for d in days if d["date"] != "2027-01-08"]
+    assert "hard_per_week" not in _rules(friel.edition2_flags(_e2_plan(days2), today="2027-01-04"))
+
+
+def test_regel2_afstand_48_timer_og_72_mellem_to_z5():
+    # to haarde med 48 t imellem: ok
+    ok = [_e2_day("2027-01-04", _lib("tae_2x20")), _e2_day("2027-01-06", _lib("tae_3x12"))]
+    assert "hard_spacing" not in _rules(friel.edition2_flags(_e2_plan(ok), today="2027-01-04"))
+    # 24 t imellem: flag
+    taet = [_e2_day("2027-01-04", _lib("tae_2x20")), _e2_day("2027-01-05", _lib("tae_3x12"))]
+    fl = friel.edition2_flags(_e2_plan(taet), today="2027-01-04")
+    assert _rules(fl).get("hard_spacing") == 1
+    assert "kræver 48 t" in next(f["msg"] for f in fl if f["rule"] == "hard_spacing")
+    # to Z5-pas med 48 t imellem: kraever 72
+    z5 = [_e2_day("2027-01-04", _lib("vo2_4x4")), _e2_day("2027-01-06", _lib("vo2_5x3"))]
+    fl = friel.edition2_flags(_e2_plan(z5), today="2027-01-04")
+    assert _rules(fl).get("hard_spacing") == 1
+    assert "begge Z5" in next(f["msg"] for f in fl if f["rule"] == "hard_spacing")
+    # samme to Z5-pas med 72 t: ok
+    z5ok = [_e2_day("2027-01-04", _lib("vo2_4x4")), _e2_day("2027-01-07", _lib("vo2_5x3"))]
+    assert "hard_spacing" not in _rules(friel.edition2_flags(_e2_plan(z5ok), today="2027-01-04"))
+
+
+def test_regel3_mindst_tre_lette_dage_i_en_fuldt_planlagt_uge():
+    # 2 haarde + 4 moderate + 1 let = kun 1 let dag
+    haard = [_e2_day("2027-01-04", _lib("vo2_4x4")), _e2_day("2027-01-07", _lib("tae_2x20"))]
+    moderat = [_e2_day(d, _named("Gravel 2 t")) for d in
+               ("2027-01-05", "2027-01-06", "2027-01-08", "2027-01-09")]
+    let = [_e2_day("2027-01-10", _named("Cykel Z2 rolig 1 t"))]
+    fl = friel.edition2_flags(_e2_plan(haard + moderat + let), today="2027-01-04")
+    assert _rules(fl).get("easy_days_min") == 1
+    assert "Kun 1 lette dage" in next(f["msg"] for f in fl if f["rule"] == "easy_days_min")
+    # samme uge med 3 lette dage i stedet: ingen flag
+    ok = haard + moderat[:2] + [_e2_day(d, _named("Cykel Z2 rolig 1 t")) for d in
+                                ("2027-01-08", "2027-01-09", "2027-01-10")]
+    assert "easy_days_min" not in _rules(friel.edition2_flags(_e2_plan(ok), today="2027-01-04"))
+
+
+def test_regel3_flagger_ikke_en_delvist_planlagt_uge():
+    """Uger med under 7 dage i dagslisten er ikke faerdigplanlagte."""
+    days = [_e2_day("2027-01-04", _lib("vo2_4x4")), _e2_day("2027-01-07", _lib("tae_2x20"))]
+    assert "easy_days_min" not in _rules(friel.edition2_flags(_e2_plan(days), today="2027-01-04"))
+
+
+def test_regel5_loft_for_z5_tid_i_ett_pas():
+    assert round(friel.planned_z5_min(_lib("vo2_ronnestad_3015"))) == 20
+    assert round(friel.planned_z5_min(_lib("vo2_10x1"))) == 10
+    assert friel.planned_z5_min(_named("Cykel Z2 2 t")) == 0      # udendoers: ingen steps
+    fl = friel.edition2_flags(_e2_plan([_e2_day("2027-01-04", _lib("vo2_ronnestad_3015"))]),
+                              today="2027-01-04")
+    assert _rules(fl).get("z5_per_session") == 1
+    assert "20 min Z5 i ét pas" in next(f["msg"] for f in fl if f["rule"] == "z5_per_session")
+    # 10 min er under loftet
+    fl2 = friel.edition2_flags(_e2_plan([_e2_day("2027-01-04", _lib("vo2_10x1"))]),
+                               today="2027-01-04")
+    assert "z5_per_session" not in _rules(fl2)
+
+
+def test_regel4_rr_efter_to_belastningsuger_og_camp_taeller_med():
+    plan = _e2_plan([_e2_day("2027-01-04", _lib("z2_rolig_60"))], block="BUILD", weeks=3)
+    fl = friel.structural_flags(plan, today="2027-01-04")
+    rec = [f for f in fl if f["rule"] == "missing_recovery"]
+    assert len(rec) == 1 and rec[0]["week"] == 3     # tredje belastningsuge
+    assert "max 2 + 5 dage" in rec[0]["msg"]
+    # CAMP taeller som belastning — foer saa reglen kun BUILD
+    plan["programs"]["p"]["weeks"][2]["blockType"] = "CAMP"
+    assert any(f["rule"] == "missing_recovery"
+               for f in friel.structural_flags(plan, today="2027-01-04"))
+    # en RECOVERY-uge nulstiller
+    plan["programs"]["p"]["weeks"][1]["blockType"] = "RECOVERY"
+    assert not any(f["rule"] == "missing_recovery"
+                   for f in friel.structural_flags(plan, today="2027-01-04"))
+
+
+def test_taper_og_raceuger_er_fritaget():
+    days = [_e2_day(d, _lib("vo2_4x4")) for d in ("2027-01-04", "2027-01-05", "2027-01-06")]
+    plan = _e2_plan(days, block="TAPER")
+    fl = friel.edition2_flags(plan, today="2027-01-04")
+    assert "hard_per_week" not in _rules(fl) and "hard_spacing" not in _rules(fl)

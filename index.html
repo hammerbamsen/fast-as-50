@@ -1642,6 +1642,9 @@ async function ptFetchEditResult(requestId){
 }
 function ptReqId(){ return "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 const PT_RULE_DA = { max_runs:"For mange løbedage", consecutive_runs:"Fortløbende løb", vo2_missing:"VO2 mangler",
+  // Friels 2. udgave, 27/11-2026
+  hard_per_week:"Over 2 hårde", hard_spacing:"For tæt på hårdt", easy_days_min:"For få lette dage",
+  z5_per_session:"For meget Z5 i ét pas",
   vo2_excess:"Ekstra VO2", missing_recovery:"Recovery mangler", tsb_floor:"TSB under gulv", ctl_ramp:"CTL-ramp",
   low_readiness:"Lav readiness", race_tsb:"Race-TSB", taper_ctl_rising:"Taper: CTL stiger", plan_actual_mismatch:"Plan ≠ faktisk" };
 const PT_LOAD_DA = { let:"let", moderat:"moderat", haard:"hård" };
@@ -2936,6 +2939,7 @@ function renderBody() {
   ${bodyTiles(b)}
   ${ftpCard(D.ftp)}
   ${vo2Card(D.vo2)}
+  ${frielCard()}
   ${cutCheckCard(b)}
   <div class="card">
     <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
@@ -3005,6 +3009,58 @@ function bodyHero(g) {
 
 // ── Krop: tre tal-tiles (fedt 14d · fedtfri masse · styrke) ──
 // ── FTP-kort (blok 13): aktuel FTP mod fasemål, W/kg, næste test, historik ──
+// Friels principper, 27/11-2026. Kortet er bevidst delt i to: hvad gaten
+// HAANDHAEVER, og hvad der er op til Kennet. Ellers lover dashboardet mere end
+// det holder. Teksterne er hardkodede, fordi de er principper, ikke data.
+const FRIEL_GATE = [
+  ["Maks 2 hårde pas pr. uge", "Alle discipliner tæller med. Et hårdt løb tirsdag og VO2 på cyklen torsdag er to hårde dage.", "Over 2 hårde"],
+  ["48 timer mellem hårde pas", "72 timer når begge er Z5. Friel: \u201ekan du ikke beslutte dig, så lad det være\u201d.", "For tæt på hårdt"],
+  ["Mindst 3 helt lette dage", "5-2-ugen: to hårde, to moderate, resten kun Z1-2. Lette dage skal være lette, ellers kan de hårde ikke være hårde.", "For få lette dage"],
+  ["R&R efter to belastningsuger", "Ikke tre. Hans mesocyklus er to belastningsuger plus fem dages aktiv restitution.", "Recovery mangler"],
+  ["Maks ca. 15 min Z5 pr. pas", "Reps 2-4 min, pause lig rep. Måles på de planlagte steps i kælderbiblioteket.", "For meget Z5 i ét pas"],
+  ["1 VO2-stimulus pr. build-uge", "Og kun én. Dosis måles i minutter på VO2-kortet, ikke i antal pas.", "VO2 mangler / Ekstra VO2"],
+  ["Maks 3 løbedage pr. uge", "Fra reset-året, ikke fra Friel. Beskytter knæ og fascia.", "For mange løbedage"],
+];
+const FRIEL_DIT = [
+  ["Stop med 1-2 gode reps tilbage", "Spring den sidste. Kan ikke måles af en plan — kun du ved hvordan rep fire føltes."],
+  ["Tal med lægen før en hård blok", "Friel skriver det selv: har der været noget med hjertet, eller tager du noget der ændrer pulsen, så ryk den samtale før intensiteten."],
+  ["Volumen og intensitet går modsat", "Skal den ene op, skal den anden ned. Aldrig begge på samme tid — det er den regel lejre oftest bryder."],
+  ["Protein 40 g inden 30 min", "Efter styrke og tærskelpas. Ældre atleter skal have ca. det dobbelte af en 25-årig for samme muskelproteinsyntese."],
+  ["Hvile er \u201epå efterspørgsel\u201d", "Friel lægger ikke hvile hver fjerde uge efter kalenderen. Du tager den når kroppen siger til — men han tilføjer at atleter underrapporterer træthed."],
+];
+function frielCard() {
+  const h = 'font-family:\'Space Mono\',monospace;font-size:9px;letter-spacing:.08em;color:var(--muted);margin:12px 0 6px';
+  const row = (t, d, flag) => `<div style="padding:6px 0;border-top:1px solid var(--cream-d)">
+    <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline">
+      <span style="font-size:11px;color:var(--ink)"><b>${esc(t)}</b></span>
+      ${flag ? `<span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap">${esc(flag)}</span>` : ''}
+    </div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:2px">${esc(d)}</div>
+  </div>`;
+  return `<div class="card">
+    <div class="label" style="margin-bottom:4px">Friels principper — Fast After 50</div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.55">
+      2. udgave (maj 2026). Friel skrev bogen om og vendte positionen: masters-atleter laver nu
+      for meget intensitet og for lidt lav intensitet. Tallene nedenfor er hans.
+    </div>
+    <details style="margin-top:10px">
+      <summary style="cursor:pointer;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--gold);list-style:none;padding:4px 0">
+        HVAD PLANEN TJEKKER FOR DIG ▾
+      </summary>
+      <div style="margin-top:2px">
+        <div style="${h}">GATEN FLAGER DET HER</div>
+        ${FRIEL_GATE.map(r => row(r[0], r[1], r[2])).join('')}
+        <div style="${h}">DET HER ER OP TIL DIG</div>
+        ${FRIEL_DIT.map(r => row(r[0], r[1], null)).join('')}
+        <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:10px">
+          Flagene er advarsler, ikke spærringer — de kan bekræftes væk. Udendørs ture og løb
+          klassificeres på pasnavn, så de kan tage fejl; kælderpas læses fra biblioteket og er sikre.
+        </div>
+      </div>
+    </details>
+  </div>`;
+}
+
 function vo2Card(v) {
   if (!v || !Array.isArray(v.weeks) || !v.weeks.length) {
     return `<div class="card"><div class="label">VO2-DOSIS</div>
