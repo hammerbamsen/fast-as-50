@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-27 12:34",
+    "updated": "2026-11-27 13:34",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -99,6 +99,12 @@
       "sub": "3,52 W/kg · mål 292 (BASE)",
       "color": "#C0392B"
     },
+    "vo2": {
+      "value": "1",
+      "unit": "min",
+      "sub": "restitutionsuge — mål 0",
+      "color": "#27AE60"
+    },
     "protein": {
       "value": "5",
       "unit": "/7",
@@ -111,8 +117,8 @@
     "target": 6,
     "streak": 5
   },
-  "coachSpeech": "Uge 48, RECOVERY-blok: vandreugerne har gjort arbejdet — lørdag er styrke, søndag er Z2 på cyklen. {HL} 3 planlagte pas er gennemført, 5 er misset — primært de lange cykelture og begge styrketræninger.",
-  "coachHighlight": "I dag er der ingen planlagte pas — brug dagen på at hvile aktivt og spis protein ved hvert måltid.",
+  "coachSpeech": "Fredag — tre dage tilbage af uge 48. {HL} Godt: Søvn på 8,5 timer er solid. Fokus: Vægt på 73,4 kg (målt 21/11) — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 4 AF-dage i 5 afsluttede dage — 2 mangler i 2 dage tilbage. Keep moving forward.  \"AF-dage er ikke et offer — de er en investering i morgendagens energi.\"",
+  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -3335,15 +3341,7 @@
   "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 82 af 357 · Fredag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, RECOVERY-blok: vandreugerne har gjort arbejdet — lørdag er styrke, søndag er Z2 på cyklen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>3 planlagte pas er gennemført, 5 er misset — primært de lange cykelture og begge styrketræninger. TSS-udførslen er 226 af 605 planlagte (37 %), men RECOVERY-blokken har andet formål end høj TSS; de mange vandreture (Fornalutx) har dog bidraget med reel belastning. CTL er 33,0 mod mål 46,0 — det er forventet i genopbygningsfasen, jag den ikke.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er 1,1 kg over planet siden cut startede — deltaVsPlan er 0,4 kg over forventet. Retningen over de seneste 28 dage er opadgående, så hold fokus på protein ved hvert måltid og undgå ekstra energi.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>5 af 7 dage med protein registreret — hold det. Søvn ser god ud med 8,5 t i snit og 10 t i nat.</p>",
   "coachAssessmentTs": "12:34",
   "commute_pairing_warnings": [],
-  "warnings": [
-    {
-      "type": "cut",
-      "level": "warn",
-      "message": "7-dages snitvægt er 0,4 kg over cut-planen. Spis protein ved hvert måltid og undgå ekstra energi de næste dage.",
-      "action": null,
-      "source": "ai"
-    }
-  ],
+  "warnings": [],
   "tsb": -18.7,
   "swimHistory": [
     {
@@ -3636,16 +3634,16 @@
     55,
     58,
     60,
-    63,
-    60,
-    67,
+    66,
     63,
     65,
-    67,
-    63,
-    65,
-    67,
+    64,
+    70,
+    72,
     69,
+    71,
+    74,
+    75,
     65,
     63,
     59,
@@ -3673,7 +3671,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-27T11:34:31.844368",
+  "credentialsCheckedTs": "2026-11-27T12:34:33.752409",
   "coachAssessmentTsFull": "2026-11-27T11:34:31",
   "coachAssessmentWeightAtGen": 73.4,
   "coachAssessmentAfAtGen": 4,
@@ -4589,15 +4587,15 @@
     "25": "RECOVERY",
     "26": "BUILD",
     "27": "BUILD",
-    "28": "BUILD+",
+    "28": "CAMP",
     "29": "RECOVERY",
-    "30": "CAMP",
+    "30": "BUILD",
     "31": "RECOVERY",
-    "32": "BUILD",
-    "33": "BUILD",
+    "32": "CAMP",
+    "33": "CAMP",
     "34": "RECOVERY",
     "35": "BUILD",
-    "36": "BUILD",
+    "36": "CAMP",
     "37": "BUILD+",
     "38": "RECOVERY",
     "39": "RACE",
@@ -5652,13 +5650,13 @@
         "blockType": "BUILD",
         "mesoWeek": "2/2",
         "ctlTarget": 60,
-        "tssTarget": 530,
+        "tssTarget": 470,
         "tssActual": null,
-        "purpose": "Søndag 5 t. Tirsdag over-unders 3×10.",
-        "note": null,
+        "purpose": "Build hjemme. Tirsdag over-unders 3×10, loerdag lang Z2. Soendag 14/3 rejsedag — let eller fri.",
+        "note": "Sidste hjemmeuge foer lejr #1. Soendag 14/3 er rejsedag.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5667,7 +5665,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #1",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5678,16 +5676,16 @@
         "start": "2027-03-15",
         "end": "2027-03-21",
         "phase": "BUILD",
-        "blockType": "BUILD+",
+        "blockType": "CAMP",
         "mesoWeek": "1/1",
-        "ctlTarget": 63,
-        "tssTarget": 560,
+        "ctlTarget": 66,
+        "tssTarget": 680,
         "tssActual": null,
-        "purpose": "Søndag 5 t. Tirsdag norsk kontrolleret.",
-        "note": null,
+        "purpose": "Lejr #1: volumen og aerob base. 18-22 t, ét hårdt pas, resten Z2.",
+        "note": "LEJR #1 Mallorca 14-21/3 (booket 27/11-2026). Volumen- og baselejr: 18-22 t, lange Z2-ture 4-5 t i bjergene. ETT haardt pas: Sa Calobra som tempo-benchmark tir 16/3 paa friske ben — ikke PR-forsoeg. Friel 2. udgave (maj 2026): en lejr oeger VARIGHED, ikke varighed og intensitet samtidig. Lette dage = kun Z1-2.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5696,7 +5694,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #1",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5709,14 +5707,14 @@
         "phase": "BUILD",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
-        "ctlTarget": 60,
+        "ctlTarget": 63,
         "tssTarget": 300,
         "tssActual": null,
-        "purpose": "Søndag 3 t.",
-        "note": "Forlejr-aflastning.",
+        "purpose": "Aflastning efter lejr #1. Søndag 3 t let. Første kvalitet tidligst fredag.",
+        "note": "Efterlejr-aflastning (var forlejr-aflastning). Friel: 3-5 dage aktiv restitution efter en belastningsblok, ikke 1-2.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5736,16 +5734,16 @@
         "start": "2027-03-29",
         "end": "2027-04-04",
         "phase": "BUILD",
-        "blockType": "CAMP",
+        "blockType": "BUILD",
         "mesoWeek": "1/1",
-        "ctlTarget": 67,
-        "tssTarget": 750,
+        "ctlTarget": 65,
+        "tssTarget": 520,
         "tssActual": null,
-        "purpose": "Lejr #1 Mallorca: 20-25 t. Lang tur 5-6 t, stigninger i Z2. Sa Calobra PR-forsøg én dag. Ikke booket endnu (11/9-2026).",
-        "note": "LEJR #1 Mallorca. 20-25 t. Her bygges CTL — ikke i Gentofte. SA CALOBRA PR-FORSOEG: 9,45 km / 627 hm. PR at slaa er 35:18 sat paa 275 W. Koer den tidligt i lejren paa friske ben, ikke til sidst.",
+        "purpose": "Build hjemme. Søndag 4,5-5 t. Tirsdag tærskel 2×20. Maks 2 hårde med 3 dage imellem.",
+        "note": "Lejren er flyttet til uge 28 (KU11). Volumen-beslutningen fra 27/10-2026 ligger her — nu med data fra lejr #1.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5767,14 +5765,14 @@
         "phase": "BUILD",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
-        "ctlTarget": 63,
-        "tssTarget": 280,
+        "ctlTarget": 64,
+        "tssTarget": 380,
         "tssActual": null,
-        "purpose": null,
-        "note": "Fuld aflastning efter lejr. TSB-gulv -30.",
+        "purpose": "Nedtrapning før lejr #2. Søndag 11/4 rejsedag.",
+        "note": "Forlejr-aflastning foer lejr #2 (var efterlejr). Friel: moed ikke en belastningsblok traet — PR-forsoeget ligger paa dag 2 af lejren.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5783,7 +5781,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #2",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5794,16 +5792,16 @@
         "start": "2027-04-12",
         "end": "2027-04-18",
         "phase": "BUILD",
-        "blockType": "BUILD",
+        "blockType": "CAMP",
         "mesoWeek": "1/2",
-        "ctlTarget": 65,
-        "tssTarget": 530,
+        "ctlTarget": 70,
+        "tssTarget": 780,
         "tssActual": null,
-        "purpose": "Søndag 5,5-6 t ude. Tirsdag tærskel 2×20 + tempo sidst i lørdagsturen.",
-        "note": null,
+        "purpose": "Lejr #2, uge 1: hovedblokken. 20-25 t, 2 hårde spredt, resten Z2 4-6 t.",
+        "note": "LEJR #2 Mallorca 11-21/4 (booket 27/11-2026) — hovedblokken, foerste uge. 20-25 t. SA CALOBRA PR-FORSOEG tir 13/4 paa friske ben (PR at slaa: 35:18 paa 275 W). Andet haarde pas tidligst lor 17/4 — Friel: 3 dage mellem Z5-pas, reps 2-4 min, pause lig rep, maks ~15 min Z5 i alt. Stop med 1-2 gode reps tilbage.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5812,7 +5810,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #2",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5823,16 +5821,16 @@
         "start": "2027-04-19",
         "end": "2027-04-25",
         "phase": "BUILD",
-        "blockType": "BUILD",
+        "blockType": "CAMP",
         "mesoWeek": "2/2",
-        "ctlTarget": 67,
-        "tssTarget": 550,
+        "ctlTarget": 72,
+        "tssTarget": 470,
         "tssActual": null,
-        "purpose": "Søndag 6 t ude. Tirsdag over-unders + tempo på stigninger.",
-        "note": null,
+        "purpose": "Sidste to lejrdage, derefter aflastning. Ingen kvalitet efter hjemkomst.",
+        "note": "Lejr #2, anden del: man 19/4 og tir 20/4 lange ture, hjemrejse ons 21/4. Resten af ugen kun Z1-2 — R&R starter ved hjemkomst.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5841,7 +5839,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #2",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5854,14 +5852,14 @@
         "phase": "BUILD",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
-        "ctlTarget": 63,
-        "tssTarget": 300,
+        "ctlTarget": 69,
+        "tssTarget": 320,
         "tssActual": null,
-        "purpose": "Søndag 3,5 t.",
-        "note": null,
+        "purpose": "Aflastning. Søndag 3,5 t let. Første kvalitet tidligst torsdag.",
+        "note": "5 dages R&R efter lejr #2 (Friel: 2 belastningsmikrocykler + 5 dages R&R). TSB-gulv -30.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5882,15 +5880,15 @@
         "end": "2027-05-09",
         "phase": "BUILD",
         "blockType": "BUILD",
-        "mesoWeek": "1/2",
-        "ctlTarget": 65,
-        "tssTarget": 520,
+        "mesoWeek": "1/1",
+        "ctlTarget": 71,
+        "tssTarget": 500,
         "tssActual": null,
-        "purpose": "Søndag 6,5 t. Tirsdag norsk kontrolleret.",
-        "note": null,
+        "purpose": "Build hjemme. Tirsdag norsk kontrolleret, lørdag lang Z2. Søndag 9/5 rejsedag — let.",
+        "note": "Sidste hjemmeuge foer lejr #3. Soendag 9/5 er rejsedag.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5899,7 +5897,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #3",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5910,16 +5908,16 @@
         "start": "2027-05-10",
         "end": "2027-05-16",
         "phase": "STELVIO",
-        "blockType": "BUILD",
-        "mesoWeek": "2/2",
-        "ctlTarget": 67,
-        "tssTarget": 540,
+        "blockType": "CAMP",
+        "mesoWeek": "1/1",
+        "ctlTarget": 74,
+        "tssTarget": 640,
         "tssActual": null,
-        "purpose": "Søndag 7 t. Tirsdag tærskel 2×20.",
-        "note": null,
+        "purpose": "Lejr #3: løbsspecifik. Én dag 5-6 t, ét Z5-pas, resten Stelvio-tempo.",
+        "note": "LEJR #3 Mallorca 9-14/5 (booket 27/11-2026) — loebsspecifik, tre uger foer Stelvio. 15-18 t paa 5 dage. Friels undtagelse for landevejscykling: lav 5-minutters-arbejde uanset loebslaengde. Lange stigninger paa Stelvio-watt + ett Z5-pas (reps 2-4 min, maks ~15 min i alt, 1,05-1,20 × taerskel). Hjem fre 14/5, weekend kun Z1-2.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5928,7 +5926,7 @@
         "keySessions": [],
         "flags": [],
         "races": [],
-        "travel": null,
+        "travel": "Mallorca lejr #3",
         "isCurrent": false,
         "isPast": false,
         "hasDays": false
@@ -5941,8 +5939,8 @@
         "phase": "STELVIO",
         "blockType": "BUILD+",
         "mesoWeek": "1/1",
-        "ctlTarget": 69,
-        "tssTarget": 560,
+        "ctlTarget": 75,
+        "tssTarget": 520,
         "tssActual": null,
         "purpose": "Søndag 7 t. Tirsdag FTP-TEST.",
         "note": "FTP-test. Forventet ~305 W = 4,5 W/kg. Sidste port foer Stelvio.",
@@ -11391,7 +11389,7 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-27T11:34:15Z"
+    "generatedAt": "2026-11-27T12:34:33Z"
   },
   "proposals": [],
   "ftp": {
@@ -11466,5 +11464,54 @@
     "date": "2026-11-27",
     "ctl": 33.0,
     "atl": 51.7
+  },
+  "vo2": {
+    "weeks": [
+      {
+        "isoWeek": 45,
+        "start": "2026-11-02",
+        "z5Min": 0,
+        "sessions": 0,
+        "target": 5,
+        "phase": "BASE",
+        "blockType": "BASE"
+      },
+      {
+        "isoWeek": 46,
+        "start": "2026-11-09",
+        "z5Min": 0,
+        "sessions": 0,
+        "target": 6,
+        "phase": "BASE",
+        "blockType": "BASE"
+      },
+      {
+        "isoWeek": 47,
+        "start": "2026-11-16",
+        "z5Min": 0,
+        "sessions": 0,
+        "target": 7,
+        "phase": "BASE",
+        "blockType": "BASE+"
+      },
+      {
+        "isoWeek": 48,
+        "start": "2026-11-23",
+        "z5Min": 1,
+        "sessions": 0,
+        "target": 0,
+        "phase": "BASE",
+        "blockType": "RECOVERY"
+      }
+    ],
+    "z5Min": 1,
+    "target": 0,
+    "sessions": 0,
+    "phase": "BASE",
+    "blockType": "RECOVERY",
+    "weekLate": false,
+    "color": "#27AE60",
+    "status": "restitutionsuge — ingen Z5 planlagt",
+    "minSessionMin": 4
   }
 }
