@@ -503,14 +503,14 @@ def test_week_targets_saetter_metadata_og_spejler_i_season2027():
 
 def test_week_targets_mirror_fra_og_none_fjerner_felt():
     plan = _plan()
+    twin_foer = dict(_season(plan, 30))
     ch = {"action": "set_week_targets", "programId": "tds-2027", "week": 30,
-          "blockType": "BUILD", "note": None, "keySession": None, "mirrorSeason": False}
+          "blockType": "TESTBLOK", "note": None, "keySession": None, "mirrorSeason": False}
     proposals.validate(_prop([ch]))
     sim, _ = proposals.apply_changes(plan, [ch])
     wk = _week(sim, "tds-2027", 30)
-    assert wk["blockType"] == "BUILD" and "note" not in wk and "keySession" not in wk
-    twin = _season(sim, 30)
-    assert twin["blockType"] == "CAMP" and "note" in twin        # ikke spejlet
+    assert wk["blockType"] == "TESTBLOK" and "note" not in wk and "keySession" not in wk
+    assert _season(sim, 30) == twin_foer          # season2027 helt urort
 
 
 def test_week_targets_metadata_alene_er_nok_men_tomt_afvises():
@@ -532,8 +532,8 @@ def test_set_travel_upsert_opdaterer_og_tilfoejer_sorteret():
     n_before = len(plan["travel"])
     ch = {"action": "set_travel", "travel": [
         {"label": "Japan (ski) med Eva", "end": "2027-02-07"},
-        {"label": "Mallorca lejr #1", "start": "2027-03-14", "end": "2027-03-21",
-         "travel_home_date": "2027-03-21", "label_during": "på Mallorca-lejr #1"}]}
+        {"label": "Testlejr Andorra", "start": "2027-06-20", "end": "2027-06-27",
+         "travel_home_date": "2027-06-27", "label_during": "på testlejr"}]}
     proposals.validate(_prop([ch]))
     sim, dates = proposals.apply_changes(plan, [ch])
     assert dates == []
@@ -546,16 +546,20 @@ def test_set_travel_upsert_opdaterer_og_tilfoejer_sorteret():
 
 
 def test_set_travel_giver_camp_uge_i_friel_gaten():
+    """Et nyt Mallorca-ophold skal gore ugen til camp-uge (TSB-gulv -35)."""
     from modules import friel
     plan = _plan()
     prog = plan["programs"]["tds-2027"]
-    wk28 = _week(plan, "tds-2027", 28)
-    w_no = (date.fromisoformat(wk28["start"])
-            - date.fromisoformat(prog["start"])).days // 7 + 1
-    assert w_no not in friel._camp_weeks(plan, prog)
+    foer = friel._camp_weeks(plan, prog)
+    # find en programuge der IKKE allerede er camp-uge
+    kandidat = next(w for w in prog["weeks"]
+                    if w["week"] not in foer and w["start"] > "2027-06-01")
+    start = kandidat["start"]
     sim, _ = proposals.apply_changes(plan, [{"action": "set_travel", "travel": [
-        {"label": "Mallorca lejr #1", "start": "2027-03-14", "end": "2027-03-21"}]}])
-    assert w_no in friel._camp_weeks(sim, prog)
+        {"label": "Mallorca testlejr", "start": start, "end": start}]}])
+    efter = friel._camp_weeks(sim, prog)
+    assert kandidat["week"] in efter and kandidat["week"] not in foer
+    assert foer < efter                      # ingen uger forsvandt
 
 
 def test_set_travel_afviser_daarlige_datoer_og_ukendte_felter():

@@ -841,6 +841,7 @@ const STATIC = {
 // ── Dynamic data (fra data.json) ──────────────────────────────
 let D = {
   zones: null,   // sat fra data.json (kilde: data/plan.json)
+  vo2: null,     // VO2-dosis fra data.json (27/11-2026) — null = ingen pipeline-koersel endnu
   weightGoal: null, bodyFatGoal: null,   // fra data.json — aldrig hardkodet her
   week:1, totalWeeks:14, blockType:"BUILD",
   dataLoaded:false,         // false = data.json ikke hentet -> fejlbjælke i stedet for tomme kort
@@ -2934,6 +2935,7 @@ function renderBody() {
   </div>
   ${bodyTiles(b)}
   ${ftpCard(D.ftp)}
+  ${vo2Card(D.vo2)}
   ${cutCheckCard(b)}
   <div class="card">
     <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
@@ -3003,6 +3005,48 @@ function bodyHero(g) {
 
 // ── Krop: tre tal-tiles (fedt 14d · fedtfri masse · styrke) ──
 // ── FTP-kort (blok 13): aktuel FTP mod fasemål, W/kg, næste test, historik ──
+function vo2Card(v) {
+  if (!v || !Array.isArray(v.weeks) || !v.weeks.length) {
+    return `<div class="card"><div class="label">VO2-DOSIS</div>
+      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted);margin-top:6px">Kommer med næste pipeline-kørsel.</div></div>`;
+  }
+  const col = v.color || 'var(--num)';
+  // Soejlehoejde maales mod det stoerste af maal og faktisk, saa en uge over
+  // maalet ikke klipper. Maal 0 (restitutionsuge) vises som en tom skinne.
+  const peak = Math.max(1, ...v.weeks.map(w => Math.max(w.z5Min || 0, w.target || 0)));
+  const bars = v.weeks.map((w, i) => {
+    const h = Math.round((w.z5Min || 0) / peak * 44);
+    const th = w.target ? Math.round(w.target / peak * 44) : 0;
+    const last = i === v.weeks.length - 1;
+    const c = last ? col : 'var(--muted)';
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="position:relative;width:100%;height:46px;display:flex;align-items:flex-end;justify-content:center">
+        ${th ? `<div title="mål ${w.target} min" style="position:absolute;left:12%;right:12%;bottom:${th}px;border-top:1px dashed var(--muted);opacity:.7"></div>` : ''}
+        <div style="width:58%;height:${h}px;min-height:${w.z5Min ? 2 : 0}px;background:${c};border-radius:2px 2px 0 0"></div>
+      </div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:${last ? col : 'var(--muted)'}"><b>${w.z5Min || 0}</b></div>
+      <div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted)">KU${w.isoWeek}</div>
+    </div>`;
+  }).join('');
+  const maal = v.target == null ? 'uden for programmet'
+             : v.target === 0 ? 'restitutionsuge — mål 0 min'
+             : `mål ${v.target} min · ${v.sessions || 0} pas over ${v.minSessionMin || 4} min`;
+  return `<div class="card">
+    <div class="label" style="margin-bottom:8px">VO2-dosis — minutter i Z5 pr. uge</div>
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div class="kpi4-v" style="color:${col};font-size:28px">${v.z5Min || 0}<span style="font-size:13px;color:var(--muted)"> min</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">${esc(maal)}</div>
+      ${v.phase || v.blockType ? `<div style="margin-left:auto;font-family:Space Mono,monospace;font-size:10px;letter-spacing:.08em;color:var(--muted)">${esc([v.phase, v.blockType].filter(Boolean).join(' · '))}</div>` : ''}
+    </div>
+    <div style="font-family:Space Mono,monospace;font-size:11px;color:${col};margin-top:4px">${esc(v.status || '')}</div>
+    <div style="display:flex;gap:6px;align-items:flex-end;margin-top:12px">${bars}</div>
+    <div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);margin-top:8px;line-height:1.5">
+      Friels dosering: 3-5 min i prep, ca. 5 min i tidlig base, ca. 15 min i sen base og build, 0 i restitutionsuger.
+      Stiplet linje er ugens mål. Cykling måles på watt, resten på puls — ikke Garmins VO2max, som stiger mekanisk når vægten falder.
+    </div>
+  </div>`;
+}
+
 function ftpCard(f) {
   if (!f || f.ftpW == null) {
     return `<div class="card"><div class="label">FTP</div>
@@ -4534,6 +4578,9 @@ function applyRemote(remote) {
           {cat:"Træning", label:"CYKEL KM",   value:km.bikeKm?.value ||"—", unit:"km",  sub:km.bikeKm?.sub ||"Cykel denne uge",    color:km.bikeKm?.color ||"var(--bike)"},
           {cat:"Træning", label:"TSS UGE",    value:km.tssComp?.value||"0", unit:km.tssComp?.unit||"TSS", sub:km.tssComp?.sub||"Mål denne uge", color:km.tssComp?.color||"#6B7A88"},
           {cat:"Træning", label:"FTP",        value:km.ftp?.value    ||"—", unit:"W",   sub:km.ftp?.sub    ||"Fasemål",             color:km.ftp?.color    ||"#6B7A88"},
+          // 27/11-2026: VO2-dosis — minutter i Z5 denne kalenderuge mod Friels
+          // maaldosis. Ikke Garmins VO2max: ml/kg/min stiger mekanisk med vaegttab.
+          {cat:"Træning", label:"VO2 DOSIS", value:km.vo2?.value    ||"—", unit:"min", sub:km.vo2?.sub    ||"Z5 denne uge",        color:km.vo2?.color    ||"#6B7A88"},
           // Krop
           {cat:"Krop",    label:"VÆGT",       value:km.weight?.value ||"—", unit:"kg",  sub:km.weight?.sub ||"Mål",                color:km.weight?.color ||"#6B7A88"},
           {cat:"Krop",    label:"FEDT%",      value:km.fat?.value    ||"—", unit:"%",   sub:km.fat?.sub    ||"Mål",                color:km.fat?.color    ||"#6B7A88"},
@@ -4548,6 +4595,7 @@ function applyRemote(remote) {
       if (remote.ctlCurve)       D.ctlCurve       = remote.ctlCurve;
       D.fitnessLive = (remote.fitnessLive && typeof remote.fitnessLive === 'object') ? remote.fitnessLive : null;
       D.ftp = (remote.ftp && typeof remote.ftp === 'object') ? remote.ftp : null;   // blok 13
+      D.vo2 = (remote.vo2 && typeof remote.vo2 === 'object') ? remote.vo2 : null;   // 27/11-2026
       if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
       if (Array.isArray(remote.weightMovingAvg7)) D.weightMovingAvg7 = remote.weightMovingAvg7;
       if (Array.isArray(remote.fatMovingAvg7))    D.fatMovingAvg7    = remote.fatMovingAvg7;

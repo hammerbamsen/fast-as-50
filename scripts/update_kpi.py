@@ -480,6 +480,19 @@ def main():
     _w7 = ((body or {}).get('glidepath') or {}).get('avg7') if body else None
     data['ftp'] = _ftp.build(PLAN, today, weight_avg7=_w7, week_num=week_num)
 
+    # --- VO2-dosis (27/11-2026): Z5-minutter pr. kalenderuge mod Friels maaldosis ---
+    # Friel-gaten kender reglen "1 VO2-stimulus pr. build-uge", men ser kun planen.
+    # Her maales det der faktisk blev koert, i minutter frem for antal pas.
+    data['vo2'] = None
+    try:
+        from modules.sessions import get_activities_since as _acts_since
+        from modules import vo2_dose as _vo2
+        data['vo2'] = _vo2.card(_acts_since(35), PLAN, today=today)
+        print(f"  VO2-dosis:  {data['vo2']['z5Min']} min Z5 / maal {data['vo2']['target']} "
+              f"({data['vo2']['sessions']} pas) -> {data['vo2']['status']}")
+    except Exception as _e:
+        print(f"  ⚠️ VO2-dosis fejlede (ikke-blokerende): {_e}")
+
     data['kpis'] = {
         # Vægt/fedt: 7d-/14d-snit, sub + farve fra glidepath-status (body.py) —
         # ikke color_for mod slutmålet (det var rødt i fire måneder uanset retning).
@@ -501,6 +514,11 @@ def main():
         'afStreak':   {'value': str(af_days),          'unit': '',   'sub': _af_sub,                                    'color': _af_color},
         'ftp':        _ftp.kpi(data['ftp']),
     }
+
+    # VO2-dosis: kun et kort naar blokken findes (kpis-vaerdier skal vaere objekter).
+    if data.get('vo2'):
+        from modules import vo2_dose as _vo2_kpi
+        data['kpis']['vo2'] = _vo2_kpi.kpi(data['vo2'])
 
     # --- TSB / HRV advarsler (sendes til dashboard for visning) ---
     warnings = []
