@@ -76,6 +76,24 @@ def get_activities_since(days=10, strict=False):
     return None if strict else []
 
 
+def get_streams(act_id, types='time,distance,altitude,watts,heartrate'):
+    """Raa streams for een aktivitet -> {type: data}. Tom dict ved fejl.
+
+    27/11-2026: brugt af fixed_route til at finde en kendt stigning i turen.
+    Samme endpoint og samme svarform som de to eksisterende stream-kald
+    laengere nede i filen.
+    """
+    if not act_id:
+        return {}
+    r = api_get(f'{BASE}/activity/{act_id}/streams', auth=AUTH, params={'types': types})
+    if not r or r.status_code != 200:
+        return {}
+    try:
+        return {s['type']: (s.get('data') or []) for s in r.json()}
+    except Exception:
+        return {}
+
+
 def get_weekly_tss_actual(plan_start, total_weeks):
     """Faktisk TSS pr. planuge, hele planperioden — historisk backfill.
 

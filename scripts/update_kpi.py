@@ -484,6 +484,7 @@ def main():
     # Friel-gaten kender reglen "1 VO2-stimulus pr. build-uge", men ser kun planen.
     # Her maales det der faktisk blev koert, i minutter frem for antal pas.
     data['vo2'] = None
+    _acts_35d = None
     try:
         from modules.sessions import get_activities_since as _acts_since
         from modules import vo2_dose as _vo2
@@ -499,6 +500,40 @@ def main():
                   f"({data['vo2']['sessions']} pas) -> {data['vo2']['status']}")
     except Exception as _e:
         print(f"  ⚠️ VO2-dosis fejlede (ikke-blokerende): {_e}")
+
+    # --- EF paa fast rute (27/11-2026) -------------------------------------------
+    # aerobic.py filtrerer stigningstunge ture vaek (MAX_HM_PER_KM = 15), saa
+    # Mallorca-lejrene er usynlige for EF. Her maales watt pr. hjerteslag paa
+    # EEN kendt stigning i stedet, hvor laengde og hoejde er ens hver gang.
+    # Serien ligger i data/fixed_route_ef.json, noeglet paa aktivitets-id, saa
+    # den overlever at data.json skrives forfra hver koersel.
+    data['fixedRouteEf'] = None
+    try:
+        from modules import fixed_route as _fr
+        from modules.sessions import get_streams as _get_streams
+        _fr_sha, _fr_raw = gh_get('data/fixed_route_ef.json')
+        _serie = json.loads(_fr_raw).get('efforts', []) if _fr_raw else []
+        _kendte = {r.get('id') for r in _serie}
+        _nye = []
+        for _a in (_acts_35d or []):
+            if _a.get('id') in _kendte or not _fr.is_candidate(_a):
+                continue
+            _eff = _fr.find_effort(_get_streams(_a.get('id')))
+            if _eff and _eff.get('ef'):
+                _nye.append(_fr.record(_a, _eff))
+                print(f"  Fast rute: {_a.get('id')} -> {_eff['secs'] // 60}:"
+                      f"{_eff['secs'] % 60:02d} paa {_eff['watts']} W / {_eff['hr']} slag "
+                      f"= {_eff['ef']} W/slag")
+        if _nye:
+            _serie = _fr.merge(_serie, _nye)
+            gh_put('data/fixed_route_ef.json', _fr_sha,
+                   json.dumps({'efforts': _serie}, ensure_ascii=False, indent=2) + '\n',
+                   f"fast rute: {len(_nye)} nyt forsoeg ({today})")
+        data['fixedRouteEf'] = _fr.card(_serie)
+        print(f"  Fast rute:  {data['fixedRouteEf']['n']} forsoeg paa "
+              f"{data['fixedRouteEf']['navn']} -> {data['fixedRouteEf']['status']}")
+    except Exception as _e:
+        print(f"  ⚠️ EF paa fast rute fejlede (ikke-blokerende): {_e}")
 
     data['kpis'] = {
         # Vægt/fedt: 7d-/14d-snit, sub + farve fra glidepath-status (body.py) —

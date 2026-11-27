@@ -151,10 +151,17 @@ def test_program_day_and_days_total():
 
 
 def test_actuals_through_week_is_program_scoped():
+    """Reglen, ikke indholdet: feltet gaelder det program markoeren peger paa,
+    og 0 for alle andre. Hvilket program det er, kan aendres via et forslag
+    (set_actuals, 27/11-2026), saa det laases ikke her."""
     progs = P.list_programs(PLAN)
-    assert P.actuals_through_week(PLAN, "kennet", progs["medoc-2026"]) == \
-        PLAN["athletes"]["kennet"]["actualsThroughWeek"]
-    assert P.actuals_through_week(PLAN, "kennet", progs["tds-2027"]) == 0
+    ath = PLAN["athletes"]["kennet"]
+    owner = ath.get("actualsThroughWeekProgram")
+    assert owner in progs, "markoeren peger paa et program der ikke findes"
+    assert P.actuals_through_week(PLAN, "kennet", progs[owner]) == \
+        ath["actualsThroughWeek"]
+    andet = next(k for k in progs if k != owner)
+    assert P.actuals_through_week(PLAN, "kennet", progs[andet]) == 0
 
 
 # ── Legacy-fixtures (som friel-/adaptation-tests bruger) ────────────────────

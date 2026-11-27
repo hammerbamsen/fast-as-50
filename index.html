@@ -842,6 +842,7 @@ const STATIC = {
 let D = {
   zones: null,   // sat fra data.json (kilde: data/plan.json)
   vo2: null,     // VO2-dosis fra data.json (27/11-2026) — null = ingen pipeline-koersel endnu
+  fixedRouteEf: null,  // EF paa fast rute (Sa Calobra) fra data.json
   weightGoal: null, bodyFatGoal: null,   // fra data.json — aldrig hardkodet her
   week:1, totalWeeks:14, blockType:"BUILD",
   dataLoaded:false,         // false = data.json ikke hentet -> fejlbjælke i stedet for tomme kort
@@ -2939,6 +2940,7 @@ function renderBody() {
   ${bodyTiles(b)}
   ${ftpCard(D.ftp)}
   ${vo2Card(D.vo2)}
+  ${fixedRouteCard(D.fixedRouteEf)}
   ${frielCard()}
   ${cutCheckCard(b)}
   <div class="card">
@@ -3028,6 +3030,37 @@ const FRIEL_DIT = [
   ["Protein 40 g inden 30 min", "Efter styrke og tærskelpas. Ældre atleter skal have ca. det dobbelte af en 25-årig for samme muskelproteinsyntese."],
   ["Hvile er \u201epå efterspørgsel\u201d", "Friel lægger ikke hvile hver fjerde uge efter kalenderen. Du tager den når kroppen siger til — men han tilføjer at atleter underrapporterer træthed."],
 ];
+function fixedRouteCard(f) {
+  if (!f) return '';
+  const col = f.color || 'var(--num)';
+  const mmss = s => s == null ? '—' : `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  const rows = (f.efforts || []).slice(-6).reverse().map(e =>
+    `<div style="display:flex;justify-content:space-between;gap:6px;font-family:'Space Mono',monospace;font-size:11px;padding:3px 0;border-top:1px solid var(--cream-d)">
+       <span style="color:var(--muted)">${esc(_dkShort(e.date) || '')}</span>
+       <span><b>${e.ef == null ? '—' : fmtDa(e.ef, 3)}</b> W/slag</span>
+       <span style="color:var(--muted)">${mmss(e.secs)}</span>
+       <span style="color:var(--muted)">${e.watts ?? '—'} W / ${e.hr ?? '—'}</span>
+     </div>`).join('');
+  const retning = f.pct == null ? '' :
+    `<span style="font-size:10px;color:${col}">${f.pct > 0 ? '+' : ''}${fmtDa(f.pct, 1)} % vs. forrige</span>`;
+  return `<div class="card">
+    <div class="label" style="margin-bottom:8px">EF på fast rute — ${esc(f.navn || '')}</div>
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div class="kpi4-v" style="color:${col};font-size:28px">${f.ef == null ? '—' : fmtDa(f.ef, 3)}<span style="font-size:13px;color:var(--muted)"> W/slag</span></div>
+      ${retning}
+      ${f.best_secs ? `<div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)">bedste ${mmss(f.best_secs)}</div>` : ''}
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;color:${col};margin-top:4px">${esc(f.status || '')}</div>
+    ${rows ? `<div style="margin-top:10px"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:4px">FORSØG</div>${rows}</div>` : ''}
+    <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:10px">
+      Den almindelige EF sorterer bjergture fra, fordi GAP underkorrigerer over 15 hm/km —
+      og Fornalutx ligger på 20-25. Derfor måles der her på samme stigning hver gang: watt pr.
+      hjerteslag, hvor længde, højde og retning er ens. Tallet må kun sammenlignes med sig selv.
+      ${f.note ? esc(f.note) : ''}
+    </div>
+  </div>`;
+}
+
 function frielCard() {
   const h = 'font-family:\'Space Mono\',monospace;font-size:9px;letter-spacing:.08em;color:var(--muted);margin:12px 0 6px';
   const row = (t, d, flag) => `<div style="padding:6px 0;border-top:1px solid var(--cream-d)">
@@ -4652,6 +4685,7 @@ function applyRemote(remote) {
       D.fitnessLive = (remote.fitnessLive && typeof remote.fitnessLive === 'object') ? remote.fitnessLive : null;
       D.ftp = (remote.ftp && typeof remote.ftp === 'object') ? remote.ftp : null;   // blok 13
       D.vo2 = (remote.vo2 && typeof remote.vo2 === 'object') ? remote.vo2 : null;   // 27/11-2026
+      D.fixedRouteEf = (remote.fixedRouteEf && typeof remote.fixedRouteEf === 'object') ? remote.fixedRouteEf : null;
       if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
       if (Array.isArray(remote.weightMovingAvg7)) D.weightMovingAvg7 = remote.weightMovingAvg7;
       if (Array.isArray(remote.fatMovingAvg7))    D.fatMovingAvg7    = remote.fatMovingAvg7;

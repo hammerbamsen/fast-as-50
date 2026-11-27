@@ -452,21 +452,22 @@ def test_phase_normalises_new_block_types():
 
 
 def test_validate_against_real_plan_after_program_switch():
-    """Mod den rigtige plan.json: efter 7/9-2026 valideres mod tds-2027 (51 uger),
-    og actualsThroughWeek (skrevet mod medoc-2026) markerer INTET som historisk."""
+    """Mod den rigtige plan.json: efter 7/9-2026 valideres mod tds-2027, foer mod
+    medoc-2026, og historik-markeringen foelger det program feltet peger paa.
+
+    Laaser ikke HVILKET program markoeren peger paa: det kan aendres via et
+    forslag (set_actuals, 27/11-2026), og testen blev roed da det skete."""
     import json
+    import programs as P
     plan = json.load(open(os.path.join(os.path.dirname(__file__), "..", "..", "data", "plan.json"),
                           encoding="utf-8"))
-    flags = friel.validate(plan, seed_ctl=45.0, seed_atl=40.0, seed_date="2026-09-07",
-                           today="2026-10-01")
-    assert all(1 <= f["week"] <= 51 for f in flags)
-    assert not any(f["historic"] for f in flags)
-    # Før skiftet: medoc-2026, 14 uger, historik <= actualsThroughWeek
-    flags = friel.validate(plan, seed_ctl=45.0, seed_atl=40.0, seed_date="2026-07-07",
-                           today="2026-07-07")
-    assert all(1 <= f["week"] <= 14 for f in flags)
-    actuals = plan["athletes"]["kennet"]["actualsThroughWeek"]
-    assert all(f["historic"] == (f["week"] <= actuals) for f in flags)
+    for seed_date, today in (("2026-09-07", "2026-10-01"), ("2026-07-07", "2026-07-07")):
+        prog = P.active_program(plan, "kennet", today=today)
+        actuals = P.actuals_through_week(plan, "kennet", prog)
+        flags = friel.validate(plan, seed_ctl=45.0, seed_atl=40.0,
+                               seed_date=seed_date, today=today)
+        assert all(1 <= f["week"] <= prog["totalWeeks"] for f in flags)
+        assert all(f["historic"] == (f["week"] <= actuals) for f in flags)
 
 
 def test_vo2_missing_ignores_unplanned_weeks():

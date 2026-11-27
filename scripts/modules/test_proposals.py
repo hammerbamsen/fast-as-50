@@ -596,6 +596,10 @@ def test_set_actuals_flytter_feltet_til_det_rigtige_program():
     regnet som historisk og flag fra september stod stadig som aktuelle."""
     from modules import programs as _programs
     plan = _plan()
+    # Udgangspunktet saettes HER, ikke laant fra den rigtige plan.json: feltet
+    # kan nu flyttes med et forslag, og testen blev roed da det skete.
+    plan["athletes"]["kennet"]["actualsThroughWeek"] = 8
+    plan["athletes"]["kennet"]["actualsThroughWeekProgram"] = "medoc-2026"
     prog = plan["programs"]["tds-2027"]
     assert _programs.actuals_through_week(plan, "kennet", prog) == 0   # foer
     ch = {"action": "set_actuals", "programId": "tds-2027", "throughWeek": 11}
@@ -606,7 +610,7 @@ def test_set_actuals_flytter_feltet_til_det_rigtige_program():
     assert ath["actualsThroughWeek"] == 11
     assert ath["actualsThroughWeekProgram"] == "tds-2027"
     assert _programs.actuals_through_week(sim, "kennet", sim["programs"]["tds-2027"]) == 11
-    assert plan["athletes"]["kennet"]["actualsThroughWeekProgram"] == "medoc-2026"  # input urort
+    assert plan["athletes"]["kennet"]["actualsThroughWeekProgram"] == "medoc-2026"  # input urørt
 
 
 def test_set_actuals_afviser_ugyldige_vaerdier():
