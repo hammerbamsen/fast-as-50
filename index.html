@@ -1366,6 +1366,98 @@ function logStateText(){
 }
 
 
+// ── I dag: periodiseringen for hele sæsonen (27/11-2026) ─────
+// Hele programmet i én stribe: søjlehøjde = ugens TSS-mål, farve = blockType.
+// Formålet er at kunne SE hvor man er i periodiseringen uden at åbne Plan —
+// hvilken fase, hvor næste lejr og race ligger, og hvor langt der er dertil.
+// Alt fra data.json -> planTab.weeks, intet regnet her.
+const BT_FARVE = {
+  RECOVERY: '#9AA7B2', REST: '#9AA7B2',
+  BASE: '#5B8C9E', 'BASE+': '#47788B',
+  BUILD: '#C98A3C', 'BUILD+': '#B4752A',
+  SPECIFIK: '#A2603C', 'SPECIFIK+': '#8E4F2E',
+  STELVIO: '#8E4F2E', PEAK: '#8E4F2E',
+  CAMP: '#6B8E5E', TAPER: '#B9A06B', RACE: '#A0392B',
+};
+function _btFarve(bt){ return BT_FARVE[String(bt || '').toUpperCase()] || '#9AA7B2'; }
+
+function seasonStripV2() {
+  const w = ptWeeks();
+  if (!w.length) return '';
+  const maxTss = Math.max(1, ...w.map(x => x.tssTarget || 0));
+  const nuIdx = Math.max(0, w.findIndex(x => x.isCurrent));
+  const H = 42;
+
+  const soejler = w.map((x, i) => {
+    const h = Math.max(3, Math.round((x.tssTarget || 0) / maxTss * H));
+    const col = _btFarve(x.blockType);
+    const forbi = x.isPast && !x.isCurrent;
+    const race = (x.races || []).length ? (x.races[0].priority === 'A' ? '#A0392B' : '#C98A3C') : null;
+    const lejr = String(x.blockType).toUpperCase() === 'CAMP';
+    return `<div style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:1px">
+      <div style="height:5px;line-height:5px;font-size:6px;color:${race || 'transparent'}">${race ? '▲' : '·'}</div>
+      <div title="KU${isoWeekOf(x.start)} ${esc(x.blockType || '')} — ${esc(x.purpose || '')}"
+           style="width:100%;height:${h}px;background:${col};opacity:${forbi ? .35 : 1};
+                  border-radius:1px 1px 0 0;${x.isCurrent ? 'outline:1px solid var(--ink);outline-offset:1px' : ''}"></div>
+      <div style="height:4px;line-height:4px;font-size:7px;color:${lejr ? '#6B8E5E' : 'transparent'}">${lejr ? '●' : '·'}</div>
+    </div>`;
+  }).join('');
+
+  // Fasebånd: ét segment pr. sammenhængende fase, label kun hvor der er plads.
+  const faser = [];
+  w.forEach((x, i) => {
+    const sidste = faser[faser.length - 1];
+    if (sidste && sidste.phase === x.phase) sidste.n += 1;
+    else faser.push({ phase: x.phase || '', n: 1, fra: i });
+  });
+  const faseBaand = faser.map(f =>
+    `<div style="flex:${f.n} 1 0;min-width:0;text-align:center;overflow:hidden">
+       <div style="height:3px;background:${_btFarve(f.phase === 'TRANSITION' ? 'RECOVERY' : f.phase)};opacity:.5;border-radius:2px"></div>
+       <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.04em;color:var(--muted);
+                   white-space:nowrap;overflow:hidden;text-overflow:clip;margin-top:2px">${f.n >= 4 ? esc(f.phase) : ''}</div>
+     </div>`).join('');
+
+  const linje = (x, pre) => x ? `<div style="font-size:11px;line-height:1.5;margin-top:4px">
+      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--muted)">${pre} KU${isoWeekOf(x.start)}</span>
+      <span style="color:${_btFarve(x.blockType)};font-weight:700"> ${esc(x.blockType || '')}</span>
+      <span style="color:var(--muted)">${x.tssTarget ? ' · ' + x.tssTarget + ' TSS' : ''}${x.travel && x.travel.length ? ' · ' + esc(x.travel[0].label || x.travel[0]) : ''}</span>
+      ${x.purpose ? `<div style="color:var(--muted);margin-top:1px">${esc(x.purpose)}</div>` : ''}
+    </div>` : '';
+
+  const naesteLejr = w.find((x, i) => i > nuIdx && String(x.blockType).toUpperCase() === 'CAMP');
+  const naesteRace = w.find((x, i) => i >= nuIdx && (x.races || []).length);
+  const ugerTil = x => x ? Math.max(0, w.indexOf(x) - nuIdx) : null;
+  const naeste = [
+    naesteLejr ? `næste lejr om ${ugerTil(naesteLejr)} uger (KU${isoWeekOf(naesteLejr.start)})` : null,
+    naesteRace ? `${esc((naesteRace.races[0].name || '').split('(')[0].trim())} om ${ugerTil(naesteRace)} uger` : null,
+  ].filter(Boolean).join(' · ');
+
+  const kommende = w.slice(nuIdx, nuIdx + 8).map(x =>
+    `<div style="display:flex;gap:8px;padding:4px 0;border-top:1px solid var(--cream-d)">
+       <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);min-width:38px">KU${isoWeekOf(x.start)}</span>
+       <span style="font-family:'Space Mono',monospace;font-size:10px;color:${_btFarve(x.blockType)};min-width:68px">${esc(x.blockType || '')}</span>
+       <span style="font-size:11px;color:var(--muted);flex:1">${esc(x.purpose || x.note || '—')}</span>
+     </div>`).join('');
+
+  return `<div class="card">
+    <div class="label" style="margin-bottom:8px">Periodisering — ${esc((D.planTab && D.planTab.programName) || '')}</div>
+    <div style="display:flex;gap:1px;align-items:flex-end">${soejler}</div>
+    <div style="display:flex;gap:1px;margin-top:3px">${faseBaand}</div>
+    ${naeste ? `<div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.04em;color:var(--muted);margin-top:6px">${naeste.toUpperCase()}</div>` : ''}
+    ${linje(w[nuIdx], 'NU')}
+    ${linje(w[nuIdx + 1], 'NÆSTE')}
+    <details style="margin-top:8px">
+      <summary style="cursor:pointer;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--gold);list-style:none;padding:4px 0">
+        DE NÆSTE OTTE UGER ▾
+      </summary>
+      <div style="margin-top:2px">${kommende}</div>
+    </details>
+    <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:8px">
+      Søjlehøjde er ugens TSS-mål, farve er blocktype. ▲ er et løb, ● en lejr. Ramme om søjlen er denne uge.
+    </div>
+  </div>`;
+}
+
 // ── I dag: fire nøgletal + coachens stemme ───────────────────
 // CTL · vægt (7d-snit) · fedt (7d-snit) · AF-dage. Alt fra data.json.
 function _last(arr){ const a=(arr||[]).filter(x=>x&&x.v!=null); return a.length? a[a.length-1].v : null; }
@@ -1465,6 +1557,7 @@ function renderToday() {
     </div>
   </div>
   ${weekStripV2()}
+  ${seasonStripV2()}
   ${complianceHtml()}
   ${ckCardHtml()}
   ${todayStrengthHtml()}

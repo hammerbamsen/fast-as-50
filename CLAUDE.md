@@ -6,6 +6,12 @@ Fast as Fifty: Kennets trænings-dashboard (PWA) + pipeline i GitHub Actions. Al
 - Claude må committe og pushe direkte til `main` (besluttet af Kennet 26/9-2026), når alle fire CI-trin nedenfor er grønne lokalt. Hent `origin/main` og rebase lige før push. Skriv en `CHANGES-<dato>-<emne>.md` i repo-roden (ændringer pr. fil, testresultat, hvad der ikke kunne verificeres) i samme commit.
 - Undtagelser — brug en branch `claude/<dato>-<emne>` + PR i stedet: flere agenter arbejder i samme blok, ændringen rører `.github/workflows/` eller `workers/`, eller en test er rød og ikke kan rettes.
 - Ret aldrig `data.json` og `health.json` i hånden, og ændr ikke `data/plan.json` via commit — planændringer går via `edit_apply`/forslag. Alt der var grønt skal forblive grønt. Rør ikke filer der er tildelt en anden agent i samme blok.
+- **Tests må ikke låse indhold i `data/plan.json`.** Planen ændres via forslag — blockType, ctlTarget, tssTarget, rejse-ophold og `actualsThroughWeek` kan alle flytte sig den samme dag. En test der asserterer "uge 28 er CAMP" eller "actualsThroughWeek peger på medoc-2026" bliver rød næste gang et forslag kører, og fejlen ser ud som en kodefejl. Dette ramte seks tests 27/11-2026. Brug i stedet:
+  - en fixture-plan i testfilen, når det er logikken der testes (se `FIX` i `test_vo2_dose.py`, `_e2_plan()` i `test_friel.py`),
+  - eller vælg uge, ophold eller program **dynamisk** fra planen, når kontrakten mod den rigtige plan er pointen (se `test_maaldosis_foelger_fasen...` og `test_actuals_through_week_is_program_scoped`),
+  - og assertér **reglen**, ikke værdien: "feltet gælder det program markøren peger på" frem for "markøren peger på medoc-2026".
+  - Sætter en test sit eget udgangspunkt, så sæt det eksplicit i testen frem for at låne det fra planen.
+  - Vælg testværdier der ikke allerede står i planen: sætter et forslag `blockType: "CAMP"` på en uge der i forvejen er CAMP, består assertionen også hvis koden ikke gjorde noget.
 - Læs `docs/PIPELINE.md` før enhver ændring under `.github/workflows/`, og hold `health.yml`'s workflow-liste i synk med `name:` i de øvrige workflows.
 
 ## Kommandoer
