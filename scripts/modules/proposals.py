@@ -37,6 +37,16 @@ STATUSES = ("pending", "accepted", "rejected", "applied-offline")
 # 27/10-2026: set_goals — kropsmål pr. program (læses af update_kpi via GOALS).
 # Kun disse nøgler, med et fornuftigt interval, så en tastefejl ikke slår igennem.
 GOAL_RANGES = {"weightKg": (40, 150), "bodyFatPct": (3, 50)}
+# 27/11-2026: set_week_targets kan nu ogsaa saette ugemetadata (lejre, sted,
+# formaal). Tidligere kunne kun ctlTarget/tssTarget aendres via forslag, saa en
+# flyttet traeningslejr skulle rettes i haanden i plan.json — det driftede.
+WEEK_META_STR = ("blockType", "location", "note", "purpose", "keySession")
+WEEK_META_FIELDS = WEEK_META_STR + ("quota",)
+QUOTA_KEYS = ("haard", "moderat")
+# 27/11-2026: set_travel — rejse-ophold i plan["travel"]. Laeses af friel.py
+# (camp-uger faar TSB-gulv -35), adaptation.py og plan_tab.py.
+TRAVEL_STR = ("label", "label_home", "label_during")
+TRAVEL_DATES = ("start", "end", "travel_home_date")
 # 27/10-2026: set_weight_plan — programmets glidesti (modules/body.py). Tal med
 # interval, datoer som ISO, holdFromMonth som YYYY-MM, note som tekst.
 WEIGHT_PLAN_RANGES = {"startKg": (40, 150), "targetKg": (40, 150),
@@ -182,12 +192,21 @@ def validate(prop: dict) -> None:
             if (pid_, wk) in seen_tgt:
                 raise ValueError(f"set_week_targets: uge {wk} i {pid_} optræder to gange")
             seen_tgt.add((pid_, wk))
-            if not any(isinstance(ch.get(k), (int, float)) and not isinstance(ch.get(k), bool)
-                       for k in ("ctlTarget", "tssTarget")):
-                raise ValueError(f"set_week_targets uge {wk}: ctlTarget eller tssTarget skal angives")
+            has_num = any(isinstance(ch.get(k), (int, float)) and not isinstance(ch.get(k), bool)
+                          for k in ("ctlTarget", "tssTarget"))
+            has_meta = any(k in ch for k in WEEK_META_FIELDS)
+            if not has_num and not has_meta:
+                raise ValueError(
+                    f"set_week_targets uge {wk}: ctlTarget, tssTarget eller mindst et "
+                    f"metafelt ({', '.join(WEEK_META_FIELDS)}) skal angives")
+            _validate_week_meta(ch, wk)
+            continue
+        if ch.get("action") == "set_travel":
+            # 27/11-2026: rejse-ophold. Ingen datoer at synke (kun labels/gates).
+            _validate_travel(ch)
             continue
         if ch.get("action") != "set_day":
-            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_goals og set_weight_plan understøttes")
+            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_travel, set_goals og set_weight_plan understøttes")
         try:
             d_iso = date.fromisoformat(str(ch.get("date"))).isoformat()
         except (TypeError, ValueError):
@@ -267,6 +286,9 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
         if ch.get("action") == "set_week_targets":
             _apply_week_targets(sim, ch)
             continue                     # ingen dage berørt -> intet at synke
+        if ch.get("action") == "set_travel":
+            _apply_travel(sim, ch)
+            continue                     # ingen dage berørt -> intet at synke
         if ch.get("action") == "set_goals":
             _apply_goals(sim, ch)
             continue                     # ingen dage berørt -> intet at synke
@@ -307,8 +329,82 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
     return sim, dates
 
 
+def _validate_week_meta(ch: dict, wk: int) -> None:
+    """Typetjek af ugemetadata i set_week_targets (27/11-2026)."""
+    for k in WEEK_META_STR:
+        if k not in ch:
+            continue
+        v = ch[k]
+        if v is None:
+            continue                     # None = fjern feltet
+        if not isinstance(v, str) or not v.strip():
+            raise ValueError(f"set_week_targets uge {wk}: {k} skal være en ikke-tom tekst")
+    if "quota" in ch and ch["quota"] is not None:
+        q = ch["quota"]
+        if not isinstance(q, dict) or not q:
+            raise ValueError(f"set_week_targets uge {wk}: quota skal være et ikke-tomt objekt")
+        for qk, qv in q.items():
+            if qk not in QUOTA_KEYS:
+                raise ValueError(f"set_week_targets uge {wk}: ukendt quota-nøgle {qk!r} "
+                                 f"(tilladt: {', '.join(QUOTA_KEYS)})")
+            if not isinstance(qv, int) or isinstance(qv, bool) or not 0 <= qv <= 7:
+                raise ValueError(f"set_week_targets uge {wk}: quota.{qk}={qv!r} skal være 0-7")
+    if "mirrorSeason" in ch and not isinstance(ch["mirrorSeason"], bool):
+        raise ValueError(f"set_week_targets uge {wk}: mirrorSeason skal være true/false")
+
+
+def _validate_travel(ch: dict) -> None:
+    """Typetjek af set_travel (27/11-2026)."""
+    trips = ch.get("travel")
+    if not isinstance(trips, list) or not trips:
+        raise ValueError("set_travel: travel skal være en ikke-tom liste")
+    mode = ch.get("mode", "upsert")
+    if mode not in ("upsert", "replace"):
+        raise ValueError(f"set_travel: ukendt mode {mode!r} (tilladt: upsert, replace)")
+    labels = set()
+    for t in trips:
+        if not isinstance(t, dict):
+            raise ValueError("set_travel: hvert ophold skal være et objekt")
+        label = t.get("label")
+        if not isinstance(label, str) or not label.strip():
+            raise ValueError("set_travel: label mangler på et ophold")
+        if label in labels:
+            raise ValueError(f"set_travel: label {label!r} optræder to gange")
+        labels.add(label)
+        for k in TRAVEL_STR:
+            if k in t and t[k] is not None and not isinstance(t[k], str):
+                raise ValueError(f"set_travel {label}: {k} skal være tekst")
+        dates = {}
+        for k in TRAVEL_DATES:
+            if k not in t or t[k] is None:
+                continue
+            try:
+                dates[k] = date.fromisoformat(str(t[k]))
+            except (TypeError, ValueError):
+                raise ValueError(f"set_travel {label}: ugyldig dato i {k}: {t[k]!r}")
+        if "start" not in dates:
+            # upsert må patche et kendt ophold (fx kun end); replace skal være komplet.
+            # Om label'en findes, afgøres i _apply_travel, som kan se planen.
+            if mode == "replace":
+                raise ValueError(f"set_travel {label}: start mangler")
+            if len(t) < 2:
+                raise ValueError(f"set_travel {label}: angiv mindst ét felt ud over label")
+        else:
+            if "end" in dates and dates["end"] < dates["start"]:
+                raise ValueError(f"set_travel {label}: end ligger før start")
+            if "travel_home_date" in dates and dates["travel_home_date"] < dates["start"]:
+                raise ValueError(f"set_travel {label}: travel_home_date ligger før start")
+        unknown = set(t) - set(TRAVEL_STR) - set(TRAVEL_DATES) - {"name"}
+        if unknown:
+            raise ValueError(f"set_travel {label}: ukendte felter {sorted(unknown)}")
+
+
 def _apply_week_targets(sim: dict, ch: dict) -> dict:
-    """Muterer sim['programs'][programId]['weeks'][week] med ctlTarget/tssTarget."""
+    """Muterer sim['programs'][programId]['weeks'][week] med ctlTarget/tssTarget
+    og — fra 27/11-2026 — ugemetadata (blockType, location, note, purpose,
+    keySession, quota). Metadata spejles i sim['season2027']['weeks'] for den
+    uge der har samme ugenummer OG samme startdato, medmindre mirrorSeason er
+    false; tal spejles ikke, fordi de to lister har hver sin CTL-kurve."""
     progs = sim.get("programs")
     prog = progs.get(ch["programId"]) if isinstance(progs, dict) else None
     if not isinstance(prog, dict):
@@ -320,7 +416,53 @@ def _apply_week_targets(sim: dict, ch: dict) -> dict:
         v = ch.get(k)
         if isinstance(v, (int, float)) and not isinstance(v, bool):
             wk[k] = int(round(v))
+    meta = _week_meta_patch(ch)
+    _patch_week_meta(wk, meta)
+    if meta and ch.get("mirrorSeason", True):
+        season = sim.get("season2027")
+        if isinstance(season, dict):
+            twin = next((w for w in (season.get("weeks") or [])
+                         if w.get("week") == ch["week"] and w.get("start") == wk.get("start")), None)
+            if twin is not None:
+                _patch_week_meta(twin, meta)
     return wk
+
+
+def _week_meta_patch(ch: dict) -> dict:
+    """De metafelter forslaget faktisk nævner — None betyder 'fjern feltet'."""
+    return {k: ch[k] for k in WEEK_META_FIELDS if k in ch}
+
+
+def _patch_week_meta(wk: dict, meta: dict) -> None:
+    for k, v in meta.items():
+        if v is None:
+            wk.pop(k, None)
+        else:
+            wk[k] = copy.deepcopy(v)
+
+
+def _apply_travel(sim: dict, ch: dict) -> list:
+    """Muterer sim['travel']. mode=upsert (standard) opdaterer ophold med samme
+    label og tilføjer resten; mode=replace erstatter hele listen. Sorteres på
+    startdato, så plan-fanen og friel-gaten læser dem i rækkefølge."""
+    trips = [copy.deepcopy(t) for t in ch["travel"]]
+    if ch.get("mode", "upsert") == "replace":
+        sim["travel"] = sorted(trips, key=lambda t: t["start"])
+        return sim["travel"]
+    cur = sim.setdefault("travel", [])
+    by_label = {t.get("label"): t for t in cur if isinstance(t, dict)}
+    for t in trips:
+        old_t = by_label.get(t["label"])
+        if old_t is None:
+            if not t.get("start"):
+                raise ValueError(f"set_travel {t['label']}: start mangler for nyt ophold")
+            cur.append(t)
+        else:
+            old_t.update(t)
+            if old_t.get("end") and old_t["end"] < old_t["start"]:
+                raise ValueError(f"set_travel {old_t['label']}: end ligger før start efter fletning")
+    cur.sort(key=lambda t: t.get("start") or "")
+    return cur
 
 
 def _apply_goals(sim: dict, ch: dict) -> dict:
@@ -367,6 +509,7 @@ def target_changes_for_data(plan: dict, changes: list) -> list:
             "start": start, "blockType": wk.get("blockType"),
             "ctlBefore": wk.get("ctlTarget"), "ctlAfter": ch.get("ctlTarget", wk.get("ctlTarget")),
             "tssBefore": wk.get("tssTarget"), "tssAfter": ch.get("tssTarget", wk.get("tssTarget")),
+            "metaAfter": {k: v for k, v in _week_meta_patch(ch).items() if v is not None} or None,
         })
     return out
 

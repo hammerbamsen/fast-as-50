@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "fast-as-50/proposal.schema.json",
   "title": "data/proposals/<id>.json — forslag til plan.json (blok 9)",
-  "description": "Kontrakt jf. blok9-spec §1. set_day (blok 9), set_week_targets (ctl-recalib, 14/9-2026) set_goals og set_weight_plan (kropsmål og glidesti, 27/10-2026). Anvendes via edit_apply.apply_edit(action='apply_proposal'). additionalProperties: true.",
+  "description": "Kontrakt jf. blok9-spec §1. set_day (blok 9), set_week_targets (ctl-recalib 14/9-2026, ugemetadata 27/11-2026), set_travel (rejse-ophold, 27/11-2026), set_goals og set_weight_plan (kropsmål og glidesti, 27/10-2026). Anvendes via edit_apply.apply_edit(action='apply_proposal'). additionalProperties: true.",
   "type": "object",
   "required": ["id", "title", "status", "changes"],
   "additionalProperties": true,
@@ -22,6 +22,7 @@
         "oneOf": [
           {"$ref": "#/$defs/setDay"},
           {"$ref": "#/$defs/setWeekTargets"},
+          {"$ref": "#/$defs/setTravel"},
           {"$ref": "#/$defs/setGoals"},
           {"$ref": "#/$defs/setWeightPlan"}
         ]
@@ -59,7 +60,7 @@
         },
     "setWeekTargets": {
       "type": "object",
-      "description": "CTL-rekalibrering (14/9-2026): ugemål i et program. Ingen dato, ingen sync.",
+      "description": "CTL-rekalibrering (14/9-2026) og ugemetadata (27/11-2026): ugemål, blockType, sted, formål og kvoter i et program. Ingen dato, ingen sync. Metadata spejles i season2027.weeks ved samme uge+start, medmindre mirrorSeason=false.",
       "required": ["action", "programId", "week"],
       "additionalProperties": true,
       "properties": {
@@ -67,7 +68,49 @@
         "programId": {"type": "string"},
         "week": {"type": "integer", "minimum": 1},
         "ctlTarget": {"type": "integer", "minimum": 0},
-        "tssTarget": {"type": "integer", "minimum": 0}
+        "tssTarget": {"type": "integer", "minimum": 0},
+        "blockType": {"type": ["string", "null"], "minLength": 1},
+        "location": {"type": ["string", "null"], "minLength": 1},
+        "note": {"type": ["string", "null"], "minLength": 1},
+        "purpose": {"type": ["string", "null"], "minLength": 1},
+        "keySession": {"type": ["string", "null"], "minLength": 1},
+        "quota": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "haard": {"type": "integer", "minimum": 0, "maximum": 7},
+            "moderat": {"type": "integer", "minimum": 0, "maximum": 7}
+          }
+        },
+        "mirrorSeason": {"type": "boolean"}
+      }
+    },
+    "setTravel": {
+      "type": "object",
+      "description": "Rejse-ophold i plan.travel (27/11-2026). Læses af friel.py (Mallorca-ophold = camp-uge med TSB-gulv -35), adaptation.py og plan_tab.py. Ingen dato at synke.",
+      "required": ["action", "travel"],
+      "additionalProperties": true,
+      "properties": {
+        "action": {"type": "string", "enum": ["set_travel"]},
+        "mode": {"type": "string", "enum": ["upsert", "replace"]},
+        "travel": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["label", "start"],
+            "additionalProperties": false,
+            "properties": {
+              "label": {"type": "string", "minLength": 1},
+              "name": {"type": "string"},
+              "start": {"type": "string", "format": "date"},
+              "end": {"type": "string", "format": "date"},
+              "travel_home_date": {"type": "string", "format": "date"},
+              "label_home": {"type": "string"},
+              "label_during": {"type": "string"}
+            }
+          }
+        }
       }
     },
     "setGoals": {

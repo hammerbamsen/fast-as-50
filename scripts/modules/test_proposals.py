@@ -467,3 +467,115 @@ def test_set_weight_plan_through_edit_apply_and_schema():
     v = jsonschema.Draft202012Validator(schema)
     assert not list(v.iter_errors(_wp_prop(WP_NEW)))
     assert list(v.iter_errors(_wp_prop({"foo": 1})))
+
+
+# -- 27/11-2026: ugemetadata i set_week_targets + set_travel -------------------
+
+def _week(plan, pid, wk):
+    return next(w for w in plan["programs"][pid]["weeks"] if w["week"] == wk)
+
+
+def _season(plan, wk):
+    return next(w for w in plan["season2027"]["weeks"] if w["week"] == wk)
+
+
+def test_week_targets_saetter_metadata_og_spejler_i_season2027():
+    plan = _plan()
+    before = _week(plan, "tds-2027", 28)
+    blocktype_before = before["blockType"]
+    ch = {"action": "set_week_targets", "programId": "tds-2027", "week": 28,
+          "ctlTarget": 66, "tssTarget": 700, "blockType": "CAMP",
+          "location": "Mallorca", "purpose": "Lejr #1", "keySession": "Sa Calobra",
+          "quota": {"haard": 2, "moderat": 2}}
+    proposals.validate(_prop([ch]))
+    sim, dates = proposals.apply_changes(plan, [ch])
+    assert dates == []                              # ingen dage -> ingen sync
+    wk = _week(sim, "tds-2027", 28)
+    assert (wk["ctlTarget"], wk["tssTarget"]) == (66, 700)
+    assert wk["blockType"] == "CAMP" and wk["location"] == "Mallorca"
+    assert wk["keySession"] == "Sa Calobra" and wk["quota"] == {"haard": 2, "moderat": 2}
+    twin = _season(sim, 28)
+    assert twin["start"] == wk["start"]             # spejling kraever samme startdato
+    assert twin["blockType"] == "CAMP" and twin["location"] == "Mallorca"
+    assert twin["ctlTarget"] == _season(plan, 28)["ctlTarget"]   # tal spejles IKKE
+    assert _week(plan, "tds-2027", 28)["blockType"] == blocktype_before   # input urort
+
+
+def test_week_targets_mirror_fra_og_none_fjerner_felt():
+    plan = _plan()
+    ch = {"action": "set_week_targets", "programId": "tds-2027", "week": 30,
+          "blockType": "BUILD", "note": None, "keySession": None, "mirrorSeason": False}
+    proposals.validate(_prop([ch]))
+    sim, _ = proposals.apply_changes(plan, [ch])
+    wk = _week(sim, "tds-2027", 30)
+    assert wk["blockType"] == "BUILD" and "note" not in wk and "keySession" not in wk
+    twin = _season(sim, 30)
+    assert twin["blockType"] == "CAMP" and "note" in twin        # ikke spejlet
+
+
+def test_week_targets_metadata_alene_er_nok_men_tomt_afvises():
+    proposals.validate(_prop([{"action": "set_week_targets", "programId": "tds-2027",
+                               "week": 28, "purpose": "kun tekst"}]))
+    with pytest.raises(ValueError, match="metafelt"):
+        proposals.validate(_prop([{"action": "set_week_targets",
+                                   "programId": "tds-2027", "week": 28}]))
+    with pytest.raises(ValueError, match="ikke-tom tekst"):
+        proposals.validate(_prop([{"action": "set_week_targets", "programId": "tds-2027",
+                                   "week": 28, "location": "  "}]))
+    with pytest.raises(ValueError, match="ukendt quota-nøgle"):
+        proposals.validate(_prop([{"action": "set_week_targets", "programId": "tds-2027",
+                                   "week": 28, "quota": {"let": 1}}]))
+
+
+def test_set_travel_upsert_opdaterer_og_tilfoejer_sorteret():
+    plan = _plan()
+    n_before = len(plan["travel"])
+    ch = {"action": "set_travel", "travel": [
+        {"label": "Japan (ski) med Eva", "end": "2027-02-07"},
+        {"label": "Mallorca lejr #1", "start": "2027-03-14", "end": "2027-03-21",
+         "travel_home_date": "2027-03-21", "label_during": "på Mallorca-lejr #1"}]}
+    proposals.validate(_prop([ch]))
+    sim, dates = proposals.apply_changes(plan, [ch])
+    assert dates == []
+    travel = sim["travel"]
+    assert len(travel) == n_before + 1
+    assert [t["start"] for t in travel] == sorted(t["start"] for t in travel)
+    japan = next(t for t in travel if t["label"] == "Japan (ski) med Eva")
+    assert japan["end"] == "2027-02-07" and japan["start"] == "2027-01-24"   # flettet
+    assert len(plan["travel"]) == n_before                                   # input urort
+
+
+def test_set_travel_giver_camp_uge_i_friel_gaten():
+    from modules import friel
+    plan = _plan()
+    prog = plan["programs"]["tds-2027"]
+    wk28 = _week(plan, "tds-2027", 28)
+    w_no = (date.fromisoformat(wk28["start"])
+            - date.fromisoformat(prog["start"])).days // 7 + 1
+    assert w_no not in friel._camp_weeks(plan, prog)
+    sim, _ = proposals.apply_changes(plan, [{"action": "set_travel", "travel": [
+        {"label": "Mallorca lejr #1", "start": "2027-03-14", "end": "2027-03-21"}]}])
+    assert w_no in friel._camp_weeks(sim, prog)
+
+
+def test_set_travel_afviser_daarlige_datoer_og_ukendte_felter():
+    with pytest.raises(ValueError, match="end ligger før start"):
+        proposals.validate(_prop([{"action": "set_travel", "travel": [
+            {"label": "x", "start": "2027-03-14", "end": "2027-03-01"}]}]))
+    with pytest.raises(ValueError, match="ugyldig dato"):
+        proposals.validate(_prop([{"action": "set_travel", "travel": [
+            {"label": "x", "start": "14-03-2027"}]}]))
+    with pytest.raises(ValueError, match="ukendte felter"):
+        proposals.validate(_prop([{"action": "set_travel", "travel": [
+            {"label": "x", "start": "2027-03-14", "hoteller": "ja"}]}]))
+    with pytest.raises(ValueError, match="optræder to gange"):
+        proposals.validate(_prop([{"action": "set_travel", "travel": [
+            {"label": "x", "start": "2027-03-14"}, {"label": "x", "start": "2027-04-11"}]}]))
+
+
+def test_set_travel_nyt_ophold_uden_start_afvises_i_apply():
+    plan = _plan()
+    ch = {"action": "set_travel", "travel": [{"label": "Ukendt tur", "end": "2027-03-21"}]}
+    proposals.validate(_prop([ch]))          # shape er ok — label findes maaske
+    with pytest.raises(ValueError, match="start mangler for nyt ophold"):
+        proposals.apply_changes(plan, [ch])
