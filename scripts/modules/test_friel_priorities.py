@@ -85,7 +85,11 @@ def test_kort_viser_hvor_i_fasen_man_er():
     k = fp.kort(UGER, denne_uge=5, timer=9)
     assert k["navn"] == "Early Base" and k["fase"] == "Early Base"
     assert k["uge_i_fasen"] == 3 and k["uger_i_alt"] == 4 and k["tilbage"] == 1
-    assert k["slutter"] == "2027-02-08"
+    # 28/11-2026: testen laaste den gamle fejl fast — "slutter" var sidste uges
+    # START (08/02). Fasen slutter soendag, altsaa 14/02, og naeste fase
+    # begynder mandagen efter.
+    assert k["slutter"] == "2027-02-14"
+    assert k["naeste_start"] == "2027-02-15"
     assert k["naeste"] == "Build 1"
     assert k["prioriteter"][0] == "Styrke"
     assert "Maksimér styrke" in k["formaal"]
@@ -112,3 +116,42 @@ def test_mod_den_rigtige_plan_uden_at_laase_faserne():
     assert k is not None and k["afsnit"]
     for a in k["afsnit"]:
         assert a["uger"] >= 1 and a["fra"] <= a["til"]
+
+
+def _kort_plan():
+    """Fixture: tre faser over seks uger, mandagsdatoer. Egne tal — ikke lånt
+    fra plan.json, så et forslag ikke kan gøre testen rød."""
+    return [
+        {"week": 1, "start": "2027-01-04", "phase": "Early Base"},
+        {"week": 2, "start": "2027-01-11", "phase": "Early Base"},
+        {"week": 3, "start": "2027-01-18", "phase": "Early Base"},
+        {"week": 4, "start": "2027-01-25", "phase": "Late Base"},
+        {"week": 5, "start": "2027-02-01", "phase": "Late Base"},
+        {"week": 6, "start": "2027-02-08", "phase": "Late Base"},
+    ]
+
+
+def test_kort_slutter_er_fasens_sidste_dag_ikke_sidste_uges_start():
+    """28/11-2026: 'slutter' var sidste uges START, så kortet skrev at næste
+    fase begyndte fem dage FØR i dag. Fasen slutter søndag."""
+    k = fp.kort(_kort_plan(), 2)
+    assert k["fase"] == "Early Base"
+    # uge 3 starter mandag 18/1, så fasen slutter søndag 24/1
+    assert k["slutter"] == "2027-01-24", k["slutter"]
+
+
+def test_kort_naeste_start_er_naeste_fases_foerste_dag():
+    k = fp.kort(_kort_plan(), 2)
+    assert k["naeste"] == "Late Base"
+    assert k["naeste_start"] == "2027-01-25", k["naeste_start"]
+    # mandagen efter at fasen slutter — ingen huller, ingen overlap
+    from datetime import date, timedelta
+    assert (date.fromisoformat(k["naeste_start"])
+            - date.fromisoformat(k["slutter"])) == timedelta(days=1)
+
+
+def test_kort_sidste_fase_har_ingen_naeste():
+    k = fp.kort(_kort_plan(), 6)
+    assert k["fase"] == "Late Base"
+    assert k["naeste"] is None and k["naeste_start"] is None
+    assert k["slutter"] == "2027-02-14"

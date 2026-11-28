@@ -1419,7 +1419,7 @@ function phaseCard(f) {
     </div>
     ${advarsel}
     <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:10px">
-      Friels tabel 6.6 for løb over 4 timer.${f.naeste ? ` Næste fase: ${esc(f.naeste)}${f.slutter ? ' fra ' + esc(_dkShort(f.slutter)) : ''}.` : ''}
+      Friels tabel 6.6 for løb over 4 timer.${f.naeste ? ` Næste fase: ${esc(f.naeste)}${f.naeste_start ? ' fra ' + esc(_dkShort(f.naeste_start)) : ''}.` : ''}
     </div>
   </div>`;
 }

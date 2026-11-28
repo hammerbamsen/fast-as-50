@@ -21,6 +21,8 @@ Build og Peak-optakten. Kennet har foerste udgave.
 Rene funktioner. Ingen netvaerk, ingen fil-I/O.
 """
 
+from datetime import date, timedelta
+
 # Tabel 6.5 — fasernes varighed i uger (min, max). Transition er 3 dage-4 uger.
 VARIGHED = {
     "Preparation": (1, 6),
@@ -169,7 +171,18 @@ def kort(weeks, denne_uge=None, timer=None):
     idx = afsnit.index(nu)
     naeste = afsnit[idx + 1] if idx + 1 < len(afsnit) else None
     i_fasen = (denne_uge - nu["fra"] + 1) if denne_uge is not None else None
+    # 28/11-2026: "slutter" pegede paa sidste uges START, saa kortet skrev
+    # "Naeste fase: Preparation fra 23/11" i en uge der loeb 23.-29/11 —
+    # fem dage i fortiden. Fasen slutter soendag, og den naeste begynder
+    # mandagen efter. Rammer hvert faseskift, ikke kun dette.
     slut_uge = next((w for w in weeks if w.get("week") == nu["til"]), None)
+    slutter = None
+    if slut_uge and slut_uge.get("start"):
+        slutter = (date.fromisoformat(slut_uge["start"])
+                   + timedelta(days=6)).isoformat()
+    naeste_uge = next((w for w in weeks if w.get("week") == naeste["fra"]),
+                      None) if naeste else None
+    naeste_start = (naeste_uge or {}).get("start")
     return {
         "fase": nu["fase"],
         "navn": nu["navn"],
@@ -178,8 +191,9 @@ def kort(weeks, denne_uge=None, timer=None):
         "uge_i_fasen": i_fasen,
         "uger_i_alt": nu["uger"],
         "tilbage": (nu["til"] - denne_uge) if denne_uge is not None else None,
-        "slutter": (slut_uge or {}).get("start"),
+        "slutter": slutter,
         "naeste": naeste["fase"] if naeste else None,
+        "naeste_start": naeste_start,
         "varighed_ok": nu["ok"], "varighed_min": nu["min"], "varighed_max": nu["max"],
         "afsnit": afsnit,
         "kolonne": varighed_kolonne(timer),
