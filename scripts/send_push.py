@@ -191,6 +191,22 @@ def run_send_evening(subs, sender):
     return _send_to_kennet(subs, sender, AF_EVENING_MSG, "Aften-reminder")
 
 
+def run_send_week_brief(plan, subs, sender, today=None):
+    """Soendags-gren (PUSH_MODE=week): hvad er planlagt i den kommende uge, og
+    skal der laves noget om. Kun til Kennet.
+
+    Returnerer (sent, dead, pruned_or_None). Er der ingen kommende uge i
+    programmet, sendes intet.
+    """
+    from modules import week_brief
+    msg = week_brief.build(plan, "kennet", today=today)
+    if not msg:
+        print("Ingen kommende uge i programmet — ingen ugebrief.")
+        return 0, set(), None
+    print(f"Ugebrief: {msg['title']} — {msg['body']}")
+    return _send_to_kennet(subs, sender, msg, "Ugebrief")
+
+
 def run_send_alert(subs, sender, title, body, url=ALERT_DEFAULT_URL):
     """Alert-gren (--alert): én notifikation om et fejlet workflow, kun til Kennet.
     Returnerer (sent, dead, pruned_or_None)."""
@@ -263,6 +279,13 @@ def main(argv=None):
     elif mode == "evening":
         print("Mode: evening (AF-check-in)")
         _sent, dead, pruned = run_send_evening(subs, _webpush_sender)
+    elif mode == "week":
+        print("Mode: week (soendagsbrief)")
+        _psha, plan_raw = _gh_get_raw(REPO, "data/plan.json", GH_TOKEN)
+        if not plan_raw:
+            print("Kunne ikke hente plan.json — afbryder."); return 1
+        _sent, dead, pruned = run_send_week_brief(json.loads(plan_raw), subs,
+                                                  _webpush_sender, today=today)
     else:
         print("Mode: daily")
         _psha, plan_raw = _gh_get_raw(REPO, "data/plan.json", GH_TOKEN)
