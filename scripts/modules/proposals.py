@@ -40,7 +40,15 @@ GOAL_RANGES = {"weightKg": (40, 150), "bodyFatPct": (3, 50)}
 # 27/11-2026: set_week_targets kan nu ogsaa saette ugemetadata (lejre, sted,
 # formaal). Tidligere kunne kun ctlTarget/tssTarget aendres via forslag, saa en
 # flyttet traeningslejr skulle rettes i haanden i plan.json — det driftede.
-WEEK_META_STR = ("blockType", "location", "note", "purpose", "keySession")
+WEEK_META_STR = ("blockType", "location", "note", "purpose", "keySession", "phase")
+# QA 28/11-2026 (fund 1): phase kunne ikke saettes via et forslag, saa en
+# faseomlaegning efter Friels tabel 6.5 ville kraeve haandredigering af
+# plan.json — som CLAUDE.md forbyder. Hvidliste som for blockType, saa en
+# tastefejl ikke slaar fasereglerne stille fra (fund 2).
+PHASE_NAMES = ("Preparation", "Early Base", "Late Base", "Build", "Build 1", "Build 2",
+               "Peak", "Peak 1", "Peak 2", "Race", "Race 1", "Race 2", "Transition",
+               # de gamle navne, saa et forslag kan rulle tilbage
+               "TRANSITION", "BASE", "BUILD", "STELVIO", "SPECIFIK", "TAPER")
 # QA 27/11-2026 (fund 2): blockType var fri tekst, saa en tastefejl som
 # "RECOVERYY" gik igennem og slog fasereglerne stille af for den uge
 # (vo2_dose.week_target gav mal 15 i stedet for 0, friel._phase gav "").
@@ -357,6 +365,10 @@ def _validate_week_meta(ch: dict, wk: int) -> None:
     if isinstance(bt, str) and bt.strip().upper() not in BLOCK_TYPES:
         raise ValueError(f"set_week_targets uge {wk}: ukendt blockType {bt!r} "
                          f"(tilladt: {', '.join(BLOCK_TYPES)})")
+    ph = ch.get("phase")
+    if isinstance(ph, str) and ph.strip() not in PHASE_NAMES:
+        raise ValueError(f"set_week_targets uge {wk}: ukendt phase {ph!r} "
+                         f"(tilladt: {', '.join(PHASE_NAMES)})")
     if "quota" in ch and ch["quota"] is not None:
         q = ch["quota"]
         if not isinstance(q, dict) or not q:

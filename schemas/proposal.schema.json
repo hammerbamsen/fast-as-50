@@ -72,6 +72,7 @@
         "tssTarget": {"type": "integer", "minimum": 0},
         "blockType": {"type": ["string", "null"], "enum": ["BASE", "BASE+", "BUILD", "BUILD+", "CAMP", "PEAK", "RACE", "RECOVERY", "REST", "SPECIFIK", "SPECIFIK+", "STELVIO", "TAPER", null]},
         "location": {"type": ["string", "null"], "minLength": 1},
+        "phase": {"type": ["string", "null"], "enum": ["Preparation", "Early Base", "Late Base", "Build", "Build 1", "Build 2", "Peak", "Peak 1", "Peak 2", "Race", "Race 1", "Race 2", "Transition", "TRANSITION", "BASE", "BUILD", "STELVIO", "SPECIFIK", "TAPER", null]},
         "note": {"type": ["string", "null"], "minLength": 1},
         "purpose": {"type": ["string", "null"], "minLength": 1},
         "keySession": {"type": ["string", "null"], "minLength": 1},

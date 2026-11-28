@@ -807,8 +807,24 @@ def main():
         print(f"  planTab -> {len(data['planTab']['weeks'])} uger, "
               f"{sum(len(d['entries']) for s in data['planTab']['sessions'] for d in s['days'])} pas, "
               f"{len(data['planTab']['hardSpacing'])} hårde par")
+
     except Exception as _e:
         print(f"  planTab fejlede (ikke-blokerende): {_e}")
+
+    # --- Fase og prioriteter (28/11-2026) ----------------------------------------
+    # Friels tabel 6.5 og 6.6 kodet i modules/friel_priorities. Ligger i data.json,
+    # saa dashboardet, ugebriefen og Outlook-markeringen viser SAMME prioritet.
+    data['phase'] = None
+    try:
+        from modules import friel_priorities as _fprio
+        _pt_uger = (data.get('planTab') or {}).get('weeks') or []
+        data['phase'] = _fprio.kort(_pt_uger, denne_uge=week_num, timer=9)
+        if data['phase']:
+            print(f"  Fase:       {data['phase']['fase']} "
+                  f"(uge {data['phase']['uge_i_fasen']}/{data['phase']['uger_i_alt']}) "
+                  f"-> {', '.join(data['phase']['prioriteter'])}")
+    except Exception as _e:
+        print(f"  ⚠️ Fasekort fejlede (ikke-blokerende): {_e}")
 
     # --- Martin-mail (blok 8): de 8 linjer til søndagsmailen -> data.martinMail
     # hver kørsel. Om søndagen appendes afsnittet "### Signaler uge {iso}" til

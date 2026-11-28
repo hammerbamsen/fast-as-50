@@ -34,13 +34,32 @@ Rene funktioner. Ingen netværk, ingen fil-I/O.
 """
 from datetime import date, timedelta
 
+try:
+    from .friel_priorities import normaliser as _normaliser
+except ImportError:                       # tests importerer som top-level
+    from friel_priorities import normaliser as _normaliser
+
 # Et pas tæller som VO2-stimulus fra og med dette antal minutter i Z5+.
 # Under det er det en enkelt indsats op ad en bakke, ikke et interval-pas.
 MIN_SESSION_MIN = 4
 WEEKS_SHOWN = 4
 
 # Måldosis i minutter Z5+ pr. kalenderuge, pr. fase i season2027.phases.
+# QA 28/11-2026 (fund 2): med Friels fasenavne faldt maaldosis til None for
+# otte uger, saa kortet sagde "dommen findes ikke" og streak-reglen aldrig
+# kunne udloese. Baade de gamle og de nye navne staar her, og opslaget gaar
+# gennem friel_priorities.normaliser() saa "Build 1"/"Build 2" rammer "Build".
 PHASE_TARGET = {
+    # Friels faser (tabel 6.6, kolonnen >4 t). Aerob kapacitet er nr. 1 i Late
+    # Base og nr. 3 i Build — derfor fuld dosis i Late Base, vedligehold i Build.
+    "Preparation": 4,    # 3-5 min Z5 pr. mikrocyklus
+    "Early Base": 5,
+    "Late Base": 15,
+    "Build": 15,
+    "Peak": 4,           # Peak: 3-5 min Z5-fartlek hver tredje dag
+    "Race": 0,
+    "Transition": 0,
+    # de gamle navne, saa et rollback ikke slaar gaten fra
     "TRANSITION": 4,
     "BASE": 10,          # gennemsnit; ramper 5 -> 15 over fasen, se week_target
     "BUILD": 15,
@@ -111,6 +130,10 @@ def week_target(plan, week_start, block_type=None):
         return 0, phase, wk.get("blockType")
     phases = (plan.get("season2027") or {}).get("phases") or []
     ph = next((p for p in phases if p.get("name") == phase), None)
+    # QA 28/11-2026 (fund 2): "Build 1"/"Build 2"/"Peak 2" skal ramme samme
+    # noegle som "Build"/"Peak". Uden det gav Friels fasenavne maal = None,
+    # og saa kunne hverken farven eller streak-reglen udloese.
+    nøgle = phase if phase in PHASE_TARGET else (_normaliser(phase) or phase)
     if phase == "BASE" and ph:
         lo, hi = ph.get("weekFrom"), ph.get("weekTo")
         w_no = wk.get("week")
@@ -118,7 +141,7 @@ def week_target(plan, week_start, block_type=None):
             frac = min(1.0, max(0.0, (w_no - lo) / (hi - lo)))
             lo_t, hi_t = BASE_RAMP
             return int(round(lo_t + frac * (hi_t - lo_t))), phase, wk.get("blockType")
-    return PHASE_TARGET.get(phase), phase, wk.get("blockType")
+    return PHASE_TARGET.get(nøgle), phase, wk.get("blockType")
 
 
 def weekly(activities, plan, today=None, weeks=WEEKS_SHOWN):

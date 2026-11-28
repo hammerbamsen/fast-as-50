@@ -1,0 +1,467 @@
+{
+  "id": "2026-11-28-friel-faser",
+  "createdAt": "2026-11-28T05:00:00Z",
+  "createdBy": "claude-chat",
+  "title": "Friels faser og prioriteter (tabel 6.5 og 6.6)",
+  "note": "Programmet faseinddeles efter Fast After 50 tabel 6.5, og hver uges formaal skrives efter prioritetsraekkefoelgen i tabel 6.6, kolonnen for loeb over 4 timer. BASE var een udelt blok paa 14 uger; Friel deler Early og Late Base med modsatte prioriteter. Rettelser efter QA 28/11: FTP-testen flyttet til uge 27 (friske ben foer lejr #1), ingen test i uge 37 oven paa hjemkomsten fra lejr #3, VO2 i uge 44 flyttet fra onsdag til loerdag (72-timers-reglen), det lange taerskelpas i uge 35 flyttet til loerdag saa soendag kan vaere rejsedag, styrke 2x skrevet ind i Build og Peak, kvote sat paa alle uger, Transition ned paa 150 TSS, og Stelvio beskrevet som 5-6 t i stedet for 8-9. Kennet valgte 28/11 at beholde de fire stigende uger i januar; det staar nu som et valg i ugernes formaal, med HRV som stopklods.",
+  "summary": [
+    "Ti faser efter tabel 6.5 — alle inden for Friels varighedsspaend",
+    "Hver uges formaal foelger fasens prioritetsraekkefoelge fra tabel 6.6 (>4 t)",
+    "FTP-test flyttet fra uge 24 og 37 til uge 27 — friske ben, 72 t fri",
+    "VO2 i uge 44 flyttet til loerdag; taerskelpasset i uge 35 til loerdag",
+    "Styrke 2x skrevet ind i Build 1, Build 2 og begge Peak-faser",
+    "Kvote sat eksplicit paa alle 39 uger (manglende kvote laeses som 0/0)",
+    "Madeira 1.-8./12 lagt i plan.travel"
+  ],
+  "status": "pending",
+  "decidedAt": null,
+  "result": null,
+  "changes": [
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 13,
+      "phase": "Preparation",
+      "purpose": "Madeira 1.-8./12: vandring 3×3 t = aerob tærskel. Styrke 3×. Eneste cykelintensitet er intro 4×3 man 30/11, og kun hvis HRV er i leje.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 14,
+      "phase": "Preparation",
+      "purpose": "Hjem fra Madeira tir 8/12. Langtur 4 t søn, Lang Z2 2 t lør. Fartlek 5 min Z5 ons i stedet for VO2 4×4 — aerob kapacitet er nr. 3 i Preparation.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 15,
+      "phase": "Preparation",
+      "purpose": "Bjergtempo 2×45 søn, Lang Z2 2 t lør. Fartlek 5 min Z5 tir. Tærskelpasset fre udgår — laktattærskel står slet ikke på Preparation-listen.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 16,
+      "phase": "Preparation",
+      "purpose": "Jul: styrke 2×, Lang Z2 2 t søn, aktivering tir. Lav uge med vilje.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 17,
+      "phase": "Preparation",
+      "purpose": "Nytår: Langtur 4 t søn, Grundtur 80 tor, fartlek 5 min Z5 tir. Tærskel 3×12 udgår. Første af fire stigende uger — dit valg 28/11, med HRV som stopklods.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 18,
+      "phase": "Early Base",
+      "purpose": "Early Base 1/6. Styrke er nr. 1: progressiv overload på Functional 4, 3 runder, 2×/uge. Søndag 4 t aerob tærskel.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 19,
+      "phase": "Early Base",
+      "purpose": "Early Base 2/6. Styrke 2× med flere runder. Søndag 4 t. Tirsdag fartlek 5-8 min Z5.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 20,
+      "phase": "Early Base",
+      "purpose": "Early Base 3/6. Styrke 2×. Lang Z2 2 t lør 23/1 — søndag 24/1 er rejsedag til Japan. Fjerde stigende uge: stop hvis HRV falder og hvilepuls stiger.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 21,
+      "phase": "Early Base",
+      "purpose": "Early Base 4/6. Japan 1/2: ski = aerob tærskel hele dagen. Styrke når der er tid.",
+      "quota": {
+        "haard": 0,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 22,
+      "phase": "Early Base",
+      "purpose": "Early Base 5/6. Japan 2/2. Hjem lør 6/2 — søndag fri eller 1 t åbnere.",
+      "quota": {
+        "haard": 0,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 23,
+      "phase": "Early Base",
+      "purpose": "Early Base 6/6 efter Japan: 70 % volumen, styrke tilbage 2×, søndag 3 t. Ingen kvalitet.",
+      "quota": {
+        "haard": 0,
+        "moderat": 2
+      },
+      "tssTarget": 350
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 24,
+      "phase": "Late Base",
+      "purpose": "Late Base 1/6. Aerob kapacitet er nu nr. 1: VO2 5×3 tir, andet VO2-pas fre (72 t imellem). Søndag 4 t. Styrke 2× vedligehold.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 25,
+      "phase": "Late Base",
+      "purpose": "Late Base 2/6, aflastning. Søndag 2,5 t. Tirsdag åbnere. Styrke 2×.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 26,
+      "phase": "Late Base",
+      "purpose": "Late Base 3/6. VO2 4×4 tir, tærskel 3×12 fre — laktattærskel er nr. 3 i fasen. Søndag 4,5 t. Styrke 2×.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 27,
+      "phase": "Late Base",
+      "purpose": "Late Base 4/6. Nedtrapning før lejr #1 + FTP-TEST tir på friske ben. Lørdag Z2 90 min. Søndag 14/3 rejsedag.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 28,
+      "phase": "Late Base",
+      "purpose": "Lejr #1 Mallorca: 18-22 t aerob tærskel. Ét hårdt pas = VO2 på stigning tir, friske ben.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 29,
+      "phase": "Late Base",
+      "purpose": "Late Base 6/6, aflastning efter lejr #1. Søndag 3 t let. Første kvalitet tidligst fredag.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 30,
+      "phase": "Build 1",
+      "purpose": "Build 1 1/7. Aerob tærskel er nr. 1: søndag 4,5-5 t med 2×45 bjergtempo. Tirsdag tærskel 2×20. VO2 kun vedligehold. Styrke 2×.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 31,
+      "phase": "Build 1",
+      "purpose": "Build 1 2/7. Nedtrapning før lejr #2. Søndag 11/4 rejsedag. Tirsdag åbnere. Styrke 2×.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 32,
+      "phase": "Build 1",
+      "purpose": "Lejr #2 Mallorca, uge 1: 20-25 t aerob tærskel. Sa Calobra PR-forsøg tir. Andet hårde tidligst lør.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 33,
+      "phase": "Build 1",
+      "purpose": "Lejr #2, anden del: lange ture man+tir, hjem ons 21/4. Resten kun Z1-2.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 34,
+      "phase": "Build 1",
+      "purpose": "Build 1 5/7, aflastning efter lejr #2. Søndag 3,5 t let. Første kvalitet tidligst torsdag. Styrke 2×.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 35,
+      "phase": "Build 1",
+      "purpose": "Build 1 6/7. LØRDAG 8/5 er ugens lange: 5 t med tærskel sent i turen, 24 min Z4 efter 3 t. Søndag 9/5 er rejsedag — let eller fri. Nedtrappet mod lejren.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      },
+      "tssTarget": 430
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 36,
+      "phase": "Build 1",
+      "purpose": "Lejr #3 Mallorca: løbsspecifik. Én dag 5-6 t, lange stigninger på Stelvio-watt. Hjem fre 14/5.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 37,
+      "phase": "Peak 1",
+      "purpose": "Peak 1/2. Hjem fra lejr fre 14/5 — ingen test på restgæld. Ét tærskelpas 2×20 fre. Varighed −30 %. Søndag 3 t. Styrke 2×, Friel har den som nr. 2 i Peak.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 38,
+      "phase": "Peak 1",
+      "purpose": "Peak 2/2. Tærskel 3×12 tir, åbnere tor. Søndag 2,5 t. Styrke droppes 7 dage før Stelvio.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 39,
+      "phase": "Race 1",
+      "purpose": "Stelvio søn 6/6: 130 km, 4.500 hm, 5-6 t som B-løb og formcheck. Åbnere ons. Intet andet.",
+      "quota": {
+        "haard": 1,
+        "moderat": 0
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 40,
+      "phase": "Transition",
+      "purpose": "Transition: 3-7 dage uden struktur. Cykel kun hvis du har lyst. Hvil er formålet.",
+      "quota": {
+        "haard": 0,
+        "moderat": 0
+      },
+      "tssTarget": 150
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 41,
+      "phase": "Build 2",
+      "purpose": "Build 2 1/8. Søndag 6 t aerob tærskel. Tirsdag tærskel 2×20. Styrke tilbage 2×.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 42,
+      "phase": "Build 2",
+      "purpose": "Build 2 2/8. Søndag 7 t med tempo sidst i turen. Tirsdag norsk kontrolleret. Styrke 2×.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 43,
+      "phase": "Build 2",
+      "purpose": "Build 2 3/8, aflastning. Søndag 4 t. Styrke 2×.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 44,
+      "phase": "Build 2",
+      "purpose": "Build 2 4/8. Søndag 8 t. Tirsdag tærskel sent i turen. VO2 vedligehold LØRDAG 10×1 — 72 t efter tirsdag, ikke onsdag. Styrke 2×.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 45,
+      "phase": "Build 2",
+      "purpose": "Build 2 5/8. Søndag 8,5 t med 4.000 hm. Tirsdag over-unders, bakker ude. Styrke 2×.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 46,
+      "phase": "Build 2",
+      "purpose": "Build 2 6/8. Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere. Styrke 2×.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 47,
+      "phase": "Build 2",
+      "purpose": "Alpelejren: back-to-back bjergdage, én tur 10-11 t med >4.000 hm. Generalprøve på fueling. Er lejren ikke booket 1/6, så kør 9-10 t hjemme i stedet — det er din eneste eksponering over 8 t.",
+      "quota": {
+        "haard": 2,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 48,
+      "phase": "Build 2",
+      "purpose": "Build 2 8/8, aflastning efter Alperne. Søndag 4 t. Ingen kvalitet før torsdag. Styrke 2×.",
+      "quota": {
+        "haard": 0,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 49,
+      "phase": "Peak 2",
+      "purpose": "Peak 1/2. Søndag 6 t — sidste lange. Tirsdag tærskel 2×20. Alt udstyr afprøvet. Styrke 2×.",
+      "quota": {
+        "haard": 1,
+        "moderat": 2
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 50,
+      "phase": "Peak 2",
+      "purpose": "Peak 2/2. Volumen −40 %. Søndag 4 t. Åbnere tir. Styrke droppet 7 dage før.",
+      "quota": {
+        "haard": 1,
+        "moderat": 1
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 51,
+      "phase": "Race 2",
+      "purpose": "Race-uge: ankomst Le Châble/Verbier ons 25/8. Åbnere tor. TdS Ultrafondo lør 28/8.",
+      "quota": {
+        "haard": 1,
+        "moderat": 0
+      }
+    },
+    {
+      "action": "set_travel",
+      "mode": "upsert",
+      "travel": [
+        {
+          "label": "Madeira med Eva",
+          "start": "2026-12-01",
+          "end": "2026-12-08",
+          "travel_home_date": "2026-12-08",
+          "label_home": "dagen efter hjemrejse fra Madeira",
+          "label_during": "på Madeira — vandring og løb, ingen cykel"
+        }
+      ]
+    }
+  ]
+}

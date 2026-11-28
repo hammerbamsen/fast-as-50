@@ -843,6 +843,7 @@ let D = {
   zones: null,   // sat fra data.json (kilde: data/plan.json)
   vo2: null,     // VO2-dosis fra data.json (27/11-2026) — null = ingen pipeline-koersel endnu
   fixedRouteEf: null,  // EF paa fast rute (Sa Calobra) fra data.json
+  phase: null,   // Friels fase + prioriteter fra data.json
   weightGoal: null, bodyFatGoal: null,   // fra data.json — aldrig hardkodet her
   week:1, totalWeeks:14, blockType:"BUILD",
   dataLoaded:false,         // false = data.json ikke hentet -> fejlbjælke i stedet for tomme kort
@@ -1381,6 +1382,48 @@ const BT_FARVE = {
 };
 function _btFarve(bt){ return BT_FARVE[String(bt || '').toUpperCase()] || '#9AA7B2'; }
 
+// Fasekort (28/11-2026). Kennet: "det drukner lidt" — derfor staar fasen nu
+// foerst og stort, med Friels prioritetsraekkefoelge under. Striben nedenfor er
+// konteksten, ikke hovedbudskabet. Alt kommer fra data.json -> phase.
+function phaseCard(f) {
+  if (!f) return '';
+  const col = _btFarve(f.navn === 'Transition' ? 'RECOVERY' : (f.navn || '').toUpperCase());
+  const prikker = Array.from({length: f.uger_i_alt || 0}, (_, i) =>
+    `<span style="width:7px;height:7px;border-radius:50%;display:inline-block;
+       background:${i < (f.uge_i_fasen || 0) ? col : 'var(--cream-d)'}"></span>`).join(' ');
+  const prio = (f.prioriteter || []).map((x, i) =>
+    `<div style="display:flex;gap:7px;align-items:baseline;padding:2px 0">
+       <span style="font-family:'Space Mono',monospace;font-size:10px;color:${i === 0 ? col : 'var(--muted)'};min-width:12px">${i + 1}</span>
+       <span style="font-size:${i === 0 ? '13px' : '12px'};color:${i === 0 ? 'var(--ink)' : 'var(--muted)'};
+             font-weight:${i === 0 ? '700' : '400'}">${esc(x)}</span>
+     </div>`).join('');
+  const advarsel = f.varighed_ok === false
+    ? `<div style="font-family:'Space Mono',monospace;font-size:10px;color:#C0392B;margin-top:6px">
+         ${f.uger_i_alt} uger — Friel siger ${f.varighed_min}-${f.varighed_max}
+       </div>` : '';
+  return `<div class="card" style="border-left:3px solid ${col}">
+    <div class="label" style="margin-bottom:2px">Du er i</div>
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <div style="font-family:Newsreader,Georgia,serif;font-size:27px;line-height:1.1;color:${col}">${esc(f.fase || '')}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)">
+        uge ${f.uge_i_fasen ?? '?'} af ${f.uger_i_alt ?? '?'}${f.tilbage != null ? ` · ${f.tilbage} tilbage` : ''}
+      </div>
+    </div>
+    <div style="margin-top:6px;display:flex;gap:4px;align-items:center;flex-wrap:wrap">${prikker}</div>
+    ${f.formaal ? `<div style="font-size:12px;color:var(--muted);line-height:1.5;margin-top:8px">${esc(f.formaal)}</div>` : ''}
+    <div style="margin-top:10px">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--muted);margin-bottom:3px">
+        PRIORITET I DENNE FASE
+      </div>
+      ${prio}
+    </div>
+    ${advarsel}
+    <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:10px">
+      Friels tabel 6.6 for løb over 4 timer.${f.naeste ? ` Næste fase: ${esc(f.naeste)}${f.slutter ? ' fra ' + esc(_dkShort(f.slutter)) : ''}.` : ''}
+    </div>
+  </div>`;
+}
+
 function seasonStripV2() {
   const w = ptWeeks();
   if (!w.length) return '';
@@ -1410,11 +1453,13 @@ function seasonStripV2() {
     if (sidste && sidste.phase === x.phase) sidste.n += 1;
     else faser.push({ phase: x.phase || '', n: 1, fra: i });
   });
+  const nuFase = (D.phase && D.phase.fase) || (w[nuIdx] || {}).phase;
   const faseBaand = faser.map(f =>
     `<div style="flex:${f.n} 1 0;min-width:0;text-align:center;overflow:hidden">
-       <div style="height:3px;background:${_btFarve(f.phase === 'TRANSITION' ? 'RECOVERY' : f.phase)};opacity:.5;border-radius:2px"></div>
+       <div style="height:${f.phase === nuFase ? 6 : 3}px;background:${_btFarve(f.phase === 'TRANSITION' ? 'RECOVERY' : f.phase)};opacity:${f.phase === nuFase ? 1 : .45};border-radius:3px"></div>
        <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.04em;color:var(--muted);
-                   white-space:nowrap;overflow:hidden;text-overflow:clip;margin-top:2px">${f.n >= 4 ? esc(f.phase) : ''}</div>
+                   white-space:nowrap;overflow:hidden;text-overflow:clip;margin-top:2px;
+                   color:${f.phase === nuFase ? 'var(--ink)' : 'var(--muted)'}">${f.n >= 3 ? esc(f.phase) : ''}</div>
      </div>`).join('');
 
   const linje = (x, pre) => x ? `<div style="font-size:11px;line-height:1.5;margin-top:4px">
@@ -1557,6 +1602,7 @@ function renderToday() {
     </div>
   </div>
   ${weekStripV2()}
+  ${phaseCard(D.phase)}
   ${seasonStripV2()}
   ${complianceHtml()}
   ${ckCardHtml()}
@@ -4779,6 +4825,7 @@ function applyRemote(remote) {
       D.ftp = (remote.ftp && typeof remote.ftp === 'object') ? remote.ftp : null;   // blok 13
       D.vo2 = (remote.vo2 && typeof remote.vo2 === 'object') ? remote.vo2 : null;   // 27/11-2026
       D.fixedRouteEf = (remote.fixedRouteEf && typeof remote.fixedRouteEf === 'object') ? remote.fixedRouteEf : null;
+      D.phase = (remote.phase && typeof remote.phase === 'object') ? remote.phase : null;   // 28/11-2026
       if (remote.weightHistory)  D.weightHistory  = remote.weightHistory;
       if (Array.isArray(remote.weightMovingAvg7)) D.weightMovingAvg7 = remote.weightMovingAvg7;
       if (Array.isArray(remote.fatMovingAvg7))    D.fatMovingAvg7    = remote.fatMovingAvg7;
