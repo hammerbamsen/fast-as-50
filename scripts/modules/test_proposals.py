@@ -626,3 +626,77 @@ def test_set_actuals_afviser_ugyldige_vaerdier():
     with pytest.raises(ValueError, match="findes ikke i plan.programs"):
         proposals.apply_changes(_plan(), [{"action": "set_actuals",
                                            "programId": "findes-ikke", "throughWeek": 1}])
+
+
+# -- 28/11-2026: set_season (faseliste + saesonmaal) --------------------------
+
+def _faser(**kw):
+    """To faser der daekker hele tds-2027 uden huller."""
+    n = _plan()["programs"]["tds-2027"]["totalWeeks"]
+    return [{"name": "Preparation", "weekFrom": 1, "weekTo": 17,
+             "ftpTarget": kw.get("ftp1", 262), "wkgTarget": kw.get("wkg1", 3.6)},
+            {"name": "Build 1", "weekFrom": 18, "weekTo": n,
+             "ftpTarget": kw.get("ftp2", 295), "wkgTarget": kw.get("wkg2", 4.28)}]
+
+
+def test_set_season_skriver_faser_begge_steder_og_saesonmaal():
+    """phases ligger bade paa programmet og i season2027 — de to kopier maa
+    ikke drive fra hinanden (samme faelde som travel_days.json)."""
+    plan = _plan()
+    ch = {"action": "set_season", "programId": "tds-2027", "phases": _faser(),
+          "season": {"ctlPeak": 80, "ctlAtRace": 72, "wkgTarget": 4.28}}
+    proposals.validate(_prop([ch]))
+    sim, dates = proposals.apply_changes(plan, [ch])
+    assert dates == []
+    assert [f["name"] for f in sim["programs"]["tds-2027"]["phases"]] == ["Preparation", "Build 1"]
+    assert sim["programs"]["tds-2027"]["phases"] == sim["season2027"]["phases"]
+    assert sim["season2027"]["ctlPeak"] == 80 and sim["season2027"]["ctlAtRace"] == 72
+    assert sim["season2027"]["wkgTarget"] == 4.28
+    # input urørt
+    assert len(plan["programs"]["tds-2027"]["phases"]) != 2
+
+
+def test_set_season_kraever_daekning_uden_huller():
+    """ftp_track.phase_for() slaar op i daekningen — et hul giver 'ingen fase'
+    og dermed intet maal paa FTP-kortet."""
+    n = _plan()["programs"]["tds-2027"]["totalWeeks"]
+    with pytest.raises(ValueError, match="uden huller"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027",
+                                   "phases": [{"name": "Build 1", "weekFrom": 2, "weekTo": n}]}]))
+    with pytest.raises(ValueError, match="uden huller"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027", "phases": [
+            {"name": "Preparation", "weekFrom": 1, "weekTo": 10},
+            {"name": "Build 1", "weekFrom": 12, "weekTo": n}]}]))
+    with pytest.raises(ValueError, match="har .* uger"):
+        proposals.apply_changes(_plan(), [{"action": "set_season", "programId": "tds-2027",
+                                           "phases": [{"name": "Build 1", "weekFrom": 1,
+                                                       "weekTo": n - 1}]}])
+
+
+def test_set_season_afviser_ukendte_navne_og_vaerdier():
+    n = _plan()["programs"]["tds-2027"]["totalWeeks"]
+    with pytest.raises(ValueError, match="ukendt fasenavn"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027",
+                                   "phases": [{"name": "Fantasi", "weekFrom": 1, "weekTo": n}]}]))
+    with pytest.raises(ValueError, match="wkgTarget"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027",
+                                   "phases": [{"name": "Build 1", "weekFrom": 1, "weekTo": n,
+                                               "wkgTarget": 42}]}]))
+    with pytest.raises(ValueError, match="ukendt sæsonfelt"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027",
+                                   "season": {"ctlTop": 80}}]))
+    with pytest.raises(ValueError, match="skal være et tal"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027",
+                                   "season": {"ctlPeak": "firs"}}]))
+    with pytest.raises(ValueError, match="angiv phases, season"):
+        proposals.validate(_prop([{"action": "set_season", "programId": "tds-2027"}]))
+
+
+def test_set_season_kan_saette_saesonmaal_alene():
+    plan = _plan()
+    faser_foer = plan["programs"]["tds-2027"]["phases"]
+    ch = {"action": "set_season", "programId": "tds-2027", "season": {"ctlPeak": 80}}
+    proposals.validate(_prop([ch]))
+    sim, _ = proposals.apply_changes(plan, [ch])
+    assert sim["season2027"]["ctlPeak"] == 80
+    assert sim["programs"]["tds-2027"]["phases"] == faser_foer   # faserne urørt

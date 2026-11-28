@@ -218,6 +218,13 @@ def validate(prop: dict) -> None:
             # 27/11-2026: rejse-ophold. Ingen datoer at synke (kun labels/gates).
             _validate_travel(ch)
             continue
+        if ch.get("action") == "set_season":
+            # 28/11-2026: faseliste og saesonmaal (ctlPeak, ftp/wkg). Hverken
+            # programs[pid].phases eller season2027 kunne naas af de oevrige
+            # actions, saa FTP-glidestien og CTL-maalet kunne kun rettes i
+            # haanden — som CLAUDE.md forbyder.
+            _validate_season(ch)
+            continue
         if ch.get("action") == "set_actuals":
             # 27/11-2026: hvor langt planen er gennemfoert. Feltet laa fast paa
             # medoc-2026 (uge 8), saa INGEN uge i tds-2027 blev regnet som
@@ -310,6 +317,9 @@ def apply_changes(plan: dict, changes: list, athlete: str = "kennet") -> tuple[d
             continue                     # ingen dage berørt -> intet at synke
         if ch.get("action") == "set_actuals":
             _apply_actuals(sim, ch)
+            continue                     # ingen dage berørt -> intet at synke
+        if ch.get("action") == "set_season":
+            _apply_season(sim, ch)
             continue                     # ingen dage berørt -> intet at synke
         if ch.get("action") == "set_goals":
             _apply_goals(sim, ch)
@@ -438,6 +448,86 @@ def _validate_travel(ch: dict) -> None:
         unknown = set(t) - set(TRAVEL_STR) - set(TRAVEL_DATES) - {"name"}
         if unknown:
             raise ValueError(f"set_travel {label}: ukendte felter {sorted(unknown)}")
+
+
+SEASON_NUM = ("ctlPeak", "ctlAtRace", "ftpStart", "ftpTarget",
+              "hoursPerWeekAvg", "hoursPerWeekPeak")
+SEASON_FLOAT = ("wkgStart", "wkgTarget")
+PHASE_NUM = ("weekFrom", "weekTo", "ftpTarget")
+
+
+def _validate_season(ch: dict) -> None:
+    """Typetjek af set_season (28/11-2026).
+
+    `phases` erstatter HELE listen — en delvis opdatering ville efterlade
+    huller i uge-daekningen, og daekningen er netop det ftp_track.phase_for()
+    slaar op i.
+    """
+    pid_ = ch.get("programId")
+    if not isinstance(pid_, str) or not pid_:
+        raise ValueError("set_season: programId mangler")
+    if not any(k in ch for k in ("phases", "season")):
+        raise ValueError("set_season: angiv phases, season eller begge")
+    for k, v in (ch.get("season") or {}).items():
+        if k in SEASON_NUM:
+            if not isinstance(v, (int, float)) or isinstance(v, bool) or v < 0:
+                raise ValueError(f"set_season: {k}={v!r} skal være et tal >= 0")
+        elif k in SEASON_FLOAT:
+            if not isinstance(v, (int, float)) or isinstance(v, bool) or not 0 < v < 10:
+                raise ValueError(f"set_season: {k}={v!r} skal være W/kg mellem 0 og 10")
+        else:
+            raise ValueError(f"set_season: ukendt sæsonfelt {k!r} "
+                             f"(tilladt: {', '.join(SEASON_NUM + SEASON_FLOAT)})")
+    faser = ch.get("phases")
+    if faser is None:
+        return
+    if not isinstance(faser, list) or not faser:
+        raise ValueError("set_season: phases skal være en ikke-tom liste")
+    sidste = 0
+    for f in faser:
+        if not isinstance(f, dict):
+            raise ValueError("set_season: hver fase skal være et objekt")
+        navn = f.get("name")
+        if not isinstance(navn, str) or navn.strip() not in PHASE_NAMES:
+            raise ValueError(f"set_season: ukendt fasenavn {navn!r} "
+                             f"(tilladt: {', '.join(PHASE_NAMES)})")
+        for k in PHASE_NUM:
+            if k in f and (not isinstance(f[k], (int, float)) or isinstance(f[k], bool)):
+                raise ValueError(f"set_season {navn}: {k} skal være et tal")
+        if "wkgTarget" in f and not (0 < f["wkgTarget"] < 10):
+            raise ValueError(f"set_season {navn}: wkgTarget skal være mellem 0 og 10")
+        lo, hi = f.get("weekFrom"), f.get("weekTo")
+        if not isinstance(lo, int) or not isinstance(hi, int) or hi < lo:
+            raise ValueError(f"set_season {navn}: weekFrom/weekTo mangler eller vender forkert")
+        if lo != sidste + 1:
+            raise ValueError(f"set_season {navn}: starter i uge {lo}, men forrige fase "
+                             f"sluttede i uge {sidste} — faserne skal dække uden huller")
+        sidste = hi
+        ukendt = set(f) - set(PHASE_NUM) - {"name", "wkgTarget", "note"}
+        if ukendt:
+            raise ValueError(f"set_season {navn}: ukendte felter {sorted(ukendt)}")
+
+
+def _apply_season(sim: dict, ch: dict) -> dict:
+    """Skriver phases paa BAADE programmet og season2027, saa de to kopier ikke
+    driver fra hinanden, plus saesonmaalene i season2027."""
+    pid_ = ch["programId"]
+    prog = (sim.get("programs") or {}).get(pid_)
+    if not isinstance(prog, dict):
+        raise ValueError(f"set_season: program {pid_!r} findes ikke i plan.programs")
+    faser = ch.get("phases")
+    if faser is not None:
+        total = prog.get("totalWeeks") or 0
+        if total and faser[-1]["weekTo"] != total:
+            raise ValueError(f"set_season: sidste fase slutter i uge {faser[-1]['weekTo']}, "
+                             f"men {pid_} har {total} uger")
+        prog["phases"] = copy.deepcopy(faser)
+        season = sim.setdefault("season2027", {})
+        if season.get("targetRace") in (None, pid_):
+            season["phases"] = copy.deepcopy(faser)
+    for k, v in (ch.get("season") or {}).items():
+        sim.setdefault("season2027", {})[k] = v
+    return prog.get("phases")
 
 
 def _validate_actuals(ch: dict) -> None:

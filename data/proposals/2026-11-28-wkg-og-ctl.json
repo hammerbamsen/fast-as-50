@@ -1,0 +1,273 @@
+{
+  "id": "2026-11-28-wkg-og-ctl",
+  "createdAt": "2026-11-28T06:30:00Z",
+  "createdBy": "claude-chat",
+  "title": "W/kg som hovedmaal, CTL-peak 80, een faseoekonomi",
+  "note": "Tre ting der var bygget paa forudsaetninger der ikke laengere gaelder. FTP-glidestien gik fra 278 til 320 W, men 278 var fra en anden effektkilde i juli; efter testen 8/10 er FTP 257, og glidestien fulgte ikke med — derfor stod FTP-kortet roedt med 'bagud' mod et maal 25 % over. Kennets valg 28/11: W/kg er hovedtallet, watt noteres ved siden af, og begge rekalibreres fra hvor han faktisk er. ctlPeak stod paa 88, men ugerne gav 74 og CTL er 29 i dag; Kennet valgte at moedes paa 80, hvilket kraever ca. 557 TSS/uge i Build 2 mod 506 nu. Og FTP-fasernes navne og ugeintervaller er nu de samme som Friel-faserne, saa dashboardet ikke viser to fasesystemer side om side.",
+  "summary": [
+    "W/kg bliver hovedtallet paa FTP-kortet: 3,52 nu -> 4,28 ved TdS",
+    "FTP-maalet rekalibreret 278->320 til 257->295 (+15 % over ni maaneder)",
+    "Faserne er nu Friels ti (plus fortidens Transition), med maal pr. fase",
+    "ctlPeak 88 -> 80, ctlAtRace 82 -> 72",
+    "Build 2 loeftet ca. 11 %: snit 506 -> 557 TSS/uge, peak uge 48 paa CTL 80",
+    "hoursPerWeekPeak 15 -> 17 (Alpelejrens uge paa 850 TSS)",
+    "Uge 1-12 kaldes Transition, saa de to fasesystemer er enige hele vejen"
+  ],
+  "status": "pending",
+  "decidedAt": null,
+  "result": null,
+  "changes": [
+    {
+      "action": "set_season",
+      "programId": "tds-2027",
+      "phases": [
+        {
+          "name": "Transition",
+          "weekFrom": 1,
+          "weekTo": 12,
+          "ftpTarget": 257,
+          "wkgTarget": 3.52,
+          "note": "Paatvunget ophold efter Medoc og sygdom. CTL 29 ved udgangen."
+        },
+        {
+          "name": "Preparation",
+          "weekFrom": 13,
+          "weekTo": 17,
+          "ftpTarget": 258,
+          "wkgTarget": 3.6,
+          "note": "Genopbyg rutinen. Vaegt ned giver W/kg, ikke watt."
+        },
+        {
+          "name": "Early Base",
+          "weekFrom": 18,
+          "weekTo": 23,
+          "ftpTarget": 263,
+          "wkgTarget": 3.75,
+          "note": "Styrke er nr. 1. Watt begynder at flytte sig."
+        },
+        {
+          "name": "Late Base",
+          "weekFrom": 24,
+          "weekTo": 29,
+          "ftpTarget": 274,
+          "wkgTarget": 3.95,
+          "note": "Aerob kapacitet er nr. 1 — her kommer det foerste rigtige watt-loeft."
+        },
+        {
+          "name": "Build 1",
+          "weekFrom": 30,
+          "weekTo": 36,
+          "ftpTarget": 283,
+          "wkgTarget": 4.1,
+          "note": "Lange ture baerer. FTP-test uge 27 saetter udgangspunktet."
+        },
+        {
+          "name": "Peak 1",
+          "weekFrom": 37,
+          "weekTo": 38,
+          "ftpTarget": 286,
+          "wkgTarget": 4.15,
+          "note": "Taper mod Stelvio."
+        },
+        {
+          "name": "Race 1",
+          "weekFrom": 39,
+          "weekTo": 39,
+          "ftpTarget": 286,
+          "wkgTarget": 4.15,
+          "note": "Stelvio 6/6 — formcheck mod maalet."
+        },
+        {
+          "name": "Transition",
+          "weekFrom": 40,
+          "weekTo": 40,
+          "ftpTarget": 286,
+          "wkgTarget": 4.15,
+          "note": "Hvil efter Stelvio."
+        },
+        {
+          "name": "Build 2",
+          "weekFrom": 41,
+          "weekTo": 48,
+          "ftpTarget": 293,
+          "wkgTarget": 4.25,
+          "note": "Sidste loeft. CTL mod 80."
+        },
+        {
+          "name": "Peak 2",
+          "weekFrom": 49,
+          "weekTo": 50,
+          "ftpTarget": 295,
+          "wkgTarget": 4.28,
+          "note": "Taper mod TdS."
+        },
+        {
+          "name": "Race 2",
+          "weekFrom": 51,
+          "weekTo": 51,
+          "ftpTarget": 295,
+          "wkgTarget": 4.28,
+          "note": "Tour des Stations Ultrafondo 28/8."
+        }
+      ],
+      "season": {
+        "ctlPeak": 80,
+        "ctlAtRace": 72,
+        "ftpStart": 257,
+        "ftpTarget": 295,
+        "wkgStart": 3.52,
+        "wkgTarget": 4.28,
+        "hoursPerWeekPeak": 17
+      }
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 1,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 2,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 3,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 4,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 5,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 6,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 7,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 8,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 9,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 10,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 11,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 12,
+      "phase": "Transition"
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 41,
+      "ctlTarget": 65,
+      "tssTarget": 600
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 42,
+      "ctlTarget": 68,
+      "tssTarget": 630
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 43,
+      "ctlTarget": 66,
+      "tssTarget": 330
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 44,
+      "ctlTarget": 70,
+      "tssTarget": 620
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 45,
+      "ctlTarget": 70,
+      "tssTarget": 460
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 46,
+      "ctlTarget": 77,
+      "tssTarget": 850
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 47,
+      "ctlTarget": 75,
+      "tssTarget": 330
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 48,
+      "ctlTarget": 80,
+      "tssTarget": 640
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 49,
+      "ctlTarget": 78,
+      "tssTarget": 500
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 50,
+      "ctlTarget": 74,
+      "tssTarget": 390
+    },
+    {
+      "action": "set_week_targets",
+      "programId": "tds-2027",
+      "week": 51,
+      "ctlTarget": 72,
+      "tssTarget": 200
+    }
+  ]
+}

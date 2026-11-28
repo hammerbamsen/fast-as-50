@@ -76,11 +76,19 @@ def build(plan: dict, today, weight_avg7=None, week_num=None,
     target = phase.get("ftpTarget")
     season = plan.get("season2027") or {}
     wkg = round(ftp / float(weight_avg7), 2) if ftp and weight_avg7 else None
-    if ftp is None or not target:
+    # 28/11-2026, Kennets valg: W/kg er hovedtallet, watt staar ved siden af.
+    # Det er W/kg der afgoer en bjergfondo, og det kan naas baade med watt op og
+    # vaegt ned — et rent watt-maal skjuler den halvdel af arbejdet.
+    wkg_target = phase.get("wkgTarget")
+    if wkg is not None and wkg_target:
+        maalt, maal = wkg, wkg_target
+    else:                                   # ingen vaegt endnu: fald tilbage paa watt
+        maalt, maal = ftp, target
+    if maalt is None or not maal:
         status, color = "none", NEUTRAL
-    elif ftp >= target:
+    elif maalt >= maal:
         status, color = "ok", GREEN
-    elif ftp >= target * 0.97:
+    elif maalt >= maal * 0.97:
         status, color = "warn", ORANGE
     else:
         status, color = "bagud", RED
@@ -93,12 +101,16 @@ def build(plan: dict, today, weight_avg7=None, week_num=None,
         "phaseWkgTarget": phase.get("wkgTarget"),
         "seasonTarget": season.get("ftpTarget"),
         "seasonStart": season.get("ftpStart"),
+        "seasonWkgTarget": season.get("wkgTarget"),
+        "seasonWkgStart": season.get("wkgStart"),
+        "primary": "wkg" if (wkg is not None and wkg_target) else "ftp",
         "status": status,
         "color": color,
         "nextTest": next_test(plan, today, athlete),
         "history": history(plan, athlete),
         "phases": [{"name": p.get("name"), "weekFrom": p.get("weekFrom"), "weekTo": p.get("weekTo"),
-                    "ftpTarget": p.get("ftpTarget")} for p in (season.get("phases") or [])],
+                    "ftpTarget": p.get("ftpTarget"), "wkgTarget": p.get("wkgTarget")}
+                   for p in (season.get("phases") or [])],
     }
 
 

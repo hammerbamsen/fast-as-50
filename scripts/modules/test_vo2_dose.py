@@ -113,22 +113,30 @@ def test_maaldosis_foelger_fasen_og_nulstilles_i_restitutionsuger():
     assert vo2_dose.week_target(PLAN, date(2030, 1, 7))[0] is None
 
 
-def test_base_ramper_fra_5_til_15_minutter():
-    phases = (PLAN.get("season2027") or {}).get("phases") or []
-    base = next(p for p in phases if p["name"] == "BASE")
+def test_maalene_mod_den_rigtige_plan_ligger_i_tabellen():
+    """Indholdsuafhaengig: hver uge skal have det maal dens EGEN fase giver.
+    Den gamle udgave antog at ugerne i BASE-faseintervallet ogsaa havde
+    phase "BASE" — det holdt ikke da faserne blev omdoebt til Friels 28/11."""
     prog = PLAN["programs"]["tds-2027"]
-    uger = [w for w in prog["weeks"]
-            if base["weekFrom"] <= w["week"] <= base["weekTo"]
-            and not str(w["blockType"]).upper().startswith(("RECOVERY", "REST", "TAPER"))
-            and w["blockType"] != "RACE"]
-    maal = [vo2_dose.week_target(PLAN, date.fromisoformat(w["start"]))[0] for w in uger]
-    assert min(maal) >= 5 and max(maal) <= 15
-    assert maal == sorted(maal)             # monotont stigende gennem basen
-    # Rampen skal faktisk rampe (fund 9: testen bestod ogsaa med BASE_RAMP=(15,15)).
-    # Endepunkterne laases ikke mod den rigtige plan: sidste base-uge kan vaere en
-    # RECOVERY- eller RACE-uge, saa den sidste MAALTE uge behoever ikke ligge paa 15.
-    assert maal[0] == vo2_dose.BASE_RAMP[0]
-    assert maal[-1] > maal[0]
+    set_maal = set()
+    for w in prog["weeks"]:
+        maal, fase, bt = vo2_dose.week_target(PLAN, date.fromisoformat(w["start"]))
+        up = str(bt or "").upper()
+        if up.startswith(vo2_dose.BLOCK_ZERO) or up == "RACE":
+            assert maal == 0
+            continue
+        if fase is None:
+            continue
+        noegle = fase if fase in vo2_dose.PHASE_TARGET else None
+        if noegle is None:
+            from modules.friel_priorities import normaliser
+            noegle = normaliser(fase)
+        if noegle == "BASE":
+            assert 5 <= maal <= 15          # den gamle rampe
+        elif noegle in vo2_dose.PHASE_TARGET:
+            assert maal == vo2_dose.PHASE_TARGET[noegle], f"{fase} gav {maal}"
+            set_maal.add(maal)
+    assert set_maal, "ingen uger kunne maales mod tabellen"
 
 
 def test_base_rampen_rammer_begge_endepunkter():

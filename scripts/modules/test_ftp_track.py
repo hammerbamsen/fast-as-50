@@ -26,10 +26,19 @@ def _plan(ftp=278, hist=None, phases=None, days=None):
 
 
 def test_build_status_green_when_at_target():
+    """28/11-2026: W/kg er hovedtallet naar baade vaegt og wkgTarget findes.
+    Samme watt kan vaere baade paa og under maal alt efter vaegten."""
     f = F.build(_plan(), date(2026, 9, 25), weight_avg7=72.0, week_num=3)
     assert f["phase"] == "TRANSITION" and f["phaseTarget"] == 278
-    assert f["status"] == "ok" and f["color"] == F.GREEN
-    assert f["wkg"] == 3.86
+    assert f["wkg"] == 3.86 and f["primary"] == "wkg"
+    # wkgTarget i fixturen er 3.97; 3.86 er under, men inden for 3 % -> warn
+    assert f["status"] == "warn"
+    # lettere rytter, samme watt -> paa maal
+    let = F.build(_plan(), date(2026, 9, 25), weight_avg7=70.0, week_num=3)
+    assert let["wkg"] == 3.97 and let["status"] == "ok" and let["color"] == F.GREEN
+    # uden vaegt falder kortet tilbage paa watt
+    uden = F.build(_plan(), date(2026, 9, 25), week_num=3)
+    assert uden["primary"] == "ftp" and uden["status"] == "ok"
 
 
 def test_build_status_warn_and_bagud():

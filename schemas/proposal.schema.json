@@ -24,6 +24,7 @@
           {"$ref": "#/$defs/setWeekTargets"},
           {"$ref": "#/$defs/setTravel"},
           {"$ref": "#/$defs/setActuals"},
+          {"$ref": "#/$defs/setSeason"},
           {"$ref": "#/$defs/setGoals"},
           {"$ref": "#/$defs/setWeightPlan"}
         ]
@@ -130,6 +131,47 @@
         "programId": {"type": "string"},
         "throughWeek": {"type": "integer", "minimum": 0},
         "athlete": {"type": "string"}
+      }
+    },
+    "setSeason": {
+      "type": "object",
+      "description": "Faseliste og sæsonmål (28/11-2026). phases erstatter hele listen og skal dække uge 1..totalWeeks uden huller — ftp_track.phase_for() slår op i netop den dækning. Skrives på både programmet og season2027, så de to kopier ikke driver fra hinanden. Ingen dato, ingen sync.",
+      "required": ["action", "programId"],
+      "additionalProperties": true,
+      "properties": {
+        "action": {"type": "string", "enum": ["set_season"]},
+        "programId": {"type": "string"},
+        "phases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "weekFrom", "weekTo"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {"type": "string", "enum": ["Preparation", "Early Base", "Late Base", "Build", "Build 1", "Build 2", "Peak", "Peak 1", "Peak 2", "Race", "Race 1", "Race 2", "Transition"]},
+              "weekFrom": {"type": "integer", "minimum": 1},
+              "weekTo": {"type": "integer", "minimum": 1},
+              "ftpTarget": {"type": "integer", "minimum": 0},
+              "wkgTarget": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+              "note": {"type": "string"}
+            }
+          }
+        },
+        "season": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ctlPeak": {"type": "number", "minimum": 0},
+            "ctlAtRace": {"type": "number", "minimum": 0},
+            "ftpStart": {"type": "integer", "minimum": 0},
+            "ftpTarget": {"type": "integer", "minimum": 0},
+            "wkgStart": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+            "wkgTarget": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+            "hoursPerWeekAvg": {"type": "number", "minimum": 0},
+            "hoursPerWeekPeak": {"type": "number", "minimum": 0}
+          }
+        }
       }
     },
     "setGoals": {

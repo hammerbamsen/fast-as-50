@@ -3282,8 +3282,13 @@ function ftpCard(f) {
   }
   const col = f.color || 'var(--num)';
   const word = { ok:'På mål', warn:'Tæt på', bagud:'Bagud', none:'' }[f.status] || '';
-  const wkg = f.wkg != null ? `${fmtDa(f.wkg, 2)} W/kg` : '— W/kg';
-  const tgt = f.phaseTarget ? `fasemål ${f.phaseTarget} W · ${f.phase || ''}` : 'intet fasemål';
+  // 28/11-2026, Kennets valg: W/kg er hovedtallet. Det er W/kg der afgoer en
+  // bjergfondo, og det kan naas baade med watt op og vaegt ned — et rent
+  // watt-tal skjuler den halvdel af arbejdet. Watt staar stadig ved siden af.
+  const wkg = f.wkg != null ? fmtDa(f.wkg, 2) : '—';
+  const tgt = f.phaseWkgTarget
+    ? `fasemål ${fmtDa(f.phaseWkgTarget, 2)} W/kg${f.phaseTarget ? ` (~${f.phaseTarget} W)` : ''} · ${f.phase || ''}`
+    : (f.phaseTarget ? `fasemål ${f.phaseTarget} W · ${f.phase || ''}` : 'intet fasemål');
   const rows = (f.history || []).slice(-6).reverse().map(h =>
     `<div style="display:flex;justify-content:space-between;font-family:Space Mono,monospace;font-size:11px;padding:3px 0;border-top:1px solid var(--cream-d)">
        <span style="color:var(--muted)">${_dkShort(h.date)}${h.date ? '-' + String(h.date).slice(2,4) : ''}</span>
@@ -3291,12 +3296,12 @@ function ftpCard(f) {
        <span style="color:var(--muted);max-width:55%;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(h.source || '')}</span>
      </div>`).join('');
   const phases = (f.phases || []).map(p =>
-    `<span style="display:inline-block;margin:2px 6px 2px 0;font-family:Space Mono,monospace;font-size:10px;color:${p.name === f.phase ? col : 'var(--muted)'}">${p.name} ${p.ftpTarget}</span>`).join('');
+    `<span style="display:inline-block;margin:2px 6px 2px 0;font-family:Space Mono,monospace;font-size:10px;color:${p.name === f.phase ? col : 'var(--muted)'}">${p.name} ${p.wkgTarget ? fmtDa(p.wkgTarget, 2) : p.ftpTarget}</span>`).join('');
   return `<div class="card">
-    <div class="label" style="margin-bottom:8px">FTP — mod ${f.seasonTarget || '?'} W til TdS</div>
+    <div class="label" style="margin-bottom:8px">W/kg — mod ${f.seasonWkgTarget ? fmtDa(f.seasonWkgTarget, 2) : '?'} til TdS</div>
     <div style="display:flex;align-items:baseline;gap:10px">
-      <div class="kpi4-v" style="color:${col};font-size:28px">${f.ftpW}<span style="font-size:13px;color:var(--muted)"> W</span></div>
-      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">${wkg}${f.weightAvg7 != null ? ` (7d ${fmtDa(f.weightAvg7)} kg)` : ''}</div>
+      <div class="kpi4-v" style="color:${col};font-size:28px">${wkg}<span style="font-size:13px;color:var(--muted)"> W/kg</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">${f.ftpW} W${f.weightAvg7 != null ? ` · ${fmtDa(f.weightAvg7)} kg` : ''}</div>
       ${word ? `<div style="margin-left:auto;font-family:Space Mono,monospace;font-size:10px;letter-spacing:.08em;color:${col}">${word.toUpperCase()}</div>` : ''}
     </div>
     <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted);margin-top:4px">${esc(tgt)}${f.nextTest ? ` · næste test ${_dkShort(f.nextTest)}` : ''}</div>
