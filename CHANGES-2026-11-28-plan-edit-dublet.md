@@ -46,3 +46,11 @@ Diagnosen bygger på `health.json`, `edit_result.json` og koden: kørslens varig
 det manglende `edit_result`-opslag og den accepterede forslagsfil peger alle samme vej.
 Hvem der sendte dubletten (app-genkald eller en gentaget dispatch) står stadig åbent.
 Banneret forsvinder, når `plan-edit` kører grønt næste gang.
+
+## Efterspil — rød CI på første push (da9bf3d)
+
+Testen bestod lokalt og faldt i CI: `scripts/apply_edit.py` importerer `word_master`, som
+importerer `python-docx` på modulniveau, og CI installerer kun pytest, requests, pywebpush og
+jsonschema. Testen stubber nu `docx` i `sys.modules`, når pakken mangler — bedre end at skippe
+testen, som så aldrig ville køre i CI. Verificeret begge veje: med pakken installeret, og med
+en meta_path-blokering der efterligner CI.

@@ -17,8 +17,31 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 
+def _stub_docx_if_missing():
+    """CI installerer ikke python-docx (kun pytest/requests/pywebpush/jsonschema).
+
+    apply_edit.py importerer word_master, som importerer docx paa modul-niveau.
+    Testen roerer aldrig Word-generering, saa en tom stub er nok — og bedre end
+    at skippe testen, for saa ville den aldrig koere i CI.
+    """
+    if importlib.util.find_spec("docx") is not None:
+        return
+    import types
+    docx = types.ModuleType("docx")
+    docx.Document = object
+    shared = types.ModuleType("docx.shared")
+    shared.Pt = shared.Cm = shared.RGBColor = object
+    enum = types.ModuleType("docx.enum")
+    table = types.ModuleType("docx.enum.table")
+    table.WD_ALIGN_VERTICAL = table.WD_TABLE_ALIGNMENT = object
+    docx.shared, docx.enum, enum.table = shared, enum, table
+    sys.modules.update({"docx": docx, "docx.shared": shared,
+                        "docx.enum": enum, "docx.enum.table": table})
+
+
 def _load_module():
     """apply_edit.py laeser secrets paa modul-niveau, saa env saettes foerst."""
+    _stub_docx_if_missing()
     os.environ.setdefault("GITHUB_TOKEN", "test-token")
     os.environ.setdefault("GITHUB_REPOSITORY", "hammerbamsen/fast-as-50")
     os.environ.setdefault("INTERVALS_API_KEY", "test-key")
