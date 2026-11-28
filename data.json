@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-28 15:14",
+    "updated": "2026-11-28 17:42",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -88,10 +88,10 @@
       "color": "#7A6A58"
     },
     "afStreak": {
-      "value": "6",
+      "value": "5",
       "unit": "",
-      "sub": "af 6 denne uge · snit 4 uger 3,8 · streak 7",
-      "color": "#27AE60"
+      "sub": "af 6 denne uge · snit 4 uger 3,8",
+      "color": "#59182A"
     },
     "ftp": {
       "value": "257",
@@ -113,11 +113,11 @@
     }
   },
   "af": {
-    "weekDone": 6,
+    "weekDone": 5,
     "target": 6,
-    "streak": 7
+    "streak": 0
   },
-  "coachSpeech": "Lørdag — uge 48. {HL} Godt: Søvn på 8,4 timer er solid. 6/7 AF-dage — ugens mål er ramt. Fokus: Vægt på 72,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. Keep moving forward.  \"Keep moving forward.\"",
+  "coachSpeech": "Lørdag — uge 48. {HL} Godt: Søvn på 8,4 timer er solid. Fokus: Vægt på 72,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 5 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward.  \"Keep moving forward.\"",
   "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
@@ -2177,7 +2177,7 @@
     "2026-11-25": 0,
     "2026-11-26": 0,
     "2026-11-27": 0,
-    "2026-11-28": 0
+    "2026-11-28": 1
   },
   "all_weeks": {
     "10": {
@@ -3035,7 +3035,7 @@
       "week": 12,
       "iso": 48,
       "monday": "2026-11-23",
-      "done": 6,
+      "done": 5,
       "total": 6,
       "label": "Uge 48"
     }
@@ -3709,7 +3709,7 @@
     74,
     72
   ],
-  "coachAssessmentError": null,
+  "coachAssessmentError": "validering: warnings[0].message: tal ikke i konteksten: 42",
   "coachAssessmentStale": false,
   "credentials": {
     "intervals": {
@@ -3717,11 +3717,11 @@
       "note": "Nøgle virker"
     },
     "anthropic": {
-      "ok": true,
-      "note": "Nøgle virker"
+      "ok": false,
+      "note": "Seneste AI-kald fejlede: validering: warnings[0].message: tal ikke i konteksten: 42"
     }
   },
-  "credentialsCheckedTs": "2026-11-28T14:14:27.713919",
+  "credentialsCheckedTs": "2026-11-28T16:43:18.456964",
   "coachAssessmentTsFull": "2026-11-28T10:25:21",
   "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 6,
@@ -4852,7 +4852,7 @@
     },
     {
       "date": "2026-11-28",
-      "alkohol": 0,
+      "alkohol": 1,
       "protein": 2,
       "energi": 4,
       "sult": null
@@ -4870,7 +4870,8 @@
     "2026-11-13": "faa",
     "2026-11-14": "faa",
     "2026-11-16": "faa",
-    "2026-11-20": "faa"
+    "2026-11-20": "faa",
+    "2026-11-28": "faa"
   },
   "planTab": {
     "today": "2026-11-28",
@@ -10877,11 +10878,22 @@
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [],
-    "error": null,
-    "validationError": null,
-    "validationRejected": null,
+    "error": "validering: warnings[0].message: tal ikke i konteksten: 42",
+    "validationError": "warnings[0].message: tal ikke i konteksten: 42",
+    "validationRejected": [
+      {
+        "errors": [
+          "warnings[0].message: tal ikke i konteksten: 42, 47"
+        ]
+      },
+      {
+        "errors": [
+          "warnings[0].message: tal ikke i konteksten: 42"
+        ]
+      }
+    ],
     "notes": null,
-    "stale": false
+    "stale": true
   },
   "weekFocusNext": {
     "week": 12,
@@ -11134,10 +11146,10 @@
         "alcohol": {
           "level": null,
           "value": {
-            "days7": 0,
-            "run": 0
+            "days7": 1,
+            "run": 1
           },
-          "text": "0 drikkedage på 7 dage"
+          "text": "1 drikkedag på 7 dage"
         }
       }
     }
@@ -11464,13 +11476,13 @@
       "Uge 48: TSS 247 af 605 (41 %) · CTL 29,3 (mål 46) · TSB −3,1",
       "Vægt 7d 73,0 kg · fedt 14d 22,4 % · på plan mod glidepath (72,7)",
       "HRV 7d 39 (28d 40) · hvilepuls 49 · søvn 7d 8,4 t",
-      "AF 7/7 · protein 3/3 7/7 · aftensult —/7",
+      "AF 6/7 · protein 3/3 7/7 · aftensult —/7",
       "Styrke 1/2 · check-in —",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-28T14:14:27Z"
+    "generatedAt": "2026-11-28T16:42:43Z"
   },
   "proposals": [],
   "ftp": {
