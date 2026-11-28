@@ -797,6 +797,57 @@ def _names(entries) -> list:
     return out
 
 
+def _season_lines(plan: dict, changes: list) -> list:
+    """Linjer til forslagskortet for de aendringer der IKKE rammer en dag eller
+    et ugemaal. 28/11-2026: et set_season-forslag kunne tilfoeje et loeb og
+    omskrive 51 ugers FTP-maal uden at kortet viste andet end ugemaalet, saa
+    Kennet ville godkende i blinde."""
+    ud = []
+    for ch in changes:
+        if ch.get("action") != "set_season":
+            continue
+        pid_ = ch.get("programId")
+        prog = (plan.get("programs") or {}).get(pid_) or {}
+        if ch.get("races") is not None:
+            foer = {r.get("name") for r in (prog.get("races") or [])}
+            efter = {r.get("name") for r in ch["races"]}
+            for r in ch["races"]:
+                if r.get("name") not in foer:
+                    pri = r.get("priority")
+                    ud.append(f"Nyt løb: {r.get('name')} {r.get('date')}"
+                              + (f" ({pri}-løb)" if pri else ""))
+            for navn in sorted(foer - efter):
+                ud.append(f"Løb fjernet: {navn}")
+        if ch.get("phases") is not None:
+            faser = ch["phases"]
+            n = 0
+            for w in (prog.get("weeks") or []):
+                f = next((x for x in faser
+                          if x["weekFrom"] <= w.get("week", 0) <= x["weekTo"]), None)
+                if not f:
+                    continue
+                if (("ftpTarget" in w and "ftpTarget" in f
+                     and w["ftpTarget"] != f["ftpTarget"])
+                        or ("wkgTarget" in w and "wkgTarget" in f
+                            and w["wkgTarget"] != f["wkgTarget"])):
+                    n += 1
+            if n:
+                ud.append(f"{n} ugers FTP- og W/kg-mål rettes til at følge fasen de ligger i")
+            navne = [x.get("name") for x in faser]
+            if navne != [x.get("name") for x in (prog.get("phases") or [])]:
+                ud.append("Faseinddelingen ændres: " + ", ".join(str(x) for x in navne))
+        if "weightPlan" in ch:
+            gl = ((plan.get("season2027") or {}).get("weightPlan") or {})
+            ny = ch["weightPlan"] or {}
+            if gl != ny:
+                ud.append("Vægtplanen i season2027 bringes i sync med programmets")
+        for k, v in (ch.get("season") or {}).items():
+            gl = (plan.get("season2027") or {}).get(k)
+            if gl != v:
+                ud.append(f"Sæsonmål {k}: {gl} → {v}")
+    return ud
+
+
 def summarize_for_data(plan: dict, prop: dict, athlete: str = "kennet") -> dict:
     """Ét element til data.json's `proposals`: before = nuværende plan,
     after = forslaget, grupperet pr. ISO-uge (mandag start)."""
@@ -819,7 +870,7 @@ def summarize_for_data(plan: dict, prop: dict, athlete: str = "kennet") -> dict:
         "title": prop.get("title", ""),
         "createdAt": prop.get("createdAt"),
         "status": prop.get("status"),
-        "summary": list(prop.get("summary") or []),
+        "summary": list(prop.get("summary") or []) + _season_lines(plan, prop["changes"]),
         "note": prop.get("note") or "",
         "weeks": [weeks[k] for k in sorted(weeks)],
         "targets": target_changes_for_data(plan, prop["changes"]),

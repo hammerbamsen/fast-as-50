@@ -700,3 +700,75 @@ def test_set_season_kan_saette_saesonmaal_alene():
     sim, _ = proposals.apply_changes(plan, [ch])
     assert sim["season2027"]["ctlPeak"] == 80
     assert sim["programs"]["tds-2027"]["phases"] == faser_foer   # faserne urørt
+
+
+def _sl_plan():
+    """Fixture: to faser, tre uger, ét løb. Egne tal — ikke lånt fra plan.json,
+    så et forslag på den rigtige plan ikke kan gøre testen rød."""
+    return {
+        "programs": {
+            "p1": {
+                "id": "p1", "totalWeeks": 3,
+                "phases": [
+                    {"name": "Base", "weekFrom": 1, "weekTo": 2,
+                     "ftpTarget": 200, "wkgTarget": 3.0},
+                    {"name": "Build", "weekFrom": 3, "weekTo": 3,
+                     "ftpTarget": 220, "wkgTarget": 3.3},
+                ],
+                "weeks": [
+                    {"week": 1, "start": "2027-01-04", "ftpTarget": 111, "wkgTarget": 1.1},
+                    {"week": 2, "start": "2027-01-11", "ftpTarget": 200, "wkgTarget": 3.0},
+                    {"week": 3, "start": "2027-01-18", "ftpTarget": 222, "wkgTarget": 2.2},
+                ],
+                "weightPlan": {"startKg": 80.0, "targetKg": 75.0},
+            }
+        },
+        "season2027": {"weightPlan": {"startKg": 90.0, "targetKg": 60.0}},
+        "athletes": {"kennet": {"days": []}},
+    }
+
+
+def test_season_lines_viser_nyt_loeb_og_antal_uger():
+    """Et set_season-forslag skal fortælle hvad det gør. 28/11-2026 kunne det
+    tilføje et løb og omskrive 51 ugers FTP-mål uden at kortet viste andet end
+    ugemålet."""
+    plan = _sl_plan()
+    faser = plan["programs"]["p1"]["phases"]
+    ch = [{"action": "set_season", "programId": "p1",
+           "phases": faser,
+           "races": [{"name": "Testløb", "date": "2027-02-01", "priority": "C"}],
+           "weightPlan": plan["programs"]["p1"]["weightPlan"]}]
+    linjer = proposals._season_lines(plan, ch)
+    tekst = " | ".join(linjer)
+    assert "Testløb" in tekst and "C-løb" in tekst
+    # uge 1 (111/1.1) og uge 3 (222/2.2) afviger, uge 2 (200/3.0) gør ikke
+    assert "2 ugers" in tekst, tekst
+    assert "Vægtplanen" in tekst
+    # faserne er uændrede, så faseinddelingen må ikke meldes som ændret
+    assert "Faseinddelingen" not in tekst
+
+
+def test_season_lines_tier_naar_intet_aendres():
+    """Ingen stoej: et forslag der ikke flytter noget, giver ingen linjer."""
+    plan = _sl_plan()
+    prog = plan["programs"]["p1"]
+    for w in prog["weeks"]:
+        f = next(x for x in prog["phases"] if x["weekFrom"] <= w["week"] <= x["weekTo"])
+        w["ftpTarget"], w["wkgTarget"] = f["ftpTarget"], f["wkgTarget"]
+    plan["season2027"]["weightPlan"] = dict(prog["weightPlan"])
+    ch = [{"action": "set_season", "programId": "p1",
+           "phases": prog["phases"], "weightPlan": prog["weightPlan"]}]
+    assert proposals._season_lines(plan, ch) == []
+
+
+def test_season_lines_melder_fjernet_loeb():
+    plan = _sl_plan()
+    plan["programs"]["p1"]["races"] = [
+        {"name": "Beholdes", "date": "2027-03-01", "priority": "B"},
+        {"name": "Slettes", "date": "2027-04-01", "priority": "C"},
+    ]
+    ch = [{"action": "set_season", "programId": "p1",
+           "races": [{"name": "Beholdes", "date": "2027-03-01", "priority": "B"}]}]
+    tekst = " | ".join(proposals._season_lines(plan, ch))
+    assert "Løb fjernet: Slettes" in tekst
+    assert "Nyt løb" not in tekst
