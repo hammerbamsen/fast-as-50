@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-28 04:44",
+    "updated": "2026-11-28 06:05",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -28,7 +28,7 @@
       "color": "#27AE60"
     },
     "fat": {
-      "value": "22,5",
+      "value": "22,4",
       "unit": "%",
       "sub": "14d-snit · forventet 22,6",
       "color": "#27AE60"
@@ -46,9 +46,9 @@
       "color": "#27AE60"
     },
     "sleep": {
-      "value": "10,0",
+      "value": "6,8",
       "unit": "t",
-      "sub": "Snit 7d 8,5t · mål 7t",
+      "sub": "Snit 7d 8,4t · mål 7t",
       "color": "#27AE60"
     },
     "runKm": {
@@ -58,7 +58,7 @@
       "color": "#7A6A58"
     },
     "hrv": {
-      "value": "38,3",
+      "value": "39,0",
       "unit": "ms",
       "sub": "Snit 7d",
       "color": "#7A6A58"
@@ -117,8 +117,8 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "string {HL} Ugen er tung på missede pas: 5 planlagte pas er ikke gennemført (cykel og styrke tirsdag-torsdag), men de to vandre-ekstra og tre gennemførte pas har givet 226 TSS af ugens 605 planlagte — 37 %.",
-  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 3 runder i dag — 45 min, let belastning som planlagt.",
+  "coachSpeech": "Uge 48, RECOVERY-blok: genopbygning efter sygdom — lav belastning er planen, ikke et efterslæb. {HL} Ugen har 5 missede pas og kun 37% af planlagt TSS (226 af 605) — men det er en RECOVERY-uge, og vandreturene tirsdag og torsdag som ekstra ture har bidraget med reel belastning.",
+  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 3 runder (45 min) i dag.",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -610,7 +610,11 @@
     null,
     null,
     null,
-    null
+    {
+      "date": "2026-11-28",
+      "v": 72.9,
+      "real": true
+    }
   ],
   "hrvHistory": [
     {
@@ -1058,7 +1062,11 @@
       "v": 40.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-28",
+      "v": 43.0,
+      "real": true
+    }
   ],
   "sleepHistory": [
     {
@@ -1506,7 +1514,11 @@
       "v": 10.0,
       "real": true
     },
-    null
+    {
+      "date": "2026-11-28",
+      "v": 6.8,
+      "real": true
+    }
   ],
   "tsbHistory": [
     {
@@ -3323,16 +3335,20 @@
     null,
     null,
     null,
-    null
+    {
+      "date": "2026-11-28",
+      "v": 21.7,
+      "real": true
+    }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 83 af 357 · Lørdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen er tung på missede pas: 5 planlagte pas er ikke gennemført (cykel og styrke tirsdag-torsdag), men de to vandre-ekstra og tre gennemførte pas har givet 226 TSS af ugens 605 planlagte — 37 %. I en RECOVERY-uge er det fint at holde volumen nede; CTL er 29,2 mod et mål på 46,0, men det indhentes ikke her — det er meningen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit er steget 1,1 kg den seneste måned — over tærsklen. Du er 0,4 kg over cut-planen (forventet 72,7 kg). Fedtprocenten på 7-dages snit er faldet 0,4 procentpoint, men det er under tærsklen på 0,5 for at kalde en retning. Hold protein ved hvert måltid og undgå alkohol i den næste uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Ingen alkohol-dage og 6 proteindage ud af 7 — det sidder. Søvn er stærk: 10,0 t i nat og 8,5 t i snit. Energi i snit 3,8 — ingen alarmer.</p>",
-  "coachAssessmentTs": "04:44",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 83 af 357 · Lørdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, RECOVERY-blok: genopbygning efter sygdom — lav belastning er planen, ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen har 5 missede pas og kun 37% af planlagt TSS (226 af 605) — men det er en RECOVERY-uge, og vandreturene tirsdag og torsdag som ekstra ture har bidraget med reel belastning. CTL er 29,2 mod mål på 46,0, men i genopbygningsfasen er det forventet: volumen før intensitet, og CTL bygges gradvist.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 1,1 kg den seneste måned — det er over tærsklen og indikerer opadgående retning, mens cuttet sigter mod fald. Fedtsnit er kun faldet 0,4 procentpoint og er endnu ikke over tærsklen på 0,5 for at kalde en retning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 6 af 7 dage — solidt. Søvn var 6,8 timer i nat, under målet på 7 timer — prioritér en tidligere sengetid i aften.</p>",
+  "coachAssessmentTs": "06:05",
   "commute_pairing_warnings": [],
   "warnings": [
     {
       "type": "cut",
       "level": "warn",
-      "message": "7-dages snit er 0,4 kg over cut-planen (forventet 72,7 kg). Hold protein-first og nul alkohol den næste uge.",
+      "message": "7-dages snit for vægt er steget 1,1 kg den seneste måned — cuttet er 0,4 kg bagud i forhold til planen (forventet 72,7 kg). Spis protein ved hvert måltid og undgå dage med 3+ genstande.",
       "action": null,
       "source": "ai"
     }
@@ -3666,12 +3682,12 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-28T03:44:31.957027",
-  "coachAssessmentTsFull": "2026-11-28T03:44:31",
-  "coachAssessmentWeightAtGen": 73.4,
+  "credentialsCheckedTs": "2026-11-28T05:05:38.050888",
+  "coachAssessmentTsFull": "2026-11-28T05:05:38",
+  "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 5,
   "event_structure_warnings": [],
-  "coachAssessmentFatAtGen": 22.3,
+  "coachAssessmentFatAtGen": 21.7,
   "zones": {
     "runThreshold": "4:16/km",
     "bikeFtpW": 257,
@@ -5220,17 +5236,17 @@
         "programId": "tds-2027",
         "start": "2026-11-30",
         "end": "2026-12-06",
-        "phase": "BASE",
+        "phase": "Preparation",
         "blockType": "BASE",
         "mesoWeek": "1/2",
         "ctlTarget": 49,
         "tssTarget": 460,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 5×3 tir, lør 2 t Z2, søn kvalitet sent i turen. Løb ons, svøm fre, styrke man+lør 45 min.",
+        "purpose": "Madeira 1.-8./12: vandring 3×3 t = aerob tærskel. Styrke 3×. Eneste cykelintensitet er intro 4×3 man 30/11, og kun hvis HRV er i leje.",
         "note": null,
         "quota": {
-          "haard": 2,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5239,9 +5255,16 @@
         "keySessions": [
           "Vandring 3 t"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "ctl_ramp",
+            "text": "CTL-ramp +5.5 i uge 49 (blødt loft 5)",
+            "historic": false
+          }
+        ],
         "races": [],
-        "travel": null,
+        "travel": "Madeira med Eva",
         "isCurrent": false,
         "isPast": false,
         "hasDays": true
@@ -5251,17 +5274,17 @@
         "programId": "tds-2027",
         "start": "2026-12-07",
         "end": "2026-12-13",
-        "phase": "BASE",
+        "phase": "Preparation",
         "blockType": "BASE",
         "mesoWeek": "2/2",
         "ctlTarget": 52,
         "tssTarget": 480,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 4×4 tir, lør 2 t Z2, søn Langtur 4 t. Løb ons, svøm fre, styrke man+lør 45 min.",
+        "purpose": "Hjem fra Madeira tir 8/12. Langtur 4 t søn, Lang Z2 2 t lør. Fartlek 5 min Z5 ons i stedet for VO2 4×4 — aerob kapacitet er nr. 3 i Preparation.",
         "note": null,
         "quota": {
           "haard": 1,
-          "moderat": 1
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 1,
@@ -5271,9 +5294,16 @@
           "FaF 5 VO2 - 4 x 4",
           "FaF 1 Z2 - Lang Z2 2 t"
         ],
-        "flags": [],
+        "flags": [
+          {
+            "level": "WARN",
+            "rule": "ctl_ramp",
+            "text": "CTL-ramp +5.2 i uge 50 (blødt loft 5)",
+            "historic": false
+          }
+        ],
         "races": [],
-        "travel": null,
+        "travel": "Madeira med Eva",
         "isCurrent": false,
         "isPast": false,
         "hasDays": true
@@ -5283,17 +5313,17 @@
         "programId": "tds-2027",
         "start": "2026-12-14",
         "end": "2026-12-20",
-        "phase": "BASE",
+        "phase": "Preparation",
         "blockType": "BASE+",
         "mesoWeek": "1/1",
         "ctlTarget": 55,
         "tssTarget": 500,
         "tssActual": null,
-        "purpose": "Base/VO2-blok: VO2 10×1 tir, lør 2 t Z2, søn Bjerg 2×45 + forlængelse til 3,5 t. Løb ons, svøm fre, styrke man+lør 45 min.",
+        "purpose": "Bjergtempo 2×45 søn, Lang Z2 2 t lør. Fartlek 5 min Z5 tir. Tærskelpasset fre udgår — laktattærskel står slet ikke på Preparation-listen.",
         "note": null,
         "quota": {
           "haard": 1,
-          "moderat": 1
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 2,
@@ -5315,17 +5345,17 @@
         "programId": "tds-2027",
         "start": "2026-12-21",
         "end": "2026-12-27",
-        "phase": "BASE",
+        "phase": "Preparation",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 52,
         "tssTarget": 260,
         "tssActual": null,
-        "purpose": "Jul — recovery: åbnere tir, styrke, løb 2. juledag, 2 t søndag 27/12.",
+        "purpose": "Jul: styrke 2×, Lang Z2 2 t søn, aktivering tir. Lav uge med vilje.",
         "note": "Jul. Planlagt lav — ikke en fiasko.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5346,17 +5376,17 @@
         "programId": "tds-2027",
         "start": "2026-12-28",
         "end": "2027-01-03",
-        "phase": "BASE",
+        "phase": "Preparation",
         "blockType": "BASE",
         "mesoWeek": "1/3",
         "ctlTarget": 54,
         "tssTarget": 440,
         "tssActual": null,
-        "purpose": "Bro: tærskel 3×12 tir (første lange intervaller), Langtur 4 t søn 3/1. Nytår.",
+        "purpose": "Nytår: Langtur 4 t søn, Grundtur 80 tor, fartlek 5 min Z5 tir. Tærskel 3×12 udgår. Første af fire stigende uger — dit valg 28/11, med HRV som stopklods.",
         "note": "Nytår.",
         "quota": {
           "haard": 1,
-          "moderat": 0
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 1,
@@ -5378,17 +5408,17 @@
         "programId": "tds-2027",
         "start": "2027-01-04",
         "end": "2027-01-10",
-        "phase": "BASE",
+        "phase": "Early Base",
         "blockType": "BASE",
         "mesoWeek": "2/3",
         "ctlTarget": 56,
         "tssTarget": 460,
         "tssActual": null,
-        "purpose": "Søndag 4 t. Tirsdag tærskel 2×20.",
+        "purpose": "Early Base 1/6. Styrke er nr. 1: progressiv overload på Functional 4, 3 runder, 2×/uge. Søndag 4 t aerob tærskel.",
         "note": null,
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5407,17 +5437,17 @@
         "programId": "tds-2027",
         "start": "2027-01-11",
         "end": "2027-01-17",
-        "phase": "BASE",
+        "phase": "Early Base",
         "blockType": "BASE",
         "mesoWeek": "3/3",
         "ctlTarget": 58,
         "tssTarget": 480,
         "tssActual": null,
-        "purpose": "Søndag 4 t. Tirsdag tærskel 3×12.",
+        "purpose": "Early Base 2/6. Styrke 2× med flere runder. Søndag 4 t. Tirsdag fartlek 5-8 min Z5.",
         "note": null,
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5436,17 +5466,17 @@
         "programId": "tds-2027",
         "start": "2027-01-18",
         "end": "2027-01-24",
-        "phase": "BASE",
+        "phase": "Early Base",
         "blockType": "BASE+",
         "mesoWeek": "1/1",
         "ctlTarget": 60,
         "tssTarget": 510,
         "tssActual": null,
-        "purpose": "Søndag 4,5 t. Tirsdag tærskel 2×20.",
+        "purpose": "Early Base 3/6. Styrke 2×. Lang Z2 2 t lør 23/1 — søndag 24/1 er rejsedag til Japan. Fjerde stigende uge: stop hvis HRV falder og hvilepuls stiger.",
         "note": "Fly til Japan søn 24/1 efter den lange tur — eller lør, så søndag bliver fri.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5465,17 +5495,17 @@
         "programId": "tds-2027",
         "start": "2027-01-25",
         "end": "2027-01-31",
-        "phase": "BASE",
+        "phase": "Early Base",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 55,
         "tssTarget": 200,
         "tssActual": null,
-        "purpose": "Japan uge 1/2: ski = Z2-belastning. Ingen cykel, ingen skyldfølelse. Styrke: kropsvægt 2×20 min hvis muligt.",
+        "purpose": "Early Base 4/6. Japan 1/2: ski = aerob tærskel hele dagen. Styrke når der er tid.",
         "note": "Kennet og Eva i Japan 24/1-6/2 (Outlook). FTP-test flyttet til uge 24.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5494,17 +5524,17 @@
         "programId": "tds-2027",
         "start": "2027-02-01",
         "end": "2027-02-07",
-        "phase": "BASE",
+        "phase": "Early Base",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 51,
         "tssTarget": 200,
         "tssActual": null,
-        "purpose": "Japan uge 2/2: ski. Hjem lør 6/2 — søndag 7/2 fri eller 1 t åbnere.",
+        "purpose": "Early Base 5/6. Japan 2/2. Hjem lør 6/2 — søndag fri eller 1 t åbnere.",
         "note": "Cut slutter 31/1: fra februar vedligehold i 7 mdr.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5523,17 +5553,17 @@
         "programId": "tds-2027",
         "start": "2027-02-08",
         "end": "2027-02-14",
-        "phase": "BUILD",
+        "phase": "Early Base",
         "blockType": "BUILD",
         "mesoWeek": "1/2",
         "ctlTarget": 54,
-        "tssTarget": 500,
+        "tssTarget": 350,
         "tssActual": null,
-        "purpose": "Genstart efter Japan: 70 % volumen, tærskel 3×12 tir, søndag 3 t. Ingen hårde pas før HRV er normal.",
+        "purpose": "Early Base 6/6 efter Japan: 70 % volumen, styrke tilbage 2×, søndag 3 t. Ingen kvalitet.",
         "note": "Første uge efter 2 uger uden cykel — ingen FTP-test her.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5552,17 +5582,17 @@
         "programId": "tds-2027",
         "start": "2027-02-15",
         "end": "2027-02-21",
-        "phase": "BUILD",
+        "phase": "Late Base",
         "blockType": "BUILD",
         "mesoWeek": "2/2",
         "ctlTarget": 57,
         "tssTarget": 520,
         "tssActual": null,
-        "purpose": "Søndag 4 t. Tirsdag FTP-TEST + tærskel.",
+        "purpose": "Late Base 1/6. Aerob kapacitet er nu nr. 1: VO2 5×3 tir, andet VO2-pas fre (72 t imellem). Søndag 4 t. Styrke 2× vedligehold.",
         "note": "FTP-test tor 18/2 (flyttet fra uge 21 pga. Japan). Forventet ~292 W ved 68 kg = 4,3 W/kg. Vægtmål skal være nået 31/1.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5581,17 +5611,17 @@
         "programId": "tds-2027",
         "start": "2027-02-22",
         "end": "2027-02-28",
-        "phase": "BUILD",
+        "phase": "Late Base",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 55,
         "tssTarget": 290,
         "tssActual": null,
-        "purpose": "Søndag 2,5 t.",
+        "purpose": "Late Base 2/6, aflastning. Søndag 2,5 t. Tirsdag åbnere. Styrke 2×.",
         "note": null,
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5610,17 +5640,17 @@
         "programId": "tds-2027",
         "start": "2027-03-01",
         "end": "2027-03-07",
-        "phase": "BUILD",
+        "phase": "Late Base",
         "blockType": "BUILD",
         "mesoWeek": "1/1",
         "ctlTarget": 58,
         "tssTarget": 510,
         "tssActual": null,
-        "purpose": "Søndag 4,5 t. Tirsdag tærskel 2×20.",
+        "purpose": "Late Base 3/6. VO2 4×4 tir, tærskel 3×12 fre — laktattærskel er nr. 3 i fasen. Søndag 4,5 t. Styrke 2×.",
         "note": null,
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -5639,13 +5669,13 @@
         "programId": "tds-2027",
         "start": "2027-03-08",
         "end": "2027-03-14",
-        "phase": "BUILD",
+        "phase": "Late Base",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 59,
         "tssTarget": 380,
         "tssActual": null,
-        "purpose": "Nedtrapning før lejr #1. Tirsdag åbnere, lørdag Z2 90 min. Søndag 14/3 rejsedag.",
+        "purpose": "Late Base 4/6. Nedtrapning før lejr #1 + FTP-TEST tir på friske ben. Lørdag Z2 90 min. Søndag 14/3 rejsedag.",
         "note": "Forlejr-aflastning foer lejr #1 (var BUILD). Friel 2. udgave: R&R efter to belastningsuger, og moed ikke en belastningsblok traet — Sa Calobra-benchmarken ligger paa dag 2 af lejren.",
         "quota": {
           "haard": 1,
@@ -5668,13 +5698,13 @@
         "programId": "tds-2027",
         "start": "2027-03-15",
         "end": "2027-03-21",
-        "phase": "BUILD",
+        "phase": "Late Base",
         "blockType": "CAMP",
         "mesoWeek": "1/1",
         "ctlTarget": 66,
         "tssTarget": 680,
         "tssActual": null,
-        "purpose": "Lejr #1: volumen og aerob base. 18-22 t, ét hårdt pas, resten Z2.",
+        "purpose": "Lejr #1 Mallorca: 18-22 t aerob tærskel. Ét hårdt pas = VO2 på stigning tir, friske ben.",
         "note": "LEJR #1 Mallorca 14-21/3 (booket 27/11-2026). Volumen- og baselejr: 18-22 t, lange Z2-ture 4-5 t i bjergene. ETT haardt pas: Sa Calobra som tempo-benchmark tir 16/3 paa friske ben — ikke PR-forsoeg. Friel 2. udgave (maj 2026): en lejr oeger VARIGHED, ikke varighed og intensitet samtidig. Lette dage = kun Z1-2.",
         "quota": {
           "haard": 1,
@@ -5697,13 +5727,13 @@
         "programId": "tds-2027",
         "start": "2027-03-22",
         "end": "2027-03-28",
-        "phase": "BUILD",
+        "phase": "Late Base",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 63,
         "tssTarget": 300,
         "tssActual": null,
-        "purpose": "Aflastning efter lejr #1. Søndag 3 t let. Første kvalitet tidligst fredag.",
+        "purpose": "Late Base 6/6, aflastning efter lejr #1. Søndag 3 t let. Første kvalitet tidligst fredag.",
         "note": "Efterlejr-aflastning (var forlejr-aflastning). Friel: 3-5 dage aktiv restitution efter en belastningsblok, ikke 1-2.",
         "quota": {
           "haard": 0,
@@ -5726,13 +5756,13 @@
         "programId": "tds-2027",
         "start": "2027-03-29",
         "end": "2027-04-04",
-        "phase": "BUILD",
+        "phase": "Build 1",
         "blockType": "BUILD",
         "mesoWeek": "1/1",
         "ctlTarget": 65,
         "tssTarget": 520,
         "tssActual": null,
-        "purpose": "Build hjemme. Søndag 4,5-5 t. Tirsdag tærskel 2×20. Maks 2 hårde med 3 dage imellem.",
+        "purpose": "Build 1 1/7. Aerob tærskel er nr. 1: søndag 4,5-5 t med 2×45 bjergtempo. Tirsdag tærskel 2×20. VO2 kun vedligehold. Styrke 2×.",
         "note": "Lejren er flyttet til uge 28 (KU11). Volumen-beslutningen fra 27/10-2026 ligger her — nu med data fra lejr #1.",
         "quota": {
           "haard": 2,
@@ -5755,13 +5785,13 @@
         "programId": "tds-2027",
         "start": "2027-04-05",
         "end": "2027-04-11",
-        "phase": "BUILD",
+        "phase": "Build 1",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 64,
         "tssTarget": 380,
         "tssActual": null,
-        "purpose": "Nedtrapning før lejr #2. Søndag 11/4 rejsedag.",
+        "purpose": "Build 1 2/7. Nedtrapning før lejr #2. Søndag 11/4 rejsedag. Tirsdag åbnere. Styrke 2×.",
         "note": "Forlejr-aflastning foer lejr #2 (var efterlejr). Friel: moed ikke en belastningsblok traet — PR-forsoeget ligger paa dag 2 af lejren.",
         "quota": {
           "haard": 1,
@@ -5784,13 +5814,13 @@
         "programId": "tds-2027",
         "start": "2027-04-12",
         "end": "2027-04-18",
-        "phase": "BUILD",
+        "phase": "Build 1",
         "blockType": "CAMP",
         "mesoWeek": "1/2",
         "ctlTarget": 70,
         "tssTarget": 780,
         "tssActual": null,
-        "purpose": "Lejr #2, uge 1: hovedblokken. 20-25 t, 2 hårde spredt, resten Z2 4-6 t.",
+        "purpose": "Lejr #2 Mallorca, uge 1: 20-25 t aerob tærskel. Sa Calobra PR-forsøg tir. Andet hårde tidligst lør.",
         "note": "LEJR #2 Mallorca 11-21/4 (booket 27/11-2026) — hovedblokken, foerste uge. 20-25 t. SA CALOBRA PR-FORSOEG tir 13/4 paa friske ben (PR at slaa: 35:18 paa 275 W). Andet haarde pas tidligst lor 17/4 — Friel: 3 dage mellem Z5-pas, reps 2-4 min, pause lig rep, maks ~15 min Z5 i alt. Stop med 1-2 gode reps tilbage.",
         "quota": {
           "haard": 2,
@@ -5813,13 +5843,13 @@
         "programId": "tds-2027",
         "start": "2027-04-19",
         "end": "2027-04-25",
-        "phase": "BUILD",
+        "phase": "Build 1",
         "blockType": "CAMP",
         "mesoWeek": "2/2",
         "ctlTarget": 72,
         "tssTarget": 470,
         "tssActual": null,
-        "purpose": "Sidste to lejrdage, derefter aflastning. Ingen kvalitet efter hjemkomst.",
+        "purpose": "Lejr #2, anden del: lange ture man+tir, hjem ons 21/4. Resten kun Z1-2.",
         "note": "Lejr #2, anden del: man 19/4 og tir 20/4 lange ture, hjemrejse ons 21/4. Resten af ugen kun Z1-2 — R&R starter ved hjemkomst.",
         "quota": {
           "haard": 1,
@@ -5842,13 +5872,13 @@
         "programId": "tds-2027",
         "start": "2027-04-26",
         "end": "2027-05-02",
-        "phase": "BUILD",
+        "phase": "Build 1",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 69,
         "tssTarget": 320,
         "tssActual": null,
-        "purpose": "Aflastning. Søndag 3,5 t let. Første kvalitet tidligst torsdag.",
+        "purpose": "Build 1 5/7, aflastning efter lejr #2. Søndag 3,5 t let. Første kvalitet tidligst torsdag. Styrke 2×.",
         "note": "5 dages R&R efter lejr #2 (Friel: 2 belastningsmikrocykler + 5 dages R&R). TSB-gulv -30.",
         "quota": {
           "haard": 0,
@@ -5871,16 +5901,16 @@
         "programId": "tds-2027",
         "start": "2027-05-03",
         "end": "2027-05-09",
-        "phase": "BUILD",
+        "phase": "Build 1",
         "blockType": "BUILD",
         "mesoWeek": "1/1",
         "ctlTarget": 71,
-        "tssTarget": 500,
+        "tssTarget": 430,
         "tssActual": null,
-        "purpose": "Build hjemme. Tirsdag norsk kontrolleret, lørdag lang Z2. Søndag 9/5 rejsedag — let.",
+        "purpose": "Build 1 6/7. LØRDAG 8/5 er ugens lange: 5 t med tærskel sent i turen, 24 min Z4 efter 3 t. Søndag 9/5 er rejsedag — let eller fri. Nedtrappet mod lejren.",
         "note": "Sidste hjemmeuge foer lejr #3. Soendag 9/5 er rejsedag.",
         "quota": {
-          "haard": 2,
+          "haard": 1,
           "moderat": 2
         },
         "quotaUsed": {
@@ -5900,13 +5930,13 @@
         "programId": "tds-2027",
         "start": "2027-05-10",
         "end": "2027-05-16",
-        "phase": "STELVIO",
+        "phase": "Build 1",
         "blockType": "CAMP",
         "mesoWeek": "1/1",
         "ctlTarget": 74,
         "tssTarget": 640,
         "tssActual": null,
-        "purpose": "Lejr #3: løbsspecifik. Én dag 5-6 t, ét Z5-pas, resten Stelvio-tempo.",
+        "purpose": "Lejr #3 Mallorca: løbsspecifik. Én dag 5-6 t, lange stigninger på Stelvio-watt. Hjem fre 14/5.",
         "note": "LEJR #3 Mallorca 9-14/5 (booket 27/11-2026) — loebsspecifik, tre uger foer Stelvio. 15-18 t paa 5 dage. Friels undtagelse for landevejscykling: lav 5-minutters-arbejde uanset loebslaengde. Lange stigninger paa Stelvio-watt + ett Z5-pas (reps 2-4 min, maks ~15 min i alt, 1,05-1,20 × taerskel). Hjem fre 14/5, weekend kun Z1-2.",
         "quota": {
           "haard": 2,
@@ -5929,13 +5959,13 @@
         "programId": "tds-2027",
         "start": "2027-05-17",
         "end": "2027-05-23",
-        "phase": "STELVIO",
+        "phase": "Peak 1",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 73,
         "tssTarget": 420,
         "tssActual": null,
-        "purpose": "Aflastning. Tirsdag FTP-test, torsdag åbnere, resten Z1-2. Søndag 3 t.",
+        "purpose": "Peak 1/2. Hjem fra lejr fre 14/5 — ingen test på restgæld. Ét tærskelpas 2×20 fre. Varighed −30 %. Søndag 3 t. Styrke 2×, Friel har den som nr. 2 i Peak.",
         "note": "Aflastning efter lejr #3 (var BUILD+). FTP-testen bliver liggende: en test er ikke en belastningsuge. To uger foer Stelvio koeber mere CTL ingenting.",
         "quota": {
           "haard": 1,
@@ -5958,17 +5988,17 @@
         "programId": "tds-2027",
         "start": "2027-05-24",
         "end": "2027-05-30",
-        "phase": "STELVIO",
+        "phase": "Peak 1",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 65,
         "tssTarget": 300,
         "tssActual": null,
-        "purpose": "Søndag 4 t let. Tirsdag åbnere.",
+        "purpose": "Peak 2/2. Tærskel 3×12 tir, åbnere tor. Søndag 2,5 t. Styrke droppes 7 dage før Stelvio.",
         "note": "Taper mod Stelvio.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5987,16 +6017,16 @@
         "programId": "tds-2027",
         "start": "2027-05-31",
         "end": "2027-06-06",
-        "phase": "STELVIO",
+        "phase": "Race 1",
         "blockType": "RACE",
         "mesoWeek": "1/1",
         "ctlTarget": 63,
         "tssTarget": 350,
         "tssActual": null,
-        "purpose": "Stelvio søn 6/6 som B-race og 8-9 t bjergtest. Nedtrapning man-fre, åbnere fre.",
+        "purpose": "Stelvio søn 6/6: 130 km, 4.500 hm, 5-6 t som B-løb og formcheck. Åbnere ons. Intet andet.",
         "note": "LA STELVIO SANTINI (Santini Stelvio Gran Fondo, lang rute) søn 6/6 — 130 km / 4.500 hm. B-løb, tilmeldt 16/7-2026 sammen med Eva. Form-check mod TdS: kør den som hårdt træningspas, ikke som A-løb.",
         "quota": {
-          "haard": 0,
+          "haard": 1,
           "moderat": 0
         },
         "quotaUsed": {
@@ -6029,13 +6059,13 @@
         "programId": "tds-2027",
         "start": "2027-06-07",
         "end": "2027-06-13",
-        "phase": "SPECIFIK",
+        "phase": "Transition",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 59,
-        "tssTarget": 280,
+        "tssTarget": 150,
         "tssActual": null,
-        "purpose": null,
+        "purpose": "Transition: 3-7 dage uden struktur. Cykel kun hvis du har lyst. Hvil er formålet.",
         "note": "Post-Stelvio. Evaluer mod TdS-model.",
         "quota": {
           "haard": 0,
@@ -6058,17 +6088,17 @@
         "programId": "tds-2027",
         "start": "2027-06-14",
         "end": "2027-06-20",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "1/2",
         "ctlTarget": 62,
         "tssTarget": 540,
         "tssActual": null,
-        "purpose": "Søndag 7 t. Tirsdag tærskel 2×20 + tempo sidst i lørdagsturen.",
+        "purpose": "Build 2 1/8. Søndag 6 t aerob tærskel. Tirsdag tærskel 2×20. Styrke tilbage 2×.",
         "note": "Langtur vokser: 6 t+. Fueling øves hver gang.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -6087,17 +6117,17 @@
         "programId": "tds-2027",
         "start": "2027-06-21",
         "end": "2027-06-27",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "2/2",
         "ctlTarget": 65,
         "tssTarget": 570,
         "tssActual": null,
-        "purpose": "Søndag 8 t. Tirsdag norsk kontrolleret.",
+        "purpose": "Build 2 2/8. Søndag 7 t med tempo sidst i turen. Tirsdag norsk kontrolleret. Styrke 2×.",
         "note": null,
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -6116,17 +6146,17 @@
         "programId": "tds-2027",
         "start": "2027-06-28",
         "end": "2027-07-04",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 62,
         "tssTarget": 300,
         "tssActual": null,
-        "purpose": "Søndag 4 t.",
+        "purpose": "Build 2 3/8, aflastning. Søndag 4 t. Styrke 2×.",
         "note": null,
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -6145,17 +6175,17 @@
         "programId": "tds-2027",
         "start": "2027-07-05",
         "end": "2027-07-11",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "1/1",
         "ctlTarget": 64,
         "tssTarget": 560,
         "tssActual": null,
-        "purpose": "Søndag 8,5 t. Tirsdag over-unders, bakker ude.",
+        "purpose": "Build 2 4/8. Søndag 8 t. Tirsdag tærskel sent i turen. VO2 vedligehold LØRDAG 10×1 — 72 t efter tirsdag, ikke onsdag. Styrke 2×.",
         "note": "Løb ned til 1-2 rolige. Cyklen har forkørselsret.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -6174,17 +6204,17 @@
         "programId": "tds-2027",
         "start": "2027-07-12",
         "end": "2027-07-18",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 64,
         "tssTarget": 420,
         "tssActual": null,
-        "purpose": "Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere.",
+        "purpose": "Build 2 5/8. Søndag 8,5 t med 4.000 hm. Tirsdag over-unders, bakker ude. Styrke 2×.",
         "note": "Forlejr-aflastning foer Alpelejren (var SPECIFIK+ med 9 t soendag). Samme moenster som foer lejr #1 og #2: en lejr er selve belastningsblokken, ugen foer skal aflaste. CTL-maalet holdes fladt: en aflastningsuge der bygger CTL er selvmodsigende.",
         "quota": {
-          "haard": 1,
-          "moderat": 1
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -6203,17 +6233,17 @@
         "programId": "tds-2027",
         "start": "2027-07-19",
         "end": "2027-07-25",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "CAMP",
         "mesoWeek": "1/1",
         "ctlTarget": 71,
         "tssTarget": 780,
         "tssActual": null,
-        "purpose": "Lejr #2 Alperne: back-to-back bjergdage, én tur 10-11 t med >4.000 hm. Udstyr, gearing og ernæring låses her. Ikke booket endnu (11/9-2026).",
+        "purpose": "Build 2 6/8. Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere. Styrke 2×.",
         "note": "LEJR #2 Alperne. Back-to-back bjergdage. CTL-peak. Gearing testes. FTP-test i lejren — porten mod 320 W (4,7 W/kg).",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -6232,17 +6262,17 @@
         "programId": "tds-2027",
         "start": "2027-07-26",
         "end": "2027-08-01",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 69,
         "tssTarget": 300,
         "tssActual": null,
-        "purpose": "Søndag 4 t.",
+        "purpose": "Alpelejren: back-to-back bjergdage, én tur 10-11 t med >4.000 hm. Generalprøve på fueling. Er lejren ikke booket 1/6, så kør 9-10 t hjemme i stedet — det er din eneste eksponering over 8 t.",
         "note": null,
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 2,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -6261,17 +6291,17 @@
         "programId": "tds-2027",
         "start": "2027-08-02",
         "end": "2027-08-08",
-        "phase": "SPECIFIK",
+        "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "1/1",
         "ctlTarget": 71,
         "tssTarget": 580,
         "tssActual": null,
-        "purpose": "Søndag 8 t — sidste lange. Tirsdag tærskel 2×20. Alt udstyr og ernæring er testet færdig.",
+        "purpose": "Build 2 8/8, aflastning efter Alperne. Søndag 4 t. Ingen kvalitet før torsdag. Styrke 2×.",
         "note": "Sidste større uge.",
         "quota": {
           "haard": 0,
-          "moderat": 0
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -6290,17 +6320,17 @@
         "programId": "tds-2027",
         "start": "2027-08-09",
         "end": "2027-08-15",
-        "phase": "SPECIFIK",
+        "phase": "Peak 2",
         "blockType": "TAPER",
         "mesoWeek": "1/2",
         "ctlTarget": 70,
         "tssTarget": 450,
         "tssActual": null,
-        "purpose": "Taper 1/3: volumen −25 %. Søndag 6 t. Intensitet holdes kort.",
+        "purpose": "Peak 1/2. Søndag 6 t — sidste lange. Tirsdag tærskel 2×20. Alt udstyr afprøvet. Styrke 2×.",
         "note": "Taper starter (2-3 uger progressivt, TMB-rammen).",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 2
         },
         "quotaUsed": {
           "haard": 0,
@@ -6319,17 +6349,17 @@
         "programId": "tds-2027",
         "start": "2027-08-16",
         "end": "2027-08-22",
-        "phase": "TAPER",
+        "phase": "Peak 2",
         "blockType": "TAPER",
         "mesoWeek": "2/2",
         "ctlTarget": 67,
         "tssTarget": 350,
         "tssActual": null,
-        "purpose": "Taper 2/3: volumen −50 %. Søndag 4 t. Åbnere tir.",
+        "purpose": "Peak 2/2. Volumen −40 %. Søndag 4 t. Åbnere tir. Styrke droppet 7 dage før.",
         "note": "Intensitet holdes, volumen falder.",
         "quota": {
-          "haard": 0,
-          "moderat": 0
+          "haard": 1,
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -6348,16 +6378,16 @@
         "programId": "tds-2027",
         "start": "2027-08-23",
         "end": "2027-08-29",
-        "phase": "TAPER",
+        "phase": "Race 2",
         "blockType": "RACE",
         "mesoWeek": "1/1",
         "ctlTarget": 61,
         "tssTarget": 180,
         "tssActual": null,
-        "purpose": "Race-uge: ankomst Le Châble/Verbier ons 25/8-tor 26/8. Åbnere tor. TdS lør 28/8 start 02:30.",
+        "purpose": "Race-uge: ankomst Le Châble/Verbier ons 25/8. Åbnere tor. TdS Ultrafondo lør 28/8.",
         "note": "TOUR DES STATIONS ULTRAFONDO lør 28/8 — A-løb. Start 02:30.",
         "quota": {
-          "haard": 0,
+          "haard": 1,
           "moderat": 0
         },
         "quotaUsed": {
@@ -10278,208 +10308,204 @@
       ],
       "projection": [
         {
-          "d": "2026-11-28",
-          "ctl": 34.0
-        },
-        {
           "d": "2026-11-29",
-          "ctl": 34.9
+          "ctl": 30.3
         },
         {
           "d": "2026-11-30",
-          "ctl": 35.9
+          "ctl": 31.4
         },
         {
           "d": "2026-12-01",
-          "ctl": 35.0
+          "ctl": 30.6
         },
         {
           "d": "2026-12-02",
-          "ctl": 36.0
+          "ctl": 31.7
         },
         {
           "d": "2026-12-03",
-          "ctl": 37.0
+          "ctl": 32.8
         },
         {
           "d": "2026-12-04",
-          "ctl": 37.9
+          "ctl": 33.8
         },
         {
           "d": "2026-12-05",
-          "ctl": 38.9
+          "ctl": 34.8
         },
         {
           "d": "2026-12-06",
-          "ctl": 39.8
+          "ctl": 35.8
         },
         {
           "d": "2026-12-07",
-          "ctl": 40.7
-        },
-        {
-          "d": "2026-12-08",
-          "ctl": 39.8
-        },
-        {
-          "d": "2026-12-09",
-          "ctl": 40.7
-        },
-        {
-          "d": "2026-12-10",
-          "ctl": 41.6
-        },
-        {
-          "d": "2026-12-11",
-          "ctl": 42.6
-        },
-        {
-          "d": "2026-12-12",
-          "ctl": 43.4
-        },
-        {
-          "d": "2026-12-13",
-          "ctl": 44.3
-        },
-        {
-          "d": "2026-12-14",
-          "ctl": 45.0
-        },
-        {
-          "d": "2026-12-15",
-          "ctl": 45.6
-        },
-        {
-          "d": "2026-12-16",
-          "ctl": 46.2
-        },
-        {
-          "d": "2026-12-17",
-          "ctl": 46.8
-        },
-        {
-          "d": "2026-12-18",
-          "ctl": 47.4
-        },
-        {
-          "d": "2026-12-19",
-          "ctl": 48.0
-        },
-        {
-          "d": "2026-12-20",
-          "ctl": 48.5
-        },
-        {
-          "d": "2026-12-21",
-          "ctl": 48.6
-        },
-        {
-          "d": "2026-12-22",
-          "ctl": 48.7
-        },
-        {
-          "d": "2026-12-23",
-          "ctl": 48.8
-        },
-        {
-          "d": "2026-12-24",
-          "ctl": 47.6
-        },
-        {
-          "d": "2026-12-25",
-          "ctl": 46.5
-        },
-        {
-          "d": "2026-12-26",
-          "ctl": 46.6
-        },
-        {
-          "d": "2026-12-27",
-          "ctl": 46.7
-        },
-        {
-          "d": "2026-12-28",
-          "ctl": 47.1
-        },
-        {
-          "d": "2026-12-29",
-          "ctl": 47.5
-        },
-        {
-          "d": "2026-12-30",
-          "ctl": 47.9
-        },
-        {
-          "d": "2026-12-31",
-          "ctl": 48.2
-        },
-        {
-          "d": "2027-01-01",
-          "ctl": 48.6
-        },
-        {
-          "d": "2027-01-02",
-          "ctl": 48.9
-        },
-        {
-          "d": "2027-01-03",
-          "ctl": 49.2
-        },
-        {
-          "d": "2027-01-04",
-          "ctl": 48.1
-        },
-        {
-          "d": "2027-01-05",
-          "ctl": 46.9
-        },
-        {
-          "d": "2027-01-06",
-          "ctl": 45.8
-        },
-        {
-          "d": "2027-01-07",
-          "ctl": 44.7
-        },
-        {
-          "d": "2027-01-08",
-          "ctl": 43.6
-        },
-        {
-          "d": "2027-01-09",
-          "ctl": 42.6
-        },
-        {
-          "d": "2027-01-10",
-          "ctl": 41.6
-        },
-        {
-          "d": "2027-01-11",
-          "ctl": 40.6
-        },
-        {
-          "d": "2027-01-12",
-          "ctl": 39.6
-        },
-        {
-          "d": "2027-01-13",
-          "ctl": 38.7
-        },
-        {
-          "d": "2027-01-14",
-          "ctl": 37.8
-        },
-        {
-          "d": "2027-01-15",
           "ctl": 36.9
         },
         {
-          "d": "2027-01-16",
+          "d": "2026-12-08",
           "ctl": 36.0
         },
         {
+          "d": "2026-12-09",
+          "ctl": 37.1
+        },
+        {
+          "d": "2026-12-10",
+          "ctl": 38.1
+        },
+        {
+          "d": "2026-12-11",
+          "ctl": 39.1
+        },
+        {
+          "d": "2026-12-12",
+          "ctl": 40.1
+        },
+        {
+          "d": "2026-12-13",
+          "ctl": 41.0
+        },
+        {
+          "d": "2026-12-14",
+          "ctl": 41.7
+        },
+        {
+          "d": "2026-12-15",
+          "ctl": 42.4
+        },
+        {
+          "d": "2026-12-16",
+          "ctl": 43.1
+        },
+        {
+          "d": "2026-12-17",
+          "ctl": 43.8
+        },
+        {
+          "d": "2026-12-18",
+          "ctl": 44.5
+        },
+        {
+          "d": "2026-12-19",
+          "ctl": 45.1
+        },
+        {
+          "d": "2026-12-20",
+          "ctl": 45.7
+        },
+        {
+          "d": "2026-12-21",
+          "ctl": 45.9
+        },
+        {
+          "d": "2026-12-22",
+          "ctl": 46.0
+        },
+        {
+          "d": "2026-12-23",
+          "ctl": 46.2
+        },
+        {
+          "d": "2026-12-24",
+          "ctl": 45.1
+        },
+        {
+          "d": "2026-12-25",
+          "ctl": 44.0
+        },
+        {
+          "d": "2026-12-26",
+          "ctl": 44.2
+        },
+        {
+          "d": "2026-12-27",
+          "ctl": 44.4
+        },
+        {
+          "d": "2026-12-28",
+          "ctl": 44.8
+        },
+        {
+          "d": "2026-12-29",
+          "ctl": 45.2
+        },
+        {
+          "d": "2026-12-30",
+          "ctl": 45.7
+        },
+        {
+          "d": "2026-12-31",
+          "ctl": 46.1
+        },
+        {
+          "d": "2027-01-01",
+          "ctl": 46.5
+        },
+        {
+          "d": "2027-01-02",
+          "ctl": 46.9
+        },
+        {
+          "d": "2027-01-03",
+          "ctl": 47.2
+        },
+        {
+          "d": "2027-01-04",
+          "ctl": 46.1
+        },
+        {
+          "d": "2027-01-05",
+          "ctl": 45.0
+        },
+        {
+          "d": "2027-01-06",
+          "ctl": 43.9
+        },
+        {
+          "d": "2027-01-07",
+          "ctl": 42.9
+        },
+        {
+          "d": "2027-01-08",
+          "ctl": 41.9
+        },
+        {
+          "d": "2027-01-09",
+          "ctl": 40.9
+        },
+        {
+          "d": "2027-01-10",
+          "ctl": 39.9
+        },
+        {
+          "d": "2027-01-11",
+          "ctl": 39.0
+        },
+        {
+          "d": "2027-01-12",
+          "ctl": 38.0
+        },
+        {
+          "d": "2027-01-13",
+          "ctl": 37.1
+        },
+        {
+          "d": "2027-01-14",
+          "ctl": 36.2
+        },
+        {
+          "d": "2027-01-15",
+          "ctl": 35.4
+        },
+        {
+          "d": "2027-01-16",
+          "ctl": 34.5
+        },
+        {
           "d": "2027-01-17",
-          "ctl": 35.1
+          "ctl": 33.7
         }
       ],
       "targets": [
@@ -10751,18 +10777,17 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-28T03:44:31Z",
-    "inputsHash": "2f79f61500af34d52ed731291b9d72537d8b73d9",
+    "generatedAt": "2026-11-28T05:05:38Z",
+    "inputsHash": "c7169e276b513667b74b323bc1beefa464ae7c3c",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Gennemfør Styrke A · Functional 4 · 3 runder i dag — 45 min, let belastning som planlagt.",
-      "why": "Det er ugens eneste tilbageværende styrketræning; mandag-styrken blev misset, så det tæller dobbelt."
+      "action": "Gennemfør Styrke A · Functional 4 · 3 runder (45 min) i dag.",
+      "why": "Det er ugens eneste tilbageværende styrkeblok — og styrke 2x om ugen er en del af planen resten af livet."
     },
     "training": {
-      "text": "Ugen er tung på missede pas: 5 planlagte pas er ikke gennemført (cykel og styrke tirsdag-torsdag), men de to vandre-ekstra og tre gennemførte pas har givet 226 TSS af ugens 605 planlagte — 37 %. I en RECOVERY-uge er det fint at holde volumen nede; CTL er 29,2 mod et mål på 46,0, men det indhentes ikke her — det er meningen.",
+      "text": "Ugen har 5 missede pas og kun 37% af planlagt TSS (226 af 605) — men det er en RECOVERY-uge, og vandreturene tirsdag og torsdag som ekstra ture har bidraget med reel belastning. CTL er 29,2 mod mål på 46,0, men i genopbygningsfasen er det forventet: volumen før intensitet, og CTL bygges gradvist.",
       "refs": [
-        5.0,
         226.0,
         605.0,
         37.0,
@@ -10771,32 +10796,30 @@
       ]
     },
     "body": {
-      "text": "7-dages snit er steget 1,1 kg den seneste måned — over tærsklen. Du er 0,4 kg over cut-planen (forventet 72,7 kg). Fedtprocenten på 7-dages snit er faldet 0,4 procentpoint, men det er under tærsklen på 0,5 for at kalde en retning. Hold protein ved hvert måltid og undgå alkohol i den næste uge.",
+      "text": "7-dages snit for vægt er steget 1,1 kg den seneste måned — det er over tærsklen og indikerer opadgående retning, mens cuttet sigter mod fald. Fedtsnit er kun faldet 0,4 procentpoint og er endnu ikke over tærsklen på 0,5 for at kalde en retning.",
       "refs": [
         1.1,
-        0.4,
-        72.7,
         0.4,
         0.5
       ]
     },
     "habits": {
-      "text": "Ingen alkohol-dage og 6 proteindage ud af 7 — det sidder. Søvn er stærk: 10,0 t i nat og 8,5 t i snit. Energi i snit 3,8 — ingen alarmer.",
+      "text": "Protein dækket 6 af 7 dage — solidt. Søvn var 6,8 timer i nat, under målet på 7 timer — prioritér en tidligere sengetid i aften.",
       "refs": [
         6.0,
-        10.0,
-        8.5,
-        3.8
+        7.0,
+        6.8,
+        7.0
       ]
     },
-    "bigPicture": "string",
+    "bigPicture": "Uge 48, RECOVERY-blok: genopbygning efter sygdom — lav belastning er planen, ikke et efterslæb.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [
       {
         "type": "cut",
         "level": "warn",
-        "message": "7-dages snit er 0,4 kg over cut-planen (forventet 72,7 kg). Hold protein-first og nul alkohol den næste uge.",
+        "message": "7-dages snit for vægt er steget 1,1 kg den seneste måned — cuttet er 0,4 kg bagud i forhold til planen (forventet 72,7 kg). Spis protein ved hvert måltid og undgå dage med 3+ genstande.",
         "action": null,
         "source": "ai"
       }
@@ -10923,7 +10946,7 @@
       "expectedKg": 72.7,
       "corridorKg": 0.5,
       "avg7": 73.0,
-      "avg7Date": "2026-11-21",
+      "avg7Date": "2026-11-28",
       "delta": 0.3,
       "status": "plan",
       "note": null,
@@ -10983,8 +11006,8 @@
       ]
     },
     "fat": {
-      "avg14": 22.5,
-      "avg14Change28d": -0.1,
+      "avg14": 22.4,
+      "avg14Change28d": -0.2,
       "expected": 22.6,
       "target": 20.5,
       "corridorPp": 0.5,
@@ -10993,7 +11016,7 @@
     },
     "ffm": {
       "now": 56.5,
-      "change28d": 0.8,
+      "change28d": 0.9,
       "target": 56.0,
       "status": "ok",
       "baseline": 56.4,
@@ -11022,8 +11045,8 @@
         },
         "ffm": {
           "level": null,
-          "value": 0.8,
-          "text": "+0,8 kg på 4 uger"
+          "value": 0.9,
+          "text": "+0,9 kg på 4 uger"
         },
         "strength": {
           "level": null,
@@ -11037,9 +11060,9 @@
           "level": null,
           "value": {
             "rhr": 1.3,
-            "hrvPct": -4.5
+            "hrvPct": -3.7
           },
-          "text": "hvilepuls +1 · HRV −5 % (14 dage)"
+          "text": "hvilepuls +1 · HRV −4 % (14 dage)"
         },
         "plateau": {
           "level": null,
@@ -11375,15 +11398,15 @@
     "isoWeek": 48,
     "lines": [
       "Uge 48: TSS 226 af 605 (37 %) · CTL 29,2 (mål 46) · TSB −4,4",
-      "Vægt 7d 73,0 kg · fedt 14d 22,5 % · på plan mod glidepath (72,7)",
-      "HRV 7d 38 (28d 39) · hvilepuls 49 · søvn 7d 8,7 t",
+      "Vægt 7d 73,0 kg · fedt 14d 22,4 % · på plan mod glidepath (72,7)",
+      "HRV 7d 39 (28d 40) · hvilepuls 49 · søvn 7d 8,4 t",
       "AF 6/7 · protein 3/3 6/7 · aftensult —/7",
       "Styrke 0/2 · check-in 1/11 ben ✓ overkrop ✓",
       "Cut-tjek: ok — På plan — fortsæt",
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-28T03:44:13Z"
+    "generatedAt": "2026-11-28T05:05:21Z"
   },
   "proposals": [],
   "ftp": {
@@ -11518,5 +11541,158 @@
     "ef": null,
     "pct": null,
     "best_secs": null
+  },
+  "phase": {
+    "fase": "BASE",
+    "navn": "Early Base",
+    "formaal": "Maksimér styrke og begynd at bygge den aerobe form.",
+    "prioriteter": [
+      "Styrke",
+      "Aerob tærskel",
+      "Aerob kapacitet"
+    ],
+    "uge_i_fasen": 4,
+    "uger_i_alt": 4,
+    "tilbage": 0,
+    "slutter": "2026-11-23",
+    "naeste": "Preparation",
+    "varighed_ok": true,
+    "varighed_min": 3,
+    "varighed_max": 6,
+    "afsnit": [
+      {
+        "fase": "TRANSITION",
+        "navn": "Transition",
+        "fra": 1,
+        "til": 8,
+        "uger": 8,
+        "start": "2026-09-07",
+        "ok": false,
+        "min": 1,
+        "max": 4
+      },
+      {
+        "fase": "BASE",
+        "navn": "Early Base",
+        "fra": 9,
+        "til": 12,
+        "uger": 4,
+        "start": "2026-11-02",
+        "ok": true,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "fase": "Preparation",
+        "navn": "Preparation",
+        "fra": 13,
+        "til": 17,
+        "uger": 5,
+        "start": "2026-11-30",
+        "ok": true,
+        "min": 1,
+        "max": 6
+      },
+      {
+        "fase": "Early Base",
+        "navn": "Early Base",
+        "fra": 18,
+        "til": 23,
+        "uger": 6,
+        "start": "2027-01-04",
+        "ok": true,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "fase": "Late Base",
+        "navn": "Late Base",
+        "fra": 24,
+        "til": 29,
+        "uger": 6,
+        "start": "2027-02-15",
+        "ok": true,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "fase": "Build 1",
+        "navn": "Build",
+        "fra": 30,
+        "til": 36,
+        "uger": 7,
+        "start": "2027-03-29",
+        "ok": true,
+        "min": 6,
+        "max": 9
+      },
+      {
+        "fase": "Peak 1",
+        "navn": "Peak",
+        "fra": 37,
+        "til": 38,
+        "uger": 2,
+        "start": "2027-05-17",
+        "ok": true,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "fase": "Race 1",
+        "navn": "Race",
+        "fra": 39,
+        "til": 39,
+        "uger": 1,
+        "start": "2027-05-31",
+        "ok": true,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "fase": "Transition",
+        "navn": "Transition",
+        "fra": 40,
+        "til": 40,
+        "uger": 1,
+        "start": "2027-06-07",
+        "ok": true,
+        "min": 1,
+        "max": 4
+      },
+      {
+        "fase": "Build 2",
+        "navn": "Build",
+        "fra": 41,
+        "til": 48,
+        "uger": 8,
+        "start": "2027-06-14",
+        "ok": true,
+        "min": 6,
+        "max": 9
+      },
+      {
+        "fase": "Peak 2",
+        "navn": "Peak",
+        "fra": 49,
+        "til": 50,
+        "uger": 2,
+        "start": "2027-08-09",
+        "ok": true,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "fase": "Race 2",
+        "navn": "Race",
+        "fra": 51,
+        "til": 51,
+        "uger": 1,
+        "start": "2027-08-23",
+        "ok": true,
+        "min": 1,
+        "max": 1
+      }
+    ],
+    "kolonne": ">4t"
   }
 }
