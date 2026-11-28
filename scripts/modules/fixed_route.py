@@ -28,6 +28,17 @@ except ImportError:                       # tests importerer som top-level
 # Ruter. hm og km er ruten; tolerancerne skal rumme GPS-stoej og at man sjaeldent
 # starter og stopper praecis ved skiltet.
 ROUTES = {
+    # Standardruten fra 28/11-2026 (Kennets eget tal): Fornalutx -> toppen.
+    # Valgt frem for Sa Calobra fordi det er turen han faktisk koerer, og fordi
+    # en laengere stigning giver et roligere W/slag — Sa Calobra blev aldrig
+    # koert med puls og watt, saa serien stod tom.
+    "puig_major": {
+        "navn": "Puig Major",
+        "km": 12.0, "hm": 700,
+        "km_tol": 1.5, "hm_tol": 100,
+        "note": "Fra Fornalutx til toppen. Maal det samme hver gang — tallet "
+                "maa kun sammenlignes med sig selv.",
+    },
     "sa_calobra": {
         "navn": "Sa Calobra",
         "km": 9.45, "hm": 627,
@@ -35,6 +46,9 @@ ROUTES = {
         "note": "Fra Coll dels Reis-siden. PR 35:18 paa 275 W (2026).",
     },
 }
+# Ruten der maales paa, naar kalderen ikke siger andet. Gamle forsoeg paa andre
+# ruter bliver liggende i serien — kortet filtrerer paa route.
+DEFAULT_ROUTE = "puig_major"
 MIN_ELEV_GAIN = 500        # billigt forfilter paa aktivitetsniveau
 MIN_SAMPLES = 60           # under et minuts data er ikke en stigning
 # Vinduet skal BEGYNDE hvor stigningen begynder og SLUTTE paa toppen. Uden det
@@ -61,7 +75,7 @@ def _mean(xs):
     return sum(vals) / len(vals) if vals else None
 
 
-def find_effort(streams, route="sa_calobra"):
+def find_effort(streams, route=DEFAULT_ROUTE):
     """Find rutens vindue i en aktivitets streams.
 
     Returnerer {start_idx, end_idx, secs, km, hm, watts, hr, ef} eller None.
@@ -153,7 +167,7 @@ def is_candidate(act, bike_types=None):
     return gain >= MIN_ELEV_GAIN
 
 
-def record(act, effort, route="sa_calobra"):
+def record(act, effort, route=DEFAULT_ROUTE):
     """En raekke til serien. Noegle er aktivitetens id, saa en genkoersel ikke
     laver dubletter."""
     r = ROUTES.get(route) or {}
@@ -175,7 +189,7 @@ def merge(serie, nye):
     return sorted(ved.values(), key=lambda r: (r.get("date") or "", r.get("id") or 0))
 
 
-def card(serie, route="sa_calobra"):
+def card(serie, route=DEFAULT_ROUTE):
     """data.json-blokken. Farven sættes her, ikke i UI'et.
 
     Retningen er det eneste der betyder noget: stiger watt pr. hjerteslag paa

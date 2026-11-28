@@ -543,6 +543,37 @@ def strength_last4(strength_log, n=4):
     return out
 
 
+def strength_frequency(strength_log, today=None, target=2, weeks=8):
+    """Frekvens frem for program (28/11-2026, Kennets beslutning).
+
+    Progressionsmotoren regner øvelser, sæt og vægtstigninger ud, som Kennet
+    ikke bruger. Det der afgør om man er funktionel som 70-årig, er at passene
+    bliver lavet — 2 gange om ugen, resten af livet. Her er tallet:
+
+      {target, thisWeek, weeks: [{start, n, hit}] ældst -> nyest, inkl. denne}
+
+    Den indeværende uge er med og er sjældent færdig; `hit` siger kun om målet
+    allerede er nået, ikke om ugen er tabt.
+    """
+    today = _to_date(today) if today else date.today()
+    log = strength_log or {}
+    dates = [_to_date(e['date']) for e in (log.get('sessions') or [])
+             if isinstance(e, dict) and e.get('date')]
+    lo = _to_date(log['from']) if log.get('from') else None
+    m_this = monday_of(today)
+    out = []
+    for k in range(weeks - 1, -1, -1):
+        m = m_this - timedelta(days=7 * k)
+        # Uger loggen ikke dækker helt er ukendte, ikke nul. Uden dette stod
+        # ugen før loggens start som 0 pas (fundet 28/11-2026 mod rigtige data).
+        if lo and m < lo:
+            continue
+        n = sum(1 for d in dates if m <= d <= m + timedelta(days=6))
+        out.append({'start': m.isoformat(), 'n': n, 'hit': n >= target})
+    this_week = out[-1]['n'] if out and out[-1]['start'] == m_this.isoformat() else 0
+    return {'target': int(target), 'thisWeek': this_week, 'weeks': out}
+
+
 def build_strength(plan, strength_log, today=None, templates=None, athlete='kennet', target=2):
     """data['strength'] = {templates, next, last4, checkin} (blok 8 + 10).
     next.exercises har progressionen (strengthProgression) lagt på; checkin
@@ -555,6 +586,7 @@ def build_strength(plan, strength_log, today=None, templates=None, athlete='kenn
     return {'templates': strength_templates(tpls),
             'next': next_strength(plan, strength_log, today, tpls, athlete, target, progression=prog),
             'last4': strength_last4(strength_log),
+            'frequency': strength_frequency(strength_log, today, target),
             'checkin': _sp.build_checkin(ath.get('strengthCheckin'), prog, today, ath.get('days'))}
 
 

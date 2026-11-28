@@ -564,6 +564,17 @@ details.fold[open] > summary::after { content:"▴"; }
 .st-last .ok { color:var(--ok); } .st-last .no { color:var(--act); } .st-last .nd { color:var(--muted); }
 .st-last .note { font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
 .st-state { font-family:'Space Mono',monospace; font-size:10.5px; color:var(--muted); line-height:1.5; margin:0 0 8px; }
+.stf-now { font-family:'Newsreader',serif; font-size:30px; color:var(--ink); line-height:1.1; margin:2px 0 10px; }
+.stf-now b { font-size:38px; font-weight:600; }
+.stf-now span { font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.06em; margin-left:6px; }
+.stf-weeks { display:flex; gap:10px; align-items:flex-end; margin-bottom:10px; }
+.stf-w { display:flex; flex-direction:column; align-items:center; gap:4px; }
+.stf-w span { font-family:'Space Mono',monospace; font-size:10px; color:var(--muted); }
+.stf-dot { width:14px; height:14px; border-radius:50%; border:1.5px solid var(--line); }
+.why { margin-top:10px; }
+.why > summary { cursor:pointer; list-style:none; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.06em; color:var(--gold); padding:4px 0; }
+.why > summary::-webkit-details-marker { display:none; }
+.why > div { font-size:11px; color:var(--muted); line-height:1.5; margin-top:2px; }
 .st-state b { color:var(--gold); font-weight:600; }
 .st-ex .v.up { color:var(--gold); }
 .ck-card { border:1.5px solid var(--gold); }
@@ -842,7 +853,7 @@ const STATIC = {
 let D = {
   zones: null,   // sat fra data.json (kilde: data/plan.json)
   vo2: null,     // VO2-dosis fra data.json (27/11-2026) — null = ingen pipeline-koersel endnu
-  fixedRouteEf: null,  // EF paa fast rute (Sa Calobra) fra data.json
+  fixedRouteEf: null,  // EF paa fast rute (standard: Puig Major) fra data.json
   phase: null,   // Friels fase + prioriteter fra data.json
   weightGoal: null, bodyFatGoal: null,   // fra data.json — aldrig hardkodet her
   week:1, totalWeeks:14, blockType:"BUILD",
@@ -1652,7 +1663,6 @@ function renderToday() {
   ${seasonStripV2()}
   ${complianceHtml()}
   ${ckCardHtml()}
-  ${todayStrengthHtml()}
   ${oneThing(r)}
   ${kpiStripV2()}
   ${coachVoiceCard()}
@@ -2571,6 +2581,8 @@ function renderMore() {
   <h2 class="section-h">Træning</h2>
   ${renderOverview()}
   ${strengthCardHtml()}
+  <h2 class="section-h">Dybere tal</h2>
+  ${renderDeeperNumbers()}
   <h2 class="section-h">Regler</h2>
   ${renderRules()}
   <h2 class="section-h">Martin</h2>
@@ -3114,6 +3126,11 @@ function renderOverview() {
 }
 
 function renderBody() {
+  // Ryddet 28/11-2026. Krop havde ti blokke, der alle svarede paa "hvordan
+  // gaar det" med hvert sit tal. Tre blokke tilbage — krop, fitness, form —
+  // og testen paa hver: aendrer tallet hvad jeg goer i morgen? VO2-dosis,
+  // EF paa fast rute, Friels principper, cut-tjekkets seks signaler og
+  // vanerne er diagnostik; de ligger under Mere > Dybere tal.
   const b = D.body || null;
   const g = (b && b.glidepath) || null;
   return `
@@ -3123,13 +3140,8 @@ function renderBody() {
     ${glidepathGraph(g)}
   </div>
   ${bodyTiles(b)}
-  ${ftpCard(D.ftp)}
-  ${vo2Card(D.vo2)}
-  ${fixedRouteCard(D.fixedRouteEf)}
-  ${frielCard()}
-  ${cutCheckCard(b)}
   <div class="card">
-    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.fatHistory||D.hrvHistory||D.sleepHistory||[]).length} dage</div>
+    <div class="label" style="margin-bottom:12px">Fedtprocent — seneste ${(D.fatHistory||[]).length} dage</div>
     ${D.fatHistory && D.fatHistory.filter(p=>p && p.real).length >= 2
         ? sparkline(D.fatHistory, 'var(--run)', 'FEDT%', '%', null, null, true, null, true, {avgDays:14, subLabel:'14d-snit ±0,5'})
         : `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 4px 2px">
@@ -3137,7 +3149,14 @@ function renderBody() {
              <span style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted)">Ingen målinger endnu</span>
            </div>`
     }
-    <div style="height:14px"></div>
+  </div>
+
+  <h2 class="section-h">Fitness</h2>
+  ${ftpCard(D.ftp)}
+
+  <h2 class="section-h">Form</h2>
+  <div class="card">
+    <div class="label" style="margin-bottom:12px">Tendenser — seneste ${(D.hrvHistory||D.sleepHistory||[]).length} dage</div>
     ${sparkline(D.hrvHistory, 'var(--swim)', 'HRV', 'ms', null, null, true)}
     <div style="height:14px"></div>
     ${(D.rhrHistory||[]).filter(p=>p&&p.v!=null).length >= 2
@@ -3145,7 +3164,18 @@ function renderBody() {
         : ''}
     ${sparkline(D.sleepHistory, 'var(--bike)', 'SØVN', 't', null, null, true)}
   </div>
+`;
+}
 
+// Diagnostik — flyttet fra Krop 28/11-2026. Tallene er stadig rigtige og
+// stadig beregnet; de hoerer bare ikke til paa en forside man ser hver dag.
+function renderDeeperNumbers() {
+  const b = D.body || null;
+  return `
+  ${vo2Card(D.vo2)}
+  ${fixedRouteCard(D.fixedRouteEf)}
+  ${cutCheckCard(b)}
+  ${frielCard()}
   ${habitsWeekCard()}
 `;
 }
@@ -3215,6 +3245,11 @@ const FRIEL_DIT = [
   ["Protein 40 g inden 30 min", "Efter styrke og tærskelpas. Ældre atleter skal have ca. det dobbelte af en 25-årig for samme muskelproteinsyntese."],
   ["Hvile er \u201epå efterspørgsel\u201d", "Friel lægger ikke hvile hver fjerde uge efter kalenderen. Du tager den når kroppen siger til — men han tilføjer at atleter underrapporterer træthed."],
 ];
+// Forklaringer foldes vaek (28/11-2026). En forklaring skal laeses foerste
+// gang man ser et kort, ikke 200. gang — men den skal stadig kunne findes.
+function why(inner, label = 'HVORFOR') {
+  return `<details class="why"><summary>${label} ▾</summary><div>${inner}</div></details>`;
+}
 function fixedRouteCard(f) {
   if (!f) return '';
   const col = f.color || 'var(--num)';
@@ -3237,12 +3272,10 @@ function fixedRouteCard(f) {
     </div>
     <div style="font-family:'Space Mono',monospace;font-size:11px;color:${col};margin-top:4px">${esc(f.status || '')}</div>
     ${rows ? `<div style="margin-top:10px"><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:4px">FORSØG</div>${rows}</div>` : ''}
-    <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:10px">
-      Den almindelige EF sorterer bjergture fra, fordi GAP underkorrigerer over 15 hm/km —
+    ${why(`Den almindelige EF sorterer bjergture fra, fordi GAP underkorrigerer over 15 hm/km —
       og Fornalutx ligger på 20-25. Derfor måles der her på samme stigning hver gang: watt pr.
       hjerteslag, hvor længde, højde og retning er ens. Tallet må kun sammenlignes med sig selv.
-      ${f.note ? esc(f.note) : ''}
-    </div>
+      ${f.note ? esc(f.note) : ''}`)}
   </div>`;
 }
 
@@ -3314,10 +3347,8 @@ function vo2Card(v) {
     </div>
     <div style="font-family:Space Mono,monospace;font-size:11px;color:${col};margin-top:4px">${esc(v.status || '')}</div>
     <div style="display:flex;gap:6px;align-items:flex-end;margin-top:12px">${bars}</div>
-    <div style="font-family:Space Mono,monospace;font-size:10px;color:var(--muted);margin-top:8px;line-height:1.5">
-      Friels dosering: 3-5 min i prep, ca. 5 min i tidlig base, ca. 15 min i sen base og build, 0 i restitutionsuger.
-      Stiplet linje er ugens mål. Cykling måles på watt, resten på puls — ikke Garmins VO2max, som stiger mekanisk når vægten falder.
-    </div>
+    ${why(`Friels dosering: 3-5 min i prep, ca. 5 min i tidlig base, ca. 15 min i sen base og build, 0 i restitutionsuger.
+      Stiplet linje er ugens mål. Cykling måles på watt, resten på puls — ikke Garmins VO2max, som stiger mekanisk når vægten falder.`)}
   </div>`;
 }
 
@@ -3356,8 +3387,7 @@ function ftpCard(f) {
       ${word ? `<div style="margin-left:auto;font-family:Space Mono,monospace;font-size:10px;letter-spacing:.08em;color:${col}">${word.toUpperCase()}</div>` : ''}
     </div>
     <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted);margin-top:4px">${esc(tgt)}${f.nextTest ? ` · næste test ${_dkShort(f.nextTest)}` : ''}</div>
-    <div style="margin-top:8px">${phases}</div>
-    ${rows ? `<div style="margin-top:10px"><div style="font-family:Space Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:4px">HISTORIK</div>${rows}</div>` : ''}
+    ${phases || rows ? why(`${phases ? `<div>${phases}</div>` : ''}${rows ? `<div style="margin-top:10px">${rows}</div>` : ''}`, 'ALLE FASER OG HISTORIK') : ''}
   </div>`;
 }
 
@@ -3393,55 +3423,32 @@ function bodyTiles(b) {
 // data.strength.next.exercises har allerede de aktuelle kg/reps.
 function _stLetter(name){ const m = String(name || '').match(/Styrke\s+([AB])\b/i); return m ? m[1].toUpperCase() : null; }
 function _stDate(iso){ const m = String(iso || '').match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? `${+m[3]}/${+m[2]}` : '—'; }
-function _stExRows(exs){
-  return (exs || []).map(e => {
-    const load = e.load != null && e.load !== '' ? (typeof e.load === 'number' ? `${fmtDa(e.load, e.load % 1 ? 1 : 0)} kg` : esc(e.load)) : '—';
-    // unit fra workout_library: "reps" → ×10, "reps/side" → ×8/side, "m" → 40 m.
-    const u = String(e.unit || '');
-    const reps = e.reps == null ? '' : /^reps/i.test(u) ? `×${esc(e.reps)}${esc(u.slice(4))}` : u ? `${esc(e.reps)} ${esc(u)}` : `×${esc(e.reps)}`;
-    const up = (e.baseLoad != null && e.baseLoad !== e.load) || (e.baseReps != null && e.baseReps !== e.reps);
-    return `<div class="st-ex"><span class="n">${esc(e.name)}${e.group ? `<i>${esc(String(e.group).toUpperCase())}</i>` : ''}${e.capped ? '<i title="største vægt hjemme">MAX</i>' : ''}</span><span class="v${up ? ' up' : ''}">${load}${reps ? ` <span>·</span> ${reps}` : ''}</span></div>`;
-  }).join('');
-}
-function _stNext(){
-  const s = D.strength, nx = s && s.next;
-  const tpl = nx && (s.templates || []).find(t => t.id === nx.templateId) || null;
-  const exs = nx && Array.isArray(nx.exercises) && nx.exercises.length ? nx.exercises : (tpl && Array.isArray(tpl.exercises) ? tpl.exercises : []);
-  return { s, nx, tpl, exs };
-}
 function strengthCardHtml() {
-  const { s, nx, tpl, exs } = _stNext();
-  if (!s || !nx) return '';
-  // Navn fra next (fx "Styrke A · Functional 4 · 2 runder"); runder tilføjes kun hvis navnet ikke selv siger det.
-  const baseName = nx.name || (tpl && tpl.name) || `Styrke ${String(nx.ab || '').toUpperCase()}`;
-  const rounds = tpl && tpl.rounds && !/runder/i.test(baseName) ? ` · ${tpl.rounds} runder` : '';
-  const title = esc(baseName) + rounds;
-  const exHtml = _stExRows(exs);
-  const ck = s.checkin || {};
-  const stateLine = [nx.stateSummary ? esc(nx.stateSummary) : '', nx.recovery ? '<b>Recovery-uge — ingen progression</b>' : '',
-                     ck.next ? `check-in ${_stDate(ck.due ? ck.date : ck.next)}${ck.due ? ' — venter i I dag' : ''}` : ''].filter(Boolean).join(' · ');
-  const prog = tpl && tpl.progression ? `<div class="st-prog">${esc(tpl.progression)}</div>` : '';
+  // Frekvens frem for program (28/11-2026, Kennets beslutning). Progressionen
+  // — øvelser, sæt, vægtstigninger — regnes stadig i data.strength.next, men
+  // vises ikke: han bruger den ikke, og det der afgør om man er funktionel som
+  // 70-årig er at passene bliver lavet. Derfor ét tal: pas denne uge mod mål.
+  const s = D.strength, f = s && s.frequency;
+  if (!f || !Array.isArray(f.weeks) || !f.weeks.length) return '';
+  const mål = f.target || 2;
+  const nu = f.thisWeek || 0;
+  const col = nu >= mål ? 'var(--ok, #27AE60)' : nu > 0 ? 'var(--gold)' : 'var(--muted)';
+  const dots = f.weeks.map(w => {
+    const d = new Date(w.start + 'T00:00:00');
+    const uge = isoWeekOf(d);
+    const fyldt = w.hit ? 'background:var(--ok, #27AE60);border-color:var(--ok, #27AE60)'
+                        : w.n > 0 ? 'background:var(--gold);border-color:var(--gold);opacity:.55'
+                                  : 'background:transparent';
+    return `<div class="stf-w" title="uge ${uge}: ${w.n} pas"><div class="stf-dot" style="${fyldt}"></div><span>${w.n}</span></div>`;
+  }).join('');
+  const ck = (s.checkin || {});
   return `<div class="card" id="strength-card">
     <div class="label" style="margin-bottom:6px">Styrke</div>
-    <div class="st-next"><small>NÆSTE</small>${title}</div>
-    ${nx.reasoning ? `<div class="st-why">${esc(nx.reasoning)}</div>` : ''}
-    ${stateLine ? `<div class="st-state">${stateLine}</div>` : ''}
-    ${exHtml || '<div class="sys-note">Øvelseslisten kommer når templaten findes i data.strength.templates.</div>'}
-    ${prog}
+    <div class="stf-now"><b style="color:${col}">${nu}</b> / ${mål} <span>denne uge</span></div>
+    <div class="stf-weeks">${dots}</div>
+    <div class="st-state">${f.weeks.length} uger · en fyldt prik er en uge med målet nået${ck.due ? ' · check-in venter i I dag' : ''}</div>
   </div>`;
 }
-// I dag: øvelseslisten inline når dagens (første) pas er styrke og data.strength.next peger på i dag.
-function todayStrengthHtml(){
-  const first = todaySessionsNorm()[0] || null;
-  if (!first || !(first.discipline === 'strength' || /styrke/i.test(first.title || ''))) return '';
-  const { nx, exs } = _stNext();
-  if (!nx || !exs.length) return '';
-  if (nx.date && nx.date !== todayIso()) return '';
-  const stateLine = [nx.stateSummary ? esc(nx.stateSummary) : '', nx.recovery ? '<b>Recovery — ingen progression</b>' : ''].filter(Boolean).join(' · ');
-  return `<div class="card" id="today-strength"><div class="label" style="margin-bottom:6px">Dagens styrke</div>
-    ${stateLine ? `<div class="st-state">${stateLine}</div>` : ''}${_stExRows(exs)}</div>`;
-}
-
 // ── Styrke-check-in hver 4. uge (blok 10; 14 → 28 dage 11/9-2026) — kort i I dag ─────────────────
 // data.strength.checkin = {due, date (søndagen), next, question, recoveryNext,
 // last, state, stateSummary}. Kortet vises når due er sandt og bliver stående

@@ -32,7 +32,7 @@ SA_CALOBRA = [(1200, 12000, 40, 180, 130),
 
 def test_finder_stigningen_i_en_hel_tur():
     """Vinduet skal ramme stigningen, ikke tilkoerslen: 9,45 km / 627 hm / 36 min."""
-    e = fr.find_effort(_streams(SA_CALOBRA))
+    e = fr.find_effort(_streams(SA_CALOBRA), route="sa_calobra")
     assert e is not None
     assert abs(e["secs"] - 2160) <= 30        # 36 min +/- et halvt minut
     assert abs(e["km"] - 9.45) <= 0.2
@@ -48,12 +48,14 @@ def test_en_flad_tur_giver_ingen_stigning():
 
 
 def test_en_anden_stigning_matcher_ikke_ruten():
-    # Puig Major: 14 km / 800 hm — uden for begge tolerancer
-    anden = [(600, 6000, 20, 180, 128), (3000, 14000, 800, 260, 148)]
-    assert fr.find_effort(_streams(anden)) is None
+    # En stigning paa 16 km / 1000 hm er uden for begge ruters tolerancer
+    anden = [(600, 6000, 20, 180, 128), (3600, 16000, 1000, 260, 148)]
+    assert fr.find_effort(_streams(anden), route="sa_calobra") is None
+    assert fr.find_effort(_streams(anden), route="puig_major") is None
     # og en for kort stigning
     kort = [(600, 6000, 20, 180, 128), (1200, 5000, 400, 280, 152)]
-    assert fr.find_effort(_streams(kort)) is None
+    assert fr.find_effort(_streams(kort), route="sa_calobra") is None
+    assert fr.find_effort(_streams(kort), route="puig_major") is None
 
 
 def test_vaelger_stigningen_og_ikke_stigning_plus_pause():
@@ -71,7 +73,8 @@ def test_vaelger_stigningen_og_ikke_stigning_plus_pause():
 
 def test_manglende_puls_eller_watt_giver_ingen_ef():
     st = fr.find_effort([{"type": "distance", "data": [i * 10.0 for i in range(1000)]},
-                         {"type": "altitude", "data": [i * 0.7 for i in range(1000)]}])
+                         {"type": "altitude", "data": [i * 0.7 for i in range(1000)]}],
+                        route="sa_calobra")
     assert st is not None and st["ef"] is None and st["watts"] is None
 
 
@@ -102,7 +105,7 @@ def test_merge_laver_ingen_dubletter():
 
 def test_card_retning():
     def row(i, d, ef, secs=2160):
-        return {"id": i, "date": d, "ef": ef, "secs": secs, "route": "sa_calobra"}
+        return {"id": i, "date": d, "ef": ef, "secs": secs, "route": fr.DEFAULT_ROUTE}
     tom = fr.card([])
     assert tom["n"] == 0 and tom["status"] == "ingen forsøg endnu"
     ett = fr.card([row(1, "2027-03-16", 1.80)])
@@ -116,3 +119,34 @@ def test_card_retning():
     # bedste tid foelger med, saa PR'en kan staa ved siden af EF
     tider = fr.card([row(1, "2027-03-16", 1.8, 2200), row(2, "2027-04-13", 1.9, 2100)])
     assert tider["best_secs"] == 2100
+
+
+# ── Puig Major, standardruten fra 28/11-2026 ──────────────────────────────
+
+def test_puig_major_fra_fornalutx():
+    """Turen starter for foden af stigningen — der er intet fladt tilloeb.
+
+    Kennet koerer fra Fornalutx og begynder at stige med det samme. Vinduet
+    skal stadig findes: 12 km / 700 hm paa ca. 50 min.
+    """
+    tur = [(3000, 12000, 700, 250, 145),      # stigningen, fra foerste sekund
+           (1500, 11800, -690, 130, 118)]     # ned igen
+    e = fr.find_effort(_streams(tur))
+    assert e is not None
+    assert abs(e["km"] - 12.0) <= 0.3
+    assert abs(e["hm"] - 700) <= 25
+    assert abs(e["secs"] - 3000) <= 60
+    assert e["watts"] == 250 and e["hr"] == 145
+
+
+def test_standardruten_er_puig_major_og_kortet_filtrerer_paa_rute():
+    """Gamle forsoeg paa en anden rute maa ikke blande sig i serien."""
+    assert fr.DEFAULT_ROUTE in fr.ROUTES
+    anden_rute = [r for r in fr.ROUTES if r != fr.DEFAULT_ROUTE][0]
+    serie = [{"id": 1, "date": "2027-03-16", "ef": 1.80, "secs": 3000,
+              "route": fr.DEFAULT_ROUTE},
+             {"id": 2, "date": "2027-04-13", "ef": 9.99, "secs": 2160,
+              "route": anden_rute}]
+    k = fr.card(serie)
+    assert k["n"] == 1 and k["ef"] == 1.80
+    assert k["navn"] == fr.ROUTES[fr.DEFAULT_ROUTE]["navn"]

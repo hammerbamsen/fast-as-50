@@ -502,3 +502,41 @@ def test_build_strength_last4_newest_first():
     assert s["last4"][0] == {"date": "2026-09-10", "name": "Styrketræning", "ab": "b", "rpe": 7, "complete": 1, "note": "swing 16 næste gang"}
     assert s["next"]["ab"] == "a" and len(s["templates"]) == 4
     json.dumps(s)
+
+
+# ── Styrke som frekvens (28/11-2026) ─────────────────────────────────────────
+
+def _slog(dates, frm="2026-09-01", til="2026-11-28"):
+    return {"from": frm, "to": til,
+            "sessions": [{"date": d, "name": "Styrke A"} for d in dates]}
+
+
+def test_strength_frequency_taeller_pas_pr_uge():
+    # lørdag 28/11-2026; ugen begynder mandag 23/11
+    log = _slog(["2026-11-23", "2026-11-26",            # denne uge: 2
+                 "2026-11-17",                          # ugen før: 1
+                 "2026-11-09", "2026-11-11", "2026-11-13"])   # 3 i uge 46
+    f = body.strength_frequency(log, "2026-11-28", target=2, weeks=4)
+    assert f["target"] == 2
+    assert f["thisWeek"] == 2
+    # fire uger: 45 (tom), 46, 47, 48 — ældst først, den indeværende sidst
+    assert [w["n"] for w in f["weeks"]] == [0, 3, 1, 2]
+    assert [w["start"] for w in f["weeks"]][-1] == "2026-11-23"
+    assert [w["hit"] for w in f["weeks"]] == [False, True, False, True]
+
+
+def test_strength_frequency_uger_loggen_ikke_daekker_helt_er_ikke_nul():
+    """En delvist daekket uge er ukendt, ikke en uge uden styrke."""
+    log = _slog(["2026-11-23"], frm="2026-11-23")
+    f = body.strength_frequency(log, "2026-11-28", target=2, weeks=8)
+    assert len(f["weeks"]) == 1 and f["weeks"][0]["start"] == "2026-11-23"
+    assert f["thisWeek"] == 1 and f["weeks"][0]["hit"] is False
+    # loggen begynder midt i ugen 26/10 -> den uge maa ikke staa som 0 pas
+    log2 = _slog(["2026-11-02", "2026-11-05"], frm="2026-10-31")
+    f2 = body.strength_frequency(log2, "2026-11-08", target=2, weeks=4)
+    assert [w["start"] for w in f2["weeks"]] == ["2026-11-02"]
+
+
+def test_strength_frequency_uden_log():
+    f = body.strength_frequency(None, "2026-11-28", target=2)
+    assert f["thisWeek"] == 0 and f["weeks"] == [] or all(w["n"] == 0 for w in f["weeks"])
