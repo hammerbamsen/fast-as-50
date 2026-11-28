@@ -1382,6 +1382,33 @@ const BT_FARVE = {
 };
 function _btFarve(bt){ return BT_FARVE[String(bt || '').toUpperCase()] || '#9AA7B2'; }
 
+// Dansk navn pr. blocktype til signaturen. 28/11-2026: striben havde kun en
+// tekstlinje under sig ("farve er blocktype"), uden at vise HVILKEN farve der
+// er hvad. Kennet: "kan man ikke vise legends med farver?"
+const BT_DA = {
+  RECOVERY:'Restitution', REST:'Hvile', BASE:'Base', 'BASE+':'Base+',
+  BUILD:'Build', 'BUILD+':'Build+', SPECIFIK:'Specifik', 'SPECIFIK+':'Specifik+',
+  STELVIO:'Stelvio', PEAK:'Peak', CAMP:'Lejr', TAPER:'Taper', RACE:'Løb',
+};
+function _btDa(bt){ const k = String(bt || '').toUpperCase(); return BT_DA[k] || k || '—'; }
+
+// Kun de typer der faktisk ligger i planen — en signatur med ni farver hvoraf
+// fem er ubrugte er stoej.
+function btSignatur(weeks){
+  const set = [];
+  (weeks || []).forEach(x => {
+    const k = String(x.blockType || '').toUpperCase();
+    if (k && !set.includes(k)) set.push(k);
+  });
+  if (!set.length) return '';
+  const brik = set.map(k =>
+    `<span style="display:inline-flex;align-items:center;gap:4px">
+       <span style="width:14px;height:9px;border-radius:2px;background:${_btFarve(k)};display:inline-block;flex:none"></span>
+       <span style="font-size:10px;color:var(--muted);white-space:nowrap">${esc(_btDa(k))}</span>
+     </span>`).join('');
+  return `<div style="display:flex;flex-wrap:wrap;gap:5px 10px;margin-top:8px">${brik}</div>`;
+}
+
 // Fasekort (28/11-2026). Kennet: "det drukner lidt" — derfor staar fasen nu
 // foerst og stort, med Friels prioritetsraekkefoelge under. Striben nedenfor er
 // konteksten, ikke hovedbudskabet. Alt kommer fra data.json -> phase.
@@ -1497,8 +1524,27 @@ function seasonStripV2() {
       </summary>
       <div style="margin-top:2px">${kommende}</div>
     </details>
-    <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:8px">
-      Søjlehøjde er ugens TSS-mål, farve er blocktype. ▲ er et løb, ● en lejr. Ramme om søjlen er denne uge.
+    ${btSignatur(w)}
+    <div style="display:flex;flex-wrap:wrap;gap:5px 10px;margin-top:5px">
+      <span style="display:inline-flex;align-items:center;gap:4px">
+        <span style="color:#A0392B;font-size:9px;line-height:1">▲</span>
+        <span style="font-size:10px;color:var(--muted);white-space:nowrap">løb</span>
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:4px">
+        <span style="color:#6B8E5E;font-size:10px;line-height:1">●</span>
+        <span style="font-size:10px;color:var(--muted);white-space:nowrap">lejr</span>
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:4px">
+        <span style="width:9px;height:9px;border-radius:2px;background:var(--cream-d);outline:1px solid var(--ink);outline-offset:1px;display:inline-block;flex:none"></span>
+        <span style="font-size:10px;color:var(--muted);white-space:nowrap">denne uge</span>
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:4px">
+        <span style="width:14px;height:9px;border-radius:2px;background:#5B8C9E;opacity:.35;display:inline-block;flex:none"></span>
+        <span style="font-size:10px;color:var(--muted);white-space:nowrap">uge forbi</span>
+      </span>
+    </div>
+    <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:6px">
+      Søjlehøjden er ugens TSS-mål. Båndet under søjlerne er faserne.
     </div>
   </div>`;
 }
