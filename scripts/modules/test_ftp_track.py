@@ -88,8 +88,22 @@ def test_real_plan_has_history_and_test():
     assert F.history(PLAN)[-1]["ftpW"] == PLAN["athletes"]["kennet"]["zones"]["ftpW"]
     nt = F.next_test(PLAN, date(2026, 9, 21))
     assert nt and "2026-10-05" <= nt <= "2026-10-11", nt
+    # Tallene laases ikke: faserne er rekalibreret flere gange (320 -> 295 den
+    # 28/11-2026) og fasenavnene skiftede til Friels ved samme lejlighed.
+    # Assertér kontrakten: maalet for ugen er den faseS maal som ugen ligger i,
+    # saesonmaalet er sidste fases, og faserne daekker hele programmet.
     f = F.build(PLAN, date(2026, 9, 21), weight_avg7=72.0, week_num=3)
-    assert f["phaseTarget"] == 278 and f["seasonTarget"] == 320 and len(f["phases"]) == 6
+    faser = F.phases(PLAN) if hasattr(F, "phases") else f["phases"]
+    assert faser, "ingen faser i planen"
+    min_fase = F.phase_for(PLAN, 3)
+    assert min_fase, "uge 3 ligger uden for faserne"
+    assert f["phaseTarget"] == min_fase["ftpTarget"]
+    assert f["seasonTarget"] == max(x["ftpTarget"] for x in faser)
+    # ingen huller: hver uge i programmet skal ramme praecis een fase
+    tds = PLAN["programs"]["tds-2027"]
+    for w in range(1, tds["totalWeeks"] + 1):
+        traef = [x for x in faser if x["weekFrom"] <= w <= x["weekTo"]]
+        assert len(traef) == 1, f"uge {w} rammer {len(traef)} faser"
 
 
 def test_set_zones_records_history():

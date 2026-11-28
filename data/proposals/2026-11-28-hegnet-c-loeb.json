@@ -1,0 +1,167 @@
+{
+  "id": "2026-11-28-hegnet-c-loeb",
+  "title": "Hegnet Half som C-løb + uge 26 justeret + ugernes FTP/W-kg i sync med faserne",
+  "status": "pending",
+  "created": "2026-11-28",
+  "author": "claude",
+  "program": "tds-2027",
+  "rationale": "Hegnet Half 7/3-2027 laa kun i nextSeason.races, ikke i det aktive program, som dashboardet laeser. Kopieres over som C-loeb. Uge 26 (KU9) havde baade VO2 tirsdag, taerskel fredag OG en 4,5 t soendag — samme soendag som loebet. Taerskel fredag fjernes, loebet bliver soendagens pas. To haarde (VO2 tir + loeb soen), 5 dages afstand. season2027.weightPlan bragt i sync med programmets. Faserne genskrives uændret, så den nye sync bringer alle 51 ugers ftpTarget/wkgTarget i overensstemmelse med fasen de ligger i (stod på det gamle system 278-320, faserne på 257-295).",
+  "changes": [
+    {
+      "action": "set_season",
+      "races": [
+        {
+          "name": "CPH Half",
+          "date": "2026-09-20",
+          "type": "half_marathon",
+          "distance": "21.1km",
+          "priority": "B"
+        },
+        {
+          "name": "Hegnet Half",
+          "date": "2027-03-07",
+          "type": "half_marathon",
+          "distance": "21.1km",
+          "priority": "C",
+          "note": "Tisvilde Hegn, Danmarks fladeste halvmarathon. Tilmeldt."
+        },
+        {
+          "name": "Santini Stelvio Gran Fondo (lang rute)",
+          "date": "2027-06-06",
+          "type": "granfondo",
+          "distance": "130km / 4500hm",
+          "priority": "B",
+          "note": "B-løb. TILMELDT 16/7-2026 (med Eva). Hyggeløb + form-check mod TdS.",
+          "registered": true,
+          "registeredDate": "2026-07-16"
+        },
+        {
+          "name": "Tour des Stations Ultrafondo",
+          "date": "2027-08-28",
+          "dateApprox": false,
+          "type": "ultrafondo",
+          "distance": "242km / 8848hm",
+          "priority": "A",
+          "note": "A-løb. IKKE TILMELDT — 2027 åbner først ca. sep-26. Tjek 20/9. Cutoff 20:30 Croix-de-Cœur. Start 02:30 (18 t margin).",
+          "registered": false,
+          "registrationOpens": "2026-09 (efter 2026-udgaven 29/8) — verificeret hos arrangøren 16/7",
+          "registrationUrl": "https://tourdesstations.ch/inscriptions/"
+        }
+      ],
+      "weightPlan": {
+        "startKg": 72.8,
+        "targetKg": 70.5,
+        "targetDate": "2027-01-21",
+        "bodyFatPctTarget": 20.5,
+        "bodyFatPctStart": 22.6,
+        "cutStartsFrom": "2026-11-22",
+        "holdFromMonth": "2027-02",
+        "maxLossPerWeekKg": 0.35,
+        "note": "Milepael sat 22/11-2026: baseline 72,8 kg / 22,6 % (7- og 14-dages snit) -> 70,5 kg / 20,5 % pr. 21/1-2027, hvor der er check-in med Martin. 0,27 kg/uge over 8,6 uger. Julen 24/12-1/1 koerer paa vedligehold, ikke underskud. Martin saetter underskuddet; protein ~2 g/kg, styrke 2-3x/uge. Stopregel: naar restitutionssignalet advarer (hvilepuls +2 slag og HRV -5 % over 14 dage mens vaegten falder), spises der til vedligehold indtil signalerne er tilbage. 69,5 kg / 19 % er naeste milepael efter Japan, februar-marts. Garmin-fedt er bioimpedans: styr efter snittet, ikke dagstallet."
+      },
+      "programId": "tds-2027",
+      "phases": [
+        {
+          "name": "Transition",
+          "weekFrom": 1,
+          "weekTo": 12,
+          "ftpTarget": 257,
+          "wkgTarget": 3.52,
+          "note": "Paatvunget ophold efter Medoc og sygdom. CTL 29 ved udgangen."
+        },
+        {
+          "name": "Preparation",
+          "weekFrom": 13,
+          "weekTo": 17,
+          "ftpTarget": 258,
+          "wkgTarget": 3.6,
+          "note": "Genopbyg rutinen. Vaegt ned giver W/kg, ikke watt."
+        },
+        {
+          "name": "Early Base",
+          "weekFrom": 18,
+          "weekTo": 23,
+          "ftpTarget": 263,
+          "wkgTarget": 3.75,
+          "note": "Styrke er nr. 1. Watt begynder at flytte sig."
+        },
+        {
+          "name": "Late Base",
+          "weekFrom": 24,
+          "weekTo": 29,
+          "ftpTarget": 274,
+          "wkgTarget": 3.95,
+          "note": "Aerob kapacitet er nr. 1 — her kommer det foerste rigtige watt-loeft."
+        },
+        {
+          "name": "Build 1",
+          "weekFrom": 30,
+          "weekTo": 36,
+          "ftpTarget": 283,
+          "wkgTarget": 4.1,
+          "note": "Lange ture baerer. FTP-test uge 27 saetter udgangspunktet."
+        },
+        {
+          "name": "Peak 1",
+          "weekFrom": 37,
+          "weekTo": 38,
+          "ftpTarget": 286,
+          "wkgTarget": 4.15,
+          "note": "Taper mod Stelvio."
+        },
+        {
+          "name": "Race 1",
+          "weekFrom": 39,
+          "weekTo": 39,
+          "ftpTarget": 286,
+          "wkgTarget": 4.15,
+          "note": "Stelvio 6/6 — formcheck mod maalet."
+        },
+        {
+          "name": "Transition",
+          "weekFrom": 40,
+          "weekTo": 40,
+          "ftpTarget": 286,
+          "wkgTarget": 4.15,
+          "note": "Hvil efter Stelvio."
+        },
+        {
+          "name": "Build 2",
+          "weekFrom": 41,
+          "weekTo": 48,
+          "ftpTarget": 293,
+          "wkgTarget": 4.25,
+          "note": "Sidste loeft. CTL mod 80."
+        },
+        {
+          "name": "Peak 2",
+          "weekFrom": 49,
+          "weekTo": 50,
+          "ftpTarget": 295,
+          "wkgTarget": 4.28,
+          "note": "Taper mod TdS."
+        },
+        {
+          "name": "Race 2",
+          "weekFrom": 51,
+          "weekTo": 51,
+          "ftpTarget": 295,
+          "wkgTarget": 4.28,
+          "note": "Tour des Stations Ultrafondo 28/8."
+        }
+      ]
+    },
+    {
+      "action": "set_week_targets",
+      "week": 26,
+      "start": "2027-03-01",
+      "purpose": "Late Base 3/6. Hegnet Half soendag 7/3 (C-loeb, flad) er ugens laenge pas. VO2 4x4 tirsdag som eneste kvalitetspas foer loebet — ingen taerskel fredag. Styrke 2x, let i ugen op til.",
+      "keySession": "Hegnet Half (C) soendag 7/3",
+      "quota": {
+        "haard": 2,
+        "moderat": 1
+      },
+      "programId": "tds-2027"
+    }
+  ]
+}

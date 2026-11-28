@@ -402,6 +402,8 @@ def _validate_week_meta(ch: dict, wk: int) -> None:
                                  f"0-{loft} (bike_library.meta.rules)")
     if "mirrorSeason" in ch and not isinstance(ch["mirrorSeason"], bool):
         raise ValueError(f"set_week_targets uge {wk}: mirrorSeason skal være true/false")
+    if "mirrorNumbers" in ch and not isinstance(ch["mirrorNumbers"], bool):
+        raise ValueError(f"set_week_targets uge {wk}: mirrorNumbers skal være true/false")
 
 
 def _validate_travel(ch: dict) -> None:
@@ -466,8 +468,23 @@ def _validate_season(ch: dict) -> None:
     pid_ = ch.get("programId")
     if not isinstance(pid_, str) or not pid_:
         raise ValueError("set_season: programId mangler")
-    if not any(k in ch for k in ("phases", "season")):
-        raise ValueError("set_season: angiv phases, season eller begge")
+    if not any(k in ch for k in ("phases", "season", "races", "weightPlan")):
+        raise ValueError("set_season: angiv phases, season, races eller weightPlan")
+    loeb = ch.get("races")
+    if loeb is not None:
+        if not isinstance(loeb, list) or not loeb:
+            raise ValueError("set_season: races skal være en ikke-tom liste")
+        for r in loeb:
+            if not isinstance(r, dict) or not r.get("name"):
+                raise ValueError("set_season: hvert løb skal have et navn")
+            try:
+                date.fromisoformat(str(r.get("date")))
+            except (TypeError, ValueError):
+                raise ValueError(f"set_season {r.get('name')!r}: ugyldig dato {r.get('date')!r}")
+            if r.get("priority") not in ("A", "B", "C", None):
+                raise ValueError(f"set_season {r['name']!r}: priority skal være A, B eller C")
+    if "weightPlan" in ch and not isinstance(ch["weightPlan"], dict):
+        raise ValueError("set_season: weightPlan skal være et objekt")
     for k, v in (ch.get("season") or {}).items():
         if k in SEASON_NUM:
             if not isinstance(v, (int, float)) or isinstance(v, bool) or v < 0:
@@ -525,6 +542,33 @@ def _apply_season(sim: dict, ch: dict) -> dict:
         season = sim.setdefault("season2027", {})
         if season.get("targetRace") in (None, pid_):
             season["phases"] = copy.deepcopy(faser)
+        # 28/11-2026: hver uge baerer ogsaa sit eget ftpTarget/wkgTarget, men
+        # ingen handling kunne skrive dem. Resultatet var at alle 51 uger stod
+        # paa det gamle system (278 -> 320) mens faserne var rekalibreret
+        # (257 -> 295). ftp_track laeser faserne, saa ugernes tal var dode —
+        # men de var synlige. De foelger nu fasen automatisk. Felter der ikke
+        # allerede findes paa ugen, opfindes ikke.
+        for w in (prog.get("weeks") or []):
+            f = next((x for x in faser
+                      if x["weekFrom"] <= w.get("week", 0) <= x["weekTo"]), None)
+            if not f:
+                continue
+            if "ftpTarget" in w and "ftpTarget" in f:
+                w["ftpTarget"] = f["ftpTarget"]
+            if "wkgTarget" in w and "wkgTarget" in f:
+                w["wkgTarget"] = f["wkgTarget"]
+    if ch.get("races") is not None:
+        # Hel liste, som phases: en delvis opdatering ville efterlade et loeb
+        # i den ene kopi og ikke i den anden.
+        prog["races"] = copy.deepcopy(ch["races"])
+        ns = sim.setdefault("nextSeason", {})
+        if ns.get("races") is not None:
+            ns["races"] = copy.deepcopy(ch["races"])
+    if "weightPlan" in ch:
+        # season2027's kopi laa paa gamle tal (72,2 -> 68 kg pr. 31/1) mens
+        # programmets var rettet 22/11. Ingen laeser den i dag, men den dag
+        # nogen goer, er tallet forkert.
+        sim.setdefault("season2027", {})["weightPlan"] = copy.deepcopy(ch["weightPlan"])
     for k, v in (ch.get("season") or {}).items():
         sim.setdefault("season2027", {})[k] = v
     return prog.get("phases")
@@ -584,6 +628,19 @@ def _apply_week_targets(sim: dict, ch: dict) -> dict:
             wk[k] = int(round(v))
     meta = _week_meta_patch(ch)
     _patch_week_meta(wk, meta)
+    # 28/11-2026: tal spejles KUN naar man beder om det. season2027.weeks baerer
+    # en aeldre CTL-kurve, og de to afveg i 46 af 51 uger. Standarden er stadig
+    # ikke at spejle, fordi de to lister historisk har haft hver sin kurve med
+    # vilje — men nu kan de bringes i sync uden haandredigering.
+    if ch.get("mirrorNumbers"):
+        season = sim.get("season2027")
+        if isinstance(season, dict):
+            twin = next((w for w in (season.get("weeks") or [])
+                         if w.get("week") == ch["week"] and w.get("start") == wk.get("start")), None)
+            if twin is not None:
+                for k in ("ctlTarget", "tssTarget"):
+                    if k in wk:
+                        twin[k] = wk[k]
     if meta and ch.get("mirrorSeason", True):
         season = sim.get("season2027")
         if isinstance(season, dict):
