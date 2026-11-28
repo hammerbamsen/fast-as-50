@@ -114,7 +114,7 @@ def test_edit_apply_strength_checkin_validation():
         edit_apply.apply_edit(json.dumps(_plan()), "strength_checkin", "chk:2026-10-04", {"legs": 2, "upper": 1})
 
 
-def test_build_strength_next_has_progressed_exercises_and_checkin():
+def test_build_strength_next_has_progressed_exercises():
     tpls = [{"id": "styrke-fs4-a-2r", "name": "Styrke A · Functional 4 · 2 runder", "type": "WeightTraining",
              "rounds": 2, "exercises": EX_A, "progression": "x"}]
     plan = _plan()
@@ -133,4 +133,6 @@ def test_build_strength_next_has_progressed_exercises_and_checkin():
     assert nx2["date"] == "2026-10-15" and nx2["recovery"] is False
     assert nx2["exercises"][0]["load"] == "2×7 kg DB" and nx2["exercises"][4]["reps"] == 12
     assert nx2["stateSummary"] == "Ben trin 1 · Overkrop grundvægt +2 reps"
-    assert s2["checkin"]["due"] is False and s2["checkin"]["next"] == "2026-11-01"
+    # checkin-blokken er ude af build_strength 28/11-2026 — styrke maales paa
+    # frekvens, og build_checkin() testes for sig ovenfor.
+    assert "checkin" not in s2 and s2["frequency"]["target"] == 2

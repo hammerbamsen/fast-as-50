@@ -728,7 +728,7 @@ details.fold[open] > summary::after { content:"▴"; }
   <div id="plan-sheet-body"></div>
 </div>
 
-<!-- Styrke-log-arket (blok 8) er fjernet i blok 10 — 14-dages check-in ligger inline i I dag (ckCardHtml). -->
+<!-- Styrke-log-arket (blok 8) og styrke-check-in'et (blok 10) er fjernet 28/11-2026: styrke maales paa frekvens. -->
 
 <script>
 // ── Static config ─────────────────────────────────────────────
@@ -908,7 +908,8 @@ let D = {
   planTab: null,    // data.json planTab (scripts/modules/plan_tab.py) — Plan-fanen
   proposals: [],    // data.json proposals (blok 9): ventende plan-forslag med før/efter pr. uge
   body: null,       // data.json body (scripts/modules/body.py): glidepath, fat, ffm, cutCheck, strengthWeek
-  strength: null,   // data.json strength (blok 8+10): templates[], next{ab, templateId, name, reasoning, exercises[], stateSummary, recovery}, last4[], checkin{due, date, next, ...}
+  strength: null,   // data.json strength: frequency{target, thisWeek, weeks[]} driver kortet.
+                    // next/templates/last4 beregnes stadig, men vises ikke (28/11-2026).
   martinMail: null, // data.json martinMail (blok 8, martin_signals.build_weekly): {week, isoWeek, lines[8], generatedAt}
 };
 
@@ -1662,7 +1663,6 @@ function renderToday() {
   ${phaseCard(D.phase)}
   ${seasonStripV2()}
   ${complianceHtml()}
-  ${ckCardHtml()}
   ${oneThing(r)}
   ${kpiStripV2()}
   ${coachVoiceCard()}
@@ -3441,94 +3441,13 @@ function strengthCardHtml() {
                                   : 'background:transparent';
     return `<div class="stf-w" title="uge ${uge}: ${w.n} pas"><div class="stf-dot" style="${fyldt}"></div><span>${w.n}</span></div>`;
   }).join('');
-  const ck = (s.checkin || {});
   return `<div class="card" id="strength-card">
     <div class="label" style="margin-bottom:6px">Styrke</div>
     <div class="stf-now"><b style="color:${col}">${nu}</b> / ${mål} <span>denne uge</span></div>
     <div class="stf-weeks">${dots}</div>
-    <div class="st-state">${f.weeks.length} uger · en fyldt prik er en uge med målet nået${ck.due ? ' · check-in venter i I dag' : ''}</div>
+    <div class="st-state">${f.weeks.length} uger · en fyldt prik er en uge med målet nået</div>
   </div>`;
 }
-// ── Styrke-check-in hver 4. uge (blok 10; 14 → 28 dage 11/9-2026) — kort i I dag ─────────────────
-// data.strength.checkin = {due, date (søndagen), next, question, recoveryNext,
-// last, state, stateSummary}. Kortet vises når due er sandt og bliver stående
-// til det er gemt. Gem → /plan-edit {action:'strength_checkin', entryId:'chk:<date>',
-// params:{legs 0/1, upper 0/1}} + polling af edit_result.json (som ptRunEdit).
-// Efter "Gemt ✓" skjules kortet lokalt (faf-checkin-<date>) indtil data.json følger med.
-const CK_KEY_PREFIX = 'faf-checkin-';
-let CK_POLL_MS = 5000, CK_POLL_MAX = 48;
-const CK = { date: null, legs: null, upper: null, busy: false };
-function ckHiddenLocal(date){ try { return !!localStorage.getItem(CK_KEY_PREFIX + date); } catch(e) { return false; } }
-function ckCardHtml(){
-  const ck = D.strength && D.strength.checkin;
-  if (!ck || !ck.due || !ck.date || ckHiddenLocal(ck.date)) return '';
-  if (CK.date !== ck.date) Object.assign(CK, { date: ck.date, legs: null, upper: null, busy: false });
-  const q = esc(ck.question || 'Alle runder × reps med RPE ≤ 7 på de sidste 2 pas?');
-  const opts = (k, v) => `<div class="opts c2" id="ck-${k}">
-      <button class="opt${v === 1 ? ' on' : ''}" onclick="ckPick('${k}',1)">Ja<small>alle runder · RPE ≤ 7</small></button>
-      <button class="opt bad${v === 0 ? ' on' : ''}" onclick="ckPick('${k}',0)">Nej<small>uændret næste 4 uger</small></button></div>`;
-  return `<div class="card ck-card" id="ck-card">
-    <div class="label" style="margin-bottom:4px">Styrke check-in · ${_stDate(ck.date)}</div>
-    <div class="ck-q">${q}</div>
-    ${ck.stateSummary ? `<div class="st-state">Nu: ${esc(ck.stateSummary)}${ck.recoveryNext ? ' · <b>Recovery-uge først — progression fra ugen efter</b>' : ''}</div>` : ''}
-    <div class="q"><span class="lab">Ben</span>${opts('legs', CK.legs)}</div>
-    <div class="q"><span class="lab">Overkrop (inkl. core)</span>${opts('upper', CK.upper)}</div>
-    <div class="pt-msg" id="ck-msg"></div>
-    <button class="st-log" id="ck-go" onclick="ckSave()" ${CK.legs == null || CK.upper == null || CK.busy ? 'disabled' : ''}>Gem check-in</button>
-  </div>`;
-}
-function ckPick(k, v){
-  CK[k] = v;
-  document.querySelectorAll(`#ck-${k} .opt`).forEach((b, i) => b.classList.toggle('on', (i === 0 ? 1 : 0) === v));
-  const go = document.getElementById('ck-go'); if (go) go.disabled = (CK.legs == null || CK.upper == null || CK.busy);
-}
-async function ckSave(){
-  if (CK.legs == null || CK.upper == null || CK.busy) return;
-  const msg = document.getElementById('ck-msg'), go = document.getElementById('ck-go');
-  CK.busy = true; if (go) go.disabled = true;
-  const requestId = "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-  const payload = { requestId, action: 'strength_checkin', entryId: `chk:${CK.date}`, params: { legs: CK.legs, upper: CK.upper }, athlete: 'kennet' };
-  msg.innerHTML = `<span style="color:var(--muted)">Gemmer…</span>`;
-  try {
-    await dispatchViaWorker('/plan-edit', payload);
-  } catch(err) {
-    if (err.code === 'NO_SECRET' || err.status === 401 || err.status === 403) {
-      const val = (window.prompt(err.code === 'NO_SECRET'
-        ? 'App-koden mangler på denne enhed.\n\nIndsæt app-koden (den delte hemmelighed til Worker\'en):'
-        : 'App-koden blev afvist af Worker\'en.\n\nIndsæt den rigtige kode:') || '').trim();
-      CK.busy = false;
-      if (val) { setSecret(val); return ckSave(); }
-      msg.innerHTML = `<span style="color:var(--act)">Ikke gemt — app-kode mangler.</span>`;
-    } else {
-      msg.innerHTML = `<span style="color:var(--act)">Ikke gemt — ${esc(err.code === 'NO_URL' ? 'Worker-URL mangler' : err.status ? 'Worker svarede ' + err.status : 'netværksfejl')}.</span>`;
-    }
-    CK.busy = false; if (go) go.disabled = false;
-    return;
-  }
-  msg.innerHTML = `<span style="color:var(--muted)">Sendt — venter på bekræftelse…</span>`;
-  const forDate = CK.date;
-  for (let i = 0; i < CK_POLL_MAX; i++) {
-    await new Promise(r => setTimeout(r, CK_POLL_MS));
-    if (CK.date !== forDate) return;
-    try {
-      const r = await ptFetchEditResult(requestId);
-      if (!r) continue;
-      if (r.status === 'reject' || r.status === 'error') {
-        msg.innerHTML = `<span style="color:var(--act)"><b>Ikke gemt:</b> ${esc(r.gate && r.gate.msg || r.error || r.msg || 'afvist')}</span>`;
-        CK.busy = false; if (go) go.disabled = false;
-        return;
-      }
-      try { localStorage.setItem(CK_KEY_PREFIX + forDate, new Date().toISOString()); } catch(e) {}
-      msg.innerHTML = `<span style="color:var(--ok)">Gemt ✓ — progressionen ligger i næste pas ved næste opdatering.</span>`;
-      if (D.strength && D.strength.checkin) { D.strength.checkin.due = false; D.strength.checkin.last = { date: forDate, legs: CK.legs, upper: CK.upper }; }
-      setTimeout(() => { const c = document.getElementById('ck-card'); if (c) c.remove(); }, 1500);
-      return;
-    } catch(e) { /* fortsæt polling */ }
-  }
-  msg.innerHTML = `<span style="color:var(--muted)">Det tager længere end normalt. Svaret er sandsynligvis gemt — træk ned for at genindlæse.</span>`;
-  CK.busy = false; if (go) go.disabled = false;
-}
-
 // ── Krop: cut-tjek ───────────────────────────────────────────
 const CC_NAMES = { rate:'TEMPO', ffm:'FEDTFRI MASSE', strength:'STYRKE', recovery:'RESTITUTION', plateau:'PLATEAU', alcohol:'ALKOHOL' };
 function cutCheckCard(b) {
@@ -4720,7 +4639,7 @@ document.addEventListener('click', ev => {
 });
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape') showLogSheet(false); });
 
-// Styrke-log-arket (blok 8) er fjernet i blok 10 — se ckCardHtml/ckSave (14-dages check-in).
+// Styrke-log-arket (blok 8) og styrke-check-in'et (blok 10) er fjernet 28/11-2026.
 
 // ── Navigation ────────────────────────────────────────────────
 // Én kilde for faner: sidebar, bottom-nav, swipe og hash-routing læser herfra.

@@ -575,10 +575,12 @@ def strength_frequency(strength_log, today=None, target=2, weeks=8):
 
 
 def build_strength(plan, strength_log, today=None, templates=None, athlete='kennet', target=2):
-    """data['strength'] = {templates, next, last4, checkin} (blok 8 + 10).
-    next.exercises har progressionen (strengthProgression) lagt på; checkin
-    er 14-dages check-in-status til kortet i I dag."""
-    from . import strength_progression as _sp
+    """data['strength'] = {templates, next, last4, frequency}.
+
+    Kortet viser kun `frequency` (28/11-2026). `next` med progressionen bliver
+    beregnet, fordi planen og Word-masteren navngiver passene efter den, men
+    vises ikke. Styrke-check-in'et er ude: det spurgte kun for at fodre en
+    progression, der ikke laengere staar paa skaermen."""
     today = _to_date(today) if today else date.today()
     tpls = templates if templates is not None else load_workout_library()
     ath = (plan.get('athletes') or {}).get(athlete, {}) if isinstance(plan, dict) else {}
@@ -586,8 +588,7 @@ def build_strength(plan, strength_log, today=None, templates=None, athlete='kenn
     return {'templates': strength_templates(tpls),
             'next': next_strength(plan, strength_log, today, tpls, athlete, target, progression=prog),
             'last4': strength_last4(strength_log),
-            'frequency': strength_frequency(strength_log, today, target),
-            'checkin': _sp.build_checkin(ath.get('strengthCheckin'), prog, today, ath.get('days'))}
+            'frequency': strength_frequency(strength_log, today, target)}
 
 
 def strength_by_week(strength_log, today, weeks=4):
