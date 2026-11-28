@@ -241,8 +241,30 @@ def main():
         print(f"Suggest-move: {len(result.get('alternatives', []))} alternativer")
         return
 
-    result = edit_apply.apply_edit(plan_raw, action, entry_id, params,
-                                    confirmed_warn=confirmed_warn, athlete=athlete)
+    # ValueError er modulets maade at sige "ugyldig anmodning" paa (ukendt
+    # entryId, forslag der allerede er afgjort, daarlige params). Foer
+    # 28/11-2026 slog den igennem som traceback: rc=1, roed koersel i
+    # systemkortet, og klienten fik aldrig noget at polle — den viste bare
+    # "timeout". Nu bliver den et almindeligt reject, som appen kan vise.
+    # Alt andet (TypeError, KeyError, netvaerksfejl) faar stadig lov at
+    # faelde koerslen, saa aegte kodefejl stadig bliver roede.
+    try:
+        result = edit_apply.apply_edit(plan_raw, action, entry_id, params,
+                                        confirmed_warn=confirmed_warn, athlete=athlete)
+    except ValueError as ex:
+        msg = str(ex)
+        print(f"Afvist (ugyldig anmodning): {msg}")
+        write_result(request_id, {
+            "status": "reject",
+            "action": action,
+            # flags holdes tom: klienten forventer objekter {level, rule, msg},
+            # ikke strenge (ptGateFlags i index.html).
+            "gate": {"status": "reject", "flags": [], "msg": msg},
+            "dates_changed": [],
+            "athlete": athlete,
+            "request_ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        })
+        return
 
     # Forslag (blok 9): reject_proposal ændrer ikke planen — kun forslagsfilen.
     if action == "reject_proposal" and result["status"] == "ok":
