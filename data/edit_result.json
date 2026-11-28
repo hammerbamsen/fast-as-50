@@ -1,21 +1,4 @@
 {
- "rmwlq2f8t9is3": {
-  "status": "ok",
-  "gate": {
-   "status": "ok",
-   "flags": [],
-   "msg": "Godkendt"
-  },
-  "dates_changed": [
-   "2026-11-19",
-   "2026-11-20"
-  ],
-  "plan_commit": "07db641dc06cdbf423066020f93e2c95a0c58ff8",
-  "sync_errors": [],
-  "athlete": "kennet",
-  "request_ts": "2026-11-18T06:10:33+00:00",
-  "request_id": "rmwlq2f8t9is3"
- },
  "r20261122T060553Z": {
   "status": "ok",
   "gate": {
@@ -172,5 +155,18 @@
   "proposal_id": "2026-11-28-hegnet-c-loeb",
   "proposal_commit": "d7c9ba29a2766f880ed3b6a12ff5d2c6d56d693c",
   "request_id": "rmx0euqjg49zi"
+ },
+ "rtest-dublet-20261128T131718Z": {
+  "status": "reject",
+  "action": "apply_proposal",
+  "gate": {
+   "status": "reject",
+   "flags": [],
+   "msg": "Forslag '2026-11-28-hegnet-c-loeb' er allerede afgjort (accepted)"
+  },
+  "dates_changed": [],
+  "athlete": "kennet",
+  "request_ts": "2026-11-28T13:17:27+00:00",
+  "request_id": "rtest-dublet-20261128T131718Z"
  }
 }
