@@ -772,3 +772,215 @@ def test_season_lines_melder_fjernet_loeb():
     tekst = " | ".join(proposals._season_lines(plan, ch))
     assert "Løb fjernet: Slettes" in tekst
     assert "Nyt løb" not in tekst
+
+
+# ── set_season: anvendelses-siden ────────────────────────────────────────────
+# QA 28/11-2026: mutationstest viste at 12 af 24 bevidste fejl slap igennem, og
+# at ALLE de slupne laa i _apply_season. Testene herunder daekker det.
+
+def _ss_plan():
+    """Fixture: to faser, fire uger, begge uge-lister, et loeb. Egne tal."""
+    uger = lambda: [
+        {"week": 1, "start": "2027-01-04", "phase": "Early Base",
+         "ftpTarget": 111, "wkgTarget": 1.1, "ctlTarget": 40, "tssTarget": 300},
+        {"week": 2, "start": "2027-01-11", "phase": "Early Base",
+         "ftpTarget": 111, "wkgTarget": 1.1, "ctlTarget": 42, "tssTarget": 320},
+        {"week": 3, "start": "2027-01-18", "phase": "Early Base",
+         "ftpTarget": 111, "wkgTarget": 1.1, "ctlTarget": 44, "tssTarget": 340},
+        {"week": 4, "start": "2027-01-25", "phase": "Early Base",
+         "ftpTarget": 111, "wkgTarget": 1.1, "ctlTarget": 46, "tssTarget": 360},
+    ]
+    return {
+        "programs": {"p1": {"id": "p1", "start": "2027-01-04", "totalWeeks": 4,
+                            "weeks": uger(),
+                            "races": [{"name": "Gammelt", "date": "2027-02-01",
+                                       "priority": "B"}],
+                            "weightPlan": {"startKg": 80.0, "targetKg": 75.0}}},
+        "season2027": {"targetRace": "p1", "year": 2027, "weeks": uger(),
+                       "weightPlan": {"startKg": 90.0, "targetKg": 60.0},
+                       "races": [{"name": "Gammelt", "date": "2027-02-01",
+                                  "priority": "B"}]},
+        "nextSeason": {"year": 2027,
+                       "races": [{"name": "Gammelt", "date": "2027-02-01",
+                                  "priority": "B"}]},
+        "athletes": {"kennet": {"days": []}},
+    }
+
+
+_SS_FASER = [
+    {"name": "Early Base", "weekFrom": 1, "weekTo": 2, "ftpTarget": 200, "wkgTarget": 3.0},
+    {"name": "Build 1", "weekFrom": 3, "weekTo": 4, "ftpTarget": 220, "wkgTarget": 3.3},
+]
+
+
+def _ss_anvend(ch, plan=None):
+    plan = plan or _ss_plan()
+    proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [ch]})
+    sim, _ = proposals.apply_changes(plan, [ch])
+    return sim
+
+
+def test_fase_synk_rammer_begge_ugelister():
+    """QA-blokerer 1: synken rettede kun programmets uger, ikke season2027.weeks,
+    som baerer de SAMME felter. Forslaget gjorde derfor en test roed naar det
+    blev anvendt."""
+    sim = _ss_anvend({"action": "set_season", "programId": "p1", "phases": _SS_FASER})
+    for hvor in (sim["programs"]["p1"]["weeks"], sim["season2027"]["weeks"]):
+        for w in hvor:
+            f = next(x for x in _SS_FASER if x["weekFrom"] <= w["week"] <= x["weekTo"])
+            assert w["ftpTarget"] == f["ftpTarget"], (hvor is sim["season2027"]["weeks"], w)
+            assert w["wkgTarget"] == f["wkgTarget"]
+
+
+def test_fase_synk_flytter_ogsaa_fasenavnet():
+    """QA-blokerer 2: synken flyttede tallene men ikke ugens phase-felt, saa en
+    flyttet fasegraense gav ugen nyt tal og gammelt navn. Plan-fanen laeser
+    navnet, FTP-kortet laeser faselisten — de ville sige hver sit."""
+    sim = _ss_anvend({"action": "set_season", "programId": "p1", "phases": _SS_FASER})
+    navne = [(w["week"], w["phase"]) for w in sim["programs"]["p1"]["weeks"]]
+    assert navne == [(1, "Early Base"), (2, "Early Base"),
+                 (3, "Build 1"), (4, "Build 1")], navne
+
+
+def test_fase_uden_maal_fjerner_ugens_maal():
+    """QA 12: en fase uden ftpTarget efterlod ugerne paa de gamle tal, saa de
+    viste 111 som fasemaal samtidig med at der ikke VAR et fasemaal."""
+    sim = _ss_anvend({"action": "set_season", "programId": "p1",
+                      "phases": [{"name": "Early Base", "weekFrom": 1, "weekTo": 4}]})
+    for w in sim["programs"]["p1"]["weeks"]:
+        assert "ftpTarget" not in w and "wkgTarget" not in w, w
+
+
+def test_fase_med_kun_det_ene_maal_afvises():
+    with pytest.raises(ValueError, match="både ftpTarget og"):
+        proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [
+            {"action": "set_season", "programId": "p1",
+             "phases": [{"name": "Early Base", "weekFrom": 1, "weekTo": 4, "ftpTarget": 200}]}]})
+
+
+def test_races_skrives_til_begge_kopier():
+    nye = [{"name": "Gammelt", "date": "2027-02-01", "priority": "B"},
+           {"name": "Nyt", "date": "2027-05-01", "priority": "C"}]
+    sim = _ss_anvend({"action": "set_season", "programId": "p1", "races": nye})
+    assert [r["name"] for r in sim["programs"]["p1"]["races"]] == ["Gammelt", "Nyt"]
+    assert [r["name"] for r in sim["nextSeason"]["races"]] == ["Gammelt", "Nyt"]
+
+
+def test_nextseason_faar_kun_loeb_fra_sit_eget_aar():
+    """QA 5: hele programlisten blev kopieret over, saa et 2026-loeb landede i
+    2027-saesonens liste."""
+    nye = [{"name": "I fjor", "date": "2026-09-20", "priority": "B"},
+           {"name": "I aar", "date": "2027-05-01", "priority": "C"}]
+    sim = _ss_anvend({"action": "set_season", "programId": "p1", "races": nye})
+    assert [r["name"] for r in sim["programs"]["p1"]["races"]] == ["I fjor", "I aar"]
+    assert [r["name"] for r in sim["nextSeason"]["races"]] == ["I aar"]
+
+
+def test_races_dato_skal_vaere_streng():
+    """QA-blokerer 3: str() omkring datoen lod et tal slippe igennem, og
+    20270307 landede raat i planen. Derefter krakkede programs.next_race."""
+    with pytest.raises(ValueError, match="streng"):
+        proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [
+            {"action": "set_season", "programId": "p1",
+             "races": [{"name": "X", "date": 20270307}]}]})
+
+
+def test_races_priority_null_afvises():
+    with pytest.raises(ValueError, match="A, B eller C"):
+        proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [
+            {"action": "set_season", "programId": "p1",
+             "races": [{"name": "X", "date": "2027-01-01", "priority": None}]}]})
+
+
+def test_fase_ftptarget_skal_vaere_heltal():
+    """QA 8: koden tog imod en float, men skemaet kraever integer — forslaget
+    kunne ikke committes."""
+    with pytest.raises(ValueError, match="heltal"):
+        proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [
+            {"action": "set_season", "programId": "p1",
+             "phases": [{"name": "Early Base", "weekFrom": 1, "weekTo": 4,
+                         "ftpTarget": 200.5, "wkgTarget": 3.0}]}]})
+
+
+def test_weightPlan_i_set_season_valideres_som_i_set_weight_plan():
+    """QA 6: {} tomte planen uden protest, og kortet skrev at den var i sync."""
+    for wp, moenster in (({}, "ikke-tomt"), ({"startKg": 9999}, "40-150")):
+        with pytest.raises(ValueError, match=moenster):
+            proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [
+                {"action": "set_season", "programId": "p1", "weightPlan": wp}]})
+
+
+def test_weightPlan_skrives_kun_til_season2027():
+    wp = {"startKg": 80.0, "targetKg": 75.0}
+    sim = _ss_anvend({"action": "set_season", "programId": "p1", "weightPlan": wp})
+    assert sim["season2027"]["weightPlan"] == wp
+    assert sim["programs"]["p1"]["weightPlan"] == wp   # var allerede dette
+
+
+def test_to_set_season_paa_samme_program_afvises():
+    """QA 7: sidste vandt i tavshed, og kortet reklamerede for et loeb der ikke
+    fandtes bagefter."""
+    with pytest.raises(ValueError, match="optræder to gange"):
+        proposals.validate({"id": "t", "title": "t", "status": "pending", "changes": [
+            {"action": "set_season", "programId": "p1",
+             "races": [{"name": "A", "date": "2027-01-01"}]},
+            {"action": "set_season", "programId": "p1",
+             "races": [{"name": "B", "date": "2027-02-01"}]}]})
+
+
+def test_mirrorNumbers_spejler_kun_de_noegler_changen_naevner():
+    """QA 10: 'if k in wk' laeste ugens NUVAERENDE vaerdi, saa et forslag der kun
+    naevnte tssTarget ogsaa overskrev twin'ens ctlTarget."""
+    plan = _ss_plan()
+    plan["season2027"]["weeks"][1]["ctlTarget"] = 99     # bevidst forskellig
+    sim = _ss_anvend({"action": "set_week_targets", "programId": "p1", "week": 2,
+                      "start": "2027-01-11", "tssTarget": 400,
+                      "mirrorNumbers": True}, plan)
+    twin = sim["season2027"]["weeks"][1]
+    assert twin["tssTarget"] == 400
+    assert twin["ctlTarget"] == 99, "ctlTarget blev overskrevet uden at nogen bad om det"
+
+
+def test_mirrorNumbers_uden_twin_er_en_fejl_ikke_en_noop():
+    """QA 11: uden twin skete der ingenting, uden fejl og uden kortlinje — man
+    troede tallene var bragt i sync."""
+    plan = _ss_plan()
+    plan["season2027"]["weeks"][1]["start"] = "2027-02-22"   # forskudt
+    with pytest.raises(ValueError, match="intet at spejle"):
+        _ss_anvend({"action": "set_week_targets", "programId": "p1", "week": 2,
+                    "start": "2027-01-11", "ctlTarget": 50,
+                    "mirrorNumbers": True}, plan)
+
+
+def test_season_lines_melder_aendret_dato_og_prioritet():
+    """QA 4: kortet sammenlignede kun navne, saa A-loebet kunne flyttes et aar
+    og nedgraderes i tavshed."""
+    plan = _ss_plan()
+    nye = [{"name": "Gammelt", "date": "2028-02-01", "priority": "C"}]
+    tekst = " | ".join(proposals._season_lines(
+        plan, [{"action": "set_season", "programId": "p1", "races": nye}]))
+    assert "2027-02-01 → 2028-02-01" in tekst, tekst
+    assert "B → C" in tekst, tekst
+    assert "Nyt løb" not in tekst and "fjernet" not in tekst
+
+
+def test_season_lines_taaler_ugyldige_races():
+    """QA 9: pipelinen kalder summarize_for_data UDEN validate, saa et
+    haandskrevet forslag med races som strenge naaede hertil og kastede."""
+    plan = _ss_plan()
+    ud = proposals._season_lines(
+        plan, [{"action": "set_season", "programId": "p1", "races": ["Hegnet Half"]}])
+    assert any("Hegnet Half" in x for x in ud), ud
+
+
+def test_season_lines_melder_nyt_fasenavn():
+    plan = _ss_plan()
+    tekst = " | ".join(proposals._season_lines(
+        plan, [{"action": "set_season", "programId": "p1", "phases": _SS_FASER}]))
+    assert "uger får nyt fasenavn" in tekst, tekst
+
+
+def test_flet_summary_gentager_ikke_forfatterens_linje():
+    """QA 16: de udledte linjer lagdes oven paa prop['summary']."""
+    assert proposals._flet_summary(["Nyt løb: X"], ["Nyt løb: X", "Andet"]) == \
+        ["Nyt løb: X", "Andet"]

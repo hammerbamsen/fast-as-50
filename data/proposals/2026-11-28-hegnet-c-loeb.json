@@ -1,64 +1,14 @@
 {
   "id": "2026-11-28-hegnet-c-loeb",
-  "title": "Hegnet Half som C-løb + uge 26 justeret + ugernes FTP/W-kg i sync med faserne",
+  "title": "Hegnet Half som C-løb + uge 26 ryddet op + ugernes fasemål i sync",
   "status": "pending",
   "created": "2026-11-28",
   "author": "claude",
   "program": "tds-2027",
-  "rationale": "Hegnet Half 7/3-2027 lå kun i nextSeason.races, ikke i det aktive program, som dashboardet læser. Kopieres over som C-løb. Uge 26 (KU9) havde både VO2 tirsdag, tærskel fredag OG en 4,5 t søndag — samme søndag som løbet. Tærskel fredag fjernes, løbet bliver søndagens pas. To hårde (VO2 tir + løb søn), 5 dages afstand. season2027.weightPlan bragt i sync med programmets. Faserne genskrives uændret, så den nye sync bringer alle 51 ugers ftpTarget/wkgTarget i overensstemmelse med fasen de ligger i (stod på det gamle system 278-320, faserne på 257-295).",
+  "rationale": "Hegnet Half 7/3-2027 lå kun i nextSeason.races, ikke i det aktive program, som dashboardet læser. Ind som C-løb. Uge 26 sagde to ting på én gang: programmets purpose planlagde VO2 tirsdag, tærskel fredag OG 4,5 t søndag — samme søndag som løbet — mens season2027's tvilling havde en note om Hegnet som B-løb og blockType RACE. Ugen sættes nu til ét udtryk: C-løb, blockType BUILD (et C-løb er træning, ikke et mål, så ugen bliver ikke en løbsuge), VO2 tirsdag som eneste kvalitetspas, laktattærskel udgår. Faserne genskrives uændret, så synken bringer ugernes fasenavn, ftpTarget og wkgTarget i overensstemmelse med fasen de ligger i — i BEGGE kopier. season2027.weightPlan bragt i sync med programmets.",
   "changes": [
     {
       "action": "set_season",
-      "races": [
-        {
-          "name": "CPH Half",
-          "date": "2026-09-20",
-          "type": "half_marathon",
-          "distance": "21.1km",
-          "priority": "B"
-        },
-        {
-          "name": "Hegnet Half",
-          "date": "2027-03-07",
-          "type": "half_marathon",
-          "distance": "21.1km",
-          "priority": "C",
-          "note": "Tisvilde Hegn, Danmarks fladeste halvmarathon. Tilmeldt."
-        },
-        {
-          "name": "Santini Stelvio Gran Fondo (lang rute)",
-          "date": "2027-06-06",
-          "type": "granfondo",
-          "distance": "130km / 4500hm",
-          "priority": "B",
-          "note": "B-løb. TILMELDT 16/7-2026 (med Eva). Hyggeløb + form-check mod TdS.",
-          "registered": true,
-          "registeredDate": "2026-07-16"
-        },
-        {
-          "name": "Tour des Stations Ultrafondo",
-          "date": "2027-08-28",
-          "dateApprox": false,
-          "type": "ultrafondo",
-          "distance": "242km / 8848hm",
-          "priority": "A",
-          "note": "A-løb. IKKE TILMELDT — 2027 åbner først ca. sep-26. Tjek 20/9. Cutoff 20:30 Croix-de-Cœur. Start 02:30 (18 t margin).",
-          "registered": false,
-          "registrationOpens": "2026-09 (efter 2026-udgaven 29/8) — verificeret hos arrangøren 16/7",
-          "registrationUrl": "https://tourdesstations.ch/inscriptions/"
-        }
-      ],
-      "weightPlan": {
-        "startKg": 72.8,
-        "targetKg": 70.5,
-        "targetDate": "2027-01-21",
-        "bodyFatPctTarget": 20.5,
-        "bodyFatPctStart": 22.6,
-        "cutStartsFrom": "2026-11-22",
-        "holdFromMonth": "2027-02",
-        "maxLossPerWeekKg": 0.35,
-        "note": "Milepael sat 22/11-2026: baseline 72,8 kg / 22,6 % (7- og 14-dages snit) -> 70,5 kg / 20,5 % pr. 21/1-2027, hvor der er check-in med Martin. 0,27 kg/uge over 8,6 uger. Julen 24/12-1/1 koerer paa vedligehold, ikke underskud. Martin saetter underskuddet; protein ~2 g/kg, styrke 2-3x/uge. Stopregel: naar restitutionssignalet advarer (hvilepuls +2 slag og HRV -5 % over 14 dage mens vaegten falder), spises der til vedligehold indtil signalerne er tilbage. 69,5 kg / 19 % er naeste milepael efter Japan, februar-marts. Garmin-fedt er bioimpedans: styr efter snittet, ikke dagstallet."
-      },
       "programId": "tds-2027",
       "phases": [
         {
@@ -149,19 +99,71 @@
           "wkgTarget": 4.28,
           "note": "Tour des Stations Ultrafondo 28/8."
         }
-      ]
+      ],
+      "races": [
+        {
+          "name": "CPH Half",
+          "date": "2026-09-20",
+          "type": "half_marathon",
+          "distance": "21.1km",
+          "priority": "B"
+        },
+        {
+          "name": "Hegnet Half",
+          "date": "2027-03-07",
+          "type": "half_marathon",
+          "distance": "21.1km",
+          "priority": "C",
+          "note": "Tisvilde Hegn, Danmarks fladeste halvmarathon. Tilmeldt. C-løb: kontrolleret tempo, ikke en test."
+        },
+        {
+          "name": "Santini Stelvio Gran Fondo (lang rute)",
+          "date": "2027-06-06",
+          "type": "granfondo",
+          "distance": "130km / 4500hm",
+          "priority": "B",
+          "note": "B-løb. TILMELDT 16/7-2026 (med Eva). Hyggeløb + form-check mod TdS.",
+          "registered": true,
+          "registeredDate": "2026-07-16"
+        },
+        {
+          "name": "Tour des Stations Ultrafondo",
+          "date": "2027-08-28",
+          "dateApprox": false,
+          "type": "ultrafondo",
+          "distance": "242km / 8848hm",
+          "priority": "A",
+          "note": "A-løb. IKKE TILMELDT — 2027 åbner først ca. sep-26. Tjek 20/9. Cutoff 20:30 Croix-de-Cœur. Start 02:30 (18 t margin).",
+          "registered": false,
+          "registrationOpens": "2026-09 (efter 2026-udgaven 29/8) — verificeret hos arrangøren 16/7",
+          "registrationUrl": "https://tourdesstations.ch/inscriptions/"
+        }
+      ],
+      "weightPlan": {
+        "startKg": 72.8,
+        "targetKg": 70.5,
+        "targetDate": "2027-01-21",
+        "bodyFatPctTarget": 20.5,
+        "bodyFatPctStart": 22.6,
+        "cutStartsFrom": "2026-11-22",
+        "holdFromMonth": "2027-02",
+        "maxLossPerWeekKg": 0.35,
+        "note": "Milepael sat 22/11-2026: baseline 72,8 kg / 22,6 % (7- og 14-dages snit) -> 70,5 kg / 20,5 % pr. 21/1-2027, hvor der er check-in med Martin. 0,27 kg/uge over 8,6 uger. Julen 24/12-1/1 koerer paa vedligehold, ikke underskud. Martin saetter underskuddet; protein ~2 g/kg, styrke 2-3x/uge. Stopregel: naar restitutionssignalet advarer (hvilepuls +2 slag og HRV -5 % over 14 dage mens vaegten falder), spises der til vedligehold indtil signalerne er tilbage. 69,5 kg / 19 % er naeste milepael efter Japan, februar-marts. Garmin-fedt er bioimpedans: styr efter snittet, ikke dagstallet."
+      }
     },
     {
       "action": "set_week_targets",
+      "programId": "tds-2027",
       "week": 26,
       "start": "2027-03-01",
-      "purpose": "Late Base 3/6. Hegnet Half søndag 7/3 (C-løb, flad) er ugens lange pas. VO2 4×4 tirsdag som eneste kvalitetspas før løbet — ingen tærskel fredag. Styrke 2×, let i ugen op til.",
+      "blockType": "BUILD",
+      "purpose": "Late Base 3/6. Hegnet Half søndag 7/3 (C-løb, flad) er ugens lange pas i stedet for en 4,5 t tur. VO2 4×4 tirsdag er eneste kvalitetspas — laktattærskel, nr. 3 i fasen, udgår denne uge. Styrke 2×, let fra torsdag.",
       "keySession": "Hegnet Half (C) søndag 7/3",
+      "note": "Hegnet Half søn 7/3, Tisvilde Hegn — C-løb, kontrolleret tempo, ikke en test. Pace fastlægges nærmere løbet ud fra opdateret tærskel (nu 4:24/km, retestes løbende).",
       "quota": {
         "haard": 2,
         "moderat": 1
-      },
-      "programId": "tds-2027"
+      }
     }
   ]
 }

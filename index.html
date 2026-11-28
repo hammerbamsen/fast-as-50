@@ -3341,8 +3341,13 @@ function ftpCard(f) {
        <span><b>${h.ftpW}</b> W</span>
        <span style="color:var(--muted);max-width:55%;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(h.source || '')}</span>
      </div>`).join('');
+  // Fremhaev paa UGENUMMER, ikke navn: "Transition" findes to gange i planen
+  // (uge 1-12 og uge 40) med hver sit maal, saa et navne-opslag lyste begge op.
+  const _nuFase = p => f.week != null && p.weekFrom != null && p.weekTo != null
+    ? (p.weekFrom <= f.week && f.week <= p.weekTo)
+    : p.name === f.phase;
   const phases = (f.phases || []).map(p =>
-    `<span style="display:inline-block;margin:2px 6px 2px 0;font-family:Space Mono,monospace;font-size:10px;color:${p.name === f.phase ? col : 'var(--muted)'}">${p.name} ${p.wkgTarget ? fmtDa(p.wkgTarget, 2) : p.ftpTarget}</span>`).join('');
+    `<span style="display:inline-block;margin:2px 6px 2px 0;font-family:Space Mono,monospace;font-size:10px;color:${_nuFase(p) ? col : 'var(--muted)'}">${p.name} ${p.wkgTarget ? fmtDa(p.wkgTarget, 2) : p.ftpTarget}</span>`).join('');
   return `<div class="card">
     <div class="label" style="margin-bottom:8px">W/kg — mod ${f.seasonWkgTarget ? fmtDa(f.seasonWkgTarget, 2) : '?'} til TdS</div>
     <div style="display:flex;align-items:baseline;gap:10px">

@@ -169,6 +169,7 @@ def validate(prop: dict) -> None:
     seen_tgt = set()
     seen_goals = set()
     seen_wp = set()
+    seen_season = set()
     for ch in prop["changes"]:
         if ch.get("action") == "set_weight_plan":
             pid_ = ch.get("programId")
@@ -223,6 +224,14 @@ def validate(prop: dict) -> None:
             # programs[pid].phases eller season2027 kunne naas af de oevrige
             # actions, saa FTP-glidestien og CTL-maalet kunne kun rettes i
             # haanden — som CLAUDE.md forbyder.
+            # QA 28/11: set_goals, set_weight_plan og set_week_targets havde
+            # alle en dubletvagt. set_season havde ingen, saa to changes paa
+            # samme program lod den sidste vinde i tavshed — og kortet
+            # reklamerede for et loeb der ikke fandtes bagefter.
+            if ch.get("programId") in seen_season:
+                raise ValueError(f"set_season: program {ch.get('programId')} "
+                                 f"optræder to gange")
+            seen_season.add(ch.get("programId"))
             _validate_season(ch)
             continue
         if ch.get("action") == "set_actuals":
@@ -232,7 +241,7 @@ def validate(prop: dict) -> None:
             _validate_actuals(ch)
             continue
         if ch.get("action") != "set_day":
-            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_travel, set_actuals, set_goals og set_weight_plan understøttes")
+            raise ValueError(f"Ukendt change-action {ch.get('action')!r} — kun set_day, set_week_targets, set_travel, set_actuals, set_season, set_goals og set_weight_plan understøttes")
         try:
             d_iso = date.fromisoformat(str(ch.get("date"))).isoformat()
         except (TypeError, ValueError):
@@ -477,14 +486,32 @@ def _validate_season(ch: dict) -> None:
         for r in loeb:
             if not isinstance(r, dict) or not r.get("name"):
                 raise ValueError("set_season: hvert løb skal have et navn")
+            # QA 28/11: str() omkring datoen lod et TAL slippe igennem
+            # (date.fromisoformat("20270307") er gyldig fra Python 3.11), og
+            # 20270307 landede raat i planen. Derefter krakkede
+            # programs.next_race paa "<" mellem str og int, og plan.schema.json
+            # afviste filen i CI-trin b. Datoen skal vaere en streng paa
+            # YYYY-MM-DD, og den gemmes normaliseret.
+            d_ = r.get("date")
+            if not isinstance(d_, str):
+                raise ValueError(f"set_season {r.get('name')!r}: dato skal være "
+                                 f"en streng på formen YYYY-MM-DD, ikke {type(d_).__name__}")
             try:
-                date.fromisoformat(str(r.get("date")))
-            except (TypeError, ValueError):
-                raise ValueError(f"set_season {r.get('name')!r}: ugyldig dato {r.get('date')!r}")
-            if r.get("priority") not in ("A", "B", "C", None):
-                raise ValueError(f"set_season {r['name']!r}: priority skal være A, B eller C")
-    if "weightPlan" in ch and not isinstance(ch["weightPlan"], dict):
-        raise ValueError("set_season: weightPlan skal være et objekt")
+                r["date"] = date.fromisoformat(d_).isoformat()
+            except ValueError:
+                raise ValueError(f"set_season {r.get('name')!r}: ugyldig dato {d_!r}")
+            # QA 28/11: skemaets enum afviser null, koden tog det imod.
+            # Udelad feltet i stedet for at skrive null i det.
+            if "priority" in r and r["priority"] not in ("A", "B", "C"):
+                raise ValueError(f"set_season {r['name']!r}: priority skal være "
+                                 f"A, B eller C — udelad feltet hvis løbet ikke "
+                                 f"har en prioritet")
+    if "weightPlan" in ch:
+        # QA 28/11: set_season.weightPlan havde kun et isinstance-tjek, mens
+        # set_weight_plan havde rigtige graenser. {} tomte planen uden protest.
+        if not isinstance(ch["weightPlan"], dict) or not ch["weightPlan"]:
+            raise ValueError("set_season: weightPlan skal være et ikke-tomt objekt")
+        _validate_weight_plan(ch["weightPlan"])
     for k, v in (ch.get("season") or {}).items():
         if k in SEASON_NUM:
             if not isinstance(v, (int, float)) or isinstance(v, bool) or v < 0:
@@ -508,9 +535,18 @@ def _validate_season(ch: dict) -> None:
         if not isinstance(navn, str) or navn.strip() not in PHASE_NAMES:
             raise ValueError(f"set_season: ukendt fasenavn {navn!r} "
                              f"(tilladt: {', '.join(PHASE_NAMES)})")
+        # QA 28/11: koden tog imod ftpTarget: 274.5, men skemaet kraever
+        # integer — et forslag koden godkendte kunne ikke committes, og floaten
+        # blev skrevet videre til ugerne uden afrunding.
         for k in PHASE_NUM:
-            if k in f and (not isinstance(f[k], (int, float)) or isinstance(f[k], bool)):
-                raise ValueError(f"set_season {navn}: {k} skal være et tal")
+            if k in f and (not isinstance(f[k], int) or isinstance(f[k], bool)):
+                raise ValueError(f"set_season {navn}: {k} skal være et heltal")
+        # Mangler ftpTarget eller wkgTarget, mister ugerne feltet. Det er i
+        # orden, men det skal vaere et valg — en fase der kun saetter det ene
+        # efterlader ugerne med halve maal.
+        if ("ftpTarget" in f) != ("wkgTarget" in f):
+            raise ValueError(f"set_season {navn}: angiv både ftpTarget og "
+                             f"wkgTarget, eller ingen af dem")
         if "wkgTarget" in f and not (0 < f["wkgTarget"] < 10):
             raise ValueError(f"set_season {navn}: wkgTarget skal være mellem 0 og 10")
         lo, hi = f.get("weekFrom"), f.get("weekTo")
@@ -542,28 +578,54 @@ def _apply_season(sim: dict, ch: dict) -> dict:
         season = sim.setdefault("season2027", {})
         if season.get("targetRace") in (None, pid_):
             season["phases"] = copy.deepcopy(faser)
-        # 28/11-2026: hver uge baerer ogsaa sit eget ftpTarget/wkgTarget, men
-        # ingen handling kunne skrive dem. Resultatet var at alle 51 uger stod
-        # paa det gamle system (278 -> 320) mens faserne var rekalibreret
-        # (257 -> 295). ftp_track laeser faserne, saa ugernes tal var dode —
-        # men de var synlige. De foelger nu fasen automatisk. Felter der ikke
-        # allerede findes paa ugen, opfindes ikke.
-        for w in (prog.get("weeks") or []):
-            f = next((x for x in faser
-                      if x["weekFrom"] <= w.get("week", 0) <= x["weekTo"]), None)
-            if not f:
-                continue
-            if "ftpTarget" in w and "ftpTarget" in f:
-                w["ftpTarget"] = f["ftpTarget"]
-            if "wkgTarget" in w and "wkgTarget" in f:
-                w["wkgTarget"] = f["wkgTarget"]
+        # 28/11-2026: hver uge baerer ogsaa sit eget phase-navn, ftpTarget og
+        # wkgTarget, men ingen handling kunne skrive dem. Alle 51 uger stod paa
+        # det gamle system (278 -> 320) mens faserne var rekalibreret
+        # (257 -> 295). De foelger nu fasen automatisk.
+        #
+        # QA 28/11 fandt tre fejl i foerste udgave af denne synk:
+        #  1. den rettede kun programmets uger, ikke season2027.weeks, som
+        #     baerer de SAMME felter — forslaget gjorde derfor
+        #     test_tds_weeks_1_2_match_legacy_15_16 roed naar det blev anvendt.
+        #  2. den flyttede tallene men ikke ugens "phase"-navn, saa en flyttet
+        #     fasegraense gav ugen nyt tal og gammelt navn. Plan-fanen laeser
+        #     navnet, FTP-kortet laeser faselisten — de ville sige hver sit.
+        #  3. en fase uden ftpTarget efterlod ugerne paa de gamle tal, saa de
+        #     viste 278 som fasemaal samtidig med at der ikke VAR et fasemaal.
+        #     Mangler fasen feltet, fjernes det derfor fra ugen.
+        _lister = [prog.get("weeks") or []]
+        if season.get("targetRace") in (None, pid_):
+            _lister.append(season.get("weeks") or [])
+        for _uger in _lister:
+            for w in _uger:
+                if "week" not in w:
+                    continue
+                f = next((x for x in faser
+                          if x["weekFrom"] <= w["week"] <= x["weekTo"]), None)
+                if not f:
+                    continue
+                if "phase" in w and f.get("name"):
+                    w["phase"] = f["name"]
+                for k in ("ftpTarget", "wkgTarget"):
+                    if k not in w:
+                        continue
+                    if k in f:
+                        w[k] = f[k]
+                    else:
+                        del w[k]
     if ch.get("races") is not None:
         # Hel liste, som phases: en delvis opdatering ville efterlade et loeb
         # i den ene kopi og ikke i den anden.
         prog["races"] = copy.deepcopy(ch["races"])
         ns = sim.setdefault("nextSeason", {})
         if ns.get("races") is not None:
-            ns["races"] = copy.deepcopy(ch["races"])
+            # QA 28/11: foerste udgave kopierede HELE programlisten over, saa
+            # CPH Half 2026-09-20 landede i 2027-saesonens liste. nextSeason
+            # har sit eget aar; kun loeb i det aar hoerer der.
+            aar = ns.get("year")
+            ns["races"] = copy.deepcopy(
+                [r for r in ch["races"]
+                 if aar is None or str(r.get("date", ""))[:4] == str(aar)])
     if "weightPlan" in ch:
         # season2027's kopi laa paa gamle tal (72,2 -> 68 kg pr. 31/1) mens
         # programmets var rettet 22/11. Ingen laeser den i dag, men den dag
@@ -634,13 +696,24 @@ def _apply_week_targets(sim: dict, ch: dict) -> dict:
     # vilje — men nu kan de bringes i sync uden haandredigering.
     if ch.get("mirrorNumbers"):
         season = sim.get("season2027")
+        twin = None
         if isinstance(season, dict):
             twin = next((w for w in (season.get("weeks") or [])
                          if w.get("week") == ch["week"] and w.get("start") == wk.get("start")), None)
-            if twin is not None:
-                for k in ("ctlTarget", "tssTarget"):
-                    if k in wk:
-                        twin[k] = wk[k]
+        if twin is None:
+            # QA 28/11: uden twin skete der INGENTING, uden fejl og uden
+            # kortlinje — man troede tallene var i sync. De to lister har
+            # historisk forskudte startdatoer, saa det er en reel risiko.
+            raise ValueError(
+                f"set_week_targets uge {ch['week']}: mirrorNumbers er sat, men "
+                f"season2027 har ingen uge {ch['week']} der starter "
+                f"{wk.get('start')} — intet at spejle")
+        # QA 28/11: "if k in wk" laeste ugens NUVAERENDE vaerdi, saa et forslag
+        # der kun naevnte tssTarget ogsaa overskrev twin'ens ctlTarget med
+        # programmets. Spejl kun de noegler changen selv angiver.
+        for k in ("ctlTarget", "tssTarget"):
+            if isinstance(ch.get(k), (int, float)) and not isinstance(ch.get(k), bool):
+                twin[k] = wk[k]
     if meta and ch.get("mirrorSeason", True):
         season = sim.get("season2027")
         if isinstance(season, dict):
@@ -801,50 +874,115 @@ def _season_lines(plan: dict, changes: list) -> list:
     """Linjer til forslagskortet for de aendringer der IKKE rammer en dag eller
     et ugemaal. 28/11-2026: et set_season-forslag kunne tilfoeje et loeb og
     omskrive 51 ugers FTP-maal uden at kortet viste andet end ugemaalet, saa
-    Kennet ville godkende i blinde."""
+    Kennet ville godkende i blinde.
+
+    Kortet maa hverken tie om noget eller paastaa noget. QA 28/11 fandt begge:
+    en aendret dato eller prioritet paa et loeb gav INGEN linje (A-loebet kunne
+    flyttes et aar og nedgraderes i tavshed), og vaegtplan-linjen var haardkodet
+    til "bringes i sync med programmets" uanset hvad der faktisk skete.
+
+    Taaler ugyldige data: pipelinen kalder summarize_for_data UDEN at kalde
+    validate() foerst, saa et haandskrevet forslag med fx races som liste af
+    strenge naaede hertil og kastede AttributeError. Forslaget forsvandt saa
+    lydloest fra kortet.
+    """
     ud = []
+
+    def _loeb_noegle(r):
+        if not isinstance(r, dict):
+            return (str(r), None, None)
+        return (r.get("name"), r.get("date"), r.get("priority"))
+
+    def _loeb_tekst(r):
+        if not isinstance(r, dict):
+            return str(r)
+        pri = r.get("priority")
+        return f"{r.get('name')} {r.get('date')}" + (f" ({pri}-løb)" if pri else "")
+
     for ch in changes:
         if ch.get("action") != "set_season":
             continue
         pid_ = ch.get("programId")
         prog = (plan.get("programs") or {}).get(pid_) or {}
-        if ch.get("races") is not None:
-            foer = {r.get("name") for r in (prog.get("races") or [])}
-            efter = {r.get("name") for r in ch["races"]}
-            for r in ch["races"]:
-                if r.get("name") not in foer:
-                    pri = r.get("priority")
-                    ud.append(f"Nyt løb: {r.get('name')} {r.get('date')}"
-                              + (f" ({pri}-løb)" if pri else ""))
-            for navn in sorted(foer - efter):
+
+        loeb = ch.get("races")
+        if isinstance(loeb, list):
+            foer = {_loeb_noegle(r) for r in (prog.get("races") or [])}
+            foer_navne = {k[0] for k in foer}
+            efter = {_loeb_noegle(r) for r in loeb}
+            for r in loeb:
+                n = _loeb_noegle(r)
+                if n in foer:
+                    continue
+                if n[0] in foer_navne:
+                    # Samme loeb, aendret dato eller prioritet.
+                    gl = next(k for k in foer if k[0] == n[0])
+                    dele = []
+                    if gl[1] != n[1]:
+                        dele.append(f"dato {gl[1]} → {n[1]}")
+                    if gl[2] != n[2]:
+                        dele.append(f"prioritet {gl[2] or '—'} → {n[2] or '—'}")
+                    ud.append(f"{n[0]}: " + ", ".join(dele))
+                else:
+                    ud.append("Nyt løb: " + _loeb_tekst(r))
+            for navn in sorted(k[0] for k in foer if k[0] not in {x[0] for x in efter}):
                 ud.append(f"Løb fjernet: {navn}")
-        if ch.get("phases") is not None:
-            faser = ch["phases"]
-            n = 0
+
+        faser = ch.get("phases")
+        if isinstance(faser, list):
+            n_ftp = n_wkg = n_navn = 0
             for w in (prog.get("weeks") or []):
+                if "week" not in w:
+                    continue
                 f = next((x for x in faser
-                          if x["weekFrom"] <= w.get("week", 0) <= x["weekTo"]), None)
+                          if x.get("weekFrom", 0) <= w["week"] <= x.get("weekTo", 0)), None)
                 if not f:
                     continue
-                if (("ftpTarget" in w and "ftpTarget" in f
-                     and w["ftpTarget"] != f["ftpTarget"])
-                        or ("wkgTarget" in w and "wkgTarget" in f
-                            and w["wkgTarget"] != f["wkgTarget"])):
-                    n += 1
-            if n:
-                ud.append(f"{n} ugers FTP- og W/kg-mål rettes til at følge fasen de ligger i")
-            navne = [x.get("name") for x in faser]
+                if "phase" in w and f.get("name") and w["phase"] != f["name"]:
+                    n_navn += 1
+                if "ftpTarget" in w and w.get("ftpTarget") != f.get("ftpTarget"):
+                    n_ftp += 1
+                if "wkgTarget" in w and w.get("wkgTarget") != f.get("wkgTarget"):
+                    n_wkg += 1
+            if n_ftp or n_wkg:
+                hvad = " og ".join([x for x in (("FTP-mål" if n_ftp else ""),
+                                                ("W/kg-mål" if n_wkg else "")) if x])
+                ud.append(f"{max(n_ftp, n_wkg)} ugers {hvad} rettes til at følge "
+                          f"fasen de ligger i")
+            if n_navn:
+                ud.append(f"{n_navn} uger får nyt fasenavn")
+            navne = [x.get("name") if isinstance(x, dict) else str(x) for x in faser]
             if navne != [x.get("name") for x in (prog.get("phases") or [])]:
                 ud.append("Faseinddelingen ændres: " + ", ".join(str(x) for x in navne))
+
         if "weightPlan" in ch:
-            gl = ((plan.get("season2027") or {}).get("weightPlan") or {})
-            ny = ch["weightPlan"] or {}
-            if gl != ny:
-                ud.append("Vægtplanen i season2027 bringes i sync med programmets")
+            ny_wp = ch["weightPlan"] if isinstance(ch["weightPlan"], dict) else {}
+            gl_wp = ((plan.get("season2027") or {}).get("weightPlan") or {})
+            if gl_wp != ny_wp:
+                if ny_wp and ny_wp == (prog.get("weightPlan") or {}):
+                    ud.append("Vægtplanen i season2027 bringes i sync med programmets")
+                else:
+                    ud.append("Vægtplanen i season2027 ændres")
+
         for k, v in (ch.get("season") or {}).items():
             gl = (plan.get("season2027") or {}).get(k)
             if gl != v:
                 ud.append(f"Sæsonmål {k}: {gl} → {v}")
+
+    # QA 28/11: linjerne lagdes oven paa prop["summary"], saa en forfatter der
+    # selv skrev "Nyt loeb: ..." fik den to gange.
+    set_ = []
+    for x in ud:
+        if x not in set_:
+            set_.append(x)
+    return set_
+
+
+def _flet_summary(forfatter: list, udledt: list) -> list:
+    ud = list(forfatter)
+    for x in udledt:
+        if x not in ud:
+            ud.append(x)
     return ud
 
 
@@ -870,7 +1008,8 @@ def summarize_for_data(plan: dict, prop: dict, athlete: str = "kennet") -> dict:
         "title": prop.get("title", ""),
         "createdAt": prop.get("createdAt"),
         "status": prop.get("status"),
-        "summary": list(prop.get("summary") or []) + _season_lines(plan, prop["changes"]),
+        "summary": _flet_summary(list(prop.get("summary") or []),
+                                 _season_lines(plan, prop["changes"])),
         "note": prop.get("note") or "",
         "weeks": [weeks[k] for k in sorted(weeks)],
         "targets": target_changes_for_data(plan, prop["changes"]),

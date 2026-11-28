@@ -90,20 +90,28 @@ def test_real_plan_has_history_and_test():
     assert nt and "2026-10-05" <= nt <= "2026-10-11", nt
     # Tallene laases ikke: faserne er rekalibreret flere gange (320 -> 295 den
     # 28/11-2026) og fasenavnene skiftede til Friels ved samme lejlighed.
-    # Assertér kontrakten: maalet for ugen er den faseS maal som ugen ligger i,
-    # saesonmaalet er sidste fases, og faserne daekker hele programmet.
+    # QA 28/11 paaviste at foerste udgave af denne test var en tautologi: den
+    # sammenlignede phase_for med sig selv, saa mutationer der fik phase_for til
+    # altid at returnere foerste eller sidste fase slap igennem. Faselisten
+    # hentes nu uafhaengigt af phase_for, og der assertes baand, ikke vaerdier.
     f = F.build(PLAN, date(2026, 9, 21), weight_avg7=72.0, week_num=3)
-    faser = F.phases(PLAN) if hasattr(F, "phases") else f["phases"]
+    faser = (PLAN["season2027"] or {})["phases"]
     assert faser, "ingen faser i planen"
-    min_fase = F.phase_for(PLAN, 3)
-    assert min_fase, "uge 3 ligger uden for faserne"
-    assert f["phaseTarget"] == min_fase["ftpTarget"]
-    assert f["seasonTarget"] == max(x["ftpTarget"] for x in faser)
-    # ingen huller: hver uge i programmet skal ramme praecis een fase
     tds = PLAN["programs"]["tds-2027"]
     for w in range(1, tds["totalWeeks"] + 1):
-        traef = [x for x in faser if x["weekFrom"] <= w <= x["weekTo"]]
-        assert len(traef) == 1, f"uge {w} rammer {len(traef)} faser"
+        egen = [x for x in faser if x["weekFrom"] <= w <= x["weekTo"]]
+        assert len(egen) == 1, f"uge {w} rammer {len(egen)} faser"
+        # phase_for maa ikke kunne ramme en fase ugen ikke ligger i
+        assert F.phase_for(PLAN, w) is egen[0], f"phase_for ramte forkert fase i uge {w}"
+    assert f["phaseTarget"] == F.phase_for(PLAN, 3)["ftpTarget"]
+    # sidste fase ER toppen, og saesonmaalet er den
+    assert faser[-1]["ftpTarget"] == max(x["ftpTarget"] for x in faser)
+    assert f["seasonTarget"] == faser[-1]["ftpTarget"]
+    # plausibilitetsbaand: testen skal ogsaa fange at ALLE maal faldt til 0
+    assert all(150 < x["ftpTarget"] < 500 for x in faser), "ftpTarget uden for 150-500"
+    assert all(2.0 < x["wkgTarget"] < 7.0 for x in faser), "wkgTarget uden for 2-7"
+    # maalene maa ikke falde hen over saesonen
+    assert all(x["ftpTarget"] <= y["ftpTarget"] for x, y in zip(faser, faser[1:]))
 
 
 def test_set_zones_records_history():

@@ -108,6 +108,11 @@ def build(plan: dict, today, weight_avg7=None, week_num=None,
         "color": color,
         "nextTest": next_test(plan, today, athlete),
         "history": history(plan, athlete),
+        # QA 28/11: UI'et fremhaevede fasen paa NAVN, og "Transition" findes to
+        # gange i planen (uge 1-12 og uge 40) med hver sit maal. I uge 1-12
+        # lyste derfor begge chips op. Ugenummeret med, saa der kan fremhaeves
+        # paa interval i stedet.
+        "week": week_num,
         "phases": [{"name": p.get("name"), "weekFrom": p.get("weekFrom"), "weekTo": p.get("weekTo"),
                     "ftpTarget": p.get("ftpTarget"), "wkgTarget": p.get("wkgTarget")}
                    for p in (season.get("phases") or [])],

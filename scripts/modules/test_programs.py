@@ -105,10 +105,25 @@ def test_tds_weeks_1_2_match_legacy_15_16():
     # Fasenavnet laases ikke: det skiftede fra TRANSITION til Friels "Transition"
     # den 28/11-2026. Assertér at ugen har et fasenavn der findes i programmets
     # egen faseliste, og at den stemmer med den fase ugenummeret falder i.
+    # QA 28/11: reglen skal gaelde ALLE uger, ikke kun uge 1 — det er netop den
+    # kontrakt fase-synken i set_season paastaar, og den ville have fanget at
+    # synken foerst kun flyttede tallene og ikke fasenavnet.
     faser = tds.get("phases") or []
-    fase_1 = next((x for x in faser if x["weekFrom"] <= 1 <= x["weekTo"]), None)
-    assert fase_1, "uge 1 ligger uden for faserne"
-    assert w1["phase"] == fase_1["name"]
+    assert faser, "programmet har ingen faser"
+    for w in tds["weeks"]:
+        f = next((x for x in faser if x["weekFrom"] <= w["week"] <= x["weekTo"]), None)
+        assert f, f"uge {w['week']} ligger uden for faserne"
+        assert w.get("phase") == f["name"], (
+            f"uge {w['week']}: fasenavn {w.get('phase')!r} mod faselistens {f['name']!r}")
+        # Tal-kontrakten (ugens ftpTarget/wkgTarget == fasens) hoerer i
+        # test_proposals paa en fixture: den er en egenskab ved _apply_season,
+        # og de to taller i den RIGTIGE plan driver fra hinanden indtil et
+        # forslag har kaldt set_season. En live-assertion her ville vaere roed
+        # i vinduet mellem to forslag — netop det CLAUDE.md forbyder.
+        for k in ("ftpTarget", "wkgTarget"):
+            if k in w:
+                assert isinstance(w[k], (int, float)) and w[k] > 0, (
+                    f"uge {w['week']}: {k}={w[k]!r}")
     assert isinstance(w1["ftpTarget"], int) and w1["ftpTarget"] > 0
     # glidestien kan rekalibreres via set_weight_plan (første gang 27/10-2026);
     # test kun at den hænger sammen
