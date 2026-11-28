@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-28 07:44",
+    "updated": "2026-11-28 11:24",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -34,13 +34,13 @@
       "color": "#27AE60"
     },
     "ctl": {
-      "value": "29,2",
+      "value": "29,3",
       "unit": "",
       "sub": "Uge 48-mål 46 · RECOVERY",
       "color": "#C0392B"
     },
     "tsb": {
-      "value": "-2,4",
+      "value": "-3,1",
       "unit": "",
       "sub": "Form · CTL−ATL, frisk >0",
       "color": "#27AE60"
@@ -70,9 +70,9 @@
       "color": "#7A6A58"
     },
     "tssComp": {
-      "value": "241",
+      "value": "247",
       "unit": "TSS",
-      "sub": "241 af 605 planlagt TSS",
+      "sub": "247 af 605 planlagt TSS",
       "color": "#C0392B"
     },
     "bikeKm": {
@@ -117,13 +117,21 @@
     "target": 6,
     "streak": 7
   },
-  "coachSpeech": "string {HL} Styrken er i hus i dag (29 min, 15 TSS). Ugen har 5 missede pas bag sig — det er Mallorca-ugen, og i RECOVERY-blokken tæller det ikke som underskud. TSS-pct er lav, men det er meningen.",
-  "coachHighlight": "Spis et protein-rigt mellemmåltid i aften og læg dig senest kl. 22 — du sov kun 6,8 t i nat.",
+  "coachSpeech": "Uge 48, Recovery-blok: dagens planlagte pas er i hus — søndag er det eneste tilbageværende pas denne uge. {HL} Styrken i dag er klaret: 29 minutter, 15 TSS. 5 pas er misset denne uge, men RECOVERY-blokken tillader det — lavere TSS end målet er korrekt her. Én cykeltur mangler søndag.",
+  "coachHighlight": "Spis et proteinrigt aftensmåltid og vær i seng senest 22:30 — søvn er din vigtigste restitution nu.",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
       "discipline": "strength",
       "title": "Styrke A · Functional 4 · 3 runder",
+      "duration": "",
+      "zone": "–",
+      "desc": "",
+      "completed": true
+    },
+    {
+      "discipline": "walk",
+      "title": "Gentofte Gang",
       "duration": "",
       "zone": "–",
       "desc": "",
@@ -260,6 +268,17 @@
       "intervals_compliance": 50.0
     },
     {
+      "day": "Lør",
+      "disc": "walk",
+      "label": "Gentofte Gang",
+      "done": true,
+      "extra": true,
+      "actual_tss": 6,
+      "actual_mins": 60,
+      "actual_distance_m": 5155.68,
+      "today": true
+    },
+    {
       "day": "Søn",
       "disc": "bike",
       "label": "FaF 1 Z2 - Grundtur 80",
@@ -281,7 +300,7 @@
     31.8,
     28.5,
     28.1,
-    29.2
+    29.3
   ],
   "weightHistory": [
     {
@@ -1975,7 +1994,7 @@
     },
     {
       "date": "2026-11-28",
-      "v": -2.4,
+      "v": -3.1,
       "real": true
     }
   ],
@@ -2442,6 +2461,17 @@
           "actual_mins": 29,
           "actual_distance_m": null,
           "intervals_compliance": 50.0
+        },
+        {
+          "day": "Lør",
+          "disc": "walk",
+          "label": "Gentofte Gang",
+          "done": true,
+          "extra": true,
+          "actual_tss": 6,
+          "actual_mins": 60,
+          "actual_distance_m": 5155.68,
+          "today": true
         },
         {
           "day": "Søn",
@@ -3011,11 +3041,12 @@
     }
   ],
   "train_mins": {
+    "walk": 60.0,
     "strength": 29.0,
     "hike": 513.0,
     "bike": 182.0,
     "planned": 925.0,
-    "actual_total": 724.0
+    "actual_total": 784.0
   },
   "fatHistory": [
     {
@@ -3357,11 +3388,11 @@
       "real": true
     }
   ],
-  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 83 af 357 · Lørdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">string</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrken er i hus i dag (29 min, 15 TSS). Ugen har 5 missede pas bag sig — det er Mallorca-ugen, og i RECOVERY-blokken tæller det ikke som underskud. TSS-pct er lav, men det er meningen.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 0,4 kg over plan. Fedtsnit er 0,4 procentpoint ned den seneste måned — ikke nok til at kalde en retning. Stabil.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>0 dage med alkohol og protein ramt alle 7 dage — godt. Søvn i nat var 6,8 t, under målet på 7 t.</p>",
-  "coachAssessmentTs": "07:44",
+  "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 83 af 357 · Lørdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, Recovery-blok: dagens planlagte pas er i hus — søndag er det eneste tilbageværende pas denne uge.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Styrken i dag er klaret: 29 minutter, 15 TSS. 5 pas er misset denne uge, men RECOVERY-blokken tillader det — lavere TSS end målet er korrekt her. Én cykeltur mangler søndag.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er 0,4 kg over plan (73,0 kg mod forventet 72,7 kg). Det er inden for korridoren på 0,5 kg — fortsæt som nu.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein er i hus alle 7 dage. Søvn natten til i dag var 6,8 timer — under målet. Prioriter mere søvn i nat.</p>",
+  "coachAssessmentTs": "11:24",
   "commute_pairing_warnings": [],
   "warnings": [],
-  "tsb": -2.4,
+  "tsb": -3.1,
   "swimHistory": [
     {
       "week": 1,
@@ -3436,7 +3467,7 @@
       "cumulative": 3500.0
     }
   ],
-  "coachAssessmentLastActId": "i215568532",
+  "coachAssessmentLastActId": "i215621571",
   "weekFocusWeek": 12,
   "coachAssessmentPlanAtGen": "Styrke A · Functional 4 · 3 runder",
   "weightGoal": 69.5,
@@ -3690,8 +3721,8 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-28T06:44:47.152493",
-  "coachAssessmentTsFull": "2026-11-28T06:44:47",
+  "credentialsCheckedTs": "2026-11-28T10:25:21.835681",
+  "coachAssessmentTsFull": "2026-11-28T10:25:21",
   "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 6,
   "event_structure_warnings": [],
@@ -3789,7 +3820,7 @@
     "9": 153,
     "10": 114,
     "11": 226,
-    "12": 241
+    "12": 247
   },
   "racesUpcoming": [
     {
@@ -5217,7 +5248,7 @@
         "mesoWeek": "R",
         "ctlTarget": 46,
         "tssTarget": 440,
-        "tssActual": 241,
+        "tssActual": 247,
         "purpose": "Recovery: åbnere, Z2 80, 2 t søndag. Styrke 2 runder.",
         "note": null,
         "quota": {
@@ -9016,6 +9047,24 @@
                 "start": "06:30",
                 "startFixed": false,
                 "completion": "partial"
+              },
+              {
+                "id": null,
+                "name": "Gentofte Gang",
+                "type": null,
+                "disc": "walk",
+                "mins": 60,
+                "libraryId": null,
+                "load": "let",
+                "erg": null,
+                "purpose": null,
+                "zwiftName": null,
+                "done": true,
+                "actualMins": 60,
+                "actualTss": 6,
+                "note": null,
+                "isKey": false,
+                "extra": true
               }
             ],
             "restNote": null,
@@ -10312,7 +10361,7 @@
           "week": 12,
           "programId": "tds-2027",
           "start": "2026-11-23",
-          "ctl": 29.2
+          "ctl": 29.3
         }
       ],
       "projection": [
@@ -10786,16 +10835,16 @@
     ]
   },
   "coach": {
-    "generatedAt": "2026-11-28T06:44:47Z",
-    "inputsHash": "2f9c2483afb1223d7aacfd605d0faeefaf7e106e",
+    "generatedAt": "2026-11-28T10:25:21Z",
+    "inputsHash": "7266662b1447e4d79fcd689fdaaaf01cb880d239",
     "model": "claude-sonnet-4-6",
     "mode": "daily",
     "oneThing": {
-      "action": "Spis et protein-rigt mellemmåltid i aften og læg dig senest kl. 22 — du sov kun 6,8 t i nat.",
-      "why": "Søvn under 7 timer bremser muskelrestitution og HRV-recovery, og i morgen venter en cykeltur."
+      "action": "Spis et proteinrigt aftensmåltid og vær i seng senest 22:30 — søvn er din vigtigste restitution nu.",
+      "why": "Nattens søvn var 6,8 timer mod et mål på 7-8; i morgen er der cykel på programmet."
     },
     "training": {
-      "text": "Styrken er i hus i dag (29 min, 15 TSS). Ugen har 5 missede pas bag sig — det er Mallorca-ugen, og i RECOVERY-blokken tæller det ikke som underskud. TSS-pct er lav, men det er meningen.",
+      "text": "Styrken i dag er klaret: 29 minutter, 15 TSS. 5 pas er misset denne uge, men RECOVERY-blokken tillader det — lavere TSS end målet er korrekt her. Én cykeltur mangler søndag.",
       "refs": [
         29.0,
         15.0,
@@ -10803,22 +10852,22 @@
       ]
     },
     "body": {
-      "text": "7-dages snit for vægt er 0,4 kg over plan. Fedtsnit er 0,4 procentpoint ned den seneste måned — ikke nok til at kalde en retning. Stabil.",
+      "text": "7-dages snit for vægt er 0,4 kg over plan (73,0 kg mod forventet 72,7 kg). Det er inden for korridoren på 0,5 kg — fortsæt som nu.",
       "refs": [
+        73.0,
+        72.7,
         0.4,
-        0.4
+        0.5
       ]
     },
     "habits": {
-      "text": "0 dage med alkohol og protein ramt alle 7 dage — godt. Søvn i nat var 6,8 t, under målet på 7 t.",
+      "text": "Protein er i hus alle 7 dage. Søvn natten til i dag var 6,8 timer — under målet. Prioriter mere søvn i nat.",
       "refs": [
-        0.0,
         7.0,
-        6.8,
-        7.0
+        6.8
       ]
     },
-    "bigPicture": "string",
+    "bigPicture": "Uge 48, Recovery-blok: dagens planlagte pas er i hus — søndag er det eneste tilbageværende pas denne uge.",
     "weekFocus": null,
     "weekFocusFor": null,
     "warnings": [],
@@ -10827,8 +10876,10 @@
     "validationRejected": [
       {
         "errors": [
-          "warnings[0].message: tal ikke i konteksten: 47"
-        ]
+          "training.text: tal ikke i konteksten: 152",
+          "warnings[0].message: tal ikke i konteksten: 42, 47"
+        ],
+        "training.text": "Styrken er i hus (29 min, 15 TSS) — det er godt nok for i dag. Ugen er usædvanlig: 5 planlagte pas er misset (Mallorca-volumen faldt bort), men de ekstra vandringer har lagt 152 TSS til. Ugens faktisk"
       }
     ],
     "notes": null,
@@ -11403,14 +11454,14 @@
     }
   },
   "weekTss": {
-    "actual": 241,
+    "actual": 247,
     "planned": 605
   },
   "martinMail": {
     "week": 12,
     "isoWeek": 48,
     "lines": [
-      "Uge 48: TSS 241 af 605 (40 %) · CTL 29,2 (mål 46) · TSB −2,4",
+      "Uge 48: TSS 247 af 605 (41 %) · CTL 29,3 (mål 46) · TSB −3,1",
       "Vægt 7d 73,0 kg · fedt 14d 22,4 % · på plan mod glidepath (72,7)",
       "HRV 7d 39 (28d 40) · hvilepuls 49 · søvn 7d 8,4 t",
       "AF 7/7 · protein 3/3 7/7 · aftensult —/7",
@@ -11419,7 +11470,7 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-28T06:44:16Z"
+    "generatedAt": "2026-11-28T10:24:48Z"
   },
   "proposals": [
     {
@@ -11574,8 +11625,8 @@
   },
   "fitnessLive": {
     "date": "2026-11-28",
-    "ctl": 29.2,
-    "atl": 31.6
+    "ctl": 29.3,
+    "atl": 32.4
   },
   "vo2": {
     "weeks": [
