@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-28 13:44",
+    "updated": "2026-11-28 13:57",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -3721,7 +3721,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-28T12:44:33.527572",
+  "credentialsCheckedTs": "2026-11-28T12:57:50.203652",
   "coachAssessmentTsFull": "2026-11-28T10:25:21",
   "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 6,
@@ -3830,7 +3830,7 @@
       "priority": "C",
       "distance": "21.1km",
       "registered": null,
-      "programId": "nextSeason"
+      "programId": "tds-2027"
     },
     {
       "name": "Santini Stelvio Gran Fondo (lang rute)",
@@ -5685,11 +5685,11 @@
         "ctlTarget": 58,
         "tssTarget": 510,
         "tssActual": null,
-        "purpose": "Late Base 3/6. VO2 4×4 tir, tærskel 3×12 fre — laktattærskel er nr. 3 i fasen. Søndag 4,5 t. Styrke 2×.",
-        "note": null,
+        "purpose": "Late Base 3/6. Hegnet Half søndag 7/3 (C-løb, flad) er ugens lange pas i stedet for en 4,5 t tur. VO2 4×4 tirsdag er eneste kvalitetspas — laktattærskel, nr. 3 i fasen, udgår denne uge. Styrke 2×, let fra torsdag.",
+        "note": "Hegnet Half søn 7/3, Tisvilde Hegn — C-løb, kontrolleret tempo, ikke en test. Pace fastlægges nærmere løbet ud fra opdateret tærskel (nu 4:24/km, retestes løbende).",
         "quota": {
           "haard": 2,
-          "moderat": 2
+          "moderat": 1
         },
         "quotaUsed": {
           "haard": 0,
@@ -5697,7 +5697,13 @@
         },
         "keySessions": [],
         "flags": [],
-        "races": [],
+        "races": [
+          {
+            "name": "Hegnet Half",
+            "date": "2027-03-07",
+            "priority": "C"
+          }
+        ],
         "travel": null,
         "isCurrent": false,
         "isPast": false,
@@ -11462,46 +11468,9 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-28T12:44:33Z"
+    "generatedAt": "2026-11-28T12:57:50Z"
   },
-  "proposals": [
-    {
-      "id": "2026-11-28-hegnet-c-loeb",
-      "title": "Hegnet Half som C-løb + uge 26 ryddet op + ugernes fasemål i sync",
-      "createdAt": null,
-      "status": "pending",
-      "summary": [
-        "Nyt løb: Hegnet Half 2027-03-07 (C-løb)",
-        "51 ugers FTP-mål og W/kg-mål rettes til at følge fasen de ligger i",
-        "Vægtplanen i season2027 bringes i sync med programmets"
-      ],
-      "note": "",
-      "weeks": [],
-      "targets": [
-        {
-          "programId": "tds-2027",
-          "week": 26,
-          "isoWeek": 9,
-          "start": "2027-03-01",
-          "blockType": "BUILD",
-          "ctlBefore": 58,
-          "ctlAfter": 58,
-          "tssBefore": 510,
-          "tssAfter": 510,
-          "metaAfter": {
-            "blockType": "BUILD",
-            "note": "Hegnet Half søn 7/3, Tisvilde Hegn — C-løb, kontrolleret tempo, ikke en test. Pace fastlægges nærmere løbet ud fra opdateret tærskel (nu 4:24/km, retestes løbende).",
-            "purpose": "Late Base 3/6. Hegnet Half søndag 7/3 (C-løb, flad) er ugens lange pas i stedet for en 4,5 t tur. VO2 4×4 tirsdag er eneste kvalitetspas — laktattærskel, nr. 3 i fasen, udgår denne uge. Styrke 2×, let fra torsdag.",
-            "keySession": "Hegnet Half (C) søndag 7/3",
-            "quota": {
-              "haard": 2,
-              "moderat": 1
-            }
-          }
-        }
-      ]
-    }
-  ],
+  "proposals": [],
   "ftp": {
     "ftpW": 257,
     "wkg": 3.52,
