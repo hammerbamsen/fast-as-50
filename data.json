@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-28 06:05",
+    "updated": "2026-11-28 06:18",
     "week": 12,
     "totalWeeks": 51,
     "blockType": "RECOVERY",
@@ -15,7 +15,7 @@
     },
     "programId": "tds-2027",
     "programName": "Tour des Stations 2027",
-    "phase": "BASE",
+    "phase": "Transition",
     "programDay": 83,
     "programDays": 357,
     "isoWeek": 48
@@ -96,8 +96,8 @@
     "ftp": {
       "value": "257",
       "unit": "W",
-      "sub": "3,52 W/kg · mål 292 (BASE)",
-      "color": "#C0392B"
+      "sub": "3,52 W/kg · mål 257 (Transition)",
+      "color": "#27AE60"
     },
     "vo2": {
       "value": "0",
@@ -117,8 +117,8 @@
     "target": 6,
     "streak": 6
   },
-  "coachSpeech": "Uge 48, RECOVERY-blok: genopbygning efter sygdom — lav belastning er planen, ikke et efterslæb. {HL} Ugen har 5 missede pas og kun 37% af planlagt TSS (226 af 605) — men det er en RECOVERY-uge, og vandreturene tirsdag og torsdag som ekstra ture har bidraget med reel belastning.",
-  "coachHighlight": "Gennemfør Styrke A · Functional 4 · 3 runder (45 min) i dag.",
+  "coachSpeech": "Lørdag — uge 48. {HL} Godt: Søvn på 8,4 timer er solid. Fokus: Vægt på 72,9 kg — protein ved hvert måltid, alkohol som bevidst valg, søvn 7-8 t. Vægt/fedt vurderes på 7d-snit mod planen, ikke på én vejning. 5 AF-dage i 6 afsluttede dage — 1 mangler i 1 dage tilbage. Keep moving forward.  \"Keep moving forward.\"",
+  "coachHighlight": "Lavere belastning er meningen i en restitutionsuge — der er ingen ugeprocent at jagte",
   "weekFocus": "Spis til vedligehold, kør Z2, lav styrke hver dag det er planlagt",
   "today": [
     {
@@ -3344,15 +3344,7 @@
   "coachAssessmentHtml": "<p class=\"coach-head\"><strong>Dag 83 af 357 · Lørdag · Uge 48</strong></p><p class=\"coach-sec coach-big\">Uge 48, RECOVERY-blok: genopbygning efter sygdom — lav belastning er planen, ikke et efterslæb.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Træning &amp; load</span>Ugen har 5 missede pas og kun 37% af planlagt TSS (226 af 605) — men det er en RECOVERY-uge, og vandreturene tirsdag og torsdag som ekstra ture har bidraget med reel belastning. CTL er 29,2 mod mål på 46,0, men i genopbygningsfasen er det forventet: volumen før intensitet, og CTL bygges gradvist.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Krop &amp; kost</span>7-dages snit for vægt er steget 1,1 kg den seneste måned — det er over tærsklen og indikerer opadgående retning, mens cuttet sigter mod fald. Fedtsnit er kun faldet 0,4 procentpoint og er endnu ikke over tærsklen på 0,5 for at kalde en retning.</p><p class=\"coach-sec\"><span class=\"coach-sec-h\">Vaner</span>Protein dækket 6 af 7 dage — solidt. Søvn var 6,8 timer i nat, under målet på 7 timer — prioritér en tidligere sengetid i aften.</p>",
   "coachAssessmentTs": "06:05",
   "commute_pairing_warnings": [],
-  "warnings": [
-    {
-      "type": "cut",
-      "level": "warn",
-      "message": "7-dages snit for vægt er steget 1,1 kg den seneste måned — cuttet er 0,4 kg bagud i forhold til planen (forventet 72,7 kg). Spis protein ved hvert måltid og undgå dage med 3+ genstande.",
-      "action": null,
-      "source": "ai"
-    }
-  ],
+  "warnings": [],
   "tsb": -4.4,
   "swimHistory": [
     {
@@ -3658,17 +3650,17 @@
     65,
     63,
     59,
-    62,
     65,
-    62,
-    64,
-    64,
-    71,
-    69,
-    71,
+    68,
+    66,
     70,
-    67,
-    61
+    70,
+    77,
+    75,
+    80,
+    78,
+    74,
+    72
   ],
   "coachAssessmentError": null,
   "coachAssessmentStale": false,
@@ -3682,7 +3674,7 @@
       "note": "Nøgle virker"
     }
   },
-  "credentialsCheckedTs": "2026-11-28T05:05:38.050888",
+  "credentialsCheckedTs": "2026-11-28T05:18:56.782067",
   "coachAssessmentTsFull": "2026-11-28T05:05:38",
   "coachAssessmentWeightAtGen": 72.9,
   "coachAssessmentAfAtGen": 5,
@@ -4849,7 +4841,7 @@
         "programId": "tds-2027",
         "start": "2026-09-07",
         "end": "2026-09-13",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 47,
@@ -4878,7 +4870,7 @@
         "programId": "tds-2027",
         "start": "2026-09-14",
         "end": "2026-09-20",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "RACE",
         "mesoWeek": "1/1",
         "ctlTarget": 50,
@@ -4916,7 +4908,7 @@
         "programId": "tds-2027",
         "start": "2026-09-21",
         "end": "2026-09-27",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "BASE",
         "mesoWeek": "1/2",
         "ctlTarget": 53,
@@ -4945,7 +4937,7 @@
         "programId": "tds-2027",
         "start": "2026-09-28",
         "end": "2026-10-04",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "BASE",
         "mesoWeek": "2/2",
         "ctlTarget": 51,
@@ -4984,7 +4976,7 @@
         "programId": "tds-2027",
         "start": "2026-10-05",
         "end": "2026-10-11",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 50,
@@ -5016,7 +5008,7 @@
         "programId": "tds-2027",
         "start": "2026-10-12",
         "end": "2026-10-18",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "BASE",
         "mesoWeek": "1/2",
         "ctlTarget": 53,
@@ -5047,7 +5039,7 @@
         "programId": "tds-2027",
         "start": "2026-10-19",
         "end": "2026-10-25",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "BASE",
         "mesoWeek": "2/2",
         "ctlTarget": 56,
@@ -5079,7 +5071,7 @@
         "programId": "tds-2027",
         "start": "2026-10-26",
         "end": "2026-11-01",
-        "phase": "TRANSITION",
+        "phase": "Transition",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 35,
@@ -5108,7 +5100,7 @@
         "programId": "tds-2027",
         "start": "2026-11-02",
         "end": "2026-11-08",
-        "phase": "BASE",
+        "phase": "Transition",
         "blockType": "BASE",
         "mesoWeek": "1/2",
         "ctlTarget": 36,
@@ -5139,7 +5131,7 @@
         "programId": "tds-2027",
         "start": "2026-11-09",
         "end": "2026-11-15",
-        "phase": "BASE",
+        "phase": "Transition",
         "blockType": "BASE",
         "mesoWeek": "2/2",
         "ctlTarget": 38,
@@ -5168,7 +5160,7 @@
         "programId": "tds-2027",
         "start": "2026-11-16",
         "end": "2026-11-22",
-        "phase": "BASE",
+        "phase": "Transition",
         "blockType": "BASE+",
         "mesoWeek": "1/1",
         "ctlTarget": 42,
@@ -5204,7 +5196,7 @@
         "programId": "tds-2027",
         "start": "2026-11-23",
         "end": "2026-11-29",
-        "phase": "BASE",
+        "phase": "Transition",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
         "ctlTarget": 46,
@@ -6091,8 +6083,8 @@
         "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "1/2",
-        "ctlTarget": 62,
-        "tssTarget": 540,
+        "ctlTarget": 65,
+        "tssTarget": 600,
         "tssActual": null,
         "purpose": "Build 2 1/8. Søndag 6 t aerob tærskel. Tirsdag tærskel 2×20. Styrke tilbage 2×.",
         "note": "Langtur vokser: 6 t+. Fueling øves hver gang.",
@@ -6120,8 +6112,8 @@
         "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "2/2",
-        "ctlTarget": 65,
-        "tssTarget": 570,
+        "ctlTarget": 68,
+        "tssTarget": 630,
         "tssActual": null,
         "purpose": "Build 2 2/8. Søndag 7 t med tempo sidst i turen. Tirsdag norsk kontrolleret. Styrke 2×.",
         "note": null,
@@ -6149,8 +6141,8 @@
         "phase": "Build 2",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
-        "ctlTarget": 62,
-        "tssTarget": 300,
+        "ctlTarget": 66,
+        "tssTarget": 330,
         "tssActual": null,
         "purpose": "Build 2 3/8, aflastning. Søndag 4 t. Styrke 2×.",
         "note": null,
@@ -6178,8 +6170,8 @@
         "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "1/1",
-        "ctlTarget": 64,
-        "tssTarget": 560,
+        "ctlTarget": 70,
+        "tssTarget": 620,
         "tssActual": null,
         "purpose": "Build 2 4/8. Søndag 8 t. Tirsdag tærskel sent i turen. VO2 vedligehold LØRDAG 10×1 — 72 t efter tirsdag, ikke onsdag. Styrke 2×.",
         "note": "Løb ned til 1-2 rolige. Cyklen har forkørselsret.",
@@ -6207,8 +6199,8 @@
         "phase": "Build 2",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
-        "ctlTarget": 64,
-        "tssTarget": 420,
+        "ctlTarget": 70,
+        "tssTarget": 460,
         "tssActual": null,
         "purpose": "Build 2 5/8. Søndag 8,5 t med 4.000 hm. Tirsdag over-unders, bakker ude. Styrke 2×.",
         "note": "Forlejr-aflastning foer Alpelejren (var SPECIFIK+ med 9 t soendag). Samme moenster som foer lejr #1 og #2: en lejr er selve belastningsblokken, ugen foer skal aflaste. CTL-maalet holdes fladt: en aflastningsuge der bygger CTL er selvmodsigende.",
@@ -6236,8 +6228,8 @@
         "phase": "Build 2",
         "blockType": "CAMP",
         "mesoWeek": "1/1",
-        "ctlTarget": 71,
-        "tssTarget": 780,
+        "ctlTarget": 77,
+        "tssTarget": 850,
         "tssActual": null,
         "purpose": "Build 2 6/8. Nedtrapning før Alpelejren. Søndag 4 t. Tirsdag åbnere. Styrke 2×.",
         "note": "LEJR #2 Alperne. Back-to-back bjergdage. CTL-peak. Gearing testes. FTP-test i lejren — porten mod 320 W (4,7 W/kg).",
@@ -6265,8 +6257,8 @@
         "phase": "Build 2",
         "blockType": "RECOVERY",
         "mesoWeek": "R",
-        "ctlTarget": 69,
-        "tssTarget": 300,
+        "ctlTarget": 75,
+        "tssTarget": 330,
         "tssActual": null,
         "purpose": "Alpelejren: back-to-back bjergdage, én tur 10-11 t med >4.000 hm. Generalprøve på fueling. Er lejren ikke booket 1/6, så kør 9-10 t hjemme i stedet — det er din eneste eksponering over 8 t.",
         "note": null,
@@ -6294,8 +6286,8 @@
         "phase": "Build 2",
         "blockType": "SPECIFIK",
         "mesoWeek": "1/1",
-        "ctlTarget": 71,
-        "tssTarget": 580,
+        "ctlTarget": 80,
+        "tssTarget": 640,
         "tssActual": null,
         "purpose": "Build 2 8/8, aflastning efter Alperne. Søndag 4 t. Ingen kvalitet før torsdag. Styrke 2×.",
         "note": "Sidste større uge.",
@@ -6323,8 +6315,8 @@
         "phase": "Peak 2",
         "blockType": "TAPER",
         "mesoWeek": "1/2",
-        "ctlTarget": 70,
-        "tssTarget": 450,
+        "ctlTarget": 78,
+        "tssTarget": 500,
         "tssActual": null,
         "purpose": "Peak 1/2. Søndag 6 t — sidste lange. Tirsdag tærskel 2×20. Alt udstyr afprøvet. Styrke 2×.",
         "note": "Taper starter (2-3 uger progressivt, TMB-rammen).",
@@ -6352,8 +6344,8 @@
         "phase": "Peak 2",
         "blockType": "TAPER",
         "mesoWeek": "2/2",
-        "ctlTarget": 67,
-        "tssTarget": 350,
+        "ctlTarget": 74,
+        "tssTarget": 390,
         "tssActual": null,
         "purpose": "Peak 2/2. Volumen −40 %. Søndag 4 t. Åbnere tir. Styrke droppet 7 dage før.",
         "note": "Intensitet holdes, volumen falder.",
@@ -6381,8 +6373,8 @@
         "phase": "Race 2",
         "blockType": "RACE",
         "mesoWeek": "1/1",
-        "ctlTarget": 61,
-        "tssTarget": 180,
+        "ctlTarget": 72,
+        "tssTarget": 200,
         "tssActual": null,
         "purpose": "Race-uge: ankomst Le Châble/Verbier ons 25/8. Åbnere tor. TdS Ultrafondo lør 28/8.",
         "note": "TOUR DES STATIONS ULTRAFONDO lør 28/8 — A-løb. Start 02:30.",
@@ -11406,20 +11398,23 @@
       "Næste uge (49, BASE): TSS-mål 460 · hårde/lange dage: ons 2/12 Vandring 3 t 180 min, fre 4/12 Vandring 3 t 180 min, søn 6/12 Vandring 3 t 180 min",
       "Planændringer siden sidst: 1 — se martin_signals.md"
     ],
-    "generatedAt": "2026-11-28T05:05:21Z"
+    "generatedAt": "2026-11-28T05:18:56Z"
   },
   "proposals": [],
   "ftp": {
     "ftpW": 257,
     "wkg": 3.52,
     "weightAvg7": 73.0,
-    "phase": "BASE",
-    "phaseTarget": 292,
-    "phaseWkgTarget": 4.29,
-    "seasonTarget": 320,
-    "seasonStart": 278,
-    "status": "bagud",
-    "color": "#C0392B",
+    "phase": "Transition",
+    "phaseTarget": 257,
+    "phaseWkgTarget": 3.52,
+    "seasonTarget": 295,
+    "seasonStart": 257,
+    "seasonWkgTarget": 4.28,
+    "seasonWkgStart": 3.52,
+    "primary": "wkg",
+    "status": "ok",
+    "color": "#27AE60",
     "nextTest": null,
     "history": [
       {
@@ -11440,40 +11435,81 @@
     ],
     "phases": [
       {
-        "name": "TRANSITION",
+        "name": "Transition",
         "weekFrom": 1,
-        "weekTo": 8,
-        "ftpTarget": 278
+        "weekTo": 12,
+        "ftpTarget": 257,
+        "wkgTarget": 3.52
       },
       {
-        "name": "BASE",
-        "weekFrom": 9,
-        "weekTo": 22,
-        "ftpTarget": 292
+        "name": "Preparation",
+        "weekFrom": 13,
+        "weekTo": 17,
+        "ftpTarget": 258,
+        "wkgTarget": 3.6
       },
       {
-        "name": "BUILD",
-        "weekFrom": 23,
-        "weekTo": 35,
-        "ftpTarget": 305
+        "name": "Early Base",
+        "weekFrom": 18,
+        "weekTo": 23,
+        "ftpTarget": 263,
+        "wkgTarget": 3.75
       },
       {
-        "name": "STELVIO",
-        "weekFrom": 36,
+        "name": "Late Base",
+        "weekFrom": 24,
+        "weekTo": 29,
+        "ftpTarget": 274,
+        "wkgTarget": 3.95
+      },
+      {
+        "name": "Build 1",
+        "weekFrom": 30,
+        "weekTo": 36,
+        "ftpTarget": 283,
+        "wkgTarget": 4.1
+      },
+      {
+        "name": "Peak 1",
+        "weekFrom": 37,
+        "weekTo": 38,
+        "ftpTarget": 286,
+        "wkgTarget": 4.15
+      },
+      {
+        "name": "Race 1",
+        "weekFrom": 39,
         "weekTo": 39,
-        "ftpTarget": 308
+        "ftpTarget": 286,
+        "wkgTarget": 4.15
       },
       {
-        "name": "SPECIFIK",
+        "name": "Transition",
         "weekFrom": 40,
-        "weekTo": 49,
-        "ftpTarget": 320
+        "weekTo": 40,
+        "ftpTarget": 286,
+        "wkgTarget": 4.15
       },
       {
-        "name": "TAPER",
-        "weekFrom": 50,
+        "name": "Build 2",
+        "weekFrom": 41,
+        "weekTo": 48,
+        "ftpTarget": 293,
+        "wkgTarget": 4.25
+      },
+      {
+        "name": "Peak 2",
+        "weekFrom": 49,
+        "weekTo": 50,
+        "ftpTarget": 295,
+        "wkgTarget": 4.28
+      },
+      {
+        "name": "Race 2",
+        "weekFrom": 51,
         "weekTo": 51,
-        "ftpTarget": 320
+        "ftpTarget": 295,
+        "wkgTarget": 4.28
       }
     ]
   },
@@ -11489,8 +11525,8 @@
         "start": "2026-11-02",
         "z5Min": 0,
         "sessions": 0,
-        "target": 5,
-        "phase": "BASE",
+        "target": 0,
+        "phase": "Transition",
         "blockType": "BASE"
       },
       {
@@ -11498,8 +11534,8 @@
         "start": "2026-11-09",
         "z5Min": 0,
         "sessions": 0,
-        "target": 6,
-        "phase": "BASE",
+        "target": 0,
+        "phase": "Transition",
         "blockType": "BASE"
       },
       {
@@ -11507,8 +11543,8 @@
         "start": "2026-11-16",
         "z5Min": 0,
         "sessions": 0,
-        "target": 7,
-        "phase": "BASE",
+        "target": 0,
+        "phase": "Transition",
         "blockType": "BASE+"
       },
       {
@@ -11517,14 +11553,14 @@
         "z5Min": 0,
         "sessions": 0,
         "target": 0,
-        "phase": "BASE",
+        "phase": "Transition",
         "blockType": "RECOVERY"
       }
     ],
     "z5Min": 0,
     "target": 0,
     "sessions": 0,
-    "phase": "BASE",
+    "phase": "Transition",
     "blockType": "RECOVERY",
     "weekLate": true,
     "color": "#27AE60",
@@ -11543,44 +11579,31 @@
     "best_secs": null
   },
   "phase": {
-    "fase": "BASE",
-    "navn": "Early Base",
-    "formaal": "Maksimér styrke og begynd at bygge den aerobe form.",
+    "fase": "Transition",
+    "navn": "Transition",
+    "formaal": "Restituér mentalt og fysisk efter en alvorlig træningsperiode.",
     "prioriteter": [
-      "Styrke",
-      "Aerob tærskel",
-      "Aerob kapacitet"
+      "Hvil"
     ],
-    "uge_i_fasen": 4,
-    "uger_i_alt": 4,
+    "uge_i_fasen": 12,
+    "uger_i_alt": 12,
     "tilbage": 0,
     "slutter": "2026-11-23",
     "naeste": "Preparation",
-    "varighed_ok": true,
-    "varighed_min": 3,
-    "varighed_max": 6,
+    "varighed_ok": false,
+    "varighed_min": 1,
+    "varighed_max": 4,
     "afsnit": [
       {
-        "fase": "TRANSITION",
+        "fase": "Transition",
         "navn": "Transition",
         "fra": 1,
-        "til": 8,
-        "uger": 8,
+        "til": 12,
+        "uger": 12,
         "start": "2026-09-07",
         "ok": false,
         "min": 1,
         "max": 4
-      },
-      {
-        "fase": "BASE",
-        "navn": "Early Base",
-        "fra": 9,
-        "til": 12,
-        "uger": 4,
-        "start": "2026-11-02",
-        "ok": true,
-        "min": 3,
-        "max": 6
       },
       {
         "fase": "Preparation",
