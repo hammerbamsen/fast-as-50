@@ -17,23 +17,52 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 
+class _StubMeta(type):
+    """Taaler attributopslag paa klassen selv (WD_ALIGN_VERTICAL.CENTER)."""
+    def __getattr__(cls, name):
+        return _Stub()
+
+
+class _Stub(metaclass=_StubMeta):
+    """Taaler kald og attributopslag: RGBColor(0x59, 0x18, 0x2A), Pt(11), ..."""
+    def __init__(self, *a, **kw):
+        pass
+
+    def __getattr__(self, name):
+        return _Stub()
+
+    def __call__(self, *a, **kw):
+        return _Stub()
+
+
 def _stub_docx_if_missing():
     """CI installerer ikke python-docx (kun pytest/requests/pywebpush/jsonschema).
 
-    apply_edit.py importerer word_master, som importerer docx paa modul-niveau.
-    Testen roerer aldrig Word-generering, saa en tom stub er nok — og bedre end
-    at skippe testen, for saa ville den aldrig koere i CI.
+    apply_edit.py importerer word_master, som importerer docx paa modulniveau og
+    bygger farvekonstanter med RGBColor() med det samme. Testen roerer aldrig
+    Word-generering, saa stubs er nok — og bedre end at skippe testen, for saa
+    ville den aldrig koere i CI.
     """
-    if importlib.util.find_spec("docx") is not None:
-        return
+    if "docx" in sys.modules:
+        return                      # allerede stubbet af en tidligere test
+    try:
+        if importlib.util.find_spec("docx") is not None:
+            return                  # den rigtige pakke findes (lokalt)
+    except (ImportError, ValueError):
+        pass
     import types
-    docx = types.ModuleType("docx")
-    docx.Document = object
-    shared = types.ModuleType("docx.shared")
-    shared.Pt = shared.Cm = shared.RGBColor = object
-    enum = types.ModuleType("docx.enum")
-    table = types.ModuleType("docx.enum.table")
-    table.WD_ALIGN_VERTICAL = table.WD_TABLE_ALIGNMENT = object
+    from importlib.machinery import ModuleSpec
+
+    def _mod(name):
+        m = types.ModuleType(name)
+        m.__spec__ = ModuleSpec(name, None)   # ellers kaster find_spec i naeste test
+        return m
+
+    docx, shared = _mod("docx"), _mod("docx.shared")
+    enum, table = _mod("docx.enum"), _mod("docx.enum.table")
+    docx.Document = _Stub
+    shared.Pt = shared.Cm = shared.RGBColor = _Stub
+    table.WD_ALIGN_VERTICAL = table.WD_TABLE_ALIGNMENT = _Stub
     docx.shared, docx.enum, enum.table = shared, enum, table
     sys.modules.update({"docx": docx, "docx.shared": shared,
                         "docx.enum": enum, "docx.enum.table": table})

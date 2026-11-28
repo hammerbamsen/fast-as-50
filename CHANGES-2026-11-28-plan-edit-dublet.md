@@ -50,7 +50,16 @@ Banneret forsvinder, når `plan-edit` kører grønt næste gang.
 ## Efterspil — rød CI på første push (da9bf3d)
 
 Testen bestod lokalt og faldt i CI: `scripts/apply_edit.py` importerer `word_master`, som
-importerer `python-docx` på modulniveau, og CI installerer kun pytest, requests, pywebpush og
-jsonschema. Testen stubber nu `docx` i `sys.modules`, når pakken mangler — bedre end at skippe
-testen, som så aldrig ville køre i CI. Verificeret begge veje: med pakken installeret, og med
-en meta_path-blokering der efterligner CI.
+importerer `python-docx` på modulniveau og bygger `RGBColor`-konstanter med det samme. CI
+installerer kun pytest, requests, pywebpush og jsonschema. Testen stubber nu `docx` i
+`sys.modules`, når pakken mangler — bedre end at skippe testen, som så aldrig ville køre i CI.
+
+Første stub-forsøg (`5c80af8`) var også rødt, og min lokale efterligning af CI var skyld i
+begge: en `meta_path`-finder der returnerer `None` blokerer ikke noget — importsystemet går
+bare videre til næste finder og fandt den rigtige pakke. Den skjulte to fejl: stubbene var
+`object` og kunne ikke kaldes med argumenter, og stub-modulerne manglede `__spec__`, så
+`find_spec` kastede i test nummer to. Rettet med kaldbare stubs (metaclass, så
+`WD_ALIGN_VERTICAL.CENTER` også virker) og rigtige `ModuleSpec`'s.
+
+Verifikationen er nu et rent virtuelt miljø med præcis CI's fire pakker: **818 passed**, ingen
+python-docx installeret.
